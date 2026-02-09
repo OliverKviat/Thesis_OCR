@@ -1,2 +1,3 @@
 # Data folder - contains raw PDF files
 pdf_reader/Data/
+*.pdf
