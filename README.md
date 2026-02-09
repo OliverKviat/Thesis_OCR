@@ -25,7 +25,7 @@ uv run python pdf_reader.py --info "filename.pdf"
 uv run python pdf_reader.py --export
 ```
 
-## Title Extraction
+ ## Title Extraction
 
 Title is extracted from filename (removes ID and translation):
 - Searches first 10 PDF pages for filename title
