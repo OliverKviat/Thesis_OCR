@@ -1,3 +1,2 @@
-# Data folder - contains raw PDF files
-pdf_reader/Data/
+# Ignores all PDF files in the repository
 *.pdf
