@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Simple PDF Reader
+PDF Reader and Metadata Extractor
 
-Task 1: Open a PDF and read it with a PDF reader.
-Access files from Data/RAW_test folder and output to terminal.
+Extracts title (from filename), author, and abstract from academic PDF papers.
+Supports batch processing to CSV for Excel export.
 """
 
 import sys
@@ -32,8 +32,8 @@ def extract_simple_metadata(pdf_path: str) -> Dict[str, str]:
 
 def extract_abstract_from_pages(pdf_path: str) -> str:
     """
-    Extract abstract by finding the page that contains only 'Abstract' heading and content.
-    Low tech but effective approach for academic papers.
+    Extract abstract from dedicated abstract page.
+    Looks for 'Abstract' heading followed by content.
     """
     try:
         with open(pdf_path, 'rb') as file:
@@ -67,9 +67,54 @@ def extract_abstract_from_pages(pdf_path: str) -> str:
         return f"Error extracting abstract: {str(e)}"
 
 
+def extract_title_from_filename(filename: str) -> str:
+    """
+    Extract English title from filename.
+    Removes file ID prefix and translation (everything from " (translated " onward).
+    """
+    # Remove the PDF extension
+    name_without_ext = filename.rsplit('.pdf', 1)[0]
+    
+    # Remove the ID prefix (everything before the first underscore and the underscore itself)
+    if '_' in name_without_ext:
+        name_without_id = name_without_ext.split('_', 1)[1]
+    else:
+        name_without_id = name_without_ext
+    
+    # Remove everything from " (translated " onward
+    if ' (translated ' in name_without_id:
+        title = name_without_id.split(' (translated ', 1)[0]
+    else:
+        title = name_without_id
+    
+    return title.strip()
+
+
+def search_title_in_pdf_pages(pdf_path: str, search_title: str, max_pages: int = 10) -> bool:
+    """
+    Search for title in first N pages of PDF.
+    Returns True if found, False otherwise.
+    """
+    try:
+        with open(pdf_path, 'rb') as file:
+            reader = pypdf.PdfReader(file)
+            pages_to_check = min(max_pages, len(reader.pages))
+            
+            for i in range(pages_to_check):
+                page_text = reader.pages[i].extract_text().lower()
+                if search_title.lower() in page_text:
+                    return True
+        
+        return False
+    
+    except:
+        return False
+
+
 def extract_title_from_first_pages(pdf_path: str) -> str:
     """
-    Extract title from first 1-2 pages - usually the largest/most prominent text.
+    Extract title from PDF content (first 1-2 pages).
+    Used when filename title not found in PDF.
     """
     try:
         with open(pdf_path, 'rb') as file:
@@ -98,7 +143,8 @@ def extract_title_from_first_pages(pdf_path: str) -> str:
 
 def extract_author_from_metadata_or_text(pdf_path: str) -> str:
     """
-    Extract author from metadata first, then from text patterns.
+    Extract author from PDF metadata or text.
+    Filters out institutional terms (DTU, University, etc).
     """
     # Try metadata first
     metadata = extract_simple_metadata(pdf_path)
@@ -160,11 +206,25 @@ def extract_author_from_metadata_or_text(pdf_path: str) -> str:
 
 def process_single_pdf(pdf_path: str) -> Dict[str, str]:
     """
-    Process a single PDF and extract title, author, and abstract.
+    Extract title, author, and abstract from single PDF.
+    Returns dict with title_filename, title_pdf, title_found_in_pdf, author, abstract.
     """
+    filename = Path(pdf_path).name
+    title_filename = extract_title_from_filename(filename)
+    
+    # Step 1: Search for filename title in first 10 pages
+    title_found_in_pdf = search_title_in_pdf_pages(pdf_path, title_filename)
+    
+    # Step 2: If not found in PDF, extract title from PDF content
+    title_pdf = ""
+    if not title_found_in_pdf:
+        title_pdf = extract_title_from_first_pages(pdf_path)
+    
     return {
-        'filename': Path(pdf_path).name,
-        'title': extract_title_from_first_pages(pdf_path),
+        'filename': filename,
+        'title_filename': title_filename,
+        'title_pdf': title_pdf if title_pdf else "",
+        'title_found_in_pdf': title_found_in_pdf,
         'author': extract_author_from_metadata_or_text(pdf_path), 
         'abstract': extract_abstract_from_pages(pdf_path),
         'file_path': pdf_path
@@ -173,15 +233,8 @@ def process_single_pdf(pdf_path: str) -> Dict[str, str]:
 
 def read_pdf(pdf_path: str, max_pages: int = None) -> str:
     """
-    Read text from a PDF file using pypdf.
-    
-    Args:
-        pdf_path: Path to the PDF file
-        max_pages: Maximum number of pages to read 
-        (--first5 for first 5 pages, --full for all pages, defaults to None which means read all pages)
-        
-    Returns:
-        Extracted text content
+    Read text from PDF file.
+    max_pages: None for all, or specify number of pages to read.
     """
     try:
         with open(pdf_path, 'rb') as file:
@@ -212,8 +265,7 @@ def read_pdf(pdf_path: str, max_pages: int = None) -> str:
 
 def process_all_pdfs_to_csv(raw_data_dir: Path, output_file: str = "extracted_metadata.csv"):
     """
-    Process all PDFs and save results to CSV (Excel can open CSV files).
-    Low tech approach - no pandas dependency needed.
+    Batch process all PDFs in directory and save to CSV.
     """
     processed_data_dir = Path("Data/Processed")
     pdf_files = list(raw_data_dir.glob("*.pdf"))
@@ -224,7 +276,7 @@ def process_all_pdfs_to_csv(raw_data_dir: Path, output_file: str = "extracted_me
     
     # Prepare CSV content
     csv_lines = []
-    csv_lines.append("Filename,Title,Author,Abstract,File_Path")
+    csv_lines.append("Filename,Title_From_Filename,Title_From_PDF,Title_Match,Author,Abstract,File_Path")
     
     print(f"Processing {len(pdf_files)} PDF files...")
     print("=" * 50)
@@ -237,23 +289,28 @@ def process_all_pdfs_to_csv(raw_data_dir: Path, output_file: str = "extracted_me
             
             # Clean data for CSV (escape quotes, remove newlines) 
             filename = result['filename']
-            title = result['title'].replace('"', '""').replace('\n', ' ').replace('\r', ' ')
+            title_filename = result['title_filename'].replace('"', '""').replace('\n', ' ').replace('\r', ' ')
+            title_pdf = result['title_pdf'].replace('"', '""').replace('\n', ' ').replace('\r', ' ')
+            title_match = "Yes" if result['title_found_in_pdf'] else "No"
             author = result['author'].replace('"', '""').replace('\n', ' ').replace('\r', ' ')
             abstract = result['abstract'].replace('"', '""').replace('\n', ' ').replace('\r', ' ')
             file_path = result['file_path']
             
             # Add to CSV (wrap in quotes to handle commas)
-            csv_line = f'"{filename}","{title}","{author}","{abstract}","{file_path}"'
+            csv_line = f'"{filename}","{title_filename}","{title_pdf}","{title_match}","{author}","{abstract}","{file_path}"'
             csv_lines.append(csv_line)
             
-            print(f"   Title: {title[:50]}{'...' if len(title) > 50 else ''}")
+            print(f"   Title (filename): {title_filename[:50]}{'...' if len(title_filename) > 50 else ''}")
+            print(f"   Found in PDF: {title_match}")
+            if title_pdf:
+                print(f"   Title (PDF): {title_pdf[:50]}{'...' if len(title_pdf) > 50 else ''}")
             print(f"   Author: {author}")
             print(f"   Abstract: {'Found' if 'not found' not in abstract.lower() else 'Not found'}")
             print()
             
         except Exception as e:
             print(f"   Error: {e}")
-            csv_lines.append(f'"{pdf_path.name}","ERROR","ERROR","ERROR","{str(pdf_path)}"')
+            csv_lines.append(f'"{pdf_path.name}","ERROR","ERROR","ERROR","ERROR","ERROR","{str(pdf_path)}"')
     
     # Write CSV file
     output_path = processed_data_dir / output_file
@@ -268,14 +325,17 @@ def process_all_pdfs_to_csv(raw_data_dir: Path, output_file: str = "extracted_me
 
 def show_single_pdf_info(pdf_path: Path):
     """
-    Show extracted information for a single PDF in terminal.
+    Display extracted metadata for a single PDF.
     """
     print(f"Analyzing: {pdf_path.name}")
     print("=" * 50)
     
     result = process_single_pdf(str(pdf_path))
     
-    print(f"TITLE: {result['title']}")
+    print(f"TITLE (from filename): {result['title_filename']}")
+    print(f"Found in PDF: {result['title_found_in_pdf']}")
+    if result['title_pdf']:
+        print(f"TITLE (from PDF): {result['title_pdf']}")
     print()
     print(f"AUTHOR: {result['author']}")
     print()
@@ -286,7 +346,7 @@ def show_single_pdf_info(pdf_path: Path):
 
 
 def main():
-    """Main function with options for reading PDFs or extracting metadata."""
+    """CLI entry point for PDF reading and metadata extraction."""
     
     # Define the raw and processed data directories
     raw_data_dir = Path("Data/RAW_test")
