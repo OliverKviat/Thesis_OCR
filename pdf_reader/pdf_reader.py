@@ -141,7 +141,7 @@ def extract_title_from_first_pages(pdf_path: str) -> str:
             lines = [line.strip() for line in first_pages_text.split('\n') if line.strip()]
             
             # Terms to exclude from title extraction
-            excluded_terms = [
+            excluded_terms_title = [
                 'Technical University of Denmark', 'DTU', 'Master Thesis', 'MSc Thesis', 
                 'Thesis', 'MSc', 'DTU Compute', 'University', 
                 'Department', 'Faculty', 'Technical University of Denmark (DTU)'
@@ -152,7 +152,7 @@ def extract_title_from_first_pages(pdf_path: str) -> str:
                 if (len(line) > 10 and len(line) < 200 and 
                     not re.search(r'^(by|author|university|department)', line, re.IGNORECASE) and
                     not re.search(r'@|\d{4}|email', line, re.IGNORECASE) and
-                    not any(term.lower() in line.lower() for term in excluded_terms)):
+                    not any(term.lower() in line.lower() for term in excluded_terms_title)):
                     return line
             
         return "Title not found"
@@ -170,17 +170,17 @@ def extract_author_from_metadata_or_text(pdf_path: str) -> str:
     metadata = extract_simple_metadata(pdf_path)
     
     # Filter out institutional/generic terms that shouldn't be considered authors
-    excluded_terms = [
+    excluded_terms_author = [
         'Technical University of Denmark', 'DTU', 'Master Thesis', 'MSc Thesis', 
         'Thesis', 'MSc', 'DTU Compute', 'University', 
-        'Department', 'Faculty', 'Technical University of Denmark (DTU)'
+        'Department', 'Faculty', 'Technical University of Denmark (DTU)', 'the', 'and', 'of', 'in', 'for', 'on', 'with', 'by'
     ]
     
     if metadata['author']:
         author_text = metadata['author'].strip()
         
         # If author is ONLY an institutional term, skip it
-        if any(author_text.lower() == term.lower() for term in excluded_terms):
+        if any(author_text.lower() == term.lower() for term in excluded_terms_author):
             pass  # Skip to text extraction
         # If author contains actual names (has commas, parentheses, or person-like patterns)
         elif (',' in author_text or '(' in author_text or 
@@ -191,10 +191,10 @@ def extract_author_from_metadata_or_text(pdf_path: str) -> str:
             for part in name_parts:
                 part = part.strip()
                 if (re.match(r'^[A-Z][a-z]+\s+[A-Z][a-z]+', part) and 
-                    not any(term.lower() in part.lower() for term in excluded_terms)):
+                    not any(term.lower() in part.lower() for term in excluded_terms_author)):
                     return part
         # Simple name without institutional terms
-        elif not any(term.lower() in author_text.lower() for term in excluded_terms):
+        elif not any(term.lower() in author_text.lower() for term in excluded_terms_author):
             return author_text
     
     # Try text extraction
@@ -215,7 +215,7 @@ def extract_author_from_metadata_or_text(pdf_path: str) -> str:
                 if match:
                     potential_author = match.group(1).strip()
                     # Apply same filtering to text-extracted authors
-                    if not any(term.lower() in potential_author.lower() for term in excluded_terms):
+                    if not any(term.lower() in potential_author.lower() for term in excluded_terms_author):
                         return potential_author
     
     except:
