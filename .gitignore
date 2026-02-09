@@ -1,2 +1,2 @@
-# Data folder - contains raw PDF files
-Data/
+# Ignores all PDF files in the repository
+*.pdf
