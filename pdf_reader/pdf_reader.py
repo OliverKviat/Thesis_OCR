@@ -161,12 +161,110 @@ def extract_title_from_first_pages(pdf_path: str) -> str:
         return "Error extracting title"
 
 
+def extract_author_from_author_label(pdf_path: str) -> str:
+    """
+    Extract author from "Author:" label in PDF.
+    Looks for author name in same line or following line.
+    """
+    try:
+        with open(pdf_path, 'rb') as file:
+            reader = pypdf.PdfReader(file)
+            
+            for i in range(min(3, len(reader.pages))):
+                page_text = reader.pages[i].extract_text()
+                lines = [line.strip() for line in page_text.split('\n') if line.strip()]
+                
+                for j, line in enumerate(lines):
+                    # Look for "Author:" label
+                    if re.search(r'^\s*author[s]?\s*:', line, re.IGNORECASE):
+                        # Extract name from same line after "Author:"
+                        author_match = re.search(r'^\s*author[s]?\s*:\s*(.+)', line, re.IGNORECASE)
+                        if author_match:
+                            name = author_match.group(1).strip()
+                            if name and re.match(r'^[A-Z]', name):
+                                return name
+                        
+                        # Try next line if available
+                        if j < len(lines) - 1:
+                            next_line = lines[j + 1].strip()
+                            if next_line and re.match(r'^[A-Z][a-z]+\s+[A-Z][a-z]+', next_line):
+                                return next_line
+    
+    except:
+        pass
+    
+    return ""
+
+
+def extract_author_from_student_number(pdf_path: str) -> str:
+    """
+    Extract author using student number pattern (sxxxxxx).
+    Looks for student number, then extracts associated name (up to 5 names).
+    Delimiters: comma, parentheses, colon, dash, semicolon, slash, pipe.
+    """
+    try:
+        with open(pdf_path, 'rb') as file:
+            reader = pypdf.PdfReader(file)
+            
+            for i in range(min(3, len(reader.pages))):
+                page_text = reader.pages[i].extract_text()
+                lines = [line.strip() for line in page_text.split('\n') if line.strip()]
+                
+                for j, line in enumerate(lines):
+                    # Look for student number pattern (s followed by 6 digits)
+                    student_match = re.search(r's\d{6}', line, re.IGNORECASE)
+                    if student_match:
+                        # Try to extract name from same line (up to 5 names)
+                        # Look for name pattern before or after student number
+                        # Pattern: Name followed by optional delimiters and student number
+                        name_match = re.search(r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,4})\s*[,():\-;/|]?\s*s\d{6}', line, re.IGNORECASE)
+                        if name_match:
+                            return name_match.group(1).strip()
+                        
+                        # Try student number followed by name
+                        name_match = re.search(r's\d{6}\s*[,():\-;/|]?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,4})', line, re.IGNORECASE)
+                        if name_match:
+                            return name_match.group(1).strip()
+                        
+                        # Try previous line
+                        if j > 0:
+                            prev_line = lines[j - 1]
+                            name_match = re.search(r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,4})\s*$', prev_line)
+                            if name_match:
+                                return name_match.group(1).strip()
+                        
+                        # Try next line
+                        if j < len(lines) - 1:
+                            next_line = lines[j + 1]
+                            name_match = re.search(r'^([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,4})', next_line)
+                            if name_match:
+                                return name_match.group(1).strip()
+    
+    except:
+        pass
+    
+    return ""
+
+
 def extract_author_from_metadata_or_text(pdf_path: str) -> str:
     """
-    Extract author from PDF metadata or text.
-    Filters out institutional terms (DTU, University, etc).
+    Extract author using priority-based search:
+    1. Author label (Author:)
+    2. Student number (sxxxxxx)
+    3. Metadata
+    4. Text patterns
     """
-    # Try metadata first
+    # Priority 1: Extract from "Author:" label
+    author = extract_author_from_author_label(pdf_path)
+    if author:
+        return author
+    
+    # Priority 2: Extract from student number
+    author = extract_author_from_student_number(pdf_path)
+    if author:
+        return author
+    
+    # Priority 3: Try metadata
     metadata = extract_simple_metadata(pdf_path)
     
     # Filter out institutional/generic terms that shouldn't be considered authors
@@ -197,7 +295,7 @@ def extract_author_from_metadata_or_text(pdf_path: str) -> str:
         elif not any(term.lower() in author_text.lower() for term in excluded_terms_author):
             return author_text
     
-    # Try text extraction
+    # Priority 4: Text patterns
     try:
         with open(pdf_path, 'rb') as file:
             reader = pypdf.PdfReader(file)
