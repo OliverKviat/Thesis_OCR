@@ -252,7 +252,7 @@ def process_all_pdfs_to_csv(raw_data_dir: Path, output_file: str = "extracted_me
             print()
             
         except Exception as e:
-            print(f"   ✗ Error: {e}")
+            print(f"   Error: {e}")
             csv_lines.append(f'"{pdf_path.name}","ERROR","ERROR","ERROR","{str(pdf_path)}"')
     
     # Write CSV file
