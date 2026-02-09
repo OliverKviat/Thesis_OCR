@@ -93,7 +93,7 @@ def extract_title_from_filename(filename: str) -> str:
 def search_title_in_pdf_pages(pdf_path: str, search_title: str, max_pages: int = 10) -> bool:
     """
     Search for title in first N pages of PDF.
-    Returns True if found, False otherwise.
+    Also tries merging consecutive lines to handle multi-line titles.
     """
     try:
         with open(pdf_path, 'rb') as file:
@@ -101,9 +101,21 @@ def search_title_in_pdf_pages(pdf_path: str, search_title: str, max_pages: int =
             pages_to_check = min(max_pages, len(reader.pages))
             
             for i in range(pages_to_check):
-                page_text = reader.pages[i].extract_text().lower()
-                if search_title.lower() in page_text:
+                page_text = reader.pages[i].extract_text()
+                lines = [line.strip() for line in page_text.split('\n') if line.strip()]
+                
+                # Check 1: Exact match in full page text
+                if search_title.lower() in page_text.lower():
                     return True
+                
+                # Check 2: Try merging consecutive lines (handles multi-line titles)
+                for j in range(len(lines)):
+                    # Merge current line with next lines until we reach search title length
+                    merged = lines[j]
+                    for k in range(j + 1, min(j + 5, len(lines))):  # Try up to 4 consecutive lines
+                        merged += " " + lines[k]
+                        if search_title.lower() in merged.lower():
+                            return True
         
         return False
     
