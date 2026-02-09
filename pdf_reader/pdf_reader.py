@@ -128,11 +128,19 @@ def extract_title_from_first_pages(pdf_path: str) -> str:
             # Split into lines and find potential titles
             lines = [line.strip() for line in first_pages_text.split('\n') if line.strip()]
             
+            # Terms to exclude from title extraction
+            excluded_terms = [
+                'Technical University of Denmark', 'DTU', 'Master Thesis', 'MSc Thesis', 
+                'Thesis', 'MSc', 'DTU Compute', 'University', 
+                'Department', 'Faculty', 'Technical University of Denmark (DTU)'
+            ]
+            
             for line in lines[:10]:  # Check first 10 lines
                 # Skip very short lines, author lines, institutional lines
                 if (len(line) > 10 and len(line) < 200 and 
                     not re.search(r'^(by|author|university|department)', line, re.IGNORECASE) and
-                    not re.search(r'@|\d{4}|email', line, re.IGNORECASE)):
+                    not re.search(r'@|\d{4}|email', line, re.IGNORECASE) and
+                    not any(term.lower() in line.lower() for term in excluded_terms)):
                     return line
             
         return "Title not found"
