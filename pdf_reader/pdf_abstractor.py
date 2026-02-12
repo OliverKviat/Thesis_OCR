@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 import pypdf
 import re
+import json
 from typing import Dict, List, Optional
 
 def extract_abstract_from_pages(pdf_path: str) -> str:
@@ -135,7 +136,8 @@ def process_all_pdfs_to_csv(raw_data_dir: Path, output_file: str = "extracted_me
     
     # Prepare CSV content
     csv_lines = []
-    csv_lines.append("Filename,Title,Abstract,File_Path")
+    csv_lines.append("Filename,Title,Abstract")
+    abstracts_found = 0
     
     print(f"Processing {len(pdf_files)} PDF files...")
     print("=" * 50)
@@ -150,11 +152,14 @@ def process_all_pdfs_to_csv(raw_data_dir: Path, output_file: str = "extracted_me
             filename = result['filename']
             title_filename = result['title_filename'].replace('"', '""').replace('\n', ' ').replace('\r', ' ')
             abstract = result['abstract'].replace('"', '""').replace('\n', ' ').replace('\r', ' ')
-            file_path = result['file_path']
             
             # Add to CSV (wrap in quotes to handle commas)
-            csv_line = f'"{filename}","{title_filename}","{abstract}","{file_path}"'
+            csv_line = f'"{filename}","{title_filename}","{abstract}"'
             csv_lines.append(csv_line)
+            
+            # Count abstracts found
+            if 'not found' not in abstract.lower():
+                abstracts_found += 1
             
             print(f"   Title (filename): {title_filename[:50]}{'...' if len(title_filename) > 50 else ''}")
             print(f"   Abstract: {'Found' if 'not found' not in abstract.lower() else 'Not found'}")
@@ -162,7 +167,7 @@ def process_all_pdfs_to_csv(raw_data_dir: Path, output_file: str = "extracted_me
             
         except Exception as e:
             print(f"   Error: {e}")
-            csv_lines.append(f'"{pdf_path.name}","ERROR","ERROR","ERROR","ERROR","ERROR","{str(pdf_path)}"')
+            csv_lines.append(f'"{pdf_path.name}","ERROR","ERROR"')
     
     # Write CSV file
     output_path = processed_data_dir / output_file
@@ -172,6 +177,69 @@ def process_all_pdfs_to_csv(raw_data_dir: Path, output_file: str = "extracted_me
     print("=" * 50)
     print(f"Results saved to: {output_path}")
     print(f"Processed {len(pdf_files)} files")
+    print(f"Abstracts found: {abstracts_found}/{len(pdf_files)}")
+
+
+def process_all_pdfs_to_json(raw_data_dir: Path, output_file: str = "extracted_metadata.json"):
+    """
+    Batch process all PDFs in directory and save to JSON.
+    Extracts the same data as CSV: filename, title, abstract.
+    """
+    processed_data_dir = Path("Data/Processed")
+    pdf_files = list(raw_data_dir.glob("*.pdf"))
+    
+    if not pdf_files:
+        print(f"No PDF files found in {raw_data_dir}")
+        return
+    
+    # Prepare JSON content as list of documents
+    documents = []
+    abstracts_found = 0
+    
+    print(f"Processing {len(pdf_files)} PDF files...")
+    print("=" * 50)
+    
+    for i, pdf_path in enumerate(pdf_files, 1):
+        try:
+            print(f"[{i}/{len(pdf_files)}] Processing: {pdf_path.name}")
+            
+            result = process_single_pdf(str(pdf_path))
+            
+            # Add to JSON (keep full data without cleaning)
+            document = {
+                "filename": result['filename'],
+                "title": result['title_filename'],
+                "abstract": result['abstract']
+            }
+            documents.append(document)
+            
+            # Count abstracts found
+            if 'not found' not in result['abstract'].lower():
+                abstracts_found += 1
+            
+            print(f"   Title: {result['title_filename'][:50]}{'...' if len(result['title_filename']) > 50 else ''}")
+            print(f"   Abstract: {'Found' if 'not found' not in result['abstract'].lower() else 'Not found'}")
+            print()
+            
+        except Exception as e:
+            print(f"   Error: {e}")
+            error_document = {
+                "filename": pdf_path.name,
+                "title": "ERROR",
+                "abstract": f"Error extracting abstract: {str(e)}"
+            }
+            documents.append(error_document)
+    
+    # Write JSON file
+    output_path = processed_data_dir / output_file
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(documents, f, indent=2, ensure_ascii=False)
+    
+    print("=" * 50)
+    print(f"Results saved to: {output_path}")
+    print(f"Processed {len(pdf_files)} files")
+    print(f"Abstracts found: {abstracts_found}/{len(pdf_files)}")
+
 
 
 def show_single_pdf_info(pdf_path: Path):
@@ -216,6 +284,11 @@ def main():
         # Export all PDFs metadata to CSV
         if command in ['--export', '--csv', '--excel']:
             process_all_pdfs_to_csv(raw_data_dir)
+            return
+        
+        # Export all PDFs metadata to JSON
+        elif command in ['--json']:
+            process_all_pdfs_to_json(raw_data_dir)
             return
         
         # Extract metadata for single file
@@ -283,8 +356,10 @@ def main():
         print(f"     python pdf_reader/pdf_abstractor.py '<filename>' [--first5|--full]")
         print("  Extract title and abstract from single PDF:")
         print(f"     python pdf_reader/pdf_abstractor.py --info '<filename>'")
-        print("  Export all PDFs to CSV for Excel & JSON for LLM training:")
-        print(f"     python pdf_reader/pdf_abstractor.py --export")
+        print("  Export all PDFs to CSV:")
+        print(f"     python pdf_reader/pdf_abstractor.py --csv")
+        print("  Export all PDFs to JSON (for LLM training):")
+        print(f"     python pdf_reader/pdf_abstractor.py --json")
 
 if __name__ == "__main__":
     main()
