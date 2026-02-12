@@ -77,6 +77,7 @@ def search_section_by_keyword(reader: pypdf.PdfReader, keyword: str, max_pages: 
     """
     Search for a section with a specific keyword in the first N pages.
     Returns the section content if found, otherwise empty string.
+    All searches are case-insensitive.
     """
     search_end = min(max_pages, len(reader.pages))
     
@@ -88,28 +89,40 @@ def search_section_by_keyword(reader: pypdf.PdfReader, keyword: str, max_pages: 
         if is_toc_page(page_text):
             continue
         
-        keyword_lower = keyword.lower()
+        page_lower = page_text.lower()
         
-        # Look for page starting with keyword
+        # Look for page starting with keyword (case-insensitive)
         if re.match(rf'^\s*{re.escape(keyword)}\s*$', page_text[:100], re.IGNORECASE):
             content = re.sub(rf'^\s*{re.escape(keyword)}\s*', '', page_text, flags=re.IGNORECASE)
             return content.strip()
         
-        # Look for numbered keyword like "1 Summary"
+        # Look for numbered keyword like "1 Summary" (case-insensitive)
         elif re.match(rf'^\s*\d+\s+{re.escape(keyword)}\b', page_text, re.IGNORECASE):
             content = re.sub(rf'^\s*\d+\s+{re.escape(keyword)}\s*', '', page_text, flags=re.IGNORECASE)
             return content.strip()
         
-        # Look for keyword with colon like "Summary:"
-        elif re.match(rf'^\s*{re.escape(keyword)}:', page_text, re.IGNORECASE):
+        # Look for keyword with colon like "Summary:" (case-insensitive)
+        elif re.search(rf'^\s*{re.escape(keyword)}:', page_text, re.IGNORECASE):
             match = re.search(rf'{re.escape(keyword)}\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
             if match:
                 content = match.group(1).strip()
                 content = re.sub(r'\s+', ' ', content)
                 return content
         
-        # Look for keyword appearing in page with reasonable length
-        elif keyword_lower in page_text.lower() and len(page_text.split()) < 600:
+        # Look for keyword on its own line (even if not at page start) - case-insensitive
+        elif re.search(rf'^\s*{re.escape(keyword)}\s*$', page_text, re.IGNORECASE | re.MULTILINE):
+            match = re.search(rf'^\s*{re.escape(keyword)}\s*\n([\s\S]*)', page_text, re.IGNORECASE | re.MULTILINE)
+            if match:
+                content = match.group(1).strip()
+                # Limit to reasonable length to avoid capturing too much
+                words = content.split()
+                if len(words) > 600:
+                    content = ' '.join(words[:600])
+                content = re.sub(r'\s+', ' ', content)
+                return content
+        
+        # Look for keyword appearing in page with reasonable length (case-insensitive)
+        elif keyword.lower() in page_lower and len(page_text.split()) < 600:
             match = re.search(rf'{re.escape(keyword)}\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
             if match:
                 content = match.group(1).strip()
@@ -168,7 +181,7 @@ def extract_abstract_from_pages(pdf_path: str) -> str:
                 
                 # Alternative: look for pages where "Abstract" appears and the page is relatively short
                 elif ('abstract' in page_text.lower() and 
-                      len(page_text.split()) < 500):  # Less than 500 words = likely abstract page
+                      len(page_text.split()) < 800):  # Less than 800 words = likely abstract page
                     
                     # Extract text after "Abstract" heading
                     match = re.search(r'abstract\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
@@ -179,11 +192,12 @@ def extract_abstract_from_pages(pdf_path: str) -> str:
                         return abstract_text
             
             # If no abstract found, search for alternative keywords in first 10 pages (preface)
+            # Note: "abstract" is not included here as it's already extensively searched in the first pass
             alternative_keywords = [
-                "abstract",
                 "summary",
                 "summary (english)",
-                "resume",
+                "abstract ",
+                "preface",
                 "resumé"
             ]
             

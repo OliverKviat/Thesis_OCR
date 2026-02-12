@@ -67,27 +67,148 @@ class GCPPDFExtractor:
         
         return title.strip()
     
+    def _is_toc_page(self, page_text: str) -> bool:
+        """
+        Detect if a page is a Table of Contents page.
+        TOC pages typically have:
+        - 'Contents' or 'Table of Contents' heading
+        - Multiple lines with page numbers (format: "text ... number" or "text number")
+        - Dense dot patterns connecting text to page numbers
+        """
+        # Look for TOC-like heading
+        if re.search(r'^\s*(table\s+of\s+)?contents\b', page_text, re.IGNORECASE | re.MULTILINE):
+            return True
+        
+        # Look for dense pattern of lines ending with page numbers (typical TOC pattern)
+        lines = page_text.split('\n')
+        lines_with_numbers = 0
+        for line in lines:
+            # Pattern: text followed by dots/spaces and page number
+            if re.search(r'\s+(\.{2,}|\s+)\s*\d{1,4}\s*$', line) or re.search(r'.+\s+\d{1,4}\s*$', line):
+                lines_with_numbers += 1
+        
+        # If >30% of lines look like TOC entries, it's likely a TOC page
+        if len(lines) > 5 and lines_with_numbers / len(lines) > 0.3:
+            return True
+        
+        return False
+    
+    def _search_section_by_keyword(self, reader: pypdf.PdfReader, keyword: str, max_pages: int = 10) -> str:
+        """
+        Search for a section with a specific keyword in the first N pages.
+        Returns the section content if found, otherwise empty string.
+        All searches are case-insensitive.
+        """
+        search_end = min(max_pages, len(reader.pages))
+        
+        for i in range(search_end):
+            page = reader.pages[i]
+            page_text = page.extract_text().strip()
+            
+            # Skip if this looks like a TOC page
+            if self._is_toc_page(page_text):
+                continue
+            
+            # Look for page starting with keyword (case-insensitive)
+            if re.match(rf'^\s*{re.escape(keyword)}\s*$', page_text[:100], re.IGNORECASE):
+                content = re.sub(rf'^\s*{re.escape(keyword)}\s*', '', page_text, flags=re.IGNORECASE)
+                return content.strip()
+            
+            # Look for numbered keyword like "1 Summary" (case-insensitive)
+            elif re.match(rf'^\s*\d+\s+{re.escape(keyword)}\b', page_text, re.IGNORECASE):
+                content = re.sub(rf'^\s*\d+\s+{re.escape(keyword)}\s*', '', page_text, flags=re.IGNORECASE)
+                return content.strip()
+            
+            # Look for keyword with colon like "Summary:" (case-insensitive)
+            elif re.search(rf'^\s*{re.escape(keyword)}:', page_text, re.IGNORECASE):
+                match = re.search(rf'{re.escape(keyword)}\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
+                if match:
+                    content = match.group(1).strip()
+                    content = re.sub(r'\s+', ' ', content)
+                    return content
+            
+            # Look for keyword on its own line (even if not at page start) - case-insensitive
+            elif re.search(rf'^\s*{re.escape(keyword)}\s*$', page_text, re.IGNORECASE | re.MULTILINE):
+                match = re.search(rf'^\s*{re.escape(keyword)}\s*\n([\s\S]*)', page_text, re.IGNORECASE | re.MULTILINE)
+                if match:
+                    content = match.group(1).strip()
+                    # Limit to reasonable length to avoid capturing too much
+                    words = content.split()
+                    if len(words) > 600:
+                        content = ' '.join(words[:600])
+                    content = re.sub(r'\s+', ' ', content)
+                    return content
+            
+            # Look for keyword appearing in page with reasonable length (case-insensitive)
+            elif keyword.lower() in page_text.lower() and len(page_text.split()) < 600:
+                match = re.search(rf'{re.escape(keyword)}\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
+                if match:
+                    content = match.group(1).strip()
+                    content = re.sub(r'\s+', ' ', content)
+                    return content
+        
+        return ""
+    
     def _extract_abstract_from_bytes(self, pdf_bytes: bytes, filename: str) -> str:
-        """Extract abstract from PDF bytes."""
+        """
+        Extract abstract from PDF bytes.
+        Implements improved search with TOC awareness and fallback keywords.
+        """
         try:
             pdf_file = BytesIO(pdf_bytes)
             reader = pypdf.PdfReader(pdf_file)
             
-            for i, page in enumerate(reader.pages):
+            # Determine search range - use first 20 pages as default
+            # (no TOC available in streaming mode, so use generous default)
+            search_end = min(20, len(reader.pages))
+            
+            # First pass: Search for "Abstract" with specific patterns
+            for i in range(search_end):
+                page = reader.pages[i]
                 page_text = page.extract_text().strip()
+                
+                # Skip if this looks like a TOC page
+                if self._is_toc_page(page_text):
+                    continue
                 
                 # Look for pages that start with "Abstract"
                 if re.match(r'^\s*abstract\s*$', page_text[:50], re.IGNORECASE):
                     abstract_text = re.sub(r'^\s*abstract\s*', '', page_text, flags=re.IGNORECASE)
                     return abstract_text.strip()
                 
-                # Alternative: look for "Abstract" with relatively short page
-                elif ('abstract' in page_text.lower() and len(page_text.split()) < 500):
+                # Alternative: look for "1 Abstract" or "Abstract:" pattern
+                elif re.match(r'^\s*1\s+abstract\b', page_text, re.IGNORECASE):
+                    # Handle numbered abstract section like "1 Abstract"
+                    abstract_text = re.sub(r'^\s*1\s+abstract\s*', '', page_text, flags=re.IGNORECASE)
+                    return abstract_text.strip()
+                
+                # Alternative: look for pages where "Abstract" appears and the page is relatively short
+                elif ('abstract' in page_text.lower() and 
+                      len(page_text.split()) < 800):  # Less than 800 words = likely abstract page
+                    
+                    # Extract text after "Abstract" heading
                     match = re.search(r'abstract\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
                     if match:
                         abstract_text = match.group(1).strip()
-                        abstract_text = re.sub(r'\s+', ' ', abstract_text)
+                        # Clean up common artifacts
+                        abstract_text = re.sub(r'\s+', ' ', abstract_text)  # Multiple spaces to single
                         return abstract_text
+            
+            # Second pass: If no abstract found, search for alternative keywords in first 10 pages
+            # Note: "abstract" is not included here as it's already extensively searched in the first pass
+            alternative_keywords = [
+                "summary",
+                "summary (english)",
+                "abstract ",
+                "preface",
+                "resumé"
+
+            ]
+            
+            for keyword in alternative_keywords:
+                result = self._search_section_by_keyword(reader, keyword, max_pages=10)
+                if result:
+                    return result
             
             return "Abstract not found"
         
@@ -140,7 +261,7 @@ class GCPPDFExtractor:
     def process_bucket_prefix(self, prefix: str = "dtu_findit/master_thesis/",
                                start_index: int = 0,
                                max_files: Optional[int] = None,
-                               output_prefix: str = "extracted_data/") -> Tuple[List[Dict], int, int]:
+                               output_prefix: str = "extracted_data/") -> Tuple[List[Dict], int, int, int]:
         """
         Process all PDFs with given prefix from bucket.
         
@@ -151,7 +272,7 @@ class GCPPDFExtractor:
             output_prefix: Where to save results in bucket
             
         Returns:
-            (documents, abstracts_found, errors)
+            (documents, abstracts_found, not_found, errors)
         """
         self._log(f"Connecting to bucket: {self.bucket_name}")
         self._log(f"Prefix: {prefix}")
@@ -177,6 +298,7 @@ class GCPPDFExtractor:
         
         documents = []
         abstracts_found = 0
+        abstracts_not_found = 0
         errors = 0
         
         # Process in parallel
@@ -194,15 +316,15 @@ class GCPPDFExtractor:
                     
                     if result['error']:
                         errors += 1
-                        status = "ERROR"
+                    elif 'not found' in result['abstract'].lower() or result['abstract'].startswith('Error'):
+                        abstracts_not_found += 1
                     else:
                         abstracts_found += 1
-                        status = "✓"
                     
                     # Print progress every 50 files
                     if (i + 1) % 50 == 0:
                         self._log(f"[{i+1}/{len(pdf_paths)}] Processed - "
-                                 f"Found: {abstracts_found}, Errors: {errors}")
+                                 f"Found: {abstracts_found}, Not found: {abstracts_not_found}, Errors: {errors}")
                 
                 except Exception as e:
                     self._log(f"   Worker error: {e}")
@@ -212,9 +334,10 @@ class GCPPDFExtractor:
         self._log(f"Processing complete!")
         self._log(f"Total: {len(pdf_paths)} files")
         self._log(f"Abstracts found: {abstracts_found}/{len(pdf_paths)}")
-        self._log(f"Errors: {errors}")
+        self._log(f"Abstracts not found: {abstracts_not_found}/{len(pdf_paths)}")
+        self._log(f"Errors: {errors}/{len(pdf_paths)}")
         
-        return documents, abstracts_found, errors
+        return documents, abstracts_found, abstracts_not_found, errors
     
     def save_results_to_gcp(self, documents: List[Dict], 
                             output_prefix: str = "extracted_data/",
@@ -303,7 +426,7 @@ def main():
     extractor = GCPPDFExtractor(bucket_name=bucket_name, max_workers=max_workers)
     
     start_time = time.time()
-    documents, abstracts_found, errors = extractor.process_bucket_prefix(
+    documents, abstracts_found, abstracts_not_found, errors = extractor.process_bucket_prefix(
         prefix=prefix,
         max_files=max_files,
         output_prefix=output_prefix
