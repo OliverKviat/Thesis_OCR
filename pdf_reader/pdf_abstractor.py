@@ -14,24 +14,156 @@ import pypdf
 import re
 import json
 from typing import Dict, List, Optional
+from extract_toc import extract_from_text
+
+def is_toc_page(page_text: str) -> bool:
+    """
+    Detect if a page is a Table of Contents page.
+    TOC pages typically have:
+    - 'Contents' or 'Table of Contents' heading
+    - Multiple lines with page numbers (format: "text ... number" or "text number")
+    - Dense dot patterns connecting text to page numbers
+    """
+    # Look for TOC-like heading
+    if re.search(r'^\s*(table\s+of\s+)?contents\b', page_text, re.IGNORECASE | re.MULTILINE):
+        return True
+    
+    # Look for dense pattern of lines ending with page numbers (typical TOC pattern)
+    lines = page_text.split('\n')
+    lines_with_numbers = 0
+    for line in lines:
+        # Pattern: text followed by dots/spaces and page number
+        if re.search(r'\s+(\.{2,}|\s+)\s*\d{1,4}\s*$', line) or re.search(r'.+\s+\d{1,4}\s*$', line):
+            lines_with_numbers += 1
+    
+    # If >30% of lines look like TOC entries, it's likely a TOC page
+    if len(lines) > 5 and lines_with_numbers / len(lines) > 0.3:
+        return True
+    
+    return False
+
+
+def extract_abstract_from_toc(pdf_path: str, reader: pypdf.PdfReader) -> tuple[int, int]:
+    """
+    Extract TOC to find where main content starts and where abstract is.
+    Returns (first_main_section_page, search_end_page).
+    search_end_page is where to stop searching for abstract.
+    If not found, returns (-1, -1).
+    """
+    try:
+        toc_entries = extract_from_text(pdf_path, max_pages=15)
+        
+        first_main_section_page = -1
+        search_end_page = -1
+        
+        for title, page in toc_entries:
+            # Look for the first numbered section
+            if re.match(r'^\d\s', title):  # Single digit followed by space = main section
+                first_main_section_page = page if page else -1
+                # If first section is Abstract, we want to include it in search
+                if first_main_section_page > 0 and 'abstract' in title.lower():
+                    search_end_page = first_main_section_page + 1  # Include abstract page
+                else:
+                    # Abstract should be before this, stop search just before this section
+                    search_end_page = first_main_section_page - 1 if first_main_section_page > 0 else -1
+                break
+        
+        return (first_main_section_page, search_end_page)
+    except Exception:
+        return (-1, -1)
+
+
+def search_section_by_keyword(reader: pypdf.PdfReader, keyword: str, max_pages: int = 10) -> str:
+    """
+    Search for a section with a specific keyword in the first N pages.
+    Returns the section content if found, otherwise empty string.
+    """
+    search_end = min(max_pages, len(reader.pages))
+    
+    for i in range(search_end):
+        page = reader.pages[i]
+        page_text = page.extract_text().strip()
+        
+        # Skip if this looks like a TOC page
+        if is_toc_page(page_text):
+            continue
+        
+        keyword_lower = keyword.lower()
+        
+        # Look for page starting with keyword
+        if re.match(rf'^\s*{re.escape(keyword)}\s*$', page_text[:100], re.IGNORECASE):
+            content = re.sub(rf'^\s*{re.escape(keyword)}\s*', '', page_text, flags=re.IGNORECASE)
+            return content.strip()
+        
+        # Look for numbered keyword like "1 Summary"
+        elif re.match(rf'^\s*\d+\s+{re.escape(keyword)}\b', page_text, re.IGNORECASE):
+            content = re.sub(rf'^\s*\d+\s+{re.escape(keyword)}\s*', '', page_text, flags=re.IGNORECASE)
+            return content.strip()
+        
+        # Look for keyword with colon like "Summary:"
+        elif re.match(rf'^\s*{re.escape(keyword)}:', page_text, re.IGNORECASE):
+            match = re.search(rf'{re.escape(keyword)}\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
+            if match:
+                content = match.group(1).strip()
+                content = re.sub(r'\s+', ' ', content)
+                return content
+        
+        # Look for keyword appearing in page with reasonable length
+        elif keyword_lower in page_text.lower() and len(page_text.split()) < 600:
+            match = re.search(rf'{re.escape(keyword)}\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
+            if match:
+                content = match.group(1).strip()
+                content = re.sub(r'\s+', ' ', content)
+                return content
+    
+    return ""
+
 
 def extract_abstract_from_pages(pdf_path: str) -> str:
     """
     Extract abstract from dedicated abstract page.
     Looks for 'Abstract' heading followed by content.
+    Uses TOC to determine where to search and avoids extracting from TOC pages.
+    If abstract not found, searches for alternative terms: summary, résumé, resume.
     """
     try:
         with open(pdf_path, 'rb') as file:
             reader = pypdf.PdfReader(file)
             
-            for i, page in enumerate(reader.pages):
+            # First, try to use TOC to find where main content starts
+            first_main_section_page, search_end_page = extract_abstract_from_toc(pdf_path, reader)
+            
+            # Determine search range
+            # Abstract is typically in the front matter (first ~10 pages) before main numbered sections
+            if search_end_page > 0:
+                # TOC gave us a clue - search from start up to first main section
+                # Add buffer to account for document numbering differences (add 5 pages)
+                search_start = 0
+                search_end = min(search_end_page + 5, len(reader.pages))
+            else:
+                # If we can't find anything in TOC, search the first 20 pages
+                search_start = 0
+                search_end = min(20, len(reader.pages))
+            
+            for i in range(search_start, search_end):
+                page = reader.pages[i]
                 page_text = page.extract_text().strip()
+                
+                # Skip if this looks like a TOC page
+                if is_toc_page(page_text):
+                    continue
                 
                 # Look for pages that start with "Abstract" (case insensitive)
                 if re.match(r'^\s*abstract\s*$', page_text[:50], re.IGNORECASE):
                     # This page likely contains only "Abstract" heading and the abstract
                     # Remove the "Abstract" heading and return the rest
                     abstract_text = re.sub(r'^\s*abstract\s*', '', page_text, flags=re.IGNORECASE)
+                    return abstract_text.strip()
+                
+                # Alternative: look for "1 Abstract" or "Abstract:" pattern
+                elif re.match(r'^\s*1\s+abstract\b', page_text, re.IGNORECASE):
+                    # Handle numbered abstract section like "1 Abstract"
+                    abstract_text = re.sub(r'^\s*1\s+abstract\s*', '', page_text, flags=re.IGNORECASE)
                     return abstract_text.strip()
                 
                 # Alternative: look for pages where "Abstract" appears and the page is relatively short
@@ -46,7 +178,21 @@ def extract_abstract_from_pages(pdf_path: str) -> str:
                         abstract_text = re.sub(r'\s+', ' ', abstract_text)  # Multiple spaces to single
                         return abstract_text
             
-        return "Abstract not found"
+            # If no abstract found, search for alternative keywords in first 10 pages (preface)
+            alternative_keywords = [
+                "abstract",
+                "summary",
+                "summary (english)",
+                "resume",
+                "resumé"
+            ]
+            
+            for keyword in alternative_keywords:
+                result = search_section_by_keyword(reader, keyword, max_pages=10)
+                if result:
+                    return result
+            
+            return "Abstract not found"
     
     except Exception as e:
         return f"Error extracting abstract: {str(e)}"
