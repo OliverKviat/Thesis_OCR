@@ -79,6 +79,7 @@ def search_section_by_keyword(reader: pypdf.PdfReader, keyword: str, max_pages: 
     Returns the section content if found, otherwise empty string.
     All searches are case-insensitive.
     """
+    
     search_end = min(max_pages, len(reader.pages))
     
     for i in range(search_end):
@@ -91,9 +92,9 @@ def search_section_by_keyword(reader: pypdf.PdfReader, keyword: str, max_pages: 
         
         page_lower = page_text.lower()
         
-        # Look for page starting with keyword (case-insensitive)
-        if re.match(rf'^\s*{re.escape(keyword)}\s*$', page_text[:100], re.IGNORECASE):
-            content = re.sub(rf'^\s*{re.escape(keyword)}\s*', '', page_text, flags=re.IGNORECASE)
+        # Look for page starting with keyword (case-insensitive) with word boundary
+        if re.match(rf'^\s*{re.escape(keyword)}\b\s*$', page_text[:100], re.IGNORECASE):
+            content = re.sub(rf'^\s*{re.escape(keyword)}\b\s*', '', page_text, flags=re.IGNORECASE)
             return content.strip()
         
         # Look for numbered keyword like "1 Summary" (case-insensitive)
@@ -101,17 +102,17 @@ def search_section_by_keyword(reader: pypdf.PdfReader, keyword: str, max_pages: 
             content = re.sub(rf'^\s*\d+\s+{re.escape(keyword)}\s*', '', page_text, flags=re.IGNORECASE)
             return content.strip()
         
-        # Look for keyword with colon like "Summary:" (case-insensitive)
-        elif re.search(rf'^\s*{re.escape(keyword)}:', page_text, re.IGNORECASE):
-            match = re.search(rf'{re.escape(keyword)}\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
+        # Look for keyword with colon like "Summary:" (case-insensitive) with word boundary
+        elif re.search(rf'^\s*{re.escape(keyword)}\b:', page_text, re.IGNORECASE):
+            match = re.search(rf'\b{re.escape(keyword)}\b\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
             if match:
                 content = match.group(1).strip()
                 content = re.sub(r'\s+', ' ', content)
                 return content
         
-        # Look for keyword on its own line (even if not at page start) - case-insensitive
-        elif re.search(rf'^\s*{re.escape(keyword)}\s*$', page_text, re.IGNORECASE | re.MULTILINE):
-            match = re.search(rf'^\s*{re.escape(keyword)}\s*\n([\s\S]*)', page_text, re.IGNORECASE | re.MULTILINE)
+        # Look for keyword on its own line (even if not at page start) - case-insensitive with word boundary
+        elif re.search(rf'^\s*{re.escape(keyword)}\b\s*$', page_text, re.IGNORECASE | re.MULTILINE):
+            match = re.search(rf'^\s*{re.escape(keyword)}\b\s*\n([\s\S]*)', page_text, re.IGNORECASE | re.MULTILINE)
             if match:
                 content = match.group(1).strip()
                 # Limit to reasonable length to avoid capturing too much
@@ -121,9 +122,9 @@ def search_section_by_keyword(reader: pypdf.PdfReader, keyword: str, max_pages: 
                 content = re.sub(r'\s+', ' ', content)
                 return content
         
-        # Look for keyword appearing in page with reasonable length (case-insensitive)
-        elif keyword.lower() in page_lower and len(page_text.split()) < 600:
-            match = re.search(rf'{re.escape(keyword)}\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
+        # Look for keyword appearing in page with reasonable length (case-insensitive) with word boundary
+        elif bool(re.search(rf'\b{re.escape(keyword)}\b', page_text, re.IGNORECASE)) and len(page_text.split()) < 600:
+            match = re.search(rf'\b{re.escape(keyword)}\b\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
             if match:
                 content = match.group(1).strip()
                 content = re.sub(r'\s+', ' ', content)
@@ -180,11 +181,11 @@ def extract_abstract_from_pages(pdf_path: str) -> str:
                     return abstract_text.strip()
                 
                 # Alternative: look for pages where "Abstract" appears and the page is relatively short
-                elif ('abstract' in page_text.lower() and 
+                elif (bool(re.search(r'\babstract\b', page_text, re.IGNORECASE)) and 
                       len(page_text.split()) < 800):  # Less than 800 words = likely abstract page
                     
-                    # Extract text after "Abstract" heading
-                    match = re.search(r'abstract\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
+                    # Extract text after "Abstract" heading (with word boundary)
+                    match = re.search(r'\babstract\b\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
                     if match:
                         abstract_text = match.group(1).strip()
                         # Clean up common artifacts

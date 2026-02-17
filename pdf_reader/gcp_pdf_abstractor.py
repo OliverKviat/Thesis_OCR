@@ -93,6 +93,83 @@ class GCPPDFExtractor:
         
         return False
     
+    def _extract_toc_from_reader(self, reader: pypdf.PdfReader, max_pages: int = 15) -> List[Tuple[str, Optional[int]]]:
+        """
+        Extract table of contents from PDF reader using text heuristic.
+        Adapted from extract_toc.py for streaming/BytesIO support.
+        Returns list of (title, page_number) tuples.
+        """
+        try:
+            num_pages = len(reader.pages)
+            pages_to_scan = min(num_pages, max_pages)
+            
+            # Collect text from first pages
+            texts = []
+            for i in range(pages_to_scan):
+                try:
+                    txt = reader.pages[i].extract_text() or ""
+                except Exception:
+                    txt = ""
+                texts.append(txt)
+            
+            combined = "\n\n".join(texts)
+            
+            # Find 'contents' heading
+            m = re.search(r"^\s*contents\b", combined, flags=re.IGNORECASE | re.MULTILINE)
+            if not m:
+                start_idx = 0
+            else:
+                start_idx = m.start()
+            
+            # Take substring from heading (or from start) up to some length
+            snippet = combined[start_idx:start_idx + 20000]
+            lines = [ln.strip() for ln in snippet.splitlines() if ln.strip()]
+            
+            toc_candidates = []
+            # Basic heuristic: lines that end with a page number
+            for ln in lines:
+                # Common patterns: "1. Introduction ........ 1" or "1 Introduction 1"
+                m = re.match(r"(?P<title>.+?)\s+(\.{2,}|\s+)\s*(?P<page>\d{1,4})$", ln)
+                if not m:
+                    m = re.match(r"(?P<title>.+?)\s+(?P<page>\d{1,4})$", ln)
+                if m:
+                    title = m.group("title").strip().rstrip('.')
+                    page = int(m.group("page"))
+                    toc_candidates.append((title, page))
+            
+            return toc_candidates
+        except Exception:
+            return []
+    
+    def _extract_abstract_from_toc(self, reader: pypdf.PdfReader) -> Tuple[int, int]:
+        """
+        Extract TOC to find where main content starts and where abstract is.
+        Returns (first_main_section_page, search_end_page).
+        search_end_page is where to stop searching for abstract.
+        If not found, returns (-1, -1).
+        """
+        try:
+            toc_entries = self._extract_toc_from_reader(reader, max_pages=15)
+            
+            first_main_section_page = -1
+            search_end_page = -1
+            
+            for title, page in toc_entries:
+                # Look for the first numbered section
+                if re.match(r'^\d\s', title):  # Single digit followed by space = main section
+                    first_main_section_page = page if page else -1
+                    # If first section is Abstract, we want to include it in search
+                    if first_main_section_page > 0 and 'abstract' in title.lower():
+                        search_end_page = first_main_section_page + 1  # Include abstract page
+                    else:
+                        # Abstract should be before this, stop search just before this section
+                        search_end_page = first_main_section_page - 1 if first_main_section_page > 0 else -1
+                    break
+            
+            return (first_main_section_page, search_end_page)
+        except Exception:
+            return (-1, -1)
+    
     def _search_section_by_keyword(self, reader: pypdf.PdfReader, keyword: str, max_pages: int = 10) -> str:
         """
         Search for a section with a specific keyword in the first N pages.
@@ -109,9 +186,9 @@ class GCPPDFExtractor:
             if self._is_toc_page(page_text):
                 continue
             
-            # Look for page starting with keyword (case-insensitive)
-            if re.match(rf'^\s*{re.escape(keyword)}\s*$', page_text[:100], re.IGNORECASE):
-                content = re.sub(rf'^\s*{re.escape(keyword)}\s*', '', page_text, flags=re.IGNORECASE)
+            # Look for page starting with keyword (case-insensitive) with word boundary
+            if re.match(rf'^\s*{re.escape(keyword)}\b\s*$', page_text[:100], re.IGNORECASE):
+                content = re.sub(rf'^\s*{re.escape(keyword)}\b\s*', '', page_text, flags=re.IGNORECASE)
                 return content.strip()
             
             # Look for numbered keyword like "1 Summary" (case-insensitive)
@@ -119,17 +196,17 @@ class GCPPDFExtractor:
                 content = re.sub(rf'^\s*\d+\s+{re.escape(keyword)}\s*', '', page_text, flags=re.IGNORECASE)
                 return content.strip()
             
-            # Look for keyword with colon like "Summary:" (case-insensitive)
-            elif re.search(rf'^\s*{re.escape(keyword)}:', page_text, re.IGNORECASE):
-                match = re.search(rf'{re.escape(keyword)}\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
+            # Look for keyword with colon like "Summary:" (case-insensitive) with word boundary
+            elif re.search(rf'^\s*{re.escape(keyword)}\b:', page_text, re.IGNORECASE):
+                match = re.search(rf'\b{re.escape(keyword)}\b\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
                 if match:
                     content = match.group(1).strip()
                     content = re.sub(r'\s+', ' ', content)
                     return content
             
-            # Look for keyword on its own line (even if not at page start) - case-insensitive
-            elif re.search(rf'^\s*{re.escape(keyword)}\s*$', page_text, re.IGNORECASE | re.MULTILINE):
-                match = re.search(rf'^\s*{re.escape(keyword)}\s*\n([\s\S]*)', page_text, re.IGNORECASE | re.MULTILINE)
+            # Look for keyword on its own line (even if not at page start) - case-insensitive with word boundary
+            elif re.search(rf'^\s*{re.escape(keyword)}\b\s*$', page_text, re.IGNORECASE | re.MULTILINE):
+                match = re.search(rf'^\s*{re.escape(keyword)}\b\s*\n([\s\S]*)', page_text, re.IGNORECASE | re.MULTILINE)
                 if match:
                     content = match.group(1).strip()
                     # Limit to reasonable length to avoid capturing too much
@@ -139,9 +216,9 @@ class GCPPDFExtractor:
                     content = re.sub(r'\s+', ' ', content)
                     return content
             
-            # Look for keyword appearing in page with reasonable length (case-insensitive)
-            elif keyword.lower() in page_text.lower() and len(page_text.split()) < 600:
-                match = re.search(rf'{re.escape(keyword)}\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
+            # Look for keyword appearing in page with reasonable length (case-insensitive) with word boundary
+            elif bool(re.search(rf'\b{re.escape(keyword)}\b', page_text, re.IGNORECASE)) and len(page_text.split()) < 600:
+                match = re.search(rf'\b{re.escape(keyword)}\b\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
                 if match:
                     content = match.group(1).strip()
                     content = re.sub(r'\s+', ' ', content)
@@ -158,12 +235,23 @@ class GCPPDFExtractor:
             pdf_file = BytesIO(pdf_bytes)
             reader = pypdf.PdfReader(pdf_file)
             
-            # Determine search range - use first 20 pages as default
-            # (no TOC available in streaming mode, so use generous default)
-            search_end = min(20, len(reader.pages))
+            # First, try to use TOC to find where main content starts
+            first_main_section_page, search_end_page = self._extract_abstract_from_toc(reader)
+            
+            # Determine search range
+            # Abstract is typically in the front matter (first ~10 pages) before main numbered sections
+            if search_end_page > 0:
+                # TOC gave us a clue - search from start up to first main section
+                # Add buffer to account for document numbering differences (add 5 pages)
+                search_start = 0
+                search_end = min(search_end_page + 5, len(reader.pages))
+            else:
+                # If we can't find anything in TOC, search the first 20 pages
+                search_start = 0
+                search_end = min(20, len(reader.pages))
             
             # First pass: Search for "Abstract" with specific patterns
-            for i in range(search_end):
+            for i in range(search_start, search_end):
                 page = reader.pages[i]
                 page_text = page.extract_text().strip()
                 
@@ -171,8 +259,10 @@ class GCPPDFExtractor:
                 if self._is_toc_page(page_text):
                     continue
                 
-                # Look for pages that start with "Abstract"
+                # Look for pages that start with "Abstract" (case insensitive)
                 if re.match(r'^\s*abstract\s*$', page_text[:50], re.IGNORECASE):
+                    # This page likely contains only "Abstract" heading and the abstract
+                    # Remove the "Abstract" heading and return the rest
                     abstract_text = re.sub(r'^\s*abstract\s*', '', page_text, flags=re.IGNORECASE)
                     return abstract_text.strip()
                 
@@ -183,11 +273,11 @@ class GCPPDFExtractor:
                     return abstract_text.strip()
                 
                 # Alternative: look for pages where "Abstract" appears and the page is relatively short
-                elif ('abstract' in page_text.lower() and 
+                elif (bool(re.search(r'\babstract\b', page_text, re.IGNORECASE)) and 
                       len(page_text.split()) < 800):  # Less than 800 words = likely abstract page
                     
-                    # Extract text after "Abstract" heading
-                    match = re.search(r'abstract\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
+                    # Extract text after "Abstract" heading (with word boundary)
+                    match = re.search(r'\babstract\b\s*:?\s*([\s\S]*)', page_text, re.IGNORECASE)
                     if match:
                         abstract_text = match.group(1).strip()
                         # Clean up common artifacts
@@ -202,7 +292,6 @@ class GCPPDFExtractor:
                 "abstract ",
                 "preface",
                 "resumé"
-
             ]
             
             for keyword in alternative_keywords:
