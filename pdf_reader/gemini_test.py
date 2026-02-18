@@ -52,19 +52,16 @@ One-Pager Structure (Required):
 5.	Problem Statement: Frame the gap in knowledge or technical limitation that existed prior to the research.
 6.	Research Questions (Numbered): Define the specific, high-level questions the project aims to answer.
 7.	Data Partitioning:
-a.	Input Data: Describe only the datasets/materials available at \"Month Zero.\"
-b.	Target Data: Describe the data the project intends to produce or collect (e.g., \"The project will generate a labeled dataset of...\").
+1.	Input Data: Describe only the datasets/materials available at \"Month Zero.\"
+2.	Target Data: Describe the data the project intends to produce or collect (e.g., \"The project will generate a labeled dataset of...\").
 8.	Method: Describe the planned technical approach. You must identify and incorporate the top 3 most relevant foundational papers  from internal training data that fits the primary scientific basis for this thesis. Do not list these papers, but use them as citations for the intended methodology to be applied in the project.
 9.	Expected Outcomes: Define the intended deliverables (e.g., \"A proposed framework for...\").
 10.	References: List the 3 foundational papers identified in Section 8 (Method) using APA reference style.
-Verbalized Sampling (VS) Method: Generate five distinct candidate descriptions enclosed in <response> tags. Each must include a <text> block for the description and a numeric <probability> (0.0 to 1.0) representing how likely this framing reflects the original intent. Sample at random from the tails of the distribution (probabilities < 0.20) to explore diverse original conceptualizations (e.g., one technical-heavy, one application-heavy, one as a case study, etc.).
 Instructions
 1.	Analyze the Source: Carefully parse the provided thesis abstract, focusing on understanding the aim and academical angle of the thesis to ensure prospective accuracy.
 2.	Identify Foundations: Identify the 3 most seminal references related to the core methodology using your internal knowledge. Ensure they are valid, real publications.
-3.	Execute Verbalized Sampling: Generate five (5) distinct candidates for the original project description.
-4.	Probability Constraint: Ensure each candidate's <probability> is sampled from the tails of the distribution. This is to explore the various nuanced ways the project could have been pitched (e.g., a \"high-risk\" technical pitch vs. a \"conservative\" industry-aligned pitch).
-5.	Strict Formatting: Each of the five candidates must follow the One-Pager Structure exactly as defined in the System Instruction.
-6.	Tone Check: Ensure no mention of \"the results showed\" or \"it was concluded.\" Use \"will,\" \"aims to,\" and \"is expected to.\""""),
+3.	Strict Formatting: The output must follow the One-Pager Structure exactly as defined in the System Instruction.
+4.	Tone Check: Ensure no mention of \"the results showed\" or \"it was concluded.\" Use \"will,\" \"aims to,\" and \"is expected to.\""""),
         ],
     )
 
