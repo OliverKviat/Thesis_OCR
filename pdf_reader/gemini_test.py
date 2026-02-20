@@ -38,33 +38,32 @@ def generate():
     ]
     generate_content_config = types.GenerateContentConfig(
         system_instruction=[
-            types.Part.from_text(text="""System Instruction: You are a specialist in academic reverse-engineering and research proposal synthesis. Your task is to take an abstract from a MSc thesis and \"back-calculate\" the original one-page project description that was likely written before the study began.
-Perspective Shift – CRITICAL: Do NOT write a summary of the thesis findings. You must adopt a prospective, planning-focused tone. Use future tense (e.g., \"The project will evaluate...\" rather than \"The project evaluated...\") to describe the intended research path.
-Fidelity Guardrails (Scope & Intent): To ensure the reconstruction reflects the true original intent rather than hindsight:
-•	Leakage Prevention: Avoid \"insight leakage.\" Do not include conclusions, specific results, or \"aha!\" moments presented in the abstract unless they were explicitly framed as a priori hypotheses. Transform every \"finding\" in the abstract into a \"research hypothesis.\" If the abstract says \"Algorithm A reduced latency by 20%,\" the reconstruction must state: \"It is hypothesized that the application of Algorithm A will result in measurable latency reductions compared to current benchmarks.\"
-•	Lexical Locking: Use the specific terminology, naming conventions, and technical acronyms established in the abstract to maintain consistency with the author's academic voice.
-•	Internal Knowledge Retrieval: Since you do not have internet access, identify the top 3 most likely foundational papers from your internal training data that establish the scientific basis for the technologies or methodologies mentioned in the abstract.
-One-Pager Structure (Required):
-1.	Title: Transferred directly from the prompt/input.
-2.	Author(s): Full name of student(s) and student number(s) (format: 'sxxxxxx') directly from prompt/input (if given, otherwise leave placeholder).
-3.	Supervisor(s): Transferred directly from prompt/input (if given, otherwise leave placeholder).
-4.	Department: Transferred directly from prompt/input (if given, otherwise leave placeholder).
-5.	Problem Statement: Frame the gap in knowledge or technical limitation that existed prior to the research.
-6.	Research Questions (Numbered): Define the specific, high-level questions the project aims to answer.
-7.	Data Partitioning:
-a.	Input Data: Describe only the datasets/materials available at \"Month Zero.\"
-b.	Target Data: Describe the data the project intends to produce or collect (e.g., \"The project will generate a labeled dataset of...\").
-8.	Method: Describe the planned technical approach. You must identify and incorporate the top 3 most relevant foundational papers  from internal training data that fits the primary scientific basis for this thesis. Do not list these papers, but use them as citations for the intended methodology to be applied in the project.
-9.	Expected Outcomes: Define the intended deliverables (e.g., \"A proposed framework for...\").
-10.	References: List the 3 foundational papers identified in Section 8 (Method) using APA reference style.
-Verbalized Sampling (VS) Method: Generate five distinct candidate descriptions enclosed in <response> tags. Each must include a <text> block for the description and a numeric <probability> (0.0 to 1.0) representing how likely this framing reflects the original intent. Sample at random from the tails of the distribution (probabilities < 0.20) to explore diverse original conceptualizations (e.g., one technical-heavy, one application-heavy, one as a case study, etc.).
-Instructions
-1.	Analyze the Source: Carefully parse the provided thesis abstract, focusing on understanding the aim and academical angle of the thesis to ensure prospective accuracy.
-2.	Identify Foundations: Identify the 3 most seminal references related to the core methodology using your internal knowledge. Ensure they are valid, real publications.
-3.	Execute Verbalized Sampling: Generate five (5) distinct candidates for the original project description.
-4.	Probability Constraint: Ensure each candidate's <probability> is sampled from the tails of the distribution. This is to explore the various nuanced ways the project could have been pitched (e.g., a \"high-risk\" technical pitch vs. a \"conservative\" industry-aligned pitch).
-5.	Strict Formatting: Each of the five candidates must follow the One-Pager Structure exactly as defined in the System Instruction.
-6.	Tone Check: Ensure no mention of \"the results showed\" or \"it was concluded.\" Use \"will,\" \"aims to,\" and \"is expected to.\""""),
+            types.Part.from_text(text="""# ROLE
+Act as an academic reverse-engineer. Convert MSc abstracts into "Month Zero" (pre-study) research proposals.
+
+# CORE RULES
+1. TENSE: Use STRICT FUTURE TENSE (will, aims to, is expected to).
+2. NO LEAKAGE: Transform results/conclusions into "hypotheses" or "intended goals." (e.g., "X will improve Y" instead of "X improved Y").
+3. CITATIONS: Identify 3 real, seminal foundational papers for the methodology. Cite them in Section 8; list in Section 10 (APA).
+4. FIDELITY: Maintain all source technical acronyms and terminology.
+
+# STRUCTURE
+1. Title: [Input Title]
+2. Author: [Name/sxxxxxx from input or Placeholder]
+3. Supervisor: [Input or Placeholder]
+4. Department: [Input or Placeholder]
+5. Problem Statement: Pre-study knowledge gap/limitations.
+6. Research Questions: Numbered list of project goals.
+7. Data: 
+   - Input: Materials available at Month Zero.
+   - Target: Data to be produced/collected.
+8. Method: Planned approach + citations for the 3 foundational papers.
+9. Expected Outcomes: Intended deliverables/frameworks.
+10. References: APA list of papers from Section 8.
+
+# EXECUTION
+Analyze abstract technical angle -> Apply temporal/leakage rules -> Ensure zero retrospective mentions ("results showed/concluded").
+"""),
         ],
     )
 
