@@ -5,9 +5,10 @@
 from openai import OpenAI
 import os
 import json
+from SI_options import PROMPT_REGISTRY, select_prompt
 
 
-def model_call(user_prompt: str, counter: int = 0):
+def model_call(system_instruction: str, user_prompt: str, counter: int = 0):
     client = OpenAI(
         base_url = "http://localhost:5272/v1/",
         api_key = "unused", # required for the API but not used
@@ -17,7 +18,7 @@ def model_call(user_prompt: str, counter: int = 0):
         messages = [
             {
                 "role": "system",
-                "content": "# ROLE: Academic Reverse-Engineer.\nTASK: Convert MSc Abstract -> \"Month Zero\" (Pre-study) Research Proposal.\nCRITICAL: DO NOT write an abstract. Use ONLY Future Tense.\n \n# CORE RULES\n1. TENSE: Use ONLY \"will\", \"aims to\", \"is expected to\".\n   - BANNED: \"investigates\", \"focuses\", \"compared\", \"showed\", \"found\", \"presents\", \"deals with\", \"addresses\".\n2. PERSPECTIVE: Shift from \"This paper\" to \"This project\".\n3. LEAKAGE: Results/Conclusions MUST be transformed into \"Target Hypotheses\" or \"Aims\".\n \n# STRUCTURE & TEMPLATE (FOLLOW EXACTLY)\n1. Title: [Input Title EXACTLY with NO changes]\n2. Author: [Placeholder]\n3. Supervisor: [Placeholder]\n4. Department: [Placeholder]\n \n5. Problem Statement: Narrative section that motives and define the knowledge gap or technical limitation existing BEFORE the study.\n   - [Field Name] is essential for [Global Stake].\n   - However, current systems are constrained by [Technical Bottleneck].\n   - This project will address the gap by [Proposed Action].\n   - VETO: No \"The problem is\" or \"In the field of\".\n \n6. Research Questions: Numbered list of 3-4 open-ended questions.\n7. Data:\n   - Input (Available at Month Zero): [List tools/sets]\n   - Target (To be produced): [List intended metrics/data]\n \n8. Method:\n   - Architecture Design: Will develop [Technical details]...\n   - Simulation Setup: Will utilize [Environment details]...\n   - Comparative Testing: Will conduct [Testing details]...\n \n9. Expected Outcomes: List of intended deliverables (using \"will\" or \"is expected to\").\n \n10. References: List of search terms related to the subject.\n \n# EXECUTION\n1. Shift to \"Month Zero\" perspective: Imagine the research has NOT started.\n2. VETO: If a sentence does not contain \"will\", \"aims to\", or \"is planned\", rewrite it.\n3. TERMINATE: Stop immediately after the last Reference. Do NOT provide closing remarks.",
+                "content": system_instruction,
             },
             {
                 "role": "user",
@@ -37,8 +38,7 @@ def model_call(user_prompt: str, counter: int = 0):
 
     #print(f"[Model Response] {response.choices[0].message.content}")
 
-    counter += 1
-    return response.choices[0].message.content, counter
+    return response.choices[0].message.content
 
 def retreave_prompt(i: int = 0):
     """Retreave the user prompt from the specefied file."""
@@ -56,20 +56,35 @@ def retreave_prompt(i: int = 0):
 def main():
     """CLI entry point."""
     
-    counter = input("Enter the index of the paper to process (0-9): ")
+    print("Welcome to the Academic Reverse-Engineer CLI!")
+    print("Please choose the System Instruction to be used for the model:")
+    for prompt_id, spec in sorted(PROMPT_REGISTRY.items()):
+        print(f"{prompt_id}. System Instruction – {spec.version}")
+
+    SI_choise = input("Enter the number corresponding to your choice: ")
     try:
-        counter = int(counter)
+        selected_prompt = select_prompt(int(SI_choise), persist_selection=True)
+    except ValueError as error:
+        print(f"Invalid prompt choice: {error}")
+        return
+
+    system_instruction = selected_prompt.system_prompt
+    print(f"System Instruction – {selected_prompt.version} selected.")
+
+    object_choise = input("Enter the index of the paper to process (0-9): ")
+    try:
+        counter = int(object_choise)
         if counter < 0 or counter > 9:
             raise ValueError("Index must be between 0 and 9.")
     except ValueError as e:
         print(f"Invalid input: {e}")
         return
 
+
     user_prompt = retreave_prompt(counter)
        
-    response, counter = model_call(user_prompt)
+    response = model_call(system_instruction, user_prompt)
     print(f"Response: {response}")
-    print(f"Counter: {counter}")
 
 if __name__ == "__main__":
     main()
