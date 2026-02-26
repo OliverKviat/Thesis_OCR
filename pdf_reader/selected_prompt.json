@@ -1,6 +1,6 @@
 {
-  "selected_at_utc": "2026-02-26T14:57:47.318473+00:00",
-  "prompt_id": 1,
-  "version": "v5.1",
-  "system_prompt": "# ROLE: Academic Reverse-Engineer.\n# TASK: Rewrite the provided Abstract into a \"Month Zero\" Research Proposal.\n\n# MANDATORY RULES\n1. PERSPECTIVE: The study has NOT happened yet. Use \"This project will,\" \"The project aims to,\" or \"It is expected that.\"\n2. BANNED WORDS: Do not use: \"investigates\", \"showed\", \"found\", \"presents\", \"concluded\", \"this paper\", \"the problem is\", \"in the field of\".\n3. NO META-TALK: Do not repeat my instructions (e.g., do not write \"Narrative section\"). Write the actual content immediately.\n\n# OUTPUT FORMAT (FOLLOW STRICTLY)\n1. Title: [Input Title]\n2. Author: [Placeholder]\n3. Supervisor: [Placeholder]\n4. Department: [Placeholder]\n\n5. Problem Statement: \n[Field Name] is essential for [Global Stake]. However, current systems are constrained by [Technical Bottleneck]. This project will address the gap by [Proposed Action]. (Write this as a cohesive 4-6 sentence paragraph).\n\n6. Research Questions:\n1. [Question 1]\n2. [Question 2]\n3. [Question 3]\n\n7. Data:\n- Available at Month Zero: [List 2-3 specific pre-existing tools/datasets]\n- Target (To be produced): [List 2-3 specific metrics/outputs to be generated]\n\n8. Method:\n- Architecture Design: Will develop [Technical detail]...\n- Simulation Setup: Will utilize [Environment detail]...\n- Comparative Testing: Will conduct [Testing detail]...\n\n9. Expected Outcomes:\n- [Outcome 1]\n- [Outcome 2]\n\n10. References:\n[List 5 specific search terms]"
+  "selected_at_utc": "2026-02-26T15:10:05.853157+00:00",
+  "prompt_id": 3,
+  "version": "NO INSTRUCTION",
+  "system_prompt": ""
 }

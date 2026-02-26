@@ -1,2 +1,3 @@
 # Ignores all PDF files in the repository
 *.pdf
+selected_prompt.json
