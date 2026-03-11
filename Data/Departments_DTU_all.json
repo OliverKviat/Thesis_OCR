@@ -50,7 +50,8 @@
         "Synthetic Biology",
         "Protein Chemistry & Enzyme Technology",
         "Medical Biotechnology",
-        "Biologics Engineering"
+        "Biologics Engineering",
+        "Systems Biology"
       ],
       "da": null
     }
@@ -75,9 +76,13 @@
         "Scientific Computing",
         "Software Systems Engineering",
         "Statistics and Data Analysis",
-        "Visual Computing"
+        "Visual Computing",
+        "Informatics and Mathematical Modeling"
       ],
-      "da": null
+      "da": [
+        "Matematik",
+        "Informatik og Matematisk Modellering"
+      ]
     }
   },
   {
@@ -101,7 +106,9 @@
         "Solid Mechanics",
         "Structures & Safety",
         "Thermal Energy",
-        "Department of Civil Engineering"
+        "Civil Engineering",
+        "Department of Civil Engineering",
+        "Mechanical Engineering"
       ],
       "da": null
     }
@@ -147,9 +154,20 @@
         "Quantum Light Sources",
         "Quantum Networks",
         "Quantum Photonics of Low-Dimensional Systems",
-        "Department of Electrical Engineering"
+        "Department of Electrical Engineering",
+        "Communications, Optics & Materials",
+        "Communications, Optics and Materials",
+        "Micro and Nanotechnology",
+        "Micro & Nanotechnology",
+        "Photonics Engineering"
       ],
-      "da": null
+      "da": ["Kommunikation, Optik & Materialer",
+              "Kommunikation, Optik og Materialer",
+              "Mikro- og Nanoteknologi",
+              "Mikro & Nanoteknologi",
+              "Fotonikteknologi",
+              "Elektroteknologi"
+    ]
     }
   },
   {
@@ -193,7 +211,11 @@
         "Production, Transportation and Planning",
         "Strategi and Leadership Development"
       ],
-      "da": null
+      "da": [
+          "Planlægning, Innovation og Ledelse",
+          "Mekanisk Teknologi"
+      ]
+
     }
   },
   {
@@ -240,7 +262,8 @@
         "Magnetic Materials and Neutron Scattering",
         "Materials Physics in Time and Space",
         "Luminescence Physics and Technologies",
-        "Department of Micro- and Nanotechnology"
+        "Department of Micro- and Nanotechnology",
+        "Information Technology"
       ],
       "da": null
     }
@@ -328,7 +351,8 @@
         "The Hempel Foundation Coatings Science and Technology Centre",
         "Danish Polymer Centre",
         "Pilot Plant",
-        "Process and System Engineering Center"
+        "Process and System Engineering Center",
+        "Chemical Engineering"
       ],
       "da": null
     }
@@ -358,9 +382,14 @@
         "Human Mobility",
         "Intelligent Transportation Systems",
         "Transportation Systems Modelling",
-        "Transport Policy"
+        "Transport Policy",
+        "Management Engineering",
+        "Planning",
+        "Transport"
       ],
-      "da": null
+      "da": ["Transport",
+              "Produktion og Ledelse"
+    ]
     }
   },
   {
@@ -434,7 +463,8 @@
         "Quantitative Sustainability Assessment",
         "Waste, Climate & Monitoring",
         "Water Systems",
-        "Water Technology and Processes"
+        "Water Technology and Processes",
+        "Environmental Engineering "
       ],
       "da": null
     }
