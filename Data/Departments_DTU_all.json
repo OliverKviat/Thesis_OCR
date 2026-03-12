@@ -224,8 +224,8 @@
       "da": null
     },
     "title": {
-      "en": "Center For Technology Entrepreneurship",
-      "da": "Center for entrepreneurskabi teknologi"
+      "en": "Centre For Technology Entrepreneurship",
+      "da": "Center for Entrepreneurskabi Teknologi"
     },
     "sections": {
       "en": [
@@ -398,7 +398,7 @@
       "da": null
     },
     "title": {
-      "en": "Department of Space Research and Space Technology",
+      "en": ["Department of Space Research and Space Technology", "Department of Space Research and Technology"],
       "da": "Institut for Rumforskning og Rumteknologi"
     },
     "sections": {
@@ -507,6 +507,81 @@
         "Renewable Plants in Energy Systems",
         "Society, Market and Policy"
       ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Nanolab",
+      "da": null
+    },
+    "title": {
+      "en": "National Centre for Nano Fabrication and Characterization",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Nanocharacterization",
+        "Nanofabrication",
+        "Operations",
+        "Fabrication Support",
+        "Litho/WetChem",
+        "Process Engineering"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Biosustain",
+      "da": null
+    },
+    "title": {
+      "en": "The Novo Nordisk Foundation Center for Biosustainability",
+      "da": ""
+    },
+    "sections": {
+      "en": [
+        "Microbial Foods",
+        "Bacterial Synthetic Biology",
+        "Sustainable Food Innovation",
+        "Bacterial Signal Transduction",
+        "Infection Microbiology",
+        "Flux Optimization & Bioanalytics",
+        "Flux Optimization and Bioanalytics",
+        "Natural Products",
+        "Yeast Natural Products",
+        "Enzyme Engineering & Structural Biology",
+        "Enzyme Engineering and Structural Biology",
+        "Computational Protein Engineering",
+        "Natural Products Genome Mining",
+        "Synthetic Biology Tools for Yeast",
+        "Yeast Metabolic Engineering",
+        "Yeast Modelling & Machine Learning",
+        "Yeast Modelling and Machine Learning",
+        "Multi-omics Network Analytics",
+        "Sustainable Chemicals",
+        "Quantitative Modelling of Cell Metabolism",
+        "Systems Enviormental Microbiology",
+        "Bacterial Cell Factories",
+        "Microbial Protein Factory",
+        "Sustaiable Microbial Applications",
+        "C1 Systems Biology"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Offshore",
+      "da": null
+    },
+    "title": {
+      "en": "Danish Offshore Technology Centre",
+      "da": null
+    },
+    "sections": {
+      "en": "DTU Offshore – Danish Offshore Technology Centre",
       "da": null
     }
   }
