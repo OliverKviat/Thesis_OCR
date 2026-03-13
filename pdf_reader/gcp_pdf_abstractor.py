@@ -350,7 +350,7 @@ class GCPPDFExtractor:
     def process_bucket_prefix(self, prefix: str = "dtu_findit/master_thesis/",
                                start_index: int = 0,
                                max_files: Optional[int] = None,
-                               output_prefix: str = "exstracted_abstracts_msc/") -> Tuple[List[Dict], int, int, int]:
+                               output_prefix: str = "exstracted_abstract_master_thesis/") -> Tuple[List[Dict], int, int, int]:
         """
         Process all PDFs with given prefix from bucket.
         
@@ -429,7 +429,7 @@ class GCPPDFExtractor:
         return documents, abstracts_found, abstracts_not_found, errors
     
     def save_results_to_gcp(self, documents: List[Dict], 
-                            output_prefix: str = "exstracted_abstracts_msc/",
+                            output_prefix: str = "exstracted_abstract_master_thesis/",
                             csv_filename: str = "abstracts_msc.csv",
                             json_filename: str = "abstracts_msc.json"):
         """Save CSV and JSON results to GCP bucket."""
@@ -472,7 +472,7 @@ def main():
         print("  --sample N         Process first N PDFs")
         print("  --workers N        Number of concurrent workers (default: 15)")
         print("  --prefix PATH      GCS prefix (default: dtu_findit/master_thesis/)")
-        print("  --output-prefix P  Output prefix (default:exstracted_abstracts_msc/)")
+        print("  --output-prefix P  Output prefix (default:exstracted_abstract_master_thesis/)")
         print("  --bucket BUCKET    Source bucket (default: thesis_archive_bucket)")
         print("\nExamples:")
         print("  python gcp_pdf_abstractor.py --test")
@@ -484,7 +484,7 @@ def main():
     max_files = None
     max_workers = 15
     prefix = "dtu_findit/master_thesis/"
-    output_prefix = "exstracted_abstracts_msc/"
+    output_prefix = "exstracted_abstract_master_thesis/"
     bucket_name = "thesis_archive_bucket"
     
     i = 1
