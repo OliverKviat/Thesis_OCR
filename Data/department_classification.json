@@ -1,0 +1,588 @@
+[
+  {
+    "department": {
+      "en": "DTU Aqua",
+      "da": null
+    },
+    "title": {
+      "en": "National Institute of Aquatic Resources",
+      "da": "Institut for Akvatiske Ressourcer"
+    },
+    "sections": {
+      "en": [
+        "Centre for Ocean Life",
+        "Oceans and Arctic",
+        "Marine Living Resources",
+        "Ecosystem based Marine Management",
+        "Fisheries Technology",
+        "Coastal Ecology",
+        "Freshwater Fisheries and Ecology",
+        "Monitoring and Data",
+        "Aquaculture",
+        "Fish and Shellfish Diseases"
+      ],
+      "da": [
+        "Centre for Ocean Life",
+        "Oceaner og Arktis",
+        "Marine Levende Ressourcer",
+        "Økosystembaseret Marin Forvaltning",
+        "Fiskeriteknologi",
+        "Kystøkologi",
+        "Ferskvandsfiskeri og -økologi",
+        "Monitering og Data",
+        "Akvakultur",
+        "Fiske- og Skaldyrssygdomme"
+      ]
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Bioengineering",
+      "da": null
+    },
+    "title": {
+      "en": "Department of Biotechnology and Biomedicine",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Microbial & Chemical Ecology",
+        "Synthetic Biology",
+        "Protein Chemistry & Enzyme Technology",
+        "Medical Biotechnology",
+        "Biologics Engineering",
+        "Systems Biology"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Compute",
+      "da": null
+    },
+    "title": {
+      "en": "Department of Applied Mathematics and Computer Science",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Algorithms, Logic and Graphs",
+        "Cognitive Systems",
+        "Cybersecurity Engineering",
+        "Dynamical Systems",
+        "Embedded Systems Engineering",
+        "Mathematics",
+        "Scientific Computing",
+        "Software Systems Engineering",
+        "Statistics and Data Analysis",
+        "Visual Computing",
+        "Informatics and Mathematical Modeling"
+      ],
+      "da": [
+        "Matematik",
+        "Informatik og Matematisk Modellering"
+      ]
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Construct",
+      "da": null
+    },
+    "title": {
+      "en": "Department of Civil and Mechanical Engineering",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Design for Sustainability",
+        "Digital Building Technologies",
+        "Energy & Services",
+        "Engineering Design & Manufacturing systems",
+        "Fluid Mechanics, Coastal & Maritime Engineering",
+        "Manufacturing Engineering",
+        "Materials & Surface Engineering",
+        "Solid Mechanics",
+        "Structures & Safety",
+        "Thermal Energy",
+        "Civil Engineering",
+        "Department of Civil Engineering",
+        "Mechanical Engineering"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Electro",
+      "da": null
+    },
+    "title": {
+      "en": "Department of Electrical and Photonics Engineering",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Communications Technologies",
+        "Coding & Visual Communication",
+        "High-speed Optical Communications",
+        "Machine Learning in Photonic Systems",
+        "Network Technologies & Service Platforms",
+        "Photonic Integrated Circuit based Systems",
+        "Electro Technology",
+        "Acoustic Technology",
+        "Control, Robotics and Embodied AI",
+        "Electronics",
+        "Perception and Cognition for Autonomous Systems",
+        "Advanced Optoelectronics & Sensing",
+        "Diode Lasers & LED Systems",
+        "Optical Sensor Technology",
+        "Solar Photovoltaic Systems",
+        "Thin-Film Photovoltaics",
+        "Wide Bandgap Semiconductor Photonics",
+        "Nonlinear Optics & Biophotonics",
+        "Fiber Optics, Devices and Nonlinear Effects",
+        "Fiber Sensors & Supercontinuum",
+        "Neural Devices & Gas Photonics",
+        "Ultrafast Infrared and Terahertz Science",
+        "Quantum and Nanophotonics",
+        "Metamaterials",
+        "Nanophotonic Devices",
+        "Photonic Nanotechnology",
+        "Quantum and Laser Photonics",
+        "Quantum Light Sources",
+        "Quantum Networks",
+        "Quantum Photonics of Low-Dimensional Systems",
+        "Department of Electrical Engineering",
+        "Communications, Optics & Materials",
+        "Communications, Optics and Materials",
+        "Micro and Nanotechnology",
+        "Micro & Nanotechnology",
+        "Photonics Engineering"
+      ],
+      "da": ["Kommunikation, Optik & Materialer",
+              "Kommunikation, Optik og Materialer",
+              "Mikro- og Nanoteknologi",
+              "Mikro & Nanoteknologi",
+              "Fotonikteknologi",
+              "Elektroteknologi"
+    ]
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Energy",
+      "da": "DTU Energi"
+    },
+    "title": {
+      "en": "Department of Energy Conversion and Storage",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Atomic Scale Materials Modelling",
+        "Autonomous Materials Discovery",
+        "Applied Ceramics and Processing",
+        "Functional Oxides",
+        "Structural Analysis and Modelling",
+        "Low Temperature Electrochemistry",
+        "Solid State Electrochemistry"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Engineering Technology",
+      "da": null
+    },
+    "title": {
+      "en": "Department of Engineering Technology and Didactics",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Building Technology and Processes",
+        "Business Development",
+        "Energy Technology and Computer Science",
+        "Innovation Processes and Entrepreneurship",
+        "Mechanical Technology",
+        "Production, Transportation and Planning",
+        "Strategi and Leadership Development"
+      ],
+      "da": [
+          "Planlægning, Innovation og Ledelse",
+          "Mekanisk Teknologi"
+      ]
+
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Entrepreneurship",
+      "da": null
+    },
+    "title": {
+      "en": "Centre For Technology Entrepreneurship",
+      "da": "Center for Entrepreneurskabi Teknologi"
+    },
+    "sections": {
+      "en": [
+        "Start-up creation and success",
+        "Entrepreneurial teams",
+        "Entrepreneurship and health",
+        "Innovation and corporate entrepreneurship",
+        "Open innovation, open entrepreneurship and ecosystem",
+        "IP and technology licensing",
+        "Sustainable entrepreneurship and innovation",
+        "Entrepreneurship and digitalization",
+        "Entrepreneurship didactics and diversity"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Physics",
+      "da": null
+    },
+    "title": {
+      "en": "Department of Physics",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Surface Physics & Catalysis",
+        "Computational Atomic-scale Materials Design",
+        "Plasma Physics and Fusion Energy",
+        "Quantum Physics and Information Technology",
+        "Nanomaterials and Devices",
+        "Biophysics and Fluids",
+        "Magnetic Materials and Neutron Scattering",
+        "Materials Physics in Time and Space",
+        "Luminescence Physics and Technologies",
+        "Department of Micro- and Nanotechnology",
+        "Information Technology"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Food",
+      "da": "DTU Fødevareinstituttet"
+    },
+    "title": {
+      "en": "National Food Institute",
+      "da": "Fødevareinstituttet"
+    },
+    "sections": {
+      "en": [
+        "Analytical Food Chemistry",
+        "Bioactives- Analysis and Application",
+        "Chemical Risk Assessment and GMO",
+        "Food Allergy",
+        "Food Microbiology and Hygiene",
+        "Food Production Engineering",
+        "Foodborne Pathogens and Epidemiology",
+        "Genomic Epidemiology",
+        "Global Capacity Building",
+        "Gut, Microbes and Health",
+        "Microbial Biotechnology and Biorefining",
+        "Molecular and Reproductive Toxicology",
+        "Nutrition, Sustainability and Health Promotion",
+        "Risk-Benefit"
+      ],
+      "da": [
+        "Bioaktive Stoffer Analyse og Anvendelse",
+        "Ernæring, Bæredygtighed og Sundhedsfremme",
+        "Fødevareallergi",
+        "Fødevarebårne Patogener og Epidemiologi",
+        "Fødevaremikrobiologi og Hygiejne",
+        "Fødevareproduktionsteknologi",
+        "Genetisk Epidemiologi",
+        "Global Kapacitetsopbygning",
+        "Helhedsvurdering",
+        "Kemisk Fødevareanalyse",
+        "Kemisk Risikovurdering og GMO",
+        "Mikrobiel Bioteknologi og Bioraffinering",
+        "Molekylær- og Reproduktionstoksikologi",
+        "Tarmbakterier og Sundhed"
+      ]
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Chemistry",
+      "da": "DTU Kemi"
+    },
+    "title": {
+      "en": "Department of Chemistry",
+      "da": "Institut for Kemi"
+    },
+    "sections": {
+      "en": [
+        "Organic Chemistry",
+        "Inorganic Chemistry",
+        "Physical Chemistry"
+      ],
+      "da": [
+        "Organisk Kemi",
+        "Uorganisk Kemi",
+        "Fysisk Kemi"
+      ]
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Chemical Engineering",
+      "da": "DTU Kemiteknik"
+    },
+    "title": {
+      "en": "Department of Chemical and Biochemical Engineering",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Applied Thermodynamics – Center for Energy Resources Engineering",
+        "Biological Conversions group",
+        "Catalysis and High-temperature Engineering Centre",
+        "The Hempel Foundation Coatings Science and Technology Centre",
+        "Danish Polymer Centre",
+        "Pilot Plant",
+        "Process and System Engineering Center",
+        "Chemical Engineering"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Management",
+      "da": null
+    },
+    "title": {
+      "en": "Department of Technology, Management and Economics",
+      "da": "Institut for Teknologi, Ledelse og Økonomi"
+    },
+    "sections": {
+      "en": [
+        "Management Science",
+        "Operations and Supply Chain Management",
+        "Decision Science",
+        "Climate Economics and Risk Management",
+        "Energy Economics and Modelling",
+        "Sustainable Behaviour",
+        "Climate and Energy Policy",
+        "Organisation Science and Technology",
+        "Science and Technology Studies",
+        "Technology and Business Studies",
+        "Transportation Science",
+        "Human Mobility",
+        "Intelligent Transportation Systems",
+        "Transportation Systems Modelling",
+        "Transport Policy",
+        "Management Engineering",
+        "Planning",
+        "Transport"
+      ],
+      "da": ["Transport",
+              "Produktion og Ledelse"
+    ]
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Space",
+      "da": null
+    },
+    "title": {
+      "en": ["Department of Space Research and Space Technology", "Department of Space Research and Technology"],
+      "da": "Institut for Rumforskning og Rumteknologi"
+    },
+    "sections": {
+      "en": [
+        "Astrophysics and Atmospheric Physics",
+        "Electromagnetic Systems",
+        "Geodesy and Earth Observation",
+        "Geomagnetism and Geospace",
+        "Measurement and Instrumentation Systems",
+        "Microwaves and Remote Sensing"
+      ],
+      "da": [
+        "Astrofysik og atmosfærens fysik",
+        "Elektromagnetiske systemer",
+        "Geodæsi og jordobservation",
+        "Geomagnetisme og geospace",
+        "Måling og instrumentering",
+        "Mikrobølger og telemåling"
+      ]
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Health Tech",
+      "da": "DTU Sundhedsteknologi"
+    },
+    "title": {
+      "en": "Department of Health Technology",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Bioinformatics",
+        "Cell and Drug Technologies",
+        "Digital Health",
+        "Drug Delivery and Sensing",
+        "Experimental and Translational Immunology",
+        "Hearing Systems",
+        "Magnetic Resonance",
+        "Medical Isotopes and Dosimetry",
+        "Optical Sensing and Imaging Systems",
+        "UltraSound and Biomechanics"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Sustain",
+      "da": null
+    },
+    "title": {
+      "en": "Department of Environmental and Resource Engineering",
+      "da": "Institut for Miljø- og Ressourceteknologi"
+    },
+    "sections": {
+      "en": [
+        "Environmental Contamination & Chemicals",
+        "Geotechnics and Geology",
+        "Indoor Environment",
+        "Construction Materials and Durability",
+        "Quantitative Sustainability Assessment",
+        "Waste, Climate & Monitoring",
+        "Water Systems",
+        "Water Technology and Processes",
+        "Environmental Engineering "
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Wind",
+      "da": null
+    },
+    "title": {
+      "en": "Department of Wind and Energy Systems",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Wind Energy Materials & Components",
+        "Wind Turbine Design",
+        "Wind Energy Systems",
+        "Power and Energy Systems",
+        "Structural Virtual Testing and Digitalisation",
+        "Mechanical Design, Materials & Additive Manufacturing",
+        "Composites Analysis and Mechanics",
+        "Composites Manufacturing and Testing",
+        "Structural Design and Testing",
+        "Structural Integrity and Loads Assessment",
+        "Energy Markets and Analytics",
+        "Power Systems",
+        "Power-to-X and Storage",
+        "Distributed Energy Systems",
+        "E-mobility and Prosumer Integration",
+        "PowerLabDK",
+        "Aero- and Fluid Dynamics",
+        "Response, Aero-elasticity, Control and Hydrodynamics",
+        "Airfoil and Rotor Design",
+        "Testing and Calibration",
+        "Measurement Systems and Methods",
+        "Resource Assessment and Meteorology",
+        "Meteorology and Remote Sensing",
+        "System Engineering and Optimization",
+        "Renewable Plants in Energy Systems",
+        "Society, Market and Policy"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Nanolab",
+      "da": null
+    },
+    "title": {
+      "en": "National Centre for Nano Fabrication and Characterization",
+      "da": null
+    },
+    "sections": {
+      "en": [
+        "Nanocharacterization",
+        "Nanofabrication",
+        "Operations",
+        "Fabrication Support",
+        "Litho/WetChem",
+        "Process Engineering"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Biosustain",
+      "da": null
+    },
+    "title": {
+      "en": "The Novo Nordisk Foundation Center for Biosustainability",
+      "da": ""
+    },
+    "sections": {
+      "en": [
+        "Microbial Foods",
+        "Bacterial Synthetic Biology",
+        "Sustainable Food Innovation",
+        "Bacterial Signal Transduction",
+        "Infection Microbiology",
+        "Flux Optimization & Bioanalytics",
+        "Flux Optimization and Bioanalytics",
+        "Natural Products",
+        "Yeast Natural Products",
+        "Enzyme Engineering & Structural Biology",
+        "Enzyme Engineering and Structural Biology",
+        "Computational Protein Engineering",
+        "Natural Products Genome Mining",
+        "Synthetic Biology Tools for Yeast",
+        "Yeast Metabolic Engineering",
+        "Yeast Modelling & Machine Learning",
+        "Yeast Modelling and Machine Learning",
+        "Multi-omics Network Analytics",
+        "Sustainable Chemicals",
+        "Quantitative Modelling of Cell Metabolism",
+        "Systems Enviormental Microbiology",
+        "Bacterial Cell Factories",
+        "Microbial Protein Factory",
+        "Sustaiable Microbial Applications",
+        "C1 Systems Biology"
+      ],
+      "da": null
+    }
+  },
+  {
+    "department": {
+      "en": "DTU Offshore",
+      "da": null
+    },
+    "title": {
+      "en": "Danish Offshore Technology Centre",
+      "da": null
+    },
+    "sections": {
+      "en": "DTU Offshore – Danish Offshore Technology Centre",
+      "da": null
+    }
+  }
+]
