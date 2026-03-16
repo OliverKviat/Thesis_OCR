@@ -2,6 +2,7 @@
 import pypdf
 import logging
 from pathlib import Path
+import pandas as pd
 
 # Suppress all pypdf log messages below the ERROR level
 logging.getLogger("pypdf").setLevel(logging.ERROR)
@@ -190,29 +191,35 @@ def print_pdf_text(reader) -> None:
 
 ### ==== MAIN FUNCTION ====
 # Opem and read in a LOCAL PDF file
-def main(pdf_path):
+def main(pdf_path, supres_prints=True):
     with open(pdf_path, 'rb') as file:
         try:
             reader = pypdf.PdfReader(file)
         except Exception as e:
             print(f"Error reading PDF file: {e}")
-        
+
         # Number of pages in the PDF file
         num_tot_pages = count_tot_pages(reader)
-        print(f"Total number of pages in PDF: {num_tot_pages}")
 
         # Number of pages with main content in the PDF file
         num_cont_pages, match_trigger, = count_cont_pages(reader, audit=False, page_prints=False) # audit=True/False to get audit prints, page_prints=True/False to get option to print end page/first excluded page
-        print(f"Number of pages with main content in PDF: {num_cont_pages}")
-        print(f"Accepted candidate reason: {match_trigger}")
 
         # Number of words in the PDF file
         num_words_full = word_count(reader, num_tot_pages)
-        print(f"Total number of words in the full PDF: {num_words_full}")
 
         # Number of words in the main content of the PDF file
         num_words_cont = word_count(reader, num_cont_pages)
-        print(f"Number of words in the main content of the PDF: {num_words_cont}")
+
+        # All print statements in the main function
+
+        if not supres_prints:    
+            print(f"Total number of pages in PDF: {num_tot_pages}")
+            print(f"Number of pages with main content in PDF: {num_cont_pages}")
+            print(f"Accepted candidate reason: {match_trigger}")
+            print(f"Total number of words in the full PDF: {num_words_full}")
+            print(f"Number of words in the main content of the PDF: {num_words_cont}")
+
+    return num_tot_pages, num_cont_pages, match_trigger, num_words_full, num_words_cont
 
 
 ### ==== FILE PATHS ====
@@ -250,6 +257,24 @@ else:
         else:
             raise SystemExit("Error: Invalid choice. Execution terminated without processing files.")
 
-    for pdf_path in pdf_files[:num_to_process]:
-        print(f"\n=== Processing: {pdf_path.name} ===")
-        main(pdf_path)
+# Building dataframe to store the metrics for each PDF file
+metrics_df = pd.DataFrame(columns=["pdf_file", "num_tot_pages", "num_cont_pages", "match_trigger", "num_words_full", "num_words_cont"])
+
+# Process the specified number of PDF files and collect metrics.
+for current_file_number, pdf_path in enumerate(pdf_files[:num_to_process], start=1):
+    print(f"\n=== Processing file {current_file_number} of {num_to_process} ===")
+    print(f"Current file is: {pdf_path.name}")
+    num_tot_pages, num_cont_pages, match_trigger, num_words_full, num_words_cont = main(pdf_path, supres_prints=True)
+    metrics_df.loc[len(metrics_df)] = {
+        "pdf_file": pdf_path.name,
+        "num_tot_pages": num_tot_pages,
+        "num_cont_pages": num_cont_pages,
+        "match_trigger": match_trigger,
+        "num_words_full": num_words_full,
+        "num_words_cont": num_words_cont
+    }
+
+# Save the metrics to a CSV file in the same folder as the script.
+output_csv_path = repo_root / "Data" / "extracted_metrics.csv"
+metrics_df.to_csv(output_csv_path, index=False)
+print(f"\nMetrics for {num_to_process} PDF file(s) have been saved to: {output_csv_path}")

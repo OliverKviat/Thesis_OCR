@@ -1,0 +1,6 @@
+pdf_file,num_tot_pages,num_cont_pages,match_trigger,num_words_full,num_words_cont
+5c7a72fdd9001d361b4cd3e4_Coronary atherosclerotic plaque assesment using deep learning (translated Vurdering af graden af areforkalkning i kransp.pdf,118,108,"prefix-match  ('appendix a', prefix='appendix')",33336,31691
+5c7a72ffd9001d361b4cd3e8_Coronary Atherosclerotic Plaque assesment using deep learning (translated Vurdering af graden af areforkalkning i kransp.pdf,99,89,exact  ('list of figures'),28709,24543
+5c7a72ffd9001d361b4cd3ec_Heart segmentation using deep learning (translated Segmentering af hjertestrukturer via deep learning).pdf,84,74,"prefix-match  ('appendix a', prefix='appendix')",19892,18374
+5c7a7302d9001d361b4cd3f2_Heart segmentation using deep learning (translated Segmentering af hjertestrukturer via deep learning).pdf,90,81,exact  ('list of figures'),26829,23537
+5cdd4565d9001d016b6b0a26_Golf club detection and identification using deep learning on embedded devices (translated Golfkølledetektion og identif.pdf,110,106,exact  ('bibliography'),30891,29629
