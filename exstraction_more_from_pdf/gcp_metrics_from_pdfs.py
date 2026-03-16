@@ -34,7 +34,10 @@ Default GCS target:
 ================================================================================
 HOW TO RUN - with uv
 ================================================================================
-# Process ALL PDFs in the bucket (production run):
+# Process ALL PDFs in the bucket (production run) in parallel with X workers:
+    uv run exstraction_more_from_pdf/gcp_metrics_from_pdfs.py --workers X
+
+# Process ALL PDFs in the bucket (production run) - single worker:
     uv run exstraction_more_from_pdf/gcp_metrics_from_pdfs.py
 
 # Test run — interactive prompt asks how many PDFs to process:
@@ -50,6 +53,13 @@ HOW TO RUN - with uv
 
 # Enable verbose, per-page boundary-detection output:
     uv run exstraction_more_from_pdf/gcp_metrics_from_pdfs.py --test --limit 3 --audit
+
+# Auto-benchmark worker counts on your current machine/network:
+    uv run exstraction_more_from_pdf/gcp_metrics_from_pdfs.py --benchmark
+
+# Benchmark custom worker candidates on a custom sample size:
+    uv run exstraction_more_from_pdf/gcp_metrics_from_pdfs.py --benchmark \
+        --benchmark-workers 2,4,8,12,16,24 --benchmark-sample 30
 ================================================================================
 """
 
@@ -57,16 +67,18 @@ HOW TO RUN - with uv
 # IMPORTS
 # ==============================================================================
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import io
 import logging
 import sys
 import time
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import pandas as pd
 import pypdf
 from google.cloud import storage
+from requests.adapters import HTTPAdapter
 
 # ==============================================================================
 # LOGGING
@@ -351,6 +363,7 @@ class GCPMetricsExtractor:
         bucket_name: str = DEFAULT_BUCKET,
         blob_prefix: str = DEFAULT_PREFIX,
         output_csv: Path = DEFAULT_OUTPUT_CSV,
+        max_workers: int = 8,
         audit: bool = False,
     ) -> None:
         """
@@ -358,29 +371,49 @@ class GCPMetricsExtractor:
             bucket_name: GCS bucket that holds the thesis PDFs.
             blob_prefix: Folder prefix inside the bucket to search for PDFs.
             output_csv:  Local path where the results CSV will be written.
+            max_workers: Number of concurrent workers used to stream/process PDFs.
             audit:       If ``True``, emit verbose per-page boundary-detection
                          debug logs (sets log level to DEBUG).
         """
         self.bucket_name = bucket_name
         self.blob_prefix = blob_prefix
         self.output_csv = Path(output_csv)
+        self.max_workers = max(1, int(max_workers))
         self.audit = audit
 
         logger.info("Initialising GCP Storage client …")
         try:
             self.client = storage.Client()
             self.bucket = self.client.bucket(bucket_name)
+            # Scale HTTP pool with concurrency to avoid
+            # "Connection pool is full" warnings under parallel downloads.
+            self._configure_http_pool(max_pool_size=max(10, self.max_workers * 2))
             logger.info("Connected to bucket: gs://%s", bucket_name)
         except Exception as exc:
             logger.error("Failed to initialise GCP Storage client: %s", exc)
             raise
+
+    def _configure_http_pool(self, max_pool_size: int) -> None:
+        """Configure the underlying HTTP adapter pool size for GCS requests."""
+        pool_size = max(10, int(max_pool_size))
+        try:
+            adapter = HTTPAdapter(
+                pool_connections=pool_size,
+                pool_maxsize=pool_size,
+                max_retries=0,
+            )
+            self.client._http.mount("https://", adapter)
+            self.client._http.mount("http://", adapter)
+            logger.debug("Configured HTTP connection pool size: %d", pool_size)
+        except Exception as exc:
+            logger.debug("Could not tune HTTP pool size: %s", exc)
 
     # ------------------------------------------------------------------
     # Internal helpers
     # ------------------------------------------------------------------
 
     def _list_pdf_blobs(self, limit: Optional[int] = None):
-        """Yield GCS blob objects that point to PDF files under ``blob_prefix``.
+        """Yield ``(blob_name, blob_size)`` tuples for PDFs under ``blob_prefix``.
 
         Args:
             limit: Stop after yielding this many blobs (``None`` = no limit).
@@ -396,30 +429,32 @@ class GCPMetricsExtractor:
         ):
             if not blob.name.lower().endswith(".pdf"):
                 continue
-            yield blob
+            yield blob.name, blob.size
             count += 1
             if limit is not None and count >= limit:
                 logger.info("Reached requested limit of %d PDF(s).", limit)
                 break
 
-    def _process_blob(self, blob) -> Optional[dict]:
+    def _process_blob(self, blob_name: str, blob_size: Optional[int] = None) -> Optional[dict]:
         """Download one blob into memory and compute all metrics.
 
         The PDF bytes are held in a ``io.BytesIO`` buffer and never written
         to local disk.
 
         Args:
-            blob: A ``google.cloud.storage.Blob`` instance.
+            blob_name: Path of the blob inside GCS bucket.
+            blob_size: Optional blob size in bytes (if already known from listing).
 
         Returns:
             A metrics ``dict`` on success, ``None`` on any failure.
         """
-        filename = Path(blob.name).name
+        filename = Path(blob_name).name
 
         # --- Download ---
         try:
-            size_mb = (blob.size or 0) / 1_048_576
+            size_mb = ((blob_size or 0) / 1_048_576) if blob_size else 0.0
             logger.debug("Downloading '%s' (%.2f MB) …", filename, size_mb)
+            blob = self.bucket.blob(blob_name)
             pdf_bytes: bytes = blob.download_as_bytes(timeout=120)
         except Exception as exc:
             logger.error(
@@ -475,9 +510,12 @@ class GCPMetricsExtractor:
         processed = errors = 0
         t_start = time.perf_counter()
 
+        # Ensure pool can sustain current worker concurrency.
+        self._configure_http_pool(max_pool_size=max(10, self.max_workers * 2))
+
         # Materialise the blob iterator so we know the total upfront.
-        blobs = list(self._list_pdf_blobs(limit=limit))
-        total = len(blobs)
+        blob_refs = list(self._list_pdf_blobs(limit=limit))
+        total = len(blob_refs)
 
         if total == 0:
             logger.warning(
@@ -496,18 +534,35 @@ class GCPMetricsExtractor:
                 ]
             )
 
-        logger.info("Starting processing of %d PDF file(s) …", total)
+        logger.info(
+            "Starting processing of %d PDF file(s) with %d worker(s) …",
+            total,
+            self.max_workers,
+        )
 
-        for idx, blob in enumerate(blobs, start=1):
-            filename = Path(blob.name).name
-            logger.info("[%d/%d] Processing: %s", idx, total, filename)
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            futures = {
+                executor.submit(self._process_blob, blob_name, blob_size): blob_name
+                for blob_name, blob_size in blob_refs
+            }
 
-            row = self._process_blob(blob)
-            if row is not None:
-                results.append(row)
-                processed += 1
-            else:
-                errors += 1
+            for idx, future in enumerate(as_completed(futures), start=1):
+                blob_name = futures[future]
+                filename = Path(blob_name).name
+
+                try:
+                    row = future.result()
+                except Exception as exc:
+                    logger.error("Unhandled worker error for '%s': %s", filename, exc)
+                    row = None
+
+                if row is not None:
+                    results.append(row)
+                    processed += 1
+                    logger.info("[%d/%d] Completed: %s", idx, total, filename)
+                else:
+                    errors += 1
+                    logger.warning("[%d/%d] Failed: %s", idx, total, filename)
 
         elapsed = time.perf_counter() - t_start
         logger.info(
@@ -534,6 +589,101 @@ class GCPMetricsExtractor:
         logger.info("Results saved to: %s", self.output_csv)
 
         return df
+
+    def benchmark_workers(
+        self,
+        worker_candidates: List[int],
+        sample_size: int,
+    ) -> Tuple[List[Dict[str, float]], int]:
+        """Benchmark throughput for multiple worker counts.
+
+        The benchmark streams and processes the same sample files for each
+        candidate worker value, then selects the best value by highest
+        successful-files-per-second throughput.
+
+        Args:
+            worker_candidates: Positive worker counts to test.
+            sample_size: Number of PDFs to include in each benchmark run.
+
+        Returns:
+            ``(results, recommended_workers)`` where ``results`` is a list of
+            per-worker metrics and ``recommended_workers`` is the best worker
+            count found.
+        """
+        if sample_size <= 0:
+            raise ValueError("sample_size must be a positive integer.")
+
+        worker_candidates = sorted({max(1, int(w)) for w in worker_candidates})
+
+        # Ensure pool is large enough for the largest benchmarked worker value.
+        self._configure_http_pool(
+            max_pool_size=max(10, max(worker_candidates) * 2)
+        )
+
+        blob_refs = list(self._list_pdf_blobs(limit=sample_size))
+        total = len(blob_refs)
+        if total == 0:
+            raise RuntimeError(
+                f"No PDF blobs found under gs://{self.bucket_name}/{self.blob_prefix}"
+            )
+
+        logger.info(
+            "Running worker benchmark on %d PDF sample(s): %s",
+            total,
+            ", ".join(str(w) for w in worker_candidates),
+        )
+
+        benchmark_rows: List[Dict[str, float]] = []
+
+        for workers in worker_candidates:
+            processed = errors = 0
+            t_start = time.perf_counter()
+
+            with ThreadPoolExecutor(max_workers=workers) as executor:
+                futures = {
+                    executor.submit(self._process_blob, blob_name, blob_size): blob_name
+                    for blob_name, blob_size in blob_refs
+                }
+
+                for future in as_completed(futures):
+                    try:
+                        row = future.result()
+                    except Exception:
+                        row = None
+
+                    if row is None:
+                        errors += 1
+                    else:
+                        processed += 1
+
+            elapsed = time.perf_counter() - t_start
+            throughput = processed / elapsed if elapsed > 0 else 0.0
+
+            result_row: Dict[str, float] = {
+                "workers": float(workers),
+                "processed": float(processed),
+                "errors": float(errors),
+                "elapsed_sec": elapsed,
+                "files_per_sec": throughput,
+            }
+            benchmark_rows.append(result_row)
+
+            logger.info(
+                "Benchmark workers=%d | processed=%d | errors=%d | elapsed=%.2fs | files/sec=%.3f",
+                workers,
+                processed,
+                errors,
+                elapsed,
+                throughput,
+            )
+
+        # Prefer highest throughput, then fewer errors, then fewer workers.
+        best = max(
+            benchmark_rows,
+            key=lambda row: (row["files_per_sec"], -row["errors"], -row["workers"]),
+        )
+        recommended_workers = int(best["workers"])
+        return benchmark_rows, recommended_workers
 
 
 # ==============================================================================
@@ -567,6 +717,33 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Local CSV output path.",
     )
     parser.add_argument(
+        "--workers",
+        type=int,
+        default=8,
+        metavar="N",
+        help="Concurrent worker threads for streaming/processing PDFs (set 1 for sequential).",
+    )
+    parser.add_argument(
+        "--benchmark",
+        action="store_true",
+        help="Run auto-benchmark mode to recommend a good --workers value.",
+    )
+    parser.add_argument(
+        "--benchmark-sample",
+        type=int,
+        default=20,
+        metavar="N",
+        help="Number of PDFs per benchmark round (used with --benchmark).",
+    )
+    parser.add_argument(
+        "--benchmark-workers",
+        default="1,2,4,8,12,16",
+        help=(
+            "Comma-separated worker counts to benchmark, e.g. 1,2,4,8,12,16 "
+            "(used with --benchmark)."
+        ),
+    )
+    parser.add_argument(
         "--test",
         action="store_true",
         help=(
@@ -594,6 +771,19 @@ def main() -> None:
     parser = _build_parser()
     args = parser.parse_args()
 
+    def parse_worker_candidates(raw: str) -> List[int]:
+        values = []
+        for part in raw.split(","):
+            p = part.strip()
+            if not p:
+                continue
+            values.append(int(p))
+        if not values:
+            raise ValueError("No worker values provided.")
+        if any(v <= 0 for v in values):
+            raise ValueError("All worker values must be positive integers.")
+        return sorted(set(values))
+
     # ---- Determine processing limit ----
     limit: Optional[int] = args.limit
 
@@ -619,8 +809,48 @@ def main() -> None:
         bucket_name=args.bucket,
         blob_prefix=args.prefix,
         output_csv=Path(args.output),
+        max_workers=args.workers,
         audit=args.audit,
     )
+
+    if args.benchmark:
+        try:
+            candidates = parse_worker_candidates(args.benchmark_workers)
+        except ValueError as exc:
+            logger.error("Invalid --benchmark-workers value: %s", exc)
+            sys.exit(1)
+
+        try:
+            results, recommended = extractor.benchmark_workers(
+                worker_candidates=candidates,
+                sample_size=args.benchmark_sample,
+            )
+        except Exception as exc:
+            logger.error("Benchmark failed: %s", exc)
+            sys.exit(1)
+
+        benchmark_df = pd.DataFrame(results)
+        if not benchmark_df.empty:
+            benchmark_df["workers"] = benchmark_df["workers"].astype(int)
+            benchmark_df["processed"] = benchmark_df["processed"].astype(int)
+            benchmark_df["errors"] = benchmark_df["errors"].astype(int)
+
+        print("\n=== Worker Benchmark Results ===")
+        print(
+            benchmark_df.sort_values("files_per_sec", ascending=False).to_string(
+                index=False,
+                formatters={
+                    "elapsed_sec": "{:.2f}".format,
+                    "files_per_sec": "{:.3f}".format,
+                },
+            )
+        )
+        print(f"\nRecommended workers: {recommended}")
+        print(
+            "Suggested command: uv run exstraction_more_from_pdf/gcp_metrics_from_pdfs.py "
+            f"--workers {recommended}"
+        )
+        return
 
     df = extractor.run(limit=limit)
 
