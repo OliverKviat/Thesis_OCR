@@ -12,4 +12,5 @@ dependencies = [
     "pyarrow>=17.0.0",
     "pandas>=3.0.1",
     "google-cloud-storage>=3.9.0",
+    "ipykernel>=7.2.0",
 ]
