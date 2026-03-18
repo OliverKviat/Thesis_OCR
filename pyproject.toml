@@ -13,4 +13,5 @@ dependencies = [
     "pandas>=3.0.1",
     "google-cloud-storage>=3.9.0",
     "ipykernel>=7.2.0",
+    "spacy>=3.8.11",
 ]
