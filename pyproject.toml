@@ -14,4 +14,5 @@ dependencies = [
     "google-cloud-storage>=3.9.0",
     "ipykernel>=7.2.0",
     "spacy>=3.8.11",
+    "seaborn>=0.13.2",
 ]
