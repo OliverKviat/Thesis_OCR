@@ -17,4 +17,5 @@ dependencies = [
     "seaborn>=0.13.2",
     "pymupdf>=1.27.2.2",
     "pdfplumber>=0.11.9",
+    "black>=26.3.1",
 ]
