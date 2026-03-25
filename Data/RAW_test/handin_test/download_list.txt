@@ -1,0 +1,831 @@
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5ce67fe9d9001d016b4fccc7_Experimental analysis of CO2 vapour liquid equilibrium on solvent for biogas upgrading (translated Eksperimentel analyse.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d1c8d65d9001d146569a498_Flexible Scheduling of Time-Triggered Traffic in Time-Sensitive Networking (translated Fleksibel planlægning af tids-akt.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d1c8d79d9001d146569a4dc_Deep speech recognition in Danish (translated Dyb talegenkendelse pa dansk).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d21d367d9001d2d454f054d_Roll and Pitch Control of a Remotely Operated Vehicle (translated Roll og pitchkontrol af et fjernbetjent køretøj).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d2b0defd9001d018a2333fc_Potentials and limitations for using ambient air as heat source for large-scale heat pumps (translated Potentialer og be.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d82e6d9001d32f558c081_Detection of bacterial growth inhibition using the oCelloScope (translated Detektion af bakteriel væksthæmning ved hjælp.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d82f5d9001d32f558c096_A safe and just space for humanity Assessing environmental and social impacts of policies on an absolute scale (translat.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d8341d9001d32f558c139_Application-Specific Hardware to Accelerate Neural Network Training (translated Hardwareaccelerator til træning af neura.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d836cd9001d32f558c193_Optimal Scheduling of Railway Infrastructure Maintenance to Minimize Disruption (translated Optimal Planlæggning af Jern.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d8373d9001d32f558c1a2_Improving the energy resolution of spectral X-ray detectors (translated Optimering af energiopløsning for energidispersi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d838ed9001d32f558c1e3_Leveraging Blockchain Technology within Procurement (translated Levering af Blockchain-teknologi inden for indkøb).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d8395d9001d32f558c1ef_Rostering optimization in crew scheduling of bus drivers (translated Optimering af vagtplaner i mandskabsplanlægning for.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d838ad9001d32f558c1d6_Platform Design for Sharing Novel Driver Perspective Video as a Remedy in Fault Claims - Validating the business case (t.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d8398d9001d32f558c201_Conic Optimization with Exponential Cones (translated Konisk optimering med eksponentialkegler).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d8387d9001d32f558c1c5_Characterisation of the extracellular matrix turnover profile in a translational ex vivo cartilage explant model receivi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d8398d9001d32f558c1fe_Equilibrium Sampling with Baking Paper for Measuring Exposure to Semi-Volatiles in Air.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d83a1d9001d32f558c21d_TSCH-over-LoRA Long Range and Reliable IPv6 Multi-hop Networks for the Internet of Things (translated TSCH-over-LoRa Lan.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d83d0d9001d32f558c273_FPGA Optimization of Convolutional Neural Networks.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d83e5d9001d32f558c2a3_Design of a Function Approximation Co-Processor for Power Efficient Embedded Systems.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d3d841dd9001d32f558c332_Heuristic for Network Design Problems (translated Heuristikker til løsning af netværksdesign problemer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d41776ed9001d32f558c39c_Procedurally generation of puzzle levels with adaptive difficulty (translated Proceduralt generering af puslespil med ad.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d456be1d9001d32f558c42c_Latency control and optimization for precision time applications in FPGA based communication systems (translated Latency.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d456c05d9001d32f558c484_Autonomous localization and navigation of hexacopter using visual marker detection in indoor environments (translated Au.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d4ab1e5d9001d1f8a6c419a_Sustainable design and operation of residential buildings. An integrated approach towards energy efficiency and thermal .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d4ff7e2d9001d1f8a6c41df_Implementation of Encryption-Resistant MitM Attack (translated Implementering af MitM Angreb Modstandsdygtigt over for K.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d4ff7ffd9001d1f8a6c420c_Indoor climate and ventilation in renovated homes in Greenland (translated Indendørs luftkvalitet og ventilation i renov.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d514984d9001d1f8a6c4245_Quantification of emissions and losses of chemicals during plastic waste recycling (translated Kvantificering af emissio.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d4ea65dd9001d1f8a6c41cc_Motion Control for Mobile Robot (translated Styring af mobil robot).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d514962d9001d1f8a6c4221_Automated location of the left ventricle of heart in CT scans using deep learning (translated Automatiseret lokalisering.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d593272d9001d05d7613aee_Statistics and metanalysis of waste compositional data.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d46bd86d9001d32f558c4d4_Investigation on the use of extrusion cutting as material test (translated Undersøgelse af ekstruderingspantagning til m.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d626ce8d9001d0887793007_Production of lactic acid from urban bio-waste (translated Fremstillingen af mælkesyre fra urbant bioaffald).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d63be6ed9001d088779301a_Strategies for the Petrol Station Replenishment Problem (translated Optimeringsbaserede strategier for ruteplanlægning a.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d5e7878d9001d63873dbcb6_Applying Transport Theory to Problems in Computer Graphics (translated Anvendelse af transportteori til problemer i comp.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d650ffdd9001d452b768529_Understanding sense-making behaviour of software developers using process mining in a behaviour-driven development conte.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d651012d9001d452b768557_Using your own voice to train auditory short-term memory (translated Brug din egen stemme til at uddanne lydhukommelse).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d65101cd9001d452b76856c_Collective behavior in two populations of coupled Theta neurons (translated Kollektiv adfærd i to populationer af kobled.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d6a5600d9001d452b768643_A Massively Parallel and Scalable p-multigrid Solver for the Poisson problem (translated En Massiv Parallel og Skalerbar.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d6ba782d9001d452b768656_Development of a new parametric tool and assessment of overheating and daylighting in offices.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d6e4a83d9001d66e80217ee_Development and design of smartphone application to provide individualized feedback on adaption strategies associated wi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d6f9c01d9001d66e8021854_Indexing for Packed Strings (translated Indeksering for pakkede strenge).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d739068d9001d01722827f6_Formal languages in natural language processing (translated Formelle sprog i naturlig tekstprocessering).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d74e1edd9001d017228280b_Model-based optimization of a full scale anaerobic digester at a municipal wastewater treatment plant (translated Modelb.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d7b796bd9001d03f84818d6_An Evaluation of the Challenges of implementing the SDGs into existing methods of urban planners (translated En evalueri.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d7784f2d9001d1207025682_Multiscale Topology Optimization for shell structures (translated Multiskala topologioptimering for skalstrukturer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d6f9bfbd9001d66e8021851_Effect of surface acoustic impedance on measurements around a head and torso simulator (translated Effekt af overflade a.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d80bf95d9001d19993e1b53_Oxygen mapping in 3D microperfused organoids (translated Oxygen fordeling i 3D mikro-perfunderede organoider).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d88a880d9001d016b47bd3d_Comparison of Visualization Techniques for Self-tracking Data to Facilitate Reflection (translated Sammenligning af visu.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5d7e1c7ad9001d016f1553c5_Semantic segmentation for nutrition content estimation from food images using deep learning (translated Semantisk segmen.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5db97e1ed9001d015f172113_Sequence Domain Harmonic Modeling of VSC-HVDC for SSR-Studies (translated Modelering af harmoniske I sekvens domænet for.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5df4d196d9001d03d63c9795_Decision support system for ballast maintenance in railways (translated Beslutningstøtte for ballast vedligeholdese for .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e3419a3d9001d01573c14fd_Anonymizing Production Configuration Models (translated Anonymisering af Production Configuration Models).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e3419a6d9001d01573c1509_A Decentralized Peer-Based Password Manager (translated En Decentraliseret Peer-Baseret Adgangskode Manager).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e341991d9001d01573c14d2_Topology Optimization of Heat Exchangers (translated Topologioptimering af varmevekslere).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e526bfdd9001d0191679b42_Distributed Identities in the Maritime Domain (translated Distribuerede Identiteter i det Maritime Domæne).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e550f1ed9001d0164073eeb_Modelling of airflow through windows in residential buildings using dynamic computer simulations (translated Modellering.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e5ba68ad9001d016b3f370b_Design of an automated fermentation control system (translated Design af et automatisk fermenterings kontrol system).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e550f0fd9001d0164073eb8_Modelling of flood risk and analysis of climate adaptation strategies for urban development scenarios (translated Modell.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e60ecaed9001d016338ad03_Forecast of solar energy production using machine learning.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e70be84d9001d0171298893_WaveNet and global conditioning (translated WaveNet og global betingning).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e6f6cfed9001d016e432c97_Multispectral Satellite Derived Bathymetry in Greenland (translated Multispektral satelllit-baseret batymetri pa Grønlan.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e78a782d9001d81975c7f97_In Vitro Sensing of Histamine with Microneedle Electrodes.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e7ded8dd9001d016d012cf8_Generating Semantic Information from Video Surveillance for Behaviour Analysis (translated Generering af Semantisk Infor.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e7ded8cd9001d016d012ced_Ultra-violet supercontinuum generation in gas-filled hollow-core fibers (translated Ultra-violet supercontinuum genereri.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e7ded8ad9001d016d012ce8_Petrophysical log interpretation in deviated wells (translated Petrofysisk logtolkning i afbøjede boringer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e832575d9001d01923ead88_Estimation of Shallow Groundwater using Machine Learning (translated Estimering af terrænnært grundvand ved brug af mach.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e85c86fd9001d01631874f3_Visual question answering using structured exploration and reinforcement learning (translated Visual spørgmal-svar med b.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e8db16dd9001d016475f3e7_Accelerated Cartesian Expansion Methods for Computational Electromagnetics (translated Elektromagnetiske beregninger med.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5ead556ed9001d016652101b_Calibration of Laser Scanners for Robots (translated Kalibrering af laserskannere til robotter).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e8719eed9001d01631874fa_Deep learning for analyzing electron microscopy data of two dimensional materials (translated Deep learning til analyse .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5eaff878d9001d016652102d_Improvement of drone navigation along waterways using machine learning based computer vision (translated Forbedring af d.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5efdc16fd9001d0169116f99_Radiant ceiling combined with diffuse ventilation - thermal performance of reduced-scale experiment (translated Køleloft.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f05aa4dd9001d0169095ee9_A Framework for Self-Adjusting Evolutionary Algorithms (translated Et rammeværk til selvjusterende evolutionære algoritm.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f06fbc5d9001d0169095f30_Analysis and application of low Reynolds number turbulence models in simulating breaking waves (translated Analyse og an.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f01b5b5d9001d0169116fd7_Establishing an understanding of organisations' sustainability through life cycle screening Acrimo VS 1382 screen as a c.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f103633d9001d016b4e1e2e_Generating High-Quality Morphs using Generative Adversarial Networks (translated Morphing med høj kvalitet ved brug af G.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f181f35d9001d016b4e1f3b_Development and Use of a Tool Supporting Compositional Verification of Railway Interlocking Systems (translated Udviklin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5ef3355dd9001d0169229175_Drone-based remote sensing of oil-spill in water (translated Drone-baseret remote sensing af olie-spild i vand).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f16cdb7d9001d016b4e1f0c_Dynamic snow density for snow water equivalent retrieval (translated Dynamisk sne-densitet i malinger af sne vandækvival.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f1970b3d9001d016b4e1f92_A compliant robotic control system for safe human-robot interactions (translated Et eftergivende robotstyringssystem til.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f1d652ed9001d016b4e1fee_ROI real-time tracking for precapillary sphincter (translated ROI-sporing i realtid for prækapillær sfinkter).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f1970afd9001d016b4e1f7c_Development of Pearl-Chain concrete structures spanning over a freeway (translated Udvikling af Perlekæde-betonkonstrukt.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5efdc167d9001d0169116f81_Assessment of measurements from NASA's ICESat-2 photon counting laser altimeter in the Baltic Sea to support ice mapping.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f200856d9001d016b4e2160_Detection of Decentralized VPN (translated Detektion af decentraliseret VPN).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f20086ad9001d016b4e21ad_The Development and Use of Backcasting as Methodology to meet the 2050 Sustainability Goals (translated Udvikling og bru.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f269fb9d9001d016b4e2308_Continues improvement of CapEx projects (translated Forbedring af CapEx projekter).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f269faed9001d016b4e22d3_GPU Ray Tracing for Virtual Reality (translated GPU Ray Tracing til Virtual Reality).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f2942a8d9001d016b4e2378_Smart double loop network for ultra-low temperature district heating and cooling (translated Smart ultra-lavtemperatur f.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5e9ed4fed9001d016475f454_Recycling of Masonry - Design for Reuse (translated Genbrug af murværk - design for genanvendelse).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f2a942cd9001d016b4e2397_Modelling and optimization of beer fermentation towards optimal flavour profile (translated Modellering og optimering af.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f27f159d9001d016b4e2371_Development of a General Tool for Comparing the Economic Viability of Heating Systems (translated Udvikling af et generi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f2942afd9001d016b4e2388_Environmental life-cycle assessment (LCA) of Hal7 - Evaluation of the methodological choices pertaining to performing a .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f312bb8d9001d016b4e2426_A Personal Data Visualization Tool for Non-Expert Users (translated Et personligt data visualiseringsværktøj til ikke-ek.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f37c318d9001d01721d7c44_Removing code duplication through code generation for Kotlin web services (translated Fjerning af kodeduplikering ved ko.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f3a662bd9001d01721d7c98_Semantics of space through embeddings and visualization.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f36719cd9001d01721d7c35_Mapping of sustainable renovation potentials (translated Kortlægning af bæredygtige renoveringspotentialer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f200842d9001d016b4e211a_Experimental study of the damage mechanisms resulting in salt frost scaling of concrete (translated Eksperimentel unders.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f3e5a75d9001d01721d7d2b_Annotation in Virtual Reality (translated Annotering i Virtual Reality).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f44f1ffd9001d01721d7de5_Design and Simulation of a Cart Cleaning Robot for ISAL Aluminum Smelter (translated Design og simulering af rengøringsr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f479505d9001d01721d7e54_CycleGANs for Tissue Segmentation (translated Segmentering af væv med CycleGANs).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f46438bd9001d01721d7e29_Effect of probiotic TDA-producing bacteria on the microbiome of the aquaculture algae Isochrysis galbana (translated Eff.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f47950bd9001d01721d7e68_Consistent Local Mapping Using the Invariant Extended Kalman Filter (translated Konsistent lokal kortlægning med invaria.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f48e67dd9001d01721d7e72_Deep learning for predictive maintenance (translated Dyb læring for prediktiv vedligeholdelse).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f48e67bd9001d01721d7e6f_Digital Passive Video Tampering Detection using Deep Learning (translated Digital passiv video manipulation detektion me.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f4b8984d9001d01721d7ecc_Engineering Corynebacterium glutamicum for diacetyl production (translated Genetisk manipulering af Corynebacterium glut.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f4cdb0dd9001d01694aaf71_Optimal planning and operation of power to hydrogen infrastructure incorporated with electric power system.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f5220fdd9001d01694ab007_Using three-dimensional vectorcardiography to determine evolutionary differences in cardiac activation.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f50cf79d9001d01694aafb9_Interactive 3D Curve Sketching in Virtual Reality (translated Interaktiv skitsering af 3D kurver i virtual reality).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f5220fed9001d01694ab00a_Multi-Agent Pathfinding (translated Multiagent stifinding).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f561583d9001d01706cbb7e_Bio-inspired motion control of rigidly connected systems with application to underwater robotics (translated Bioinspirer.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f4a37f7d9001d01721d7e97_Experimental investigation of one-way energy capture by an oscillating water column wave energy device (translated Ekspe.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f56158fd9001d01706cbb96_Photochemical synthesis of Azetidine derivatives Novel FFA2 agonists (translated Fotokemisk syntese af Azetidin-derivate.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f576705d9001d01706cbbcb_Investigation of aerodynamics of time trial cycling helmets (translated Undersøgelse af aerodynamikken for enkeltstartsh.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f576701d9001d01706cbbbc_Analysis and design of active control for spray boom (translated Analyse og design af aktivt kontrolsystem for sprøjtebo.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f58b880d9001d01706cbc57_Numerical analysis of a concrete tunnel in fire.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f5dfe77d9001d01706cbcb2_Investigating the stages of sustainable entrepreneurship towards strong sustainability (translated En undersøgelse af st.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f5dfe7cd9001d01706cbcc7_Structural testing and analysis of galloping vibrations in T-Pylon high-voltage transmission masts (translated Strukture.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f688a79d9001d0169505fe9_Impact of Spectral Albedo on Bifacial PV Performance Assessment (translated Albedoens spektrale fordelings indflydelse p.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f688a79d9001d0169505fec_Efficient process for clay calcination and product evaluation (translated Effektiv proces for lerkalcinering og produkte.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f688a82d9001d0169506002_Generative networks for modelling the sound field in a room (translated Generative netværk for modellering af et rums im.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f7456e4d9001d5518098ae3_Synthesis of Novel Sulfatase-cleavable Linker for Antibody-Drug Conjugates in Cancer Treatment (translated Syntese af ny.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f74586ed9001d5518098b18_Adaptive segmentation to cluster patterns of breathing in sleep apnea (translated Adaptiv segmentering til clustering af.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f75ba50d9001d5518098b35_Synthesis of ferulic acid dimers (translated Syntese af ferulinsyredimerer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f7ef4c2d9001d01700258f6_Synthesizing Human-Friendly Optimal Strategies in Board Games (translated Syntetisering af menneskevenlige optimale stra.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f7ef4c3d9001d01700258fa_Dissecting the impact of early-life RSV infection on lung pathology upon reinfection in adult life (translated RSV-infek.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f99603ad9001d016970fe47_Lensless Light Sheet Generation and Dynamic Control using Multicore Fibers (translated Linsefri skabelse og dynamisk kon.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f996046d9001d016970fe76_Performance and capacity impacts of ERTMS implementation on a mixed train network.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f99604dd9001d016970fe92_Statistical processing and analysis of surface topography data for a machine-based evaluation of the measurement uncerta.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60057b16d9001d016f1ea5b6_Perception of speech and source location with individual and non-individual head-related transfer functions (translated .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60100723d9001d016f64e527_Optimal scheduling of multiple frequency services in the Nordic System.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60096f9dd9001d01710d6e38_Data driven analysis of nocturnal instability and arousability in patients with primary (translated Data drevet analyse .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/601941b6d9001d017146d2ce_Normative accounts for probability weighting in decision science (translated Normative modeller for sandsynlighedsvægtni.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/601a9334d9001d017146d2ec_Optimal placement of sensors for structural vibration analysis (translated Optimal sensorplacering for strukturel vibrat.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/601a9343d9001d017146d30a_Security in Microservice Architectures.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/601a9356d9001d017146d33c_Optimization Based Motion Planning for Self-Driving Ecocar (translated Optimerings-baseret kørselsplanlægning til selv-k.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/602a6533d9001d01657f85a1_Computer Aided Peptide Array Design A Comparative Study.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5f843aa5d9001d0170025924_Coupled intestine and blood vessel models for drug discovery (translated Koblede tarm- og blodkarmodeller til udvikling .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/602913a9d9001d01657f857f_Generalization in Vision-Based Reinforcement Learning (translated Generalisation i billed-baseret reinforcement llæring).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60364256d9001d01656e1c0b_Situation awareness for cognitive behaviour of autonomous robots (translated Situationsbevisthed for kognitiv opførsel a.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60364253d9001d01656e1bfe_Degradation of Pharmaceutical Compounds in the Grindsted Factory Plume - Tools and Assessment (translated Nedbrydning af.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/5ffee3b7d9001d017676a8a7_Comparision and analysis of LiDAR and Photogrammetric methods for Digital Elevation Models (translated Analyse og sammen.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6036425ad9001d01656e1c16_Analysis of a Large-Scale Smartphone Dataset Behavioral Factors Affecting Heart-Rate Variability (translated Analyse af .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60364261d9001d01656e1c2e_Visual Navigation for Autonomous Vehicles (translated Visuel Navigation for Autonome Køretøjer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/602bb6aad9001d01657f85c3_Map-matching GPS data to roads in Denmark by using car sensor information (translated Kort-matching af GPS-data til veje.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/602fab29d9001d01650f4d34_Radiant ceilings with diffuse ventilation - experimental and numerical feasibility analysis (translated Varme- og kølelo.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/603cd9abd9001d0165005506_Product Development strategy in ecosystems for digital healthcare (translated Produktudviklingsstrategi i økosystemer fo.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6040ce45d9001d01650055b2_Printable and cell-deformable bio-inks for skeletal muscle tissue models (translated Deformerbare printmaterialer til bi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6040ce51d9001d01650055c7_Second order topological insulators from first principles (translated Computersimuleringer af anden ordens topologiske i.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6043713cd9001d016e35815d_Condensed Liquid Protein Based Lubricants (translated Protein-baserede kondenserede væsker som smøremiddel).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60437137d9001d016e35814c_Expanding the industrial potential of through comparative WGS genomics of DTU LAB strain collection (translated Udvidels.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/604a08bdd9001d016e3581d3_Human Centered 3D Modelling in Virtual Reality (translated Menneskeorienteret 3D modellering i VR).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/604dfd2fd9001d016e3581f8_Traversable area detection for mobile robots using camera only (translated Farbart omradedetektering med kamera for mobi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6050a034d9001d0165750e43_Heuristics for a pick-up and delivery problem with time windows (translated Heuristik til afhentning og levering problem.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6051f1bed9001d01657f2ec4_Classification of critical heart micro-events for a clinical support system (translated Klassifikation af kritiske hjert.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6051f1bed9001d01657f2ec3_Classification of critical heart micro-events for a clinical support system (translated Klassifikation af kritiske hjert.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/605737a9d9001d016554ff6e_Design and Implementation of Tactile Sensing for Robotic Gripper Applications (translated Design og Implementering af Ta.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6061b597d9001d016653051d_Proof-of-concept Prototype Integrating Crowdsourced Parcel Service (translated Proof-of-concept prototype integration af.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/606458a0d9001d016653055c_Robust Object Classification for Autonomous Ship Navigation through Spiking Neural Networks and Meta Learning (translate.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60684d1ad9001d016653057e_Mathematical modeling of building thermal behaviour as an input to end-user communication interface (translated Matemati.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/607970add9001d016505c118_Carp Farming Practices and Potential for ASC Certification (translated Praksis i karpeopdræt og potentialet for ASC cert.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60ab899cd9001d016f3286eb_Modelling and control of an Aerial Manipulator (translated Modellering og kontrol af flyvende manipulatorer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60c1f31cd9001d01662d0824_Graph Generation and Route Planning in BIM Models (translated Grafgenerering og ruteplanlægning i BIM modeller).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60b76728d9001d016e145b31_Design of electric vehicle smart charging strategies to maximize self-consumption of a hybrid power plant (translated De.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60e2e8a0d9001d01667246ad_A Survey on Private Information Leakage from BLE Advertisements (translated Undersøgelse af privat informationslækage fr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60e2e8b2d9001d01667246c1_Comparative analysis of solar-driven air conditioning units based on vapour compression and ejector cycles.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60e2e8b7d9001d01667246c9_Optimal manufacturing planning.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60e2e8c2d9001d01667246d1_Dynamic k-clustering (translated Dynamisk klyngedannelse).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60e2e8b9d9001d01667246ca_Performance characterization of a novel ceiling panel with Phase Change Materials (PCM).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60ead18dd9001d016224892a_Energy implications for reducing COVID-19 risk in schools by means of different airing solutions (translated Energiforbr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60ec2321d9001d0162248932_Particle simulation of interchange unstable plasma (translated Partikel simulering af et interchange ustabilt plasma).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60eec61bd9001d016224894d_Dynamic Workforce Routing and Scheduling with multiple handling options (translated Dynamisk ruteplanlægning af opgaver .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60f0179ed9001d016224895f_Prediction of failure for HCP materials by using cohesive zone model (translated Skadesmodeling af HCP materialer ved br.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60ec2328d9001d016224893a_Rheological study of biopolymer based concretemortar composites (translated Reologisk undersøgelse af biopolymerbaseret .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60f55d9fd9001d01622489a3_Pattern Matching with Variables (translated Mønstergenkendelse med variable).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60f55d9bd9001d0162248999_Acoustic characterization of human skin based on acoustic holography (translated Akustisk karakterisering af menneskehud.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60faa39bd9001d01622e8d51_Space-Based SAR & Big Data Technologies for Ship Surveillance (translated Rumbaseret SAR and Big Data teknologier til ov.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60fd46a9d9001d01622e8d90_Blockchain in Remote Self Attestation for Making Trust Decisions in IoT Peer-to-Peer Networks (translated Blockchain i S.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60fd46aed9001d01622e8d99_Tracing the interstellar medium of quiescent galaxies across cosmic time with ALMA (translated Udslukte galaksers inters.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60fe9811d9001d01622e8dbd_Detection of atrial fibrillation using attention based deep learning (translated Pavisning af atrieflimren ved hjælp af .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6061b5a6d9001d0166530545_Thermal stability of deformed tungsten for fusion reactors (translated Termisk stabilitet af deformeret wolfram for fusi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60fe9821d9001d01622e8ddc_Application of Auto Regressive models to Operational Modal Analysis of Time Varying Structural Systems (translated Anven.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60fe983ad9001d01622e8e08_Development of webtool for building passport (translated Udvikling af webplatform til bygningspas.).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60fe983dd9001d01622e8e0e_Electrophysiological and psychoacoustic measures of amplitude modulation processing in normal and hearing-impaired liste.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6103de20d9001d01622e8e5c_Positioning in Cellular Networks A Practical Approach.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61052f96d9001d01622e8e6a_Analysis of Traffic Speed Deflectometer Measurements performed under Different Temperature Conditions (translated Analys.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/60fe9846d9001d01622e8e1c_Redesigning family food life with the use of fermentation.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61068126d9001d01622e8e8d_Data Size Compression of Neural Networks for Resouce-constrained Devices (translated Data Size Compression of Neural Net.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6106811dd9001d01622e8e86_Evaluation of methods for the measurement of airflow in ventilation ducts (translated Evaluering af metoder til maling a.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61068135d9001d01622e8ea0_Diagnosis and Fault-Tolerant Control of a Magnetic Levitation System (translated Diagnose og feijltolerant regularing af.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61068135d9001d01622e8ea2_Towards a cognitive computational model of action learning (translated Mod en kognitiv beregningsmæssig model for Action.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61052fa9d9001d01622e8e7a_An assessment of the barriers preventing Danish hospitals from increasing the recycling rate of their residual waste (tr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61052f9cd9001d01622e8e6f_Fawn detection in fields before harvest using autonomous drone (translated Ralam detektering i høstafgrøde med autonom d.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61092417d9001d01622e8ec0_Correlation of electroacoustic parameters in headphones and perceived music quality (translated Korrelation af elektroak.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61052fa6d9001d01622e8e76_Synthesis and characterization of conjugated polymer-2D material composites for energy storage applications (translated .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/610bc710d9001d01621578f0_Transport Equity Analysis Using National Travel Survey Data (translated Analyse af social ulighed i transport ved hjælp .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/610bc70fd9001d01621578ef_Smart control for load balancing of an energy grid (translated Smart kontrol af load balancering for energi grid).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/610d189bd9001d01621578f8_Style transfer applied to Structural Optimization (translated Stiloverførsel anvendt pa strukturel optimering).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/610a759bd9001d01621578d1_Control and Navigation for Mobile Robot with Manipulator (translated Styring og navigation af mobil robot med manipulato.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61110d1dd9001d0162157920_Object-Centric Unsupervised Representation Learning and Independent Mechanisms (translated Objektcentreret ikke-overvage.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/611a4792d9001d016230a8e7_Control of high-power laser module for co-packaged optics application (translated Styring af høj-effekt lasermodul til a.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/611cea94d9001d016230a907_Effect of corrosion and fatigue on the rail screw failure (translated Effekter af korrosion og udmattelse pa brud i svel.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/611cea91d9001d016230a902_Acousto-optic sound source localization (translated Akusto-optisk lokalisering af lydkilder).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61110d25d9001d0162157927_Investigation of stabilizing cores of wood in medium rise wood structures (translated Undersøgelse afstabiliserende kern.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/611cea92d9001d016230a904_Characterisation of View-Out towards an index for appropriate selection of solar-control systems (translated Characteriz.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/612cbcb2d9001d0172372014_Leveraging the Tri-Planar Nature of the Kernel Splits in ACS convolutions for Semantic Segmentation of Medical Images (t.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/612e0e30d9001d0172372016_Shape Optimization of a wind turbine blade using a mid-delity aeroelastic model (translated Formoptimering af vindmøllev.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/612e0e3fd9001d017237201f_SmartCharger integrated EIS for Battery Stacks.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/612f5fbed9001d0172372047_Vision-based Localization and Navigation of an outdoor mobile robot (translated Visionbaseret lokalisering og navigation.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61389a13d9001d01625ca123_Perceptual evaluation of an audiotactile art installation for people with hearing impairment (translated Perceptuel eval.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6130b11ad9001d017237204e_Experimental study of POM printing by FDM (translated Eksperimentel undersøgelse af POM printing af FDM).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/614c60a0d9001d0162122c21_Comparison of TNF signalling and cell death in primary cells and cancer cell lines (translated Sammenligning af TNF-sign.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61447791d9001d0162189975_Image Super-Resolution using Deep Variational Autoencoders (translated Billed superopløsning med variationelle autoindko.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6161c37ad9001d5586558a53_Active inference with predictive coding for robot perception and adaptive control (translated Aktiv inferens med prædikt.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/617d2814d9001d01116d2de2_Modelling of material extrusion additive manufacturing (translated Modellering af ekstruderings-baseret additive manufac.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61b9db477d8b7ab8e5a95370_Automatic bias control of an IQ modulator for continuous variable quantum key distribution (translated Automatisk bias k.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61e40b2bfa057012157583ca_Vision Based Object Detection (translated Vision baseret objektdetektion).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61f28ba71594c116e9c66685_Population structure clustering of genomic array data using variational autoencoders (translated Populationsstruktur clu.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61f9233619611617cdfdeb29_Hybrid Container Storage Optimization.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61f9233840d25f17cdafda6c_A comprehensive assessment of electro- and biofuels in global shipping a comparative study (translated En omfattende vur.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61ffbaaa02668e18bed9aefd_Topology optimization using cut elements (translated Topologioptimering med cut elementer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6203af352a8c2d1bb6091bb7_Modelling and control of airflow for waste to energy plants (translated Modellering og kontrol af luftflow for affaldsfo.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6207a393140d221bb624c1fb_Hybrid Recommender System (translated Hybride anbefalingssystemer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/61f9233923f8c617cdd669ce_Identification of a constitutive relation concerning finite element modeling of the pig bladder (translated Bestemmelse .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/620e3b17a67cb27274f4cc37_Building nice-looking order sequences for side-loaders (translated Planlægning af gode ordre-sekvenser for lastbiler).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6214d29a3a200e235e8cd93f_Effective development and responsible use of Artificial Intelligence technologies in healthcare (translated Effektiv udv.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6214d29a72968d235e83dda6_Functionalization of Si-based high contrast grating sensor chip for troponin detection (translated Funktionalisering af .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62162426e8b236235e76241d_Tenant control plane optimization in Kubernetes vClusters (translated Optimering af tenant kontrollag i Kubernetes vClus.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6216242583fe41235e4fb8af_Online Process Mining in video streams using computer vision (translated Online Proces Mining af Video Streams med Compu.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6216242a9841e1235e7b5168_Human-Robot Collaboration via Planning and Plan Recognition (translated Menneske-robot samarbejde via planlægning og pla.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/621f5e98c077f254d849cbfe_Flexible electrical heating of new low energy buildings (translated Nye lav-energihuse med fleksibel elektrisk opvarmnin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/621f5e9b4e7a6e54d8ae8073_How to meet the requirements of Demand Controlled Ventilation – is CO2 concentration the best indicator.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6216242fc434ba235e2c2780_A workflow for predicting glare through microstructures using Matrix-based methods in Radiance (translated En arbejdspro.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/622201a06268b954d8fd9812_Dual Fish Eye Camera Video Stitcher using an FPGA (translated Dual Fish Eye Camera Video Stitcher ved FPGA).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6222019b7ced9854d879242c_Modelling and Nonlinear Control of a Soft Robotic Arm (translated Modellering og ulineær regulering af en blød robotarm).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6220b02b30596e54d8cf7738_Analysis of flow capacity and operational robustness of a Return Loop at Copenhagen Central Station (translated Analyse .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62274793d66ab954d85059e8_Identifying anti-RAMA epitopes using gene fragment epitopes (translated Identifikation af anti-RAMA epitoper vha. gen-fr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6228991d2f825b54d89de6e8_Explainable deep learning for changes in firewall rules based on internal network traffic (translated Forklarelig dyb læ.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/622747928146bd54d8f65a3d_Vessel Trajectory Anomaly Detection using Deep Learning Methods (translated Sejlrute anomali bestemmelse vha deep learni.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/622f30959813258544548588_Deep Neural Networks and Approximation Theory (translated Neurale netværk og approksimationsteori).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/622353186bf66654d85d04c5_Modeling of surface height and river discharge using satellite altimetry and flow laws (translated Modellering af flod o.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6230821411b0c285445a46cc_Rainfall forecasting from Radar Images using Deep Learning (translated Radar regnprognoser baseret pa deep learning).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6233251c30340fb6f480f7e3_Micro-Firewalls for Efficient IoT Networks (translated Mikro-Firewalls for Effektive IoT Netværker).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62347699ac0890c1520ad4cb_Analyzing transaction data to gain sustainable insights based on carbon footprint A proof of concept.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/623c5f97c302badb736cfa65_Long-term model based evaluation of flexible Model Predictive Control in Kolding WRRF (translated Model-baseret langtids.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/623f0291bed703db732ee2a3_Simulation of wave breaking and microplastic transport using a high-order Boussinesq model (translated Simulering af bry.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62458c0813f927f30b09da65_Numerical analyses of edge scour (translated Numeriske analyser af kant erosion).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62458c084043f0f30badaf43_3D environment aspects of Computer Vision (translated 3D-omgivelsersaspekter indenfor Computer Vision).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62458c07f4fc03f30b0df41e_Light-matter interactions between dielectric nanopillar cavities and luminescent centers in hexagonal Boron Nitride (tra.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/624d750a50567c106e3b4609_Multi-objective method for prioritization of recycling options for solar e-waste in Kenya (translated Multi-objektiv met.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/624ec686a615a9106e546390_Vision transformers for image registration (translated Vision transformere for billedregistrering).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62613b8855e861114690aae2_Development of biosensors for advanced microbiome therapeutics (translated Udvikling af biosensorer til avancerede mikro.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/626bc78403f0e31146da7fa8_Detection of Crowd Dynamics in Trains (translated Detektion af personers bevægelsesdynamik i toge).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/626d1904580469114609ae7d_Hospital sound environment experienced by staff and patients and how it aligns with current legislation (translated Ople.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/627ceb0acca341159e16efcd_Intrusion detection-enabled blockchain based vehicular navigation map system (translated Indtrængningsdetektering-aktive.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/627e3c85efc9e1159e47dbf7_Comparative metagenomic analysis of antibiotic resistance genes in different poultry farm environments (translated Kompa.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6251698841bfc310d66878ff_Understanding gender gaps in employment and mobility using large-scale behavioral data (translated Analyse af kønsforske.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/628a19fd29794c17f24a4bcd_Analyzing information flow in hierarchical Variational Autoencoders (translated En analyse af informationsflow i hieraki.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6290b17b3aafb018e68e4355_Optimization of maintenance schedules for offshore wind turbines (translated Optimering af planer for vedligeholdelse af.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62b98ffbcc300520666ed907_Tropical geometry and geometric singular perturbation theory with applications in biology (translated Tropisk geometri o.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62989a7f36b0b31a6b6ffc5e_Validation of Meteorological Data by Machine Learning (translated Validering af meteologiske data vha. machine learning).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62c2ca80186c9e250ab59c3a_Physics-Constrained Surrogate Modelling for Computational Hydraulics (translated Surrogat modellering med fysiske modell.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62c2ca84fe6471250a02880f_Modelling natural ventilation in dynamic building simulation tools (translated Naturlig ventilation i dynamiske simuleri.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6299ec042d0abf1a6be0d828_Exploring Interfaces for Supporting Self-tracking Pre- and Post-tracking (translated Undersøgelse af grænseflader til at.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62c2ca85294719250a88f77f_Challenges in digital twins of heat pumps - Idenfication of Sensor Malfunctions (translated Udfordringer for digitale tv.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/626fbc0b9fb9571146d34684_Investigation of the battery-to-busbar weld performance in electric vehicle battery packs (translated Undersøgelse af ba.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62cb6a3ed80ef92617aa622a_Implementation and Evaluation of Strategies for Escaping Local Optima with Evolutionary Algorithms (translated Implement.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62cf5ec75635382617d8fd74_Decentralized Remote Attestation of Distributed Services with Blockchain (translated Decentraliseret Fjernattestering af.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62dc8de1b16d8954e44e4d8e_Solving a hierarchical facility location and vehicle routing problem (translated Det hierakiske facilitetsplacering og r.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62dc8de2e9ed7b54e4c7f2ec_Investigation of methods for estimating interfacial tensions (translated Undersøgelse af metoder for estimeringen af græ.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62d4a4beed0c0054e46c1b10_Short-range terrain mapping (translated Robotnær terræn kortlægning).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62dc8de941e53654e436a309_The periodic table with continuous elements (translated Det periodiske system med kontinuerte elementer.).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62dc8de8b3b73154e4557da3_Self-stabilized Stretcher for Rescue Operations (translated Selv-balaceret bare til redningsoperationer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62dddf550671a154e4f4e52b_Design of an ETA prediction system based on Graph Neural Networks and GPS data.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62dddf8284e68154e44389cb_Coordination and control in Self-managing organizations (translated Koordination og kontrol i selvledende organisationer.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62dddf9fbc8c4654e4988495_Predicting transmembrane protein structure and membrane positioning (translated Forudsigelse af transmembran protein str.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e5c84d901f6aa446dc06a7_Formalizing and proving accountability (translated Formalisering og bevis af ansvarlighed).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e5c84c708f3aa4465612f4_Potential of sulfide containing mine tailings in cementitious binders (translated Potentiale af sulfidholdige mineaffald.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e476c0083a77a44657f938_Indoor environment quality in offices - Development of benchmarking tools to guide optimization (translated Indeklima i .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e719c2a015a6a446ee8459_Cloud-Based Distributed Internet Measurement Platform (translated Cloud-Baseret Distribueret Internet Maling Platform).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e719c5a404caa4468ec317_Design and Implementation of an Electrical Drive Train for a Flywheel Energy Storage System.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e719e5d59ee5a4463c53c2_Optomechanichal interactions in dielectric nanocavities (translated Optomekaniske vekslevirkninger i dielektriske nanoka.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e719e896531ba4467f09e2_Communication solution for IoT devices using the Toit programming language (translated Kommunikationsløsning til IoT-enh.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e719f368d43ca446c2e320_Error correction on a continuous variable cluster state for quantum information processing (translated Fejlretning af en.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e86b499f6378a44674257f_Player modeling based on machine learning (translated Modellering af spillere baseret pa maskinlæring).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e86b4fc35039a446808bcd_Deep Learning-based perception for construction robotics.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e9bcba81de9da446d7919f_From Ultramarin to ProVerif A Compiler for Security Specifications (translated Fra Ultramarin til ProVerif En compiler t.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62ef02bb263a3ba446ce3df0_Motion Control of ROV for Autonomous Docking (translated Bevægelsesstyring af ROV til autonom docking).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62ef02ba446bcaa446b3bd14_Rotor Downwash from Helicopter Operation.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62f59a4364f7dd03a4c036d9_Virtual rehabilitation interface for the metaverse (translated Et virtuelt rehabiliterings interface til metaverse).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e5c86fbb44f9a446a37442_TRANSREHAB - DEVELOPMENT OF DATA ACQUISITION AND TRANSMISSION SYSTEM FOR POST-STROKE REHABILITATION DEVICE (translated T.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e86b3c062ac5a4467c36a8_Optical Lunar Surface Navigation (translated Optisk Navigation Relativt til Manens Overflade).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62f59a471492bc03a49dbb8a_Satellite tracking and Identification (translated Satellit tracking og ID).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62f59a5ccc345703a47b589e_Cooperative and competitive behavior in multi-agent reinforcement learning via transformers (translated Samarbejdende og.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62f59a5de8792e03a476ca90_Distribution network tariff allocation for different consumer and prosumer categories in Denmark (translated Distributio.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62f98eb543534303a4a6fbcf_Designing nonlinear metasurfaces for UV light waves.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62f98ebd2fcc8d03a47f554e_Maximal curves of Frobenius dimension three (translated Maksimale kurver af Frobenius dimension tre).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62fae043b13a7fcdfaf12142_Profit optimization of large scale batteries in the UK electricity markets (translated Profitoptimering af batterilagrin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62e719ed01cd1da446ee3307_Stability of higher office buildings made of wood structures. Analytical and experimental analysis (translated Stabilite.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62fae054557eabcdfa4dfed9_Personalized Feedback System for Formative Course Evaluation and Self-Reflection (translated Personligt feedbacksystem t.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62fae04f6f0f82cdfa28816a_High luminance laser lighting (translated Høj luminans laser belysning).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62fae05b28e005cdfa510321_Transformers for Physics Predictions (translated Transformere til fysiske forudsigelser).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62fae0610ff79bcdfa82b5c0_Detection and tracking of beta cells from live confocal microscopy imaging (translated Detektion og tracking af betacell.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/62fae0594cfa02cdfafc691e_Thermodynamic and physical properties as basis for digitalization of glycol processes (translated Termodynamiske egenska.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6300263fe4f7061325d02c7f_Prediction of pure compound thermodynamic properties (translated Estimering af termodynamiske egenskaber for rene forbin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63002635af61671325af1aa0_Optimal propulsion configuration of a short-sea ferry (translated Optimal fremdrivningskonfiguration for en kort-turs fæ.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63056c38f9427e1325f306a2_3D Face Image Generation using GANs (translated Generering af 3D ansigtsbilleder ved brug af GAN).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/630ab234797fb42511bdd06f_Multi-Agent Planning Under Implicit Coordination (translated Multiagent-planlægning under implicit koordinering).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/630d553a24bdba25113eeca9_AI algorithms for Stochastic Model Checking (translated AI algorithmer til Stochastic Model Checking).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/630d553cb9cf9f2511639279_Evaluation of gene variants associat-ed with hostility and trust behaviour on the risk of developing cardiomet-abolic di.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/630ea6c73100cc25114524ec_Explainability in Deep Learning for Prediction of Gaze Position from EEG Data (translated Forklarlighed i dyb læring ved.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/630ff83adae71331452c9286_Filtering as a Method Towards Agile Security Requirements Engineering.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/630d553e6076c725114ac90d_Algorithms to find appropriate rotations and orientations for circular sequences (translated Algoritmer til at finde pas.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/631149bc2461be314592ad17_Safe localization and navigation for UAV-based inspection in confined spaces.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6313ecb918cc21314577e8ab_Off-road navigation using deep learning (translated Offroad navigation med deep learning).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/631e78b76304404540b6d028_Reliability via Active Connectivity for the Internet of Robotic Things (IoRT) (translated Palideligheden af activ forbin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63226d3e736ec055fa721418_CFD simulations of ventilation on the Nacra 17 foil (translated CFD beregninger af ventilation pa Nacra 17 foil).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/633390ba821d5133f9a3f2cb_Using data-driven state-of-the-art machine learning and conformal prediction for track irregularities from observed dyna.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63323f42d66b0a33f977a54f_Predicted Maintenance Running on a Microcontroller (translated Forudset vedligeholdelse afviklet pa en mikrocontroller).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/633a2836cd693d33f977460e_Generative multi-scale modelling of music audio (translated Generativ multiskala-modellering af musik).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63056c4c92773613257f0ecc_SAR interferometry for wetland monitoring.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/633ccb395e2dfd33f9e4fa2c_Online tools to support small enterprise companies in tailoring project management practices (translated Skræddersyning .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/633b79c4298c9a33f99661cc_A simple chemical fate-model to assess short-term impacts of micropollutants from wet weather discharges on Danish strea.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6337853c64323933f90ed257_Analysis of infinite arrays of microstrip patches.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63b4d1b8b8ced619cf529da9_Online quality control of EEG signals (translated Online kvalitetskontrol af EEG signaler).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63a25cc4b6d38826d3004777_Road Damage Detection using Deep Learning with car sensor data (translated Detektion af vejskade ved hjælp af dyb læring.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63cb3b399fb3ae1c238479e2_Automated Classification of Data from Websites (translated Automatiseret Klassificering af Data fra Websteder).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/633e1cbc7f7f2633f9462f33_Electrically tunable structural colors (translated Elektrisk tunet strukturelle farver).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/634deebabe40c8df3b976a82_Design af tunet viskøs massedæmper (TVMD) til vibrationsdæmpning af skibsstrukturer (translated Design of tuned viscous .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63e0b6f109eb331285156a64_Realistic representation of residential ventilation in building performance simulation (translated Realistisk repræsenta.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63e2f64401bdc72dce870c54_Streaming Process Conformance Checking Using Deep Learning (translated Streaming process conformance checking med dyb læ.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63e447c6dc52a92dcee793d4_Security of offshore installation operations against the threat of AIS spoofing (translated Sikkerhed af offshore instal.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63ed825b2ac9a791f7a69156_String Indexing for Compressed Patterns (translated Streng indeksering for komprimerede mønstre).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63f419c93125bf91f7996867_Elucidating Phage Specificities for Bacterial Defense Systems in Coupled Virome-Metagenome Data (translated Undersøgelse.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63f56b4da6157391f7714c92_CFD modelling of pressure swirl.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63f56b59d6075b91f70274ec_Scaffold-mediated expansion of T cells following non-viral knockin of T cell receptors (translated Scaffold-medieret eks.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63f56b6068544291f7db1f99_Design and Implementation of a DSL for the Model-based Testing of RESTful APIs (translated Design og implementering af e.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63f56b68bde89091f714e360_Shortest Super Strings (translated Korteste Superstrenge).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63f419c98e4cdf91f7a058a8_Fostering a Resilient Business Strategy by Exploring and Leveraging an Innovation Ecosystem with Future Thinking – a Cas.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63f95fd062addb91f7856aad_A translator from Utramarin to Tamarin (translated En oversætter fra Ultramarin til Tamarin).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63fd545ef31cdf91f7d3ba11_Kmer based quantification of biosynthetic gene clusters (translated Kmer-baseret kvantificering af biosyntetiske gen-kly.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63fd546389591891f7140313_Federated-Learing-based approach for attack detection (translated Opdagelse af angreb baseret pa federated learning).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63fd545c9687c691f7e97217_Light-induced reconfigurable hydrophilicity effect in metal oxides (translated Lys induceret rekonfigurerbar befugtnings.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63fd545540e40491f7cc0de3_Data-driven digital twins for monitoring and control of electricity distribution net (translated Data-drevne digitale tv.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63fea5da1b27f03bca995877_Machine learning based diagnosis of indoor environment in offices (translated Kunstig intelligens anvendt til undersøgel.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63fea5d3a816323bcaf4692f_Vibration-driven locomotion Bristlebot modeling and performance analysis (translated Vibrationsdrevet bevægelse Bristleb.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63f6bcc446ecc891f7388647_Physics of gymnastics.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/63fea5ec9281463bcad96b5e_Design of an IT system based on Deep Learning for EEG artifact detection (translated Design af et IT system baseret pa D.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/640148e7bb8bcd3c12b12d65_Pump system with computer vision feedback for purposes of fibre infused resin deposition with 6-axis robot arm (translat.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6402eb448781823c459717f1_Dynamic 2D flood simulations using scientific machine learning (translated Dynamiske oversvømmelsesberegninger ved hjælp.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6402eb4cff9da93c459c8a46_Visual-Tactile Fusion for Intelligent Robotic Grasping (translated Visuel-taktil fusion til intelligent robotgreb).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6402eb5bed423e3c45cc187f_A cyberphysical inspired design of an API pilot facility (translated Et cyber-fysisk inspireret design af en API pilot f.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6402eb5922e7473c45c1d6e2_Domain Specific Languages in Product Management and Mobile UI Generation (translated Domænespecifikke sprog i Product Ma.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6402eb53d186fd3c4544c878_Data-driven optimization of UX & UI (translated Data-driven optimering af UX and UI).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6402eb67fa7e783c45e536f6_Optimisation of bed allocation (translated Optimering af sengeallokering).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6402eb5cfc958a3c450def1a_Add-on impact in aerodynamic performance of wind turbine airfoils under reverse flow conditions (translated Aerodynamisk.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64068ec9c3b6403c965b11c0_Gamification of ECG annotation (translated Gamificering af EKG annotering).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64053d52388ea33c49955f0b_Development of a flow cytometry-based assay for MHC-I ligand discovery (translated Udvikling af et flowcytometri-baseret.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6407e050ca6f2c3c968e038c_Automatization of Attack Trees (translated Automatisering af Attack Træer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/640931c93fd3c93d04b2d4d7_Improving Artifact-driven Process Monitoring by Aggregating Smart Object Measurements (translated Forbedring af artefakt.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/640931cc62725b3d04fdd30b_Vision-based aid for the cleaning robot Fejemis (translated Vision baseret hjælpemidler til rengøringsrobotten Fejemis).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64111ad2758b1e3abb0d3fa6_Posterior refinement for Bayesian neural networks via normalizing flows (translated Forbedring af posteriorfordelinger f.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64111ad56a4b293abba3c1dc_Stability and hydraulic performance of submerged breakwaters for artificial reef (translated Stabilitet og hydraulisk yd.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64126c4fbc9d7b3abb6a009f_AI approaches to index spot diffraction patterns acquired using scanning electron microscopy (translated KI tilgang til .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64111ad66402563abb0e2098_Methods for exhaustive identification of attack vectors represented graphically (translated Metoder til udtømmende ident.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64150f5593faba3abb489988_HDR image reconstruction using CNN deep learning (translated HDR billedrekonstruktion baseret pa CNN deep learning).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/641660d2ee7fcd3abba7b494_Implementation and Evaluation of Multivariate Estimation-of-Distribution Algorithms (translated Implementering og evalue.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/641ba6cb8672ba3c29acd33f_Development of machine learning models for feature extraction in contact maps (translated Udvikling af maskinlæringsmode.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/641ba6cff48e263c29c3d448_Analysing performance of heating systems using Modelica and logged building management data (translated Analyse af varme.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/641e49d31793143c290ca233_The use of statistical pair potentials for prediction of cognate TCR targets (translated Brugen af statistiske par-poten.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/641e49cd6871623c2958cac8_Biodegradable mucus-penetrating microneedles for administration of macromolecules in the gastrointestinal tract (transla.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/641e49da146d813c29dd2dfd_Multi-objective Design of a portable Vertical Axis wind turbine (translated Multi-objektiv design af en bærbar vindmølle.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/642624bd57de553d3c7bdb19_Toward correctness for entity stream on distributed system (translated Mod korrekthed for enhedsstrøm pa distribueret sy.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/642624bd8cc6d03d3cd02353_Development of a machine learning tool along with UX design to assess levels of anxiety in children before they are met .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/642cbc3448d09a3d3c4572ca_Situation awareness for autonomous cleaning robot (translated Situationsbevidsthed for autonom rengøringsrobot).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/643899b61577573fde987379_Evaluating chromosomal abnormalities in low coverage samples (translated Evaluering af kromosomale abnormiteter i prøver.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64374840af45463fde23b43e_Techno-economic and policy scheme analysis of waste-heat recovery from data centers in district heating networks with di.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64486bbcf696db11c23ce127_Extraction of static information from images for a street GIS system (translated Ekstrahering af statiske vejdata fra vi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/642cbc38aeac8f3d3c46afaa_Decentralised softening of drinking water in Denmark Field investigations of water quality (translated Decentral blødgør.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/644f0339c45659232b8000e0_Watermark evaluation in float-zone crystal growth of silicon production based on deep learning (translated Vandmærkeeval.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/645c323d301c3e2aa5903b97_Prediction of membrane protein types using protein language models (translated Forudsigelse af membranproteintyper ved h.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/644f033880a4b7232bac1151_Modelling of smoke detectors in Computational Fluid Dynamics (CFD) (translated Modellering af røgdetektorer med Computat.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6449bd3c785fe411c229f911_Data-driven Neural Operator Techniques for Efficient Surrogate Modelling (translated Data-drevne Neurale Operator Teknik.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64656cd144829c2aa550b2c1_Airflow characteristics and particle concentration in a cleanroom Effect of type and location of air sup-plyexhaust diff.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6477e1da59261dbb5b37ffdc_Mission- and systems design of CubeSat-based dark vessel detection (translated Mission- og systemdesign af CubeSat-baser.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/644325bde96ff111c2661728_Microfenestrated synthetic vasculature for 3D tissue culture (translated Mikroperforeret syntetisk vaskulatur til 3D væv.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6473ed47861982bb5bc31293_Ensemble learning for generalized digital face manipulation detection (translated Ensemble-læring til generaliseret opda.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/648a57217ed5b3bb5b819faa_Optimal AMCL tuning for autonomous indoor robots for hospital applications.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6493917e306f48f5c03c8ddb_Multimodal deep learning (translated Multimodal dyb læring).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64a3637af623ab91520ba355_Optimization of Ventilation Principle And Use Of Energy In Operating Theatres (translated Optimering af ventilationsprin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64b1e415d9dbda9152467f20_Cooperative Carrying Control for Mobile Robots in Indoor Scenario (translated Kooperativ bærekontrol til mobile robotter.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64b3358a1cded991524d7813_Physics-informed Deep Generative Modeling for Magnetism (translated Fysik-informeret Deep Generative Modellering af Magn.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64b487054b4ef59152fc7567_State Estimation via Machine Learning (translated Maskinlæringsmetoder til tilstandsvurdering i konstruktioner).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64b4871281d8c1915240f426_Potential role of aquifer thermal energy storage in future energy systems (translated Potentiale for aquifer thermal ene.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bc6fffdd3e8b31315aac92_Data density watermarking for Membership inference attacks (translated Vandmærkning af datatæthed til tilhørsforholdsinf.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bc6ffacab98f3131b4819e_Exploring the nature of the first proto-clusters in our Universe (translated Udforskning af naturen af de første protoho.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bc7038410df63131569ad7_Optical spectroscopy of quantum dots under electrical bias (translated Optisk spektroskopi af kvantepunkter under elektr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc18f4154df313163c2ff_Analysis of Light Path Tracing in Microgeometry (translated Analyse af lyssti-sporing i mikrogeometri).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc196902090313115190f_Elasto-Plastic Upper Bound Modelling of Shear Connections in Timber-Concrete Composite Decks (translated Elasto-Plastisk.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc19fd0c6863131d63127_Assessing On-line Sensors for Microbial Drinking Water Quality Monitoring in Distribution Networks - Laboratory and Fiel.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc1a57bf1aa3131fee44a_Optimization of baggage handling in Copenhagen Airport (translated Optimering af bagagehandtering i Københavns lufthavn).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc1a1a2fae23131cc667c_Performance characterization of power optimizers used in PV systems (translated Ydelses karakterisering af power optimiz.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc199146feb313138da15_UX Design and Prototyping of a Self-tracking Tool to Support Self-reflection for Psoriasis Patients (translated UX Desig.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc1bae50cf831312595f2_Differential Cryptanalysis of CRAFT using a MILP-solver (translated Differentiel kryptanalyse af CRAFT ved hjælp af en M.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc1bd47333b3131617b6d_Secure Choreographies in PSPSPIsabelle (translated Sikre Koreografier i PSPSPIsabelle).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc1c697b627313158883b_Stochastic simulation of human behaviour regarding windows (translated Stokastisk simulering af menneskers adfærd omkrin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc1d67d02153131842b2c_Optimal short-term operation of hybrid energy storage systems in energy and reserve markets (translated Optimal kortsigt.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc1d3f9290e31318016c3_Characterization of the loudspeaker as a mechanical source (translated Karakterisering af højttaleren som mekanisk kilde.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c307983335f303a33b53d8_Detecting AF without labels self-supervised approach (translated Registrering af AF uden etiketter selvovervaget tilgang.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c1b5f1512fe731319be542_Comparison of denoising techniques to improve detection sensitivity to metabolic changes in functional magnetic resonanc.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc1ef810096313166425d_A sustainable rainsuit for bicyling (translated Et bæredygtigt regnsæt til cykling).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c5aa96c16fe51f4f67d542_Using eye-tracking glasses to characterise behaviour in real-life communication (translated Brug af eye-tracking briller.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c5aa9e9f18d91f4f1e02f8_Bike Traffic Demand Predictions using Machine Learning Models (translated Forudsigelser af cykeltrafikefterspørgsel ved .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c6fbfb857f871f4fafae8c_Developing a map of circular economy initiatives for Denmark's cement manufacturing industry to integrate with the EU-TI.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c5aa9cc5f0021f4fe4039e_Radial gas-foil bearings with adjustable gap and injection pressure- An experimental investigation (translated Radiale g.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c6fc354949871f4fe1c428_Conceptualisation of a Single Point Mooring System for Floating Offshore Wind turbines (translated Konceptualisering af .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c6fc40d3d35a1f4fb94998_Comparison of enzyme immobilization strategies PE-based support in enzymatic membrane reactor (MBR) and encapsulation in.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c6fc49cfee111f4f3bf588_Understanding the response of glucose-sensitive transcription factors in E.coli (translated Forstaelse af responsen af g.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c84d88eca4b01f4f12c947_Automated Marine Gravity Surveys in Danish Waters Extending Cross-Survey Marine Frame (translated Automatiske Søgravimet.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c84d8c5600f71f4f3be9fc_Remote Attestation for Constrained Relying Parties.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c84d9298464a1f4f849c8a_Towards developing realistic datasets for evaluating intrusion detection systems.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c84dba4496201f4f182b22_Security of Smart Home Technology and Remote Working (translated Sikkerhed ved Smart Home-teknologi og fjernarbejde).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64bdc1eb4201cb3131ee4d58_Sharpening temperature observations from remote sensing and hydrological application in urban areas (translated Nedskale.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c99ef51c948a1f4fd8da5f_Designing a tool for the identification of possible rebound effects due to circular economy initiatives (translated Desi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64c99efd4fc18e1f4f97bfa1_Tomographic 3D Printing with a Feedback Loop Based on Shadowgraphy (translated Tomografisk 3D-print med et feedback loop.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64cc41f83b29ee1f4f05f865_Numerical study of a coupled dynamic shaker-accelerometer system (translated Numerisk undersøgelse af kobelede dynamiske.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d036709f70511f4f78cd22_Complexity of dependence logic (translated Kompleksitet af afhængighedslogik).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d0366f2ecb581f4f1a9904_Optimization of baggage handling in Copenhagen Airport (translated Optimering af bagagehandtering i Københavns lufthavn).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d2d9839a4e6e1f4fed6e53_Explainability methods for natural language processing (translated Forklaringsmetoder for natursprogsmodeller).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d2d984289ae81f4fa37248_Performance Benchmarking in Unstable Environments (translated Ydelses Benchmarking i ustabile miljøer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d57c54fed3f41f4fe92206_Development and evaluation of cognitive state prediction models in serious-gaming applications (translated Udvikling og .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d42afdbe26181f4f96b2a7_Experimental characterization and theoretical modelling of electrically-driven microlasers (translated Eksperimentel kar.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d9710e9ba1dc20520bf0f8_Equalization and channel estimation for a 5G-NR beamformer (translated Udligning og kanalestimation for 5G-NR beamformer.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d9710cc5b9622052902868_Many Lights Sampling Methods for Real-Time Rendering of Subsurface Scattering (translated Mange-lys-sampling metoder til.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64dac265e10a1e20521cd801_Designing a modern program verification frontend (translated Design af en moderne programverifikations frontend).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d9711bde6b8620526ba692_Design and Implementation of a NoSQL Database for a Human Digital Twin-based stroke rehabilitation system (translated De.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d971073b3cd62052856fc2_Optimization of hierarchical structures (translated Optimering af hierarkiske strukturer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64dc140c07b940205201fe59_Towards factual certainty in Natural Language Processing using explainability methods (translated Sikring af faktuel vid.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64dd6597ddab502052ba6fc1_Fault detection of PVT-heat pump system using machine learning methods (translated Fejldetektering i PVT-Varmepumper ved.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64e15a0b5fccaf2052c1b86d_Build the smallest terahertz cross correlation spectroscopy system in the world (translated Byg verdens mindste terahert.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64e15a144181662052fe9d30_L A Gradually Complied Programming Language (translated L Et Gradvist Kompileret Programmerings Sprog).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64e15a0ded1ee72052e0c2f1_FashionBot Learning to generate new fashion outfits from text descriptions (translated FashionBot Lær at generere nye mo.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64e15a195d3df720526ef823_Heuristic for the multi-port berth allocation problem.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64d81f8ae4284120524dec1d_Outdoor Path Navigation for Autonomous Mobile Robot Using 3D Vision (translated Udendørs sti-navigation for autonom robo.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64e2ab9a849b2f205280143a_Automatiseret og tidlig detektion af sygdomsudbrud (translated Automated and early detection of disease outbreaks).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64e2aba4d871af2052b1039b_Denoising diffusion probabilistic models for super-resolution (translated Denoising diffusion probabilistiske modeller f.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64e3fd2be59a08205222a9ee_A vulnerability analyzer for Honeypots.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64e3fd39e418c02052ba92f1_Creating a pleasant music experience for cochlear implant users using generative deep learning models (translated Skaber.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64e54e3dcb937e205223d2bc_Visualization of Chemical Processes in Cancer Vaccines (translated Visualisering af kemiske processer i cancer vacciner).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64e69fb1de2d282052cf9381_Field degradation and failures study of bifacial PV modules (translated Studie af dobbeltsidede panelers nedbrydelse og .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64ed372e1b67e52052226b55_Indoor climate and energy performance of semi-outdoor spaces in senior residences (translated Indeklima og energiforbrug.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64efda384a19502052c58c00_Room acoustic simulation under unified binaural auralization based on spherical harmonic method (translated Rumakustisk .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64f12baac4b7e522a6da22c2_Automation of SOC analysis using SOAR (translated Automatisering af SOC-analyse ved hjælp af SOAR).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64ee88b3eff7e02052cc39bd_Deterministic fabrication of WSe2 quantum emitters using strain and defect engineering (translated Deterministisk fabrik.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64f12bb637b5c822a6ad1e22_Applying Natural Language Processing for the curation of Biological Databases (translated Naturlig tekstanalyse for biol.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64f27d33acc85b22d149b509_Rail driver optimization using metaheuristics at DSB (translated Togfører optimering ved hjælp af metaheuristikker ved D.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64f671b6c5f76922d1002245_The Influence of Microstructures on the Localized Corrosion of Extrusions-based 3D Printed Mg-4Zn Porous Scaffolds for B.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64f7c33f8da95922d1dac793_On Metaplectic Geometrical Optics for Ray Tracing in Fusion Plasmas.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64f7c33d9765f822d13e48c8_Strength analysis of membrane structures for the support of future solar islands (translated Styrkeanalyse af membranstr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64fd093833a6ca23c601c5f6_Power-to-X Technologies using Hydropower in Greenland (translated Power-to-X teknologier drevet af vandkraft i Grønland).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/650a3835fa4c22566b621500_Tool Support for the Specification Language RSL to enable Model Checking (translated Værktøjsunderstøttelse for Specifik.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/650b89b81cd56b566bff07ce_Performance of offshore foundations for jackets under extreme loading conditions (translated Udførelse af offshore funda.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/64f5203ed59a4c22d1556d41_Quantitative biomechanics in trampoline gymnastics and TeamGym trampet (translated Kvantitativ biomekanisk analyse af sp.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/650a38388ad35f566bff856b_Design and Implementation of a 1U CubeSat Simulation Platform (translated Design og implementering af en 1 U CubeSat sim.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/650e2cb76b5215cab1b3ec99_The benefits of purple teaming in detection and incident response in conjunction with the MITRE ATT&CK framework a liter.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65079536b875711200f810cb_High pressure oxidation of ammoniahydrogen mixtures (translated Oxidation af ammoniakhydrogen blandinger ved højt tryk).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/651372b6f0c92e122334a4bb_A formal Alice and Bob-style language and translator for automated privacy verification (translated Et formelt Alice og .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/651372b684652512231f0bb5_Migration to a Kubernetes based Microservice Architecture managed with a Service Mesh (translated Migrering til en Kuber.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/651372b85b48881223f62397_Implementation of the CASCADE system in filamentous fungi for high gene expression levels (translated Implementering af .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6517672dec6a1103b33d3516_Brain microstructure diffusion MR imaging with machine learning (translated Diffusion MR-billeddannelse af hjernens mikr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6518b8b3814f2003b37729ff_The Role of Digital Nomadism in Enabling New Ways of Working in Freelancing and the IT Industry (translated Digital Noma.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6517672f2dbe4903b3948fb3_Inorganic nanoparticles with enzyme-like activity to trigger the production of nitric oxide (translated Uorganiske nanop.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/651cad300aa29303b38fed2c_Link Budget Estimation for 5G communication in U-SPACE (translated Estimering af link budget for 5G i U-SPACE).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/653316ac259c223eb6a6e8e5_Enhancing social design mindsets in design education – an holistic approach (translated Styrkelse af social design tanke.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6535b9af9114e43eb6c1f149_Machine learning methods for modelling of dynamic systems (translated Machine learning metode til modellering af dynamis.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6524962d7ad28f1b729769fc_Facial recognition for kinship detection using deep neural networks (translated Slægtsskabsgenkendelse ved brug af dybe .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65596043cef18e04879472bd_Off-policy reinforcement learning for portfolio allocation (translated Off-policy reinforcement learning til allokering .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6573be4301fc2f131686d88d_Remote VR Meeting Participation based on the Unity Game Engine (translated VR mødedeltagelse baseret pa Unity Game Engin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6590bf4672d95d2bb9811623_Providing reliable quality-of-service through network resource allocation for the monitoring of mobile business processe.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/659605474313ee2bb95ca4df_Adaptive Personalized Congestion Pricing using Multi-Objective Reinforcement Learning (translated Adaptiv Personlig Træn.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/658784c48328262bb9087a68_Development of AI algorithms for the detection of interferometric SAR (InSAR) phase unwrapping errors.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65baef59ea59c93e828e2ad0_Detection and analysis of monitoring systems that work as part of the In-band Network Telemetry (INT) in both P4 virtual.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65baef5d88101b3e8295c4e5_Random Access in Persistent Strings (translated Vilkarligt opslag i vedholdende strenge).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65c429d756e1ea3e82068d6f_Optimization of the Danish nonsense speech test DANOK for children (translated Optimering af den danske taletest DANOK f.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65baef5d98f3403e829e96b4_A homogeneous high-DAR antibody conjugation platform (translated En homogen høj-DAR antistof konjugationsplatform).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65c6ccd76147865069f28f05_Sound source localization in rooms for spatial audio reproduction.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65d158d23fdd7d33271b5886_Portfolio Optimization A Data-Centric Approach with Distributional Robustness.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65d69ed31940233390850d3b_Design and characterization of whole-cell metabolite biosensors (translated Design og karakterisering af metabolit biose.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65d7f0503d3f483426a0761b_Investigation of monaural localization in patients with single-sided deafness (translated Undersøgelse af monaural lokal.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65d941cfe231863426ac3bbb_Reachability in DAGs (translated Parvis forbundethed i orienterede acykliske grafer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65de87e130256f0174692e9d_Multimodal reinforcement learning of impedance control policy for robotic peg-in-hole assembly (translated Multimodal fo.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65d54d4f534e723390050f1f_Udvikling af et træningsværktøj til detektering af ansigtsbilledmanipulation ved hjælp af øjensporingsdata fra menneskel.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65de87f3f36106017466f261_Memory Efficient Methods for Large Models (translated Hukommelseseffektive metoder til store modeller).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65de87fa4244cc0174609240_Morphing Attack Detection respecting Face Attractiveness (translated Detektion af morphing-angreb der bevarer ansigtsskø.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65de87e7dca85101741723b5_Simulation of continuous recovery process for biopharmaceuticals (translated Simulering af kontinuerte processer til opr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65de87fad170f30174872d32_Performance modelling and feasibility analysis of grid-connected residential photovoltaic systems with battery energy st.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65de881c323c710174a15478_Analyzing single-cell data with isoform resolution (translated Analysere af single-cell data via isoformer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65de88086a648c0174c5ba67_Interactive video object segmentation with click-based label propagation (translated Interaktiv videoobjektsegmentering .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65de881adbbe62017422436e_Dielectric nanopatterning of graphene (translated Dielektrisk nanomønstring af grafen).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65de882bf0e8810174f5f8ed_Stability analysis of parallel MMC-HVDC connection operating in grid-forming mode in offshore energy hubs (translated St.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65e27c5278cc34149efe0338_Detection of artifacts in infrared images and video of PV solar panels (translated Detektion af fejl ved brug af infrarø.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65e3cdd7cb46b8149e0c579c_Techno-economic analysis of methane production based on pressurized SOEC (translated Tekno-økonomisk analyse af metanpro.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65e3cdd8230e9a149e75f97a_Condition Monitoring of Wind Turbine Blades (translated Tilstandsovervagning af vindmøllevinger).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65e7c25180e5073f79ef0a6d_Exploring the capabilities of fructophilic lactic acid bacteria (FLAB) strains for the generation of plant-based dairy a.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65e7c25b01fd523f79fd912e_Perceptual evaluation of auralizations using different acoustic simulations (translated Perceptuel evaluering af auralis.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65ea6550d67ff717b692febc_Investigation of Pseudomonas aeruginosa pathogenicity on human lung epithelial cells using 3D bioprinting for advanced i.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65ebb6cfa4c29217b617a125_Developing an Empirically Based Walkability Index from Large-Scale Data (translated Udvikling af et Empiribaseret Gangba.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65f0fcd7c4d27716377ff536_Self-supervised learning for image-based indoor geolocation.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65f0fce44381c1163781d920_Examining the Market Potential and Consumer Preferences for Eco-Friendly Tobacco Products A Market Research Study (trans.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65f0fcd8db22ae1637cd149e_LiDAR-based navigation of de-icing trucks in airport environments.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65f2a3dd6d8c391e232f5ffa_Car fleet decarbonization in Hempel (translated Dekarbonisering af Hempel’s bilflade).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65f2a3eb45be901e23c91d81_AI-Driven Dichotomy The Dual Impact of AI Development on Startup Success and Dependency on Generative Technologies (tran.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65f79458979f731e2ec87380_New Advancements in AI and UX A Path to Faster Product-Market Fit (translated Nye trends i AI og UX Vejen til et hurtige.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65fa374eb705e71e2e9690c9_Development and validation of cost-effective CFD modelling of pressure swirl nozzles (translated Udvikling og validering.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65f8e5d39a957c1e2eafda1e_Multi-Probe System for Spherical Antenna Measurements (translated Multi-Probe System for Spherical Antenna Measurements..pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65fa3750cbb7a11e2efa9077_Reduction of Stresses in Bridge Girder by application of Maxwell-Betti principle in Finite Element Model (translated Red.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65f4f15674c9e51e2e12c8d6_Data-driven surrogate models for physics-based numerical models (translated Datadrevne surrogat-modeller til fysik-baser.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65f642d83bfe501e2e3d96c3_Deep Reinforcement Learning for Robotic Arm Control within 3D Packing Problems (translated Deep Reinforcement Learning t.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65fa37591e67651e2ef904cb_Modelling Contacts in Hearing Aids (translated Kontaktmodellering i høreapparater).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65fa375f2a83a81e2e536b41_Reading The Reader an intelligent system for optimizing typography for central vision loss readers (translated Reading T.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/65ff7d57d2c7231e2ec08cec_Nonlinear Fault-Tolerant Control for Wind Turbine Hydraulic Pitch System (translated Ulineær fejltolerant regulering til.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/660371d9ca88011e2e7d2deb_Coupling FEM and BEM for scattering problems.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/660371d8fbf6f01e2e3da116_Optimizing Design for Disassembly of Timber Buildings.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/660614e0de43ae1e2eac38f8_Holistic Optimization for Mixed-Criticality Applications on TSN-Enabled ADAS Platforms (translated Holistisk Optimering .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/660371dbac69041e2eea06fd_Wear- and Lifetime Analysis of Dynamic Contact Seals using the Finite Element Method – Theory and Experiment (translated.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/660614dc3a7c9b1e2e179598_Characterization and modeling of curved photovoltaic panels for vehicle integration (translated Karakterisering og model.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66076669f23dad1e2ec84d19_Fabrication of 3D interdigitated carbon microelectrodes for on-chip capacitive energy storage using maskless lithography.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66076672ea6cd61e2e191629_Sub-gene level re-analysis of proteomics data (translated Reanalyse af proteomics data pa sub-gen niveau).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66076670784ce11e2e334926_Process Extraction from Clinical Guidelines with Large Language Models (translated Procesudtrækning fra kliniske retning.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66076671a94d9a1e2e9268dc_Daylight typologies in Danish schools (translated Dagslys typlogier i danske skoler).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6608b7e464b7251e2e04331a_Sustainable materials in buildings the influence of windbarrier on fire safety (translated Bæredygtige materialer i bygg.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6609fb4cdaad261e2e7dcbdf_Implementering af DNN på silikone til Intelligent Trådløs Kapselendoskopi ved brug af open-source værktøjer (translated .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6608b7e38c3a6b1e2ed69794_Adaptation of the Argo technology and strategies for shelf observations (translated Udvikling af Argo teknologi til shel.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6609fb4a4dac891e2e268e24_Development of Novel Sunscreen Products (translated Udvikling af nye solcremeprodukter).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/660defcd9fefe31e2e8610a4_Developing a deep generative model for mass spectrometry proteomics data (translated Udvikling af en dyb generativ model.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/660c9e4e41cc041e2e80af01_Integration and evaluation of of the Unreal engine 5 as a daylight analysis tool in the design process (translated Integ.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66187bc8fdddf41a24748f07_Spiking control of McKibben artificial muscles in a soft-robot arm (translated ’Spiking’ regulerings control af McKibben.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6615d8cb901a671a24c2a305_Face Age Manipulation with Latent Diffusion Models (translated Manipulering af ansigtsalder med Latent Diffusion modelle.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66187bc8d45a8d1a240a6cd7_Predicting bacterial infections using machine learning (translated Prediktering af bakterielle infektioner med maskinlær.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6615d8c6c5f0c81a249b5c82_Vacuum formed cell culture inserts functionalised with hydrogels for automation (translated Vakuumformede cellekulturind.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/662307cd8806771afd71d624_Simulation of temperatur dependent deformation in polymers at high strain rates (translated Simulering af temperaturafhæ.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6625aac49ee7d71afdcf7ce8_Role of cell-to-cell communication mechanisms triggering biofilm formation in microbial communities (translated Rolle af.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6625aac58b66da1afd92e965_Unraveling the Dynamics of Solvated Glucose in the Terahertz Range through Computer Simulations (translated Udredning af.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6615d8cedc1b991a2429412b_Oxidative stability of organic redox active molecules for CO2 capture (translated Oxidativ stabilitet af organiske redox.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6626fc482d78c41afd578eb3_Machine Learning Approaches for Online Detection in Water Quality Monitoring (translated Maskinlæringsmetoder til online.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66357cccee5cdd135c94663f_Implementing AI in the healthcare sector (translated implementering af AI i sundhedssektoren).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6642abcc3c97071fdef18901_Studying the encounter of streamers with a fluid approach (translated Studerer kollision af streamers med en fluid tilga.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/664e89496f07072851c0feb7_Firefighter Engineering - use of fire brigade intervention model in Danish fire safety design.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/666b8a47b081fb17d3eb0fa7_Visual-Inertial Navigation for UAVs in GNSS denied environments (translated Visuel-Inertial Navigation for UAVs i omrade.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/666b8a5a928dd117d3f01a56_RORO dual cycling with heterogeneous cargo.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6670d044f8f88417d37de9cf_Exploring the Implicit Regularization of Gradient Descent with Momentum in Deep Neural Networks (translated Udforskning .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/666b8a480d9a6017d39e8f92_Axial Active Magnetic Bearing System – Control Design Considering Thermal Aspects (translated Aksiel aktiv magnet leje s.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/668496d06626621cdf8f8223_Reinforcement learning for solvation structure (translated Forstærkende læring til løsningsstruktur).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/666b8a5dc8c51e17d3d95f26_Investigation on parameters of a binaural synthesis model which contribute towards room convergence.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/668496dc25c6e21cdf6e841a_A software system for young patient anxiety recognition in emergency care unit setting (translated Et software system ti.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/668496d48439f51cdfb4ee41_Exploration and exploitation of the active inference framework for e-grocery tasks with a robotic arm (translated Unders.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/668496e01c36c31cdf9d012d_Radar Integrity Monitoring through Multimodal Sensor Fusion (translated Radarintegritetsovervagning gennem multimodal se.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/668c7fe0147c5edc48aa02cc_Using Single-Cell Sequencing to explore plasmid distribution and dynamics in bacterial populations when treated with ant.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6699aecb38f91ce8f3554dcb_System Design and Optimization of Abandoned Coal Mine-sourced Heat Pump and Storage for 4th Generation District Heating .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66985d51f5a4bde8f326850d_Data-driven digital twins for the green transition (translated Data-drevne digitale tvillinger for den grønne omstilling.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669da351595344e8f37a44e2_Enhancing Indoor Air Quality in Patient Rooms A Study on Ventilation Optimization (translated Forbedring af indendørs lu.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669ef4d568a6dae8f3c40599_Synthetic peptides and biomolecular conjugates as research and drug delivery tools (translated Syntetiske peptider og bi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669ef50231cae3e8f3f90e7e_Exploring hybrid FE-SEA for vibroacoustic micro systems (translated Undersøgelser af hybrid FE-SEA til vibroakustiske mi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669ef4fbe588d2e8f3ed494b_The Interplay between Ambition and Success in Goal-Oriented Physical Activity Behavior (translated Sammenspillet mellem .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669ef4eba5e22ae8f36564d1_Comprehensive Evaluation of Inspection Techniques for Fault Detection in Ground-Mounted Photovoltaic Systems (translated.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669da34e1082c2e8f37319c9_Accelerating the green transition of the built sector Scaling and systematising selective demolition (translated Fremsky.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669ef521caf478e8f3dc1b2c_Portfolio Optimization using Mixed Integer and Linear Programming.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669ef528c005e4e8f3ffa645_Multi-fidelity Modeling using Machine Learning Techniques for Improving Accuracy of Rainfall Estimate from Radar Images .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669ef5317ac224e8f3329aac_Solid Urban Waste – An Inevitable Opportunity Exploring the Entrepreneurial Opportunities derived by Green Policies (tra.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669ef52a300400e8f36ae869_Human digital twin-based application for daily exercise (translated Motions-applikation baseret pa en human digital tvil.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a58c56814707e8f3cfdb15_Bridging Allergy Characterization and mRNA-Vaccine Development Recombinant Allergens as Tools for Cross-Reactivity Profi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a58c5cbf59dae8f3ba35d2_Unsupervised Domain Adaptation for Object Detection in Agriculture.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a6ddd41b974de8f35a86c7_Application of normalizing flows for anomaly detection in broadband networks using multiple time series data (translated.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a6ddd6f9182be8f3d01f13_Probabilistic object detection in music scores.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a6ddd1306cd9e8f3a17381_Medial Axis-based Geometry Processing (translated Geometrisk databehandling via medial objektrepræsentation.).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a82fa91c7b60e8f3abf809_Production and characterization of biochar for construction materials (translated Produktion og karakterisering af bioch.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a82fd42fdcade8f35e08cb_Microparticles fabrication for intranasal delivery of vaccines (translated Fremstilling af mikropartikler til intranasal.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/669ef4df7d750be8f39ac858_Effectiveness of shear reinforcement in bridges depending on orientation (translated Effektivitet af forskydningsbøjler .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a8301097f773e8f34e0eb4_Cloud resource cost optimisation for machine learning model training using Kubeflow in Kubernetes Clusters (translated O.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a6dde1e1fa92e8f3894a2a_Explainable Image Aesthetics Assessment (translated Forklarlig billedæstetisk vurdering).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a83009f62e10e8f3dd6f8c_Uncertainty Quantification in Subnetwork Ensemble Methods for Neural Networks (translated Usikkerhedskvantificering i su.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a82ffea8a8ade8f3e37c58_Simultaneous Localization and Mapping of Marine Environments using LIDAR and SONAR (translated Samtidig lokalisering og .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66a83044d55b0ce8f3fe7db6_Designing an adjustable transfemoral prosthetic interface. Accommodating Volume Fluctuation (translated Design af en jus.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66aad251cac756e8f34012e4_Temporal and Spatial Graph Embeddings for Emotional Response from Daily Activity Patterns (translated Tidsmæssige og rum.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66ac23d0336991e8f3030892_Innovative district heating and cooling systems (translated Innovative fjernvarme- og kølesystemer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66aad255ce70f8e8f3044b1a_Difference in the indoor environment perception between neurotypical and autistic individuals (translated Forskelle i op.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66aec6d10a04e0e8f36c9a42_State of the Art Deep Generative Models for reconstruction of hyperspectral images from single RGB input (translated Sta.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66b01842d6a049e8f36f2066_CFD simulations of speedway motorcycle (translated CFD beregninger paa speedway motorcykel).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66b801383f6814e8f3544d70_aerodynamics of bicycle helmets (translated aerodynamik af cykelhjælme).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66b952d2fa6cc2e8f3a94a4a_techno-economic analysis of integrating waste heat from nuclear power plants into solid oxide electrolysis cells system .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66b952ce907ea3e8f366d8d6_Enhancing Autonomy of NPCs via integration of GOAP and Utility AI (translated Udvidet NPC-autonomi via integration af GO.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66bbf5cfdeca9be8f357d145_Reactive Reading Crafting an Adaptive Frontend Interface for Dynamic Machine Learning (translated Aktiv Læsning Udviklin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66baa45215f057e8f3e5e929_Learning to Segment and Track any Object for Video Object Segmentation (translated Lær at segmentere og spore ethvert ob.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66bd475d330025e8f317175e_Function-based safety analysis for human robot collaboration in warehouse 4.0.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66bd4750d7d9bce8f39a1976_Computer Vision and AI for Assessment of Nature (translated Computer vision og AI for vurdering af natur).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c13bd029b8fbe8f3ef1d0e_Renewable energy for shipping (translated Vedvarende energi til skibsfart).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c28d4f3fd7d9e8f3de4185_Computational software for stochastic optimal power flow with dynamical constraints (translated Matematisk software til .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c53045032c6f204caa51fe_Potential for carbon capture and storage and carbon capture and utilization in Denmark (translated Potentiale for kulsto.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c681dd407c00204c629506_Low-rank Approximations for Maximum Likelihood Estimation (translated Lavrang-approksimationer til maximum likelihood es.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c681e0406018204cd2720f_The impact of analysis parameters on the detectability of fNIRS responses to auditory stimulation (translated Virkningen.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c681e3145779204c565aa7_A Distributed Architecture for Process Mining Designing and Validating Process Mining Pipelines (translated En distribue.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c681e6ff985e204c3eaa03_A data driven for complexity analysis and management for mechanical components (translated En datadrevet til kompleksite.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c7d3582073ba204c03a6ae_Modelling the shape of the central sulcus and its relation to fine motor and coordination skills in children at risk for.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c924d8078c02204c3c569c_Scalability and Democratization of Real Time Strategy and Fighting Games The Deterministic Lockstep Netcode Model with C.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c924da6ba6d5204c164304_Improving Stroke Rehabilitation A Fusion of Personalized 3D User Interface Guidance and Brain-Computer Interface (transl.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66c681ec92cc0e204c4d8fb0_Design of a twin Automatic Gain Control amplifier in 180 nm CMOS (translated Design af en dobbelt automatisk forstærknin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66bd4765c139c5e8f38f6146_Robot Perception and Manipulation in Life Science Laboratories.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66cbc7ece9b650204c544c32_Semantic Reconstruction of Aircraft from Incomplete LiDAR Data.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66ce6ac50107260184157a6e_Machine Learning-based Parameterization of Large-scale Dynamic Metabolic Models Consistent with Experimentally Observed .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66cfbc6f7262f701840fed51_The activity of ILC2s and Th2 cells at the brain borders and in the lung (translated ILC2 og Th2 cellers aktivitet i hje.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66ce6ad06ee37f0184a8f2d4_Perfused 3D printed models for optimizing mesenchymal stem cell production in hollow fibers (translated Gennemstrømmede .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66bd477786a8e2e8f3eae578_Technical foundation for circular product life cycles a study on design and automation of disassembly processes (transla.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66d10df1f7be740184334a67_TiDBITS Time-Domain Based Interpolation for Time Series (translated TiDBITS Tids-domæne baseret interpolation til tidsse.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66d3b0d7f3b1e8bcc4d07882_Deep generative models for catalyst design (translated Dybe generative modeller til katalysator design).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66d25f6cae96edbcc421b0df_Causal discovery and inference of data from production flows (translated Kausal kortlægning og inferens af data fra prod.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66d25f614b4940bcc49511bf_Exploring Device-to-Device (D2D) Communication in Cellular Technology 5G and Beyond (translated Udforske Device-to-Devic.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66d25f69aeb0f0bcc4aebe0a_Prompt-guided mesh texturization.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66d7a54f5c11ce153b3e56d9_Experimental characterisation and assessment of state-of-the-art V2X equipment for electric vehicles (translated Eksperi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66d7a55884cd6a153bb2e22b_Algorithms for Path Finding for Electric Cars (translated Algoritmer for stifinding for elektriske biler).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66d8f6d14df0c4153b18c9ec_Design and Development of a Type Checker for RSL (translated Design og Udvikling af en Typechecker for RSL).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66d7a55578d517153b02c42c_Brain-computer interface implemented on authentication for cookie-session (translated Hjerne-computer interface implemen.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66d7a55621e2ce153bdbb626_Automatic Fungal Identification on Time-Lapse Images Using Image Feature Extraction and Deep Learning.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66e2315b0bbd9a27f06c2c92_Snoring in Children A Comparison of Subjective and Objective Measures (translated Snorken hos børn En sammenligning af s.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66e4d44bbb02ae27f0dab8e1_The conformability of freestanding membranes on a curved surface (translated Fritstaende membraner pa en buet overflade).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66e625db35f06527f016dfbf_Hybrid Machine-learning strategies for monitoring production of biological products (translated Hybrid maskinlæringsstra.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66e8c8d875429427f0e21be6_Multiphysics simulation of Solid Oxide Co-electrolyzers (translated Multifysisk simulering af Faststof Oxid Co-elektroly.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66ea1a5b864f3227f0278d06_Detecting shear and normal pressure on organic surfaces (translated Maling af tvær- og normaltryk pa organiske overflade.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66f0b1cc62fc6443d90f6460_Hydrodynamic modelling of two side-by-side barges under waves and current (translated Hydrodynamisk modellering af to si.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66ef60526059e443d9294e8b_Prediction of PFAS bioaccumulation (translated Forudsigelse af PFAS bioakkumulering).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66f354d285d42f43d94af260_Covert Watermarking of Digital Documents.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66f4a657ba034043d9c694c1_Entanglement generation in quantum thermal machines (translated Generation af sammenfiltrede kvantetilstande i termiske .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66f5f7d59f98a643d94346d6_SymbSyntDec an automated pipeline for reactive synthesis for declarative specifications (translated SymbSyntDec en autom.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66f9ec50ac59fb43d99a3c65_Comparative Analysis of THz-PMT Detectors in Imaging Systems for Semiconductor and 2D Material Characterization (transla.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66f0b1cfd3e1d643d9d122ae_Autonomous wildland fire detection powered by artificial intelligence (translated Autonom vildmarks branddetektion dreve.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66df8e60788b7d1d781fc5df_High-temperature characterization of aluminosilicates; a necessary step for DED-based 3D printing of lunar regolith (tra.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/66f74955fb956743d9f1f458_Active Control of Rotor-Bearing-Foundation System at High Operational Speeds - Modelling and Experiment (translated Akti.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/670c615067ccc543d95f789a_From Pixels to Voxels Advancing Corrosion Detection in Tanker Ships through Deep Learning and 3D Modeling.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/671f4b718a6b4d9cd77f06fe_Accelerating computational catalysis with GenAI and foundational models (translated Accelererer simuleringskatalyse med .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6709be5048ca8c43d9040fc6_Nonlinear stall-induced instability analysis of a parked rotor (translated Ikke-lineær stall-induceret ustabilitetsanaly.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6709be4f709b2c43d9d3e711_Wind tunnel PIV measurements of a wind turbine model under imposed motion (translated Vindtunnel PIV malinger af en vind.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6722d8d562f7e2a51df9f6a2_Reconstruction of the sound field in a room from measurements with a moving microphone.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67297065e1de09a51d74f4dc_Learning causal effects from observational data exploring Invariant Causal Prediction and Hierarchical Bayesian Modellin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/672c13666feb1ea51d6e7ca6_Optimization of scRNA-seq Bioinformatic Pipeline to Assess Efficiency of Meiotic Cell Induction (translated Optimering a.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/672d64da361a0ab6861bd77e_Applying Large Language Models to Tabletop RPGs A User-Centered Approach to Enhancing Player Experience (translated Anve.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/675794d4123013868b8ab1f0_Selective biomolecule immobilization on vertically standing pyrolytic carbon structure (translated Selektiv immobiliseri.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67524ed51e98bd868b18311f_Probabilistic modelling of multi-output signals (translated Probabilistik modellering af multi-output signaler).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/676220d877b049a804be5ce2_The role of germline variants in T cells response to neoantigens (translated Forstaelse af germline varianter i relation.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/676dfe5164abf9a8040e27f2_Grokking hybrid-GNN for molecular properties (translated Grokking hybrid-GNN for molekylære egenskaber).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/677dd05943aa4fa804822f4c_Training Machine-Learning Models in Multi-Party Computation (translated Træning af Machine-Learning Modeller i Multi-Par.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67a168e892a21615d23ec017_Domain Specific Processor for Weighted-Order Statistics Filtering (translated Domænespecifik processor til statistisk fi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67a168e670a62215d23a0403_Foundational Models for predicting OCD events in children (translated Grundlæggende modeller til forudsigelse af OCD-hæn.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67aaa36411ebcb44fa8e50d9_Calculation tool and methods for LCA on DGNB urban areas (translated Beregningsværktøj og metoder til LCA pa DGNB Byomra.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67afe9f7c0bfc454fc1344e8_User-centric workflow application for retrieving patient data from multiple healthcare systems (translated Brugercentrer.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67b923ec003aa366d748b12f_Assessment and Improvement of Cross-Shore Sediment Transport Models for the Swash Zone (translated Evaluering og forbedr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67be6a26e8c3dc66d77f1a63_Exploring linkages between atmospheric heatwaves and coastal ocean conditions of Madeira Island (translated Undersøgelse.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67be6a2606e0c166d7169ad5_Characterisation of camel milk proteins and their potential for allergenicity (translated Karakterisering af kamelmælksp.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67be6a2e355f5a66d7dea489_Automatic Generation of Infrastructure-as-Code Specifications from Infrastructure Dependencies Declared in the Source Co.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67be6a2d56d32566d74defce_Comparing long and short read technologies in terms of genome recovery and AMR analysis (translated Sammenligning af lan.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67be6a2f41d23066d77eb50c_Model-based development and analysis of distributed systems with Elixir and mCRL2 (translated Modelbaseret udvikling og .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67bfbb977d9a1d66d7250165_A Comparative and Comprehensive Technical Analysis of Existing Cyber Ranges for Enhanced Security Training and the Role .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67b13af46615c554fcd146ba_Perception-based processing of digital images for dynamic adaptation to ambient light conditions (translated Perceptions.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67c501717374cb9415fd9f06_Setting Up a Physics-Guided Machine Learning Framework for Predicting River Cross Section Parameters From (Simulated) Se.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67c652edbc951e94151613d8_A Time-Predictable GPU Core for Real-Time Systems (translated En tidsforudsigelig GPU-kerne til realtidssystemer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67c652ec183fcc9415baba15_Numerical Study of Sedimentation Based Sorting of Plastic Waste (translated Numerisk Analyse af Sedimenteringsbaseret Pl.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67c5016b30b70a9415cfb98e_Moisture conditions in biobased floor structures close to terrain – a theoretical and practical analysis (translated Fug.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67c653034a30b29415c649cb_Meta-analysis of Life Cycle Assessment studies on Sustainable Aviation Fuels (translated Meta-analyse af livscyklusvurde.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67c7a4907f34999415fd7850_Effect of noise on pattern formation in partial differential equations (translated Indflydelse af stokastisk støj pa møn.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67c7a4a1e621b69415996ac0_Co-bioprinting of Neuromuscular Tissue for In Vitro Modelling (translated Co-bioprint af neuromuskulært væv).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67c7a4a0dc8a529415087d32_Mathematical Modeling of Process Networks - The Phase Type Case (translated Matematisk modellering af procesnetværk - fa.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67c7a49ebc865a9415ef01d2_Enhanced Efficiency of D-Band InP DHBT Power Amplifier MMICs Using Low-Loss Power Combination and Interstage Matching Te.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67d0df0468f67b941587c75f_Monitoring the efficacy of photodynamic therapy on actinic keratosis using optical coherence tomography (translated Unde.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67d0df0e269b549415f1d9d8_Cytotoxic and functional assessment of engineered T cells for viral targeting (translated Cytotoksisk og funktionel vurd.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67d8c7f201cd4c941552fa2b_AI based navigational support for obstetric ultrasound imaging (translated KI-baseret navigationsstøtte for obstetrisk u.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67da1979a45c089415e1ba4c_Implementation and characterization of a hemispherical goniometer (translated Implementering og karakterisering af et he.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67be6a229b586266d707b97e_Experimental investigation of unreinforced interfaces in concrete structures (translated Eksperimentel undersøgelse af u.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67da19898c1d3e9415911453_Improving Latency in Privacy-Preserving Networks A Focus on Routing Algorithm Optimization (translated Improving Latency.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67da19858c96609415a7219d_Data-Driven Analysis of Retinal Response Patterns to Carbon Electrode Stimulation (translated Datadrevet analyse af reti.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67da198911333d9415908cd3_Mathematical Aspects of Machine Learning and Applications. Approximation with Riesz Bases and Neural Networks (translate.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67c7a48e5b05ec941525cf61_Vibration analysis of CLT floor elements (translated Svingningsanalyse af CLT gulv elementer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e263ded298d91248941227_Exploring Explainability and Interpretability in Face Image Quality Assessment Algorithms (translated Udforskning af For.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e263dda21cb81248dacf0a_Purification and structure determination of natural products from fungi (translated Oprensning og strukturbestemmelse af.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e263d394ac2c12483fd683_The dense interstellar medium in extreme galaxies (translated Det tætte interstellare medium i ekstreme galakser).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e5f702365ed41297f62c63_Stylometric Analysis for Authorship Attribution Evaluating Human and LLM-Generated Texts (translated Forfatterskabstilsk.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67db6af20ddf69941572b8d6_Investigation of deceptive explainability in the paper Concept Bottleneck Models (translated Undersøgelse af villedende .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e74887685bbb12f3a9deee_Algorithms for Minimum Chain Covers (translated Algoritmer for mindste kædedækning).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e4a58a700b011297506615_Image Quality Assessment on Multiple Cameras for Float-Zone Crystal Growth Production (translated Billedkvalitetsvurderi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e9dd78b435ce12f3a2ca15_Tactile Sensor Algorithm for Robotic Object Grasping (translated Taktil sensor-algoritme til robot-objektgreb).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e9dd7a8eb77b12f3fefa40_Development of AI models for beehive monitoring (translated Udvikling af AI modeller for bistade overvagning).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e263e4a3cfce12480b2b9d_Sn-Cu dendrite growth mechanisms due to Electrochemical migration in Electronics (translated Sn-Cu dendritvækstmekanisme.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e9dd7c06181a12f399bbc5_Synthesis and application of 3d polyalloyed electrodes via electroless Nickel plating (translated Syntese og anvendelse .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67e9dd7b8fc6d912f3da97b3_Motion Control of an Autonomous Underwater Vehicle for Maritime Surveillance (translated Bevægelseskontrol af et autonom.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67ec807e6421ee12f3368ede_Gender Bias in Entrepreneurship (translated Kønsforskelle i iværksætteri).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67f0750350e1e912f322623c_Logical Fallacy detection using LLMs (translated Detektion af logiske fejlslutninger ved brug af LMM'er).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67f075058800c412f3de291c_Localized Conflict-Resolution in Multi-Agent Pathfinding An Enhancement to Conflict-Based Search (translated Lokaliseret.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67eb2f1dde46b312f3485dab_Site-controlled Quantum Dots (translated Positionsbestemte kvanteprikker).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67f5bb0a44644812f303f801_Product Platforms as enablers for reuse (translated Produktplatforme som strategi for genbrug).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67f074f44dd30c12f39a0edd_Exploring and quantifying the dependence of enzyme phase separation on co-factors.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67f9af6b25cb5d0a8809761b_Can LLMs Perform Logical Reasoning Investigating the Compositional Gap in Transformer Model Architectures (translated Ka.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67f5bb09d860a912f34be0da_Computational Experimentation and Optimisation of Pharmaceutical Manufacturing Equipment (translated Simulationsbaseret .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67fda3e9064ebc0a88fd88f7_Development of a diagnostic imaging system for field inspection solar photovoltaic PV plants (translated Udvikling af et.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/67fef57446fa080a88237231_Machine Learning approaches to JWST data (translated Maskinlæringsmetoder til JWST-data).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68116a5f7bf9140a88ee0729_Development of tools for Genetic Design Automation (translated Udvikling af værktøjer til automatisk design af genetiske.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68116a625577500a88e32563_Revolutionizing Mental Health Journaling with AI (translated Revolution af journalføring indenfor mental sundhed med kun.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68140d6db075440a881d32bf_The application of deep learning NLP for automatic classification of multiplicity within 1D NMR spectroscopy (translated.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/680ec7703df48c0a88cf357f_Surface roughness characterization and analysis of mirror plates for NewAthena (translated Karakterisering af overflader.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/681e9964da84ec6835ce52f9_Soil RNA virome in three different soil habitat (translated Jord RNA virom i tre forskellige jordhabitater).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68228de561c9c46835411643_Deep Neural Operators for use in Marine Engineering (translated Dybe neurale operatorer til anvendelse indenfor maritim .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6837a5e417d327683589caf7_Dynamic prototypes learning for explainable echocardiography analysis (translated Dynamisk prototyper læring til forklar.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/684f60cc1169846835c5afa9_FEC Coding for Satellite Communication System (translated Fejlkorrigerende koder til satellitkommunikations-system).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6837a5e6aa422968352b0ad1_Automated Data Labeling for Image Datasets (translated Automatiseret datamærkning til billeddatasæt).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/686b1053644b3c01028142de_Critical review of greenhouse gas emission calculations using the process-based and environmentally extended input outpu.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/686b10604974f90102af1d11_FPGA Implementation of Packet Parser with Programmable Field Extraction (translated FPGA-implementering af pakkefortolke.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6872f94e69f8a60102ff6198_Leveraging open-source CAD for robotic dynamics and advanced trajectory planning (translated Brug af open-source CAD til.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6872f955fa2ccb01023fb2d3_Stylized Terrain Mesh Generation for Low-End Graphics Hardware (translated Stiliseret generering af trekantsnet til terr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68744acfe925c90102370574_Transmit coil for ultrawideband magnetic field generation (translated Transmitspole til ultrabredband magnetfeltgenereri.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68744adbbd2d940102480d7e_Prototyping and Evaluating Adaptive Reading Interfaces for Improved User Experience (translated Prototyping og evaluerin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68744ace74ae97010249d379_Deep Learning-Based Foraminifera 3D Detection and Type Classification From Micro-CT Scans.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68744adfae803901022cf390_Vision Language Models for Zero-Shot Presentation Attack Detection.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68759c599bce1a010215408a_Redesign of p-n junction diodes for photovoltaic retinal implant (translated Redesign af p-n overgangsdioder til fotovol.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68744ad7567aad0102dd289a_Unsupervised quality control of water level and flow observations in Danish streams (translated Automatisk kvalitetskont.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/687d8560294cae0102693ccd_Integration of biomolecular simulations and free energy calculations to study changes in protein stability in protein va.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68802841e9c09901023459f2_Prediction of Water Levels in Local Streams (translated Forudsigelse af vandniveauer i lokale aer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688179c09c3489010216efdd_Enhancing Aggregation and Deviation Detection through Historical Data in Artifact-driven Process Monitoring (translated .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68841cc4b47df20102b023e0_Approximation Algorithms for Replenishment Problems with Fixed Turnover Times (translated Approksimations algoritmer til.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68856e5aa31d6701024beb49_Pareto Front of imprecise points (translated Paretofront af upræcise punkter).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886bfc89e1c310102a3c953_Streamlining Event Sourcing for Small Companies A Framework for Simplified Implementation (translated Forenkling af even.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886bfd477b49b0102fbdc29_Evolving promiscuous enzyme activity in vivo through growth-coupled selection schemes in bacteria (translated Evolution .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886bfd99b9ebe0102f0ec95_Enhancing Web Honeypots with LLM-driven Breadcrumbs and Honeytokens.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886bfe2768481010206076d_Estimation of physiological cycles during magnetic resonance imaging using optical motion tracking data (translated Esti.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886bfd06d87680102979c46_Interactions of inorganic species and bed materials in fluidized bed combustion of biomass (translated Interaktioner mel.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886bffdcf1bc801020a2163_Implementation and Evaluation of Industrial IoT Provisioning Methods.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886bffef07d9b01024d1514_An Extensible Lean Code Formatter (translated En Udvidelig Lean Kode Formaterer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68856e558a7baa0102cb1049_Optimising Circular Waste Management Implementation of Take-Back Systems for Wood based on LCA analysis and Circularity .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886c00c8472640102ff5df1_Air nonlinearity for high frequency loudspeakers (translated ulineariteter i luftens indflydelse pa disktant højttalere).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886c01314b4ba0102baaa1d_Algebraic lattices and authenticated key encapsulation mechanisms (translated Algebraiske gitre og autentificerede nøgle.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886c010a048ce010242cca9_HDR Video Reconstruction via Multi-Scale Fusion and Cache Mechanism (translated HDR Video-Rekonstruction via Multi-Scale.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886c018de25d30102c8b5b5_A Distributed Architecture for Process Mining Conceptualization and Performance Analysis of an Online Data Streaming Pip.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688962cd1c02a2010226c545_Leveraging Tarpits to Mitigate Botnet Propagation through IoT Protocol Simulation.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886c021933ea501022ce3ab_Machine Learning for Modelling of Nonlinear Loudspeakers (translated Machine learning anvendt pa ulineære højttalere).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886c00f3256f90102947c5c_Multiphase Coupled-Inductor Series-Capacitor Buck Converter for VRM Applications (translated Multifase Koblet-Induktor S.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6886c0080d45260102e75237_Parametric Cellular Automata (translated Parametriske cellulære automater).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688ab4500b68be01023031c8_Integrating social sustainability in technology development (translated Integrering af social bæredygtighed i teknologiu.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688ab455e7e4c8010234d160_Automated Marine Gravity Surveys in Danish Waters Some Improvements to Modelling Software (translated Automatiske Søgrav.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688ab45567fd680102afbd3e_Understanding and Preventing Behavioural Rebound Effects of Solar Panel Adoption A Framework for Sustainable Design in L.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688962ce3e46a601021500a4_Computational Tool for Quantifying Movement Patterns Linking Neural Activity to Behavior (translated Computationsværktøj.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688ab4540579700102d57afd_Automated Kinematic Analysis for Behavioral Quantification in Preclinical Neuroscience Research (translated Automatisere.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688ab460c6cfdb01023741ed_Using AI for diagnostics and monitoring of treatment progression in children and adolescents with juvenile idiopathic ar.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688ab47690f5e001029755e6_Initial Development of Epiphyte and Light Limitation The Role of Nutrient Gradients in Eelgrass Meadows of Vejle Fjord (.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688ab47eb3535401025b0e18_Computational fluid dynamics analysis of wind loads on a Heliac solar collector array.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688d5759e30d6e0102ea88b3_Predicting performance of intumescent coatings on large steel structures using small-scale tests and modeling (translate.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688d5768ace848010276d5c3_Hierarchical forecasting of electricity prices (translated Hierarkiske prognoser for el-priser).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688d575e4b37dd01027ac78b_Innovative system for transfemoral prosthesis realignment (translated Innovativt system til transfemoral protese justeri.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688d576a6e37210102fde0f9_Neural Network Based Adaptive Control for Wind Turbines Pitch System (translated Neuralt netværksbaseret adaptiv styring.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688d5771d020d50102447832_Enhancing Lab Automation through Robotic Arm Integration and SiLA Protocol Implementation.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688d5760eeab780102950fd7_Development of Tool for Counting People in Drone Footage Using Machine Learning (translated Udvikling af værktøj for tæl.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688d577242c82901028066b2_Exploring and Analyzing Security Vulnerabilities in Modern Mobile Networks.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688ea8f8b2c7470102946c45_Irradiance- and temperature distribution analysis for vertically mounted BIPV systems (translated Analyse af indstraling.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/688ea8fc2e75110102cc95b3_Automated Assessment of Robotic Assembly in Modular Construction Using FIM and 3DP (translated Automatiseret fremstillin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6893eebbddcc1c010207153a_Mind the Gap Forecast Reconciliation for Origin-Destination Demand Prediction in Urban Rail Networks.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68929d4443c878010272e4a1_Exploring the relationship between streetscape design and transport mode choice (translated Undersøgelse af sammenhængen.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6897e341acb3500102135e97_4D printing of multimaterial polymer microrobots (translated 4D print af multimateriale polymer mikroroboter).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68929d4093fee40102151cb5_Extended evaluation and fault diagnosis of solar photovoltaics modules in the field via multispectral imaging (translate.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a11dc68eb6a80102f292d1_Mecatronic design and implementation of a soft UAV (translated Mekatronisk design og implementering af en blød UAV).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a11dcfb4f81e01026e2291_Decent Living Standards and environmental efficiency (translated Anstændige levestandarder og miljøeffektivitet).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a11dcfd5042601029ff4e7_Characterization and Molecular Analysis of Polycystic Ovary Syndrome (PCOS) Using Proteomics (translated Karakterisering.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a11dce574d04010225137f_Thermosensitive cyclo-addition hydrogels (translated Termofølsomme cyclo-additionshydrogeler).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a11dd45306780102b70650_Development and use of optimisation algorithm for calculating stable bays as part of coastal protection (translated Udvi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a11dd423392201025851ca_Worst-case execution time analysis of Rust-based applications for the Wildcat project (translated Værst tænkelig eksekve.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a11dda63ad320102ff16cc_Mapping Innovation and Entrepreneurship Education in Icelandic Higher Education (translated Kortlægning af innovation og.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a11df89946ca010201a031_Design and Optimization of a Multiple Channel Low-Power High-Speed ADC in 180nm CMOS Process (translated Design og optim.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a11e023506330102400e8f_Design and control of an autonomous paraglider (translated Design og kontrol af en autonom paraglider).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a3c0ccf50fd20102002f6f_Enzymatic hydrolysis and fermentation of cork powder to produce biosurfactants (translated Enzymatisk hydrolyse og ferme.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a663c0c2f8da8f095371be_Thermosensitive liposomes for localised treatment of neuromuscular disorders (translated Termosensitive liposomer til lo.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a512431bc9b20102be9750_Verification and Validation for Digital Twin Models of Robotic Systems.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a11dff8405bd0102215043_Developing Interactive Solutions to Reduce Children’s Anxiety in the Pediatric Emergency Department (translated Udviklin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68a906c343e95a8f09757a15_3D diffusion based methods for cardiovascular data analysis and synthesis.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68aba9bed2b2848f09b3a9c5_Computational fluid dynamics of flow-vegetation interaction (translated Numerisk simulering af interaktion mellem strømn.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68acfb38d893618f09771369_Managing Sustainable Hybrid Work (translated Ledelse af det bæredygtige hybridarbejde).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68aa584b85926b8f09e4b4d1_Design in Safety-related Functions and Development of an Autonomous Painting Robot.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68acfb43845ffc8f09cdeb00_The effects of region selection methods on the reliability of auditory fNIRS responses (translated Effekterne af regionu.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68ae4cd5ce0e148f0922d0d4_Accelerated Entrepreneurship Business-Process Transformation with Agentic AI Systems (translated Accelereret iværksætter.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68ae4cda5ff49b8f09739b57_Using MEMS Technology for Tremor Analysis Development and Testing (translated Brug af MEMS-teknologi til tremoranalyse u.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68ae4cec1b08c78f097b7a66_Brain-to-Text Translation Using Deep Learning and LLMs (translated Hjerne-til-tekst-oversættelse ved hjælp af deep learn.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68aba9c5896e008f09423ef0_Detailed design and development of Gnist Education – A makerspace platform for the Danish elementary school (translated .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68b24140c117348f0980cc98_Identity by descent by demographic model (translated Identitet ved afstamning efter demografisk model).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68acfb3c1e7f888f09c5494a_High-Performance Image Super-Resolution with Large-Scale Diffusion Models and Multi-GPU Acceleration (translated Højtyde.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68b392c34ec0ba8f09c3a9ce_Ship-shore communication framework in the presence of autonomous ships (translated Skib-shore kommunikationsramme i nærv.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/689934cc179b5e0102277e09_Real-Time Image Enhancement in ROV Systems (translated Billedforbedring i realtid i ROV-systemer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68b392db22392b8f09797db0_Comparing the Impact of Government Policies on Startups in Denmark and Norway (translated Sammenligning af regeringens p.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68b392cba117a38f092349d4_Acidification and non-volatile compounds profile in hybrid cheese (translated Syrning samt profilering af ikke flygtige .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68b7873bf0a3e28f09ced45e_Optimal Sampling for Experimental In Vivo Study Design (translated Optimal sampling til eksperimentel in vivo-studiedesi.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68b7874f6477288f091cc3d8_Assessing Speech Intelligibility and Privacy Conditions in Intensive Care Unit Settings Using Objective and Subjective F.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68b7874e76a88f8f094ecfd6_Stimuli-responsive piezoelectric carrier as an on-demand drug delivery payload (translated Stimuli-responsiv piezoelektr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68b4e44461eea38f0944620a_Assessing the stimulated dynamic response of cutaneous microvasculature using optical coherence tomography angiography (.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68b7875d8c094f8f091f66ca_Eliminating Stealthy Supply-Chain Attacks via LLM-assisted Program Regeneration (translated Eleminering af skjulte forsy.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68ae4cd29630a08f0924d271_Laser counter-measures for anti-drone protection (translated Laser foranstaltninger til anti-drone beskyttelse).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68ba2a3fa36f328f0951972c_Exploring BPMN and DCR Translations A Theoretical and Practical Approach (translated Undersøgelse af BPMN og DCR-oversæt.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68bccd42ecebd9f84698da7d_Infinite-dimensional Bayesian Inverse Problems (translated Uendeligdimensionale Bayesianske inverse problemer).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68c0c1c5a78d4b10742c499f_Hand Tracking for Signifier-Based Shape Modeling in Virtual Reality (translated Handsporing til signifier-baseret formmo.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68be1ec2a37426f846ea5710_Mobile health application for self-registration of sit-to-stand movements in patients (translated Mobil sundhedsteknolog.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68b635cf7331c18f09df8b56_Corrosion Mechanisms in Electronics under Humid and Gaseous Environments (translated Korrosionsmekanismer i elektronik u.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68c0c1cf4f564610744392e3_Fusion of RGB and Radar Data for Obstacle Detection and Tracking.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68c4b64bbba4811074e09e90_Prediction of protein sorting to lysosomes in human cells (translated Forudsigelse af proteinsortering til lysosomer i h.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68c7596d5a54521074e2fdcb_Utilizing Deep Learning for Native Language Identification from Reading (translated Udnyttelse af dyb læring til identif.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68c607cb0e4bbe1074ed7a7d_Dynamic consumption control for resolving bottlenecks in medium voltage grids (translated Dynamisk forbrugsstyring til a.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68c9fc688af62f11e07cd9ae_Exploring different approaches to customize LLMs for text-to-code generation (translated Udforskning af forskellige tilg.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68d093caed2e7711e0f856d5_Signal Processing Techniques for Source Separation with Multi-Channel Audio Data (translated Signalbehandlingsteknikker .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68d336c2c1453611e09cd9c4_Monitoring of noise from ships in harbours (translated Overvagning af støj fra skibe i havne).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68d4883e8b0d4111e011a9dd_A Federated Learning Framework for Privacy-Preserving Anomaly Detection in 6G IoT Environments.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68db1fd64fa20911e0da98f5_Frequency-domain analysis of dynamic responses of multi-modular offshore structures in waves (translated Frekvensdomænea.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68e065d5ef211415e1b3abe3_Exploring the development of Focal Plane Arrays for the Atamaca Large Millimetere Array (translated Udforskning af udvik.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68e1b741cb4b4b15e13c525d_Symbolic knowledge and reasoning in multi-agent reinforcement learning through extension of the SymDQN framework (transl.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68ddc2c5f0d7e211e0fbb63b_Continuous Integration and Deployment of Edge AI Models on Zephyr OS (translated Kontinuerlig integration og implementer.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68c7596635bdfc10747dea84_Sampling-Based Path Planning and Vision System for Robotic Pick and Place (translated Sampling-baseret bevægelsesplanlæg.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68f9724e342d8618d7d5478b_Real-time Recognition of Conversation Partners from Eye Gaze using State-Space Models (translated Identifikation af samt.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/69040c6439b7481aae9ebb32_Orchestration of LLM agents for complex tasks (translated Orkestrering af LLM-agenter til komplekse opgaver).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/68fec65512ad4c18d78cc588_Cooperative Localization and Motion Tracking in Drone Swarms Using Radio Signals (translated Lokalisering af droner ved .pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/69040c65ee51d71aaea9e375_Improving Unsupervised Video Instance Segmentation via Automatic Quality Assessment (translated Forbedring af segmenteri.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/690aa3d6e020a51aae58bbd0_Analysis of In-Service Data to Enhance Containership Response Estimation (translated Analyse af malte skibsbevægelser me.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6916814c466ed21fd0f546de_General CAPTCHA Solver with Visual Language Models (translated Generel CAPTCHA-løser med visuelle sprogmodeller).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/692e3c5abfa211280d282166_Residual Based Adaptive Control and Estimation for Wind Turbines Pitch System (translated Residualbaseret adaptiv styrin.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/693230dd6ccfe8340dc457f3_Lower Bounds for Trajectory Distance Measures (translated Nedre grænser for kurveafstandsmal).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6944a5d282aef745ffbeca1c_Utility of geometry information for matched room acoustic simulations for XR (translated Nytte af geometriinformation ti.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/692501cb477d3b7ce8f116a1_Efficient Combinatorial Reconstruction of Triangle Meshes from Point Clouds (translated Effektiv kombinatorisk rekonstru.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/69741be35e9bd9c397f184bd_A Choreography Translator for Automatic Protocol Verification (translated En automatisk oversætter af koreografier for a.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/697c04de6e5c71c3975b93f4_Towards Early Detection of Children's Neurodevelopmental Disorders and Visual Impairments Using Eye Tracking User Journe.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/693a19d815ba6545ff2a835a_Assessment and usage of the segment anything model for semi-automatic labelling in precision agriculture (translated Eva.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/697d56646b6892c397b2a023_Modelling of building operational faults for improved indoor environmental quality and energy efficiency (translated Mod.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/697d5665864701c39738ca2e_Design and Implementation of an Open-Source Tool to Support Function-Centered Hazard Identification Approach (F-CHIA) in.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/697d566a9fb9afc397015785_Estimation in multivariate phase type distributions (translated Estimation i multivariate fasetype fordelinger).pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/697d5668053861c397f271b0_System Integration and Visual Interface for a Distributed Streaming Process Mining Architecture (translated Systemintegr.pdf
+gs://thesis_archive_bucket/dtu_findit/master_thesis/6960556324d2b1a2e3ddbf2b_Alternating Current-controlled Sn-Cu dendrite growth mechanisms (translated Vekselstrømstyrede Sn-Cu dendritvækstmekanis.pdf

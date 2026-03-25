@@ -14,4 +14,8 @@ dependencies = [
     "google-cloud-storage>=3.9.0",
     "ipykernel>=7.2.0",
     "spacy>=3.8.11",
+    "seaborn>=0.13.2",
+    "pymupdf>=1.27.2.2",
+    "pdfplumber>=0.11.9",
+    "black>=26.3.1",
 ]
