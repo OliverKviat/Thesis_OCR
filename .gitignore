@@ -1,3 +1,6 @@
 # Ignores all PDF files in the repository
 *.pdf
 selected_prompt.json
+
+pyproject.toml
+uv.lock
