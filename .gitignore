@@ -4,3 +4,5 @@ selected_prompt.json
 
 pyproject.toml
 uv.lock
+
+Data/equation_runs/equations/pipe_v2_text_only/by_pdf/
