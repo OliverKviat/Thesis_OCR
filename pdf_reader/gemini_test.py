@@ -7,16 +7,21 @@ To check if the API key is set, write in terminal:
 echo $GEMINI_API_KEY
 """
 
-# To run this code you need to install the following dependencies:
-# pip install google-genai
+# Optional: pip install google-genai
 
 import os
-from google import genai
-from google.genai import types
 
 API_KEY_ENV_VAR = "GEMINI_API_KEY"
 
 def generate():
+    try:
+        from google import genai
+        from google.genai import types
+    except ImportError as exc:
+        raise RuntimeError(
+            "Install google-genai to run this script: uv add google-genai"
+        ) from exc
+
     api_key = os.environ.get(API_KEY_ENV_VAR)
     if not api_key:
         raise RuntimeError(
