@@ -17,6 +17,7 @@ def pdf_to_txt(pdf_path, pdf_file, txt_path):
     extracted_text = ""
     for page_num in range(pdf_document.page_count):
         page = pdf_document.load_page(page_num)
+        extracted_text += f"==PAGE:{page_num + 1}==\n"
         extracted_text += page.get_text()
     out_path = os.path.join(txt_path, os.path.splitext(pdf_file)[0] + '.txt')
     with open(out_path, 'w', encoding='utf-8') as txt_file:
