@@ -21,10 +21,10 @@ Dependencies:
 
 Usage:
     # Process all TXT files in a folder with 8 workers
-    uv run exstraction_n_processing_crawl2/LOCAL_txt_metrics_exstractor.py --input-dir Data/RAW_txt --workers 8
+    uv run exstraction_n_processing_crawl2/LOCAL_txt_metrics_exstractor.py --input-dir Data/TXT_test --workers 8
 
     # Process exactly 10 TXT files (for testing)
-    uv run exstraction_n_processing_crawl2/LOCAL_txt_metrics_exstractor.py --input-dir Data/RAW_txt --limit 10
+    uv run exstraction_n_processing_crawl2/LOCAL_txt_metrics_exstractor.py --input-dir Data/TXT_test --limit 10
 
     
 ####
