@@ -25,7 +25,11 @@ Usage:
 
     # Process exactly 10 TXT files (for testing)
     uv run exstraction_n_processing_crawl2/LOCAL_txt_metrics_exstractor.py --input-dir Data/RAW_txt --limit 10
+
     
+####
+    Benchmark with 100 files gives ~1.5 minutes (97.29 seconds) total runtime on 8 workers.
+
 """
 
 from __future__ import annotations
