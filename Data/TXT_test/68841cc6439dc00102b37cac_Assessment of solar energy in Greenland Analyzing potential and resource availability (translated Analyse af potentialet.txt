@@ -1,3 +1,4 @@
+==PAGE:1==
 Technical University of Denmark (DTU)
 Master thesis
 MSc. Eng. Sustainable Energy
@@ -8,6 +9,7 @@ Supervisors:
 Adam Rasmus Jensen
 Ioannis Sifnaios
 Janne Dragsted
+==PAGE:2==
 Contents
 Acknowledgements
 iii
@@ -111,6 +113,7 @@ II
 C 2-D visualizations
 II
 i
+==PAGE:3==
 Contents
 D Additional data filtering
 IV
@@ -128,6 +131,7 @@ H.2 Bifacial panels, 45° tilt . . . . . . . . . . . . . . . . . . . . . . . . .
 H.3 Vertical bifacial panels . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . XVII
 H.4 Monofacial panels, 40° tilt . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . XIX
 ii
+==PAGE:4==
 Contents
 Acknowledgements
 I would like to express my sincere gratitude to my supervisor, Adam Rasmus Jensen, and my co-
@@ -140,12 +144,14 @@ by providing very precious data and insights that greatly enriched my research.
 Finally, I am grateful to the Department of Wind and Energy Systems at DTU for providing the
 academic environment and resources that made this research possible..
 iii
+==PAGE:5==
 Contents
 AI Assistance Statement
 This thesis has benefited from the use of AI tools, particularly OpenAI’s ChatGPT, for language
 refinement, code debugging, and assistance in literature and report structuring. All content has been
 critically reviewed and adapted by the author to ensure technical accuracy and academic integrity.
 iv
+==PAGE:6==
 1
 Introduction
 Climate change affects every environment of the world, with the main effect being a global temperature
@@ -187,6 +193,7 @@ Renewable energy is a relatively recent addition to the Greenlandic energy syste
 only introduced in 1993. Before then, fossil fuels were the only component of the island’s energy mix,
 including gas oil, Diesel Fuel Artic (often referred to as DFA), gasoline, petroleum, and other minor
 1
+==PAGE:7==
 fuels, with gas oil and DFA representing the vast majority of the consumption share.
 Gas oil is also the fuel utilized by Nukissiorfiit for electricity production in their district and urban
 combined heat and power plants (CHP) and by power plants in settlements; these two last solutions
@@ -205,6 +212,7 @@ fuel unit. The effect of renewable energy is visible in the continuously decreas
 experienced in the 1990-2023 period, with the figured dropping from 74 to 61 kg of GHG per GJ of
 energy consumed, corresponding to a 16.7% decrease over the mentioned time span.
 2
+==PAGE:8==
 1.1
 Current status of solar power in Greenland
 Figure 2: Emission of greenhouse gases per fuel unit in Greenland, 1990-2023 [9]
@@ -234,6 +242,7 @@ This thesis aims to understand how Greenland’s carbon footprint will be affect
 mentation of photovoltaic solutions on its territory.
 To do so, the thesis will first move from the obtainment of a solar resource ground measurement
 3
+==PAGE:9==
 1.2
 Objectives
 dataset for Greenlandic locations, based on what sources are made available from weather entities
@@ -260,6 +269,7 @@ be computed for all the different cases and a further analysis of the results, t
 factors into consideration, will be conducted for suggesting realistic emission reduction opportunities
 for Ilimanaq and the whole Greenland.
 4
+==PAGE:10==
 2
 Solar resource data
 To test the impact photovoltaic can have on the Greenlandic energy mix it is necessary to start with
@@ -294,6 +304,7 @@ APIs, which allows the download of several parameters including ground-measured 
 DMI owns 252 weather stations in Greenland but only 6 of them measure global radiation.
 Table 1 reports the details of these stations.
 5
+==PAGE:11==
 2.1
 Measurement data
 Table 1: DMI weather stations providing global radiation data.
@@ -341,6 +352,7 @@ some contamination due to the presence of a small number of 30- and 60-minutes r
 An internal source assessed that DMI uses a right labeled convention, meaning that the irradiance value
 stated at HH:10 is an average of the values between HH:01 and HH:10.
 6
+==PAGE:12==
 2.1
 Measurement data
 This point will be fundamental in the continuation of the project, in order to ensure a proper time
@@ -365,6 +377,7 @@ representing the measurements in Ittorqortoormiit never gets to 0 W/m2, but inst
 sporadically reaches small peaks of 1 and 2 W/m2.
 Figure 4: Iced pyranometer affects radiation measurements by slightly increasing the real value
 7
+==PAGE:13==
 2.1
 Measurement data
 2.1.2
@@ -393,6 +406,7 @@ Figure 5 shows the heatmap of the full dataset of the Nuuk station. The data coh
 the fact that non-null irradiance values are included within the sunrise (on the bottom) and sunset (on
 the top) dashed lines, and the color scale varies accordingly to the lines’ oscillation. Highest irradiance
 8
+==PAGE:14==
 2.1
 Measurement data
 is registered when the lines are the furthest away, namely in summer, when there’s the biggest time
@@ -412,6 +426,7 @@ overlaid, the plot for Danmarkshavn shows a remarkable distance between them, si
 latitudes, does not set from late April to mid August. [14]
 Figure 6: 2-D visualization of the raw data for Ittoqqortoormiit
 9
+==PAGE:15==
 2.1
 Measurement data
 Shading
@@ -439,11 +454,13 @@ in the Nuuk
 heatmap (2016)
 Figure 8: Satellite view of the Nuuk station
 10
+==PAGE:16==
 2.1
 Measurement data
 Figure 9: On-site view of the Nuuk station
 Figure 10: Effect of shading on an autumn day in Nuuk (2021)
 11
+==PAGE:17==
 2.1
 Measurement data
 Figure 11: Effect of shading on a spring day in Nuuk (2023)
@@ -462,6 +479,7 @@ station in 2022. In the first months of the year, until April, there is a likely
 instrumentation, as the measurements are around 4000 W/m2 for a prolonged time period. The two
 other peaks, at the beginning of May and at the end of August, are deleted as well.
 12
+==PAGE:18==
 2.1
 Measurement data
 Figure 12: GHI dataset for 2022 in Ittoqqortoormiit before and after quality control
@@ -478,6 +496,7 @@ section 2.3, was observed, limited to the Narsarsuaq and Ittoqqortoormiit statio
 was deliberately not increased to prevent the loss of valid and potentially valuable data.
 Another interesting behavior, observable for Ittoqqortoormiit and all the other locations interested by
 13
+==PAGE:19==
 2.1
 Measurement data
 the midnight sun phenomenon, is that during the summer months the radiation does not reach 0 W/m2
@@ -500,6 +519,7 @@ solar elevation values. A massive presence of blue dots in the θz>90° area wou
 occurred in the measurements at night or dusk. At the end of this process, the data was filtered deleting
 the values exceeding the ERL limits.
 14
+==PAGE:20==
 2.2
 Modeled data
 2.2
@@ -543,6 +563,7 @@ Data validation
 After collecting both measurement and reanalysis datasets, a comparison must be conducted to evaluate
 their consistency and to determine whether they provide a reliable foundation for subsequent analyses.
 15
+==PAGE:21==
 2.3
 Data validation
 Before starting with the validation process, it is important to highlight the decision to proceed with
@@ -580,6 +601,7 @@ After the alignment, the datasets were compared using a scatterplot for a visual
 by an RMSE calculation for a quantitative evaluation. The results are reported in Figure 14 for the
 Nuuk station (see Appendix E for all the plots) and in Table 3.
 16
+==PAGE:22==
 2.3
 Data validation
 Figure 14: Scatter plots for Nuuk
@@ -618,6 +640,7 @@ in the medium to low irradiance range, approximately between 0 and 400 W/m2. To 
 this observation, time series plots for selected spring and summer months were generated and visually
 compared across the three datasets.
 17
+==PAGE:23==
 2.3
 Data validation
 Figure 15: Comparison of the three datasets in Narsarsuaq for July 2021
@@ -666,6 +689,7 @@ reported in Table 5 below. Absolute biases are preferred over relative biases to
 positive and negative values, which can hide the actual size of the differences when calculating averages
 and standard deviations.
 18
+==PAGE:24==
 2.3
 Data validation
 Table 5: Comparison of DMI data against ERA5 and NASA: RMSE and absolute bias statistics.
@@ -718,6 +742,7 @@ its greater consistency across stations. While the average metrics of the two da
 the significantly lower variability in both RMSE and bias for ERA5 indicates more stable and reliable
 performance, which is crucial for accurate and reproducible modeling.
 19
+==PAGE:25==
 3
 PV energy potential
 The next step of the project is to use the chosen reanalysis dataset to model a photovoltaic plant to
@@ -759,6 +784,7 @@ azimuth, which refers to the cardinal direction the panel is facing. The azimuth
 explained in Section 3.1. Another required input is the solar zenith, which is the complementary angle
 to the solar elevation and depends only on the geographical coordinates of the panel.
 20
+==PAGE:26==
 3.1
 Modeling a PV plant
 The function also requires DNI, DHI, GHI (introduced in Section 2) and the extraterrestrial direct
@@ -783,6 +809,7 @@ N) is between 0.15 and 0.2 for both bifacial fixed-tilt and bifacial vertical pa
 0.17 is assumed for both categories. [16]
 Figure 16: Optimal GCR values depending on plant location and typology.[16]
 21
+==PAGE:27==
 3.1
 Modeling a PV plant
 Height (H) and pitch (P) values were calculated starting from the good practice of mounting non-tracking
@@ -833,6 +860,7 @@ Qeqertarsuatsiaat and Ilimanaq are coastal towns, meaning their and their surrou
 partially or fully covered by snow between September and May every year, while bare soil, which has
 an estimted albedo value of 0.2, emerges during the summer months. This discontinuity of soil type
 22
+==PAGE:28==
 3.2
 Electricity consumption data description
 makes choosing one single albedo factor for the whole year an unacceptable approximation: it is then
@@ -934,6 +962,7 @@ The consumption data [15] is provided into two Excel files, in kWh and with an h
 The Qeqertarsuatsiaat dataset includes 5952 timestamps, out of the 8760 yearly hours of a non-leap
 year as 2023, while the Ilimanaq datasets is composed by 8395 single data points. This last value was
 23
+==PAGE:29==
 3.2
 Electricity consumption data description
 particularly noticeable because it is exactly 365 timestamps away from the total of 8760: a further
@@ -1014,6 +1043,7 @@ Total
 591.6
 937.6
 24
+==PAGE:30==
 3.3
 Simulate PV production
 Because of the many gaps present for Qeqertarsuatsiaat, the dataset was considered unreliable even
@@ -1058,6 +1088,7 @@ which can reduce solar irradiance and, consequently, electricity generation. Stu
 this effect, estimating annual generation losses across different climatic conditions, typically categorized
 as severe, moderate, or mild based on ambient temperatures and annual snowfall [22].
 25
+==PAGE:31==
 3.3
 Simulate PV production
 Although winter temperatures in Ilimanaq are extreme, the location experiences relatively mild snowfall.
@@ -1073,6 +1104,7 @@ already minimal or negligible. Consequently, the impact of snow accumulation on 
 is marginal. For this reason, snow-related energy losses have been considered negligible in the subsequent
 simulation steps.
 26
+==PAGE:32==
 4
 Results
 Simulations were run following the structure described in Section 3.3, and below are reported the results,
@@ -1116,6 +1148,7 @@ tested orientations, and Figure 17 also reports the total yearly energy consumpt
 amounts to 591.6 MWh, as a dashed black horizontal line.
 For all the tested azimuths, the displaced energy value doubles with the initial doubling of the
 27
+==PAGE:33==
 4.1
 Bifacial panels, tilted by 60°
 photovoltaic capacity from 100 to 200 kW, and the corresponding 0% of curtailed energy percentage
@@ -1161,6 +1194,7 @@ consumption, also growing with the trend that’s been already detected for disp
 For this case, curtailment starts when the solar share is approximately 46% for South-facing modules,
 and approximately 42% for the other two azimuth angles.
 28
+==PAGE:34==
 4.1
 Bifacial panels, tilted by 60°
 In this scenario, there’s no curtailed energy for the 100 and 200 kW cases, meaning that all the
@@ -1190,6 +1224,7 @@ This upper limit allocates so distant from the 100% maximum value because of the
 filling the consumption/production gap in winter times, when the solar radiation is almost constantly
 equal to zero, hence creating an insurmountable obstacle to the achievement of higher values.
 29
+==PAGE:35==
 4.1
 Bifacial panels, tilted by 60°
 Figure 19: Monthly comparison of PV energy production and the Ilimanaq energy consumption.
@@ -1197,6 +1232,7 @@ Bifacial panels, tilt = 60°, azimuth = 180°
 Figure 20: Monthly comparison of PV energy production and the Ilimanaq energy consumption.
 Bifacial panels, tilt = 60°, azimuth = 90°
 30
+==PAGE:36==
 4.2
 Vertical bifacial panels
 Figure 21: Monthly comparison of PV energy production and the Ilimanaq energy consumption.
@@ -1208,6 +1244,7 @@ The following, and last, analyzed set of bifacial panels are the vertical.
 Figure 22: Growth trend of the displaced energy in Ilimanaq with increasing PV capacity.
 Bifacial panels, vertical
 31
+==PAGE:37==
 4.2
 Vertical bifacial panels
 Table 14: Annual displaced energy [MWh] for different system sizes and orientations.
@@ -1251,6 +1288,7 @@ azimuth angle loses relevance with such high tilt values because of of the sun�
 high proportion of diffuse radiation, and the balanced exposure to reflected light across all directions.
 [23]
 32
+==PAGE:38==
 4.2
 Vertical bifacial panels
 Figure 23: Growth trend of curtailed energy and solar contribution in Ilimanaq with increasing PV
@@ -1294,6 +1332,7 @@ Combining this insight with the relatively lower output of South-facing systems 
 months—when consumption is consistently exceeded for all orientations—results in a lower overall
 curtailed energy percentage for the South-facing configuration across all capacities.
 33
+==PAGE:39==
 4.2
 Vertical bifacial panels
 The trend in solar contribution mirrors the pattern discussed earlier in Section 4.1, with an initial
@@ -1305,6 +1344,7 @@ Bifacial panels, vertical, azimuth = 180°
 Figure 25: Monthly comparison of PV energy production and the Ilimanaq energy consumption.
 Bifacial panels, vertical, azimuth = 90°
 34
+==PAGE:40==
 4.3
 Monofacial panels
 Figure 26: Monthly comparison of PV energy production and the Ilimanaq energy consumption.
@@ -1317,6 +1357,7 @@ systems.
 Figure 27: Growth trend of the displaced energy in Ilimanaq with increasing PV capacity.
 Monofacial panels, tilt = 40°
 35
+==PAGE:41==
 4.3
 Monofacial panels
 Table 16: Annual displaced energy [MWh] for different system sizes and orientations.
@@ -1379,6 +1420,7 @@ West
 15.8
 Figure 28 and Table 17 confirm the observations discussed above: as expected, the curtailed energy
 36
+==PAGE:42==
 4.3
 Monofacial panels
 percentages are lower for all three monofacial scenarios compared to the previously analyzed bifacial
@@ -1400,6 +1442,7 @@ overall production and curtailed energy shares, which makes the smoothing effect
 Figure 29: Monthly comparison of PV energy production and the Ilimanaq energy consumption.
 Monofacial panels, tilt = 40°, azimuth = 180°
 37
+==PAGE:43==
 4.3
 Monofacial panels
 Figure 30: Monthly comparison of PV energy production and the Ilimanaq energy consumption.
@@ -1407,6 +1450,7 @@ Monofacial panels, tilt = 40°, azimuth = 90°
 Figure 31: Monthly comparison of PV energy production and the Ilimanaq energy consumption.
 Monofacial panels, tilt = 40°, azimuth = 270°
 38
+==PAGE:44==
 4.4
 Emissions reduction
 4.4
@@ -1469,6 +1513,7 @@ West
 308.3
 322.9
 39
+==PAGE:45==
 4.4
 Emissions reduction
 Table 19: Saved CO2 [tons] by System Size [kW] and Orientation
@@ -1549,6 +1594,7 @@ particular, is advisable to choose them instead of tilted panels for systems fac
 the highest emissions savings, although by just a few tons. Another solution regarding tilted panels
 is the possibility to combine East and West facing panels: a common alternative to the more classic
 40
+==PAGE:46==
 4.4
 Emissions reduction
 single-standing panel consists into combining modules facing diametrically opposite directions into
@@ -1592,6 +1638,7 @@ of surplus electricity to power electric boilers.
 Rather than being curtailed, the excess generation could be redirected to heat domestic water, offering
 a more sustainable alternative to diesel-based heating. This approach could significantly contribute to
 41
+==PAGE:47==
 4.4
 Emissions reduction
 reducing household-related emissions on the island.
@@ -1606,6 +1653,7 @@ The success of such a transition depends on raising awareness of the environment
 fits, improving access to suitable electric heating technologies, and ensuring that energy infrastructure
 can support this change in demand patterns.
 42
+==PAGE:48==
 5
 Conclusion
 The objective of this thesis was to study the impact that a large-scale implementation of solar power
@@ -1648,6 +1696,7 @@ the monthly consumption values being lower than the AC output of the plant in th
 two other orientations when it comes to 60° tilted bifacial solutions. The percentages are between 43
 and 43.5% for all the three azimuths in the vertical case. This behavior becomes more influent with
 43
+==PAGE:49==
 capacity increase, as testified by the deceleration faced by the growth speed of the displaced energy
 values, whose curve tends, in both cases, to flatten reaching approximately 430 MWh/y for a capacity
 of 500 kW, in a South-facing scenario, and approximately 400 MWh/y in East/West facing scenarios.
@@ -1692,6 +1741,7 @@ which make it less affected by curtailments and allows the final displaced energ
 partially bridge the gap with its alternatives for a South facing 500 kW plant - 419 MWh/y against
 427 MWh/y, curtailed shares of 26% against an average of 35% and 338 against 345 tons of saved
 44
+==PAGE:50==
 carbon emissions.
 These answers confirm the good potential of a technology that is however necessarily limited in term of
 spacial availability, in a place like Greenland which is the least densely populated territory on Earth.
@@ -1734,6 +1784,7 @@ each location and for the different solar resource availability between the sout
 latitudes of what’s the biggest island in the world. Taking also into consideration the different emission
 factors that Nukissiorfiit provide on their annual report [10], and that will maybe be updated in the
 45
+==PAGE:51==
 next publications, it can be absolutely possible to replicate what done in this study on a larger scale
 and make more accurate estimations of the emissions reduction impact for the whole Greenland.
 The continuation of studies related to storage technologies and their integration into remote microgrids
@@ -1745,6 +1796,7 @@ the accuracy of PV system design and emissions impact evaluation. Altogether, th
 could pave the way for a more sustainable, decentralized energy transition across Greenland, tailored to
 the specific needs and conditions of each settlement.
 46
+==PAGE:52==
 References
 References
 [1] World Meterological Organisation, “Global temperature is likely to exceed 1.5°c above pre-industrial
@@ -1782,6 +1834,7 @@ Accessed: 2025-04-27.
 [15] C. E. Hartvig and M. Grønbek Bager, “Energilagring til Ilimanaq,” Master’s thesis, MARTEC
 (Maritime and Polytechnic University College) - in collaboration with Nukissiorfiit, 2023.
 47
+==PAGE:53==
 References
 [16] E. M. Tonita, A. C. Russell, C. E. Valdivia, and K. Hinzer, “Optimal ground coverage ratios
 for tracked, fixed-tilt, and vertical photovoltaic systems for latitudes up to 75°n,” Solar Energy,
@@ -1812,11 +1865,13 @@ Journal of Energy Engineering and Thermodynamics, vol. 4, Oct–Nov 2024.
 a sustainable energy transition in northern greenland: Qaanaaq case study,” Sustainable Energy
 Technologies and Assessments, vol. 54, p. 102774, 2022. Published under CC BY license.
 48
+==PAGE:54==
 Appendix
 A
 Hydropower plants
 Figure 32: Map of the hydropower plants in Greenland
 I
+==PAGE:55==
 B
 Example of time step distribution for the Nuuk station
 Figure 33: Time steps distribution for the Nuuk DMI station
@@ -1824,35 +1879,45 @@ C
 2-D visualizations
 Figure 34: 2-D visualization of the raw data for Aasiaat
 II
+==PAGE:56==
 Figure 35: 2-D visualization of the raw data for Danmarkshavn
 Figure 36: 2-D visualization of the raw data for Narsarsuaq
 Figure 37: 2-D visualization of the raw data for Tasiilaq
 III
+==PAGE:57==
 D
 Additional data filtering
 Figure 38: The three filtering steps shown for the month of January for the Ittoqqortoormiit station.
 IV
+==PAGE:58==
 E
 Scatter plots
 Figure 39: Scatter plot for Aasiaat
 V
+==PAGE:59==
 Figure 40: Scatter plot for Danmarkshavn
 VI
+==PAGE:60==
 Figure 41: Scatter plot for Ittoqqortoormiit
 VII
+==PAGE:61==
 Figure 42: Scatter plot for Narsarsuaq
 VIII
+==PAGE:62==
 Figure 43: Scatter plot for Tasiilaq
 IX
+==PAGE:63==
 F
 Location of the settlements of interest
 Figure 44: Location of the settlements of interest
 X
+==PAGE:64==
 G
 Energy consumption in Ilimanaq and Qeqerarsuatsiaat
 Figure 45: Monthly energy consumption in Ilimanaq
 Figure 46: Monthly energy consumption in Qeqerarsuatsiaat
 XI
+==PAGE:65==
 H
 PV Production
 H.1
@@ -1862,6 +1927,7 @@ Tilt = 60°, South facing
 Figure 48: PV production in Ilimanaq in 2023, bifacial 100 kW plant
 Tilt = 60°, East facing
 XII
+==PAGE:66==
 H.2
 Bifacial panels, 45° tilt
 Figure 49: PV production in Ilimanaq in 2023, bifacial 100 kW plant
@@ -1874,6 +1940,7 @@ tilted case.
 It is, however, still reported for the interesting behavior retraceable in the curtailed energy at 200 kW,
 whose analogies and differences with the 60° tilt case are reported.
 XIII
+==PAGE:67==
 H.2
 Bifacial panels, 45° tilt
 Figure 50: Growth trend of the displaced energy in Ilimanaq with increasing PV capacity.
@@ -1910,6 +1977,7 @@ traceable for 45° tilted bifacial panels: an initial linear increase when the c
 previous section.
 The energy production plots are reported in Figures 52, 53 and 54 below.
 XIV
+==PAGE:68==
 H.2
 Bifacial panels, 45° tilt
 Figure 51: Growth trend of the curtailed energy in Ilimanaq with increasing PV capacity.
@@ -1947,6 +2015,7 @@ The gap between West/East and South oriented panels is in this case lower than i
 2% difference): this small change is ascribable to the fact that the higher tilt of the previous scenario
 makes the panels more fit to be hit by solar radiation when the sun is low in the horizon.
 XV
+==PAGE:69==
 H.2
 Bifacial panels, 45° tilt
 Figure 52: PV production in Ilimanaq in 2023, bifacial 100 kW plant
@@ -1954,6 +2023,7 @@ Tilt = 45°, South facing
 Figure 53: PV production in Ilimanaq in 2023, bifacial 100 kW plant
 Tilt = 45°, East facing
 XVI
+==PAGE:70==
 H.3
 Vertical bifacial panels
 Figure 54: PV production in Ilimanaq in 2023, bifacial 100 kW plant
@@ -1963,6 +2033,7 @@ Vertical bifacial panels
 Figure 55: PV production in Ilimanaq in 2023, bifacial 100 kW plant
 Vertical, South facing
 XVII
+==PAGE:71==
 H.3
 Vertical bifacial panels
 Figure 56: PV production in Ilimanaq in 2023, bifacial 100 kW plant
@@ -1970,6 +2041,7 @@ Vertical, East facing
 Figure 57: PV production in Ilimanaq in 2023, bifacial 100 kW plant
 Vertical, West facing
 XVIII
+==PAGE:72==
 H.4
 Monofacial panels, 40° tilt
 H.4
@@ -1979,6 +2051,7 @@ Tilt = 40°, South facing
 Figure 59: PV production in Ilimanaq in 2023, monofacial 100 kW plant
 Tilt = 40°, East facing
 XIX
+==PAGE:73==
 H.4
 Monofacial panels, 40° tilt
 Figure 60: PV production in Ilimanaq in 2023, monofacial 100 kW plant

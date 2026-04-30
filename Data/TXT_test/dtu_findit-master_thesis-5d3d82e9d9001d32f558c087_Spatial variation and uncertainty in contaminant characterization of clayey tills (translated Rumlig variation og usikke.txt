@@ -1,3 +1,4 @@
+==PAGE:1==
 M.Sc. Thesis
 Master of Science in Engineering
 Spatial variation and uncertainty of contaminant
@@ -5,6 +6,7 @@ characterization in clayey tills
 A case study at Industrivej 2
 Charlotte Vad Knudsen
 Kongens Lyngby 2019
+==PAGE:2==
 Charlotte Vad Knudsen
 Student number: s172974
 Supervisors:
@@ -21,6 +23,7 @@ Phone +45 4525 1600
 info@env.dtu.dk
 www.env.dtu.dk
 Title page figure computed using Kartotrak
+==PAGE:3==
 Summary
 The purpose of this study was to construct a thorough characterization of contamina-
 tion in clayey tills using geostatistical modelling. Traditional methods of contaminant
@@ -54,7 +57,9 @@ improve the certainty of the estimate in this study as expected. Different aspec
 application was appraised and a future sampling strategy was proposed.
 Finally, the overall performance of the geostatistical method and utilized software was
 evaluated by assessing, inter alia, the reproducibility, sensitive parameters and features.
+==PAGE:4==
 ii
+==PAGE:5==
 Sammenfatning
 Formålet med dette studie var at konstruere en grundig og detaljeret karakterisering
 a forureningsmasse i moræneler ved brug af geostatistisk modellering.
@@ -91,7 +96,9 @@ foreslået.
 Afsluttende blev den samlede ydeevne af den geostatistiske metode og brugervenlighe-
 den af det anvendte software evalueret ved at vurdere blandt andet reproducerbarhed,
 følsomme parametre og funktioner.
+==PAGE:6==
 iv
+==PAGE:7==
 Preface
 The presented study is a Master’s thesis within the discipline of environmental engi-
 neering at the Technical University of Denmark. The work has been carried out in the
@@ -112,6 +119,7 @@ Møberg for enjoyable and supportive office hours. To Simon, thank you for the l
 support.
 Kongens Lyngby, June 27, 2019
 Charlotte Vad Knudsen
+==PAGE:8==
 Contents
 Summary
 i
@@ -211,6 +219,7 @@ Variography in Kartotrak
 4.5.2
 Data inspection . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 27
+==PAGE:9==
 Contents
 vii
 4.5.3
@@ -333,6 +342,7 @@ B Overview of input data
 84
 C Correlation: Soil samples x PID
 85
+==PAGE:10==
 viii
 Contents
 C.1 Data correction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -349,6 +359,7 @@ G Certain - uncertain volumes
 113
 H Estimate robustness analysis
 117
+==PAGE:11==
 List of Figures
 2.1
 Map showing the location of Industrivej 2, Lynge in Vassingrød Industrial
@@ -406,6 +417,7 @@ mary) and Z2 (secondary)). The Z2-variable indirectly contains information
 about the Z1-variable, and the kriging estimate from previously, can now be
 supported by information of both the Z1 and Z2 variable . . . . . . . . . . .
 19
+==PAGE:12==
 x
 List of Figures
 4.1
@@ -472,6 +484,7 @@ arrow indicate the conservative global estimate on the remediation risk curve
 tive global estimate from the monovariate model with a conf. level of 55%,
 whereas applying MIP leads to a higher conf. level (approx. 85%) . . . . . .
 48
+==PAGE:13==
 List of Figures
 xi
 5.4
@@ -540,6 +553,7 @@ A.6 Static parameters utilized for the calculations
 81
 A.7 List of different assumptions made in order to achieve the mass calculations
 81
+==PAGE:14==
 xii
 List of Figures
 C.1 The overall linearity observed, confirms the TCE and PID correlation and
@@ -615,6 +629,7 @@ Kriging (a), Probability (b), Simulation (c) and Variance indicator (d) at
 F.4
 Experimental variograms of the multivariate approach (1)
 . . . . . . . . . . 109
+==PAGE:15==
 List of Figures
 xiii
 F.5
@@ -632,7 +647,9 @@ dence level of 68% filtered to indicate the certain and uncertain volumes
 G.3 Visualization of the bivariate approach using MIP at the obtainable confi-
 dence level of 59% filtered to indicate the certain and uncertain volumes
 . . 116
+==PAGE:16==
 xiv
+==PAGE:17==
 List of Tables
 4.1
 Fitting parameters for the bivariate variogram of soil samples and MIP . . .
@@ -675,7 +692,9 @@ H.1 Estimates from four different variogram fittings of the monovariate approach
 H.2 Estimates from four different variogram fittings of the bivariate using MIP
 approach . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118
 H.3 Sample standard deviation of all four fits . . . . . . . . . . . . . . . . . . . . 119
+==PAGE:18==
 xvi
+==PAGE:19==
 CHAPTER 1
 Introduction
 1.1
@@ -715,6 +734,7 @@ thus heterogeneities as the ones mentioned, occur frequently in the Danish subsu
 Remediation of sites with complex geology and contamination can be especially dif-
 ficult and costly. Hence extended knowledge about the contaminated area, the contam-
 inant source, mass and spatial distribution is required in order to accomplish the goals
+==PAGE:20==
 2
 1 Introduction
 of risk assessment and remediation such as the ones defined by the Capital Region of
@@ -761,6 +781,7 @@ The intensity of environmental investigations and sampling campaigns at differen
 contaminated sites can vary, but common to the majority of the sites, is that the avail-
 able quantitative data, such as soil samples, are sparse. However, at many of these
 sites, a great amount of semi-quantitative data is available. The semi-quantitative data
+==PAGE:21==
 1.2 Aim
 3
 can consist of screening measures, as for example PID (Photoionization Detector) and
@@ -803,7 +824,9 @@ knowledge of the contamination and subsequently assess the outcome in a compar-
 ative analysis.
 • Assess and evaluate the performance of the geostatistical method and application
 of the Kartotrak software.
+==PAGE:22==
 4
+==PAGE:23==
 CHAPTER 2
 Case study: Industrivej 2
 2.1
@@ -826,6 +849,7 @@ has been operating at the site since 1962 with production and processing of cust
 and advanced foam materials for both the public and private sector (Arbi-skum A/S,
 2019). The storage and factory buildings at the site was constructed in 1965 after two
 fire incidents burned down the original buildings.
+==PAGE:24==
 6
 2 Case study: Industrivej 2
 Figure 2.1: Map showing the location of Industrivej 2, Lynge in Vassingrød Industrial
@@ -849,6 +873,7 @@ at the northern property line (Nordskel) (Fig. 2.2). The spatial distribution of
 indicates contamination by numerous smaller spills as opposed to one or few greater spills.
 Furthermore, the three hotspots are considered as one coherent source area (NIRAS,
 2018a).
+==PAGE:25==
 2.2 Site description
 7
 Figure 2.2: Extent of approximated TCE source area at Industrivej 2. The delineation
@@ -869,6 +894,7 @@ Pre-Quarternary limestone. The glacial sediments consist of a sequence of 30-35 
 glaciofluvial deposits of sand and gravel overlain by 10-15 meter clayey till (Fig. 2.3).
 The deeper groundwater aquifer and drinking water abstraction of the area is associated
 with the glaciofluvial deposit, which is in hydraulic contact with the limestone. The flow
+==PAGE:26==
 8
 2 Case study: Industrivej 2
 direction in the deep aquifer is south / south-southwest (NIRAS, 2018a).
@@ -890,6 +916,7 @@ smaller sand bodies are referred to as a shallow aquifer acting as high permeabl
 duits where groundwater possibly will flow in different directions (overall southwestern
 direction)(NIRAS, 2018a). The complete inter-connectivity of the sand bodies require
 complex 3D profiles (Kessler et al., 2013, 2012).
+==PAGE:27==
 2.3 Contaminant mass estimation
 9
 2.3
@@ -937,6 +964,7 @@ A general overview of calculations for the specific zones, sub-zones as well as 
 rameters is shown in Appendix A. For this study all calculations have been made with
 an assumed bulk density of 1,800 kg/m3 based on the average of bulk density used in
 the mass estimate calculations of NIRAS.
+==PAGE:28==
 10
 2 Case study: Industrivej 2
 2.3.3
@@ -965,6 +993,7 @@ ited/ negligible sensitivity to the total calculation.
 Based on these sensitivity analyses the total mass is estimated to be within 7-16 kg.
 Despite defining a mass interval based on the sensitivity of the uncertainties, the uncer-
 tainty has not been statistically quantified.
+==PAGE:29==
 CHAPTER 3
 Geostatistics
 3.1
@@ -1005,6 +1034,7 @@ Where x is a vector of spatial coordinates with 3-dimensional components (x, y, 
 of the variable under consideration located at x, h is a lag vector representing the separation distance
 between two spatial location, N(h) is the total number of paired data located with a distance of h and
 z(x + h) denoting the lagged version of the considered variable (variable at distance h from x).
+==PAGE:30==
 12
 3 Geostatistics
 Plotting the variance against the lag, enables for visualizing the calculated dissimi-
@@ -1034,6 +1064,7 @@ for example means, that the point peaking in Figure 3.2 indicates a variance of 
 proximately 1.3 which has been calculated for 247 pairs in the lag multiple of approx.
 30 meters. The variogram illustrates how the semi-variance increase with increasing
 distance between data points.
+==PAGE:31==
 3.2 Variography
 13
 (a) Seven random sampling points, with the vari-
@@ -1052,6 +1083,7 @@ the lag (2A), four additional pairs are identified (bold red lines) for z(xi).
 all possible pairs for the two search radii. For a given lag and its multiples,
 the variogram is calculated based on the identified pairs for each search
 round of increasing lag.
+==PAGE:32==
 14
 3 Geostatistics
 Figure 3.2: Example of an experimental variogram with each point representing the
@@ -1112,6 +1144,7 @@ C0 + C
 |h|/a ≥1
 (3.4)
 where C denotes the sill, C0 the nugget, a the range and h the lag (see Fig. 3.4).
+==PAGE:33==
 3.2 Variography
 15
 Figure 3.3: Common variogram models. The model is chosen based on the trend of
@@ -1130,6 +1163,7 @@ important, as this is related to the continuity of the variable (Isaaks and Sriv
 and indicates erratic short scale behaviour. The nugget effect can also be caused by
 factors such as micro-structures, measurement errors or errors in location (Armstrong,
 1998).
+==PAGE:34==
 16
 3 Geostatistics
 Figure 3.4: Terminology of the variogram. The variogram consists of three compo-
@@ -1143,6 +1177,7 @@ points (Fig. 3.5). Kriging aims to have the estimation error equal to zero and t
 the error variance. There are different types of kriging, however only ordinary kriging
 will be addressed in this study, as this is one of the commonly used types and is used
 by Kartotrak.
+==PAGE:35==
 3.3 Kriging
 17
 Figure 3.5: Kriging estimates values of a given variable in the unsampled area (Z∗
@@ -1197,6 +1232,7 @@ In this way, repetitive densely located data points will share the weight and be
 equally weighted. Furthermore, a point located far from the considered unknown variable
 will weigh less, than one closely located. The parameter µ is the Lagrange multiplier
 associated with the weight constrain (Abzalov, 2016).
+==PAGE:36==
 18
 3 Geostatistics
 Ordinary kriging is an exact interpolator, in the sense that when the considered
@@ -1294,6 +1330,7 @@ i
 (3.9)
 The cross-correlation between the variables is especially useful if data containing
 the primary is scarce, as the cross-correlation and spatial information of the secondary
+==PAGE:37==
 3.4 Stochastic simulation
 19
 variables is utilized to estimate the primary variable with more precision as exemplified
@@ -1310,7 +1347,9 @@ a number of realizations with equal probability while complying with the geostat
 characteristics of the available data and variogram model (Abzalov, 2016). Fluctuations
 and dissimilarities between each simulated realization is used to quantify the uncertainty
 of the variogram model, thus applying a level of confidence to the estimate.
+==PAGE:38==
 20
+==PAGE:39==
 CHAPTER 4
 Model set-up
 4.1
@@ -1343,6 +1382,7 @@ and the zone was narrowed. The narrowed zone is illustrated in Figure 4.1. It wa
 outlined to cover the most sampling dense area, as a greater number of data points
 supporting the geostatistical modelling result in a more confident mass estimate. The
 limit and extent of the zone corresponded to the zone defined by NIRAS (Fig. 2.2).
+==PAGE:40==
 22
 4 Model set-up
 BA13
@@ -1421,6 +1461,7 @@ the surface interpolation allows the approximation of the geologic layers, and t
 of interest is vertically confined between ground surface and clayey till/sandy aquifer-
 boundary beneath, resulting in a zone volume of 21,284 m3 and a volume of the whole
 site of Industrivej 2 of 115,746 m3.
+==PAGE:41==
 4.3 Input data
 23
 4.3
@@ -1456,6 +1497,7 @@ Following semi-quantitative data was utilized for the geostatistical analysis:
 PID: From borehole BA1-8, BA11-24, B201-2, F01-02 and F05
 MIP: From MiHpt-probing mihpt01-06, mihpt09-15, mihpt18-20, LL-mihpt01 and
 LL-mihpt03
+==PAGE:42==
 24
 4 Model set-up
 4.3.2
@@ -1500,6 +1542,7 @@ Per Loll from Dansk Miljørådgivning A/S (DMR)(see Appendix C.2). For PID measu
 ments, DMR uses a MiniRae3000 instrument similar to the one used by NIRAS. The
 PID and soil sample correlation of data from NIRAS showed a similar trend as the two
 examples acquired from Per Loll. Furthermore, the correction was chosen to be based
+==PAGE:43==
 4.3 Input data
 25
 on the correlation in clay, due to data being slightly more inconsistent and scarce in the
@@ -1516,6 +1559,7 @@ uploaded to Kartotrak.
 Figure 4.2: Two distinctly different linear trends are observed from Geo (blue) and
 NIRAS (red). The PID(Geo) data was corrected (grey) to imitate PID
 data from NIRAS.
+==PAGE:44==
 26
 4 Model set-up
 4.3.3
@@ -1559,6 +1603,7 @@ variogram analysis in Kartotrak, whereas the remaining averaged MIP probings wil
 included when simulating the model.
 A total amount of 18 MIP probings totalling 5,213 MIP measurements were uploaded
 to Kartotrak.
+==PAGE:45==
 4.4 Data regularization
 27
 4.4
@@ -1601,6 +1646,7 @@ in the following chapter.
 As a part of the variogram analysis, the variogram clouds for both soil samples and
 MIP were inspected. The variogram cloud is the basis calculation of the experimental
 variogram and represents all the pairs of samples of the lags which contribute to the
+==PAGE:46==
 28
 4 Model set-up
 calculation of each point of the experimental variogram. When inspecting the variogram
@@ -1620,6 +1666,7 @@ tion plot
 (d) A higher correlation is achieved by masking
 Figure 4.3: Masking pairs of relatively high semivariance (a) originating from one data
 point (b) enables higher correlation from ρ=0.50 to 0.54 (c-d).
+==PAGE:47==
 4.5 Variography
 29
 4.5.3
@@ -1661,6 +1708,7 @@ direction of approx. 20-25 m and approx. 2-3 m in the vertical direction, simila
 monovariate simple variograms. The vertical variograms were highly robust, reproducing
 identical spatial continuity at different lag values, whereas the horizontal variograms were
 more sensitive to changes in lag, hence not exhibiting the same robustness.
+==PAGE:48==
 30
 4 Model set-up
 (a) Horizontal: TCE
@@ -1671,6 +1719,7 @@ more sensitive to changes in lag, hence not exhibiting the same robustness.
 (f) Vertical cross variogram
 Figure 4.4: Fitted experimental variograms for the bivariate approach with soil sam-
 ples and MIP.
+==PAGE:49==
 4.6 3D mapping parameters
 31
 Table 4.1: Fitting parameters for the bivariate variogram of soil samples and MIP.
@@ -1729,6 +1778,7 @@ In order to compare the results from the different simulation approaches, the mo
 parameters were the same for all simulation. The model parameters were determined
 based on the presimulations of the multivariate approach as it comprised the largest
 total number of data points, and thereby the longest expected simulation time.
+==PAGE:50==
 32
 4 Model set-up
 4.6.2
@@ -1771,6 +1821,7 @@ Carlo realizations for the model simulation. Each realization of the simulation
 complies with the structure of the fitted variogram and are equally probable. The
 difference between each realization is utilized in the geostatistical calculation of
 contaminant mass and volume estimates.
+==PAGE:51==
 4.6 3D mapping parameters
 33
 • The probability map (Fig.
@@ -1796,6 +1847,7 @@ to simulate the full zone volume, however the reliability of the resulting estim
 jeopardized. Thus, the models were simulated using the parameters defined previously,
 in order to get the most reliable estimate as possible however with the result of smaller
 volumes.
+==PAGE:52==
 34
 4 Model set-up
 (a) Kriging map
@@ -1805,6 +1857,7 @@ volumes.
 Figure 4.5: Four output maps from the monovariate modelling with soil sample data:
 Kriging (a), Variance Indicator (b), Simulation (c) and Probability (d) at
 +35 m DVR90 for the source zone defined by NIRAS.
+==PAGE:53==
 4.6 3D mapping parameters
 35
 (a) Kriging map
@@ -1816,6 +1869,7 @@ Indicator (b), Simulation (c) and Probability (d) at +35 m DVR90 for
 the source zone defined by NIRAS. Some numerical artifact are detected
 as smearing or wax on/wax off in (b) and (d). NB: unsimulated areas
 indicated by the background protruding into the zone from N and SE.
+==PAGE:54==
 36
 4 Model set-up
 4.7
@@ -1841,6 +1895,7 @@ there being 12 m3 of contaminated soil.
 Figure 4.7: The frequency of computed volumes for each realization is expressed by
 a risk curve. The risk curve indicates the risk level (or inverse; the confi-
 dence) of different computed volumes From Geovariances (2018): Fig. 23.1-1.
+==PAGE:55==
 4.7 Geostatistical contaminant volume & mass estimation
 37
 The in situ mass is computed by calculating the simulated values which are greater
@@ -1879,6 +1934,7 @@ umes with the kriging values. The kriging values are the 50th percentile concent
 for each grid node, hence the statistically most likely, however not necessarily the correct
 value, thereby introducing a level of bias. Thus, this quantity will not be reported in
 this study.
+==PAGE:56==
 38
 4 Model set-up
 Figure 4.8: Remediation volume is based on the location of each grid node as well as
@@ -1890,6 +1946,7 @@ realizations of the total 100, whereas the lower grid node only exceeded in
 Since the calculations of remediation volume incorporates both a threshold and spe-
 cific location, where this threshold has been exceeded, it is possible to visualize the
 volume within the zone of interest.
+==PAGE:57==
 CHAPTER 5
 Results
 5.1
@@ -1911,6 +1968,7 @@ imitate actual quality criteria. The real quality criterion in Denmark for TCE i
 exceeded this value and had generally relatively low concentrations of TCE. Remediation
 criteria are usually lower, in the cases where groundwater is at risk of contamination,
 hence the two chosen threshold values.
+==PAGE:58==
 40
 5 Results
 Table 5.1: Global estimates for TCE mass and contaminated soil volume for three
@@ -2057,6 +2115,7 @@ of the total estimated TCE mass is located in only 17% (13-26%) of the contamina
 soil. Thus, choosing an acceptable threshold to report and work with is essential, since
 this means that by focusing on the higher threshold, a large part of the total mass
 present in a relatively small soil volume.
+==PAGE:59==
 5.1 Contaminant volume & mass estimation
 41
 5.1.2
@@ -2100,6 +2159,7 @@ Thus the MIP data suggest that the higher concentration threshold yields a large
 mass of TCE, located in a contaminated soil volume, only slightly larger than the volume
 suggested by the monovariate approach, while less mass and soil volume is present for
 the lower threshold.
+==PAGE:60==
 42
 5 Results
 The narrowing of the 90% confidence is more evident when applying MIP opposed to
@@ -2137,6 +2197,7 @@ a larger volume in order to assure removing unacceptable levels of contamination
 a given degree of certainty. This quantity is calculated as the remediation volume by
 Kartotrak. The remediation volume indicates the volume of soil to be remediated to
 ensure removing potentially contaminated soil with a certain confidence.
+==PAGE:61==
 5.2 Remediation volumes
 43
 5.2.1
@@ -2247,6 +2308,7 @@ Soil sample analyses
 14,274
 14,734
 14,924
+==PAGE:62==
 44
 5 Results
 Figure 5.1: Remediation volumes for threshold 1 mg/kg(dm) (⃝) and 0.01 mg/kg(dm)
@@ -2277,6 +2339,7 @@ mediate the soil with a 90% confidence level, approx. 100% of the simulated volu
 dence level is to be met. Hence, the remediation volumes in Table 5.2 cannot directly
 be compared as they are relative to the individual approach. Despite not simulating
 the full zone volume, the simulations of the individual approaches are considered reli-
+==PAGE:63==
 5.2 Remediation volumes
 45
 able given the available data, oppose to estimates resulting from extending the spatial
@@ -2321,6 +2384,7 @@ risk of leaving behind approx. 1,800 m3 of potentially contaminated soil (false 
 error).
 By conducting a volume analysis for both ends of the 90% confidence interval, you are
 able to find the obtainable confidence levels for remediating the contaminated volumes
+==PAGE:64==
 46
 5 Results
 allowed by the models.
@@ -2339,6 +2403,7 @@ confidence level (60% risk of leaving behind contaminated soil) and the 95th per
 of leaving behind contaminated soil).
 The remaining data sets and thresholds were
 examined accordingly. The identified confidence levels are listed in Table 5.3.
+==PAGE:65==
 5.2 Remediation volumes
 47
 Table 5.3: Obtainable confidence levels relative to the four different models at three
@@ -2397,6 +2462,7 @@ tivariate approaches. However, accepting simulation volumes as reliable, the inc
 of confidence level observed for the bivariate and multivariate approaches do qualita-
 tively reflect, that an overall improved and stronger prediction certainty is achieved by
 applying semi-quantitative data.
+==PAGE:66==
 48
 5 Results
 Figure 5.3: Risk curves of the bivariate MIP model for conc. >0.01 mg/kg(dm). Blue
@@ -2404,6 +2470,7 @@ arrow indicate the conservative global estimate on the remediation risk
 curve (conf. level of approx 56%). The circled value corresponds to the
 conservative global estimate from the monovariate model with a conf. level
 of 55%, whereas applying MIP leads to a higher conf. level (approx. 85%).
+==PAGE:67==
 5.3 Graphical visualization
 49
 5.3
@@ -2434,6 +2501,7 @@ the obtainable confidence levels, is that the volume might not be feasible or re
 to remediate. This especially concerns both confidence levels for the >0.01 mg/kg(dm)
 threshold (41% - 56%) as well as the high confidence level for the >1.00 mg/kg(dm)
 threshold (81%).
+==PAGE:68==
 50
 5 Results
 Figure 5.4: Visualization of the remediation volumes corresponding to the obtainable
@@ -2441,6 +2509,7 @@ confidence levels (Table 5.3) based on a volume analysis of the bivariate
 approach using PID for the >0.01 mg/kg(dm) threshold at plan view
 (left) and from south (right). Discs illustrates samples: TCE (few, wider)
 and PID (many, small/narrow).
+==PAGE:69==
 5.3 Graphical visualization
 51
 Figure 5.5: Visualization of the remediation volumes corresponding to the obtainable
@@ -2462,6 +2531,7 @@ confidence level (81%), the volume, though smaller than before, is observed to e
 out of the zone in a similar manner as for the low threshold. However, the contaminated
 volume becomes more defined at the lower confidence level (68%), though still showing
 a tendency to extend out of the domain.
+==PAGE:70==
 52
 5 Results
 Kartotrak allows the user to visualize any confidence level. By visualizing different
@@ -2481,6 +2551,7 @@ addressed later.
 Figure 5.6: Using the visualization to determine realistic confidence levels for the two
 thresholds for the bivariate approach using PID. Discs illustrates samples:
 TCE (few, wider) and PID (many, small/narrow).
+==PAGE:71==
 5.3 Graphical visualization
 53
 A remediation volume with a confidence level of 10%, hence a 90% risk of leaving
@@ -2502,6 +2573,7 @@ increase the certainty.
 Figure 5.7: Using the visualization to determine realistic confidence levels for the two
 thresholds for the bivariate approach using MIP. Discs illustrates TCE
 samples (few, wide) and MIP are illustrated as consecutive narrow discs.
+==PAGE:72==
 54
 5 Results
 The volume for the low threshold coincides more or less with the volume observed
@@ -2542,15 +2614,18 @@ certainty. A VI < 0.20, hence relatively high certainty, was chosen for this stu
 the corresponding VI-volumes are seen in Figure 5.8 and 5.9. The VI-volumes indicate
 the volume within the zone volume which are considered as relatively certain and are
 independent of the estimated concentrations, mass and contaminated volume within.
+==PAGE:73==
 5.3 Graphical visualization
 55
 Figure 5.8: 3D visualization of VI < 0.20 (blue) for the four approaches, indicating
 areas of relatively high certainty within the model domain. (Plan view).
+==PAGE:74==
 56
 5 Results
 Figure 5.9: 3D visualization of VI < 0.20 (blue) for the four approaches, indicating
 areas of relatively high certainty within the model domain. (3D-view from
 south).
+==PAGE:75==
 5.3 Graphical visualization
 57
 It was initially expected, that the relatively certain VI-volume would increase for the
@@ -2597,18 +2672,22 @@ to reduce the uncertainty.
 The volumes of uncertain estimates can be utilized for finding locations where either
 supplementary data points would enhance the geostatistical estimate (uncertain volume)
 or areas of prioritized remediation (certain volume).
+==PAGE:76==
 58
 5 Results
 Figure 5.10: Visualization of the multivariate approach at the obtainable confidence
 level of 55% filtered to indicate the relatively certain and uncertain part
 of the remediation volume.
+==PAGE:77==
 5.3 Graphical visualization
 59
 Figure 5.11: The relatively certain volume from Figure 5.10 in 35 cm slices at differ-
 ent depths to see vertical progression of contamination and for manual
 calculation of volume. The visualized depth interval is specified in each
 image.
+==PAGE:78==
 60
+==PAGE:79==
 CHAPTER 6
 Discussion
 6.1
@@ -2642,6 +2721,7 @@ to produce the most reliable estimates, this is addressed further in Section 6.1
 The fact that by geostatistic modelling it was possible to reproduce resembling mass
 estimates of manual calculations conducted by NIRAS, signifies the benefits of using the
 geostatistical method for this purpose.
+==PAGE:80==
 62
 6 Discussion
 6.1.2
@@ -2685,6 +2765,7 @@ the more simple monovariate approach is worthwhile.
 Applying an additional measure to include in the co-kriging of the geostatistical mod-
 eling, and especially an amount as great as the available MIP measurements, leads to
 an increase in simulation time. Both the bivariate approach using MIP and particularly
+==PAGE:81==
 6.1 Geostatistics for contaminant characterization
 63
 the multivariate approach required over-night simulations, whereas the monovariate ap-
@@ -2729,6 +2810,7 @@ Since both PID and MIP are non-specific detectors for delineating source areas o
 contaminant it is questionable if it would be feasible to apply the data to geostatistical
 bi- or multivariate approaches at sites with a more complex contamination of different
 contaminant compounds.
+==PAGE:82==
 64
 6 Discussion
 6.1.3
@@ -2773,6 +2855,7 @@ ings closely located to different boreholes are, based on this study, adequate i
 establish correlation (if there is one) in Kartotrak. If soil samples are sampled in the
 full depth of the borehole, then a bivariate approach of soil samples and MIP should be
 sufficient, hence excluding PID to reduce simulation time.
+==PAGE:83==
 6.2 Performance of the geostatistical method used in Kartotrak
 65
 6.2
@@ -2814,6 +2897,7 @@ Despite the test size only consisting of variogram fits conducted by three indiv
 the analysis reflects an important aspect of using geostatistical software for contami-
 nant estimation, as two considerably large data sets relatively quickly were fitted and
 simulated, which ultimately resulted in relatively identical global estimates.
+==PAGE:84==
 66
 6 Discussion
 6.2.3
@@ -2859,6 +2943,7 @@ variograms and thereby the obtained estimates. This ultimately means that you wi
 be able to reproduce the result from any approach, if additional data is applied. Thus,
 it is recommended that the input data only contain the variables which are utilized for
 the modelling purpose. It would then avoid affecting the regularization.
+==PAGE:85==
 6.2 Performance of the geostatistical method used in Kartotrak
 67
 The second analysis showed an effect on the different regularization length. Regu-
@@ -2898,6 +2983,7 @@ utilized samples originated. These were static fractions, however an eligible ef
 account for different lithologies.
 If it would have been possible to take the heterogeneity of the clayey till into account
 it might improve the geostatistical estimate.
+==PAGE:86==
 68
 6 Discussion
 6.3
@@ -2942,6 +3028,7 @@ modified for core samples, MIP and so on. The ”tops” input simply contains t
 y- and z- coordinates of the different boreholes and probings. The optional ”contacts”
 input contains information of the depth of geological boundaries in the subsurface, which
 enables surface interpolation of the different geological layers.
+==PAGE:87==
 6.3 Kartotrak evaluation
 69
 Data is easily uploaded to Kartotrak and ready to be modelled. When the user have
@@ -2956,7 +3043,9 @@ thousands of new data points to be added to the system. New variograms are easil
 constructed and fitted by the user. Thousands of additional data points will have an
 effect on the simulation time, however depending on the desired resolution, the general
 time increment is insignificant compared to the time required for manual recalculations.
+==PAGE:88==
 70
+==PAGE:89==
 CHAPTER 7
 Conclusion
 This study investigated the geostatistical method for quantifying contaminant mass and
@@ -2991,6 +3080,7 @@ ultimately impacted the estimates as well as reducing the relatively certain
 volume.
 • The geostatistical method was found to yield reproducible estimates based on var-
 iogram fittings conducted by different individuals, although being sensitive to the
+==PAGE:90==
 72
 7 Conclusion
 delineation of interest zone and required data regularization. Finally, it requires
@@ -3009,6 +3099,7 @@ Converting the PID measurement to pseudo-concentrations of TCE based on the corr
 lation found in the TCE/PID-plots prior to uploading the data to the software, would
 enable the PID to be implemented in the monovariate approach alongside the actual soil
 samples analyses.
+==PAGE:91==
 Bibliography
 Abzalov, M. (2016). Applied Mining Geology. Springer Nature.
 Arbi-skum A/S (2019). Ekspertise i skumplast. [Online]. Available: https://arbi-
@@ -3038,6 +3129,7 @@ Fjordbøge, A. S., Janniche, G. S., Jørgensen, T. H., Grosen, B., Wealthall, G.
 tensen, A. G., Kerrn-Jespersen, H., and Broholm, M. M. (2017). Integrity of Clay
 Till Aquitards to DNAPL Migration: Assessment Using Current and Emerging Char-
 acterization Tools. Groundwater Monitoring & Remediation, 37(3):45–61.
+==PAGE:92==
 74
 Bibliography
 Geovariances (2018). User’s Guide - Kartotrak. 49 bis Av. Franklin Roosevelt, 77215
@@ -3077,6 +3169,7 @@ of Chlorinated Solvent Plumes, chapter 1, pages 1–28. Springer.
 Miljøstyrelsen (2017). Kvaliteteten af det danske drikkevand - For perioden 2014 - 2016.
 Grundvand og drikkevand nr. 1.
 Miljøstyrelsen (2018). Liste over kvalitetskriterier i relation til forurenet jord.
+==PAGE:93==
 Bibliography
 75
 Nilsson, B., Sidle, R., Klint, K., Bøggild, C., and Broholm, K. (2001).
@@ -3102,7 +3195,9 @@ Wackernagel, H. (1995). Multivariate Geostatistics - An Introduction with Applic
 Springer.
 Webster, R. and Oliver, M. (2007). Geostatistics for Environmental Scientist. John
 Wiley & Sons, Ltd., 2 edition.
+==PAGE:94==
 76
+==PAGE:95==
 APPENDIX A
 Mass estimation approach- NIRAS
 A common approach when estimating contaminant mass at industrial sites is shown
@@ -3136,6 +3231,7 @@ The complex and time-consuming system of individual calculations; the basis for
 using fugacity calculations, the horizontal and vertical delineation of contaminated vol-
 ume, etc. require several expert decisions in order to accomplish legitimate and credible
 mass estimate as conducted by NIRAS.
+==PAGE:96==
 78
 A Mass estimation approach- NIRAS
 6RUWHPRVHYHM
@@ -3387,12 +3483,14 @@ PHWUHV
 
 Figure A.1: Horizontal delineation of contaminated zone of given hotspots (green lines)
 and concentration level based on water samples (red lines).
+==PAGE:97==
 A Mass estimation approach- NIRAS
 79
 Figure A.2: Example of the vertical delineation of contaminated zones and concentra-
 tion level indicated by either green (unsaturated) or blue lines (saturated),
 i.e. U-P4 is under Pelle’s room in the unsaturated zone with a concentra-
 tion > 1000µg/m3.
+==PAGE:98==
 80
 A Mass estimation approach- NIRAS
 Figure A.3: The contaminated area and thickness is approximated from Figure A.1
@@ -3403,6 +3501,7 @@ zone and from which borehole the concentrations used for the calculations have d
 (b) ...Continued: Detailed remarks mentioning if e.g. fugacity calculations have been utilized for the
 concentrations
 Figure A.4: Remarks supporting the expert decisions of sample selections..
+==PAGE:99==
 A Mass estimation approach- NIRAS
 81
 Figure A.5: Calculated volume and mass for each individual subzones, summarized to
@@ -3410,9 +3509,12 @@ each zone and finally highlighted total mass in the clayey till.
 Figure A.6: Static parameters utilized for the calculations.
 Figure A.7: List of different assumptions made in order to achieve the mass calcula-
 tions.
+==PAGE:100==
 82
+==PAGE:101==
 APPENDIX B
 Overview of input data
+==PAGE:102==
 84
 B Overview of input data
 Table B.1: Overview of utilized data.
@@ -3661,6 +3763,7 @@ MIP
 1312
 NIRAS
 2018.02.02
+==PAGE:103==
 APPENDIX C
 Correlation: Soil samples x PID
 C.1
@@ -3684,6 +3787,7 @@ ing the semi-quantitative PID variable for multivariate modelling and co-kriging
 TCE concentrations in Kartotrak. Furthermore, the identical trends of clay and sand
 bodies indicates that the data generally can be utilized from different lithologies without
 requiring correction.
+==PAGE:104==
 86
 C Correlation: Soil samples x PID
 Figure C.1: The overall linearity observed, confirms the TCE and PID correlation and
@@ -3706,6 +3810,7 @@ by Geo was below the detection limit of <5, thus in order to utilize these data 
 scenarios of the <DL-data were uploaded and analyzed in Kartotrak. The first scenarios
 used the corrected DL/2 and in the second scenario the DL was replaced by zero, in
 order to evaluate the effect.
+==PAGE:105==
 C.1 Data correction
 87
 Figure C.2: Two distinctly different linear trends are observed for the campaigns con-
@@ -3729,6 +3834,7 @@ the corrected data is nearly identical to that observed in Figure C.3. This supp
 correction.
 All raw, processed and corrected data is available in an Excel-document attached as a digital
 appendix: Appendix_SoilxPID.xlsx
+==PAGE:106==
 88
 C Correlation: Soil samples x PID
 Figure C.3: Correction of Geo PID data based on measurements in clayey till to imi-
@@ -3736,6 +3842,7 @@ tate PID data from NIRAS.
 Figure C.4: Correction of data based on the all available soil samples result in a poor
 fit (negative R2). By removing the two outliers ([0.58 ; 5] and [1.5 ; 11.8])
 a nearly identical fit as in Figure C.3 is obtained.
+==PAGE:107==
 C.2 Personal correspondence: Per Loll, DMR
 89
 C.2
@@ -3744,9 +3851,11 @@ Plots of PID x TCE correlation based on the professional experience of Per Loll,
 Both plots (Fig. C.5 and C.6) show a general linear relationship of approx. y = 10x
 between PID measurements and TCE concentrations from soil samples.
 Figure C.5: Correlation between PID and TCE at Bakkegårdsvej 306.
+==PAGE:108==
 90
 C Correlation: Soil samples x PID
 Figure C.6: Correlation between PID and TCE at Bakkegårdsvej 201.
+==PAGE:109==
 APPENDIX D
 Correlation: Soil samples x mihpt
 Kartotrak requires the primary and secondary variables to coincide and share a number
@@ -3781,11 +3890,13 @@ the nearest borehole were averaged over every 4 cm making the MIP data points mo
 compatible to the soil samples and processed MIP data. The 7 processed MIP probings
 corresponding with soil samples will be utilized for the variogram analysis in Kartotrak,
 whereas the remaining 12 averaged MIP probings will help assess the model simulation.
+==PAGE:110==
 92
 D Correlation: Soil samples x mihpt
 Figure D.1: TCE/MIP plot shows a relatively large scatter of data with no distinct
 linearity. Circle symbol represents data pairs with a distance <1m and
 boxes represents a distance between >1m and <2m.
+==PAGE:111==
 D Correlation: Soil samples x mihpt
 93
 Figure D.2: B201 and mihpt12.%%
@@ -3794,6 +3905,7 @@ Figure D.3: F03 and mihpt02. %%
 Distance ≈0m.
 Figure D.4: F01 and mihpt02. %%
 Distance ≈0.25m.
+==PAGE:112==
 94
 D Correlation: Soil samples x mihpt
 Figure D.5: F02 and mihpt06. %%
@@ -3802,13 +3914,16 @@ Figure D.6: F05 and mihpt14. %%
 Distance ≈0.5m.
 Figure D.7: F04 and mihpt05. %%
 Distance ≈0m.
+==PAGE:113==
 D Correlation: Soil samples x mihpt
 95
 Figure D.8: BA3 and mihpt15. %%
 Distance ≈1.7m.
 Figure D.9: DTA1 and mihpt03. %
 Distance ≈1.5m.
+==PAGE:114==
 96
+==PAGE:115==
 APPENDIX E
 Effect of data regularization
 When working with spatial analysis it is recommended to apply data sets with a constant
@@ -3837,6 +3952,7 @@ global estimates of the two variables are listed in Table E.1. The regularizatio
 have a relevant effect on the mass estimation and to a lesser extent the volume estimate.
 Nevertheless, the estimate of both increase from [A] to [B] by 13% in mass and 3% in
 volume.
+==PAGE:116==
 98
 E Effect of data regularization
 (a) Horizontal: [A]
@@ -3886,6 +4002,7 @@ Volume [m3]
 13,116
 10,684
 15,128
+==PAGE:117==
 E Effect of data regularization
 99
 Different regularization length - same data set
@@ -3919,6 +4036,7 @@ leads to inaccurate reduced short-scale variability (Kasmaeeyazdi et al., 2018).
 the variance indicator maps having relative legends, the lower variance value are sim-
 ilar, and thus clearly indicate the reduced short-scale variability in Figure E.4 (larger
 light-blue circles around measured data). The results are reported in Table E.2.
+==PAGE:118==
 100
 E Effect of data regularization
 (a) Horizontal: TCE
@@ -3929,6 +4047,7 @@ E Effect of data regularization
 (f) Vertical cross variogram
 Figure E.2: Experimental variograms (pre-fitting) of data with regularization length
 of 1 cm.
+==PAGE:119==
 E Effect of data regularization
 101
 (a) Horizontal: TCE
@@ -3939,6 +4058,7 @@ E Effect of data regularization
 (f) Vertical cross variogram
 Figure E.3: Experimental variograms (pre-fitting) of data with regularization length
 of 10 cm.
+==PAGE:120==
 102
 E Effect of data regularization
 (a) Kriging map: reg. length 1 cm
@@ -3947,6 +4067,7 @@ E Effect of data regularization
 (d) Variance Indicator map: reg. length 10 cm
 Figure E.4: Kriging and Variance Indicator maps for simulations using different regu-
 larization lengths at +35m DVR90.
+==PAGE:121==
 E Effect of data regularization
 103
 Table E.2: Global estimates for bivariate modelling of soils samples and MIP using
@@ -4019,7 +4140,9 @@ For the reg. length of 4 cm and 10 cm, which are the first and second most frequ
 samples lengths for all data sets, the results are more similar. However, the 50th per-
 centile of mass has decreased (approx. 5%) and has a wider 90% confidence interval for
 the 10 cm reg. length, illustrating the opposite effect as addressed above.
+==PAGE:122==
 104
+==PAGE:123==
 APPENDIX F
 Variography
 Monovariate approach: Soil samples
@@ -4057,6 +4180,7 @@ Cor. coeff.
 (b) Vertical: MIP
 Figure F.1: Experimental variograms of the monovariate approach with soil samples.
 Presimulations are shown in Figure 4.5 in Chapter 4.
+==PAGE:124==
 106
 F Variography
 Bivariate approach: Soil samples & PID
@@ -4090,6 +4214,7 @@ Cor. coeff.
 33.50
 14.00
 0.85
+==PAGE:125==
 F Variography
 107
 (a) Horizontal: TCE
@@ -4100,6 +4225,7 @@ F Variography
 (f) Vertical cross variogram
 Figure F.2: Experimental variograms of the bivariate approach with soil samples and
 PID.
+==PAGE:126==
 108
 F Variography
 (a) Kriging map
@@ -4109,6 +4235,7 @@ F Variography
 Figure F.3: Presimulation maps from the bivariate modelling with soil samples and
 PID: Kriging (a), Probability (b), Simulation (c) and Variance indicator
 (d) at +35 m DVR90 for the source zone defined by NIRAS.
+==PAGE:127==
 F Variography
 109
 Multivariate approach
@@ -4148,6 +4275,7 @@ a) Soil samples × PID, b) Soil samples × MIP, c) PID × MIP
 (c) Horizontal: PID
 (d) Vertical: PID
 Figure F.4: Experimental variograms of the multivariate approach (1).
+==PAGE:128==
 110
 F Variography
 (a) Horizontal: MIP
@@ -4159,6 +4287,7 @@ F Variography
 (g) Horizontal: PID × MIP
 (h) Vertical: PID × MIP
 Figure F.5: Experimental variograms of the multivariate approach (2).
+==PAGE:129==
 F Variography
 111
 (a) Kriging map
@@ -4168,24 +4297,30 @@ F Variography
 Figure F.6: Presimulation maps from the multivariate modelling: Kriging (a), Proba-
 bility (b), Simulation (c) and Variance indicator (d) at +35 m DVR90 for
 the source zone defined by NIRAS.
+==PAGE:130==
 112
+==PAGE:131==
 APPENDIX G
 Certain - uncertain volumes
+==PAGE:132==
 114
 G Certain - uncertain volumes
 Monovariate approach: Soil samples
 Figure G.1: Visualization of the monovariate approach at the obtainable confidence
 level of 71% filtered to indicate the certain and uncertain volumes.
+==PAGE:133==
 G Certain - uncertain volumes
 115
 Bivariate approach: Soil samples & PID
 Figure G.2: Visualization of the bivariate approach using PID at the obtainable confi-
 dence level of 68% filtered to indicate the certain and uncertain volumes.
+==PAGE:134==
 116
 G Certain - uncertain volumes
 Bivariate approach: Soil samples & MIP
 Figure G.3: Visualization of the bivariate approach using MIP at the obtainable confi-
 dence level of 59% filtered to indicate the certain and uncertain volumes.
+==PAGE:135==
 APPENDIX H
 Estimate robustness analysis
 The robustness of the estimates was analyzed, by examining the estimates resulting from
@@ -4286,6 +4421,7 @@ D
 [ 10,161
 -
 16,089 ]
+==PAGE:136==
 118
 H Estimate robustness analysis
 Table H.2: Estimates from four different variogram fittings of the bivariate using
@@ -4389,6 +4525,7 @@ to the monovariate approach, the biggest difference is observed at the conservat
 (highest estimate) of the 90% confidence interval. The same is valid for the estimated
 mass >0.01 mg/kg(dm). However, for the estimated volume, the biggest difference is
 observed for the lower value of the 90% confidence interval.
+==PAGE:137==
 H Estimate robustness analysis
 119
 The estimates for the bivariate approach seemingly differ a larger degree than the
@@ -4471,4 +4608,7 @@ the input data is likely to be even higher. The overall larger sample standard d
 observed for the bivariate approach can potentially be caused by different deterministic
 preferences when fitting the more complex variograms of the two variables, but can also
 be due to the relatively low correlation between MIP and soil samples.
+==PAGE:138==
 120
+==PAGE:139==
+==PAGE:140==

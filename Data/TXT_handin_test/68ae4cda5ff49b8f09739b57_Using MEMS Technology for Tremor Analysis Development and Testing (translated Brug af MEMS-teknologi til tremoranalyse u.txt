@@ -1,0 +1,6198 @@
+==PAGE:1==
+Using MEMS Technology for Tremor Analysis
+Development and testing
+Master Thesis
+DTU Biomedical Engineering
+Department of Health Technology
+==PAGE:2==
+==PAGE:3==
+Using MEMS Technology for Tremor Analysis
+Development and testing
+Master Thesis
+Date, 2025
+By
+Marta Herdeiro Abrantes, MSc Biomedical Engineering, DTU
+Copyright:
+Reproduction of this publication in whole or in part must include the cus­
+tomary bibliographic citation, including author attribution, report title, etc.
+Cover photo:
+Vibeke Hempler, 2012
+Published by:
+DTU, Department of Health Technology, Ørsteds Plads, 345B, 2800 Kgs.
+Lyngby Denmark
+www.healthtech.dtu.dk
+==PAGE:4==
+Approval
+This thesis has been prepared over six months at the Department of Health Technology,
+at the Technical University of Denmark, DTU, in partial fulfilment for the degree Master of
+Science in Engineering, MSc Eng.
+It is assumed that the reader has a basic knowledge of the areas of accelerometry and
+signal processing.
+Marta Herdeiro Abrantes ­ s233181
+Signature
+Date
+ii
+Using MEMS Technology for Tremor Analysis
+==PAGE:5==
+Abstract
+Tremor affects everyone, and although in most cases it is physiological and not even
+visible, in some cases, it has pathological causes and greatly disturbs those who suffer
+from it. However, the way in which it is diagnosed and monitored relies on visual as­
+sessment which is very subjective, and hard, especially in early stages of tremor. This
+project aims to develop a reliable device for quantifying hand tremor, utilizing inertial sen­
+sors and Arduino­based hardware. The proposed system captures tremor data using
+3­axis accelerometers, processes the signals, and performs their analysis to compute
+key indices that aid in the diagnosis and monitoring of tremors. To validate this device,
+comparative measurements were performed using a calibrated sensor and the CATSYS
+system. The results obtained demonstrate the great potential that this project has, as this
+device appears to be a promising tool for assessing tremor in a clinical setting.
+Using MEMS Technology for Tremor Analysis
+iii
+==PAGE:6==
+Acknowledgements
+First, I would like to express my gratitude to my supervisors for their guidance and support
+they gave me during these months. I feel very lucky to have gotten such good supervisors
+for my final MSc. project.
+Sadasivan Puthusserypady (Sada), Professor, Department of Health Technology, DTU,
+Main Supervisor
+Jonas Brunskog, Associate Professor, Department of Electrical and Photonics Engi­
+neering, DTU, Co­supervisor
+John Heebøll, One of the creators of CATSYS, Co­supervisor
+I’d also like to thank the two doctors with which I’ve worked closely to develop this project.
+Their enthusiasm and support was motivating and even contagious at times.
+Dr. Anita Kamondi, Professor, Department of Neurology, Semmelweis University
+Dr. Andrea Kovács, MD, Semmelweis University
+To everyone, a big obrigada.
+iv
+Using MEMS Technology for Tremor Analysis
+==PAGE:7==
+Contents
+Preface . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ii
+Abstract . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+iii
+Acknowledgements
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+iv
+1
+Introduction
+2
+1.1
+Background and Motivation . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.1.1
+Tremor
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.1.2
+Challenges in the assessment of tremor . . . . . . . . . . . . . . . .
+2
+1.2
+Research Questions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+1.3
+Thesis Outline
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+2
+Background and Related Work
+5
+2.1
+Tremor . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+2.2
+Assessment and Treatment of Tremor . . . . . . . . . . . . . . . . . . . . .
+7
+2.2.1
+Clinical Assessment of Tremor . . . . . . . . . . . . . . . . . . . . .
+7
+2.2.2
+Electrophysiologic Measurement of Tremor . . . . . . . . . . . . . .
+8
+2.2.3
+Treatment of tremor . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+2.3
+The CATSYS System
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+2.3.1
+Tremor Pen Tests
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+2.4
+Related work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+2.5
+Commercially available devices . . . . . . . . . . . . . . . . . . . . . . . . . 16
+2.5.1
+StrivePD
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+2.5.2
+Neu Platform . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+2.5.3
+NeuroRPM­Rx . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+2.5.4
+Parky
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+2.5.5
+Personal Kinetigraph System (PKG) . . . . . . . . . . . . . . . . . . 19
+2.5.6
+Kinesia
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+3
+Methods and procedures
+21
+3.1
+User requests . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+3.2
+Hardware . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+3.2.1
+Hardware Components Research
+. . . . . . . . . . . . . . . . . . . 21
+3.2.2
+Choice of Accelerometer
+. . . . . . . . . . . . . . . . . . . . . . . . 22
+3.2.3
+Choice of Microcontroller
+. . . . . . . . . . . . . . . . . . . . . . . . 25
+3.2.4
+Hardware Design . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+3.3
+Software . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+3.3.1
+Arduino . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+3.3.2
+Python
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+3.4
+Design . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+3.4.1
+Design of the Device . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+3.4.2
+Graphical User Interface (GUI) . . . . . . . . . . . . . . . . . . . . . 32
+4
+How to use this device
+36
+4.1
+Set­up of the Device . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+4.2
+Start Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+4.3
+New Patient Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+4.4
+Search patient Window
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+Using MEMS Technology for Tremor Analysis
+v
+==PAGE:8==
+4.5
+Edit Patient Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+4.6
+Recording Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+4.7
+Analysis Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+4.8
+Settings Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+5
+Experiments and Results
+42
+5.1
+Sensor Settings . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+5.2
+Noise and Shielding Tests . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+5.3
+Measurements Using an Acceleration Table . . . . . . . . . . . . . . . . . . 44
+5.4
+Patients tests and comparison with the CATSYS system . . . . . . . . . . . 47
+5.4.1
+Filtering and Tremor Intensity . . . . . . . . . . . . . . . . . . . . . . 48
+5.4.2
+Frequency domain parameters . . . . . . . . . . . . . . . . . . . . . 50
+5.5
+Entropy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+6
+Discussion
+54
+7
+Conclusion and Future Work
+58
+7.1
+Future work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59
+Bibliography
+61
+A Arduino and Python Code
+67
+A.1 Arduino Code . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 67
+A.1.1
+Code for the Left Arduino board
+. . . . . . . . . . . . . . . . . . . . 67
+A.1.2
+Code for the Right Arduino Board
+. . . . . . . . . . . . . . . . . . . 68
+A.2 Python Code . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 69
+A.2.1
+Data Collection Code
+. . . . . . . . . . . . . . . . . . . . . . . . . . 69
+A.2.2
+Data Analysis Code
+. . . . . . . . . . . . . . . . . . . . . . . . . . . 74
+B Acceleration table measurements
+81
+C Patients measurements
+83
+C.1 Filtering and TI . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 83
+C.2 Frequency parameters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 83
+D Entropy studies
+90
+vi
+Using MEMS Technology for Tremor Analysis
+==PAGE:9==
+List of Figures
+2.1
+Tremor assessment positions . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+2.2
+Example of Archimedes spirals drawn by a healthy person, and by patients
+with PD and ET [5]. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+2.3
+Raw data recording of postural tremor from a patient with ET. The data was
+obtained using accelerometers in the right (Acc R) and left (Acc L) hands,
+and surface EMG in the extensor digitorum communis (EDC R and EDC L)
+and the flexor carpi ulnaris (FCU R and FCU L) [3]. . . . . . . . . . . . . . .
+9
+2.4
+Coordination Ability Test System (CATSYS) . . . . . . . . . . . . . . . . . . 10
+2.5
+Tremor pen and its application for tremor data collection . . . . . . . . . . .
+11
+2.6
+PRISMA flowchart of study selection . . . . . . . . . . . . . . . . . . . . . . 13
+2.7
+StrivePD system . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+2.8
+Neu Platform high level overview . . . . . . . . . . . . . . . . . . . . . . . . 17
+2.9
+NeuroRPM system . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+2.10 Parky system . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+2.11 Parky system high level overview . . . . . . . . . . . . . . . . . . . . . . . . 19
+3.1
+Schematic of the Hardware design . . . . . . . . . . . . . . . . . . . . . . . 26
+3.2
+Scheme of the flow of data. The data is collected, saved in an Excel file,
+and then analysed. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+3.3
+Frequency response of the chosen Butterworth filter. The red lines repre­
+sent the desired frequency interval and the green lines the cut­off frequencies. 30
+3.4
+Design of the sensor cases for 3D printing . . . . . . . . . . . . . . . . . . . 32
+3.5
+Map of the constructed GUI . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+3.6
+Example of data organization . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+4.1
+Setup of the device on hands . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+4.2
+Start Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+4.3
+Browsing pop­up to select the data to be analysed . . . . . . . . . . . . . . 37
+4.4
+New Patient Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+4.5
+Search Patient Window before and after the patient is found . . . . . . . . . 38
+4.6
+Edit Patient Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+4.7
+Recording Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+4.8
+Analysis Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+4.9
+Analysed data after a test . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+4.10 Settings Window . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+5.1
+Accelerations plotted in Arduino IDE . . . . . . . . . . . . . . . . . . . . . . 42
+5.2
+Set­up for noise and shielding measurements . . . . . . . . . . . . . . . . . 43
+5.3
+Noise measurements with no shielding protection . . . . . . . . . . . . . . . 43
+5.4
+Noise measurements with shielding protection
+. . . . . . . . . . . . . . . . 44
+5.5
+Acceleration table and shaker used to validate the sensors
+. . . . . . . . . 45
+5.6
+Set­up acceleration measurements . . . . . . . . . . . . . . . . . . . . . . . 46
+5.7
+Postural tremor recording with no filter applied
+. . . . . . . . . . . . . . . . 48
+5.8
+Postural tremor recording with a bandpass filter applied . . . . . . . . . . . 49
+5.9
+Postural tremor recording with a bandpass filter applied and first and last
+seconds cut . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+Using MEMS Technology for Tremor Analysis
+vii
+==PAGE:10==
+6.1
+Artifacts obtained when measuring rest tremor using the CATSYS system . 54
+6.2
+Example of measurements of a healthy volunteer . . . . . . . . . . . . . . . 56
+6.3
+Example of measurement of a PD patient . . . . . . . . . . . . . . . . . . . 57
+viii
+Using MEMS Technology for Tremor Analysis
+==PAGE:11==
+List of Tables
+2.1
+Characteristics of the most common types of tremor . . . . . . . . . . . . .
+6
+2.2
+Summary of articles included and their contents . . . . . . . . . . . . . . . . 14
+3.1
+Different accelerometers found and their characteristics . . . . . . . . . . . 22
+3.2
+Minimum communication speeds for the selected sensors . . . . . . . . . . 24
+3.3
+Characteristics of the most sensitive accelerometers . . . . . . . . . . . . . 25
+3.4
+Characteristics of selected Arduino boards with integrated IMUs
+. . . . . . 26
+3.5
+Example of patients database table . . . . . . . . . . . . . . . . . . . . . . . 33
+3.6
+Example of the settings database table
+. . . . . . . . . . . . . . . . . . . . 34
+5.1
+Comparison of frequency and acceleration values measured by the BK sen­
+sor and the ones being validated . . . . . . . . . . . . . . . . . . . . . . . . 46
+5.2
+Comparison of acceleration values measured by the BK sensor, the device
+from this project, and the CATSYS system after corrections . . . . . . . . . 47
+5.3
+Mean Absolute Error [m/s2] values for TI from patient measurements
+. . . 50
+5.4
+Tremor Intensity values for healthy volunteers . . . . . . . . . . . . . . . . . 50
+5.5
+Comparison of frequency domain parameters obtained using the CATSYS
+system, and the new device.
+. . . . . . . . . . . . . . . . . . . . . . . . . . 50
+5.6
+Frequency parameters for healthy volunteers . . . . . . . . . . . . . . . . . 51
+5.7
+Frequency parameters for PD patients . . . . . . . . . . . . . . . . . . . . . 51
+5.8
+Frequency parameters for ET patients . . . . . . . . . . . . . . . . . . . . . 51
+5.9
+Mean values of ApEn and SampEn for PD patients.
+. . . . . . . . . . . . . 52
+5.10 Mean values of ApEn and SampEn for ET patients. . . . . . . . . . . . . . . 52
+5.11 Values of XApEn and XSampEn for PD patient 06. . . . . . . . . . . . . . . 52
+5.12 Mean values of XApEn and XSampEn for ET patients. . . . . . . . . . . . . 53
+B.1 Complete table for the comparison of frequency values measured by the
+BK sensor and the ones being validated . . . . . . . . . . . . . . . . . . . . 81
+B.2 Complete table for the comparison of acceleration values [m/s2 measured
+by the BK sensor and the ones being validated . . . . . . . . . . . . . . . . 82
+C.1 Comparison of TI values [m/s2] obtained using the CATSYS system, and
+the new device, without and with the use of a bandpass filter
+. . . . . . . . 84
+C.2 Absolute Error [m/s2] for TI from patient measurements . . . . . . . . . . . 85
+C.3 Comparison of frequency domain parameters obtained using the CATSYS
+system, and the new device.
+. . . . . . . . . . . . . . . . . . . . . . . . . . 86
+C.4 Absolute Error for frequency parameters from patient measurements . . . . 87
+C.5 Frequency parameters for healthy volunteers . . . . . . . . . . . . . . . . . 88
+C.6 Frequency parameters for PD patients . . . . . . . . . . . . . . . . . . . . . 89
+C.7 Frequency parameters for ET volunteers . . . . . . . . . . . . . . . . . . . . 89
+D.1 ApEn and SampEn values for PD patients.
+. . . . . . . . . . . . . . . . . . 90
+D.2 ApEn and SampEn values for ET patients. . . . . . . . . . . . . . . . . . . . 91
+D.3 XApEn and XSampEn values for ET patients. . . . . . . . . . . . . . . . . . 91
+Using MEMS Technology for Tremor Analysis
+ix
+==PAGE:12==
+Acronyms
+AbsE Absolute Error. ix, 45, 49, 50, 55, 85, 87
+Acc Accelerometer. vii, 8, 9, 14–16
+AI Artificial Intelligence. 18
+ApEn Approximate Entropy. ix, 8, 21, 51–53, 56, 90, 91
+BK Brüel & Kjær. ix, 2, 44–47, 54, 58, 81, 82
+BPS Bits Per Second. 24
+CATSYS Coordination Ability Test System. iii, iv, vi, ix, 2, 3, 10, 21, 22, 30, 32, 45–50,
+54, 55, 58, 59
+CF Center Frequency. 11, 12, 29, 30, 50, 51, 55, 86–89
+DBS Deep Brain Stimulation. 10
+EEG Electroencephalography. 8
+EMG Electromyography. vii, 8, 9, 14, 16, 21
+ET Essential Tremor. vii, ix, 2, 3, 6–10, 14, 16, 20, 21, 42, 48, 49, 51–53, 55, 56, 58, 59,
+89, 91
+FDA Food and Drug Administration. 3, 16, 17
+FFT Fast Fourier Transform. 15, 21, 29
+FTM Fahn­Tolosa­Marin. 7, 14
+GUI Graphical User Interface. v, vii, 3, 27, 28, 31–34, 40, 58–60
+Gyr Gyroscope. 14
+HI Harmonic Index. 11, 12, 29, 30, 50, 51, 55, 86–89
+IMU Inertial Measurement Unit. ix, 8, 22, 25–27
+MEG Magnetoencephalography. 8
+MEMS Micro­Electro­Mechanical Systems. 2, 14
+ML Machine Learning. 13, 16
+MM4PD Motor Fluctuations Monitor for Parkinson’s Disease. 17, 19
+MRI Magnetic Resonance Imaging. 7, 10
+MS Multiple Sclerosis. 7, 14, 15
+x
+Using MEMS Technology for Tremor Analysis
+==PAGE:13==
+NaN Not a Number. 28, 29
+ODR Output Data Rate. 24, 25, 27, 42
+PD Parkinson’s Disease. vii–ix, 2, 3, 6–9, 14–20, 42, 48, 49, 51, 52, 55–59, 89, 90
+PSD Power Spectral Density. 29, 30, 39, 40, 49, 55, 56, 58, 60
+PT Parkinsonian Tremor. 6, 10, 16, 21
+RMS Root Mean Square. 30, 45, 46, 82
+SampEn Sample Entropy. ix, 8, 21, 30, 31, 51–53, 56, 58, 90, 91
+SPECT Single­Photon Emission Computed Tomography. 7
+STDEV CF Standard Deviation of Center Frequency. 11, 12, 29, 30, 55, 86
+TETRAS Essential Tremor Rating Assessment Scale. 2, 7, 8, 20
+TI Tremor Intensity. vi, ix, 11, 12, 29, 30, 48–50, 54, 55, 83–85
+UPDRS Unified Parkinson’s Disease Rating Scale. 2, 8, 15, 16, 20
+XApEn Cross­Approximate Entropy. ix, 21, 52, 53, 91
+XSampEn Cross­Sample Entropy. ix, 31, 52, 53, 91
+Using MEMS Technology for Tremor Analysis
+1
+==PAGE:14==
+Chapter 1: Introduction
+Everyone has tremor, whether it is visible or not. In most cases, it is physiological, and
+so small that it isn’t visible to the naked eye. When pathological, it can have a number
+of causes, such as the use of some medications or drugs, or specific diseases, as in
+the cases of Parkinson’s Disease and Essential Tremor. Due to the variety of causes,
+it’s important to achieve a correct diagnosis. However, that is no easy task. Not only is
+this not a standardized exercise, but it is also typically dependent on a clinician’s visual
+assessment, which can be highly subjective and hard at times, as tremor is not always
+visible, especially in the early stages. Once a diagnosis is obtained, it is also important
+to correctly monitor tremor, which is also dependent on visual assessment and subjective
+measures.
+This project aims to address these limitations by developing and implementing an objec­
+tive method for diagnosing tremor. This will be achieved using Micro­Electro­Mechanical
+Systems (MEMS) technology to measure tremor, together with software developed for its
+analysis. The system is validated against a calibrated Brüel & Kjær (BK) sensor and the
+CATSYS device, a system used for more than 10.000 tremor examinations since 2000.
+1.1
+Background and Motivation
+1.1.1
+Tremor
+Tremor is an involuntary rhythmic movement of one or more body parts, and the most
+common movement disorder [1, 2]. It can have many causes, being the most common
+Parkinson’s Disease and Essential Tremor. Essential Tremor is the most common patho­
+logical cause of tremor, affecting 0.4 to 6% of the population [1, 3]. It is usually present
+from a young age, however, due to its long progression, most people do not seek a clini­
+cian until the age of 60. Parkinson’s Disease is a degenerative pathology, in which there
+is a loss of dopaminergic neurons in the brain. This causes not only tremor, but also
+difficulty initiating movements, slowness, and muscle rigidity. This pathology affects ap­
+proximately 0.11% of the population worldwide and has become more prevalent in recent
+years. Of these, 70% are affected by tremor [4, 1, 5, 3].
+Although tremor itself is not life­threatening, it causes a great disturbance in the everyday
+life of those affected by it. It affects one’s ability to write, eat, drink, get dressed, and
+perform any task that requires a steady hand. Depending on the severity of the tremor,
+individuals may lose their independence completely. This emphasizes the importance
+of obtaining the correct diagnosis and correctly monitoring it through time, so that the
+appropriate course of treatment can be implemented to, at least, alleviate symptoms.
+1.1.2
+Challenges in the assessment of tremor
+Assessment of tremor is a challenging task, primarily because it is not standardized and
+there are no established biomarkers for it. The main goals are to characterize tremor in
+terms of activating condition, topographic distribution, and frequency. This is usually done
+through a physical examination, in which the physician asks the patient to perform a series
+of tasks. During these, physicians can also rely on scales, such as the Unified Parkin­
+son’s Disease Rating Scale or Essential Tremor Rating Assessment Scale, which help
+classify tremor in a severity scale. However, these types of assessments depend on the
+tremor being visible, which may not be the case in the early stages. More exams can be
+2
+Using MEMS Technology for Tremor Analysis
+==PAGE:15==
+performed, such as medical imaging, to exclude certain causes, like structural changes.
+These can, however, become expensive while not leading to a specific diagnosis.
+As can be seen, tremor assessment is a very subjective task. It varies from doctor to doc­
+tor and depends on their experience, as well as the visibility of the tremor. This highlights
+a significant need for an objective and standardized method to diagnose tremor and also
+monitor its progression through time. Although some are being developed in industry,
+they are, in most cases, specific for one pathology, which is usually Parkinson’s Disease.
+This means that not only are they not approved for use in the diagnosis and monitoring of
+multiple pathologies, but they may also not be suitable for this purpose. The Coordination
+Ability Test System (CATSYS) is a device that overcomes these limitations by accurately
+measuring tremor and delivering a series of values that can be used to assess it. How­
+ever, this system is now outdated and in need of replacement. The goal of this project is to
+develop and validate a new CATSYS, a system that can be used in a clinical environment
+for the diagnosis and monitoring of various tremor types caused by different conditions.
+1.2
+Research Questions
+This project was developed around certain questions, which are:
+• How can a MEMS­based accelerometer system be designed to accurately measure
+and analyse hand tremors for clinical and research applications?
+• What are the optimal sensor specifications and signal processing techniques to iden­
+tify and analyse hand tremor?
+• Can entropy be used to distinguish between Parkinson’s Disease and Essential
+Tremor patients? And if so, what are the ideal parameters that enable it?
+These questions will be answered in this project through the development of the device
+for tremor assessment.
+1.3
+Thesis Outline
+This report is divided into seven chapters, including this one. The second chapter will
+provide a relevant theoretical background for this project. Including medical theory about
+tremor, its assessment methods, and treatment, followed by a description of the CAT­
+SYS system and how it can be used to analyse tremor. After that, state­of­the­art will be
+presented, as well as FDA approved commercially available devices.
+In the third chapter, the methods used to develop this device will be provided and ex­
+plained. This chapter starts by presenting the user requests for this device, which will
+serve as a basis for its development. Then, details on the choice of components will be
+presented, followed by details on the software developed to measure, save, and analyse
+tremor signals. Finally, the design of the device as well as the developed of a Graphical
+User Interface will be explained.
+In the next chapter, the fourth one, a detailed instruction manual for this device will be
+provided. Explaining how to secure and connect the sensors as well as how to use the
+GUI.
+The fifth chapter presents all the experiments made to validate the device against a cal­
+ibrated sensor and the CATSYS system. For each experiment, all results are exposed,
+and then discussed in chapter six.
+Using MEMS Technology for Tremor Analysis
+3
+==PAGE:16==
+Finally, in chapter seven, a conclusion to this thesis report will be given, as well as future
+work that will need to be done to complete this device before it can be used for clinical
+assessment of tremor patients.
+4
+Using MEMS Technology for Tremor Analysis
+==PAGE:17==
+Chapter 2: Background and Related Work
+2.1
+Tremor
+Movement disorders are a group of neurological conditions that affect movement, either
+by increasing or decreasing it [6]. Tremor is defined as an involuntary rhythmic movement
+of one or more body parts and is the most common movement disorder [1, 2]. It usually
+affects the hands but can extend to other body parts such as the arms, legs, head, vocal
+cords, and torso [7]. Different types of tremor can be found and classified depending on
+their characteristics or causes.
+Depending on its characteristics, tremor can be classified as Resting or Action tremor,
+and within Action, it can be Postural, Isometric, or Kinetic tremor [7].
+• Resting tremor: When the person or body part is at rest and supported against
+gravity.
+• Action tremor: When there is a voluntary muscle contraction.
+– Postural tremor: When holding a position against gravity, such as when the
+patient stretches his arms in front of his chest.
+– Kinetic tremor: When there is a voluntary movement.
+* Intention tremor: When a movement is directed towards a target, such as
+touching a specific point with the finger.
+* Task­specific tremor: When performing goal­specific tasks, such as hand­
+writing.
+– Isometric tremor: When holding a stiff position that is not accompanied by any
+further movement.
+Based on their cause, there is also another classification of tremors [7, 1, 5].
+• Enhanced physiologic tremor
+• Essential tremor
+• Parkinsonian tremor
+• Drug­induced tremor
+• Cerebellar tremor
+• Psychogenic/functional tremor
+• Dystonic tremor
+• Wilson’s disease
+• Rare tremors
+– Orthostatic tremor
+– Neuropathic tremor
+– Holmes’ tremor
+Using MEMS Technology for Tremor Analysis
+5
+==PAGE:18==
+– Fragile X­associated tremor
+The most common pathological types of tremor are Essential Tremor (ET) and Parkinso­
+nian Tremor (PT), which is found in patients with Parkinson’s Disease (PD). ET affects
+0.4% to 6% of the population [1, 3], with a prevalence of 5.79% for people older than
+65 years and exceeding 90% for people in the ninth and tenth decades [8]. Although
+the exact cause isn’t known, in 50% to 70% of the cases, it is an inherited condition [7].
+This condition is characterized by action tremors in both hands and arms, mostly during
+action, and with no other neurological signs. PD is characterized by an irreversible loss
+of dopaminergic neurons in the substancia nigra [9], which has a consequence on the
+motor ability of the patients. Its prevalence has increased over the last years, affecting
+currently 8.5 million people [10], which corresponds to 0.11% of the global population,
+assuming 8 billion people worldwide. Of these, 70% present the classic trait of resting
+tremor resembling a pill­rolling motion with the fingers [1, 3].
+A small summary of the characteristics of some of the different types of tremor can be
+found in Table 2.1 [4, 1, 5, 3].
+Table 2.1: Characteristics of the most common types of tremor
+Type of tremor
+Characteristics
+Enhanced
+Physiologi­
+cal Tremor
+Small, fine tremor usually present in healthy people and en­
+hanced by anxiety and stress, fatigue, caffeine, and emo­
+tion.
+This tremor comes when one of these causes is
+present and leaves when the cause is no longer present.
+Essential Tremor
+Symmetrical action tremor on the upper limbs, usually with
+low amplitude and frequency in the interval of 4 to 12 Hz.
+Although it’s more obvious in the hands and wrists, it can
+also affect the head and the voice. It usually appears dur­
+ing adolescence or mid­adulthood, with an average onset
+age of 45 years, however, most patients don’t present for
+treatment until the age of 60 because it has a slow progres­
+sion. It can be improved with a small amount of alcohol.
+Parkinsonian Tremor
+Usually present in patients with PD as one of the main symp­
+toms, together with bradykinesia, rigidity, and postural in­
+stability. It appears at rest and decreases during voluntary
+movement. This tremor is usually present on one side of
+the upper body and can eventually spread to both as the
+disease progresses, and also to the lower limbs, tongue,
+or jaw. It typically has a moderate amplitude and a lower
+frequency, ranging from 4 to 6 Hz, in a ”pin­rolling” pattern.
+It is also possible for patients to have re­emergent tremor,
+which is the reappearance of tremor in a stable position that
+resembles rest tremor.
+Drug­induced tremor
+It can be caused by drugs, such as caffeine, alcohol, or co­
+caine, or medications that stimulate the sympathetic ner­
+vous system, or psychoactive medications.
+The charac­
+teristics of this tremor will depend on the effect that the
+drugs/medications have on the body.
+6
+Using MEMS Technology for Tremor Analysis
+==PAGE:19==
+Cerebellar tremor
+Cerebellar tremor is a low­frequency tremor usually present
+during voluntary movement or a postural task. Other neu­
+rologic signs generally accompany it, and it worsens when
+doing a goal­specific task, and the patient is close to the
+endpoint of the movement. It is usually caused by Multiple
+Sclerosis with cerebellar plaques, stroke, or tumours in the
+brainstem.
+Even if it isn’t life­threatening, tremor causes functional disability and social difficulties,
+increasing the challenge of daily life activities [11]. Additionally, a correct diagnosis of the
+tremor’s cause is necessary to implement the appropriate course of treatment, and ade­
+quate monitoring of the tremor will allow for the follow­up of its progression and treatment.
+2.2
+Assessment and Treatment of Tremor
+In this section, technique for the assessment of tremor will be presented. That is, for both
+its diagnosis and monitoring, which use some of the same techniques.
+2.2.1
+Clinical Assessment of Tremor
+The diagnosis of tremor is still not a standardized exercise, however, it is important to
+find the underlying cause to find the best treatment course for a patient. Usually, a doctor
+will diagnose based on the patient’s and family history, as well as a physical examination.
+During physical examination, which is crucial for tremor assessment, the first step is to
+categorize the tremor with regard to the activation condition, the topographic distribution,
+and the frequency [1].
+Activation condition can be Resting, Action, or Isometric tremor, and their subtypes. This
+is assessed by asking the patient to take different positions, such as sitting with the hands
+on the lap or in a table, sitting with the arms extended to the front, or performing a finger­to­
+nose test as seen in Figure 2.1. The topographic distribution relates to the affected area
+of the body. Finally, frequency relates to the frequency of the tremor, which is usually
+divided into three groups: low frequency (< 4 Hz), medium frequency (4−7 Hz), and high
+frequency (> 7 Hz) [1].
+In addition to the previously mentioned, further assessment can be made for signs associ­
+ated with tremor syndromes. This includes searching for certain factors that can alleviate
+or exacerbate the tremor. An example is caffeine intake and fatigue, which are often ex­
+acerbating factors in ET, while small amounts of alcohol relieve it. For PD, other signs that
+could be associated with tremor are bradykinesia, postural instability, rigidity, and masked
+faces. If both PD and ET are possible diagnoses, then the patient may be asked to draw
+an Archimedes spiral as seen in Figure 2.2. A large and shaky spiral would indicate that
+the patient has ET, while a smaller spiral would mean PD [1].
+Medical imaging can also be used to differentiate between some causes of tremor or rule
+out some causes. For example, Magnetic Resonance Imaging (MRI) and CT scan can
+be used to rule out causes, or when physical examination suggests a structural cause.
+In cases of uncertainty, Single­Photon Emission Computed Tomography (SPECT) using
+ioflupane can be used to assess dopamine transporter dysfunction, thereby leading to the
+diagnosis of PD. However, clinical evaluation is still superior to this test [1].
+Clinical scales can also be used to measure tremor and reach a possible diagnosis. The
+Fahn­Tolosa­Marin (FTM) scale can be used for all types of tremor, the Essential Tremor
+Using MEMS Technology for Tremor Analysis
+7
+==PAGE:20==
+(a) Rest tremor test
+(b) Postural tremor test
+(c) Finger to nose test
+Figure 2.1: Tremor assessment positions
+Rating Assessment Scale (TETRAS) is validated specifically for ET but has no assess­
+ment of Rest tremor, and finally, the Unified Parkinson’s Disease Rating Scale (UPDRS)
+has been used for the assessment of tremor in PD [3].
+However, even with all these tools, it is still hard to diagnose tremor. In fact, 30% to 50%
+of patients initially diagnosed with ET receive an additional or even a different diagnosis
+after further evaluation [1]. This suggests a need for an objective measure of tremor,
+which can be achieved using electrophysiological methods.
+2.2.2
+Electrophysiologic Measurement of Tremor
+Electrophysiology is an extension of the clinical evaluation of tremor, and is most com­
+monly used to quantify tremor amplitude and frequency. Tools to perform these kind of
+measurements include motion transducers, surface Electromyography (EMG), Electroen­
+cephalography (EEG), and Magnetoencephalography (MEG) [3].
+Movements are easily recorded using motion transducers, such as Inertial Measurement
+Unit (IMU), and the associated muscle activity can also be measured using an EMG. From
+these measurements, the rhythmicity of tremor can be quantified using frequency domain
+analysis. To have a rhythmic movement, there should be at least, a peak in the frequency
+domain, with a narrow bandwidth. Another measure of rhythmicity is entropy, the more
+rhythmic a movement is, the lower the entropy will be. This means that physiologic tremor
+will have greater entropy than pathological tremor. The most common algorithms for cal­
+culating entropy are Sample Entropy (SampEn) and Approximate Entropy (ApEn) [3].
+EMG and motion transducers can also be used to detect tremor at rest. In a resting posi­
+tion, there is always tremor, however, in a pathological case, this tremor is accompanied
+with rhythmic EMG activity at the frequency of the tremor [3]. In addition, using motion
+transducers, such as an Accelerometer (Acc), it’s also possible to quantify the amplitude
+of tremor, which is typically smaller in healthy individuals and increases in the presence
+8
+Using MEMS Technology for Tremor Analysis
+==PAGE:21==
+Figure 2.2: Example of Archimedes spirals drawn by a healthy person, and by patients
+with PD and ET [5].
+of tremor and proportionally to its severity [3].
+Figure 2.3: Raw data recording of postural tremor from a patient with ET. The data was
+obtained using accelerometers in the right (Acc R) and left (Acc L) hands, and surface
+EMG in the extensor digitorum communis (EDC R and EDC L) and the flexor carpi ulnaris
+(FCU R and FCU L) [3].
+As shown in Figure 2.3, recordings from Accelerometers and EMG can be useful in quan­
+tifying tremor. In this case, it’s possible to see a correlation between hand tremor and
+rhythmic muscle bursts, which is an indicator of pathological tremor.
+2.2.3
+Treatment of tremor
+Most forms of tremor can not be treated, but in some cases, there’s the possibility to
+manage the symptoms. When there’s a chance to treat underlying health conditions,
+there’s a possibility that tremor can also be cured or reduced.
+One of the ways to reduce tremor is by using medications. These include [7]:
+• Beta­blockers: used mostly in patients with Action tremor
+• Anti­seizure medications: in some cases, this type of medication can reduce tremor
+in patients with ET who do not respond to beta­blockers
+• Dopaminergic medications: usually used to treat tremors associated with PD
+Using MEMS Technology for Tremor Analysis
+9
+==PAGE:22==
+• Anticholinergic medications: can sometimes be used to treat Dystonic tremors
+• Botulinum toxin (Botox): these injections can be useful to treat Dystonic head and
+hand tremors
+When medications are ineffective, surgery may be considered as a treatment option. The
+most common form of surgical treatment for tremor is Deep Brain Stimulation (DBS). This
+treatment is typically used for Parkinsonian Tremor, Essential Tremor, and Dystonia, and
+involves the implantation of electrodes in the thalamus that send high­frequency electric
+signals. This electrode is connected to a pulse­generating device that is placed under
+the skin in the upper chest, which sends electrical stimuli to stop the tremor temporarily.
+Radiofrequency ablation is a technique in which a radio wave is used to generate an
+electric current that disrupts the nerves’ activity for six months or more. Another technique
+is Focused ultrasound, where MRI is used to deliver focused ultrasounds that create small
+lesions in the thalamus areas that are thought to be causing the tremor. This treatment
+is only approved for patients who do not respond well to anti­seizure medication or beta­
+blockers [7].
+Finally, tremor can also be reduced by lifestyle changes. Physical, speech, and occupa­
+tional therapy can help to control tremor and adapt to the daily challenges that it causes.
+Reducing caffeine intake and avoiding stressful situations can also help, as well as getting
+enough sleep, as all of these factors can aggravate tremors. Stopping certain medications
+that can be triggering or aggravating tremor [7].
+2.3
+The CATSYS System
+The Coordination Ability Test System (CATSYS) is a device that allows the study of co­
+ordination, reaction time, tremor, and postural stability. This is achieved by the use of
+four different sensors, a tremor pen, a touch recording plate (recording drum), a reaction
+time handle, and a force plate, which can be seen in Figure 2.4. Since 2000, the Depart­
+ment of Neurosurgery and Neurointervention of Semmelweis University in Budapest has
+performed nearly 10.000 tremor examinations using this device.
+Figure 2.4: Coordination Ability Test System (CATSYS)
+During data collection, the appropriate sensor for the selected test will send the data to
+the datalogger, where it is stored temporarily before being transmitted to the computer.
+Afterwards, the results are presented in a Windows software [12]. The data logger is the
+main part of this system. It has connections to the sensors and the computer, as well as
+a serial port that can be used in cases where a USB connection is unavailable. It also
+presents reset and volume buttons, as well as information diodes.
+For this project, the sensor of interest is the tremor pen, which records tremor using ac­
+celerometry. The accelerometer is placed at the tip of the pen and consists of a 2­axes
+10
+Using MEMS Technology for Tremor Analysis
+==PAGE:23==
+accelerometer as seen in Figure 2.5a, with the axes perpendicular to the pen. This pen
+is designed to be held like a ballpoint pen between the index and thumb, but it can also
+be attached to the body part of interest as shown in Figure 2.5b. The data obtained from
+this pen is then analysed both in the time and frequency domains to present relevant
+information for the classification of tremor syndromes.
+(a) Sensor placement on tremor pen
+(b) Example of placement of tremor pen for
+tremor data collection
+Figure 2.5: Tremor pen and its application for tremor data collection
+The remaining sensors allow to perform a series of other tests. The reaction handle is
+used for reaction time testing and works by pressing a button on the handle in response
+to a stimulus emitted by the data logger’s speaker. The recording drum is used for rhythm
+and frequency testing, where the patients are asked to hit the drum during hand­pronation­
+suppination or finger tapping. These taps on the drum are recorded using a microphone,
+and the data logger is responsible for recording the time of each tap. The force plate is
+used to determine postural stability by measuring vertical forces at three points to calculate
+the force on the center of the plate. These are recorded and analysed in the time and
+frequency domains [12].
+The software of this system is designed for epidemiologic studies, and as such, it has
+an appropriate way to organize the collected data. This organization method means that
+in each study folder, all test subjects must have performed the same tests. However,
+this can be a non­intuitive way of organizing data when the device is used in a clinical
+environment, as data from the same patients will be in different folders depending on the
+tests performed during each consultation.
+2.3.1
+Tremor Pen Tests
+Tests using the tremor pen present a series of results in the form of key figures, and
+as three pages. The key figures include Tremor Intensity (TI), Center Frequency (CF),
+Standard Deviation of Center Frequency (STDEV CF), Harmonic Index (HI), and Tremor
+Index. The three pages are a time domain page, a frequency domain page, and an energy
+distribution page.
+Regarding the key figures, the tremor pen tests give the following [12]:
+• Tremor Intensity: defined as the root mean square of accelerations in the 0.9 to 15
+Hz band. Its unit is m/s2.
+• Center Frequency: this is the mean frequency of the accelerations in the 0.9 to 15
+Hz band, i.e., 50% of the tremor power is found below this frequency and 50% of
+Using MEMS Technology for Tremor Analysis
+11
+==PAGE:24==
+the tremor power is found above this frequency. Its unit is Hz.
+• Standard Deviation of Center Frequency: this indicates the degree of rhythmicity
+of the tremor, and it is calculated by finding the standard deviation from the center
+frequency in which it’s possible to find 66% of the tremor’s power, that is, 66% of
+the power is inside of the interval center frequency ± standard deviation. A very
+rhythmic tremor will have a small standard deviation, which indicates a concentration
+of tremor energy in a small frequency band.
+• Harmonic Index: this index compares the tremor frequency pattern to that of a single
+harmonic oscillation. A single harmonic oscillation will, ideally, have an HI of 1.00,
+and a normal physiological tremor will have an HI of around 0.88. This index is
+calculated as seen in equation 2.1:
+HI = 1 −
+(∑N
+i=1 Fn
+N
+)
+,
+(2.1)
+where N is the number of frequency bands used in the power spectrum and Fn is
+the normalized Fourier ordinate at a frequency n.
+• Tremor index: this is defined in the test battery definition and thus the performance
+index, which is a measure of the performance of a subject in relation to the average
+performance of a group of sound subjects.
+The three pages present the following:
+• Time Domain: shows in time the data recorded by each axis, which is filtered using
+a Butterworth filter.
+• Frequency Domain: in here, it’s possible to see a normalized power spectrum of the
+two time series. This is calculated by calculating the individual power spectra for
+the two axes and then calculating the square root of the sum of the squares of the
+power spectra. In this graph, it is also possible to observe a running average of the
+normalized power spectrum, the Center Frequency, and the limits of the Standard
+Deviation, as well as the Tremor Intensity.
+• Energy distribution: this shows the energy distribution in different frequency bands
+Other tests will have other key figures and pages, depending on what is being measured.
+After all the tests in a specific folder have been completed and the results obtained, they
+can be exported. This can be achieved by exporting a complete study folder, a subject
+report, or an ASCII file that can be read by other programs.
+2.4
+Related work
+For this project, two main databases were used to search for articles and information.
+These are PubMed and IEEEXplore. The research was focused on devices that analyse
+tremor for monitoring and diagnosis, as well as signal processing techniques.
+The title was considered when searching through the articles, and then the abstract was
+read. If the article was deemed relevant, then it would be read. Exclusion criteria included:
+• Articles that measure other pathologies’ characteristics instead of tremor
+• Articles that characterize or classify tremor that is not pathological
+12
+Using MEMS Technology for Tremor Analysis
+==PAGE:25==
+• Articles that describe the design of sensors
+• Articles with unsatisfactory results
+• Articles with results coming from unsuitable validation processes
+• Articles with applications other than analysis of tremor for diagnosis, detection, or
+monitoring
+• Articles that don’t use accelerometers
+• Articles that use features for ML classification that are not suitable for classification
+done by doctors
+Figure 2.6 illustrates the PRISMA flow chart of study selection. Initially, 351 research arti­
+cles were found using the search term ”tremor analysis accelerometer” on both databases.
+From the ones found, 22 duplicates were removed, and 7 articles could not be obtained
+for free and were therefore discarded. The remaining 322 papers were evaluated, and
+based on their titles and abstracts, 198 articles were excluded. 124 articles were com­
+pletely read, and of those, 103 were discarded, and 21 were included in this Section.
+Figure 2.6: PRISMA flowchart of study selection
+Using MEMS Technology for Tremor Analysis
+13
+==PAGE:26==
+A summary of the articles that were included can be found below in Table 2.2
+Table 2.2: Summary of articles included and their contents
+Publication
+Sensors
+Pathology
+Objective
+Results
+Tremor measurement
+Ali et al. [13]
+Acc
+and
+Gyr
+ET
+Predict FTM scale re­
+sults, and classify be­
+tween different types of
+ET and healthy
+Prediction regression model:
+r2 = 0.818
+SVM classification:
+accu­
+racy = 91.42% (2 class) and
+88.57% (4 class)
+Havlík et al. [14]
+Acc
+Multiple
+Sclerosis
+(MS)
+To create a device that
+is able to measure and
+evaluate tremor
+They were able to measure
+and quantify tremor within
+expected results from litera­
+ture
+Bejugam
+et
+at.
+[15]
+Acc
+Undefined
+To develop a 3D MEMS
+system based on ac­
+celerometers to mea­
+sure involuntary hand
+motion
+The
+frequencies
+obtained
+were comparable to those
+obtained using EMG
+Ghassemi
+et
+al.
+[16]
+Acc
+and
+EMG
+PD and ET
+To
+differentiate
+be­
+tween
+PD
+and
+ET
+using an SVM­based
+classifier
+Accuracies:
+Rest tremor: 79%
+Postural tremor: 75%
+Postural with weight: 83%
+Di Pino et al. [17]
+Acc
+PD and ET
+To use accelerometry
+to measure tremor and
+differentiate
+between
+PD tremor and ET as
+well
+as
+observe
+the
+effect of medication
+The evaluation was qualita­
+tive, and the results were
+within expected
+Carmona
+et
+al.
+[18]
+Acc
+PD
+To create a wireless
+device that is able to
+acquire in real time,
+analyse
+and
+quantify
+tremors
+For healthy volunteers, the
+system was able to acquire
+tremor in real time with min­
+imal data loss and correctly
+analyse the contained sig­
+nals.
+Toque et al. [19]
+Acc
+PD
+To measure,
+analyse
+and classify tremor that
+is obtained using a sim­
+ulator. Classification is
+made between PD like
+tremor, healthy tremor
+and no tremor
+Accuracy of classification:
+Random Forest: 98.66%
+KNN: 98.65%
+Gradient boosting: 98.65%
+Logistic regression: 82.55%
+ANN 88.25%
+Bhat et al. [20]
+Acc
+PD
+To
+create
+a
+system
+capable of measuring
+tremor and analysing
+it
+in
+the
+frequency
+domain,
+enabling
+physicians
+to
+predict
+PD
+The evaluation is qualitative.
+This system was able to
+provide information regard­
+ing healthy and PD volun­
+teers, which falls within ex­
+pectations from the literature
+Iwasaki et al. [21]
+Acc
+PD,
+ET,
+Multiple
+System
+At­
+rophy, Hunt­
+ington’s
+chorea,
+Cerebral
+Palsy
+To develop an assess­
+ment tool for neuro­
+logical
+pathologies
+measuring involuntary
+movements objectively
+The results obtained were
+within expected from litera­
+ture
+14
+Using MEMS Technology for Tremor Analysis
+==PAGE:27==
+Bai et al. [22]
+Four Accs
+Undefined
+To
+create
+a
+device
+that
+can
+accurately
+measure
+and
+assess
+upper limb tremor
+The device was able to ac­
+curately measure frequency
+from a shaker and obtained
+results within expectations
+for a healthy volunteer
+Patel et al. [23]
+Eight Accs
+PD
+To classify the sever­
+ity of PD symptoms,
+tremor,
+bradykinesia,
+and
+dyskinesia
+ac­
+cording to the UPDRS
+using an SVM classifier
+Minimum classification error:
+Tremor: 2.5%
+Bradykinesia: 1.4%
+Dyskinesia 1.2%
+Saez et al. [24]
+Acc
+PD
+To develop a wearable
+device that can accu­
+rately
+measure
+and
+analyse tremor
+The
+results
+of
+validation
+show a deviation of less than
+0.5% in acceleration when
+comparing with a reference
+sensor, and an average error
+of 0.02 Hz when comparing
+peak frequency calculation
+with that same sensor. Re­
+garding tests on volunteers,
+the results aligned with the
+expected findings from the
+literature.
+Signal processing
+Powell et al. [25]
+Acc
+Undefined
+To develop a device
+that can quantitatively
+measure and analyse
+tremor for use in a clini­
+cal setting, using a Fil­
+ter Bank of Gaussian
+filters to separate the
+tremor in its frequen­
+cies and cross correla­
+tion to correlate tremor
+from both sides of the
+body
+The device is able to both fil­
+ter and analyse tremor in an
+accurate manner
+Niazmand
+et
+al.
+[26]
+ACC
+PD
+To
+find
+an
+accurate
+method of calculating
+tremor frequency using
+the data from the time
+domain in low sampling
+frequency
+situations
+using three methods.
+Average
+frequency
+devia­
+tion:
+Method 1: 0.31 +/­ 0.34 Hz
+Method 2: 0.44 +/­ 0.51 Hz
+Method 3: 0.62 +/­ 0.76 Hz
+Zhang et al. [27]
+3 Accs
+Undefined
+To use Empirical Mode
+Decomposition
+to
+extract
+tremor
+ampli­
+tudes and frequencies
+throughout time
+They
+were
+able
+to
+iden­
+tify
+key
+frequencies
+from
+their simulator using Intrinsic
+Mode Functions, and to find
+the change of frequencies in
+time using the Hilbert­Huang
+Transform.
+Teufl et al. [28]
+ACC
+MS
+To develop an algo­
+rithm that can identify
+tremor instances, and
+quantify them using the
+FFT of accelerometry
+measurements
+Tremor identification:
+Sensitivity: 97.4%
+Specificity: 97.1%
+When tremor was detected,
+the authors were also able
+to quantify tremor in the time
+and frequency domains in
+different activities within ex­
+pectations
+Using MEMS Technology for Tremor Analysis
+15
+==PAGE:28==
+In addition to the presented articles, studies that utilized smartphones and smartwatches
+were also considered. However, it is important to take into account that the use of these
+devices can become expensive. It is also worth noting that some older individuals may not
+be very technologically savvy, which can complicate their use of these devices. Never­
+theless, these allow for a continuous measurement of tremor, which can be beneficial for
+monitoring and even diagnosis. In [29], Araújo et al. showed that the iPhone apps, iSeis­
+tometer, LiftPulse, and Studymytremor, which connect to the iPhone Acc, can measure
+tremor frequency with high correlation to EMG needles (Pearson >0.8, p < 0.001). Joundi
+et al., [30] have also shown that the iPhone app iSeismo can use iPhone Accelerometer
+to detect tremor peak frequency with high accuracy. Although it was designed to detect
+seismic activity, this app was able to detect tremor peak frequency with a maximum error
+of 0.5 Hz when compared to EMG recordings.
+Barrantes et al. were able to use the accelerometer in an iPhone 5S to distinguish be­
+tween healthy and pathological tremor and also between PD and ET patients [31]. They
+used features in the frequency domain, such as the total spectral power, relative power
+contribution to the first harmonic, and relative energy, in Rest and Postural tremor, to find
+suitable thresholds to make those two types of discrimination. Also using ML, Bazgir et
+al. were able to classify with 91% accuracy Parkinsonian Tremor severity in the UPDRS
+scale [32]. They recorded tremor using an Accelerometer from a smartphone, and used
+features in the time and frequency domain to classify tremor from 0 (non severe) to 4
+(very severe). In [33], Abujrida et al. used a Multi­Layer 1D Convolutional Neural Net­
+work to classify gait data acquired with a smartphone. The authors describe using a large
+dataset, mPower, in which patients used a phone to record gait on their daily life, to clas­
+sify the severity of PD symptoms. By pre­processing the data using a moving average
+to smooth the signal, mean subtraction to remove DC shifts, and identifying gait cycles.
+They achieved an accuracy of 98.4% in the classification of shaking/tremor severity.
+2.5
+Commercially available devices
+To search for commercially available tremor analysis devices, Food and Drug Administra­
+tion (FDA) databases were used. Specifically, the Devices@FDA, the 510(k) Premarket
+Notification, and the Establishment Registration & Device Listing. The Devices@FDA
+database presents all cleared and approved medical device information from the FDA,
+the 510(k) Premarket Notification database includes all devices that were approved using
+a 510(k), and the Establishment Registration & Device Listing database includes informa­
+tion regarding medical devices in commercial distribution by both American and foreign
+manufacturers [34].
+Using the keywords ”tremor”, ”accelerometer”, ”tremor diagnosis”, ”Parkinsons”, and ”Es­
+sential Tremor”, as well as the Product Classification ”GYD”, a total of 6 systems were
+found.
+2.5.1
+StrivePD
+The StrivePD app, built by the company Rune Labs [35], is a free app used both on a
+phone and an Apple Watch, intended for PD patients to monitor their disease.
+Using the Apple Watch and the phone in the front pocket, this device can track tremor
+and mobility as well as find trends and highlight changes. The data that is collected is
+processed and then uploaded to the Rune Labs’ platform, which can be accessed by
+clinicians. The collected data can also be summarized and delivered to the patient in a
+printable format, which can then be transmitted to the caregivers, making the monitoring
+of this disease simpler and more efficient.
+16
+Using MEMS Technology for Tremor Analysis
+==PAGE:29==
+Figure 2.7: StrivePD system
+StrivePD uses the Motor Fluctuations Monitor for Parkinson’s Disease (MM4PD), a toolkit
+from Apple in the Apple Watch. This toolkit uses data collected using accelerometers and
+gyroscopes to assess the likelihood of tremor and dyskinesia. This software was validated
+in a clinical study [36] for patients in the age range of 71.4 ± 8.9 years old.
+2.5.2
+Neu Platform
+The Neu Platform developed by Neu Health, is a platform built to help adults with PD and
+Dementia manage their condition [37].
+This FDA approved software has two components, a smartphone app to capture symp­
+toms, and a dashboard to view the data. The first one is used by the patients to measure
+tremor using their smartphone and the accelerometers present in them. This smartphone
+has to have at least iOS 14.1 or Android 7. In this app the patients can also report spe­
+cific data such as subjective symptom information. The dashboard is used by clinicians
+to view the data recorded by the patients which is saved in a could [38]. A schematic of
+this system can be seen in Figure 2.8
+Figure 2.8: Neu Platform high level overview
+Although this system doesn’t provide diagnosis or treatment recommendations, it can be
+used to help monitor the disease and its progression. It displays tremor activity as well as
+relevant information such as medications.
+Using MEMS Technology for Tremor Analysis
+17
+==PAGE:30==
+2.5.3
+NeuroRPM­Rx
+NeuroRPM is a software that uses the Apple Watch to monitor the main symptoms of PD,
+bradykinesia, tremor and dyskenesia [39]. It offers insights into PD symptoms by using
+Artificial Intelligence (AI) to detect and display them in real­time, and it also integrates with
+Apple’s Healthkit and helps patients manage their medication.
+This device is intended for use at home and in the clinic for patients with PD in the age
+group of 46 to 85 years [40].
+Figure 2.9: NeuroRPM system
+The motion data that is collected is then transmitted to a cloud and analysed in the time
+and frequency domain using AI which will generate binary classifications every 15 minutes
+[40]. These classifications include:
+• Tremor
+– No Tremor: no tremor detected
+– Tremor: tremor detected
+• Bradykinesia
+– Normal to Low: No or mild bradykinesia detected
+– Medium to High: Moderate or greater than moderate bradykinesia detected
+• Dyskinesia
+– No Dyskinesia: no dyskinesia detected
+– Dyskinesia: dyskinesia detected
+All of these outputs were validated in a clinical trial, which showed that this device is
+capable of quantifying symptoms of movement disorders. These outputs can be seen in
+the app, but also in PDF reports that are made daily with graphs and summary statistics.
+2.5.4
+Parky
+Parky is an Apple Watch based system for monitoring PD. It allows for monitoring and
+recording tremors at all times and provides reports that can be accessed by clinicians. It
+also has reminders for medications and allows to track it as well as physical activity [41].
+The Parky Plus package is a paid package inside the app that also has a motor symptoms
+tracker, detailed symptoms reports, and a symptoms­medication correlation module.
+18
+Using MEMS Technology for Tremor Analysis
+==PAGE:31==
+Figure 2.10: Parky system
+Figure 2.11 shows an overview of this system, in which the Apple Watch collects data
+continuously, which is sent to the iPhone app and then to the cloud, where reports are
+generated and then shared with the clinicians.
+Figure 2.11: Parky system high level overview
+This system uses the MM4PD algorithm to quantify tremor and dyskinesia in adults with
+PD over 45 years old [42].
+2.5.5
+Personal Kinetigraph System (PKG)
+The PSK system, built by PKG Health, is a device that provides continuous monitoring of
+motor symptoms for Parkinson’s Disease. This watch­like device measures continuous
+patient data and sends medication reminders while recording the patient’s compliance.
+Associated with this device, there are also algorithms that provide insights and guidance
+on treatment decisions and adjustments.
+Using MEMS Technology for Tremor Analysis
+19
+==PAGE:32==
+For caregivers, this system has iOS and Android­compatible applications that allow ac­
+cess to patients’ reports. For healthcare providers, this system allows them to manage all
+patients, provides analytics on patient evolution, and enables the staff to set up medication
+reminders [43].
+2.5.6
+Kinesia
+The Kinesia devices by Great Lakes Technologies can be used in several ways. The
+Kinesia One is used on the finger, to measure and analyse PD symptoms while the patient
+performs a series of pre­defined tasks based on scales such as the UPDRS and the
+TETRAS. After the tasks are finished, the recordings are the uploaded to the Kinesia
+Web Portal and a rating of severity is given between 0 and 4 [44].
+The Kinesia 360 system provides continuous monitoring of PD motor symptoms. Two
+sensors are attached to the wrist and the ankle to continuously monitor tremor, slowness,
+dyskinesia, and mobility. In this case, the severity of the symptoms are calculated every
+two minutes. The associated app includes an electronic diary of patients’ reports and
+medication reminders. The patients data is uploaded to a web portal that can be assessed
+by clinicians and researchers [45].
+KinesiaU is a system that allows for PD and ET patients to monitor their symptoms using
+a smartwatch, and an iPhone or Android phone. This system tracks tremors, slowness,
+dyskinesia, therapies, and activities providing user­friendly reports. These reports can
+then help patients and clinicians to find the best course of treatment [46].
+20
+Using MEMS Technology for Tremor Analysis
+==PAGE:33==
+Chapter 3: Methods and procedures
+3.1
+User requests
+For this project, there were requests from the users that were tried to be fulfilled. The
+users, by definition, are the people who will use this device, which in this case are the
+doctors in the Department of Neurosurgery and Neurointervention at the Semmelweis
+University Hospital.
+The requests made for this project are:
+1. Sensor built into a cuboid tool
+2. Double accelerometer
+3. Wireless sensors
+4. Three­dimensional accelerometer
+5. 1­25 Hz frequency range
+6. Possibility of high­pass or low­pass filter at the individual level
+7. Access to raw data before FFT analysis
+8. Remove the CATSYS­index
+9. Introduction of entropy in the time­domain
+10. Automatic data export into an Excel file
+11. Editing possibility before printing the findings
+12. Introduction of two EMG channels
+This list serves as the starting point for the development of this device. Of them, most of
+the requests were met, while the remaining ones can be fulfilled in the future.
+These requirements have different goals, such as increasing the ease of use of the de­
+vice (1, 2, 3, 7, 10, 11), providing access to more tremor information (4, 5, 9, 12), or even
+removing information that is not relevant (8). Emphasizing requests 7 and 10, they will
+allow for easy artifact removal prior to analysis. This avoids the need for repeating mea­
+surements, which can be tiring for patients. Regarding request 9, Approximate Entropy
+(ApEn) and Cross­Approximate Entropy (XApEn) were shown to distinguish between PT
+and ET [47], as well as Sample Entropy (SampEn) [48], which can be a difficult task in
+some cases.
+3.2
+Hardware
+3.2.1
+Hardware Components Research
+For the hardware aspect of this project, it was necessary to find a suitable sensor to mea­
+sure tremor, as well as a microprocessor to serve as the bridge between the sensor and
+the computer. The research was conducted using both academic articles and special­
+ized electronic component suppliers. Articles provided a foundation for understanding
+the characteristics of the components, and further research was conducted on websites
+such as Mouser, DirectIndustry, and Arduino.
+Using MEMS Technology for Tremor Analysis
+21
+==PAGE:34==
+The chosen sensor was an accelerometer, as requested by the users, and also because
+it would allow for compatibility with the CATSYS system described in Section 2.3, as well
+as due to the extensive available literature.
+Regarding microprocessors, Arduino was preferred due to prior experience. The focus
+when looking for a microprocessor was on processing speed, communication protocols,
+size, weight, the capacity for wireless communication, and, if available, the presence of
+an embedded Inertial Measurement Unit (IMU).
+3.2.2
+Choice of Accelerometer
+When researching IMUs, the focus was on finding suitable accelerometers, with particular
+attention to their size, sensitivity, and measurement range.
+From literature and web research, the accelerometers listed in Table 3.1 were identified.
+Table 3.1: Different accelerometers found and their characteristics
+Name
+Range [g]
+Sensitivity
+[mg/LSB]
+Size [mm]
+LSM6DSL
+[49, 50]
+±2
+±4
+±8
+±16
+0.061
+0.122
+0.244
+0.488
+2.5 × 3.0 × 0.83
+ADXL345 [51,
+52]
+±2
+±4
+±8
+±16
+3.906
+7.813
+15.625
+31.25
+3.0 × 5.0 × 1.0
+MIS2DH [53]
+±2
+±4
+±8
+±16
+3.91
+7.81
+15.63
+46.95
+2.0 × 2.0 × 1.0
+LSM303AH
+[54]
+±2
+±4
+±8
+±16
+0.061
+0.122
+0.244
+0.488
+2.0 × 2.0 × 1.0
+LSM6DS3
+[55]
+±2
+±4
+±8
+±16
+0.061
+0.122
+0.244
+0.488
+2.5 × 3.0 × 0.83
+LIS2DUX12
+[56]
+±2
+±4
+±8
+±16
+0.061
+0.122
+0.244
+0.488
+2.0 × 2.0 × 0.74
+KXTJ3­1057
+[57]
+±2
+±4
+±8
+±16
+0.977
+1.953
+3.906
+7.813
+2.0 × 2.0 × 0.9
+IIS3DHHC
+[58]
+±2.5
+0.076
+5.0 × 5.0 × 1.7
+ADXL362 [59]
+±2
+±4
+±8
+1
+2
+4.255
+3.0 × 3.25 × 1.06
+LSM6DSOX
+[60]
+±2
+±4
+±8
+±16
+0.061
+0.122
+0.244
+0.488
+2.5 × 3.0 × 0.83
+More sensors were found, but they were discontinued or obsolete and therefore discarded
+as a potential use.
+22
+Using MEMS Technology for Tremor Analysis
+==PAGE:35==
+From all the sensors listed in Table 3.1, only those with higher sensitivity were considered.
+These are the LSM6DSL, LSM303AH, LSM6DS3, LISDUX12, and the LSM6DSOX. The
+capacity to support a 100 Hz sampling frequency and the speed of communication were
+key considerations when selecting the best one. The choice of 100 Hz comes from the
+Nyquist theorem [61], which states that the sampling frequency must be at least bigger
+than double the maximum frequency, as shown in equation 3.1.
+fs ≥2fm
+(3.1)
+Communication speed is crucial for preventing data loss and ensuring the accuracy of
+real­time data transmission. To verify the necessary speed, it’s important to first know
+the length of each message. For I2C communication, using the example of the sensor
+LSM6DSL, we have the following protocol [50]:
+1. Start ­ 0 bits
+2. Slave address + writing ­ 7 + 1 bits
+3. Slave acknowledgement ­ 1 bit
+4. Sub­address ­ 8 bit
+5. Slave acknowledgement ­ 1 bit
+6. Repeated start ­ 0 bits
+7. Slave address + reading ­ 7 + 1 bits
+8. Slave acknowledgement ­ 1 bit
+9. Data (x1) ­ 8 bits (1 byte)
+10. Master acknowledge ­ 1 bit
+11. Data (x2) ­ 8 bits (1 byte)
+12. Master acknowledge ­ 1 bit
+13. Data (y1) ­ 8 bits (1 byte)
+14. Master acknowledge ­ 1 bit
+15. Data (y2) ­ 8 bits (1 byte)
+16. Master acknowledge ­ 1 bit
+17. Data (z1) ­ 8 bits (1 byte)
+18. Master acknowledge ­ 1 bit
+19. Data (z2) ­ 8 bits (1 byte)
+20. No master acknowledge ­ 1 bit
+21. Stop ­ 0 bits
+Since this sensor transmits a 16­bit message for each axis, the protocol for sending a
+message from all three axes is as presented. In total, there will be:
+(7+1)+1+8+1+(7+1)+1+8+1+8+1+8+1+8+1+8+1+8+1 = 81 bits/sample
+Using MEMS Technology for Tremor Analysis
+23
+==PAGE:36==
+Knowing that the desired sampling frequency is 100 Hz and that each message has 81
+bits, it’s now possible to calculate the minimum necessary speed for accurate data col­
+lection:
+100samples
+second × 81
+bits
+sample = 8100 bps
+For the same sensor, and doing the same calculation for the SPI protocol.
+1. Write ­ 1 bit
+2. Address ­ 7 bits
+3. Data (x1) ­ 8 bits (1 byte)
+4. Data (x2) ­ 8 bits (1 byte)
+5. Data (y1) ­ 8 bits (1 byte)
+6. Data (y2) ­ 8 bits (1 byte)
+7. Data (z1) ­ 8 bits (1 byte)
+8. Data (z2) ­ 8 bits (1 byte)
+So, in total, a sample using the SPI protocol uses:
+1 + 7 + 8 + 8 + 8 + 8 + 8 + 8 = 56 bits/sample
+Using the same rationale as before, the minimum communication speed necessary is:
+100samples
+second × 56
+bits
+sample = 5600 bps
+A summary of this information for all sensors is shown in Table 3.2
+Table 3.2: Minimum communication speeds for the selected sensors
+Name
+Size of sample
+I2C minimum speed
+SPI minimum speed
+LSM6DSL
+16 bits/axis
+8100 bps
+5600 bps
+LSM303AH
+16 bits/axis
+8100 bps
+5600 bps
+LSM6DS3
+16 bits/axis
+8100 bps
+5600 bps
+LIS2DUX12
+16 bits/axis
+8100 bps
+5600 bps
+LSM6DSOX
+16 bits/axis
+8100 bps
+5600 bps
+The values of Output Data Rate (ODR) and clock frequency for both I2C and SPI com­
+munication protocols were analysed to choose between the four sensors presented pre­
+viously. These were taken from the datasheets [50, 54, 55, 56] and will be presented in
+Table 3.3.
+Output Data Rate is the frequency at which the sensor captures new measurements and
+updates them, that is, how often data is available. Therefore, this parameter should meet
+the desired sampling frequency. If the ODR is much bigger than the sampling frequency,
+then not all values will be read, and if it is too small, then the same value will be read
+repeatedly. The clock frequency determines the number of Bits Per Second (BPS) that
+can be transferred and, therefore, is a measure of communication speed.
+24
+Using MEMS Technology for Tremor Analysis
+==PAGE:37==
+Table 3.3: Characteristics of the most sensitive accelerometers
+Name
+ORD [Hz]
+I2C speed
+SPI speed
+LSM6DSL
+LSM6DS3
+1.6
+12.5
+26
+52
+104
+208
+416
+833
+1666
+3332
+6664
+Standard
+mode:
+100 kHz
+Fast mode:
+400
+kHz
+10 MHz
+LSM303AH
+1
+12.5
+25
+50
+100
+200
+400
+800
+1600
+3200
+6400
+Standard
+mode:
+100 kHz
+Fast mode:
+400
+kHz
+Fast mode plus:
+1 MHz
+High speed:
+3.4
+MHz
+10 MHz
+LISDUX12
+1.6
+3
+6
+12.5
+25
+50
+100
+200
+400
+800
+Fast mode:
+400
+kHz
+Fast mode plus:
+1000 kHz
+10 MHz
+LSM6DSOX
+1.6
+12.5
+26
+52
+104
+208
+416
+833
+1666
+3332
+6664
+Fast mode:
+400
+kHz
+Fast mode plus:
+1000 kHz
+10 MHz
+As seen in Table 3.3, all sensors are equivalent both in ODR and communication speed,
+and all meet the requirements for efficient data transmission. Therefore, the final decision
+will be made regarding how easily the final hardware design can be implemented.
+3.2.3
+Choice of Microcontroller
+As stated before, the choice of microcontroller was based on previous experience with
+Arduino. As such, the Arduino Hardware Store was used to look for a suitable micro­
+controller [62]. Several Arduino boards stood out as they were equipped with one of the
+previously selected sensors or a similar one. They are compared in Table 3.4.
+Additionally, the Arduino MKR IMU Shield [67] can be used in conjunction with an Arduino
+board from the MKR family. It includes an IMU with a 3­dimensional accelerometer, gy­
+Using MEMS Technology for Tremor Analysis
+25
+==PAGE:38==
+Table 3.4: Characteristics of selected Arduino boards with integrated IMUs
+Name
+IMU
+Processing
+Speed
+Size
+Weight
+Wireless
+communication
+Arduino
+Uno
+WiFi
+Rev 2 [63]
+LSM6DS3
+16 MHz
+53.4
+×
+68.6 mm
+25 g
+Bluetooth and
+WiFi
+Arduino Nano 33 IoT
+[64]
+LSM6DSOX*
+48 MHz
+18
+×
+45
+mm
+5 g
+Bluetooth and
+WiFi
+Arduino
+Nano
+RP2040
+Connect
+[65]
+LSM6DSOX
+133 MHz
+18
+×
+45
+mm
+6 g
+Bluetooth and
+WiFi
+Arduino Nano 33 BLE
+Sense Rev2 [66]
+BMI270
++
+BMM150**
+64 MHz
+18
+×
+45
+mm
+5 g
+Bluetooth
+* Although Arduino documentation lists the LSM6DS3, the WHO_AM_I register reports the
+LSM6DSOX.
+** This board includes two IMUs: one with accelerometer + gyroscope, and one with a
+magnetometer.
+roscope, and geomagnetic sensors, and has a size of 27 × 61 mm with a weight of 14
+g.
+From all the presented options, it is possible to exclude the Arduino Uno WiFi Red 2 due
+to its size and weight. Since there are suitable boards for this task, the Arduino MKR IMU
+Shield was also discarded.
+From the remaining options, all of them have fast enough processing speed to read the
+measurements from the sensor and send them to the computer. Therefore, the choice of
+board was made based on the fact that both the Arduino Nano 33 IoT and the Arduino
+Nano RP2040 Connect already had a chosen sensor, and on the fact that the latter had
+unnecessary functionalities. Ultimately, the chosen board was the Arduino Nano 33 IoT.
+3.2.4
+Hardware Design
+Due to the fact that it was possible to find an Arduino board with reasonable size and
+weight and an adequate IMU, the hardware design of this project is fairly simple, consisting
+only of two Arduino boards connected to the computer by a long cable, as can be seen in
+Figure 3.1.
+Figure 3.1: Schematic of the Hardware design
+It is to note that the connection between the IMU and the board is an I2C by definition, but
+as seen before, this is fast enough to transfer the necessary data. The speed of the serial
+connection between the board and the computer can be chosen in the Arduino IDE. The
+necessary speed will be calculated in a similar manner to before.
+26
+Using MEMS Technology for Tremor Analysis
+==PAGE:39==
+The message sent from the Arduino to the computer is in the format: ”time,x,y,z\n”, and
+the information is sent in byte format instead of ASCII, as it is faster, allowing for the
+transmission of more information while causing fewer delays. Therefore:
+• Time: 32 bits = 4 bytes
+• Accelerations: 3 × 2 bytes
+In total: 4 + (3 × 2) = 10 bytes = 80 bits
+Knowing that the sampling frequency will be 100 Hz, the minimum Baud Rate should be:
+80 bits × 100 Hz = 8, 000 bps
+The minimum required Baud Rate is 8,000 bps for one sensor to send data. Since there
+will be situations in which both sensors send data simultaneously, to add some margin,
+and since it is a stable one, this project will use a Baud Rate of 115,200 bps.
+3.3
+Software
+For this project, the Software consists of an Arduino script for each sensor that identifies it
+and sends data to the computer, and a Python script that collects and analyses the data.
+In addition, there’s also a Graphical User Interface (GUI) that will be presented further in
+Section 3.4.
+The code developed for both Arduino boards, as well as the Python code responsible
+for collecting and analysing data, will be provided in Section A of the Appendix, and the
+remainder of the code of the GUI will be provided in a GitHub repository (https://github.
+com/martaabrantes01/Thesis.git).
+3.3.1
+Arduino
+The Arduino script was done using the SparkFun LSM6DS3 Arduino Library [68]. Al­
+though this board has the LSM6DSOX IMU, the Arduino library designed for this sensor
+is not supported by it [69], only the one for the LSM6DS3 IMU [70]. However, this last one
+does not allow for changing the sensor settings, which are predefined as ± 4 g and ODR
+of 104 Hz. Therefore, the public library made by SparkFun Electronics was used.
+The first thing that happens when running this script is that the definitions of the sensor are
+changed to ± 2 g and 104 Hz. This was done using the commands settings.accelRange
+and settings.accelSampleRate.
+Once the sensor settings are defined, data collection starts. To ensure controlled data
+collection, this process relies on the presence of a ”Start” command sent to the board,
+which initiates data collection, that will continue until a ”Stop” command is sent. To have
+correct time stamps of when data collection happens, as soon as the ”Start” command
+is read, a start_time variable is created using the function micros(). This variable will
+save the time, in milliseconds, that has passed since the program started, and will be
+subtracted from the time of data collection of each acquired sample. Then, the function
+Serial.write() was used to send the data in byte format. It is also worth noting that data
+is sent every time there is new data available, which is achieved using the condition if
+(myIMU.readRegisterInt16(&status_reg_value, LSM6DS3_ACC_GYRO_STATUS_REG) ==
+0){if (status_reg_value & 0x01)}. This ensures that there are no lost values or val­
+ues that are read multiple times.
+Using MEMS Technology for Tremor Analysis
+27
+==PAGE:40==
+This script also allows for identifying the Right and Left side sensors. When receiving the
+command ”Identify”, the board will send back ”Left_side_sensor” or ”Right_side_sensor”.
+3.3.2
+Python
+Now, the process of data collection and analysis will be described. These are imple­
+mented in Python and are part of a GUI that will be described further in Section 3.4. The
+overall process can be seen in Figure 3.2
+Figure 3.2: Scheme of the flow of data. The data is collected, saved in an Excel file, and
+then analysed.
+Data Collection
+Data collection is performed through serial communication, where Python receives the 10
+bytes sent by the board, decodes them, and saves the data in an Excel file.
+First, a serial connection is established, and then the ”Start” command is sent to the board,
+after which data collection occurs for a predetermined, pre­chosen duration of time. To
+that duration, 2 seconds are added, which will be cut off at the ends of the signal. This
+is done after filtering the signal to remove edge artifacts created by the filter. This data
+collection happens in a while loop, and in each iteration, the following occurs:
+1. Read the 10 bytes that were sent using ser.read(10)
+2. Decode the information that was read using struct.unpack('<Lhhh', data)
+3. Convert the time to seconds and the accelerations to m/s2
+When decoding the message, the code Lhhh is used, as L refers to an unsigned long
+(time) and h to signed shorts (accelerations). The conversion of the timestamps is done
+by dividing the time by 1,000,000 since it was sent in microseconds, and the conversion
+of the accelerations was done by first multiplying by the sensitivity to convert into g and
+then multiplying by the gravitational acceleration to convert to m/s2. The gravitational
+acceleration is obtained from the SciPy.constants library and has a value of 9.80665
+m/s2.
+acceleration[bits]×sensitivity
+[ g
+LSB
+]
+×gravitational acceleration
+[m
+s2
+]
+= acceleration in m/s2
+After conversion, the data is then appended to a list in the order [timestamp,x,y,z].
+When data collection is finished, this list is saved in an Excel file on the computer. This
+file will be accessed after so that the data can be analysed.
+Data Analysis
+For data analysis, the data is first read from the Excel file previously created, and then
+saved in a data frame. Then, the analysis is done in the time and frequency domains.
+Here, there are two sets of data in the time domain, one in which Not a Number (NaN)s
+28
+Using MEMS Technology for Tremor Analysis
+==PAGE:41==
+are kept, which will be used for visualization as this allows to have holes when plotting,
+and one in which all the NaNs are removed, which will be used for further analysis. This
+is important because NaNs can affect the results of mathematical calculations. However,
+if samples are removed from the Excel files, it is also beneficial to visualize it and have
+that information.
+For the acceleration signals used only for visualization, the data processing consists of
+removing the mean of the signals using np.nanmean(), which will remove the DC shift
+created by gravity, and then applying a bandpass filter between 0.8 and 29 Hz. To do this,
+a distinct filtering function was created to only filter the parts that are not NaN, otherwise
+these will propagate thoughout the whole signal. To achieve this, a mask with the good
+parts of the signal is created and only that is filtered. The filtered signal is then reapplied
+to a previously created NaN copy of the original one. To finish, the first and last seconds
+are cut from the filtered signal to remove edge artifacts created by the filter.
+The complete process of analysis for the other set of time domain data is as follows:
+1. Drop any existing NaNs in all acceleration signals
+2. Subtract from each axis its mean to remove the effect of gravity
+3. Filter the signal using a Butterworth bandpass filter between 0.8 and 29 Hz
+4. Remove the first and last seconds of recording
+5. Calculate the magnitude of acceleration using a three­dimensional Pythagoras the­
+orem as shown in equation 3.2.
+Magnitude =
+√
+X′2 + Y ′2 + Z′2
+(3.2)
+6. Calculate the PSD for the signal
+7. Apply a mask to filter the PSD between 1 and 25 Hz
+8. Calculate the Tremor Intensity, Center Frequency, Peak Frequency, Standard De­
+viation of Center Frequency, Harmonic Index, Entropy, and, if applicable, Cross
+Entropy.
+When filtering the signals, a Butterworth bandpass filter of order 4 between 0.8 and 29
+Hz is used. These parameters were chosen by comparing different frequency responses
+of the filter, until the one in Figure 3.3 was achieved. This filter allows for the desired
+frequencies to be within the linear area while maintaining the cut­off frequencies close to
+the desired ones and avoiding a slope that is too steep.
+In the frequency domain, the PSD is calculated as described in [12]. The PSD is calculated
+for each acceleration axis by calculating first the FFT as shown in equation 3.3
+PSD = |FFT|2
+N
+,
+(3.3)
+where N is the number of samples in that axis. Then, the magnitude of the PSD is calcu­
+lated as shown in equation 3.4.
+PSD =
+√
+PSD2x + PSD2y + PSD2z.
+(3.4)
+Using MEMS Technology for Tremor Analysis
+29
+==PAGE:42==
+Figure 3.3: Frequency response of the chosen Butterworth filter. The red lines represent
+the desired frequency interval and the green lines the cut­off frequencies.
+The PSD and the magnitude of the signal are then used to calculate a series of indices
+used to characterize tremor. Most of these are described in Section 2.3 as they come
+from the CATSYS system, but some of them are new. These are:
+• Tremor intensity: Tremor Intensity (TI) is calculated from the magnitude of the sig­
+nals in the time domain. This measure comes in m/s2 and is calculated as the Root
+Mean Square (RMS) of the magnitude of the signal, as shown in equation 3.5.
+TI =
+√
+mean(magnitude2)
+(3.5)
+• Center frequency: the Center Frequency is calculated by finding the frequency that
+separates the power of the signal in half. To do this, the function np.cumsum() is
+applied to the PSD to find the cumulative power at each index. Then, the function
+np.where() is used with the argument cumulative_power >= total_power/2 to
+find the index of the frequency that is closest to the center frequency. Finally, the
+desired frequency is selected from the frequencies array that was obtained when
+calculating the PSD.
+• Peak frequency: the peak frequency is the maximum frequency in the frequency
+spectrum, and it is calculated by finding the maximum value of the PSD with the
+function np.argmax(), and then selecting the associated frequency.
+• Standard Deviation of Center Frequency: to calculate this index, it is necessary
+to first find how much 66% of the total power is, and then the interval around it is
+extended until the right frequency interval is found. This extension process is done
+iteratively, where the interval increases symmetrically around the CF until 66% of
+the total power is inside it. After, the standard deviation is calculated as half of the
+interval around the center frequency.
+• Harmonic Index: this is calculated using equation 2.1 for a normalized PSD.
+• Sample Entropy (SampEn): Sample Entropy is calculated using the function SampEn
+from the toolkit EntropyHub [71], which calculates it based on [72, 73]. This index
+measures the randomness of the collected signal. A pathological tremor should
+not be random, as it has a defined frequency and a spectrum similar to that of a
+harmonic signal, unlike a physiological one.
+30
+Using MEMS Technology for Tremor Analysis
+==PAGE:43==
+The manner with which SampEn is calculated is by taking a data series u and divid­
+ing it into smaller chunks of size m. Each chunk x(i) = {u(i), u(i+1), ..., u(i+m−1)}
+is then compared to all others, except itself. The comparison of each chunk is ac­
+tually a distance calculation between each of them, which will give the number of
+possibilities and the number of matches. The number of possibilities is given as
+shown in equation 3.6
+Bm(r) =
+1
+N −m −1
+1
+N −m
+N−m
+∑
+i=1
+N−m
+∑
+j=1,j̸=i
+[number of times that d[|xm(j)−xm(i)|] < r].
+(3.6)
+And the number of matches is given as shown in equation 3.7
+Am(r) =
+1
+N −m −1
+1
+N −m
+N−m
+∑
+i=1
+N−m
+∑
+j=1,j̸=i
+[number of times that d[|xm+1(j)−xm+1(i)|] < r].
+(3.7)
+This means that possibilities are when two x vectors, two chunks, match for m
+points, and matches are when the following points, m + 1, also match.
+In the end, Sample Entropy is estimated using equation 3.8
+SampEn(m, r, N) = −log
+[Am(r)
+Bm(r)
+]
+.
+(3.8)
+• Cross­Sample Entropy (XSampEn): Cross­Sample Entropy is also a measure of
+randomness, but in this case, between two signals, that is, it is an indication of how
+two signals are similar. It is also calculated using the toolkit EntropyHub according to
+[72, 73]. In the context of this project, this index will measure the similarity between
+tremors originating from two sources in bilateral recordings, such as the right and
+left hands. This measure is calculated in a similar manner to SampEn, but in this
+case, the compared chunks are from both signals.
+For both SampEn and XSampEn, the higher the values, the more randomness there is,
+or the less similar the two signals are.
+3.4
+Design
+In this section, the design of the device will be described. This includes the device itself,
+which comprises cases for the two sensors, how to attach them to the patient, and a GUI
+that the users will utilize to store and manage patient information, as well as collect and
+analyse tremor data.
+3.4.1
+Design of the Device
+This device is fairly simple. It consists of two small boxes attached to the patient using
+Velcro straps and connected to the computer via two USB cables. These boxes were
+designed using Tinkercad and look as shown in Figure 3.4.
+As can be seen, they consist of a box with space to insert the Arduino board and a lid that
+can be glued to it. In both the box and the lid, there are also letters ”R” and ”L” that indicate
+to which side of the body each sensor should be attached. There’s also an opening to the
+exterior, which is where the USB cable is connected to the board.
+Using MEMS Technology for Tremor Analysis
+31
+==PAGE:44==
+Figure 3.4: Design of the sensor cases for 3D printing
+3.4.2
+Graphical User Interface (GUI)
+To use this device, a GUI was also constructed, which was created in Python using the
+PyQt6 toolbox. A map of the GUI can be seen in Figure 3.5.
+To start the design of the GUI, a first meeting with the users was held, during which
+they demonstrated the current CATSYS system and provided improvement points. These
+points included:
+• Have an easy way to introduce a patient’s information, which consists of name or
+ID, gender, and the dominant hand
+• Have the possibility to have all the tests for the same patient in the same place
+• Have the possibility to easily change test protocols
+• Have the possibility to analyse the patient’s data at the end of the day or at a later
+time
+• Be able to visualize both the time and frequency domain plots together
+• Easy access to the Raw data and the results
+After that, the first version of the GUI was implemented, and several cycles of feedback
+meetings and implementation happened until the final version was achieved. Examples
+of more feedback given are:
+• In bilateral recordings have the indexes presented in two columns under each re­
+spective graphs
+• Have a sound at the start and end of the recordings
+• Identify which side is being recorded in unilateral recordings when choosing the
+protocol
+• Have more numbers in the horizontal axis in the time and frequency plots
+The scheme presented in Figure 3.5 was designed as a guidance tool for building the
+GUI, and it evolved as the it was being developed. The shown design is the final version,
+obtained through the collaborative effort with the users. As can be seen, the GUI has
+seven windows, each with its own task, and four other support scripts were also created.
+All the windows and scripts include:
+1. Start Window
+32
+Using MEMS Technology for Tremor Analysis
+==PAGE:45==
+Figure 3.5: Map of the constructed GUI
+2. New Patient Window
+3. Search Patient Window
+4. Edit Patient Window
+5. Patient Manager
+6. Recording Window
+7. Data Collector
+8. Analysing Window
+9. Data Analyser
+10. Settings Window
+11. Settings Manager
+A description of how each window works and how to use it will be given in Chapter 4. The
+Patients and Settings Managers will be explained below, and the Data Collector and Data
+Analyser were explained in Section 3.3.2 and 3.3.2. Now, small details will be highlighted.
+The first aspect to highlight is how the patients are organized and how their information
+is kept. This is done through the Patient Manager. In this script, a series of functions
+are implemented to save a new patient, edit a patient’s information, get a patient’s in­
+formation, and delete a patient. All of this is achieved through a connection between
+Python and SQL, which is established through sqlite3 to create and maintain a database,
+patients.db, to which the key will be the patient’s ID. Here, a patient’s table is created
+using the command CREATE TABLE IF NOT EXISTS, which has the format described in
+Table 3.5.
+id
+name
+age
+gender
+hand
+comments
+01
+26
+Left
+02
+Female
+Right
+Table 3.5: Example of patients database table
+All information is provided directly from other windows as arguments when calling the
+Using MEMS Technology for Tremor Analysis
+33
+==PAGE:46==
+functions in this script that are responsible for creating a new patient or editing an already
+existing one. To search or delete a patient, only the ID is needed as an argument, as this
+is the key to this database.
+Another very similar script was made to save the settings in this program, the Settings
+Manager. The only changes to this script are the types of information that are kept, which
+include the Port names of both sensors and the location of the folder where the tests will
+be saved. The table created in this script looks like the one shown in Table 3.6, in which
+the keys are what the information is and not an ID.
+info
+filling
+location
+C:/Users/...
+left_sensor
+COM3
+right_sensor
+COM5
+Table 3.6: Example of the settings database table
+The location of the data folder is obtained through a browsing function folder_path =
+QFileDialog.getExistingDirectory(self, "Select Folder"). This will open a pop­
+up in which the user can select the location of the folder. To obtain the port names of the
+sensors, a function was made that is called from the Settings Window, in which the pro­
+gram goes through all the available ports using the function serial.tools.lists_ports.
+comports(). For each port, serial communication is established, and the message ”Iden­
+tify” is sent. If the response is ”Left_side_sensor”, then the port will be attributed to the
+left sensor, and the same for the right one.
+Another notable feature is the real­time plot that is generated simultaneously with data
+collection. This process is triggered by the pressing of a button, which will lead to the
+creation of the plot’s layout and start the data collection process as described in Section
+3.3.2. To have data collection happening at the same time as the real­time plot is being
+constructed, a thread is created for that purpose, where right before being appended to
+the long list with all the samples that will become the Excel file, the data is emitted to
+the GUI using the function emit(). This way, the window in which the plot is created
+is constantly receiving new data to update it. To create the real­time plot, the first step
+is to define the layout of the plot. This entails creating the title and legends, preparing
+the axes, and creating arrays to store the data. Additionally, it involves creating curves
+for each acceleration axis and assigning each one a distinct colour. Then, the emitted
+data is appended to each data array, and set to the corresponding curve, and the plot is
+updated. This occurs every time a new sample is emitted and, therefore, will continue
+until the duration of data collection is reached.
+Finally, the last detail of notice is how the Excel files with raw data, and results of data
+analysis are saved on the computer. The folder where the data is stored is obtained from
+the settings database, and to it, the patient ID and the date of the test are added. This
+means that in the selected location, each patient will have a folder, and inside that folder,
+there will be a separate folder for every day the patient had a consultation. Inside the
+correct date, there will be all the Excel files obtained from tremor recordings, as well as
+the analysed data. An example of this organization method can be seen in Figure 3.6
+As can be seen, this way it is possible to keep the data organized using Windows fold­
+ers that are easy to manage. After this process, the collected data can be edited and
+analysed, or analysed directly.
+34
+Using MEMS Technology for Tremor Analysis
+==PAGE:47==
+Figure 3.6: Example of data organization
+Using MEMS Technology for Tremor Analysis
+35
+==PAGE:48==
+Chapter 4: How to use this device
+In this chapter, a step­by­step guide on how to use the device will be provided.
+4.1
+Set­up of the Device
+The first step is to set up the device by attaching the sensors to the computer using two
+USB cables and securing the sensors to the patient as in Figure 4.1a. In this case, Velcro
+straps were used because they are easy to put on and remove, and they can secure the
+sensor without allowing it to move due to the tremor.
+(a) Set­up of the device
+(b) Sensors attached to the hands
+Figure 4.1: Setup of the device on hands
+In Figure 4.1 the sensors are attached to the hands, but they can also be attached to the
+feet, or even the head by using a longer Velcro strap.
+Now, it’s possible to start the program. The instructions and descriptions for each window
+are provided below.
+4.2
+Start Window
+Figure 4.2: Start Window
+36
+Using MEMS Technology for Tremor Analysis
+==PAGE:49==
+The window shown in Figure 4.2 is the first one that appears when the program is run. It
+has three main buttons: ”Add New Patient”, ”Search Patient”, and ”Analyse Existing Data”,
+each leading to a different path. The ”Add New Patient” button opens the New Patient
+Window, where it is possible to create a new patient in the database. The ”Search Patient”
+button is used for patients that are already created and will lead to the Search Patient
+Window. The ”Analyse Existing Data” button allows the user to select an Excel data file
+and analyse it, jumping to the Analysis Window. To select the Excel file, a browsing
+window will pop up as shown in Figure 4.3.
+Figure 4.3: Browsing pop­up to select the data to be analysed
+Finally, there is also a settings button that allows the user to access the Settings Window.
+When this button is pressed, a pop­up will appear, asking, ”Are you sure you want to edit
+the settings?”. This is a safety measure to ensure that the user doesn’t change settings
+that can cause the program to have errors or lose patient data.
+4.3
+New Patient Window
+This window, as shown in Figure 4.4, enables the user to save information about a new
+patient. Not all information is necessary, except for the ID, which will be used as the key
+to save the patient in the Patient Database. The ID can be any number, although a Social
+Security Number is best, as it is unique, which is a requirement for a key. At the end of
+the window, there are three buttons: a ”Back” button that leads back to the Start Window,
+a ”Save and Record” button that saves the patient’s information and opens the Recording
+Window, and the settings button.
+If the inserted ID is not valid, a pop­up window will appear with the message ”Please enter
+a valid ID”. All errors in this GUI are communicated to the user through pop­up windows.
+4.4
+Search patient Window
+In the window shown in Figure 4.5a, it is possible to search for an existing patient through
+the patient ID. When the ”Search” button is pressed, that patient’s information is retrieved
+and displayed as shown in Figure 4.5b. Once the patient is found, the buttons ”Edit Pa­
+tient”, ”Delete Patient”, and ”Record” become active.
+As always, the ”Back” and the settings buttons are present and have the functions men­
+tioned previously. The ”Edit Patient” button opens the Edit Patient Window, which is very
+similar to the Add Patient Window. The ”Record” button leads to the Recording Window.
+Finally, the ”Delete Patient” option will first open a pop­up asking the user, ”Are you sure
+you want to delete this patient?”. If the answer is yes, that patient is removed from the
+database, but their information saved on the computer is not deleted.
+Using MEMS Technology for Tremor Analysis
+37
+==PAGE:50==
+Figure 4.4: New Patient Window
+(a) Search Patient Window
+(b) Search Patient Window after search
+Figure 4.5: Search Patient Window before and after the patient is found
+4.5
+Edit Patient Window
+The window shown in Figure 4.6 is very similar to the New Patient Window shown pre­
+viously, with the main difference being that the information fields are initially set with the
+current information from the patients’ database. However, if there are any edits, the new
+data will replace the old one.
+4.6
+Recording Window
+When reaching this window, which looks like the one shown in Figure 4.7, the first step is
+to create the test protocol, which is done by selecting the body part being recorded, the
+recording mode (unilateral or bilateral), the type of tremor, and the test duration.
+Once the protocol is defined and the patient is ready, the ”Start” button can be pressed,
+and data collection begins. The start of this process is marked by a beep sound, and the
+real­time plot will appear, showing the acceleration in m/s2 that is being recorded. If the
+recording mode is unilateral, only one plot appears as shown in Figure 4.7a, but if it is
+38
+Using MEMS Technology for Tremor Analysis
+==PAGE:51==
+Figure 4.6: Edit Patient Window
+(a) Recording Window for unilateral test
+(b) Recording Window for bilateral test
+Figure 4.7: Recording Window
+bilateral, two plots appear, as shown in Figure 4.7b. Once the time is over, a lower beep
+sound is emitted, data collection stops, and the data is saved in an Excel file. After this
+process, the collected data can be edited and analysed, or analysed directly by pressing
+the ”Analyse data” button, which will open the Analysis Window. The ”Analyse data” button
+is only available once the data has been recorded and saved to avoid pressing it too early,
+which would lead to an error in the program, and the test would need to be repeated.
+4.7
+Analysis Window
+Here, the analysed data is presented as shown in Figure 4.8. At the top of this window, the
+PSD is presented, followed by the processed signals in the time domain and the calculated
+indexes. Depending on whether the mode is unilateral or bilateral, this will be presented
+in one or two columns as shown in Figures 4.8a and 4.8b. At the bottom of the window,
+a comments box is found where comments about the test or the obtained results can be
+written.
+It’s important to note that the test protocol is obtained from the Excel file name, which
+means that its basic structure must be maintained. It is also important to note that the
+colours previously used for each axis are maintained for easier recognition, and that in
+Using MEMS Technology for Tremor Analysis
+39
+==PAGE:52==
+(a) Analysing Window for unilateral test
+(b) Analysis Window for bilateral test
+Figure 4.8: Analysis Window
+bilateral mode, the left­side information appears in a column on the left, and the right­side
+information in the column on the right.
+Finally, if the bottom button, ”Save,” is pressed, the data will be saved in the same location
+as the Excel file containing the raw data, with the same name. The analysed data will be
+saved in the following manner, the plots will be saved in a figure as they are shown in the
+GUI, and the indexes and comments will be saved in a .txt file together with the PSD that
+is saved as a list presenting the power for each frequency, as shown in Figure 4.9.
+(a) Analysed data for unilateral test
+(b) Analysed data for bilateral test
+Figure 4.9: Analysed data after a test
+4.8
+Settings Window
+The Settings Window, shown in Figure 4.10, presents the location of the folder where the
+tremor data will be saved, and the names of the sensors for serial connection.
+If the ”Browse” button is pressed, a pop­up will appear, allowing the user to select and
+save the path to the tremor data folder. This will be used to store and retrieve raw data
+recordings in the Recording and Analysis windows. If the ”Find sensors” button is pressed,
+then the Port names of the sensors will be searched as described previously in Section
+3.4. In order to find the sensors, it is essential that they are both connected to the computer
+otherwise, this will not be possible.
+40
+Using MEMS Technology for Tremor Analysis
+==PAGE:53==
+Figure 4.10: Settings Window
+Using MEMS Technology for Tremor Analysis
+41
+==PAGE:54==
+Chapter 5: Experiments and Results
+In order to ensure that this device works correctly and measures tremor accurately, several
+tests were made. In this chapter, all those tests will be presented, starting with tests to
+ensure that the device is working as desired and then moving on to tests ensuring tremor
+is measured correctly, and finally, an assessment if Entropy is capable of distinguishing
+PD from ET, and which parameters allow and are best suited for this.
+5.1
+Sensor Settings
+The first test that needed to be performed was to verify the settings of the Arduino, specif­
+ically whether they were within a range of ±2 g and an ODR of 104 Hz.
+The range of the sensor is tested using the Arduino IDE, specifically, the Serial Plotter.
+Figure 5.1: Accelerations plotted in Arduino IDE
+As can be seen in Figure 5.1, the accelerations measured saturate when reaching 2 and
+­2 g. This means that the range of the sensor is, indeed, ±2 g. Regarding the ODR, it
+was possible to validate it by seeing how many samples are saved in an Excel file for a
+certain duration of time. For a test of 20 seconds, an Excel file has 2118 samples, which
+means that the ODR is
+2118 samples
+20 seconds
+= 105.9Hz.
+Since in this case a new sample is sent to the computer every time it is available, the ODR
+is the same as the sampling frequency, which is 105.9 Hz. Although it is not exactly 104
+Hz, it is around what it was defined, and above 100 Hz, so no aliasing occurs.
+5.2
+Noise and Shielding Tests
+Another test was conducted to assess the effect of shielding on electrical noise. This
+was done by keeping the sensors static and measuring accelerations with and without an
+aluminium cover around them. The montage of this experiment can be seen in Figure
+5.2.
+42
+Using MEMS Technology for Tremor Analysis
+==PAGE:55==
+(a) Sensors with no shielding
+(b) Sensors with aluminium shielding
+Figure 5.2: Set­up for noise and shielding measurements
+The results for noise measurements with no shielding are presented in Figure 5.3.
+Figure 5.3: Noise measurements with no shielding protection
+The associated indices calculated for these measurements are:
+Left side:
+• Tremor Intensity: 0.006 m/s2
+• Center Frequency: 11.355 Hz
+• Peak Frequency: 2.154 Hz
+• Standard Deviation: 7.193 Hz
+• Harmonic Index: 0.790
+Right side:
+• Tremor Intensity: 0.005 m/s2
+• Center Frequency: 11.172 Hz
+• Peak Frequency: 1.424 Hz
+• Standard Deviation: 7.211 Hz
+• Harmonic Index: 0.772
+For noise measurements using an aluminium shield, the results are presented in Figure
+Using MEMS Technology for Tremor Analysis
+43
+==PAGE:56==
+5.4.
+Figure 5.4: Noise measurements with shielding protection
+The associated indexes calculated for these measurements are:
+Left side:
+• Tremor Intensity: 0.006 m/s2
+• Center Frequency: 11.287 Hz
+• Peak Frequency: 13.245 Hz
+• Standard Deviation: 7.427 Hz
+• Harmonic Index: 0.815
+Right side:
+• Tremor Intensity: 0.005 m/s2
+• Center Frequency: 11.141 Hz
+• Peak Frequency: 3.165 Hz
+• Standard Deviation: 7.372 Hz
+• Harmonic Index: 0.804
+5.3
+Measurements Using an Acceleration Table
+The next step was to validate the sensor’s ability to detect the correct frequencies and
+amplitudes of the acceleration signals. This was done using a calibrated Brüel & Kjær
+(BK) accelerometer as a reference, in conjunction with the device. Two shakers were
+used in this experiment. The first is an acceleration table, which allows for the control of
+both frequency and amplitude of movement, while enabling the testing of all axes simul­
+taneously. The acceleration table is illustrated in Figure 5.5a, and is controlled using a
+small knob which is rotated to choose the frequency of movement. The second shaker
+that was used was a standard one, as shown in Figure 5.5b. This one only goes up and
+down, and therefore, there is only acceleration in one axis. This shaker is controlled by
+the Pulse software, allowing for the easy selection of specific frequencies.
+Ideally, all measurements would have been made using the acceleration table, as it allows
+for combining different frequencies and amplitudes while studying all axes. However, it
+is very hard to select specific frequencies, especially when trying to reach frequencies
+higher than 7 Hz. For this reason, the other shaker was used to study those. The accel­
+eration table was then used to measure acceleration at 2, 4, and 5 Hz with a series of
+amplitudes, and the other shaker was used to study acceleration at 10, 15, and 20 Hz.
+For all experiments, 15 measurements were made, and then the mean value of those was
+obtained. A list of the experiments made is presented below, where the positions of the
+acceleration arm correspond to different diameters of rotation, and therefore amplitudes
+of acceleration, which increase with an increase in position number.
+• Acceleration table: position 2
+44
+Using MEMS Technology for Tremor Analysis
+==PAGE:57==
+(a) Schematic of the acceleration table used to
+validate the sensors
+(b) Normal shaker used to validate the sensors
+Figure 5.5: Acceleration table and shaker used to validate the sensors
+– 2 Hz
+– 5 Hz
+• Acceleration table: position 3
+– 2 Hz
+– 4 Hz
+• Acceleration table: position 5
+– 2 Hz
+– 5 Hz
+• Standard shaker
+– 10 Hz
+– 15 Hz
+– 20 Hz
+As can be seen in Figure 5.6a, both the two sensors from this device and the BK were
+attached to the arm of the acceleration table using tape. The sensors were all in the same
+line, perpendicularly to the arm, which means that they experienced the same rotation
+and consequently, the same acceleration. Regarding the setup in Figure 5.6b, it can be
+seen that the sensors from this device were attached to each other using tape, and then
+attached to the shaker using beeswax. The BK sensor, although not shown in Figure
+5.6b, was also attached to the other two sensors using tape.
+Since the BK sensor only measures acceleration in one direction, which is the same as the
+movement direction of the standard shaker, and to ensure a direct comparison, only this
+direction was used on the device’s sensors for this experiment. The addition of more axes
+would lead to an increase in the signal’s magnitude, and consequently RMS, especially
+when using the acceleration table.
+The results of this experiment are presented in Table 5.1. Here, only the means of the
+Absolute Error (AbsE) between the frequencies and RMS of accelerations measured be­
+tween the two sensors (BK and the ones being tested) are presented, but tables with all
+measurements and errors can be seen in Section B in the Appendix.
+It is also worth comparing the results obtained with those previously obtained for the CAT­
+SYS system. However, corrections are needed. The first issue arises from the fact that
+Using MEMS Technology for Tremor Analysis
+45
+==PAGE:58==
+(a) Set­up of sensors in the acceleration table
+(b) Set­up of sensors on the standard shaker
+Figure 5.6: Set­up acceleration measurements
+Table 5.1: Comparison of frequency and acceleration values measured by the BK sensor
+and the ones being validated
+Mean error of frequencies [Hz]
+Mean error of accelerations (RMS) [m/s2]
+Left sensor
+Right sensor
+Left sensor
+Right sensor
+Acc. table
+0.057 ± 0.031
+0.017 ± 0.015
+0.082 ± 0.117
+0.079 ± 0.105
+Shaker
+0.243 ± 0.081
+0.063 ± 0.021
+0.153 ± 0.149
+0.154 ± 0.151
+Total
+0.119 ± 0.104
+0.032 ± 0.028
+0.105 ± 0.124
+0.104 ± 0.118
+for both sensors, acceleration is expressed in RMS of the signal magnitude, whereas the
+values obtained for the CATSYS system correspond to the peak acceleration value. This
+correction is made by using the relation in equation 5.1 for sinusoidal signals.
+RMS = Peak amplitude
+√
+2
+(5.1)
+The second comes from the fact that in the measurements made, the sensors are located
+where the tape is, and for CATSYS measurements, the sensor was closer to the edge
+of the arm. This means that a geometric correction was made between them, with the
+CATSYS sensor serving as the reference. This is done by using the formula in equation
+5.2
+acccorrected = accmeasured ×
+(radiusreference
+radiussensor
+)
+,
+(5.2)
+which comes from the fact that
+acctangent = radius × accangular.
+(5.3)
+So, since the angular accelerations are the same, which comes from the fact that the
+sensors are in a rigid object, it’s possible to obtain:
+accangular1 = accangular2 ⇔acc1
+r1
+= acc2
+r2
+,
+(5.4)
+46
+Using MEMS Technology for Tremor Analysis
+==PAGE:59==
+where, if acc1 is the one from the CATSYS sensor, the reference, and acc2 from this device
+and the BK sensor, the result is
+acc1 = acc2 × r1
+r2
+.
+(5.5)
+which leads back to Equation 5.2.
+Finally, as mentioned earlier, to achieve a specific frequency with this acceleration table,
+it is necessary to turn a small knob, making it challenging to achieve precise frequencies.
+For this, a correction was also made using Equation 5.6.
+acccorrected = accmeasured ×
+(freference
+fmeasured
+)2
+(5.6)
+This comes from the fact that:
+acccentripetal = r × ω2 = r × (2πf)2.
+(5.7)
+Using the same logic as before, and assuming that the radii r are the same (which can
+be done after the previous correction), the result will be back to Equation 5.6.
+It is also important to note that the values obtained for the CATSYS system are based on
+its original development. Since then, the acceleration table has undergone mechanical
+changes, which may alter the acceleration results.
+Table 5.2: Comparison of acceleration values measured by the BK sensor, the device
+from this project, and the CATSYS system after corrections
+New device (Peak)
+Frequency
+CATSYS
+BK (Peak)
+Left sensor
+Right sensor
+[Hz]
+m/s2
+Position 2 in Acceleration Table
+2
+0.220
+0.176
+0.176
+0.173
+5
+1.100
+1.136
+1.093
+1.077
+Position 3 in Acceleration Table
+2
+0.350
+0.339
+0.331
+0.326
+4
+1.340
+1.388
+1.337
+1.250
+Position 5 in Acceleration Table
+2
+0.890
+0.965
+0.950
+0.937
+5
+5.940
+6.034
+5.765
+5.674
+5.4
+Patients tests and comparison with the CATSYS system
+In this section, tests that involve patients will be presented. This is important as it allows
+for the validation of the device in real­world scenarios and also for comparing the results
+obtained with this device to those of the CATSYS system.
+Data collection for patients was conducted at the Neurosurgery and Neurointervention
+Clinic of Semmelweis Hospital in Budapest. To begin, every patient provided their con­
+sent, and the purpose of this experiment was explained. The tests were always conducted
+Using MEMS Technology for Tremor Analysis
+47
+==PAGE:60==
+under the supervision of a doctor, and the patient had the freedom to stop at any time. To
+collect data, both the CATSYS tremor pen and this device were placed on the patient’s
+hand, side by side, and then rest, postural, and intention tremors were measured for 30
+seconds.
+To maintain complete anonymity, no personal information was collected from the patients,
+including age, gender, and the duration of their diagnosis. Nevertheless, a list will be
+presented for each patient, detailing their pathology/health state.
+• 01: Essential Tremor
+• 02: Parkinson’s Disease
+• 03: Parkinson’s Disease
+• 04: Enhanced Physiological Tremor
+• 05: Healthy
+• 06: Parkinson’s Disease
+• 07: Essential Tremor
+• 08: Healthy
+• 09: Healthy
+• 10: Healthy
+• 11: Essential Tremor + Musicians Dystonia
+• 12: Essential Tremor
+• 13: Healthy
+5.4.1
+Filtering and Tremor Intensity
+When collecting patient data in a clinical setting, the patient is in a controlled environment.
+However, it can happen that there are low­frequency movements, such as moving the
+hands slightly forward or to the side, which can lead to drifts in the time­domain data. An
+example can be seen in Figure 5.7 where only the mean is removed to remove the effect
+of gravity.
+(a) Postural tremor recording left hand
+(b) Postural tremor recording right hand
+Figure 5.7: Postural tremor recording with no filter applied
+If the bandpass filter described in Section 3.3.2 is applied, the results will be as shown in
+Figure 5.8.
+48
+Using MEMS Technology for Tremor Analysis
+==PAGE:61==
+(a) Postural tremor recording left hand
+(b) Postural tremor recording right hand
+Figure 5.8: Postural tremor recording with a bandpass filter applied
+To remove artifacts that appear at the ends of the signal after filtering, as can be seen at
+the start of the x axis in the left­hand recording, as well as at the end of the x axis in the
+right­hand recording, the first and last seconds were cut. This will lead to the results seen
+in Figure 5.9.
+(a) Postural tremor recording left hand
+(b) Postural tremor recording right hand
+Figure 5.9: Postural tremor recording with a bandpass filter applied and first and last
+seconds cut
+This filtering process will only affect the Tremor Intensity, since all other indexes are cal­
+culated using the PSD. Therefore, only this index will be studied in this section. This
+comparison will only be made for patients in whom the tremor pen and the new sensor
+were in the same area of the hand, and had undergone data collection simultaneously
+with both sensors. In table 5.3, the mean values of AbsE will be presented for the col­
+lected data, comparing the TIs obtained with unfiltered and filtered data. An analysis using
+only the axes perpendicular to the arm (x and z) will be performed, allowing for a direct
+comparison with the CATSYS system, as well as an analysis using all axes. The tables
+containing all the TIs calculated for each patient and all the error values can be found in
+Section C.1 in the Appendix.
+Since there’s only one trial per patient, and therefore no significant statistics can be calcu­
+lated, only the Absolute Error will be presented. This will be calculated using the CATSYS
+TI as a reference. These values are presented in Table 5.3.
+To also have an idea of what a normal TI is, the mean Tremor Intensity for healthy volun­
+teers for Rest, Postural, and Intention tremor will be presented in Table 5.4. This analysis
+was only made for healthy controls, as the values for PD and ET patients vary significantly
+depending on the severity of the disease. Therefore, there is no ”normal” or mean value
+Using MEMS Technology for Tremor Analysis
+49
+==PAGE:62==
+Table 5.3: Mean Absolute Error [m/s2] values for TI from patient measurements
+Not filtered TI
+Filtered TI
+Not filtered TI
+Filtered TI
+2D analysis
+3D analysis
+Rest tremor
+Mean Error
+0.070 ± 0.044
+0.072 ± 0.043
+0.055 ± 0.037
+0.063 ± 0.040
+Postural tremor
+Mean Error
+0.084 ± 0.066
+0.108 ± 0.081
+0.085 ± 0.072
+0.123 ± 0.175
+Intention tremor
+Mean Error
+0.095 ± 0.057
+0.118 ± 0.058
+0.098 ± 0.111
+0.115 ± 0.112
+for TI in those situations, as it depends a lot on the patient, and also on the dominant and
+the non­dominant hands. These values will be presented only for the new device, that is,
+including all three axes and the filtered signals.
+Table 5.4: Tremor Intensity values for healthy volunteers
+Tremor Intensity
+Rest tremor
+Mean value
+0.015 ± 0.003
+Postural tremor
+Mean value
+0.174 ± 0.234
+Intention tremor
+Mean value
+0.109 ± 0.020
+5.4.2
+Frequency domain parameters
+In addition to analysing the time domain parameters, it is also important to examine the
+frequency domain parameters. In this section, first, a comparison with the CATSYS device
+will be made for patients whose measurements were comparable for both devices. Then,
+an analysis will be conducted for each pathology individually, verifying the results against
+the existing literature.
+Here, the comparative analysis between this device and the CATSYS will be conducted
+using three axes and always with the filtered signal. It was observed that adding one axis
+did not change the frequency parameters. As before, only the mean error values will be
+presented here, and the complete tables with measurements and errors can be found in
+the Appendix, Section C.2. For each patient, the AbsE will be calculated, just as before.
+These results will be presented in Table 5.5.
+Table 5.5: Comparison of frequency domain parameters obtained using the CATSYS sys­
+tem, and the new device.
+Center Frequency [Hz]
+STDEV of Center Frequency [Hz]
+Harmonic Index
+Rest tremor
+Mean Error
+7.688 ± 4.048
+3.869 ± 2.003
+0.040 ± 0.040
+Postural tremor
+Mean Error
+0.622 ± 0.655
+0.366 ± 0.317
+0.021 ± 0.019
+Intention tremor
+Mean Error
+1.305 ± 0.987
+0.787 ± 0.426
+0.084 ± 0.018
+Finally, an analysis of the frequency parameters for each pathological state/healthy will
+be made. This will be done using all three axes and filtered data just as before. In here,
+50
+Using MEMS Technology for Tremor Analysis
+==PAGE:63==
+the mean values for each case will be presented, and the complete tables can be found
+in Section C.2 in the Appendix. First, results for healthy volunteers are presented in Table
+5.6.
+Table 5.6: Frequency parameters for healthy volunteers
+Center Frequency [Hz]
+STDEV of Center Frequency [Hz]
+Harmonic Index
+Rest tremor
+Mean values
+11.284 ± 2.061
+5.575 ± 1.417
+0.929 ± 0.046
+Postural tremor
+Mean values
+4.362 ± 1.278
+2.888 ± 1.143
+0.954 ±0.021
+Intention tremor
+Mean values
+4.530 ± 1.730
+2.847 ± 1.210
+0.839± 0.038
+The parameters for PD patients are found in Table 5.7.
+Table 5.7: Frequency parameters for PD patients
+Center Frequency [Hz]
+STDEV of Center Frequency [Hz]
+Harmonic Index
+Rest tremor
+Mean values
+6.307 ± 2.830
+2.876 ± 1.362
+0.962 ± 0.033
+Postural tremor
+Mean values
+4.507 ± 1.553
+1.413 ± 1.208
+0.973 ± 0.027
+Intention tremor
+Mean values
+4.899 ± 1.844
+1.062 ± 0.876
+0.9812 ± 0.016
+Finally, the parameters for patients with ET are found in Table 5.8. In this analysis, pa­
+tient 11 was excluded because, in addition to having ET, this patient also has Musicians
+Dystonia, which can affect the results regarding finding mean values for ET patients.
+Table 5.8: Frequency parameters for ET patients
+Center Frequency [Hz]
+STDEV of Center Frequency [Hz]
+Harmonic Index
+Rest tremor
+Mean values
+7.046 ± 1.970
+1.682 ± 1.382
+0.969 ± 0.020
+Postural tremor
+Mean values
+7.130 ± 1.340
+1.411 ± 1.420
+0.981 ± 0.016
+Intention tremor
+Mean values
+6.795 ± 0.637
+1.397 ± 1.751
+0.977 ± 0.029
+5.5
+Entropy
+Finally, as stated in Section 3.3.2, entropy was shown to distinguish between ET and PD.
+However, there are many types of entropy, and it can be calculated using different param­
+eter values. Also, not all of them may be suitable for distinguishing between these two
+pathologies. Therefore, two entropy calculations found in the literature, along with rec­
+ommended parameters, were tested [74]. Both Approximate Entropy (ApEn) and Sample
+Entropy (SampEn) were tested for different values of m and r. For both entropy measures,
+the following combinations were tested:
+• m = 2, r = 0.1
+• m = 2, r = 0.2
+• m = 3, r = 0.1
+Using MEMS Technology for Tremor Analysis
+51
+==PAGE:64==
+• m = 3, r = 0.2
+The mean values for ApEn and SampEn for both PD and ET can be found in Tables 5.9
+and 5.10. The complete tables can be found in the Appendix in Section D.
+Table 5.9: Mean values of ApEn and SampEn for PD patients.
+Tremor
+Approximate Entropy (ApEn)
+Sample Entropy (SampEn)
+m = 2
+m = 2
+m = 3
+m = 3
+m = 2
+m = 2
+m = 3
+m = 3
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+Rest
+0.231
+0.389
+0.059
+0.079
+1.107
+0.828
+1.051
+0.751
+Postural
+0.782
+0.797
+0.350
+0.459
+1.339
+0.978
+1.227
+0.809
+Intention
+0.872
+0.927
+0.450
+0.513
+1.827
+1.270
+1.635
+1.042
+Table 5.10: Mean values of ApEn and SampEn for ET patients.
+Tremor
+Approximate Entropy (ApEn)
+Sample Entropy (SampEn)
+m = 2
+m = 2
+m = 3
+m = 3
+m = 2
+m = 2
+m = 3
+m = 3
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+Rest
+0.028
+0.001
+0.028
+0.001
+0.021
+0.008
+0.021
+0.008
+Postural
+0.557
+0.278
+0.511
+0.245
+0.507
+0.241
+0.461
+0.217
+Intention
+0.936
+0.619
+0.725
+0.546
+0.932
+0.584
+0.820
+0.512
+For the same parameters, Cross­Approximate Entropy (XApEn) and Cross­Sample En­
+tropy (XSampEn) were studied, as they measure the similarity, or lack thereof, between
+two signals. To perform these calculations, bilateral recordings are required, which are
+available in only three cases among these patients. This is because the measurements
+were typically made using the tremor pen at the same time, resulting in mostly unilateral
+recordings. For PD there is only patient 06, and for ET there are patients 01 and 07.
+These are also only presented for Rest and Postural tremor due to the fact that Intention
+tremor is measured unilaterally by default. The mean values of Cross­Approximate En­
+tropy (XApEn) and Cross­Sample Entropy (XSampEn) for PD and ET are presented in
+Tables 5.11 and 5.12, and the table with the values for both ET patients is found in section
+D in the Appendix.
+Table 5.11: Values of XApEn and XSampEn for PD patient 06.
+Tremor
+Approximate Entropy (ApEn)
+Sample Entropy (SampEn)
+m = 2
+m = 2
+m = 3
+m = 3
+m = 2
+m = 2
+m = 3
+m = 3
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+Rest
+­3.913
+­4.471
+­0.251
+­1.559
+3.211
+2.568
+2.639
+2.512
+Postural
+­1.159
+­1.020
+­1.170
+­0.439
+1.397
+1.011
+1.124
+0.833
+52
+Using MEMS Technology for Tremor Analysis
+==PAGE:65==
+Table 5.12: Mean values of XApEn and XSampEn for ET patients.
+Tremor
+Approximate Entropy (ApEn)
+Sample Entropy (SampEn)
+m = 2
+m = 2
+m = 3
+m = 3
+m = 2
+m = 2
+m = 3
+m = 3
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+Rest
+0.045
+0.002
+0.046
+0.002
+0.030
+0.002
+0.030
+0.002
+Postural
+0.625
+0.459
+0.521
+0.424
+0.667
+0.360
+0.616
+0.335
+Using MEMS Technology for Tremor Analysis
+53
+==PAGE:66==
+Chapter 6: Discussion
+In this section, a brief discussion of the results presented previously will be provided.
+Regarding noise and shielding, it can be observed that, as indicated by the graphs and
+TI calculations, shielding with aluminum foil does not decrease noise values. This could
+be an indication that the measured noise is not electrical in origin. One could also think
+that it can be removed using a filter. However, it can be observed that this noise is also
+present in the frequencies of interest, indicating that it cannot be completely eliminated.
+However, it is also in the millimeter order, which is smaller than human tremor, as can be
+seen in Table 5.4.
+When comparing the results from the new device’s sensors with the BK sensor and ex­
+amining Table 5.1, it is evident that the error obtained using the acceleration table and the
+standard shaker is not identical. In fact, the errors are much smaller when using the accel­
+eration table. Although it is possible that the error increases with an increase in frequency,
+this can also be attributed to the fact that the sensors are not as secure in the standard
+shaker as they are in the acceleration table. Nevertheless, for both scenarios, the values
+obtained from the sensors on this device are comparable to the ones being measured
+using the calibrated BK sensor. This indicates that the device can accurately measure
+acceleration and frequencies, which are essential aspects of tremor characterization.
+When looking at Table 5.2, it’s also possible to observe that, even though the accelera­
+tion table has suffered mechanical changes, and the fact that the CATSYS is a two­axis
+system, the results are comparable. It is expected that the CATSYS measurements will
+be larger than those obtained with the other sensors, due to the extra axis, but that is not
+always the case. This can be attributed to the mechanical changes that the acceleration
+table underwent. Nevertheless, it’s also possible to see that in the same position and
+frequency, both the BK sensor and this device have results that are very close, further
+indicating that the device being developed is able to measure acceleration accurately.
+Now, an analysis of the results obtained from patients will be made. However, it is impor­
+tant to note that when measuring Rest tremor with the CATSYS system, artifacts occur
+at the start and end of the recordings for most patients, which affects frequency domain
+parameters. An example of these can be found in Figure 6.1, in which the patient did not
+create the artifacts, but they were measured by the system.
+Figure 6.1: Artifacts obtained when measuring rest tremor using the CATSYS system
+Starting with the discussion of the effect of passing a bandpass filter, it is evident from the
+example presented that this is essential for removing artifacts created by slow movements.
+Although this device is intended for use in a controlled environment, it is normal and
+54
+Using MEMS Technology for Tremor Analysis
+==PAGE:67==
+expected that when measuring Postural and Intentional tremors, the patient will slightly
+move their arm, creating small drifts that need to be corrected. If that isn’t done, the
+acceleration signals will present higher variation, and consequently Tremor Intensity will
+also be bigger.
+Regarding the mean errors of Tremor Intensity, it would be expected that adding axes
+to the system would lead to the biggest error values, as it would increase the distance
+between this device and the CATSYS system. However, this is not necessarily the case
+for this experiment. When examining all the measurements from all patients, the trend is
+that using two axes yields lower values of TI compared to those measured using CATSYS,
+while using three axes yields higher values than the ones obtained with CATSYS. It is
+also noticeable that the error increases when the signals are filtered, which contradicts
+expectations, as the signals are also filtered in the CATSYS system using a Butterworth
+filter. These errors can have various sources, such as different sensor sensitivities, if the
+sensor moved during recording, or even slightly different placements of the sensor on
+the hand. It is also not expected that both systems will yield exactly the same results,
+especially since the CATSYS system has been in use for many years without calibration,
+which can affect the measurement results.
+Examining the results from the comparison of frequency parameters between the two
+devices, it is possible to observe that, with the exception of Rest tremor, this device was
+able to deliver reliable results within acceptable errors in all other cases. The increased
+Absolute Error on Rest tremor measurements comes from the artifacts referred to before,
+shown in Figure 6.1, which drag the peak of the PSD to the lower frequencies. This is
+known to be incorrect, as measurements made from PD and ET patients indicate that this
+value should be at least 4 Hz, which was not observed in most cases.
+Focusing now on the mean values of the frequency parameters for healthy volunteers, the
+center frequency values for postural and intention tremor are lower than expected. This
+value would ideally be higher, above 8 Hz. In addition, as can be seen in Figure 6.2, in
+Rest tremor, the power of the PSD is much lower than in Postural and Intention tremor.
+At the same time, it’s also possible to see that in Rest tremor, there is activity throughout
+all the frequencies in the PSD, which is not seen on the other two measurements.
+It can also be seen that, in the time domain measurements of Rest tremor, the amplitudes
+are much smaller, especially for the x and z axes, the ones perpendicular to the arm.
+For Postural and Intention tremors, it’s possible to see lower­frequency waves with higher
+amplitude. As such, it’s reasonable to conclude that in Postural and Intention tremor,
+when the arm is not resting on any surface, the actual tremor’s PSD is masked by the
+movements of the arms to keep the desired position in place. Ideally, such artifacts would
+be removed, but their frequencies fall within the desired bandwidth, which means they
+can’t be filtered out.
+For PD and ET patients, it’s possible to see that the results of CF are within expecta­
+tions, that is, they fall into the intervals of pathological tremor for each of these tremor
+syndromes, 4­6 Hz for PD and 4­12 Hz for ET.
+Regarding the Standard Deviation of Center Frequency, it’s possible to see that it is bigger
+for healthy volunteers than for other patients, as it is expected since, contrary to healthy
+tremor, pathological tremor is rhythmic and will have its PSD centered around a peak as
+in Figure 6.3. The larger STDEV CF in healthy people indicates that the spectrum is not
+composed of a defined peak, but of a broader spectrum of frequencies.
+Finally, when examining the Harmonic Index, it’s observable that the mean values are
+Using MEMS Technology for Tremor Analysis
+55
+==PAGE:68==
+(a) Rest tremor
+(b) Postural tremor
+(c) Intention tremor
+Figure 6.2: Example of measurements of a healthy volunteer
+higher for pathological patients than for healthy volunteers, as expected. This is, once
+again, a measure of how concentrated the PSD is. The higher this value is, the more
+similar to that of a harmonic the PSD is, that is, the more concentrated around a specific
+frequency it will be.
+To conclude this discussion, entropy studies will now be examined. The goal of the ex­
+periment was to first determine if entropy could distinguish between PD and ET tremors,
+and if so, which one would be the most effective. The first thing that is noticeable when
+analysing the Tables in Section 5.5 is that there are negative values for cross entropy.
+Although that is theoretically not possible, it is mathematically possible in cases where
+the signals are very similar [75]. So, in cases where entropy would be zero.
+Now, looking at the values of ApEn and SampEn, it’s possible to see that they present
+different values for PD and ET measurements. In fact, in a general manner, entropy is
+bigger in signals coming from PD patients. Therefore, the first goal is achieved, entropy
+can be used to distinguish between PD and ET tremors. The second goal is answered
+when calculating entropy using the Sample Entropy method with the parameters m = 2
+and r = 0.1, which is when the difference of values between the two pathologies is bigger.
+Therefore, this is the one that will be used in this device to distinguish between the two
+pathologies.
+56
+Using MEMS Technology for Tremor Analysis
+==PAGE:69==
+Figure 6.3: Example of measurement of a PD patient
+Using MEMS Technology for Tremor Analysis
+57
+==PAGE:70==
+Chapter 7: Conclusion and Future Work
+As stated throughout this report, it is essential to not only find the right diagnosis for tremor
+but also to monitor its progression. However, the current goal standard process for doing
+so, clinical evaluation, is highly subjective, highlighting the need for an objective way to
+measure and analyse tremor. Although there are various options in the market for it, they
+are usually designed for one specific type of pathology, as well as most of the research
+being done. The CATSYS system overcomes that limitation, however, it is becoming old
+and in need of a newer version.
+This thesis presented the design and validation of a device for the objective assessment
+of hand tremor in a clinical setting, which can be used for any pathology. During its de­
+velopment, certain research questions needed to be answered:
+• How can a MEMS­based accelerometer system be designed to accurately measure
+and analyse hand tremors for clinical and research applications?
+• What are the optimal sensor specifications and signal processing techniques to iden­
+tify and analyse hand tremor?
+• Can entropy be used to distinguish between Parkinson’s Disease and Essential
+Tremor patients? And if so, what are the ideal parameters that enable it?
+To answer the first question, the developed device utilizes accelerometers integrated into
+an Arduino board, along with a Graphical User Interface (GUI) developed with user in­
+put, which allows for the collection and analysis of tremor signals in both the time and
+frequency domains. This system was validated in both laboratory and clinical conditions,
+where it was first compared against a Brüel & Kjær sensor and then against the CATSYS
+to collect data from real patients. In the end, it showed great potential and the ability to
+accurately collect and analyse data.
+The answer to the second question is that the sensor should have a range of ± 2g, which is
+sufficient to capture tremor, and gives the highest sensitivity. Data collection should have
+a sampling frequency of at least double the desired maximum frequency according to the
+Nyquist theorem, so the ideal value, in this case, should be at least 100 Hz. Regarding
+signal processing techniques, they need to be suited to analyse the given signals but also
+allow for the collection of information relevant for clinical use. In the literature, it has been
+found that some researchers use techniques such as Empirical Mode Decomposition [27],
+which separates the signal into various signals of different frequency bands. Although the
+achieved result was good, and the Hilbert Spectrum of it could potentially be used for
+tremor analysis, this method doesn’t allow for the collection of the time and frequency
+domain features that have shown to be invaluable for tremor assessment. Therefore,
+using the PSD for frequency analysis is the best option as it allows the calculation of all
+the referred to indices.
+Finally, to answer question three, as shown in Section 5.5 Sample Entropy can be used as
+an indicator to distinguish between PD and ET. This is a very nice addition to the device
+as these two pathologies have overlapping results in the frequency domain, which makes
+it hard to distinguish between them, especially in the early stages.
+To conclude, this project developed a device capable of accurately capturing and analysing
+tremor signals, which can be used in a clinical setting to objectively analyse tremor. This
+58
+Using MEMS Technology for Tremor Analysis
+==PAGE:71==
+has several applications, besides those referred to of diagnosis and monitoring of tremor,
+which are done in a clinical setting and to which the GUI was mainly developed to, it can
+also be used in clinical research for medicine and treatment development, as it can be
+used to measure their effects. However, there is still work to be done to fully complete
+this project, which will now be presented.
+7.1
+Future work
+In this section, future development and testing will be described. Although this device
+already shows great promise, further development is still needed.
+Firstly, there is a need to add the touch recording table and the reaction time handles
+described in Section 2.3. These are used to perform further testing when in doubt be­
+tween diagnoses. The touch recording table is used to perform a test in which the patient
+taps the recording drum, a circular object with a microphone on it, following a series of
+”beeps” while performing pronation and supination. This test assesses a person’s ability
+to perform these movements quickly and maintain a steady pace in response to the ”beep”
+sounds. If that is not the case, it can indicate difficulty in starting movements and slow­
+ness in performing them, which are characteristic traits of PD. The same can be tested
+using the reaction time handle, but in a different context. Although in the CATSYS sys­
+tem, the presence of these tests involves the need for more sensors, these tests can be
+performed using the already existing accelerometers in the new device. The first test can
+be measured by identifying the points in the signal where the acceleration in the z axis
+crosses zero and changes direction. The second test can be made by asking the patient
+to tap their finger, or even hand, against the table instead of pressing a button and finding
+peaks in the acceleration signal.
+Also in development, something that needs to be improved is the possibility of using this
+device in a wireless setting. Wires can be disturbing for some patients, as they restrict their
+ability to perform movements freely and sometimes create a mess during the test due to
+tangling. Therefore, a version in which the sensors can be connected via Bluetooth would
+be ideal.
+Further in this topic, it might be valuable to also explore the possibility of personalized
+filtering. This means, the possibility of filtering the signal specifically for each patient to
+obtain more accurate information. Like this, artifacts in the 1 to 25 Hz interval could maybe
+be removed by filtering off frequencies that are not relevant for a specific condition. This
+could also avoid the need to delete some artifacts from data recording, thereby avoiding
+the loss of data points.
+Finally, the GUI also needs to be worked on. The one developed during the realization
+of this project works, but can still be improved, especially in error handling, to make them
+easier to understand by the users. It will also be necessary to add more windows to ac­
+commodate the previously mentioned tests (hand pronation and supination, and reaction
+time), as well as additional data analysis scripts adapted for them.
+Some tests that need to be performed include how much data can be removed from the
+Excel files without altering the results too much, what is a threshold in power that can
+separate healthy from unhealthy patients, and potentially the use in patients with different
+pathologies from PD and ET.
+The first test was somewhat made during this project, however, the results depend a lot
+on the signal itself. In tremors that are more severe, an artifact may not have as much
+impact as it would in smaller tremors, and the regularity of the signal will also affect how
+Using MEMS Technology for Tremor Analysis
+59
+==PAGE:72==
+much and which parts can be removed. However, the removal of some seconds of signal
+for small artifacts seemed to have no major impact. Nevertheless, this is something that
+should be further studied and possibly integrated into the GUI so that the user can select
+the section to remove directly, rather than having to search through the Excel file.
+The second test came from the fact that in healthy patients, especially for Postural and
+Intention tremors, due to movements of the arm, the tremor can resemble the early stages
+of pathological tremor. However, there is a major distinction, which is the intensity of the
+power in the PSD. Therefore, it would be valuable to find a value that could separate
+healthy from pathological tremor, and even use that in the PSD plots representation to
+scale the vertical axis.
+Finally, it would be important to validate this device for different pathologies. In theory, it is
+not designed for a specific one, however, the provided parameters for tremor assessment
+were only tested for two conditions, and other parameters may need to be developed to
+assess other causes of tremor.
+60
+Using MEMS Technology for Tremor Analysis
+==PAGE:73==
+Bibliography
+[1]
+Paul Crawford and Ethan E. Zimmerman. “Tremor: Sorting Through the Differential
+Diagnosis”. en­US. In: American Family Physician 97.3 (Feb. 2018), pp. 180–186.
+[2]
+Ming­Kai Pan. “Targeting the fundamentals for tremors: the frequency and ampli­
+tude coding in essential tremor”. In: Journal of Biomedical Science 32.1 (Feb. 2025),
+p. 18. ISSN: 1423­0127. DOI: 10.1186/s12929-024-01112-8.
+[3]
+Günther Deuschl et al. “The clinical and electrophysiological investigation of tremor”.
+In: Clinical Neurophysiology 136 (Apr. 2022), pp. 93–129. ISSN: 1388­2457. DOI:
+10.1016/j.clinph.2022.01.004. URL: https://www.sciencedirect.com/science/article/
+pii/S1388245722000207 (visited on 03/26/2025).
+[4]
+Abhishek Lenka and Joseph Jankovic. “Tremor Syndromes: An Updated Review”.
+In: Frontiers in Neurology 12 (July 2021), p. 684835. ISSN: 1664­2295. DOI: 10.
+3389/fneur.2021.684835.
+[5]
+Jane E Alty and Peter A Kempster. “A practical guide to the differential diagnosis of
+tremor”. In: Postgraduate Medical Journal 87.1031 (Sept. 2011). ISSN: 0032­5473.
+DOI: 10.1136/pgmj.2009.089623.
+[6]
+Mayo Clinic Staff. Movement disorders: Symptoms and causes. en. URL: https://
+www.mayoclinic.org/diseases-conditions/movement-disorders/symptoms-causes/syc-
+20363893.
+[7]
+National Institute of Neurological Disorders and Stroke. Tremor. en. URL: https:
+//www.ninds.nih.gov/health-information/disorders/tremor.
+[8]
+Elan D. Louis and Morgan McCreary. “How Common is Essential Tremor? Update
+on the Worldwide Prevalence of Essential Tremor”. eng. In: Tremor and Other Hy­
+perkinetic Movements (New York, N.Y.) 11 (2021), p. 28. ISSN: 2160­8288. DOI:
+10.5334/tohm.632.
+[9]
+Gabriel A. S. Ferreira et al. “On the classification of tremor signals into dyskinesia,
+Parkinsonian tremor, and Essential tremor by using machine learning techniques”.
+In: Biomedical Signal Processing and Control 73 (Mar. 2022), p. 103430. ISSN:
+1746­8094. DOI: 10.1016/j.bspc.2021.103430.
+[10]
+WHO. Parkinson disease. en. URL: https://www.who.int/news-room/fact-sheets/
+detail/parkinson-disease.
+[11]
+Giuliana Grimaldi and Mario Manto. “Neurological Tremor: Sensors, Signal Pro­
+cessing and Emerging Applications”. en. In: Sensors 10.22 (Feb. 2010), pp. 1399–
+1422. ISSN: 1424­8220. DOI: 10.3390/s100201399.
+[12]
+Danish Product Development Ltd. CATSYS 2000 User’s Manual. URL: http : / /
+archive.org/details/manualzilla-id-6887722.
+[13]
+Sheik Mohammed Ali et al. “Wearable Accelerometer and Gyroscope Sensors for
+Estimating the Severity of Essential Tremor”. In: IEEE Journal of Translational En­
+gineering in Health and Medicine 12 (2024), pp. 194–203. ISSN: 2168­2372. DOI:
+10.1109/JTEHM.2023.3329344.
+[14]
+J. Havlík et al. “Design and realization of measuring device for tremor evaluation”.
+In: 2015 International Workshop on Computational Intelligence for Multimedia Un­
+derstanding (IWCIM). Oct. 2015, pp. 1–4. DOI: 10.1109/IWCIM.2015.7347079. URL:
+https://ieeexplore.ieee.org/document/7347079.
+[15]
+Santosh Kumar Bejugam and Jyothi V. “Parameter Extraction for Tremor Signals”.
+In: 2020 5th IEEE International Conference on Emerging Electronics (ICEE). Nov.
+Using MEMS Technology for Tremor Analysis
+61
+==PAGE:74==
+2020, pp. 1–4. DOI: 10.1109/ICEE50728.2020.9776853. URL: https://ieeexplore.ieee.
+org/document/9776853.
+[16]
+Nooshin Haji Ghassemi et al. “Combined accelerometer and EMG analysis to dif­
+ferentiate essential tremor from Parkinson’s disease”. In: 2016 38th Annual In­
+ternational Conference of the IEEE Engineering in Medicine and Biology Society
+(EMBC). Aug. 2016, pp. 672–675. DOI: 10.1109/EMBC.2016.7590791. URL: https:
+//ieeexplore.ieee.org/document/7590791.
+[17]
+Giovanni Di Pino et al. “Neurophysiological bases of tremors and accelerometric
+parameters analysis”. In: 2012 4th IEEE RAS EMBS International Conference on
+Biomedical Robotics and Biomechatronics (BioRob). June 2012, pp. 1820–1825.
+DOI: 10.1109/BioRob.2012.6290819. URL: https://ieeexplore.ieee.org/document/
+6290819.
+[18]
+Andrés Carmona­Almazán et al. “Triaxial Accelerometry Wireless System for Char­
+acterization of Parkinsonian Tremor”. In: 2021 43rd Annual International Confer­
+ence of the IEEE Engineering in Medicine Biology Society (EMBC). Nov. 2021,
+pp. 7320–7323. DOI: 10.1109/EMBC46164.2021.9630367. URL: https://ieeexplore.
+ieee.org/document/9630367.
+[19]
+Erick Toque et al. “Analysis and Classification of Tremors in a Parkinson’s Disease
+Simulator Using Machine Learning”. In: 2024 IEEE ANDESCON. Sept. 2024, pp. 1–
+6. DOI: 10.1109/ANDESCON61840.2024.10755804. URL: https://ieeexplore.ieee.org/
+document/10755804.
+[20]
+Mrugali Bhat et al. “Parkinson’s disease prediction based on hand tremor analy­
+sis”. In: 2017 International Conference on Communication and Signal Processing
+(ICCSP). Apr. 2017, pp. 0625–0629. DOI: 10 . 1109 / ICCSP . 2017 . 8286433. URL:
+https://ieeexplore.ieee.org/document/8286433.
+[21]
+Yu Iwasaki et al. “Preliminary Study on Using Accelerometers to Measure Involun­
+tary Movements for the Assessment of Neurological Motor Impairments”. In: 2013
+Second IIAI International Conference on Advanced Applied Informatics. Aug. 2013,
+pp. 32–38. DOI: 10 . 1109 / IIAI - AAI . 2013 . 46. URL: https : / / ieeexplore . ieee . org /
+document/6630313.
+[22]
+Lu Bai. “Time­Frequency Analysis of Upper Limb Motion Based on Inertial Sensors”.
+In: 2021 32nd Irish Signals and Systems Conference (ISSC). June 2021, pp. 1–6.
+DOI: 10.1109/ISSC52156.2021.9467873. URL: https://ieeexplore.ieee.org/document/
+9467873.
+[23]
+Shyamal Patel et al. “Monitoring motor fluctuations in patients with Parkinson’s dis­
+ease using wearable sensors”. eng. In: IEEE transactions on information technology
+in biomedicine: a publication of the IEEE Engineering in Medicine and Biology So­
+ciety 13.6 (Nov. 2009), pp. 864–873. ISSN: 1558­0032. DOI: 10.1109/TITB.2009.
+2033471.
+[24]
+Yessica Saez et al. “A Wearable Internet of Things­Based Device for the Quanti­
+tative Assessment of Hand Tremors in Parkinson’s Disease: The ELENA Project”.
+eng. In: Sensors (Basel, Switzerland) 25.9 (Apr. 2025), p. 2763. ISSN: 1424­8220.
+DOI: 10.3390/s25092763.
+[25]
+Harry C. Powell, Mark A. Hanson, and John Lach. “A Wearable Inertial Sensing
+Technology for Clinical Assessment of Tremor”. In: 2007 IEEE Biomedical Circuits
+and Systems Conference. ISSN: 2163­4025. Nov. 2007, pp. 9–12. DOI: 10.1109/
+BIOCAS.2007.4463296. URL: https://ieeexplore.ieee.org/document/4463296 (visited
+on 07/03/2025).
+[26]
+K. Niazmand et al. “Comparison of methods for tremor frequency analysis for pa­
+tients with Parkinson’s disease”. In: 2011 4th International Conference on Biomed­
+62
+Using MEMS Technology for Tremor Analysis
+==PAGE:75==
+ical Engineering and Informatics (BMEI). Vol. 2. Oct. 2011, pp. 693–697. DOI: 10.
+1109/BMEI.2011.6098449. URL: https://ieeexplore.ieee.org/document/6098449.
+[27]
+James Z. Zhang et al. “Detection of involuntary human hand motions using Empirical
+Mode Decomposition and Hilbert­Huang Transform”. In: 2008 51st Midwest Sym­
+posium on Circuits and Systems. Aug. 2008, pp. 157–160. DOI: 10.1109/MWSCAS.
+2008.4616760. URL: https://ieeexplore.ieee.org/document/4616760.
+[28]
+Stefan Teufl et al. “Quantifying upper limb tremor in people with multiple sclero­
+sis using Fast Fourier Transform based analysis of wrist accelerometer signals”.
+eng. In: Journal of Rehabilitation and Assistive Technologies Engineering 8 (2021),
+p. 2055668320966955. ISSN: 2055­6683. DOI: 10.1177/2055668320966955.
+[29]
+Rui Araújo et al. “Tremor Frequency Assessment by iPhone® Applications: Corre­
+lation with EMG Analysis”. eng. In: Journal of Parkinson’s Disease 6.4 (Oct. 2016),
+pp. 717–721. ISSN: 1877­718X. DOI: 10.3233/JPD-160936.
+[30]
+Raed A. Joundi et al. “Rapid tremor frequency assessment with the iPhone ac­
+celerometer”. eng. In: Parkinsonism Related Disorders 17.4 (May 2011), pp. 288–
+290. ISSN: 1873­5126. DOI: 10.1016/j.parkreldis.2011.01.001.
+[31]
+Sergi Barrantes et al. “Differential diagnosis between Parkinson’s disease and es­
+sential tremor using the smartphone’s accelerometer”. eng. In: PloS One 12.8 (2017),
+e0183843. ISSN: 1932­6203. DOI: 10.1371/journal.pone.0183843.
+[32]
+Omid Bazgir et al. “A neural network system for diagnosis and assessment of tremor
+in parkinson disease patients”. In: 2015 22nd Iranian Conference on Biomedical
+Engineering (ICBME). Nov. 2015, pp. 1–5. DOI: 10.1109/ICBME.2015.7404105.
+URL: https://ieeexplore.ieee.org/document/7404105.
+[33]
+Hamza Abujrida, Emmanuel Agu, and Kaveh Pahlavan. “DeePaGait: Motor Assess­
+ment of Parkinson’s Disease Using a Multi­Layer 1D Convolutional Neural Network
+on Smartphone Gait Data”. In: 2022 IEEE International Conference on Big Data
+(Big Data). Dec. 2022, pp. 5153–5162. DOI: 10.1109/BigData55660.2022.10021029.
+URL: https://ieeexplore.ieee.org/document/10021029.
+[34]
+FDA. Medical Device Databases. en. URL: https://www.fda.gov/medical-devices/
+device-advice-comprehensive-regulatory-assistance/medical-device-databases.
+[35]
+Rune Labs. StrivePD. en. URL: https://www.strive.group/app.
+[36]
+Rob Powers et al. “Smartwatch inertial sensors continuously monitor real­world mo­
+tor fluctuations in Parkinson’s disease”. eng. In: Science Translational Medicine
+13.579 (Feb. 2021), eabd7865. ISSN: 1946­6242. DOI: 10.1126/scitranslmed.abd7865.
+[37]
+en­GB. URL: https://neu.health/product.
+[38]
+FDA. Neu Platform Tremor Transducer, 510(k) Summary. en.
+[39]
+en. URL: https://www.neurorpm.com.
+[40]
+FDA. NeuroRPM, 510(k) Summary. en.
+[41]
+en. Mar. 2020. URL: https://parkynow.com//.
+[42]
+FDA. Parky, 510(k) Summary. en.
+[43]
+en­US. URL: https://pkghealth.com/.
+[44]
+en­US. Mar. 2020. URL: https://www.glneurotech.com/products/kinesia-one/.
+[45]
+en­US. Mar. 2020. URL: https://www.glneurotech.com/products/kinesia-360/.
+[46]
+en­US. May 2020. URL: https://www.glneurotech.com/products/kinesiau/.
+[47]
+Steven Morrison, Karl M. Newell, and Justin J. Kavanagh. “Differences in postural
+tremor dynamics with age and neurological disease”. en. In: Experimental Brain
+Research 235.6 (June 2017), pp. 1719–1729. ISSN: 1432­1106. DOI: 10. 1007 /
+s00221-017-4924-5.
+Using MEMS Technology for Tremor Analysis
+63
+==PAGE:76==
+[48]
+Karmele López­de­Ipiña et al. “Selection of Entropy Based Features for Automatic
+Analysis of Essential Tremor”. en. In: Entropy 18.55 (May 2016), p. 184. ISSN:
+1099­4300. DOI: 10.3390/e18050184.
+[49]
+Basilio Vescio et al. “Development of a New Wearable Device for the Characteri­
+zation of Hand Tremor”. en. In: Bioengineering 10.99 (Sept. 2023), p. 1025. ISSN:
+2306­5354. DOI: 10.3390/bioengineering10091025.
+[50]
+en­eu. URL: https://eu.mouser.com/ProductDetail/STMicroelectronics/LSM6DSLTR?
+qs=dTJS0cRn7oit9g7CgtPlyQ%3D%3D.
+[51]
+Giovanni Gugliandolo et al. “A Movement­Tremors Recorder for Patients of Neu­
+rodegenerative Diseases”. In: IEEE Transactions on Instrumentation and Measure­
+ment 68.5 (May 2019), pp. 1451–1457. ISSN: 1557­9662. DOI: 10.1109/TIM.2019.
+2900141.
+[52]
+URL: https://www.analog.com/en/products/adxl345.html.
+[53]
+en­dk. URL: https://www.mouser.dk/ProductDetail/STMicroelectronics/MIS2DHTR?
+qs=BA62vJVifGoBY%252BmSlQOUaA%3D%3D.
+[54]
+en­dk. URL: https://www.mouser.dk/ProductDetail/STMicroelectronics/LSM303AHTR?
+qs=FNcb6ahWXRzM34XwAoZA0A%3D%3D.
+[55]
+en­dk. URL: https://www.mouser.dk/ProductDetail/STMicroelectronics/LSM6DS3?
+qs=Ok1pvOkw6%2FpA3gkrc3IRUg%3D%3D.
+[56]
+en­dk. URL: https://www.mouser.dk/ProductDetail/STMicroelectronics/LIS2DUX12TR?
+qs=vvQtp7zwQdNVizcqEkk4fw%3D%3D.
+[57]
+en­dk. URL: https://www.mouser.dk/ProductDetail/ROHM-Semiconductor/KXTJ3-
+1057?qs=hicmRmzGcNR8WipH%252BLEjqg%3D%3D.
+[58]
+en­dk. URL: https://www.mouser.dk/ProductDetail/STMicroelectronics/IIS3DHHCTR?
+qs=rrS6PyfT74c7L1wDBBbtNA%3D%3D.
+[59]
+en­dk. URL: https://www.mouser.dk/ProductDetail/Analog-Devices/ADXL362BCCZ-
+RL7?qs=WIvQP4zGanhCOhEEyirq5Q%3D%3D.
+[60]
+en. URL: https://www.st.com/en/mems-and-sensors/lsm6dsox.html.
+[61]
+Geeks for Geeks. Nyquist Sampling Theorem. URL: https://www.geeksforgeeks.
+org/electronics-engineering/nyquist-sampling-theorem/.
+[62]
+en. URL: https://www.arduino.cc/en/hardware/.
+[63]
+URL: https://docs.arduino.cc/hardware/uno-wifi-rev2/.
+[64]
+URL: https://docs.arduino.cc/hardware/nano-33-iot/.
+[65]
+URL: https://docs.arduino.cc/hardware/nano-rp2040-connect/.
+[66]
+URL: https://docs.arduino.cc/hardware/nano-33-ble-sense-rev2/.
+[67]
+URL: https://docs.arduino.cc/hardware/mkr-imu-shield/.
+[68]
+C++. June 2025. URL: https://github.com/sparkfun/SparkFun_LSM6DS3_Arduino_
+Library.
+[69]
+URL: https://docs.arduino.cc/libraries/arduino_lsm6dsox/.
+[70]
+URL: https://docs.arduino.cc/libraries/arduino_lsm6ds3/.
+[71]
+Matthew W. Flood and Bernd Grimm. “EntropyHub: An open­source toolkit for en­
+tropic time series analysis”. In: PLoS ONE 16.11 (Nov. 2021), e0259448. ISSN:
+1932­6203. DOI: 10.1371/journal.pone.0259448.
+[72]
+J. S. Richman and J. R. Moorman. “Physiological time­series analysis using ap­
+proximate entropy and sample entropy”. eng. In: American Journal of Physiology.
+Heart and Circulatory Physiology 278.6 (June 2000), H2039–2049. ISSN: 0363­
+6135. DOI: 10.1152/ajpheart.2000.278.6.H2039.
+[73]
+Douglas E. Lake et al. “Sample entropy analysis of neonatal heart rate variability”.
+eng. In: American Journal of Physiology. Regulatory, Integrative and Comparative
+64
+Using MEMS Technology for Tremor Analysis
+==PAGE:77==
+Physiology 283.3 (Sept. 2002), R789–797. ISSN: 0363­6119. DOI: 10.1152/ajpregu.
+00069.2002.
+[74]
+Alfonso Delgado­Bonal and Alexander Marshak. “Approximate Entropy and Sample
+Entropy: A Comprehensive Tutorial”. en. In: Entropy 21.66 (June 2019), p. 541.
+ISSN: 1099­4300. DOI: 10.3390/e21060541.
+[75]
+MattWillFlood. Negative Approximate Entropy ∙Issue 11 ∙MattWillFlood/Entropy­
+Hub. en. URL: https://github.com/MattWillFlood/EntropyHub/issues/11.
+Using MEMS Technology for Tremor Analysis
+65
+==PAGE:78==
+66
+Using MEMS Technology for Tremor Analysis
+==PAGE:79==
+Chapter A: Arduino and Python Code
+A.1
+Arduino Code
+A.1.1
+Code for the Left Arduino board
+#include "SparkFunLSM6DS3.h"
+#include "Wire.h"
+#include "SPI.h"
+// #include <Arduino_LSM6DS3.h> // this library is only used for pins
+//verification
+LSM6DS3 myIMU(I2C_MODE, 0x6A); // define to the IC2 adress
+int16_t status_reg_value;
+// Variable to store the register value
+bool flag = false;
+// flag for data collection
+unsigned long start_time;
+void setup() {
+// put your setup code here, to run once:
+Serial.begin(115200);
+delay(1000);
+// choose the settings we want, 2g and 104 Hz
+myIMU.settings.accelRange = 2;
+myIMU.settings.accelSampleRate = 104;
+myIMU.begin();
+}
+void loop(){
+if (Serial.available()){
+String command = Serial.readStringUntil('\n');
+command.trim();
+// identify the sensor
+if (command == "Identify"){
+Serial.println("Left_side_sensor");
+}
+// read the data
+else if (command == "Start"){
+flag = true;
+start_time = micros();
+} else if (command == "Stop"){
+flag = false;
+}
+}
+if (flag){
+// verify if there is a new value on the register and record it
+Using MEMS Technology for Tremor Analysis
+67
+==PAGE:80==
+if (myIMU.readRegisterInt16(&status_reg_value,
+LSM6DS3_ACC_GYRO_STATUS_REG) == 0) {
+// Now check if XLDA (bit 0) is set
+if (status_reg_value & 0x01) {
+unsigned long t = micros() - start_time;
+int16_t x = myIMU.readRawAccelX();
+int16_t y = myIMU.readRawAccelY();
+int16_t z = myIMU.readRawAccelZ();
+// Send 10 bytes: 4 for time, 2 for each axis
+Serial.write((byte*)&t, sizeof(t));
+Serial.write((byte*)&x, sizeof(x));
+Serial.write((byte*)&y, sizeof(y));
+Serial.write((byte*)&z, sizeof(z));
+}
+} else {
+Serial.println("Error reading STATUS_REG");
+}
+}
+}
+A.1.2
+Code for the Right Arduino Board
+#include "SparkFunLSM6DS3.h"
+#include "Wire.h"
+#include "SPI.h"
+// #include <Arduino_LSM6DS3.h> // this library is only used for pins
+//verification
+LSM6DS3 myIMU(I2C_MODE, 0x6A); // define to the IC2 adress
+int16_t status_reg_value;
+// Variable to store the register value
+bool flag = false;
+// flag for data collection
+unsigned long start_time;
+void setup() {
+// put your setup code here, to run once:
+Serial.begin(115200);
+delay(1000);
+// choose the settings we want, 2g and 104 Hz
+myIMU.settings.accelRange = 2;
+myIMU.settings.accelSampleRate = 104;
+myIMU.begin();
+}
+void loop(){
+if (Serial.available()){
+String command = Serial.readStringUntil('\n');
+68
+Using MEMS Technology for Tremor Analysis
+==PAGE:81==
+command.trim();
+// identify the sensor
+if (command == "Identify"){
+Serial.println("Right_side_sensor");
+}
+// read the data
+else if (command == "Start"){
+flag = true;
+start_time = micros();
+} else if (command == "Stop"){
+flag = false;
+}
+}
+if (flag){
+// verify if there is a new value on the register and record it
+if (myIMU.readRegisterInt16(&status_reg_value,
+LSM6DS3_ACC_GYRO_STATUS_REG) == 0) {
+// Now check if XLDA (bit 0) is set
+if (status_reg_value & 0x01) {
+unsigned long t = micros() - start_time;
+int16_t x = myIMU.readRawAccelX();
+int16_t y = myIMU.readRawAccelY();
+int16_t z = myIMU.readRawAccelZ();
+// Send 10 bytes: 4 for time, 2 for each axis
+Serial.write((byte*)&t, sizeof(t));
+Serial.write((byte*)&x, sizeof(x));
+Serial.write((byte*)&y, sizeof(y));
+Serial.write((byte*)&z, sizeof(z));
+}
+} else {
+Serial.println("Error reading STATUS_REG");
+}
+}
+}
+A.2
+Python Code
+A.2.1
+Data Collection Code
+# this script will collect the data from the arduino and save it in the
+#excel file automatically. it receives the patient ID and the duration of
+#the test and will save the data in a previously defined path
+import serial
+import time
+import os
+import threading
+import winsound
+import struct
+Using MEMS Technology for Tremor Analysis
+69
+==PAGE:82==
+import pandas as pd
+import scipy.constants as const
+from datetime import datetime
+from PyQt6.QtCore import QObject, pyqtSignal
+from settings_manager import SettingsManager
+class DataRecorder(QObject):
+# this signal will be used to send the data to the GUI so that we can have
+#real time plotting
+new_data_signal = pyqtSignal(float, float, float, float)
+new_data_signal_1 = pyqtSignal(float, float, float, float)
+new_data_signal_2 = pyqtSignal(float, float, float, float)
+# errors from here are emitted because this runs a separate thread that
+#communicates with the GUI
+error_signal = pyqtSignal(str)
+# a flag to activate the analyse button in the GUI
+flag = pyqtSignal(bool)
+def __init__(self, id, duration, file_name, mode):
+super().__init__()
+self.id = id
+self.duration = duration
+self.file_name = file_name
+self.mode = mode
+self.settings_manager = SettingsManager()
+self.port1 = self.settings_manager.get_info("left_sensor")
+self.port2 = self.settings_manager.get_info("right_sensor")
+self.baudrate = 115200
+self.running = False # we initiate with the data collection not running
+#and only initiate it when we start the data collection
+self.data = []
+self.date = datetime.now().strftime("%d-%m-%Y")
+self.scaling_factor = 0.000061
+base_path = self.settings_manager.get_info("location")
+file_path = os.path.join(base_path, self.id, self.date)
+# if the path to save the data doesn't exist, create it
+if not os.path.exists(file_path):
+os.makedirs(file_path)
+self.file_path = os.path.join(file_path, self.file_name)
+self.ser1 = None
+self.ser2 = None
+# these next two functions are used to start and stop the data collection
+70
+Using MEMS Technology for Tremor Analysis
+==PAGE:83==
+#in a separate thread, which means that they will run independently.
+# This will allow to keep updating the plots in the GUI while
+#collecting new data
+def start(self):
+self.running = True
+self.thread = threading.Thread(target=self.collect_data)
+self.thread.start()
+def stop(self):
+self.running = False
+if self.thread.is_alive():
+self.thread.join()
+if self.ser1 and self.ser1.is_open:
+self.ser1.close()
+if self.ser2 and self.ser2.is_open:
+self.ser2.close()
+# function to record and save the data
+def collect_data(self):
+# try for the whole function to find possible errors
+try:
+try:
+# create connection with the arduino
+self.ser1 = serial.Serial(self.port1, self.baudrate, timeout=1)
+self.ser2 = serial.Serial(self.port2, self.baudrate, timeout=1)
+except serial.SerialException as e:
+# to close we first check if the serial ports are open
+#and then close them
+if self.ser1 is not None and self.ser1.is_open:
+self.ser1.close()
+if self.ser2 is not None and self.ser2.is_open:
+self.ser2.close()
+error_message = f"connection error: {str(e)}"
+self.error_signal.emit(error_message)
+self.stop()
+return
+# wait for connection to establish
+time.sleep(2)
+# check if the mode is unilateral or bilateral in the start
+#so that we don't have to do it in each iteration in the loop
+# unilateral left side
+if self.mode == "Unilateral Left Side" and self.ser1.is_open:
+winsound.Beep(1000, 500)
+self.ser1.write(b"Start\n")
+# start timer for the data collection
+Using MEMS Technology for Tremor Analysis
+71
+==PAGE:84==
+timestamp = 0
+while self.running and (timestamp <= self.duration):
+# check if the data is all there to read
+if self.ser1.in_waiting >= 10:
+data = self.ser1.read(10)
+t, ax, ay, az = struct.unpack('<Lhhh', data)
+timestamp = t / 1000000
+# convert microseconds to seconds
+x = ax * self.scaling_factor * const.g
+y = ay * self.scaling_factor * const.g
+z = az * self.scaling_factor * const.g
+# emit the data for plotting in real time
+self.new_data_signal.emit(timestamp, x, y, z)
+# append the data to the list
+self.data.append([timestamp, x, y, z])
+winsound.Beep(700, 500)
+# unilateral right side
+if self.mode == "Unilateral Right Side" and self.ser2.is_open:
+winsound.Beep(1000, 500)
+self.ser2.write(b"Start\n")
+# start timer for the data collection
+timestamp = 0
+while self.running and (timestamp <= self.duration):
+# check if the data is all there to read
+if self.ser2.in_waiting >= 10:
+data = self.ser2.read(10)
+t, ax, ay, az = struct.unpack('<Lhhh', data)
+timestamp = t / 1000000
+# convert microseconds to seconds
+x = ax * self.scaling_factor * const.g
+y = ay * self.scaling_factor * const.g
+z = az * self.scaling_factor * const.g
+# emit the data for plotting in real time
+self.new_data_signal.emit(timestamp, x, y, z)
+# append the data to the list
+self.data.append([timestamp, x, y, z])
+winsound.Beep(700, 500)
+# if we're on bilateral mode we will read from both serial ports
+72
+Using MEMS Technology for Tremor Analysis
+==PAGE:85==
+#but everything else is the same as in unilateral mode
+if self.mode == "Bilateral" and self.ser1.is_open and
+self.ser2.is_open:
+winsound.Beep(1000, 500)
+self.ser1.write(b"Start\n")
+self.ser2.write(b"Start\n")
+# start timer for the data collection
+timestamp1 = 0
+timestamp2 = 0
+while self.running and ((timestamp1 <= self.duration) or
+(timestamp2 <= self.duration)):
+if self.ser1.in_waiting >=10 and self.ser2.in_waiting >= 10:
+data1 = self.ser1.read(10)
+data2 = self.ser2.read(10)
+t1, ax1, ay1, az1 = struct.unpack('<Lhhh', data1)
+t2, ax2, ay2, az2 = struct.unpack('<Lhhh', data2)
+timestamp1 = t1 / 1000000
+# convert microseconds to seconds
+x1 = ax1 * self.scaling_factor * const.g
+y1 = ay1 * self.scaling_factor * const.g
+z1 = az1 * self.scaling_factor * const.g
+timestamp2 = t2 / 1000000
+# convert microseconds to seconds
+x2 = ax2 * self.scaling_factor * const.g
+y2 = ay2 * self.scaling_factor * const.g
+z2 = az2 * self.scaling_factor * const.g
+# emit the data for plotting
+self.new_data_signal_1.emit(timestamp1, x1, y1, z1)
+self.new_data_signal_2.emit(timestamp2, x2, y2, z2)
+# append the data to the list
+self.data.append([timestamp1, x1, y1, z1, timestamp2,
+x2, y2, z2])
+winsound.Beep(700, 500)
+# print any other possible errors and close serial communication
+except Exception as e:
+# we don't deal with serial exceptions here because we already
+#did it in the try block above so the serial connection exists
+#for sure
+if self.ser1.is_open:
+self.ser1.write(b"Stop\n")
+self.ser1.close()
+if self.ser2.is_open:
+self.ser2.write(b"Stop\n")
+self.ser2.close()
+Using MEMS Technology for Tremor Analysis
+73
+==PAGE:86==
+error_message = f"Error during data collection: {str(e)}"
+self.error_signal.emit(error_message)
+self.stop()
+finally:
+# convert data to DataFrame
+if "Unilateral" in self.mode:
+df = pd.DataFrame(self.data, columns=["Timestamp", "X", "Y", "Z"])
+else:
+df = pd.DataFrame(self.data, columns=["Timestamp1", "X1", "Y1",
+"Z1","Timestamp2", "X2", "Y2", "Z2"])
+try:
+# save the data to an Excel file that can be edited
+df.to_excel(self.file_path, index=False)
+self.flag.emit(True)
+except Exception as e:
+error_message = f"Error saving data to file: {str(e)}"
+self.error_signal.emit(error_message)
+if self.ser1 is not None and self.ser1.is_open:
+self.ser1.write(b"Stop\na")
+self.ser1.close()
+if self.ser2 is not None and self.ser2.is_open:
+self.ser2.write(b"Stop\n")
+self.ser2.close()
+A.2.2
+Data Analysis Code
+# this script pulls the data from the excell file and analyses it
+import os
+import pandas as pd
+import numpy as np
+from scipy import signal
+from PyQt6.QtCore import QObject
+from PyQt6.QtWidgets import QMessageBox
+from EntropyHub import ApEn, XApEn, SampEn, XSampEn
+from settings_manager import SettingsManager
+from scipy.signal import butter, filtfilt
+class DataAnalyser(QObject):
+def __init__(self, file_path):
+super().__init__()
+self.file_path = file_path
+self.settings_manager = SettingsManager()
+# get the test mode from the path
+file_name = os.path.basename(self.file_path)
+74
+Using MEMS Technology for Tremor Analysis
+==PAGE:87==
+parts = file_name.replace(".xlsx", "").split("_")
+mode = parts[2]
+self.duration = int(parts[4])
+self.fs = 104 # sampling frequency in Hz
+# we pull the file, filter it and calculate the magnitude of
+#the signal, and then calculate the PSD of it. After we calculate
+#all necessary indexes
+if "Unilateral" in mode:
+try:
+self.read_data_unilateral()
+self.magnitude, self.filtered_x, self.filtered_y,
+self.filtered_z, self.no_nan_no_mean_x, self.no_nan_no_mean_y,
+self.no_nan_no_mean_z, self.timestamps =
+self.filter_and_magnitude(self.data, self.timestamps)
+self.psd, self.freqs =
+self.power_spectral_density(self.no_nan_no_mean_x,
+self.no_nan_no_mean_y, self.no_nan_no_mean_z)
+self.intensity, self.center_frequency, self.peak_frequency,
+self.dispersion, self.hi, self.entropy =
+self.indexes(self.magnitude, self.psd, self.freqs)
+except Exception as e:
+raise RuntimeError(f"Error analysing data: {e}")
+else: # bilateral mode
+try:
+self.read_data_bilateral()
+self.magnitude_1, self.filtered_x1, self.filtered_y1,
+self.filtered_z1, self.no_nan_no_mean_x_1, self.no_nan_no_mean_y_1,
+self.no_nan_no_mean_z_1, self.timestamps1 =
+self.filter_and_magnitude(self.data_1, self.timestamps1)
+self.psd_1, self.freqs_1 =
+self.power_spectral_density(self.no_nan_no_mean_x_1,
+self.no_nan_no_mean_y_1, self.no_nan_no_mean_z_1)
+self.intensity_1, self.center_frequency_1, self.peak_frequency_1,
+self.dispersion_1, self.hi_1, self.entropy_1 =
+self.indexes(self.magnitude_1, self.psd_1, self.freqs_1)
+self.magnitude_2, self.filtered_x2, self.filtered_y2,
+self.filtered_z2, self.no_nan_no_mean_x_2, self.no_nan_no_mean_y_2,
+self.no_nan_no_mean_z_2, self.timestamps2 =
+self.filter_and_magnitude(self.data_2, self.timestamps2)
+self.psd_2, self.freqs_2 =
+self.power_spectral_density(self.no_nan_no_mean_x_2,
+self.no_nan_no_mean_y_2, self.no_nan_no_mean_z_2)
+self.intensity_2, self.center_frequency_2, self.peak_frequency_2,
+Using MEMS Technology for Tremor Analysis
+75
+==PAGE:88==
+self.dispersion_2, self.hi_2, self.entropy_2 =
+self.indexes(self.magnitude_2, self.psd_2, self.freqs_2)
+# cross approximate entropy between the two magnitudes
+cross_entropy = XSampEn(self.magnitude_1, self.magnitude_2,
+m = 2, r = 0.1)
+self.cross_entropy = cross_entropy[0][-1]
+except Exception as e:
+raise RuntimeError(f"Error analysing data: {e}")
+# this function will be used to read the data from the excell file and
+#return it as a pandas dataframe
+def read_data_unilateral(self):
+if not os.path.exists(self.file_path):
+# show a message box if the file does not exist
+QMessageBox.critical(self, "Data does not exist", "Data has
+not been collected yet. Please collect data first.")
+else:
+self.df = pd.read_excel(self.file_path)
+self.timestamps = self.df["Timestamp"]
+self.data = self.df[["X","Y","Z"]]
+def read_data_bilateral(self):
+if not os.path.exists(self.file_path):
+# show a message box if the file does not exist
+QMessageBox.critical(self, "Data does not exist", "Data has
+not been collected yet. Please collect data first.")
+else:
+self.df = pd.read_excel(self.file_path)
+# we will use the first 3 columns for the left hand and the last
+3 for the right hand
+self.timestamps1 = self.df["Timestamp1"]
+self.timestamps2 = self.df["Timestamp2"]
+self.data_1 = self.df[["X1", "Y1", "Z1"]]
+self.data_2 = self.df[["X2", "Y2", "Z2"]]
+#
+this function will filter the data in the time domain and calculate
+#the magnitude of the signal using unfiltered data to then calculate the
+#PSD which will be filtered in the frequency domain
+def filter_and_magnitude(self, data, timestamps):
+data_x = data.iloc[:,0]
+data_y = data.iloc[:,1]
+data_z = data.iloc[:,2]
+no_nan_x = data_x.dropna()
+no_nan_y = data_y.dropna()
+no_nan_z = data_z.dropna()
+76
+Using MEMS Technology for Tremor Analysis
+==PAGE:89==
+no_nan_no_mean_x = no_nan_x - np.mean(no_nan_x)
+no_nan_no_mean_y = no_nan_y - np.mean(no_nan_y)
+no_nan_no_mean_z = no_nan_z - np.mean(no_nan_z)
+no_nan_no_mean_x = self.band_pass_filter(no_nan_no_mean_x,
+lowcut=0.8, highcut=29)
+no_nan_no_mean_y = self.band_pass_filter(no_nan_no_mean_y,
+lowcut=0.8, highcut=29)
+no_nan_no_mean_z = self.band_pass_filter(no_nan_no_mean_z,
+lowcut=0.8, highcut=29)
+# these are only for visualization purposes, we will not use
+#them in the analysis
+filtered_x = data_x - np.nanmean(data_x)
+filtered_y = data_y - np.nanmean(data_y)
+filtered_z = data_z - np.nanmean(data_z)
+filtered_x = self.band_pass_filter(filtered_x, lowcut=0.8,
+highcut=29)
+filtered_y = self.band_pass_filter(filtered_y, lowcut=0.8,
+highcut=29)
+filtered_z = self.band_pass_filter(filtered_z, lowcut=0.8,
+highcut=29)
+idx_1 = np.where(timestamps >= 1)[0]
+idx_2 = np.where(timestamps <= self.duration - 1)[0]
+no_nan_no_mean_x = no_nan_no_mean_x[idx_1[0]:idx_2[-1]]
+no_nan_no_mean_y = no_nan_no_mean_y[idx_1[0]:idx_2[-1]]
+no_nan_no_mean_z = no_nan_no_mean_z[idx_1[0]:idx_2[-1]]
+filtered_x = filtered_x[idx_1[0]:idx_2[-1]]
+filtered_y = filtered_y[idx_1[0]:idx_2[-1]]
+filtered_z = filtered_z[idx_1[0]:idx_2[-1]]
+timestamps = timestamps[idx_1[0]:idx_2[-1]]
+magnitude = np.sqrt(no_nan_no_mean_x**2 + no_nan_no_mean_y**2 +
+no_nan_no_mean_z**2)
+return magnitude, filtered_x, filtered_y, filtered_z,
+no_nan_no_mean_x, no_nan_no_mean_y, no_nan_no_mean_z, timestamps
+# this function implements the bandpass filter and it's called by the
+#filter function
+def band_pass_filter(self, data, lowcut, highcut, order=4):
+nyquist = 0.5 * self.fs
+low = lowcut / nyquist
+high = highcut / nyquist
+Using MEMS Technology for Tremor Analysis
+77
+==PAGE:90==
+b, a = butter(order, [low, high], btype="bandpass", analog=False)
+y = filtfilt(b, a, data)
+return y
+# this will calculate the PSD and filter it in the frequency domain. We
+#use the FFT since there may be data removal and the FFT is less
+#sensitive to it
+def power_spectral_density(self, no_nan_no_mean_x, no_nan_no_mean_y,
+no_nan_no_mean_z):
+#def power_spectral_density(self, magnitude):
+t = 1/self.fs
+n_samples = len(no_nan_no_mean_x)
+FF_transform_x = np.fft.fft(no_nan_no_mean_x)
+FF_transform_y = np.fft.fft(no_nan_no_mean_y)
+FF_transform_z = np.fft.fft(no_nan_no_mean_z)
+f = np.fft.fftfreq(n_samples, t)
+# psd = |X(w)|^2 / T, where T is the duration of the signal. in this
+#case is a digital signal so we divide by the length of the signal
+Psd_x = (np.abs(FF_transform_x)**2) / n_samples
+Psd_y = (np.abs(FF_transform_y)**2) / n_samples
+Psd_z = (np.abs(FF_transform_z)**2) / n_samples
+psd = np.sqrt(Psd_x**2 + Psd_y**2 + Psd_z**2)
+# combine the PSDs of the
+#three axes
+mask = (f >= 1) & (f <= 25)
+freqs = f[mask]
+psd = psd[mask]
+return psd, freqs
+# this function calculates all the indexes that are used for diagnosis
+def indexes(self, magnitude, psd, freqs):
+# tremor intensity - root mean square of acceleration
+intensity = np.sqrt(np.mean(np.square(magnitude)))
+# center frequency - the frequency at which the power is divided 50/50
+center_frequency = self.center_freq(psd, freqs)
+# peak frequency - the frequency with the highest power
+peak_frequency = freqs[np.argmax(psd)]
+# frequency dispersion - the half width of the frequency band centered on
+#the center frequency containing 66% of the total power
+dispersion = self.stdev_cf(psd, freqs, center_frequency)
+# harmonic index
+harmonic_ind = self.harmonic_index(psd)
+# entropy
+entropy = SampEn(magnitude, m = 3, r = 0.2)
+return intensity, center_frequency, peak_frequency, dispersion,
+78
+Using MEMS Technology for Tremor Analysis
+==PAGE:91==
+harmonic_ind, entropy[0][-1]
+# this function finds the center frequency where the power is divided 50/50
+def center_freq(self, psd, freqs):
+# calculate the cumulative sum of the PSD
+cumulative_power
+= np.cumsum(psd)
+total_power
+= cumulative_power[-1]
+# find the frequency where the cumulative sum is closest to half
+#of the total sum
+idx = np.where(cumulative_power >= total_power / 2)[0][0]
+center_freq = freqs[idx]
+return center_freq
+# this function will calculate the standard deviation of the center
+#frequency, which is the band around the center frequency in which 66%
+#of the total power is dissipated.
+def stdev_cf(self, psd, freqs, center_frequency):
+# find the total power of the PSD
+total_power = np.sum(psd)
+# define how much power will be dissipated in the bandwidth
+power_threshold = 0.66 * total_power
+# find the index in the frequencies of the center frequency
+cf_idx = np.where(freqs == center_frequency)[0][0]
+left = right = cf_idx
+cumulative_power = psd[cf_idx]
+# expand the band until the cumulative power reaches the threshold,
+#since it is cf +/- stdev it should be symmetrical
+while cumulative_power < power_threshold:
+#band = psd[left:right+1] # start is included, end is excluded
+#cumulative_power = np.sum(band)
+if left > 0:
+left -= 1
+cumulative_power += psd[left]
+if right < len(psd) - 1:
+right += 1
+cumulative_power += psd[right]
+band_width = freqs[right] - freqs[left]
+# the standard deviation is half of the band width, since we are
+#looking for cf +/- stdev
+stdev = band_width / 2
+return stdev
+Using MEMS Technology for Tremor Analysis
+79
+==PAGE:92==
+# this function will calculate the harmonic index, according to the formula
+#HI = 1 - (sum of normalized fourrier ordinated / number of frequency
+bands)
+def harmonic_index(self, psd):
+# first we normalize the psd to be between 0 and 1 using MinMax normalization
+psd_norm = (psd - np.min(psd)) / (np.max(psd) - np.min(psd))
+harmonic_index = 1 - (np.sum(psd_norm) / len(psd_norm))
+return harmonic_index
+80
+Using MEMS Technology for Tremor Analysis
+==PAGE:93==
+Chapter B: Acceleration table
+measurements
+Table B.1: Complete table for the comparison of frequency values measured by the BK
+sensor and the ones being validated
+BK sensor [Hz]
+Sensors from this project [Hz]
+Absolute error [HZ]
+Left sensor
+Right sensor
+Left sensor
+Right sensor
+Acceleration table position 2
+2.000
+1.968
+1.992
+0.032
+0.008
+5.125
+5.017
+5.078
+0.108
+0.047
+Acceleration table position 3
+2.000
+1.968
+1.992
+0.032
+0.008
+3.969
+3.903
+3.950
+0.032
+0.066
+Acceleration table position 5
+2.000
+1.968
+1.992
+0.032
+0.008
+5.156
+5.083
+5.145
+0.073
+0.011
+Standard shaker
+10
+9.838
+9.958
+0.162
+0.042
+15
+14.758
+14.936
+0.242
+0.063
+20
+19.676
+19.916
+0.324
+0.084
+Using MEMS Technology for Tremor Analysis
+81
+==PAGE:94==
+Table B.2: Complete table for the comparison of acceleration values [m/s2 measured by
+the BK sensor and the ones being validated
+BK sensor [RMS]
+Sensors from this project [RMS]
+Absolute error [RMS]
+Left sensor
+Right sensor
+Left sensor
+Right sensor
+Acceleration table position 2
+0.121
+0.117
+0.118
+0.004
+0.003
+0.820
+0.757
+0.764
+0.063
+0.056
+Acceleration table position 3
+0.233
+0.220
+0.222
+0.013
+0.011
+0.939
+0.875
+0.838
+0.064
+0.101
+Acceleration table position 5
+0.663
+0.632
+0.639
+0.031
+0.024
+4.410
+4.095
+4.131
+0.315
+0.280
+Standard shaker
+0.336
+0.305
+0.306
+0.031
+0.030
+0.640
+0.531
+0.531
+0.109
+0.109
+1.190
+0.871
+0.868
+0.319
+0.322
+82
+Using MEMS Technology for Tremor Analysis
+==PAGE:95==
+Chapter C: Patients measurements
+In the tables presented in this section, values marked with a dash (­) indicate that these
+values were not collected or saved during patient consultations.
+C.1
+Filtering and TI
+C.2
+Frequency parameters
+Using MEMS Technology for Tremor Analysis
+83
+==PAGE:96==
+Table C.1: Comparison of TI values [m/s2] obtained using the CATSYS system, and the
+new device, without and with the use of a bandpass filter
+Patient
+Hand
+CATSYS
+Not filtered TI
+Filtered TI
+Not filtered TI
+Filtered TI
+2D analysis
+3D analysis
+Rest tremor
+04
+Left
+0.05
+0.023
+0.014
+0.036
+0.025
+Right
+0.12
+0.024
+0.017
+0.033
+0.026
+05
+Left
+0.03
+0.012
+0.011
+0.017
+0.014
+Right
+0.07
+0.012
+0.012
+0.023
+0.017
+08
+Left
+0.09
+0.012
+0.008
+0.023
+0.012
+Right
+0.04
+0.013
+0.011
+0.023
+0.018
+09
+Left
+0.11
+0.014
+0.012
+0.020
+0.016
+Right
+0.03
+0.013
+0.012
+0.018
+0.015
+10
+Left
+0.06
+0.014
+0.012
+0.021
+0.018
+Right
+0.07
+0.015
+0.010
+0.020
+0.015
+11
+Left
+0.14
+0.035
+0.035
+0.055
+0.054
+Right
+0.16
+0.016
+0.019
+0.077
+0.039
+12
+Left
+0.10
+0.028
+0.025
+0.058
+0.053
+Right
+0.15
+0.016
+0.013
+0.027
+0.022
+Postural tremor
+04
+Left
+0.44
+0.373
+0.291
+0.561
+0.313
+Right
+0.22
+0.193
+0.137
+0.410
+0.183
+05
+Left
+0.16
+0.113
+0.085
+0.143
+0.105
+Right
+0.10
+0.074
+0.064
+0.112
+0.080
+08
+Left
+0.31
+0.200
+0.083
+0.299
+0.097
+Right
+0.15
+0.300
+0.093
+0.362
+0.126
+09
+Left
+0.16
+0.114
+0.088
+0.201
+0.108
+Right
+0.13
+0.154
+0.080
+0.193
+0.098
+10
+Left
+0.15
+0.212
+0.098
+0.232
+0.112
+Right
+0.20
+0.127
+0.097
+0.149
+0.113
+11
+Left
+0.54
+0.289
+0.223
+0.473
+0.426
+Right
+0.55
+0.712
+0.642
+0.761
+0.680
+12
+Left
+0.38
+0.275
+0.216
+0.337
+0.275
+Right
+0.20
+0.171
+0.167
+0.204
+0.192
+Intention tremor
+04
+Left
+0.47
+0.332
+0.274
+0.359
+0.292
+Right
+0.27
+0.217
+0.178
+0.338
+0.209
+05
+Left
+0.20
+0.156
+0.105
+0.118
+0.130
+Right
+0.11
+0.096
+0.078
+0.125
+0.093
+08
+Left
+0.30
+0.105
+0.094
+0.119
+0.106
+Right
+0.30
+0.153
+0.095
+0.200
+0.126
+09
+Left
+0.19
+0.099
+0.095
+0.135
+0.123
+Right
+­
+0.103
+0.087
+0.186
+0.108
+10
+Left
+0.21
+0.162
+0.135
+0.187
+0.155
+Right
+0.24
+0.132
+0.125
+0.190
+0.143
+11
+Left
+0.32
+0.279
+0.240
+0.353
+0.296
+Right
+0.91
+1.045
+1.045
+1.335
+1.340
+12
+Left
+0.35
+0.188
+0.180
+0.315
+0.242
+Right
+0.22
+0.175
+0.156
+0.224
+0.193
+84
+Using MEMS Technology for Tremor Analysis
+==PAGE:97==
+Table C.2: Absolute Error [m/s2] for TI from patient measurements
+Patient
+Hand
+Not filtered TI
+Filtered TI
+Not filtered TI
+Filtered TI
+2D analysis
+3D analysis
+Rest tremor
+04
+Left
+0.027
+0.036
+0.014
+0.025
+Right
+0.096
+0.103
+0.087
+0.094
+05
+Left
+0.018
+0.019
+0.013
+0.016
+Right
+0.058
+0.058
+0.047
+0.053
+08
+Left
+0.078
+0.082
+0.067
+0.078
+Right
+0.027
+0.029
+0.017
+0.022
+09
+Left
+0.096
+0.098
+0.090
+0.094
+Right
+0.017
+0.018
+0.012
+0.015
+10
+Left
+0.046
+0.048
+0.039
+0.042
+Right
+0.055
+0.060
+0.050
+0.055
+11
+Left
+0.105
+0.105
+0.085
+0.086
+Right
+0.144
+0.141
+0.083
+0.121
+12
+Left
+0.072
+0.075
+0.042
+0.047
+Right
+0.134
+0.137
+0.123
+0.128
+Mean Error
+0.0695
+0.0721
+0.0549
+0.0626
+Postural tremor
+04
+Left
+0.067
+0.149
+0.121
+0.127
+Right
+0.027
+0.083
+0.190
+0.037
+05
+Left
+0.047
+0.075
+0.017
+0.055
+Right
+0.026
+0.036
+0.012
+0.700
+08
+Left
+0.110
+0.227
+0.081
+0.213
+Right
+0.150
+0.057
+0.212
+0.024
+09
+Left
+0.046
+0.072
+0.041
+0.052
+Right
+0.024
+0.050
+0.063
+0.032
+10
+Left
+0.062
+0.052
+0.082
+0.038
+Right
+0.073
+0.103
+0.051
+0.087
+11
+Left
+0.251
+0.317
+0.067
+0.114
+Right
+0.162
+0.092
+0.211
+0.130
+12
+Left
+0.105
+0.164
+0.043
+0.105
+Right
+0.029
+0.033
+0.004
+0.008
+Mean Error
+0.0842
+0.1079
+0.0854
+0.123
+Intention tremor
+04
+Left
+0.138
+0.196
+0.111
+0.178
+Right
+0.053
+0.092
+0.068
+0.061
+05
+Left
+0.044
+0.095
+0.082
+0.070
+Right
+0.014
+0.032
+0.015
+0.017
+08
+Left
+0.195
+0.206
+0.181
+0.194
+Right
+0.147
+0.205
+0.1
+0.174
+09
+Left
+0.091
+0.095
+0.055
+0.067
+Right
+*
+*
+*
+*
+10
+Left
+0.048
+0.075
+0.023
+0.055
+Right
+0.108
+0.115
+0.05
+0.097
+11
+Left
+0.041
+0.08
+0.033
+0.024
+Right
+0.135
+0.135
+0.425
+0.43
+12
+Left
+0.162
+0.170
+0.035
+0.108
+Right
+0.045
+0.064
+0.004
+0.027
+Mean Error
+0.0946
+0.1176
+0.0977
+0.1150
+Using MEMS Technology for Tremor Analysis
+85
+==PAGE:98==
+Table C.3: Comparison of frequency domain parameters obtained using the CATSYS
+system, and the new device.
+Patient
+Hand
+CATSYS
+New device
+CF [Hz]
+STDEV CF [Hz]
+HI
+CF [Hz]
+STDEV CF [Hz]
+HI
+Rest tremor
+04
+Left
+9.8
+4.6
+0.99
+10.052
+4.358
+0.974
+Right
+1.2
+0.4
+0.98
+11.563
+5.729
+0.988
+05
+Left
+7.4
+6.0
+0.99
+9.557
+4.076
+0.965
+Right
+1.9
+1.2
+0.99
+8.573
+2.951
+0.953
+08
+Left
+1.4
+0.6
+0.97
+10.017
+5.483
+0.955
+Right
+1.4
+0.6
+0.97
+14.059
+6.678
+0.936
+09
+Left
+1.1
+0.2
+0.98
+10.157
+4.182
+0.947
+Right
+1.4
+0.6
+0.97
+10.720
+5.905
+0.952
+10
+Left
+1.0
+0.2
+0.99
+10.790
+5.659
+0.956
+Right
+0.9
+0.2
+0.98
+11.352
+6.010
+0.927
+11
+Left
+4.0
+3.0
+0.99
+12.055
+6.186
+0.843
+Right
+1.6
+0.9
+0.99
+11.493
+5.588
+0.877
+12
+Left
+7.3
+5.2
+0.94
+9.279
+3.058
+0.951
+Right
+1.3
+0.3
+0.96
+9.665
+3.690
+0.940
+Postural tremor
+04
+Left
+6.7
+0.3
+0.98
+6.643
+0.316
+0.987
+Right
+6.4
+3.6
+0.91
+6.886
+2.776
+0.951
+05
+Left
+2.3
+1.5
+0.97
+2.705
+1.704
+0.983
+Right
+4.5
+3.3
+0.96
+4.499
+3.058
+0.962
+08
+Left
+5.5
+3.8
+0.93
+3.901
+2.777
+0.957
+Right
+6.7
+4.2
+0.87
+6.151
+3.936
+0.934
+09
+Left
+5.6
+4.1
+0.93
+5.167
+3.296
+0.927
+Right
+6.4
+4.3
+0.95
+6.010
+4.182
+0.925
+10
+Left
+2.7
+1.6
+0.96
+2.847
+1.617
+0.968
+Right
+3.7
+2.1
+0.97
+3.163
+1.617
+0.969
+11
+Left
+9.9
+3.7
+0.94
+7.978
+4.112
+0.976
+Right
+7.3
+0.7
+0.97
+7.100
+0.351
+0.985
+12
+Left
+9.4
+2.3
+0.96
+9.244
+2.495
+0.975
+Right
+6.4
+3.8
+0.91
+8.224
+3.655
+0.953
+Intention tremor
+04
+Left
+6.7
+0.3
+0.99
+6.608
+0.246
+0.990
+Right
+7.2
+3.3
+0.91
+7.486
+2.460
+0.944
+05
+Left
+3.3
+2.5
+0.93
+4.921
+3.058
+0.963
+Right
+4.0
+3.1
+0.96
+5.518
+3.374
+0.963
+08
+Left
+6.3
+4.2
+0.93
+3.62
+2.636
+0.966
+Right
+7.6
+4.5
+0.88
+7.311
+4.288
+0.884
+09
+Left
+9.8
+4.5
+0.88
+7.029
+4.956
+0.883
+Right
+*
+*
+*
+6.291
+4.007
+0.955
+10
+Left
+2.6
+1.6
+0.95
+3.198
+1.757
+0.963
+Right
+3.3
+2.4
+0.96
+2.882
+1.546
+0.978
+11
+Left
+7.1
+3.0
+0.97
+7.135
+2.566
+0.969
+Right
+6.7
+0.5
+0.98
+6.47
+0.246
+0.992
+12
+Left
+8.9
+2.6
+0.93
+7.416
+3.62
+0.921
+Right
+7.4
+4.0
+0.91
+7.451
+3.671
+0.969
+86
+Using MEMS Technology for Tremor Analysis
+==PAGE:99==
+Table C.4: Absolute Error for frequency parameters from patient measurements
+Patient
+Hand
+Center Frequency [Hz]
+STDEV of Center Frequency [Hz]
+Harmonic Index
+Rest tremor
+04
+Left
+0.252
+0.242
+0.016
+Right
+10.363
+5.329
+0.008
+05
+Left
+2.157
+1.924
+0.025
+Right
+6.673
+1.751
+0.037
+08
+Left
+8.617
+4.883
+0.015
+Right
+12.659
+6.078
+0.034
+09
+Left
+9.057
+3.982
+0.033
+Right
+9.320
+5.305
+0.018
+10
+Left
+9.790
+5.459
+0.034
+Right
+10.452
+5.810
+0.053
+11
+Left
+8.055
+3.186
+0.147
+Right
+9.893
+4.688
+0.113
+12
+Left
+1.979
+2.142
+0.011
+Right
+8.365
+3.390
+0.020
+Mean Error
+7.6880
+3.8692
+0.0403
+Postural tremor
+04
+Left
+0.057
+0.016
+0.007
+Right
+0.486
+0.824
+0.041
+05
+Left
+0.405
+0.204
+0.013
+Right
+0.001
+0.242
+0.002
+08
+Left
+1.599
+1.023
+0.027
+Right
+0.549
+0.264
+0.064
+09
+Left
+0.433
+0.831
+0.003
+Right
+0.390
+0.118
+0.025
+10
+Left
+0.147
+0.017
+0.008
+Right
+0.537
+0.483
+0.001
+11
+Left
+1.922
+0.412
+0.036
+Right
+0.200
+0.349
+0.015
+12
+Left
+0.156
+0.195
+0.015
+Right
+1.824
+0.145
+0.043
+Mean Error
+0.6218
+0.3659
+0.0214
+Intention tremor
+04
+Left
+0.092
+0.054
+0.000
+Right
+0.286
+0.840
+0.034
+05
+Left
+1.621
+0.558
+0.033
+Right
+1.518
+0.274
+0.003
+08
+Left
+2.680
+1.564
+0.036
+Right
+0.289
+0.212
+0.004
+09
+Left
+2.771
+0.456
+0.003
+Right
+*
+*
+*
+10
+Left
+0.598
+0.157
+0.013
+Right
+0.418
+0.854
+0.018
+11
+Left
+0.035
+0.434
+0.001
+Right
+0.130
+0.254
+0.012
+12
+Left
+1.484
+1.020
+0.009
+Right
+0.051
+0.329
+0.059
+Mean Error
+1.3046
+0.7866
+0.0843
+Using MEMS Technology for Tremor Analysis
+87
+==PAGE:100==
+Table C.5: Frequency parameters for healthy volunteers
+Patient
+Test
+Center Frequency [Hz]
+STDEV of Center Frequency [Hz]
+Harmonic Index
+Rest tremor
+05
+Left
+9.557
+4.076
+0.965
+Right
+8.573
+2.951
+0.953
+08
+Left
+10.017
+5.483
+0.955
+Right
+14.059
+6.678
+0.936
+09
+Left
+10.157
+4.182
+0.947
+Right
+10.720
+5.905
+0.952
+10
+Left
+10.790
+5.659
+0.956
+Right
+11.352
+6.010
+0.927
+13
+Left
+13.165
+7.329
+0.849
+Right
+14.445
+7.472
+0.852
+Mean Values
+11.2835
+5.5745
+0.9292
+Postural tremor
+05
+Left
+2.705
+1.704
+0.983
+Right
+4.499
+3.058
+0.962
+08
+Left
+3.901
+2.777
+0.957
+Right
+6.151
+3.936
+0.934
+09
+Left
+5.167
+3.269
+0.927
+Right
+6.010
+4.182
+0.925
+10
+Left
+2.847
+1.617
+0.968
+Right
+3.163
+1.617
+0.969
+13
+Left
+4.163
+3.095
+0.964
+Right
+5.017
+3.629
+0.951
+Mean Values
+4.3623
+2.8884
+0.9540
+Intention tremor
+05
+Left
+4.921
+3.058
+0.963
+Right
+5.518
+3.374
+0.963
+08
+Left
+3.620
+2.636
+0.966
+Right
+7.311
+4.288
+0.884
+09
+Left
+7.029
+4.956
+0.883
+Right
+6.291
+4.007
+0.955
+10
+Left
+3.198
+1.757
+0.963
+Right
+2.882
+1.546
+0.978
+Mean Values
+4.5300
+2.8467
+0.8394
+88
+Using MEMS Technology for Tremor Analysis
+==PAGE:101==
+Table C.6: Frequency parameters for PD patients
+Patient
+Test
+Center Frequency [Hz]
+STDEV of Center Frequency [Hz]
+Harmonic Index
+Rest tremor
+02
+Left
+10.020
+4.254
+0.905
+Right
+9.490
+3.093
+0.944
+03
+Left
+3.444
+3.901
+0.987
+Right
+6.221
+3.269
+0.964
+06
+Left
+4.073
+0.481
+0.990
+Right
+4.591
+2.258
+0.982
+Mean Values
+6.3065
+2.8760
+0.9620
+Postural tremor
+02
+Left
+6.678
+1.968
+0.965
+Right
+6.291
+2.987
+0.921
+03
+Left
+3.796
+2.460
+0.990
+Right
+3.234
+0.176
+0.991
+06
+Left
+3.309
+0.391
+0.988
+Right
+3.736
+0.498
+0.985
+Mean Values
+4.5073
+1.4133
+0.9733
+Intention tremor
+02
+Left
+6.889
+1.652
+0.971
+Right
+6.889
+2.285
+0.957
+03
+Left
+3.444
+0.527
+0.993
+Right
+3.198
+0.668
+0.992
+06
+Left
+4.076
+0.176
+0.993
+Right
+*
+*
+*
+Mean Values
+4.8992
+1.0616
+0.9812
+Table C.7: Frequency parameters for ET volunteers
+Patient
+Test
+Center Frequency [Hz]
+STDEV of Center Frequency [Hz]
+Harmonic Index
+Rest tremor
+01
+Left
+6.367
+0.534
+0.991
+Right
+6.580
+0.320
+0.982
+07
+Left
+5.228
+1.067
+0.977
+Right
+6.164
+0.606
+0.989
+12
+Left
+9.279
+3.058
+0.951
+Right
+9.665
+3.690
+0.940
+Mean Values
+7.0460
+1.6820
+0.9693
+Postural tremor
+01
+Left
+6.689
+0.178
+0.992
+Right
+6.760
+0.107
+0.995
+07
+Left
+5.701
+1.425
+0.979
+Right
+6.164
+0.606
+0.989
+12
+Left
+9.244
+2.495
+0.975
+Right
+8.224
+3.655
+0.953
+Mean Values
+7.1303
+1.4110
+0.9805
+Intention tremor
+01
+Left
+6.889
+0.141
+0.993
+Right
+6.924
+0.105
+0.995
+07
+Left
+5.870
+0.246
+0.990
+Right
+6.221
+0.597
+0.992
+12
+Left
+7.416
+3.620
+0.921
+Right
+7.451
+3.671
+0.969
+Mean Values
+6.7952
+1.3967
+0.9767
+Using MEMS Technology for Tremor Analysis
+89
+==PAGE:102==
+Chapter D: Entropy studies
+Table D.1: ApEn and SampEn values for PD patients.
+Patient
+Test
+ApEn
+SampEn
+m = 2
+m = 2
+m = 3
+m = 3
+m = 2
+m = 2
+m = 3
+m = 3
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+Rest tremor
+02
+Left
+0.005
+0.000
+0.005
+0.000
+0.004
+0.000
+0.004
+0.000
+Right
+0.005
+0.000
+0.005
+0.000
+0.004
+0.000
+0.004
+0.000
+03
+Left
+0.233
+0.046
+0.229
+0.046
+0.171
+0.034
+0.173
+0.034
+Right
+0.049
+0.008
+0.046
+0.008
+0.029
+0.003
+0.028
+0.002
+06
+Left
+0.360
+0.923
+0.012
+0.107
+3.542
+2.620
+3.258
+2.390
+Right
+0.735
+1.354
+0.059
+0.313
+2.894
+2.203
+2.923
+1.859
+Postural tremor
+02
+Left
+0.474
+0.171
+0.449
+0.163
+0.418
+0.412
+0.392
+0.136
+Right
+0.279
+0.060
+0.262
+0.060
+0.222
+0.045
+0.210
+0.044
+03
+Left
+0.886
+1.501
+0.079
+0.425
+2.869
+2.203
+2.923
+1.859
+Right
+1.050
+1.163
+0.294
+0.726
+1.847
+1.297
+1.563
+1.176
+06
+Left
+1.079
+0.863
+0.694
+0.744
+1.174
+0.830
+1.032
+0.734
+Right
+0.925
+1.034
+0.321
+0.635
+1.503
+1.083
+1.240
+0.906
+Intention tremor
+02
+Left
+1.133
+0.698
+0.972
+0.662
+1.039
+0.599
+6 0.945
+0.552
+Right
+1.000
+0.569
+0.917
+0.548
+0.918
+0.495
+0.859
+0.467
+03
+Left
+0.923
+1.407
+0.209
+0.693
+2.167
+1.512
+1.793
+1.323
+Right
+0.923
+1.407
+0.131
+0.564
+2.446
+1.845
+2.318
+1.670
+06
+Left
+0.240
+0.635
+0.019
+0.100
+2.567
+1.897
+2.262
+1.196
+Right
+*
+*
+*
+*
+*
+*
+*
+*
+90
+Using MEMS Technology for Tremor Analysis
+==PAGE:103==
+Table D.2: ApEn and SampEn values for ET patients.
+Patient
+Test
+ApEn
+SampEn
+m = 2
+m = 2
+m = 3
+m = 3
+m = 2
+m = 2
+m = 3
+m = 3
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+Rest tremor
+01
+Left
+0.005
+0.000
+0.005
+0.000
+0.004
+0.000
+0.004
+0.000
+Right
+0.008
+0.000
+0.008
+0.000
+0.007
+0.000
+0.007
+0.000
+07
+Left
+0.051
+0.002
+0.052
+0.002
+0.040
+0.001
+0.041
+0.001
+Right
+0.079
+0.004
+0.079
+0.004
+0.059
+0.003
+0.058
+0.003
+12
+Left
+0.025
+0.001
+0.024
+0.001
+0.015
+0.001
+0.014
+0.001
+Right
+0.000
+0.000
+0.000
+0.000
+0.000
+0.000
+0.000
+0.000
+Postural tremor
+01
+Left
+0.565
+0.290
+0.527
+0.251
+0.551
+0.270
+0.516
+0.245
+Right
+0.712
+0.396
+0.665
+0.360
+0.659
+0.345
+0.616
+0.321
+07
+Left
+0.595
+0.326
+0.531
+0.283
+0.547
+0.282
+0.483
+0.247
+Right
+0.653
+0.391
+0.584
+0.325
+0.614
+0.344
+0.547
+0.294
+12
+Left
+0.496
+0.181
+0.461
+0.174
+0.412
+0.142
+0.367
+0.130
+Right
+0.321
+0.081
+0.296
+0.079
+0.261
+0.064
+0.237
+0.062
+Intention tremor
+01
+Left
+1.030
+0.700
+0.813
+0.588
+1.010
+0.676
+0.836
+0.553
+Right
+1.313
+0.981
+0.795
+0.866
+1.467
+0.956
+1.337
+0.868
+07
+Left
+0.883
+0.609
+0.736
+0.524
+0.865
+0.577
+0.729
+0.493
+Right
+1.063
+0.690
+0.914
+0.638
+0.996
+0.628
+0.898
+0.564
+12
+Left
+0.389
+0.117
+0.367
+0.112
+0.32
+0.084
+0.298
+0.081
+Right
+0.285
+0.062
+0.266
+0.062
+0.238
+0.049
+0.224
+0.049
+Table D.3: XApEn and XSampEn values for ET patients.
+Patient
+Test
+XApEn
+XSampEn
+m = 2
+m = 2
+m = 3
+m = 3
+m = 2
+m = 2
+m = 3
+m = 3
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+r = 0.1
+r = 0.2
+01
+Rest
+0.008
+0.00
+0.008
+0.00
+0.007
+0.001
+0.007
+0.001
+Postural
+0.582
+0.518
+0.463
+0.513
+0.742
+0.399
+0.707
+0.391
+07
+Rest
+0.082
+0.004
+0.083
+0.004
+0.053
+0.003
+0.052
+0.003
+Postural
+0.667
+0.399
+0.579
+0.335
+0.591
+0.321
+0.525
+0.279
+Using MEMS Technology for Tremor Analysis
+91
+==PAGE:104==
+Technical
+University of
+Denmark
+Ørsteds Plads, 345B
+2800 Kgs. Lyngby
+Tlf. 4525 1700
+www.healthtech.dtu.dk

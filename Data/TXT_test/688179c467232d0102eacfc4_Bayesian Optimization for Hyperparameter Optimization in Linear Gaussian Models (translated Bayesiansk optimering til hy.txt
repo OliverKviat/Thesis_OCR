@@ -1,8 +1,11 @@
+==PAGE:1==
 Bayesian Optimization for Hyperparameter
 Optimization in Linear Gaussian Models
 Master Thesis
 Mathematical Modelling and Computing
 DTU Compute
+==PAGE:2==
+==PAGE:3==
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 Master Thesis
 June, 2025
@@ -18,6 +21,7 @@ Vibeke Hempler, 2012
 Published by:
 DTU, DTU Compute, Building 303B, 2800 Kgs. Lyngby Denmark
 www.compute.dtu.dk
+==PAGE:4==
 Approval
 Frida Alamir Rønne ­ s183978
 Signature
@@ -25,6 +29,7 @@ Date
 ii
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 23/6-2025
+==PAGE:5==
 Abstract
 This report investigates the input estimation of linear Gaussian models using the prop­
 erties of Gaussian processes. In particular, it demonstrates the advantages of using the
@@ -40,8 +45,10 @@ However, experimental results indicate no clear pattern for how the combination 
 be weighted.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 iii
+==PAGE:6==
 iv
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:7==
 Contents
 Preface . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 ii
@@ -120,8 +127,10 @@ A.4
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 v
+==PAGE:8==
 vi
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:9==
 1
 Introduction
 This report investigates how hyperparameter selection methods can be applied to input
@@ -193,6 +202,7 @@ Figure 1.1: Distribution of fits for 20 systems using LS, RLS with K = I and RLS
 SS kernel.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 1
+==PAGE:10==
 In Figure 1.1 we see how adding the regularized term improves the fits, furthermore when
 using the SS kernel the improvements are significantly better. However, obtaining an
 estimate for the impulse response is reliant on the hyperparameter optimization via the
@@ -200,6 +210,7 @@ two cost­function mentioned. In addition, we in this report will investigate ho
 these two cost­functions could possibly improve the fit.
 2
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:11==
 2
 Gaussian Processes
 A central concept used in this report is the Gaussian process (GP).
@@ -271,6 +282,7 @@ bb Σba.
 (2.1.5)
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 3
+==PAGE:12==
 Thus, the conditional distribution of the test function values given the observed training
 functions values (with added noise), p(f∗|y), is:
 µf∗|y = K (X∗, X)
@@ -358,6 +370,7 @@ Utilizing this factorization we are able to evaluate µf∗|y, Σf∗|y and p(y|
 x∗as follows:
 4
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:13==
 Algorithm 1 (X, y, K( , ), σ2
 n, x∗)
 1: K ←K(X, X)
@@ -397,6 +410,7 @@ at most O(p2). We hereby predict f by evaluating the mean ¯f∗as this is the m
 estimate for f.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 5
+==PAGE:14==
 3
 Covariance Functions
 The following section is based on the theory presented in [2] .
@@ -536,6 +550,7 @@ cov(xi, xj)
 Figure 3.2: Matérn Function for different length scale (σ2 = 1).
 6
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:15==
 When we consider how the ℓaffects the Matérn covaraince functions in Figure 3.2 we
 see a similar pattern as for the Squared Exponential function. We notice however that the
 Matérn Function for ν = 1/2 is non­differentiable when xi −xj = 0.
@@ -633,6 +648,7 @@ vulnerable to larger distances – between −1 and 0, where we have the largest
 we see a considerable large confidence interval compared to the rest.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 7
+==PAGE:16==
 4
 Bayesian Optimization
 Rather than modelling unknown functions, we now focus on finding the global optimum of
@@ -685,6 +701,7 @@ x
 (4.1.1)
 8
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:17==
 where
 UCB (x) = µ (x) + ρσ (x) ,
 (4.1.2)
@@ -736,6 +753,7 @@ In this report we have chosen to exclusively use UCB as acquisition function whe
 ing out the numerical experiments.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 9
+==PAGE:18==
 5
 Selecting the Hyperparameters
 Two methods for selecting the hyperparameters will now be unfolded.
@@ -824,6 +842,7 @@ f = Hy.
 (5.2.2)
 10
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:19==
 When y ∼N(0, Kℓ+ σ2
 nI), there exist a vector α for which
 y = (K + σ2
@@ -857,6 +876,7 @@ Here H depends on the hyperparameters ℓand σ2
 n.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 11
+==PAGE:20==
 6
 State Space Model
 We now consider a state space model (SSM), with no direct feed­through (D = 0), in
@@ -933,6 +953,7 @@ y = Φθ + ε,
 (6.0.3)
 12
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:21==
 Φ ∈Rm×n is a Toeplitz matrix constructed using u ∈Rm such that for u = [0, u1, u2, . . . , um−1]:
 Φ =
 
@@ -1025,6 +1046,7 @@ thus the estimate for ˆy must be
 (6.2.4)
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 13
+==PAGE:22==
 θ is estimated via the MAP estimate:
 ˆθ = argmin
 θ
@@ -1105,6 +1127,7 @@ If we consider the numerator of the GCV criterion, ||(I −H)y||2
 (6.3.3)
 14
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:23==
 as U is an orthogonal matrix and y = U ˜y.
 By reformulating H (6.2.9), replacing Kℓ= LL⊤and utilizing ˜Φ = ΦL we get:
 H =Φ(Φ⊤Φ + λL−⊤L−1)−1Φ⊤
@@ -1194,6 +1217,7 @@ U2
 (6.3.16)
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 15
+==PAGE:24==
 Substituting this expression results in:
 ||˜y2||2
 2 = y⊤(I −U1U⊤
@@ -1286,6 +1310,7 @@ recalling that S ∈Rn×n therefore λI ∈R(m−n)×(m−n), the log determinan
 becomes (m −n) log λ.
 16
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:25==
 Lastly, we consider the last term in (6.2.2), n
 2 log
 y⊤[ΦKℓΦ⊤+λI]
@@ -1392,6 +1417,7 @@ q 1⊤θtrue,
 where θtrue ∈Rq. Thus, a good fit will yield a value close to 100.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 17
+==PAGE:26==
 6.5
 Implementing the Hyperparameter Selection
 As mentioned, this report uses Bayesian optimization for minimizing the cost­functions.
@@ -1460,6 +1486,7 @@ seen in Figure 6.3 and using the selected hyperparameter we can compute the esti
 impulse response (Figure 6.4).
 18
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:27==
 4
 3
 2
@@ -1546,6 +1573,7 @@ to 100 and in general the Baysian optimizer is able to select ℓwell in only 15
 evaluations.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 19
+==PAGE:28==
 6.6
 Comparing Bayesian Optimization with Grid Search
 The aim for using Bayesian optimization (BO) is to arrive at the optimum of the target
@@ -1757,6 +1785,7 @@ Figure 6.6: Minimum target function value for 10 SSM for varying numbers of func
 evaluations using PML.
 20
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:29==
 In the following experiments we have chosen to use 15 function evaluations when using
 BO, where 5 function evaluations are chosen randomly i.e. emphasizing exploration, and
 10 are chosen via the acquisition function ρ = 2.576 i.e. emphasizing the exploitation.
@@ -1764,6 +1793,7 @@ We assume that the optimum is well­defined as seen in Figure 6.3 therefore we p
 largest emphasis on exploitation.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 21
+==PAGE:30==
 7
 Combining PML and GCV
 In addition to using PML and GCV separately for selecting the hyperparameters, we will
@@ -1848,6 +1878,7 @@ log
 Figure 7.1: Difference in fit for 50 random instances of the SSM.
 22
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:31==
 50
 60
 70
@@ -1986,6 +2017,7 @@ see how there is no clear pattern showing how the ”best” β should be chosen
 there is a majority of large β­values i.e. emphasizing GCV.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 23
+==PAGE:32==
 7
 5
 3
@@ -2064,6 +2096,7 @@ fitPML
 Figure 7.5: Difference in fit relatively to PML for 20 SSM for snr = 5 & 30.
 24
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:33==
 8
 Discussion
 In this report it is confirmed that using the Stable Spline Kernel for estimating linear Gaus­
@@ -2111,6 +2144,7 @@ and ℓcomb = γℓPML + (1 −γ)ℓGCV and have computed the fits for a range 
 ever it would be useful if we were to see a clear pattern in how δ and γ should be selected.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 25
+==PAGE:34==
 In general, the results of combining the cost­functions have shown that there certainly are
 improvements to obtain however when considering the improvement for the ”best” β for
 50 SSM 86% of them are below 0.1 then one could argue if the complexity of combining
@@ -2127,6 +2161,7 @@ this report are dependent on the choices made for the numerical experiments and 
 be different if for example the SNR had been chosen differently etc.
 26
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:35==
 9
 Conclusion
 In this report the results demonstrate that the Stable Spline kernel is an effective prior
@@ -2143,6 +2178,7 @@ for the numerical experiments one can assume that these could be improved as the
 remains unexhausted ways to combine the cost­functions.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 27
+==PAGE:36==
 Bibliography
 [1]
 Gianluigi Pillonetto and Giuseppe De Nicolao. “A new kernel­based approach for
@@ -2174,6 +2210,7 @@ j.automatica.2017.12.054. url: https://www.sciencedirect.com/science/article/pii
 S0005109817306416.
 28
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:37==
 A
 Additional Figures
 A.1
@@ -2272,6 +2309,7 @@ Bayesian Optimization (GCV)
 Figure A.1: Fit for 10 SSM for varying numbers of function evaluations using GCV.
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 29
+==PAGE:38==
 A.2
 -7
 -5
@@ -2351,6 +2389,7 @@ fitPML
 Figure A.2: Difference in fit relatively to PML for 20 SSM.
 30
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
+==PAGE:39==
 A.3
 20
 40
@@ -2624,6 +2663,7 @@ fit*
 Figure A.4: Difference in fit as function of β for the remaining 30 SSM .
 Bayesian Optimization for Hyperparameter Optimization in Linear Gaussian Models
 31
+==PAGE:40==
 Technical
 University of
 Denmark

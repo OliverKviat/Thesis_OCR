@@ -1,3 +1,4 @@
+==PAGE:1==
  
  
  
@@ -30,6 +31,7 @@ Assistant Professor, PhD., Marie Brøns
  
 DTU Construct 
 Department of Civil and Mechanical Engineering 
+==PAGE:2==
  
 I 
  
@@ -48,6 +50,7 @@ between the coupled system and the reference. The physical experiment also shows
 agreement, even though it is slightly lower. This discrepancy is primarily attributed to the 
 excitation method (a piezoelectric actuator), which is just as critical as the measurement 
 technique for obtaining accurate vibration data. 
+==PAGE:3==
  
 II 
  
@@ -104,6 +107,7 @@ Modal Properties: Natural Frequencies, Damping Ratios, and Mode Shapes ..... 48
 Overlaid Experimental FRFs of All Force-Response DoF Combinations ........... 49 
 4.2.4 
 Experimental FRF Comparison: LM-FBS coupled vs. Reference ....................... 50 
+==PAGE:4==
  
 III 
  
@@ -161,6 +165,7 @@ Virtual Point Transformation
  
  
  
+==PAGE:5==
  
 4 
  
@@ -194,6 +199,7 @@ conditions must always be fulfilled in FBS [1]:
 1. Compatibility condition: Establishes the compatibility of displacements at the common 
 interface. 
 2. Equilibrium condition: Establishes the equilibrium of forces at the common interface. 
+==PAGE:6==
  
 5 
  
@@ -229,6 +235,7 @@ techniques, as the LDV responses closely matched the accelerometer measurements 
 1 Directly measuring rotational acceleration is not common in practice since it is more difficult than measuring 
 translational responses [32]. 
 2 As of 2025. 
+==PAGE:7==
  
 6 
  
@@ -262,6 +269,7 @@ and data-processing challenges encountered during the project. This will assist 
 researchers working with SLDV-based FBS in identifying and overcoming similar challenges. 
 The thesis will be organized according to the following structure: Chapter 2 provides a literature 
 review of FBS and VPT, placing the SLDV outcomes within a wider context. Furthermore, a 
+==PAGE:8==
  
 7 
  
@@ -271,6 +279,7 @@ outlining experimental preparation, procedure, and results. Chapter 5 discusses 
 compares the numerical and experimental studies, and summarizes the strengths and 
 weaknesses of SLDV technology in FBS. Finally, chapter 6 will conclude on the key findings 
 and propose opportunities for further analysis in the field. 
+==PAGE:9==
  
 8 
  
@@ -303,6 +312,7 @@ type for dynamic substructuring from a frequency perspective, the frequency doma
 appropriate framework. 
  
  
+==PAGE:10==
  
 9 
  
@@ -337,6 +347,7 @@ Z(ω)(s) U(ω)(s) = F(ω)(s),
  
 3 In practice, a response can have various dimensions, such as displacement, velocity, or acceleration. 
 4 Thus assuming linearity since the Fourier transform is linear. 
+==PAGE:11==
  
 10 
  
@@ -372,6 +383,7 @@ BU = 0.
 (7) 
 The second boundary condition ensures the equilibrium of forces between corresponding 
 interface DoFs, resulting from Newton’s third law [9]: 
+==PAGE:12==
  
 11 
  
@@ -409,6 +421,7 @@ The theoretical concept of FBS (dual approach) outlined in the previous section 
 applied in a basic example to illustrate its implementation. In the example, the objective is to 
  
 5 Whenever a specific FRF is plotted, specific input (force) DoF and output (response) DoFs are chosen. 
+==PAGE:13==
  
 12 
  
@@ -433,6 +446,7 @@ masses ma1, ma2, ma3, mb4, mb5, mb6, mb7 (1, 2, 3, 2, 4, 1, 5 kg resp.); stiffne
 (100, 200, 50 ,400 ,200 kg/s2 resp.); damping ca1, ca2, cb1, cb2, cb3 (0.5, 1, 0.25 ,2 ,1 kg/s resp.).  
 Figure 2: Coupling configuration for subsystems a and b. The black bars indicate the coupling positions 
 and stand for rigid connections. The red detail illustrates the interface forces. 
+==PAGE:14==
  
 13 
  
@@ -703,6 +717,7 @@ a] = 0.
 Now that displacement compatibility is ensured, the second boundary condition ensures the 
 equilibrium of forces between corresponding interface DoFs. This is based on actio et reactio, 
 Newton’s third law [9], i.e. for every force, there must be a counterforce with the same 
+==PAGE:15==
  
 14 
  
@@ -1001,6 +1016,7 @@ coupled admittance Yab  of the structure depicted in Figure 3:
 Yab = Ya|b - Ya|b BT(BYa|bBT)
 -1B Ya|b.
 (20) 
+==PAGE:16==
  
 15 
  
@@ -1024,6 +1040,7 @@ three translations and three rotations [12].
 Figure 3: Final coupled structure. 
 Figure 4: FRF magnitude of the illustrative structure in a 0 to 5 Hz frequency range.  
 Excitation DoF 1 (input), response DoF 2 (output).  
+==PAGE:17==
  
 16 
  
@@ -1061,6 +1078,7 @@ only). Redrawn from [2].
 Figure 7: VPT (9 translational DoFs → 3 
 translational & 3 rotational DoFs). 
 Redrawn from [2]. 
+==PAGE:18==
  
 17 
  
@@ -1090,6 +1108,7 @@ simply as responses10.
 9 Possible measurement errors are averaged out by least-squares reduction. 
 10 In FBS literature (e.g. [3] or [13]), sensor responses are often referred to as displacements for simplicity, even 
 though the sensors typically measure translational acceleration. 
+==PAGE:19==
  
 18 
  
@@ -1123,6 +1142,7 @@ demonstrated using the example of Figure 9.
 Figure 9: A subsystem’s interface to be coupled via VPT.  
 Blue: k triaxial translational accelerometers; red: interface forces;  
 green: VP v and its DoFs. Drawing inspired by [2]. 
+==PAGE:20==
  
 19 
  
@@ -1206,6 +1226,7 @@ u = R q,
 where R is the matrix formed by stacking the Rk matrices of all k sensors across all VPs.  
  
 11 In a 2D figure, only 2 translations and 1 rotation are illustrated.  
+==PAGE:21==
  
 20 
  
@@ -1286,6 +1307,7 @@ eZ,h
 (28) 
  
 12 For a detailed documentation of the pseudo-inverse operation, see [13]. 
+==PAGE:22==
  
 21 
  
@@ -1325,6 +1347,7 @@ Recall that Y can be visualized as a block matrix, comprising the individual adm
 subsystems to be coupled. Each individual admittance consists of an internal (away from the 
 interface) component and an interface-related (in proximity to the interface) component. This 
 is demonstrated in Figure 10, which shows the composition of Y for symbolic subsystems 1 
+==PAGE:23==
  
 22 
  
@@ -1368,6 +1391,7 @@ interface sub-admittances Ymea
  transform into 6x6 virtual sub-admittances Yqm
 1  and Yqm
 2 . 
+==PAGE:24==
  
 23 
  
@@ -1379,6 +1403,7 @@ placement of the interface responses and forces is provided in [9].
  
  
  
+==PAGE:25==
  
 24 
  
@@ -1412,6 +1437,7 @@ DoFs comprise internal (away from the interface) responses and forces and are us
 the FRFs after coupling by choosing a specific force-response DoF combination. Interface DoFs 
 comprise interface (in proximity to the interface, in accordance with the rigidity assumption) 
 responses and forces and are only used to perform the VPT. Note that the VPT, although capable 
+==PAGE:26==
  
 25 
  
@@ -1427,6 +1453,7 @@ Figure 11: Top and 3D view of subsystems A and B with responses, force, and VP p
 the top view perspective, the positions of the measurements and forces are congruent (illustrated by 
 “ ”). In the 3D view, blue and red arrows denote responses and forces, respectively. The green 
 spheres mark the position of the VP within A and B. 
+==PAGE:27==
  
 26 
  
@@ -1457,6 +1484,7 @@ forces. From the top view perspective, the positions of the responses and forces
 congruent (illustrated by “ ”). In the 3D view, blue and red arrows denote responses 
 and forces, respectively. The numbers indicate the indexing of forces and responses, 
 which will be referenced when identifying the DoFs chosen for the FRF plots. 
+==PAGE:28==
  
 27 
  
@@ -1475,6 +1503,7 @@ Initially, the FEM meshes for A, B and the reference AB must be prepared (step 1
 This can be done using FEM software; for this project, Ansys Workbench is used. A tetrahedral 
 mesh was chosen for all structures, generated with the patch conforming algorithm and an 
 Figure 13: Flowchart of the simulated numerical experiment. 
+==PAGE:29==
  
 28 
  
@@ -1510,6 +1539,7 @@ closest node in the FEM mesh.
 18 For every response position, a plurality of channels with arbitrary orientation can be specified. This allows a 
 variety of measurement equipment to be simulated, e.g. tri-axial (3 channels) or unidirectional (1 channel) 
 accelerometers, or an SLDV (1 channel).  
+==PAGE:30==
  
 29 
  
@@ -1544,6 +1574,7 @@ the quality of the VPT. This is particularly interesting in this thesis, since a
  
 19 The pyFBS VPT function VPA.apply_VPT can distinguish between internal and interface DoFs based on 
 groupings assigned in the Excel document. 
+==PAGE:31==
  
 30 
  
@@ -1575,6 +1606,7 @@ mode shapes are identified. The majority of the undamped natural frequencies lie
 frequency range, with only two out of eight located above 1.1 kHz. 
 The colors in the mode shape images represent vibration amplitude: blue and turquoise indicate 
 low levels, green and yellow indicate moderate levels, and orange and red indicate high levels. 
+==PAGE:32==
  
 31 
  
@@ -1595,6 +1627,7 @@ reference (right plot). Common resonance peaks can be clearly identified between
 respective curves. Initial observation reveals no considerable differences between the plots. 
 Figure 14: Simulated modal properties of AB, i.e. mode shapes and undamped natural frequencies f. The 
 properties are extracted from Ansys Workbench in the frequency range 0 to 2 kHz. 
+==PAGE:33==
  
 32 
  
@@ -1623,6 +1656,7 @@ That is, true drive points occur on subsystem A with no gap between force and re
 points occur on subsystem B with a gap between them (see e.g. force DoF 3 and response DoF 4 in Figure 12). 
 Figure 15: Overlaid FRFs of Experiment 1. Each line represents a specific force-response DoF combination of 
 the assembled AM Structure. Left: LM-FBS coupling; right: reference. 
+==PAGE:34==
  
 33 
  
@@ -1639,6 +1673,7 @@ Figure 16: True (left) and approximate (right) drive point FRFs of Experiment 1.
 Left: force DoF 1, response DoF 1. Right: force DoF 4, response DoF 3. 
 Figure 17: Examples of internal FRFs of Experiment 1.  
 Left: force DoF 2, response DoF 4. Right: force DoF 4, response DoF 4. 
+==PAGE:35==
  
 34 
  
@@ -1669,6 +1704,7 @@ Subsystems A and B have masses of approx. 1258 g and 1246 g, respectively.
  
 Figure 18: Disassembled AM structure comprising A and B. The interface 
 region is highlighted by the white dashed rectangle. 
+==PAGE:36==
  
 35 
  
@@ -1701,6 +1737,7 @@ resulting in a high degree of repeatability. LDV exploits the Doppler effect tha
 when the laser gets reflected by the vibrating surface. Scanning Laser Doppler Vibrometry 
 Figure 19: Assembled AM structure AB. The reflective tape (grey rectangles), placed at 
 the response DoF locations, improves the signal-to-noise ratio of the SLDV.  
+==PAGE:37==
  
 36 
  
@@ -1727,6 +1764,7 @@ during that run.
 22 The Doppler shift ∆f can be calculated as (2v/λ)cosθ, where v is the velocity of the vibrating object, λ is the 
 beam wavelength and θ is the angle between the beam and the object [22]. 
 Figure 20: Schematic overview of the SLDV technology, taken from [22]. 
+==PAGE:38==
  
 37 
  
@@ -1756,6 +1794,7 @@ of required hits – 16 excitation locations with multiple measurement positions
  
 Figure 21: SLDV equipment at the Department of Civil and Mechanical Engineering (DTU) 
 comprising a scanning head on a tripod (left) and a system rack (right) 
+==PAGE:39==
  
 38 
  
@@ -1787,6 +1826,7 @@ ferroelectric ceramics that produce greater strain and contain spontaneous elect
 24 The connector is the head of a class 8.8 hexagon head bolt, with both sides filed flat to ensure full contact with 
 the actuator and the AM structure, enabling effective vibration transfer. 
 Figure 22: Piezoelectric actuator NAC2012-H6 from Noliac with brass reaction mass. 
+==PAGE:40==
  
 39 
  
@@ -1822,6 +1862,7 @@ beam exit point (in the scanning head) to the AM structure’s surface should be
 Figure 23: Piezoelectric actuator assembly comprising reaction mass, piezoelectric 
 actuator, and connector. Left image: assembly glued to subsystem A. Middle image: 
 detachment of assembly from subsystem A with a wrench (size 7). 
+==PAGE:41==
  
 40 
  
@@ -1849,6 +1890,7 @@ length.
 Figure 24: Experimental setup with blue labels showing relevant components. The  system rack 
 consists of the PSV-500 Front-End and the PSV-500 Back-End. 
 Figure 25: Block diagram of the experimental setup. 
+==PAGE:42==
  
 41 
  
@@ -1874,6 +1916,7 @@ complete procedure for the SLDV and piezoelectric actuator equipment is shown in
 covering steps 1 and 2 of Figure 27. The following paragraphs clarify specific steps in the 
 flowchart, providing additional explanation where needed. 
 Figure 26: Suspension setup of subsystem B (left) and reference AB (right). 
+==PAGE:43==
  
 42 
  
@@ -1887,6 +1930,7 @@ advanced modal analysis.
 The unnumbered box ‘Estimate modal properties for AB’ has a dashed outline, as it is not part 
 of the 16 sub-experiments (see beginning of this section). Instead, it is used in a dedicated 
 Figure 27: Flowchart of the SLDV experiment.  
+==PAGE:44==
  
 43 
  
@@ -1917,6 +1961,7 @@ direction).
 Figure 28: Subprocess of step 2 from Figure 27, covering the SLDV measurement and 
 postprocessing steps of one sub-experiment. The colors of the steps correspond to the 
 software used. 
+==PAGE:45==
  
 44 
  
@@ -1952,6 +1997,7 @@ mark activated and deactivated measurement points, respectively. The left image 
 its measurement points for one of the 16 sub-experiments (4 internal response DoFs). The right 
 image shows a full measurement point grid, specifically created for the dedicated analysis aimed 
 at estimating the modal parameters. 
+==PAGE:46==
  
 45 
  
@@ -1985,6 +2031,7 @@ section 5.
  
 28 A Wiener filter is suitable for noise suppression, minimizing the mean square error between a desired signal and 
 a noisy observation [33]. 
+==PAGE:47==
  
 46 
  
@@ -2004,6 +2051,7 @@ In addition to the coherence between the coupled and reference FRFs, we introduc
 form of coherence – the measurement signal coherence – to evaluate the quality of the raw 
 Figure 30: Numerical and experimental FRFs of subsystem B for example excitation and response DoFs.  
 Raw experimental data (top left image) is filtered (top right image) and shifted (bottom image). 
+==PAGE:48==
  
 47 
  
@@ -2033,6 +2081,7 @@ characteristics of the figure are discussed in section 5.2.
  
 29 For a shaker, it is recommended to average across 32 to 64 measurements [34]. Since the piezoelectric actuator 
 used in Experiment 2 is also a continuous excitation source, 50 measurements were taken before averaging. 
+==PAGE:49==
  
 48 
  
@@ -2050,6 +2099,7 @@ conducted in this thesis.
 Figure 31: Measurement signal coherences of the four AB sub-experiments across the 0 to 2 kHz frequency 
 spectrum, including average values. The top-left, top-right, bottom-left, and bottom-right plots correspond to 
 force DoFs 1, 2, 3, and 4, respectively (see Figure 12 for DoF clarification). 
+==PAGE:50==
  
 49 
  
@@ -2069,6 +2119,7 @@ measurements.
 the physical system, which inherently includes damping. 
 Figure 32: Experimentally estimated modal properties of AB, i.e. mode shapes, damped natural frequencies fd 
 and damping ratios ζ; extracted from ME’Scope in the frequency range 0 to 2 kHz. 
+==PAGE:51==
  
 50 
  
@@ -2092,6 +2143,7 @@ values of 0.932 and 0.850. This provides a first indication that an SLDV may be 
 method for vibration measurement within the context of FBS. 
 Figure 33: Overlaid FRFs of all force-response combinations of Experiment 2.  
 Left: LM-FBS coupling; right: reference. 
+==PAGE:52==
  
 51 
  
@@ -2106,6 +2158,7 @@ Figure 34: True (left) and approximate (right) drive point FRFs of Experiment 2.
 Left: force DoF 1, response DoF 1. Right: force DoF 4, response DoF 3. 
 Figure 35: Examples of internal FRFs of Experiment 2. 
 Left: force DoF 2, response DoF 4. Right: force DoF 4, response DoF 4. 
+==PAGE:53==
  
 52 
  
@@ -2139,6 +2192,7 @@ vibration patterns and multiple bending and torsional nodes along the structure�
 The presence of eight resonance frequencies – each exciting modes with motion in the Z 
 direction – can also be identified in Figure 15, which displays the overlaid FRFs for all available 
 force-response DoF combinations (LM-FBS coupled vs. reference). Since natural frequencies 
+==PAGE:54==
  
 53 
  
@@ -2175,6 +2229,7 @@ reveal no significant visual difference. However, for a more meaningful comparis
 is insignificant [26] (damping ratio ζ = 0.3 % assumed for FRF synthetization in pyFBS). 
 32 The extent of these phase shifts may vary in figures due to the influence of damping and specified frequency 
 resolution. 
+==PAGE:55==
  
 54 
  
@@ -2209,6 +2264,7 @@ at two specific frequency regions, where mismatches are observed in both frequen
 amplitude. Since these discrepancies consistently occur across all four plots, they appear to be 
 independent of the specific force-response DoF combinations. This points to the coupling as a 
 possible cause of the differences.  
+==PAGE:56==
  
 55 
  
@@ -2241,6 +2297,7 @@ potentially contributing to the observed discrepancy.
  
  
  
+==PAGE:57==
  
 56 
  
@@ -2275,6 +2332,7 @@ range. While they appear flat (the SLDV measures only the surface layer), they e
  
 33 Note that the plots of Figure 31 represent averaged coherences; see section Error! Reference source not found. 
 for clarification.  
+==PAGE:58==
  
 57 
  
@@ -2310,6 +2368,7 @@ rigidity assumption). For a more meaningful comparison of the coupled and refere
 34 For a detailed analysis of the vibration patterns, refer to the numerical discussion in section 5.1. 
 35 Although Figure 31 only presents coherence for AB (not for A and B separately), it reveals a clear trend of low 
 measurement repeatability at low frequencies. 
+==PAGE:59==
  
 58 
  
@@ -2341,6 +2400,7 @@ Experiment 1, a detailed analysis is provided in 5.1.
  
  
 36 Not relevant for the DoF 1 driving-point FRF outlier (left plot in Figure 34; see section 5.1 for discussion). 
+==PAGE:60==
  
 59 
  
@@ -2375,6 +2435,7 @@ uniform damping of 0.3 %. Since higher damping tends to round resonance peaks, t
 difference in damping may contribute to the observed discrepancy. Regarding mode 5, a 
  
 37 Note the classical relationship between damped (fd) and undamped (fn) natural frequencies: fd = fn (1 - ζ2)0.5. 
+==PAGE:61==
  
 60 
  
@@ -2404,6 +2465,7 @@ detail.
  
 Figure 36: Overlaid FRFs of Experiment 1 (num) and Experiment 2 (exp) 
 for force DoF 2 and response DoF 4. 
+==PAGE:62==
  
 61 
  
@@ -2437,6 +2499,7 @@ Since the VPT requires multiple response DoFs in proximity to the coupling inter
 constraints may become an issue with conventional sensors such as accelerometers. No such 
 limitations are encountered with the SLDV equipment since the PSV Acquisition software 
 allows for setting a dense grid of scan points. Note that an even denser interface grid was tested 
+==PAGE:63==
  
 62 
  
@@ -2469,6 +2532,7 @@ is barely noticeable. However, for the coupled setup, the same filtering does no
 problem. Due to the matrix inversions used in the VPT and LM-FBS methods, the residual 
 noise left after filtering gets amplified. That is why the coupled FRFs often look irregular or 
 “noisy” compared to the smoother reference FRFs. 
+==PAGE:64==
  
 63 
  
@@ -2503,6 +2567,7 @@ measuring on a surface further away from the actual VP (which was partly the cas
 measurements for B in this thesis), which might reduce the validity of the FBS rigidity 
 assumption. 
  
+==PAGE:65==
  
 64 
  
@@ -2534,6 +2599,7 @@ would have required significantly more time using conventional response measurem
 equipment. Overall, the coupling results (although not as good as numerical), were decent with 
 coherence between the experimentally coupled system and the reference above 0.7 across all 
 examined force-response combinations.  
+==PAGE:66==
  
 65 
  
@@ -2560,6 +2626,7 @@ actuator (e.g., modal hammer or shaker). Note this may significantly increase
 experimental time. 
  
  
+==PAGE:67==
  
 66 
  
@@ -2598,6 +2665,7 @@ E. Pagnacco, D. J. Rixen, and T. Godeby, “Dual assembly of substructures and
 the FBS method: Application to the dynamic testing of a guitar,” 2006. 
 [9] 
 M. Van der Seijs, “Experimental Dynamic Substructuring,” PhD Thesis, 2016. 
+==PAGE:68==
  
 67 
  
@@ -2627,6 +2695,7 @@ Society for Experimental Mechanics Series, Springer, 2022, pp. 81–89.
 eigenvalue formulation,” Finite Elements in Analysis and Design, vol. 191, Sep. 
 2021. 
 [18] P. Avitabile, “MODAL SPACE-IN OUR OWN LITTLE WORLD,” 2012. 
+==PAGE:69==
  
 68 
  
@@ -2657,6 +2726,7 @@ Experimental Frequency Based Substructuring,” in Proceedings of ISMA2010,
 [29] H. Zhao, J. Lv, Z. Wang, T. Gao, and W. Xiong, “Finite Element Model Updating 
 Using Resonance–Antiresonant Frequencies with Radial Basis Function Neural 
 Network,” Applied Sciences (Switzerland), vol. 13, no. 12, Jun. 2023. 
+==PAGE:70==
  
 69 
  

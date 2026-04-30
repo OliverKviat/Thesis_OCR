@@ -1,0 +1,6084 @@
+==PAGE:1==
+Dynamic k-clustering
+State of the art algorithms for dynamic
+k-clustering in doubling metric spaces
+Master Thesis
+DTU Computer Science and Engineering
+Department of Computer Science and Engineering
+==PAGE:2==
+==PAGE:3==
+Dynamic k-clustering
+State of the art algorithms for dynamic k-clustering in doubling metric spaces
+Master Thesis
+June, 2021
+By
+Magnus Haakonsson
+Copyright:
+Reproduction of this publication in whole or in part must include the cus-
+tomary bibliographic citation, including author attribution, report title,
+etc.
+Cover photo:
+Vibeke Hempler, 2012
+Published by:
+DTU, Department of Computer Science and Engineering, Richard Pe-
+tersens Plads, Bygning 324, 2800 Kgs. Lyngby Denmark
+www.compute.dtu.dk/
+ISSN:
+[0000-0000] (electronic version)
+ISBN:
+[000-00-0000-000-0] (electronic version)
+ISSN:
+[0000-0000] (printed version)
+ISBN:
+[000-00-0000-000-0] (printed version)
+==PAGE:4==
+Approval
+This thesis has been prepared over six months at the Section for Department of Com-
+puter Science and Engineering, at the Technical University of Denmark, DTU, in partial
+fulfilment for the degree Master of Science in Engineering, MSc Eng.
+It is assumed that the reader has a basic knowledge in the areas of algorithms and set
+theory.
+Magnus Haakonsson - s153947
+Signature
+Date
+ii
+Dynamic k-clustering
+==PAGE:5==
+Abstract
+We will explore a hierarchical data structure called a Cover Tree and show how it can be
+used to solve the fully dynamic k-clustering problem. We will explore the two different
+representations of the internal structure of the tree, and show how all the algorithms that
+are used to manipulate the data structure itself are used. We shall prove that a single
+Cover Tree can be used as an 8-approximation for the fully dynamic k-clustering problem,
+and show that insertions can be done in time O(c6log(n)) while removals can be done in
+O(c12log(n)2). We will also show that it is possible to bring the time down to O(c6log(n))
+for removals. The Cover Tree will also support three queries: what are the cluster centers,
+is p a center and what center is p assigned to, all in O(c6log(n)k) time. Everything will be
+done using just O(n) space. Then we will develop the Cover Forest data structure. We will
+describe the Cover Forest and its algorithms and show that it can be used to solve the fully
+dynamic k-clustering problem with an approximation of (2 + ϵ), while only multiplying
+the base run times and space usage of a single Cover Tree by a factor (1+ϵ)(ln(2)−ln(ϵ))
+ϵ
+.
+Dynamic k-clustering
+iii
+==PAGE:6==
+Acknowledgements
+Magnus Haakonsson, MSc Computer Science and Engineerin, DTU
+Creator of this thesis.
+Inge Li Gørtz, Professor, Institut for Matematik og Computer Science
+Inge have been great at steering and focusing the project, finding interesting paths to
+explore and being a great sparring partner when discussing diﬀicult material, that neither
+of us knew much about. Reading and giving constructive criticism for a subset of the
+sections below.
+Teresa Anna Steiner, Ph.d.-studerende, Institut for Matematik og Computer Science
+Teresa have also been of great help when discussing some of the finer details of the analysis,
+reading and commenting on sections. Setting aside some extra time every now and then to
+work through the subtle details with me, and ironing out errors that may have appeared.
+My friends at the dormitory
+They have had to endure many a conversations, where I have offloaded my frustrations
+about the papers, code or analysis. They have not been able to solve any of the problems,
+but listening is good enough in this case.
+iv
+Dynamic k-clustering
+==PAGE:7==
+Contents
+Preface
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ii
+Abstract . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+iii
+Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+iv
+1
+Introduction
+1
+1.1
+Related Work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1
+1.2
+Applications . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+2
+Background
+4
+2.1
+Metrics
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+2.2
+Open and closed balls
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+2.3
+The expansion constant and doubling dimension
+. . . . . . . . . . . . . . .
+5
+3
+The Cover Tree
+6
+3.1
+The data structure . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+4
+Full representation
+8
+4.1
+The Covering and Separation invariant gap
+. . . . . . . . . . . . . . . . . .
+10
+4.2
+Full representation algorithms . . . . . . . . . . . . . . . . . . . . . . . . . .
+12
+5
+Partial representation
+21
+5.1
+Preliminaries
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+21
+5.2
+Partial Cover Tree Algorithms . . . . . . . . . . . . . . . . . . . . . . . . . .
+23
+6
+Proving the Cover Tree
+34
+6.1
+Approximations, preliminary theorems and lemmas . . . . . . . . . . . . . .
+34
+6.2
+Insert Algorithms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+41
+6.3
+Remove Algorithms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+42
+7
+The Cover Forest
+51
+7.1
+The data structure and the algorithms . . . . . . . . . . . . . . . . . . . . .
+51
+7.2
+Proofs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+52
+8
+Experimental results
+56
+8.1
+Single Tree Insert and Removal test
+. . . . . . . . . . . . . . . . . . . . . .
+56
+8.2
+Forest Tests . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+57
+8.3
+Different α and m
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+60
+9
+Discussion
+65
+10 Conclusion
+66
+11 Future work
+67
+Bibliography
+68
+A Tables
+69
+B Diagrams
+74
+Dynamic k-clustering
+v
+==PAGE:8==
+vi
+Dynamic k-clustering
+==PAGE:9==
+1
+Introduction
+It is commonly known that the amount of data generated and processed increases every
+year. As such, many areas of society process a greater amount of data each year, be that in
+the scientific community, marketing or governments. Due to the increase in data quantity,
+researches are looking into more eﬀicient methods of doing data analysis. One commonly
+used tool in data analysis is clustering. The main premise behind clustering is to gather
+points of data that are ”alike” into one cluster, and gather points that are not into other
+clusters. There are many applications where this kind of clustering is useful. Notably
+in unsupervised machine learning in the clustering, classification or image segmentation
+setting. Or in a database oriented setting where clustering can be used for fraud detection
+and customer segmentation.
+The clustering problem can be defined in many ways. Using different distance measures
+like the euclidean, Manhattan or Hamming distances. This can then be applied to dif-
+ferent clustering schemes, e.g. partition clustering like the k-means clustering, sequential
+clustering or hierarchical clustering.
+In this paper we shall look at the arguably most simple type of clustering, the k-center
+clustering using a euclidean distance measure.
+The goal of k-center clustering is simple. Given a set of n points in S, create k ≤n
+cluster centers such that for every center c and every point in p ∈S the distance d(c, p)
+is minimised, while the distance from any point p ∈S to any cluster center c is at most
+this distance. [KH79] showed that this problem is NP-hard. Hence the research have been
+on developing approximation algorithms to solve the problem. Given some α ≥1, an α
+approximation is a solution to the k-center problem that is at most α times worse than
+the optimal solution. Algorithms like the Bottle Neck algorithm have been developed and
+solve the static k-center with an approximation of 2 [Gon85].
+The problem with the static approach is of course that it is static. But in many situations
+it might be favourable if the dataset could evolve. E.g. adding a point to a map, adding
+a row to a database because of a new tweet or credit card transaction somebody made.
+In situations where we wish to modify the points we made our clustering on, we have to
+re-cluster the whole data set when we have added or removed a point. This is obviously
+disadvantageous, as it is impossible to keep any of the previously done work.
+This is the Dynamic k-clustering problem, maintaining k clusters of minimum radii under
+insertion, deletions or both. Some dynamic k-clustering algorithms only support insertions
+and are described as incremental.
+Other support both insertion and deletion and are
+described as fully dynamic, and is the exact setting that we shall explore in this paper.
+As we shall see, many solutions in the next section have some dependency on k for their
+running time. For applications where k is relatively small this might not be a problem,
+but in instances where one wish to use a myriad of clusters, this dependency might be
+unfavourable, e.g. with servers on the internet. This lead to the initial developments in
+[Gor+20] and now to the Cover Forest data structure.
+1.1
+Related Work
+The static k-center problem have been studied for many years, [HS86] present a variety
+of different approaches to approximation algorithms for the k-center problem and some of
+Dynamic k-clustering
+1
+==PAGE:10==
+its variations, here we see the common 2-approximation Bottleneck algorithm.
+Recently there have been more study in the field, one of the first to investigate the dy-
+namic setting of k-clustering is [CHA+04].
+They present the incremental k-clustering
+problem, that is the classic k-clustering problem but we are allowed to insert new points
+into the data structure. The goal is still to maintain k clusters of minimum radii such
+that every point in the metric is covered by at least one center. [CHA+04] analyse a
+handful of greedy algorithms and show their poor performance, they then introduce new
+deterministic and randomised algorithms, and show that they preform well. Most notably
+the Doubling algorithm which achieve an 8-approximation with a run time of O(k log k).
+The randomised variant has the provably better approximation ratio of 4(1 + ϵ). Note
+that we will not investigate the incremental setting in this paper.
+[CGS18] develop a hierarchical data structure that share a likeness to the structures we
+shall see later. The structure is however more simple and the algorithms themselves are
+significantly more intuitive. They achieve (2+ϵ)-approximation for the fully dynamic set-
+ting, and achieve this using super-linear space with regard to the input size, and quadratic
+expected run time with regard to the number of clusters, specifically O(log δ
+ϵ
+k2) for each
+update, where δ =
+dmax
+dmin , also known as the aspect ratio.
+Note that when initialising
+the data structure it is necessary to specify dmin and dmax, the minimum and maximum
+distance between any two points that will ever be in the data structure. The structure
+itself is constructed of many layers, each layer i is designated a distance measure β ∈Γ,
+where Γ = {(1 + ϵ)i : dmin ≤(1 + ϵ)i ≤dmax, i ∈N}. They then define for each β ∈Γ
+three sets {Sβ, Cβ, Uβ}, the centers, clusterings and un-clustered points. During inser-
+tion of a new point p, we first insert p into Cβ if it is covered by a center in Sβ, that is
+∃q ∈Sβ(d(p, q) ≤2β). If not, then insert p in a new C if |Cβ| < k, otherwise insert p in
+Uβ. Removal of p is even simpler, if p /∈Sβ, then just remove it from its cluster, otherwise
+we need to re-cluster that layer We do this for every layer in the structure. Later on,
+[Cha+20] presented a memory improvement to the initial approach, at the cost of a worse
+approximation ratio of 4 + ϵ.
+[Gor+20] cover the k-center problem extensively and is the inspiration for the Cover
+Forest data structure we shall see later. They develop a set of hierarchical data structures
+called Navigating nets, that were introduced by [KL04] that initially described Nearest
+Neighbour Search (NNS), Approximate Nearest Neighbour Search (ANNS) and Range
+Query algorithms and how the structure behave under insertion and removals of points.
+The Navigating Net itself is a hierarchical structure, consisting of many layers of r-nets,
+where each r-net is designated an integer i ∈Z that describes its position or layer in
+the hierarchy. Each r-net then satisfies two invariants, the covering and the separation
+invariant. Given a set of points p ∈S and an r-net Ri, we have that for each point r ∈Ri
+it must be that d(r, p) ≤αi for some α > 1, and also that for any two points r, r′ ∈Ri
+we have that d(r, r′) > αi. These two rules were the covering and separation invariants
+respectively.
+A Navigating Net is then the set of all r-nets {R∞, ..., R−∞} where two
+special sets are added to each level, these sets refer from the current level i to i + 1 and
+i −1, but we will not cover how they do so.
+[AL06] extended the work of [KL04] to create the Cover Tree data structure, this is also
+a hierarchical structure that satisfy the same invariants and some extra. We shall later
+delve into exactly how the Cover Tree works, but suﬀice to say for now that [AL06] like
+[KL04] introduced their data structure with descriptions of NNS, ANNS, insertions and
+removals. Shortly after the publication of [AL06], [Kol06] presented a review of [KL04]
+and [AL06], where they rectify a small error in the original insert algorithm by [AL06].
+2
+Dynamic k-clustering
+==PAGE:11==
+The problem of clustering data into clusters of minimal radii is notoriously diﬀicult.
+[Gon85] showed that achieving any approximation ratio of 2 −ϵ is NP-Complete, hence
+we cannot hope for any better than a 2-approximation unless P = NP. If we do not wish
+to compute every possible clustering by brute force.
+1.2
+Applications
+The task of clustering data into meaningful clusters is done in much data analysis. In
+recent years especially in machine learning, where one might have a dataset consisting of
+many points of undefined dimension. When a new point comes along the question is now,
+which cluster does it belong to. This idea can be used for tasks like segmenting customers,
+the goal of this is to segment the customer data into clusters. Consider for example, that
+young people send many text messages but talk little on the phone, and that older people
+send few text messages but talk more on the phone. We might cluster these two groups
+and offer discounts on text messages to the former group and discounts on talk time for
+the latter group.
+Another area of use is in fraud detection. One could imagine that a bank could cluster
+their transactions in some way. Now if a new point falls outside the clusters it may be a
+sign of a fraudulent transaction.
+Finally we have the problem of placing stores or distribution centers. Imagine that you
+want to place stores in the towns of some country, such that the distance to your store is
+minimised for all towns. The catch is that you cannot place stores in every city, so you
+must chose what towns to place them in. This problem is a good analogue for the two
+dimensional k-center problem.
+Dynamic k-clustering
+3
+==PAGE:12==
+2
+Background
+In this section we shall quickly review some basic definitions that will be essential to the
+remainder of this paper. We shall define the metric space, the notation of balls on that
+space, and the expansion constant and doubling dimension on that space.
+2.1
+Metrics
+A metric space is defined as a non empty set of points M and a distance function d
+usually combined to form (M, d). The distance function d take as input two points in M
+and maps them to some real number R. Additionally, the distance function must for all
+points x, y, z ∈M satisfy the following four invariants.
+Reflexivity
+d(x, x) = 0
+(2.1)
+Positivity
+d(x, y) > 0 ⇐⇒x ̸= y
+(2.2)
+Symmetry
+d(x, y) = d(y, x)
+(2.3)
+Triangle inequality
+d(x, y) + d(y, z) ≤d(x, z)
+(2.4)
+Definition 2.1.1. The distance from any point p to any set S ⊂M is defined as
+d(p, S) = minq∈Sd(p, q)
+(2.5)
+2.2
+Open and closed balls
+The notation of a ball vary from paper to paper, but we shall use B(p, r). A ball B(p, r)
+is defined as a set of points q ∈(M, d), that are within some distance r of the center point
+p ∈M. Formally:
+Definition 2.2.1. An open ball B(p, r) is defined as Bo(p, r) = {q ∈M : d(p, q) < r}
+Definition 2.2.2. A closed ball B(p, r) is defined as Bc(p, r) = {q ∈M : d(p, q) ≤r}
+We will drop the subscript when it is clear from the context if it is an open or closed ball.
+(a) 7 cover of a ball
+(b) Failed 4 cover of ball
+−2
+−1
+0
+1
+2
+(c) 2 cover of a line
+Figure 2.1: Coverings of balls and lines
+4
+Dynamic k-clustering
+==PAGE:13==
+2.3
+The expansion constant and doubling dimension
+The notion of a growth rate for metrics have been defined in many papers. In this paper
+we shall focus on two variants, the doubling dimension as introduced in [KL04] and used
+in [Gor+20]. And the expansion constant as introduced in [AL06] and used in[Kol06].
+The doubling dimension deal with sets and of some radii, and the expansion constant with
+the size of balls of some radii. The radii of a set (or ball) is defined on a subset S ⊆M,
+where the radii of S is max(d(p, q) : p, q ∈S). As seen in section 2.2, we can also define a
+ball to have a predefined radii.
+Definition 2.3.1. The doubling dimension of a metric space is the smallest value κ
+(Kappa) such that every set B(p, r) ∈(M, d) can be covered by 2κ sets of half the radii
+Definition 2.3.2. The expansion constant of a metric space is the smallest value c ≥2
+such that for every point p ∈M and radii r > 0 we have that |B(p, r)| ≤c|B(p, r/2)|
+For the sake of example, let us look at the first two dimensions. It is easy to see that a
+line of length 2 can be covered by 2 lines of length 1, yielding c = 2 for the first dimension
+(see fig. 2.1c). Given that the area of a circle is A = πr2 we see that π2r2/πr2 = c = 4. In
+general, if the points in the metric are arranged uniformly on some d dimensional surface,
+then c ∼2d ([AL06]). Note that we can not cover the ball of large radii with c balls of
+smaller radii, the expansion constant only state that the size of the balls have this specific
+relationship. A covering of a ball of radii 2r using c balls of size r is not possible, as some
+overlap is required to cover the bigger ball. But no overlap is allowed by the lower bound
+for c given definition 2.3.2. An attempt of a 4 cover can be seen in fig. 2.1b, where the
+part not covered has the same size as the size of the overlap.
+It is non-trivial to show a bound for the doubling dimension κ, showing how to find this
+value for metric spaces is beyond the scope of this paper, but the interested reader is
+referred to [LG05]. Do note that for two dimensions this can be done using 7 balls, as
+shown in fig. 2.1a.
+Dynamic k-clustering
+5
+==PAGE:14==
+3
+The Cover Tree
+The Cover tree data structure were introduced by [AL06] and is a refined model of the
+Navigating net as introduced by [KL04]. The Cover tree define a tree structure much like
+the Navigating nets does. The Cover tree has layers just like a Navigating net, and uses the
+same scales r = 2i for the balls on each level i. However the Cover tree is a conceptually
+simpler data structure as it removes many of the links that are present in the Navigating
+net. The Cover tree data structure were first introduced for fast nearest neighbour searches
+on metric spaces, where insertions and deletions are required. [Gor+20] found that the
+Cover tree could immediately be used to solve the k-center problem with good bounds
+and an 8-approximation factor. They further extended it with their techniques from the
+Navigating net to obtain a (2 + ϵ)-approximation factor for the Cover tree.
+[Gor+20]
+mainly focus on the Navigating net for their theoretical analysis, and lean on the findings
+of [AL06] for the experimental section.
+Many papers that use the Cover tree do not
+dive in deep with the inner workings of the data structure.
+And [AL06] describe the
+Cover tree in a highly compressed manner. For these reasons we shall fully define and
+describe the Cover tree and its algorithms with the intent of solving the k-center problem.
+Before defining the Cover tree, it is important to clarify some naming conventions. The
+Cover tree has two representations, in [AL06] these are called the Implicit and Explicit
+representations. Henceforth we shall refer to these two representations as the Full and
+Partial representations, as the original naming conventions caused some confusion in the
+preliminary work of this paper.
+3.1
+The data structure
+The cover tree is a tree structure on some set of points S drawn from M. Each level in
+the tree is associated with some index i, and Ci constitutes all the nodes in a specific level
+i. The tree is usually depicted in an upside down manner. The root at the top in level ∞
+and the leaves at the bottom in level −∞. Each node N in the tree is associated with a
+specific point p ∈S, the tree can have multiple nodes (N, N′) associated with the same
+point p. However, we require that if N ∈Ci, then N′ ∈Cj, such that j ̸= i. We also
+require the tree to satisfy the following invariants for each level i. If all invariants are
+satisfied, then each Ci is a cover of Ci−1.
+3.1.1
+Properties
+The cover tree proposed by [AL06] maintain the following three invariants:
+(Nesting) Ci ⊂Ci−1
+(Covering) ∀q ∈Ci−1, ∃p ∈Ci : d(p, q) < 2i
+(Separation) ∀p, q ∈Ci, d(p, q) > 2i
+• The nesting invariant state that Ci is a subset of Ci−1, this implies that, if a node
+exist in level i, then it exists in all levels j ≤i.
+• The covering invariant state that for all nodes q in level i −1 there exists a node p
+in level i such that the distance between all q and p is less that 2i. If we think of a
+single p ∈Ci, then all q ∈Ci−1 within that distance are children of p the parent.
+• The separation invariant state that all distinct nodes in Ci must be more than 2i
+apart. This, combined with the covering invariant ensure that for a parent p and its
+children q it holds that 2i−1 < d(p, q) < 2i.
+6
+Dynamic k-clustering
+==PAGE:15==
+However, the covering and separation invariant are not compatible. That is, given two
+points p, q and their inter point distance d(p, q), there exists a distance d(p, q) such that
+either the covering or the separation invariant can be satisfied, but not both at the same
+time. It could be said, that because of the distances used in the two invariants, they leave
+a gap between them.
+We will not explore this gap now, as some background information on the structure of the
+cover tree, and some intuition on the sets and distances involved, will make this gap easier
+to see. We will look into this gap in section 4.1, just note that after the next section, the
+covering invariant will use the distance d(p, q) ≤2i instead of d(p, q) < 2i.
+Dynamic k-clustering
+7
+==PAGE:16==
+4
+Full representation
+A
+A
+A
+A
+A
+B
+B
+B
+C
+A
+B
+C
+C∞
+Ci
+Ci−1
+Ci−2
+Ci−3
+C−∞
+Figure 4.1:
+Cover tree on
+three points and four levels
+The full representation is most commonly depicted when de-
+scribing a cover tree. In this section we shall first look at
+an example cover tree, constructed from a two dimensional
+metric space. We will consider the different properties like
+parent and child links, the levels and cover sets that are
+formed from the cover tree, and we will use this example
+tree to better understand the three invariants that the tree
+must satisfy. Most of the work in this paper is related to the
+partial representation presented in chapter 5, but it is im-
+portant to understand the full representation before moving
+on to the partial.
+In fig. 4.1 (for the moment only consider the fully black
+parts) there is a cover tree on three points and four levels.
+We see that A is the root, B is a child of A and C is a child
+of B. Notice that C exists only from level i −3 even though
+B exists from level i −1. It is easy to see that this tree
+satisfy the nesting invariant as every node introduced in one
+level, is present in every subsequent level.
+In order to see if the tree also obey the other two invariants we need to look at the
+underlying points and the distances between them. Looking at fig. 4.2 we see four 2D
+euclidean metric spaces. From top left to bottom right we see the levels Ci to Ci−3 where
+i = 1. As such, the distance given by 2i are {2, 1, 1/2, 1/4}. These distances are drawn
+onto the plane as circles with the center being one of the three points. Each figure shows
+all three points, but only those that are fully black are in that Ci, if they are gray, then
+they are not in Ci but in some Cj where j < i.
+Let us first define each Ci as sets, as we need those now.
+Ci = {A}
+(4.1)
+Ci−1 = {A, B}
+(4.2)
+Ci−2 = {A, B}
+(4.3)
+Ci−3 = {A, B, C}
+(4.4)
+In fig. 4.2a we see that A ∈Ci and {B, C} /∈Ci, we see that Ci trivially obey the separation
+invariant as it is the only point in Ci. As d(Ci, Ci−1) < 2i, hence it also obey the covering
+invariant. Observe that d(Ci, C) > 2i, this is fine as C /∈Ci−1 and therefore does not need
+to be covered yet.
+In fig. 4.2b we see that the separation invariant is satisfied as d(A, B) > 2i−1, and we also
+see that the covering invariant is satisfied as d(Ci−1, Ci−2 < 2i−1). The same is true for
+Ci−2 and Ci−3.
+When reaching Ci−3 we see in fig. 4.2d that it covers Ci−4 as there are no more points
+that should be considered. As of yet, we have not considered all of the tree in fig. 4.1,
+let us now also consider the gray parts of the tree. The full tree actually consists of an
+infinite number of layers, going up above level Ci infinitely, and going down below Ci−3
+8
+Dynamic k-clustering
+==PAGE:17==
+infinitely. Notice for all Cj, such that i ≤j < ∞, every single Cj contain the same single
+node A. Observe also, that for all Cj such that i −3 ≥j > −∞. Cj also contain the same
+three nodes {A, B, C}. This is the full representation in its entirety. At the top on level
+∞is the single root node, and down at −∞are all the nodes in the cover tree. This gives
+two interesting facts: |C∞| = 1 and |C−∞| = |S|.
+A
+B
+C
+0
+1
+2
+3
+4
+0
+1
+2
+3
+4
+(a) Ci cover Ci−1
+A
+B
+C
+0
+1
+2
+3
+4
+0
+1
+2
+3
+4
+(b) Ci−1 cover Ci−2
+A
+B
+C
+0
+1
+2
+3
+4
+0
+1
+2
+3
+4
+(c) Ci−2 cover Ci−3
+A
+B
+C
+0
+1
+2
+3
+4
+0
+1
+2
+3
+4
+(d) Ci−3 cover Ci−4
+Figure 4.2: Each layer in a cover tree Ci...Ci−3
+fig. 4.2 is good for explaining exactly what is going on in each layer, but as each layer is
+separated out into four segments, the layered structure is not easily seen. So to give a
+more intuitive look into how the layers interact, observe fig. 4.3. Here we see the top level
+C∞that encompass every point possible in S and in C−∞we see every point in S. Each
+solid black dot represent the location of a point located as a node in that level, each dot
+has a point index beside it to tell them apart. The solid grey circles are the covering radii
+of a point, and is the maximum distance a point in the next level can be away and still
+be a child of the point. The dashed grey circles represent the separation of the point in
+the next level, that is, it cannot have a child that is within this distance on that level. As
+a guide, notice the vertical lines that move between the levels, these are self links if they
+are solid, that is they connect the same point on different levels. If they are dashed they
+are child links, that is they connect one point on one level to a different point on the level
+above.
+Observe the tiny points at the top of each child link, it represent the location of the child
+in the level above. Note that the child is not actually present in the level where this tiny
+dot is, but it is a visual help to see where the child is in relation to the other points and
+their covering and separation distances. Looking at 5 ∈Ci−1 we see its tiny dot is within
+Dynamic k-clustering
+9
+==PAGE:18==
+0
+0
+1
+2
+0
+1
+2
+3
+4
+5
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+C∞
+Ci
+Ci−1
+C−∞
+Figure 4.3: The layered structure of a cover tree
+the solid grey circle of 1 ∈Ci, hence it is covered and can be a child. On the other hand,
+notice 9 ∈C−∞, its tiny dot is within the grey dashed circle of 4 ∈Ci−1 hence it cannot
+be a child on layer Ci−2, but it can be on some lower level.
+4.1
+The Covering and Separation invariant gap
+We will now get back to the gap between the covering and separation invariant. Firstly
+we shall see why there is a gap, and at what distances it exists. Then we shall explore the
+possible solutions to this problem, and present the solution we shall use moving forward.
+Finally we will see that this solution indeed removes the gap and allows all three invariants
+to be satisfied at the same time.
+Lemma 4.1.1. The covering invariant and the separation invariant proposed by [AL06]
+cannot be satisfied at the same time, for some two points {p, q} and their distance d(p, q).
+Proof. We consider our two points {p, q} and wish to find the sets Ci they each must be
+located in. We assume that d(p, q) = 2j. The covering invariant is used for all the levels
+where either p or q can cover one another, that is, they are close enough. Where the
+separation invariant is used for all levels where p and q are far enough from each other.
+Let us first find all the cover sets Ci where p or q can cover one another. W.o.l.g. assume
+that q need to cover p. In order for q in Ci to cover p in Ci−1, their distance must be
+d(p, q) < 2i. Their distance is d(p, q) = 2j so if q is in Cj then p cannot be in Cj−1 as
+d(p, q) = 2j ̸< 2j. If q ∈Ci for all i = {∞... −∞}, then it can cover p if p ∈Ci for all
+i = {∞...j}.
+Now, let us find all the Ci where p and q are far enough away from each other. As their
+10
+Dynamic k-clustering
+==PAGE:19==
+distance d(p, q) = 2j ̸> 2j, they cannot both exist in Cj, they can only both exist in Ci
+for all i = {j −1... −∞}.
+To satisfy the covering invariant, they must both be in Ci for all i = {∞...j + 1}. And to
+satisfy the separation invariant they must both be placed in Ci for all i = {j −1... −∞}.
+As such there exists no set Ci where we can place p and q to satisfy both the covering and
+separation invariant.
+If we allow distances between two points to be some power of two, there are times where
+we cannot satisfy all invariants for that tree. There are two solutions. Either assume that
+the distance between two points can never be some power of two. Or change the invariants
+such that there is no gap between them. [Kol06] changed the covering invariant to use a
+distance d(p, q) ≤2i, but did not remark on why this change were made. Alternatively,
+one could have changed the separation invariant to use a distance d(p, q) ≥2i, but for
+the rest of the paper we shall assume the invariants of [Kol06]. The new invariants of the
+cover tree are then as follows.
+(Nesting) Ci ⊂Ci−1
+(4.5)
+(Covering) ∀q ∈Ci−1, ∃p ∈Ci : d(p, q) ≤2i
+(4.6)
+(Separation) ∀p, q ∈Ci, d(p, q) > 2i
+(4.7)
+Theorem 4.1.2. For any two points p and q with any distance d(p, q), it is possible to
+satisfy the Nesting eq. (4.5), Covering eq. (4.6) and Separation eq. (4.7) invariants.
+Proof. Let us consider this in three cases: d(p, q) = 2j, d(p, q) = 2j −δ and d(p, q) = 2j +ϵ
+where 0 < δ < 2j−1 and 0 < ϵ < 2j.
+Assuming that d(p, q) = 2j, if q ∈Ci for all i = {∞...−∞}, then it can cover p if p ∈Ci for
+all i = {∞...j −1} satisfying the covering invariant for those Ci. To satisfy the separation
+invariant, as the value 2i is the largest at i = j −1 they can both exist in all Ci for
+i = {j −1... −∞} without violating the separation invariant. Additionally, as they are
+in all those levels the nesting invariant is also satisfied, p cover itself for each set Ci for
+i = {j −1... −∞} and q cover itself for each set Ci for i = {∞... −∞}, satisfying the
+covering invariant.
+Assuming that d(p, q) = 2j −δ where 0 < δ < 2j−1.
+Hence, we have that 2j−1 <
+d(p, q) < 2j. We can satisfy the covering, separation and nesting invariants using the
+same arguments and sets as when d(p, q) = 2j
+Assuming that d(p, q) = 2j +ϵ where 0 < ϵ < 2j. Hence, we have that 2j < d(p, q) < 2j+1.
+If q ∈Ci for all i = {∞... −∞}, then it can cover p if p ∈Ci for all i = {∞...j} satisfying
+the covering invariant for those Ci. To satisfy the separation invariant, we have that 2i
+is the largest at i = j they can both exist in all Ci for i = {j... −∞} without violating
+the separation invariant. The covering invariant is satisfied by the same approach as with
+d(p, q) = 2j.
+Thus, there are no gaps and no value that can be assigned to the distance d(p, q) between
+any two points p and q where we cannot for each point, place them in some sets Ci such
+that all three invariants are satisfied.
+Dynamic k-clustering
+11
+==PAGE:20==
+4.2
+Full representation algorithms
+In this section we will explore the two main algorithms that we use on the cover tree.
+That is the insert and the remove algorithms. We will first describe how the algorithms
+work, then we will explore why the algorithms do not work when using the invariant from
+[AL06]. Note that the two algorithms that we will describe here are not the ones that
+are implemented.
+Later on in chapter 5 we shall present the Partial Cover Tree data
+structure, and the algorithms that follow. This is the data structure and the algorithms
+that are implemented. But as previously mentioned it is important to understand the full
+representation and its algorithms as they lay the foundation for the partial representation
+algorithms. To finish off we will also describe how a k-clustering algorithm would work on
+the full representation cover tree.
+4.2.1
+Full insert
+We shall cover the two variants of the insert algorithm from [AL06] and [Kol06], as they are
+slightly different. We will explore their differences and investigate the impact of changing
+the covering invariant as we discussed in section 4.1.
+For reasons that will become apparent soon, we shall describe the insert algorithm by
+[Kol06] first, it can be seen in algorithm 1.
+Algorithm 1: Modified - Insert(point p, cover set Qi, level i) - [Kol06]
+1. Set Q = {Children(q) : q ∈Qi};
+2. if d(p, Q) > 2i then
+return ”parent found” - True;
+else
+3.a Set Qi−1 = {q ∈Q : d(p, q) ≤2i};
+3.a′ found = Insert(p, Qi−1, i −1);
+3.b if found and d(p, Qi) ≤2i then
+pick q ∈Qi satisfying d(p, q) ≤2i;
+insert p into Children(q);
+return ”finished” - False;
+else
+3.c return found
+end
+end
+Given a Cover tree T on all points q ∈S and a point p /∈T, then after insertion T ∪p.
+Additionally T ∪p also need to satisfy all invariants, if not, then the T ∪p is not a valid
+Cover tree.
+Insert is a recursive algorithm and take three inputs (p, Qi, i), where p is the point we want
+to insert, Qi is a cover set of level i, and i is the level. We initialise with our insertion
+point p, the root node in Q∞= C∞and i = ∞. Then for each recursive call in step 1,
+we construct a ”pre”-cover set Q using the children of our current Qi. After Q has been
+constructed, then in condition 2 we test the distance d(p, Q) > 2i, if condition 2 were
+false, then d(p, Q) ≤2i and p is covered by some q ∈Q, then we continue to the else part
+of condition 2, where we hit 3.a. Here we construct the real cover set Qi−1 for the next
+recursive level. Qi−1 is constructed from the points in Q that are at distance 2i or less
+from p. Then as input to the next recursive call we use (p, Qi−1, i −1).
+As p ̸∈S and as i is decreased for each recursive call, then at some point during the calls,
+say at level i, then when evaluating condition 2, p is further than 2i away from the newly
+12
+Dynamic k-clustering
+==PAGE:21==
+constructed Q. Then we know the parent of p is in Qi+1. We return True and go one step
+up the recursive chain. Now on level i + 1 we check d(p, Qi+1) ≤2i−1 before entering 3.b.
+Here we pick a single node q ∈Qi+1 such that the distance between q and p is 2i−1 or
+less. Then after setting q as the parent of p and adding p to the children of q we return
+False to the layer above. This will then pop the recursive stack as condition 3.b will now
+always be false and always return False due to found being False and as 3.c always return
+found it will stay False.
+Definition 4.2.1. Children(p) are all the nodes q that have p as a parent.
+Definition 4.2.2. Parent(q) is the node p that is the parent of q.
+The insert algorithm and the invariants
+The algorithm for insert are defined by
+both [AL06] and [Kol06]. However [Kol06] found that the algorithm given by [AL06] had
+a small fault. [Kol06] explained this fault in Remark 4.3. The remark is however not very
+formal, so we shall revisit it here. As a reference, the algorithm originally proposed by
+[AL06] can be seen in algorithm 2.
+Algorithm 2: Original - Insert(point p, cover set Qi, level i) - [AL06]
+1. Set Q = {Children(q) : q ∈Qi};
+2. if d(p, Q) > 2i then
+return ”no parent found”;
+else
+3.a Set Qi−1 = {q ∈Q : d(p, q) ≤2i};
+3.b if Insert(p, Qi−1, i −1) = ”no parent found” and d(p, Qi) ≤2i then
+pick q ∈Qi satisfying d(p, q) ≤2i;
+insert p into Children(q);
+return ”parent found”;
+else
+3.c return ”no parent found”
+end
+end
+Lemma 4.2.1. For any p ̸∈S, Q = {Children(q) : q ∈Qi}.
+If d(p, Q) > 2i, then
+d(p, Ci) > 2i.
+Proof. As all q ∈S are descendent of root ∈Q∞= C∞then all points q ∈S can be
+considered. Due to the construction of Q, we have that Qi−1 is the children of Qi such
+that ∀q ∈Qi−1, d(p, q) ≤2i. Hence for all i = {∞, ..., −∞}, we have Qi ⊆Ci such that
+∀q ∈Qi, d(p, q) ≤2i. Thus if d(p, Q) > 2i, then d(p, Qi) > 2i, hence d(p, Ci) > 2i.
+Lemma 4.2.2. Given a tree T with a single point q, Original - Insert(p, Q∞, ∞) by
+[AL06] (algorithm 2) will yield a cover tree that violates at least one invariant.
+Proof. We consider the cover tree T with a single point q, where we wish to insert p into
+T. Assume that 2j < d(p, q) ≤2j+1. As such, q ∈Qj for all i = {∞...j}. As Qi ⊆Ci we
+have that q ∈Ci for all i = {∞...j}. Condition 2 will be true on level j as 2j < d(p, q),
+thus ”no parent found” is returned to the layer above.
+Dynamic k-clustering
+13
+==PAGE:22==
+On level j + 1 we have that the statement Insert(p, Qj−1, j −1) = Insert(p, Qj, j) = ”no
+parent found”, and as d(p, q) ≤2j+1 condition 3.b is true. Hence p is inserted into Cj and
+q is assigned as the parent on layer j + 1. Finally, ”parent found” is returned.
+On level j + 2 we have Insert(p, Qj−1, j −1) = Insert(p, Qj+1, j + 1) = ”parent found”, so
+condition 3.b is false and ”no parent found” is returned.
+Finally, on level i + 3 we have Insert(p, Qj−1, j −1) = Insert(p, Qj+2, j + 2) = ”no parent
+found”, and as d(p, q) ≤2j+1 ≤2j+3 condition 3.b is true. p is inserted into Cj+2 and q is
+assigned as parent on layer j + 3. Then, ”parent found” is returned to the next layer.
+This pattern will alternate all the way up the recursion tree. Inserting p as a child of
+every other q. Clearly this is not the way an insertion is meant to work, but just to make
+it clear, observe that {p, q} ∈Cj+2 and that d(p, q) ≤2j+1, this violates the Separation
+invariant eq. (4.7) as d(p, q) should have been greater than 2j+2.
+The algorithm proposed by [Kol06] adds line 3.a′ and changed the return values such
+that only a single point is inserted. It is worth noting that [Kol06] changed the Covering
+tree invariant just like we did previously, such that the invariant ensures the distance
+d(p, q) ≤2i instead of the original d(p, q) < 2i distance that is used in [AL06].
+We
+already saw that if the invariant is not changed, there is a ”gap” between the covering
+and separation invariants that will lead to problems. For completeness sake, let us explore
+what happens if the invariants are not changed from the originals proposed by [AL06].
+Lemma 4.2.3. Assuming the cover tree invariants are as proposed by [AL06], the insert
+algorithm by [Kol06] (algorithm 1) will violate at least one invariant for some insertions.
+Proof. Consider a cover tree T and the two points {p, q} ∈S where d(p, q) = 2j. W.l.o.g.
+assume that q ∈T and p /∈T. The goal now is to insert p such that {p, q} ∈T and that
+T satisfy all invariants.
+We construct Q, Qi and Qi−1 for all levels ∞. . . j −1. On level j condition 2 is false as
+d(p, Q) = 2j ̸> 2j. Because of this we move on to 3.a and construct Qj−1. On level j, we
+have that p ∈Qi−1 as d(p, q) = 2j satisfying the d(p, q) ≤2j inequality. Moving one level
+down to level j −1 condition 2 is now true, as d(p, q) = 2j > 2j−1. We recurse up with a
+return True to level j, where we then move on to 3.b.
+We pick q as it is the only point in T and therefore the only point in Qj, because d(p, q) ≤2j
+it also satisfy the inequality. Finally, p is inserted into Cj−1 and q ∈Cj is assigned as
+parent of p ∈Cj−1.
+Now if we return to the covering invariant proposed by [AL06]. For all points p in Ci−1,
+there exists a point q in Ci such that d(p, q) < 2i. In the construction, q ∈Cj is a parent
+of p ∈Cj−1, clearly this construction is in violation with the original covering invariant
+as d(p, q) = 2j. If the invariant is not changed, then the insert algorithm by [Kol06] will,
+in some cases construct a cover tree where at least one invariant is violated.
+Let us now convince ourselves that the change of the invariant as covered in section 4.1
+do indeed make it so that the insert algorithm proposed by [Kol06] (algorithm 1) run
+correctly.
+Theorem 4.2.4. Given a cover tree on S with root C∞and point p /∈S, Modified -
+Insert(p, C∞, ∞) as proposed by [Kol06] seen in algorithm 1 assuming the invariants as
+described in section 4.1 will return a cover tree on S ∪p that satisfy all tree invariants.
+14
+Dynamic k-clustering
+==PAGE:23==
+Proof. As p /∈S then d(p, S) > 0 and as the root has infinite range, there must be some
+scale j where condition 2.
+holds.
+Condition 2 ensure that the separation invariant is
+satisfied, as it ensures that for all i = {∞... −∞} all points in Qi−1 are at least 2i−1
+away from p. Hence if p is inserted under a point in Qj into Qj−1, then all of p’s new
+siblings that were already in Qj−1 are at least 2j−1 away. Consider now that we are on
+level j −1 and there exist some other point p′ ∈Qj−1 such that d(p′, p) ≤2j−1 or closer.
+Then condition 2. would have been false, hence we would have continued to the lower
+level, thus we would not have returned to level j to then insert p into Qj−1 in level j −1
+along with the other point p′, as such the separation property is satisfied for any insertion.
+As condition 2 must hold for some j −1, then at 3.a′, found must at some point be set
+to true. We also know that on level j there exists some point q in Qj−1 with distance
+d(p, q) ≤2j.
+If d(p, q) > 2j then condition 2 would have been triggered on level j.
+Additionally, as Ci ⊆Ci for all i = {∞... −∞} there must exist some point q in Qj such
+that d(p, q) ≤2j, and as found were true on level j, then condition 3.b must then be true.
+Hence there is some point q in Qj that can be assigned as a parent such that d(p, q) ≤2j.
+Thus p is inserted into Cj−1 as a child of q in Cj. In addition p is implicit in Ci for all
+i = {j −1... −∞}, hence the nesting invariant is satisfied.
+Finally we return false to the level j + 1.
+For each level i = {j + 1...∞} found will be false, as the initial false return will set found
+= false and each subsequent evaluation of 3.b will immediately evaluate to false, which
+will lead to 3.c returning once again false. This will ”pop” the entire recursion stack and
+only a single node q will be inserted inserted.
+As we took care of the covering, separation and nesting invariant along the way, all three
+invariants are satisfied and S ∪p ∈T.
+4.2.2
+Full remove
+Now let us consider the remove algorithm proposed by [AL06] seen in algorithm 3. We
+shall first see how it behaves with the original invariants from [AL06]. Then we will change
+the invariants as described in section 4.1 and see how this changes the behaviour of the
+algorithm.
+Algorithm 3: Remove(point p, cover sets {Qi, Qi+1, ..., Q∞}, level i) - [AL06]
+1. Set Q = {Children(q) : q ∈Qi};
+2. Set Qi−1 = {q ∈Q : d(p, q) ≤2i};
+3. Remove(p, {Qi−1, Qi, ..., Q∞}, i −1);
+4. if d(p, Q) = 0 then
+4.a remove p from Ci−1 and from Children(Parent(p));
+4.b for every q ∈Children(p) do
+set i′ = i −1;
+while d(q, Qi′) > 2i′ do
+insert q into Ci′ and Qi′;
+i′++;
+end
+chose q′ ∈Qi′ satisfying d(q, q′) ≤2i′ and make q′ point to q;
+end
+end
+Dynamic k-clustering
+15
+==PAGE:24==
+The goal of the algorithm, is that given some Cover tree T and a point p ∈T, the remove
+algorithm must create a new tree such that T = {T \ p}. As always, the new tree T must
+satisfy the three invariants, if not, then the T is not a valid Cover tree.
+Removing a point p from the tree is inherently more diﬀicult than inserting one. The
+reason for this is that when removing a point, then we have to remove several nodes in
+T. This in and of itself is not demanding, but for each node we remove, there may be
+sub-trees that need to be replaced and assigned to new parents in order to reconnect the
+tree. This is of course possible, but it requires a bit of tact.
+The removal algorithm, like the insert, is a recursive algorithm and run in two main
+phases, the last of which has one sub-phase.
+The recursive steps take as input (p,
+{Qi, Qi+1, ..., Q∞}, i), where p is the point we want to remove, {Qi, Qi+1, ..., Q∞} are
+cover sets and i is the current level.
+Just like the insert algorithm we initialise it with Q∞= C∞as the root.
+Then, in
+the first phase it generates the set {Qi−1, Qi, ..., Q∞} and recursively calls itself with (p,
+{Qi−1, Qi, ..., Q∞}, i −1) as input. For each recursive call from Q∞to Q−∞it generates
+all Qi.
+Phase 1 - Going down
+The first phase of remove recurses down the tree constructing
+cover sets. It is easiest to consider the construction of a single Qi−1 on level i, so let us
+construct one such set. Firstly we construct the set Q, this is an intermediate step and Q
+is not carried down the recursion stack like the Qi’s. Q on level i is constructed such that it
+contains all the children of the previous cover set Qi. Note that Qi is constructed just like
+our current Qi−1, just one step up the recursive chain on level i+1. After having gathered
+all children of Qi into Q we need to include only those that are ”close” to the point p when
+constructing Qi−1. All nodes that are not ”close”, can not lead us to p. Nodes close to
+p are nodes associated with the points q such that d(p, q) ≤2i. This ensures that points
+in the next cover set (Qi−1), do cover p, as such they can lead to the nodes associated
+with p. After having constructed Qi−1, we construct the input to the next recursive call
+as {Qi−1} ∪{Qi, Qi+1, ..., Q∞}. Where the right side is of course the input given to this
+recursive call from the previous call. Therefore for all i = {∞, ..., −∞}, we propagate all
+the cover set Qi down the recursive stack. The recursion stops when p is always implicit,
+here we need to make a definition as this implicitness is not clearly stated in [AL06].
+Definition 4.2.3. The level j at which p is implicit for all levels i = {j... −∞}, is the
+first level j where p never branch for all levels below. That is, if p branches for the last
+time on level j + 1, then p is implicit for all levels i = {j... −∞}.
+When reaching the level at which p is implicit, we have constructed all relevant cover sets
+{Q−∞, ..., Q∞}. Now, the second phase can begin.
+Phase 2 - Going up
+The second phase deal with going up the recursive stack, it is
+here where we actually remove the nodes and reassign the children. The reassignment of
+the children is a sub-phase within this phase.
+Having generated every relevant Qi on the way down, we now start climbing the recursive
+ladder. We shall again consider that we have done some amount of steps and now reach
+the call with input (p, {Qi, Qi+1, ..., Q∞}, i), where we also have generated Q and Qi−1.
+If we stay true to step 4 described by [AL06] we test if d(p, Q) = 0, this is analogous to
+testing if p ∈Q and we shall use this going forward. If p /∈Q, then the recursive call
+just continue up with no further changes at this level. If however p ∈Q, then we known
+16
+Dynamic k-clustering
+==PAGE:25==
+that p is a child of some node in Qi, hence p is contained in Ci−1. Thus in 4.a we remove
+it from there Ci−1. Consequently also removing it from Qi−1 as Qi ⊆Ci. We also need
+to remove the parent connection p has to q ∈Qi, this is done easily, as each node knows
+its parent using a Parent() function and it also knows all its children using a Children()
+function. The process of removing parent and child links is done for each level up the
+recursive ladder until reaching Q∞. Removing all nodes associated with p is not enough
+though. When removing any node associated with p has other children than the self child,
+then these children (and subsequent subtrees) will become disconnected with the rest of
+the tree. Because of this we have to deal with any and all children p has, when we remove
+p from Qi−1 ⊆Ci−1. So before removing it we need to set aside a set of references to those
+children, let Children(p) denote the set of children of node p had prior to its removal,
+note that the self child of p do not exist in Children(p) as it would have been removed in
+the previous call. Dealing with the children Children(p) is the purpose of the sub-phase.
+q′
+p
+0
+1
+2
+3
+4
+0
+1
+2
+3
+4
+Figure 4.4:
+Area where a
+point q can exist when re-
+moving its parent p where q′
+is a parent of p, i = 1.
+Sub-phase - Dealing with the children
+Having just
+removed p from Qi−1 ⊆Ci−1, the children Children(p)
+are of course all located in Ci−2, they are now all with-
+out a parent and are disconnected from the rest of the tree.
+Keep in mind that in this sub-phase we still have access
+to {Qi−1, Qi, ..., Q∞}, this means we can find parents to all
+nodes in Children(p) in the levels i −1, ..., ∞. (In the sit-
+uation where we have removed the root itself, we have to
+assign a child as the new root, but we will not deal with
+that in the full representation. But we will explicitly take
+care of that in the partial representation in chapter 5).
+We reassign the children in the following way in step 4.b.
+For each child q ∈Children(p) we find a new node that
+can be a parent of q. To find a parent of q we first set an
+iterator variable i′ = i −1. Then we iteratively look in the
+sets {Qi−1, Qi, ..., Q∞}, starting with Qi−1. This is done in
+the while loop and we specifically look in Qi′. The while
+loop runs so long as d(q, Qi′) > 2i′, that is, there do not exist a node q′ ∈Qi′ such that
+d(q′, q) ≤2i′. So long as the while loop runs we increment i′, this in turn causes us to
+evaluate the next cover set and extend the range that we allow parents to exists within.
+For each round we also add q to Ci′ and add it as a self parent. This will propagate q up
+the cover sets until the loop ends.
+When the while loop stops then one of two things have happened, wither there exists a
+node in q′ ∈Qi′ satisfying the covering invariant, that is d(q′, q) ≤2i′ then we add q as a
+child of q′. Or we have reached Q∞where we can assign the root as the parent.
+Insertion of q into some set Ci does not violate the separation property, consider the
+situation depicted in fig. 4.4. The dotted circle is B(q′, 2i+1), the two dashed circles are
+B(q′, 2i) and B(p, 2i), and the two fully drawn circles are B(q′, 2i−1) and B(p, 2i−1). The
+gray area is where a point q could exist in Ci−1, as d(q, Ci−1) > 2i−1 and d(q, p) ≤2i.
+If we are to insert q into Ci it is clear it cannot violate the separation property, and as
+d(q, q′) ≤2i it does not violate the covering property either, otherwise we would not try
+and insert it in the first place. Note also that p could be further from q′, but this would
+not change the situation, only the area of which the gray part overlap with B(q′, 2i−1).
+After having reconnected all the children in Children(p) we return to phase 2 but one
+Dynamic k-clustering
+17
+==PAGE:26==
+p
+r
+q
+−1
+−0.5
+0
+0.5
+1
+−1
+−0.5
+0
+0.5
+1
+(a) Example metric space where j = 0, p =
+(0, 0), r = (0, 0.7) and q = (0, 1)
+p
+p
+p
+p
+p
+r
+r
+r
+q
+q
+C∞
+Cj
+Cj−1
+Cj−2
+C−∞
+(b) Full representation cover tree T given by the
+points {p, r, q}
+Figure 4.5: Metric space and cover tree on the tree points {p, r, q} ∈T
+recursive step up, which would take us from level i −1 to level i where we again remove p.
+Just like with the insert algorithm, let us examine how the remove algorithm by [AL06]
+will violate at least one of the original invariants proposed by [AL06]. Then let us see that
+if we change the covering invariant as described in section 4.1, then the remove algorithm
+by [AL06] will construct cover trees that do not violate any of the invariants.
+Lemma 4.2.5. Assuming the cover tree invariants are as proposed by [AL06], the remove
+algorithm by [AL06] (algorithm 3) will violate at least one invariant for some removals.
+Proof. Consider a cover tree T such that {p, q, r} ∈T. The distances between the points
+are as follows.
+d(p, q) = 2j
+2j−1 ≤d(p, r) < 2j
+2j−2 ≤d(q, r) < 2j−1
+A two dimensional metric space and valid construction of the tree can be seen in fig. 4.5a
+and fig. 4.5b respectively. Notice that an infinite amount of metric spaces can be formed
+form the rules above. In two dimensions we require that r is placed on or outside the
+dotted circle and inside the solid circle (gray area). We also require that q is placed on
+the solid circle, and that q is on or outside the dashed dotted circle and inside the dashed
+circle (darker gray area). All three points can be moved to any place so long as the rules
+are satisfied. Constructing a tree from this is simple, but for completeness we will also
+define it. We have that {p, r, q} ∈T, {p} ∈Cj, {p, r} ∈Cj−1 and {p, r, q} ∈Cj−2. The
+child relations are as follows: p ∈Cj we have Children(p) = {p, r}, for r ∈Cj−1 we have
+Children(r) = {r, q} and for q ∈Cj−2 we have Children(q) = {q}. In addition, due to
+definition 4.2.3, p is implicit from level j −1, r is implicit from level j −2, and q is implicit
+from level j −3. It is easy to see that this tree structure do not violate any of the original
+invariants by [AL06].
+The goal is now to remove point r such that the resulting tree is T \ r. The error of the
+remove algorithm is the same as that of insert, but the construction is a bit different.
+Again we shall construct Q and Qi−1 on all levels i = {∞... −∞}. The recursion stops at
+18
+Dynamic k-clustering
+==PAGE:27==
+p
+p
+p
+p
+p
+p
+q
+q
+q
+C∞
+Cj+1
+Cj
+Cj−1
+Cj−2
+C−∞
+(a) Cover tree T \r in violation with the covering
+invariant
+p
+p
+p
+p
+p
+p
+q
+q
+q
+q
+C∞
+Cj+1
+Cj
+Cj−1
+Cj−2
+C−∞
+(b) Cover tree T \ r in violation with the sepa-
+ration invariant
+Figure 4.6: Two trees on T \ r each in violation with one invariant.
+level i = j −1 as r is implicit on the next level. In the cover Qj−2, r is trivially removed
+as it has no children.
+Recursing up one level to level i = j the situation is as follows. Q = {p, r}, Qj−1 = {p, r}.
+We remove r from Cj−1 as described (And form Qj−1, as Qi ⊆Ci for all i = {∞... −∞}),
+now Qj−1 = {q}. Notice that r ∈Cj−1 has one child q ∈Cj−2, this q must be reassigned
+to reconnect it to the tree.
+Hence, Children(r) = {q}, we then set j′ = (j −1) = j −1. The while loop is run through
+once as d(q, Qj−1) = d(q, {p}) = 2j > 2j′ = 2j−1, so q is inserted into Qj′ = Qj−1 and
+Cj′ = Cj−1. That is Qj−1 ∪{q} = {p, q} and Cj−1 ∪{q} = {p, q}. Then we increment j′
+so now j′ = j.
+Returning to the top of the while loop, it breaks as the condition d(q, Qj′) = d(q, Qj) =
+d(q, {p}) = 2j > 2j is false. We then chose a node q′ ∈Qj′ = Qj such that d(q, q′) ≤2j.
+There is exactly one node in Qj = {p}, and as d(q, p) = 2j ≤2j′ = 2j we make p the
+parent of q, pointing from p on level j to q on level j −1. The constructed tree can be
+seen in fig. 4.6a.
+Finally we return to the invariants of [AL06]. Observe that the newly constructed tree T \r
+is in violation with the covering invariant. Notice that p ∈Cj is a parent of q ∈Cj−1 and
+their inter point distance is d(p, q) = 2j thus the covering invariant is violated. However,
+the separation invariant is satisfied for Ci for all i = {j −1... −∞} as d(p, q) = 2j > 2i.
+As this is also an exploration of the gap between the covering and separation invariant,
+imagine that we put q into some lower Ci, say Cj−2, notice that the covering invariant fails
+here as well, as d(p, q) = 2j ̸< 2j−1, the invariant will also be violated for all lower levels.
+Imagine that we had put q into the cover set Ci, the one immediately above Cj−1 that
+is into Cj, this situation can be seen in fig. 4.6b, now the covering invariant is satisfied
+as d(p, q) = 2j < 2j+1 but the separation invariant is violated as d(p, q) = 2j ̸> 2j, the
+separation invariant will also be violated for all higher levels. So, just like we found in
+section 4.1 there is no place to put q without violating at least one invariant.
+Thus, the remove algorithm proposed by [AL06] with the invariants of [AL06] do in some
+Dynamic k-clustering
+19
+==PAGE:28==
+cases construct cover trees that violate at least one invariant when removing points.
+Theorem 4.2.6. Given a cover tree on S with root C∞and point p ∈S, Original -
+Remove(p, {C∞}, ∞) as proposed by [AL06] seen in algorithm 3. Assuming the invariants
+as described in section 4.1 will return a cover tree on S \{p} that satisfy all tree invariants.
+Proof. Each Qi−1 contain the children of Qi that are closer than or at distance 2i. When
+p is implicit for the next layers, we stop and go back up the recursion. As p ∈S there
+must be some layer where p is implicit, so we must stop, and recurs up one level, so we
+must reach condition 4.
+Due to Qi ⊆Q for each layer i = {∞... −∞}, and as p were implicit for the next layer,
+then d(p, Q) = 0, hence p ∈Q, which finally leads to p ∈Qi on level i. Hence condition 4
+must be true for some level i. Due to 4.a and as p have not yet been removed from Qi−1
+and Ci−1, we simply do remove it.
+If p had no children we recurs up, as 4.b would not be run. If however there are children,
+then they are repaired. Each child q has distance more than 2i−2 to each other, otherwise
+the tree would have been an invalid before even starting. We set i′ to be i −1, as this is
+the level where p were located before, so this is the first level where there might be a point
+q′ such that d(q′, q) ≤2i−1 so that q′ can be the new parent of q. While d(q, Qi′) > 2i′,
+that is, there is no point q′ ∈Qi′ such that d(q′, q) ≤2i′, then there is no point q′ that
+can act as parent for q. If d(q, Qi′) > 2i′ we know that we can insert q into both Qi′
+and Ci′ without violating the separation property, as all points in Qi′ are already at a
+distance more than 2i′. An insertion of q into Qi′ ensure that, when other children need
+to be reassigned, they can use q as parent, and it also ensures that the nesting invariant
+is always satisfied.
+As the root has infinite range, there must be some i′ where d(p, Qi′) ̸> 2i′, that is
+d(q, Qi′) ≤2i′.
+Thus there exists some q′ ∈Qi′ such that d(q, q′) ≤2i′.
+When we
+then assign q as a child of q′, then q′ ∈Qi′ and q ∈Qi′−1, with distance d(q′, q) ≤2i′,
+hence the covering property is not violated.
+4.2.3
+Full representation k-clustering
+To round of the full representation chapter, let us bring it back to the main point. How
+do we use the cover tree to create a clustering. Note that we will cover how good this
+clustering is in theorem 6.1.1.
+Finding a k-clustering is quite simple. Just like with insert and remove, start with Q∞=
+C∞. Then iteratively construct Q = {Children(q) : q ∈Qi}. If |Q| < k then set Qi−1 = Q
+and then start expanding the children of Qi−1 to Q using Q = {Children(q) : q ∈Qi−1}.
+If at any point |Q| = k, then return Q as the answer. If |Q| > k, then create a temporary
+holding set R and set R = Qi, at this point |R| < k. So arbitrarily pick nodes from Q \ Qi
+and add them to R, do this until |R| = k. Now return R as the answer. We are sure to
+have enough nodes as |Q| > k and |Q| > |Qi|.
+20
+Dynamic k-clustering
+==PAGE:29==
+5
+Partial representation
+In the Full representation we had some creature comforts. We had a single universal root
+in Q∞= C∞and universal leaves in Q−∞= S. We had the notion of levels i and an
+easily accessible cover set Ci on a single level i. In the partial representation we have fewer
+nodes, no levels and as such, no true cover sets Ci. Hence we have no easy relationship
+to the tree invariants. The goal of the partial representation is to remove all unnecessary
+nodes, but still ensure that all of the functionality of the full representation cover tree can
+be preserved, that is all invariants are still true, and its run times are the same. We will
+show that this can be done but with a smaller data structure size.
+As we no longer have a clear notion of levels as we had in the full representation, we need
+to do many thing differently. The structure of the tree has changed and the algorithms
+that run on it are different, the skeleton and general premise is the same, but many things
+are done differently.
+As we shall see later, the partial representation has a linear space bound, and is therefore
+more suitable for implementation than the full representation, given that it can do all the
+same things and with no drawback on time complexities.
+5.1
+Preliminaries
+Before going into the technical differences between the two representations, we shall first
+define some basic notation and definitions as they will be useful later on.
+5.1.1
+Definitions and shorthand notation
+During the descriptions and especially the analysis of the algorithms we shall use some
+shorthand notation. The following definitions will last for the remainder of this paper.
+Definition 5.1.1. Any node N ∈T is associated to some point p ∈S. Then N ∼p
+means, node N is associated with p. For some set Q ⊆T, then {N ∈Q : N ∼p} is the
+node(s) {N} ∈Q that is associated with p. We shall use the shorthand Np as a node that
+is associated with p. Note that we will often just use the subscript p or q to associate a
+node in the tree when it is clear from the context that it is a node we are talking about.
+Definition 5.1.2. Range(p) is the numbers {i, i −1, ..., j + 1, j} where i ≥j and i is the
+highest level at which the partial node p would have been present in the full tree, had it not
+been coalesced. Where j is the lowest level.
+Definition 5.1.3. High(p) is the number max(Range(p)) and Low(p) is the number
+min(Range(p)).
+Definition 5.1.4. SelfChild(p) is the child c ∈Ch(p) such that c and p are associated
+to the same point in the metric.
+Definition 5.1.5. The special node ”root” is the acting root node. It is equivalent to the
+full representation root in C∞.
+Definition 5.1.6. For any cover set CS = Qi, CS.Index = i.
+5.1.2
+Coalescing nodes
+[AL06] defines that the partial representation coalesces all nodes in which the only child
+is a self child. But they do not specify how to work with the coalesced nodes nor how to
+Dynamic k-clustering
+21
+==PAGE:30==
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+D
+D
+C
+C
+C
+C
+C
+F
+F
+F
+F
+F
+F
+G
+G
+G
+E
+E
+E
+E
+E
+E
+E
+E
+i = 1
+i = 2
+i = 3
+i = 4
+i = 5
+i = 6
+i = 7
+i = 8
+i = 9
+(a) The full representation cover tree
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+D
+D
+C
+C
+C
+C
+C
+F
+F
+F
+F
+F
+F
+G
+G
+G
+E
+E
+E
+E
+E
+E
+E
+E
+(b) The full representation cover tree with
+coloured nodes
+Figure 5.1: fig. 5.1a shows a normal full representation cover tree on 7 points at 8 levels,
+fig. 5.1b shows the same tree, but all nodes of the same colour will be coalesced into a
+single node in the partial representation
+traverse tree or use the algorithms on the partial tree. We shall define all of those here.
+But first we must define exactly what it means to ”coalesce” nodes.
+Definition 5.1.7. How to coalesce nodes in the tree. Consider a branch in full tree with
+a node plocated on level i and node p′ on level j, such that i > j. (Note that p and p′ are
+both associated to the point p). Between p and p′ there are no branching nodes. That is,
+nodes on that branch on levels {i, i −1, ..., j + 1} only have self children. We assume that
+p′ on level j has non-self-children. All the nodes associated with p on the levels {i...j} are
+merged into one node with range label {i, j}, with parent equal to that of p and children
+equal to those of p′. Notice that i = j iff p = p′, then the node just has range label {i, i}.
+To illustrate definition 5.1.7, let us see how a full representation is converted (visually)
+into a partial tree. Consider first fig. 5.1a. This is a full representation tree on 7 points
+on 8 different layers.
+The underlying 2D metric space is not important, but it can be seen in fig. B.1, the
+coordinates in table A.1 and the distance matrix in table A.2. Using definition 5.1.7 we
+can locate all nodes that need to be coalesced into a single node. E.g. the cyan A nodes
+on levels i = {5, 4, 3, 2}, all four nodes are coalesced into a single node A5,2. If we do this
+for all nodes we get the partial cover tree as shown in fig. 5.2, it retains all the information
+in the original tree, but we store a significantly smaller number of nodes.
+22
+Dynamic k-clustering
+==PAGE:31==
+A9,9
+A8,6
+A5,2
+A1,−∞
+F3,−∞
+G3,−∞
+E6,−∞
+E8,7
+F6,4
+B1,−∞
+D2,−∞
+C2,−∞
+C5,3
+Figure 5.2: The Cover tree from fig. 5.1, but all the coloured nodes have been coalesced
+into single nodes
+5.2
+Partial Cover Tree Algorithms
+5.2.1
+The construction of cover sets Q
+All algorithms given by [AL06] construct the set Q layer by layer. This is the first situation
+where the new algorithms need to be modified to work with the partial representation as
+if it were the full one. The construction of Q is an integral part of the algorithms, so we
+need to be able to interpret the partial tree in order to construct the correct cover sets Q
+for each level. In order to keep the same Q’s in the partial model, we construct Q in the
+following way.
+Q = {q ∈Qi : i −1 ∈Range(q)} ∪{Children(q) : q ∈Qi, i −1 ∈Range(q)}
+(5.1)
+Lemma 5.2.1. The constructed Q in eq. (5.1) on level i is analogous to the normal
+construction of Q on level i in the full representation.
+Proof. The first part keep the nodes in Qi if they are still in the range i −1, that is
+analogous to the node having a self child on that branch in the full tree. We union that
+with the children of the elements in Qi, but only if they have a range that include i −1,
+this ensures we do not include children too early. Imagine a coalesced node on level i, it
+may have a child somewhere down the tree say on level j, at this point we can see the
+lower node, as it is included in the children of Qi, but we should only include it when
+constructing Qj using the nodes in Qj+1. Because we construct Q in this way, we can
+work with the Q as if it were constructed from the full representation itself.
+5.2.2
+Partial insert
+The general structure of the partial insert algorithm as seen in algorithm 4, is much like
+the insert algorithm used in the full representation, but there are some differences.
+We initialise it differently, we use Q∞= root, and in step 1 the construction of Q is done
+as specified in eq. (5.1). Step 2 is the same as for the full representation and the same is
+Dynamic k-clustering
+23
+==PAGE:32==
+true for step 3.a and the condition of 3.b. However, an extra stop condition 2.′ has been
+added and is triggered when p ∈Q. If p ∈Q then p ∈S, hence p already exists and it
+cannot be inserted twice. In addition to this, step 3.b has been altered significantly to
+function on the partial representation, as the way nodes are managed are quite distinct.
+Picking a q ∈Qi is the same as we already know. But now, because nodes are coalesced
+into nodes with ranges, we might need to split a node before we can insert a child under
+it. So we check if i > Low(q), if it is, then we run algorithm 5 SplitNode() with {q, ∅, i}
+as arguments. The reason for parsing ∅is that SplitNode() is also used by the remove
+algorithm, and it parses something non empty to SplitNode(), but this is not necessary
+here. We will cover this splitting process later.
+Assuming that we either have split q correctly, or that q did not need to be split. We
+know that Low(q) = i, then we insert the child node p with range label {i −1, −∞}. This
+is analogous to it being present in Ci−1...C−∞in the full representation.
+The return statement at the end of the true section of 3.b is the same as in the full
+representation, and the same is true for 3.c and step 2.
+Algorithm 4: Partial - Insert(point p, cover set Qi, level i)
+1. Set Q = {q ∈Qi : i −1 ∈Range(q)} ∪{Children(q) : q ∈Qi, i −1 ∈Range(q)};
+2.′ if p ∈Q then Return False;
+2. if d(p, Q) > 2i then
+Return True;
+else
+3.a Set Qi−1 = {q ∈Q : d(p, q) ≤2i};
+3.a′ found = Insert(p, Qi−1, i −1);
+3.b if found and d(p, Qi) ≤2i then
+pick q ∈Qi satisfying d(p, q) ≤2i;
+if i > Low(q) then
+SplitNode(q, i, ∅);
+end
+High(p) = i −1, Low(p) = −∞;
+Insert p into children of q;
+Return False;
+else
+3.c Return found
+end
+end
+5.2.3
+Splitting a partial node
+As we are working on the partial representation, every node is coalesced into some coalesced
+node. So consider that we need to insert some node p into level Ci−1 under some node
+q ∈Ci. But the same node q has been coalesced from levels x to y where x ≥i and
+y ≤i −1. Hence, there is no single node q ∈Ci that we can assign as the parent of p.
+Thus we need to split q into two nodes, the algorithm can be seen in algorithm 5. We
+assume that node q need to be split, as this is checked in the algorithms that initialise this
+procedure.
+Consider the ranges of q (the node we want to split) and p (the node we want to insert
+under q) are as follows: Range(q) = {x, ..., y}, Range(p) = {i, ..., j}, where x > y and
+i > j. If i + 1 = y, then p can be added as a child of q without splitting q. If however
+24
+Dynamic k-clustering
+==PAGE:33==
+i ≥y, then we need to split q into a top and bottom nodes to maintain the partial
+representation before we can insert p.
+To make it easier to follow the different nodes we say that qo is the original node of q and
+has the full {x, ..., y} range. The top node qt is the node left on top with range {x, ..., i},
+and the bottom node qb left below qt and will have range {i −1, ..., y}.
+After the split of qo into qt and qb, we construct qt such that it has the old parent connection
+of qo in addition to a single child connection to qb, where qb has all the old child connections
+of qo and a single parent connection to qt. The split is done right above p and qt is assigned
+as parent of p and p is added as a child of qt.
+In the implemented code and in algorithm 5 we do it a bit differently because of how objects
+work. We actually override qo such that it covers {x, ..., i −1}, the same as qt and we add
+the child connection. However, the new node qb is created such that Range(qb) = {i, y}.
+Hence the overridden qo and qb cover the same range as the non split qo. This notion of
+”the non split” qo is a bit awkward so we will continue and act as if qt and qb are created
+to take the place of qo.
+At this point we have split qo into two new nodes qt and qb, and we see that they cover the
+same range as qo and all the children of qo are now children of qb. The split is illustrated
+in fig. 5.3. At this point we could insert p under qt, but this is done by the algorithm that
+initiated this procedure.
+Before finishing and returning qb we need to sort out the cover sets, as this procedure
+changes all the original point qo in every cover set to qt, note that this is only relevant
+during the remove algorithm, as insert parses ∅to SplitNode() and thus this part is ignored.
+Imagine that qo ∈{Qx, ..., Qy} where x > y, and that the split is done on l such that
+x ≥l > y. Then it should be that qt ∈{Qx, ..., Ql} and qb ∈{Ql−1, ..., Qy}. But at this
+point we have that qt ∈{Qx, ..., Qy} and qb ∈{∅}. Hence we traverse every cover set
+and replace qt with qb, if the index of the cover set is smaller than the lower range of qt.
+Intuitively a node with some range may only exist in cover sets in that same range. Hence
+if the index is not part of Range(qt) then it is out or range of qt, and as such qt should
+not be present in that cover set, but if it did exist, then we know that qo were present in
+the cover set before. Hence it must be that qb should be there instead. Notice that we can
+only replace qt if it already existed in the cover sets, so every other cover set that did not
+contain qo originally are not changed.
+Algorithm 5: SplitNode(Node qo, Stack of cover set Qs = {Qi, Qi+1, ..., Q∞}, int i)
+New point qb, set High(qb) = i −1 and Low(qb) = Low(qo);
+Low(qo) = i;
+Set Children = the children of qo;
+Remove all children of qo then add qb;
+foreach c ∈Children do
+Add c to the children of qb
+end
+foreach CoverSet ∈Qs do
+if CoverSet.Index ̸∈Range(qo) then
+Replace qo with qb in CoverSet
+end
+end
+Return qb;
+Dynamic k-clustering
+25
+==PAGE:34==
+qo
+x,y
+Ch(qo)
+pi,j
+Pa(qo)
+Ch(p)
+(a) p is missing a parent, we have found qo as a
+suitable parent, but qo need to be split
+qt
+x,i+1
+qb
+i,y
+pi,j
+Ch(qb)
+Pa(qt)
+Ch(p)
+(b) The situation after the split of qo. Notice that
+p and qb have now been assigned as a children of
+qt
+Figure 5.3: The splitting of a node qo
+x,y when assigning a child pi,j where x > y, i ≥j,
+i ≥y and x ≥i, notice that we moved the subscripts {o, t, b} to a superscript to have
+space for the range labels. Hence qo = qo
+5.2.4
+Partial remove
+There are more differences with the remove algorithm, as we need to deal with the children
+of the nodes we remove. Also, in the algorithm we shall present here, we also explicitly
+deal with the root when that is removed, and we will also add an explicit stop condition
+to the algorithm itself. The algorithm can be seen in algorithm 6. Numbers have been
+added for many of the lines to indicate the function of that line in relation to the original
+algorithm by [AL06].
+Algorithm 6 Partial - Remove() is initialised with the following arguments. The removal
+point p, a stack of cover sets with one cover set already on the stack {Q∞}, where Q∞=
+root, and i = ∞.
+Lines 0.a and 0.b are the explicit stop conditions. Firstly 0.a, if Qi is ever empty, we know
+that p ̸∈T, then we stop the recursion with a return false. Secondly, if 0.b is true, then Qi
+contains the leaf of the removal point p and we can stop the recursion with a return true.
+After this we have the familiar steps 1 and 2 from the full remove algorithm, but we
+construct Q as specified in eq. (5.1). Then step 3 has been modified to accept and store
+the stop condition of the recursive call. So we can either begin removing nodes if true
+were returned, or pop the cover set stack if false were returned. If false were returned,
+then we enter the else part of 4 and return false again, this will then return false all the
+way up the recursive stack. If however true were returned, then we start removing nodes.
+So we have the current cover set Qi−1 and we extract the node Np that is associated with
+the removal point p. If Np do not exists in Qi−1 then we skip 4.′ and return true, if Np do
+exists in Qi−1 then we enter 4.′ where we further test if Np = root, as we need to take care
+of the root explicitly if it is removed. So, if Np is not the root, then we run three different
+algorithms that we shall describe in the next sections. Firstly in 4.a we run algorithm 7
+26
+Dynamic k-clustering
+==PAGE:35==
+RemovePFromTree(), this removes any and all connections Np might have to the tree.
+Then in 4.a′ we run algorithm 8 RemovePFromQis(), this removes all instances of Np in
+the generated Qi for all i on the stack of cover sets. Finally in 4.b we run algorithm 10
+RepairChildren() to repair (re-insert) the children of Np.
+Going back to 4.′′ if Np had been the root. Then firstly we find some other node in the
+children of Np that can act as a root. Any node will do as we will give it infinite range,
+and then split it accordingly, we call it newRoot. Then we remove newRoot from the child
+list of Np as we do not ”repair” newRoot later. Then we set the root to be newRoot as
+root is a global variable and is not covered by algorithm 7 RemovePFromTree() that is
+run immediately afterwards, so the old root would not have been removed by this. Now,
+instead of removing Np from Qi’s we need to replace it, as its function as a root is being
+replaced by newRoot, so in 4.a′ we run algorithm 9 ReplaceInQis() with Np, root and the
+current stack of cover sets, as arguments, this replaces all instances of the old root with
+the new in the cover set stack. After this in 4.b we repair the remaining children of Np by
+running algorithm 10 RepairChildren().
+Algorithm 6: Partial - Remove(point p, Stack of cover set Qs = {Qi, Qi+1, ..., Q∞},
+level i)
+0.a if Qi is empty then
+return false; // p ̸∈T
+0.b else if there exists a node Np ∈Qi st. Np ∼p and that Np has no children then
+return true; // Qi contain the leaf of p
+end
+1. Set Q = {q ∈Qi : i −1 ∈Range(q)} ∪{Children(q) : q ∈Qi, i −1 ∈Range(q)};
+2. Set Qi−1 = {q ∈Q : d(p, q) ≤2i};
+3. RES = Remove(p, {Qi−1, Qi, ..., Q∞}, i −1);
+4. if RES then
+Np = {N ∈Qi−1 : N ∼p};
+4.′ if Np exists then
+4.′′if Np = root then
+newRoot = r ∈Ch(Np);
+Remove newRoot from Ch(Np);
+root = newRoot;
+4.a RemovePFromTree(Np, {Qi−1, Qi, ..., Q∞});
+4.a′ ReplaceInQis(Np, root, {Qi−1, Qi, ..., Q∞});
+4.b RepairChildren(Ch(Np), {Qi−1, Qi, ..., Q∞}, i);
+return true;
+end
+4.a RemovePFromTree(Np, {Qi−1, Qi, ..., Q∞});
+4.a′ RemovePFromQis(Np, {Qi−1, Qi, ..., Q∞});
+4.b RepairChildren(Ch(Np), {Qi−1, Qi, ..., Q∞}, i);
+end
+return true;
+else
+return false; // ”Pops” the stack of Qi
+end
+Whether or not Np were a root, we finish 4.′ or 4.′′ by returning true. This allow the cover
+sets in the above levels to be evaluated, and other Np’s can be removed.
+Dynamic k-clustering
+27
+==PAGE:36==
+5.2.5
+RemovePFromTree
+When removing a node from the cover tree T, then we do it as described in algorithm 7.
+Assume that the node we removed is Np. Then for each child c that Np has, we remove
+the parent of c. Then we break the child links of Np by removing all of its children. Then,
+if Np has no parent, then it is the root and we are done. If it has a parent, then we need
+to deal with that. Firstly we remove Np from the children of parent, then we remove
+the parent link of Np. Finally we run algorithm 11 MergeNode() with parent and Qs as
+arguments. We shall see the merging soon, but for now note that it is done to preserve
+the partial structure.
+Algorithm
+7:
+RemovePFromTree(Node
+Np,
+Stack
+of
+cover
+set
+Qs
+=
+{Qi, Qi+1, ..., Q∞}
+foreach c ∈Ch(Np) do
+Remove the parent of c;
+end
+Remove all children of Np;
+Parent = parent of Np;
+if Parent exists then
+Remove Np from Ch(Parent);
+Remove the parent of Np;
+MergeNode(Parent, Qs);
+end
+5.2.6
+RemovePFromQis
+After having removed Np from the tree we also need to remove it from the stack of cover
+sets to reflect the change. This process can be seen in algorithm 8. It describes that for
+each cover set Q, starting from Qi we remove Np if it exists in that cover and then move on
+to Qi+1. This removes all entries of Np from all cover sets in the stack that are relevant.
+Algorithm
+8:
+RemovePFromQis(Node
+Np,
+Stack
+of
+cover
+sets
+Qs
+=
+{Qi, Qi+1, ..., Q∞})
+foreach Cover set Q ∈Qs do
+if Np ∈Q then Remove Np from Q;
+end
+5.2.7
+ReplaceInQis
+Unlike when removing a normal node, when removing the root, we need to chose some
+other root. So before we simply removed Np from all relevant cover sets on the stack. This
+is not possible when dealing with the root. When removing a root we replace the old root
+with the new in all relevant cover sets. This is described in algorithm 9 where for each
+cover set Q, starting from Qi we replace Nold with Nnew if Nold exists in that cover and
+then move on to Qi+1.
+5.2.8
+Repair Children
+The process of repairing the children, that is, reassigning them back into the tree when
+their parent has been removed, is heavily inspired by step 4.b in algorithm 3 by [AL06]
+and can be seen in algorithm 10. But, because we are working on the partial tree, we need
+to do more work in order to keep the partial structure.
+28
+Dynamic k-clustering
+==PAGE:37==
+Algorithm 9: ReplaceInQis(Node Nold, Node Nnew, Stack of cover sets Qs =
+{Qi, Qi+1, ..., Q∞})
+foreach Cover set Q ∈Qs do
+if Np ∈Q then Replace Nold with Nnew in Q;
+end
+In line 4.b we iterate over every q ∈Ch(Np) like in the full representation, we also set i′
+in the same way. And we also do something over the sets Qi on the stack. But here the
+similarities stop.
+Iterating over every cover set Q ∈Qs. If the distance to the cover set Q is greater than 2i′,
+then q is not covered, so we extend the top range label of q, add it to Q then incrementing
+i′, before moving to the next Q in the stack. This is effectively the same as adding q to Ci′
+and Qi′ as we did in the full representation. If however d(q, Qi′) ≤2i′ then it is covered
+by some Parent in Q, and we can reassign q to that.
+If the range labels of q and Parent fit, that is High(q) = Low(Parent) −1, then we can
+reassign q immediately, inserting it into the children of Parent, then move on to the next
+child in Ch(Np). If, however they do not fit, then we either need to split Parent as we
+did in Insert, except we also parse the cover sets Qs to SplitNode().
+Algorithm 10: RepairChildren(Set of Nodes Ch(Np), Stack of cover sets Qs =
+{Qi−1, Qi, ..., Q∞}, int i)
+foreach q ∈Ch(Np) do
+i′ = i −1;
+while True do
+if d(q, Qi′) > 2i′ then
+High(q) + +;
+Add q to Qi′;
+i′ + +;
+else
+Parent = {p ∈Qi′ : d(p, q) ≤2i′};
+if High(q) = Low(Parent) −1 then
+Add q to the children of Parent;
+else
+SplitNode(Parent, Qs, i′)
+Add q to the children of Parent;
+end
+Break;
+end
+end
+end
+5.2.9
+Merge Nodes
+As we are able to remove nodes from the cover tree and that we are able to split nodes
+when inserting or reassigning nodes in the cover tree. Then, inevitably at some point
+we will no longer have a fully partial tree, but have a tree that is closer to the full tree.
+Imagine that we start with some partial tree, and we then split every node in all the
+possible places they can be split, then we end up with the full tree. To mitigate this, we
+Dynamic k-clustering
+29
+==PAGE:38==
+need to merge nodes that are able to be merged. The only instance where it might be
+possible to merge nodes together, is when some node is removed somewhere. Then its
+parent might be able to merge its self child.
+Algorithm
+11:
+MergeNode(Node
+Parent,
+Stack
+of
+Cover
+sets
+Qs
+=
+{Qi−1, Qi, ..., Q∞})
+Child = Sc(Parent);
+if Child do not exists then Return false;
+GrandChild = Sc(Child);
+if Parent has one child then
+Remove Child from children of Parent;
+Low(Parent) = Low(Child);
+Remove the parent of Child;
+if GrandChild exists then
+foreach c ∈Ch(Child) do
+Set parent of c to Parent;
+Remove c from children of Child;
+Add c to children of Parent;
+end
+end
+ReplaceInQis(Child, Parent, Qs);
+Return True;
+end
+Return False;
+In algorithm 11 MergeNode() we can see the merging procedure.
+Note that we have
+Parent as input, this Node is the parent of some node Np that has just been removed in
+algorithm 6 Partial Remove(). It also take as input the stack of cover sets.
+Firstly we check that Parent has a self child Child, otherwise there is nothing to merge.
+We also create GrandChild that is the self child of Child. Then, if Parent has a single
+child we continue. Imagine that Parent did not have a child, then it would have been
+a leaf and would could not be merged with anything either way, if it has more than one
+child then the split is justified and it should not be merged.
+If Parent had one child we remove Child from the child list of Parent, set Low(Parent) =
+Low(Child) and remove the parent of Child. This process extends the range of Parent
+such that it also cover the range of Child. Then, if Parent has a grandchild we need to
+reassign it, as it is currently assigned to Child. Note there may also be other children,
+but entering this if statement we know that Child has at least one child. So, foreach child
+c that Child has, set the parent of c to Parent, remove c from the children of Child and
+add c to the children of Parent.
+Now, as we have replaced Child with Parent in the tree, we also need to update the stack
+of Qi’s, as it is the Qi’s we observe when inserting, removing or most importantly, repairing
+nodes. So to end of, we run ReplaceInQis() with Child, Parent and Qs as input.
+To illustrate how a merging is done, observe fig. 5.4. Here we are presented with a sub-tree
+of a partial cover tree. Our goal is to remove R.
+Notice that in fig. 5.4a there is no self
+child of Ry+1,z′ in Ch(R), as that node would have been removed in the previous iteration
+of the Remove algorithm. However, there is a self child of Ay+1,z in Ch(A), and as there
+30
+Dynamic k-clustering
+==PAGE:39==
+Pa(A)
+Ax,y
+Ay+1,z
+Ch(A)
+Ry+1,z′
+Ch(R)
+(a)
+The
+initial
+situation
+where we wish to remove
+Ry+1,z′.
+Pa(A)
+Ax,y
+Ay+1,z
+Ch(A)
+Ch(R)
+(b) Ry+1,z′ have now been re-
+moved.
+Pa(A)
+Ax,z
+Ch(A)
+Ch(R)
+(c) Ax,y and Ay+1,z have been
+merged into a single node
+Ax,z.
+Figure 5.4: Three stages of merging. fig. 5.4a Before removal, fig. 5.4b after removal but
+before merging and fig. 5.4c after merging.
+are also other children in Ch(A), the split at level z is justified. The same is true for the
+split at level y as Ax,y has Ry+1,z′ as a child.
+In fig. 5.4b Ry+1,z′ has now been removed from the tree. Notice that the split between
+Ay+1,z and Ch(A) is still justified as Ay+1,z still have other children than the self child in
+Ch(A). But, observe that Ax,y only have a single self child Ay+1,z, the split between them
+is therefore not justified and they should be merged.
+In fig. 5.4c Ax,y and Ay+1,z have been merged into a single node Ax,z. The nodes in Ch(R)
+are later reassigned back into the tree using the RepairChildren algorithm.
+5.2.10
+kClustering
+This procedure can be seen in algorithm 12 and is used when we wish to compute the
+clustering. It is initialised with k as the amount of amount of clusters we want. The
+execution of the algorithm is as follows. Firstly we run while |Cluster| < k and there
+exists some node c ∈Cluster that is not a leaf. Then, we iterate over each c ∈Cluster
+until Cluster contain all the children of the nodes that were in Cluster originally. This
+means that when we reach the last node in Cluster we restart with the first node again.
+So long as we are doing this, we do the following.
+Firstly, if |Cluster| = k then we have reached our goal and can break the foreach loop
+and then exit the while loop as |Cluster| < k is no longer true. So long as |Cluster| ̸= k
+we will continue and test if Low(c) > i′. If that is the case then we can start adding the
+children of that c. We add a single child and continue to the next c ∈Cluster. However,
+before moving from one c to another, we test if all the children (except for the self child)
+of the current c is in Cluster, if that is the case, then we replace c ∈Cluster with its self
+child.
+At some point during the execution, all children of the original Cluster have been inserted
+or replaced into Cluster, so we exit the foreach and decrement i′, moving to the next layer.
+Dynamic k-clustering
+31
+==PAGE:40==
+So long as k ≤|S| then we must break out of the while loop at some point, as we will have
+evaluated the leaf level C−∞= S at some point. When we break out i′ is not the lowest
+it can be, so we return the value maxc∈Cluster{Low(c)}, that is the lowest value that is in
+range of every node in Clustering and is used to compute the radii of the clusters.
+Algorithm 12: kClustering(int k)
+Cluster = {root}; i′ = ∞;
+while |Cluster| < k and there exists a node c ∈Cluster that is not a leaf do
+foreach c ∈Cluster until all children of all c ∈Cluster are in Cluster do
+if |Cluster| = k then Break;
+if Low(c) > i′ then
+Add a child of c to Cluster st. child is not the self child and is not already
+in Cluster;
+if All children of c except the self child exist in Cluster then
+Replace c ∈Cluster with its self child;
+end
+end
+end
+i′ −−;
+end
+Return {Cluster, maxc∈Cluster{Low(c)}}
+5.2.11
+Get parent cluster point
+If we wish to know which cluster center a point p ∈S is assigned to, we do as described
+in algorithm 13. We can split the process into three sections that each move differently
+on the cover tree.
+To start we need to know what the clusters are before we can figure out what cluster our
+search point is assigned to. We already know a procedure for finding those, so we run
+kClustering(), we also specify how many cluster we are looking for when we initialise it.
+When we know all the clusters we can quickly see if point p is a center itself by checking
+if it exists in the cluster set.
+Algorithm 13: FindParentCenter(Point p, int k)
+Cluster = kClustering(int k);
+if p ∈Cluster then
+Return p
+else
+i = ∞, Qi = root;
+while p /∈Q do
+Q = {q ∈Qi : i −1 ∈Range(q)} ∪{Children(q) : q ∈Qi, i −1 ∈Range(q)};
+Qi = {q ∈Q : d(p, q) ≤2i};
+i −−;
+end
+Np = {Np ∈Q : Np ∼p};
+while Pa(Pa(Np)) ̸= ∅∨Pa(Np) /∈Cluster do
+Np = Pa(Np)
+end
+end
+Return Pa(Np); // root or Cluster center
+32
+Dynamic k-clustering
+==PAGE:41==
+If not then we need to find a node associated with p in T, before we can know what center
+it is assigned to. Hence we do almost the same as when doing an insertion. Set i = ∞
+and Qi = root, this is the same as in insert. Then in a while loop we construct Q using
+the notation from eq. (5.1), so long as p /∈Q we construct the next cover set in the same
+way as we have done for insert, except this time we overwrite Qi as we do not need the
+levels themselves, we only need to find a node associated with p. When p ∈Q we stop
+and assign the node associated with p to Np.
+Now that we have Np we can traverse back up the tree using the parent links, and check
+for each links we use if the parent is part of the cluster. If it is, then the parent of the
+current Np is the cluster center that p is assigned to, or alternatively at some point the
+grand parent link is empty and we know that the parent of Np is the root.
+Dynamic k-clustering
+33
+==PAGE:42==
+6
+Proving the Cover Tree
+In this section we shall first prove some preliminary theorems to aid us in the later proofs.
+Notice that for all proves regarding the run time of the cover trees, and later the cover
+forest, are in expectancy, as we use hash tables for our cover sets, which have O(n) space
+usage and O(1) insertion, deletion and query run time in expectancy.
+6.1
+Approximations, preliminary theorems and lemmas
+In the next two sections we shall see a selection of proofs that will prove run time and
+correctness of the developed algorithms. Before tackling this we need to prove some facts
+about the cover tree as the analysis of proving the algorithms depend on these facts. Notice
+that three theorems (theorem 6.1.3, theorem 6.1.5 and theorem 6.1.6) were initially proven
+by [AL06] in their lemmas 4.1, 4.2 and 4.3. They are reiterated here for the completeness
+of the analysis, and as the covering invariant were changed, some of the inequalities are
+also changed. Not greatly, but changes have been made. In addition to this we take care
+to explore and explain the reasoning behind the argumentation, and include graphical
+representations. This will yield a more detailed analysis that is easier to follow. The goal
+of this extra detail is to make it possible for the reader to be convinced by the proofs
+without any diﬀiculty or resorting to further material.
+Theorem 6.1.1. A single cover tree is an 8-approximation of the k-center problem
+Proof. Given a point set S and a Cover tree T on S. To select a k-center clustering we
+traverse down the T layer by layer. Each new node encountered is added to the point set
+K. This continue so long as |K| < k. Consider two layers |Ci| < k < |Ci−1|, then all
+points in Ci are added to K, followed by arbitrary distinct points in Ci−1 until |K| = k.
+As |Ci| < k, there is at least one point p ∈Ci that cover at least two points in Ci−1. One
+such point may be p itself, but the other is distinct from p. Points in Ci−1 are at least
+2i−1 apart, and each ball of size 2i−2 cover at most one point in Ci−1. The optimal cluster
+can therefore cover at most k points, but Ci−1 > k. 2i−2 is therefore a lower bound for
+the optimal clustering as it cannot cover all points in Ci−1 using a radii smaller than this.
+The maximal radii of Ci is at most 2i. Due to the Covering property of T, this radii covers
+all points in Ci−1, but not necessarily points in {Ci−2...Ci−∞} as they may be further than
+2i away from any point in Ci. Though, as P−∞
+i=0 2i = 2i+1, the points in Ci can cover all
+their descendent with a radii of 2i+1, therefore covering all of S.
+As 2i+1
+2i−2 = 8, the solution K on the cover tree T is an 8-approximation k-clustering.
+Lemma 6.1.2. The space usage of a single Partial Representation Cover Tree is O(n).
+Proof. We assume that every point has at most one parent other than its self parent, as it
+is possible for a child to be covered by multiple points in they layer above, hence multiple
+points are candidates for parenthood. Notice that each point we either insert or repair
+can at most split one other node at one spot. Thus creating a node for itself as a child in
+addition to at most one self child of the parent. Hence for each insertion two new nodes
+are added, or in the repair case one extra node is added and one is relocated. Thus at
+most two new nodes are added when splitting a node due to manipulation of the tree.
+Therefore with n points the space usage of a single cover tree is O(n).
+34
+Dynamic k-clustering
+==PAGE:43==
+Lemma 6.1.3. The number of children of any node p is bounded by c4
+Proof. In order to bound the number of children of a node p, assume that p located in Ci,
+then we need to bound the number of points that can exist in the ball B(p, 2i)∩B(p, 2i−1).
+To satisfy the covering and separation invariants, then the children in q ∈Ci−1 must satisfy
+the distance 2i−1 < d(p, q) ≤2i. We have illustrated this range in fig. 6.1, where the grey
+band illustrates this range. Hence this is the area where it is possible for children of p to
+exist, outside this area and the child would either be too close or too far away from q to
+be a child.
+Because we assumed p ∈Ci we know that every child q ∈Ci−1 must be more than 2i−1
+away from each other due to the separation invariant. We illustrate this distance with the
+solid circles in fig. 6.1a. Note that here {a, b, c} are all children of p, and p has its self
+child. We can use this fact to see that every ball of size 2i−2 is disjoint from one another,
+as the separation of 2i−1 do not allow overlap. Furthermore, because of the separation,
+every such ball can only cover one point in Ci−1. Hence, if we can figure out how many
+balls of size 2i−2 that are centered in the grey area (B(p, 2i)∩B(p, 2i−1)) we will know the
+maximum number of children p can have. We shall however bound this less tightly than
+this.
+Notice that it is possible for these balls of size 2i−2 to extend past the ball B(p, 2i), this
+is illustrated with a, the dotted circle has size 2i−2 and extends past the grey area, even
+though a is within it. So let us bound the number of balls by the larger ball B(p, 2i+1),
+this ball is illustrated with the dotted dashed circle. The question is now, how many small
+balls of size 2i−2 can fit inside the large ball B(p, 2i+1).
+We are still looking for an upper bound, hence we will discard overlap of the smaller balls.
+Imagine than all our balls are compliant and not rigid, but that they will always hold the
+same amount of space. Thus they can stretch and squish in order to fit better into place.
+So we simply take the space available in the large ball and divide it by the space required
+by the small balls. This will yield the absolute maximum number of balls. Like so:
+Number of balls in B(p, 2i+1) = |B(p, 2i+1)|
+|B(q, 2i−2)|
+(6.1)
+Clearly |B(p, 2i) ∩B(p, 2i−1)| ≤|B(p, 2i+1) ∩B(p, 2i−1)|, so we can bound the number of
+ball centers in |B(p, 2i) ∩B(p, 2i−1)| with the result form eq. (6.1).
+|B(p, 2i) ∩B(p, 2i−1)| ≤|B(p, 2i+1) ∩B(p, 2i−1)| ≤|B(p, 2i+1)|
+|B(q, 2i−2)|
+(6.2)
+Observe that because d(p, q) ≤2i, for every child q we have that |B(p, 2i+1)| ≤|B(q, 2i+2)|.
+This is illustrated by the large solid outer circle in fig. 6.1b. In definition 2.3.2 we defined
+the expansion constant as follows. |B(p, r)| ≤c|B(p, r/2)|. So we can use c to manipulate
+|B(p, 2i+1)| ≤|B(q, 2i+2)| like this.
+|B(p, 2i+1)| ≤|B(q, 2i+2)| ≤c|B(q, 2i+1)| ≤... ≤c4|B(q, 2i−2)|
+(6.3)
+Combining this with eq. (6.2), and the fact that |B(q, 2i−2)| = 1 on Ci−1 we get
+|B(p, 2i+1)|
+|B(q, 2i−2)| ≤c4|B(q, 2i−2)|
+|B(q, 2i−2)|
+≤c4
+(6.4)
+Hence the number of children of any node p is bounded by c4
+Dynamic k-clustering
+35
+==PAGE:44==
+p
+a
+b
+c
+−2
+−1
+0
+1
+2
+−2
+−1
+0
+1
+2
+(a) The parent p and its three children {a, b, c},
+notice the grey area is where children of p ∈Ci
+are allowed to exist in Ci−1. Solid circles has
+radii 2i−1.
+p
+a
+b c
+−2
+−1
+0
+1
+2
+−2
+−1
+0
+1
+2
+(b) The same figure as fig. 6.1a, but a has the
+ball B(a, 2i+2) added. The figure is also at 1/2
+scale. The small solid circles has radii 2i−1 the
+big solid circles has radii 2i+2.
+Figure 6.1: Grey band starts at distance < 2i−1 from p and ends at distance ≤2i. Dashed
+dotted circle has radii 2i+1, dashed circle has radii 2i + 2i−2 and dotted circles has radii
+2i−2. i = 0.
+Lemma 6.1.4. Any cover set Qi centered on p has size at most c4
+Proof. One could see this as general instance of theorem 6.1.3, this time we wish to
+bound the amount of small circles that fit inside all of the bigger circle. We pretty much
+already did this, so the argumentation will be shortened here, notice however that the
+scales are one bigger to make the result more clean. Notice that Qi ⊆B(p, 2i+1), hence
+|Qi| ≤|B(p, 2i+1)|. From the separation invariant we know that for all points {q, q′} ∈Qi
+we have d(q, q′) > 2i. Hence for all q ∈Qi, the balls B(q, 2i−1) are disjoint. Just like in
+theorem 6.1.3 we will bound the number of B(q, 2i−1) balls that fit inside the bigger ball
+B(p, 2i+2). We now do the same steps as in eq. (6.1) to eq. (6.3) to find that
+|B(p, 2i+2)|
+|B(q, 2i−1)| ≤c4|B(q, 2i−1)|
+|B(q, 2i−1)|
+≤c4
+(6.5)
+Lemma 6.1.5. For all points p ∈S and r > 0, if there exists a point q ∈S such that
+2r < d(p, q) ≤3r, then
+
+1 + 1
+c2
+
+|B(p, r)| ≤|B(p, 4r)|
+(6.6)
+Proof. Due to d(p, q) > 2r any ball B(q, 3r) would not quite encompass all of the ball
+B(p, r). In addition notice that d(p, q) can be at most 3r, if d(p, q) = 3r, then any ball
+B(q, 3r) would reach the center of the ball B(p, r), but no further. So, intuitively, if we add
+an extra r to the radii of ball B(q, 3r), then it would reach the close part of B(p, r), the
+center and the far side of the ball. In fig. 6.2 we see exactly this in two dimensions. The
+36
+Dynamic k-clustering
+==PAGE:45==
+grey band denotes the range 2r < d(p, q) ≤3r. We see that B(qclose, 3r) almost encompass
+all of B(p, r) as it has distance strictly greater than 2r, we also see that B(qfar, 3r) reaches
+the center of p. The dotted and dashed ball B(qfar, 3r + r) reaches all the way and as
+such we can conclude that so long as 2r < d(p, q) ≤3r then
+B(p, r) ⊂B(q, 3r + r)
+(6.7)
+|B(p, r)| < |B(q, 4r)|
+(6.8)
+Due to definition 2.3.2 we know that |B(p, r)| ≤c|B(p, r/2)|. Therefore, we can manipulate
+eq. (6.8) in the same way as in theorem 6.1.3 to gain
+|B(p, r)| < c2|B(q, r)|
+(6.9)
+Dividing by c2 on both sides will be useful later
+1
+c2 |B(p, r)| < |B(q, r)|
+(6.10)
+Observing that d(p, q) > 2r we can also conclude that any two balls B(p, r) and B(q, r)
+must be disjoint. Also, observe that as d(p, q) ≤3r any ball B(p, r) and B(q, r) must be
+subsets of B(p, 4r). Thus B(p, r) ∪B(q, r) ⊆B(p, 4r), hence
+|B(p, r)| + |B(q, r)| ≤|B(p, 4r)|
+(6.11)
+Now we can combine the knowledge we have, from eq. (6.10) and eq. (6.11) we can gain
+eq. (6.6) in the following way
+|B(p, r)| + 1
+c2 |B(p, r)| ≤|B(p, 4r)|
+|B(p, r)| + |B(p, r)|
+c2
+≤|B(p, 4r)|
+|B(p, r)|
+1
++ |B(p, r)|
+c2
+≤|B(p, 4r)|
+|B(p, r)| · c2 + 1 · |B(p, r)|
+1 · c2
+≤|B(p, 4r)|
+|B(p, r)|(c2 + 1)
+c2
+≤|B(p, 4r)|
+|B(p, r)|
+(1 + c2)
+c2
+
+≤|B(p, 4r)|
+|B(p, r)|
+1 · 1 + 1 · c2
+1 · c2
+
+≤|B(p, 4r)|
+|B(p, r)|
+ 1
+c2 + 1
+1
+
+≤|B(p, 4r)|
+|B(p, r)|
+
+1 + 1
+c2
+
+≤|B(p, 4r)|
+Finishing the proof.
+Lemma 6.1.6. The maximum depth of any node p is O(c2 log(n))
+Proof. The proof will be done in three major parts. First we will define an annuli Si and
+show that if q ∈Si is a grandparent of p, then q ∈Ci. Then we will show that p only has
+Dynamic k-clustering
+37
+==PAGE:46==
+p
+qclose qfar
+−3
+−2
+−1
+0
+1
+2
+3
+−3
+−2
+−1
+0
+1
+2
+3
+Figure 6.2: Grey area denotes 2r < d(p, q) ≤3r. The closest and furthest extreme points
+on this band are illustrated with qclose and qfar, such that qclose has distance as close to 2r,
+while still maintaining 2r < d(p, qclose), and such that qfar is at distance d(p, qfar) = 3r.
+Dotted circles have radii r, solid circles have radii r3 and dashed dotted circles have radii
+4r.
+unique grandparents in {Ci...Ci+3}. Finally we use theorem 6.1.5 to gather a lower bound
+on the number of nodes in the annuli around p, we shall apply it multiple times until this
+bound reached the node count n, where the number of applications will yield the number
+of non empty annuli, which in turn will yield the depth of p.
+First we will define the annuli Si = {q ∈S : 2i+1 < d(p, q) ≤2i+2}. This is the range
+where the grandparents of p are located, any closer and they are only parents, further away
+and they are grand-grandparents, etc. As mentioned, we wish to determine the location of
+q ∈Si in the cover sets C. Assume that q ∈Si is a grandparent of p, and that for some j
+we have q ∈Cj. As q is a grandparent of p then we know that d(p, q) ≤2j+1, as this is the
+maximum distance to any descendent of q. We also had that q ∈Si, hence the distance
+to p, one of its grandchildren, is 2i+1 < d(p, q) ≤2i+2. Thus it must be that j ≥i, since
+2i+1 < d(p, q) due to Si and d(p, q) ≤2j+1 due to the maximum descendant range, and
+as d(p, q) ≤2i+2 due to Si, in order for all three of these to be true j must be at least as
+large as i. So we have that q ∈Si and q ∈Cj, and that j ≥i. Due to the nesting property
+we can gather that Cj ⊆Ci, hence it must be true that if q ∈Si then q ∈Ci.
+We now know, that for any q in an annuli Si we have that q ∈Ci.
+Now, let us show that p only has unique grandparents in cover sets {Ci...Ci+3}, note
+that these grandparents must still be located in Si. We start from Ci as this is the first
+cover set where p has a grandparent that is also located in Si as we found earlier. Let us
+now consider the nodes located in Ci, they each are separated by at least 2i, due to the
+separation property. Then also by the separation property, nodes in Ci+1 are separated
+by 2i+1, nodes in Ci+2 are by 2i+2 and finally those in Ci+3 are separated by 2i+3. Notice
+that because Si were contained in the ball B(p, 2i+2) another ball centered around any
+point q ∈Si with radii 2i+3 can encompass all of B(p, 2i+2). Hence if the grandparent q
+is located in Ci+3, then no other points q′ ∈Si can be located in Ci+3 also. Thus there
+38
+Dynamic k-clustering
+==PAGE:47==
+are only unique grandparents in the cover sets {Ci...Ci+3}. Or alternatively because of
+the nesting property, for all j > i + 3, there are no other grandparents than that already
+located in Ci+3.
+Now we can move on to finding the amount of non empty annuli that are centered on p,
+as this will yield the maximal depth of p.
+To do so, we apply the growth bound from theorem 6.1.5 such that the radii r = d(p,q)
+2
+,
+where q is the closest point to p. This application can be seen in fig. 6.3. The reason
+for choosing r = d(p,q)
+2
+is that when applied to
+ 1 + 1
+c2
+
+|B(p, r)| ≤|B(p, 4r)|, we gain
+that |B(p, r)| = 1 because the closest point q is 2r away, and that provided the distance
+d(p, q) = 2i+1 which is the lower limit of the annuli, we gain that the radii 4d(p,q)
+2
+= 2d(p, q),
+which fits with the upper limit of 2i+2. Because of this we can flip the inequality to gain
+|B(p, 4r)| ≥
+
+1 + 1
+c2
+
+|B(p, r)| =
+
+1 + 1
+c2
+
+(6.12)
+As we stated in the beginning, now we then apply the growth bound multiple times such
+that we now find a new closest point q′ such that d(p, q′) ≥8r. The reason for 8r is that
+8d(p,q)
+2
+= 4d(p, q) which in turn is the upper limit of the first ball we looked at, that is
+B(p, 4r) where r were set to d(p,q)
+2
+, this in turn also implies that each annuli that we apply
+the bound to are disjoint, as we start one just after the previous stopped.
+With our new point q′ we then apply the growth bound in the same way, so the new radii
+r′ = d(p,q′)
+2
+. As B(p, r′) is equal to B(p, 4r) =
+ 1 + 1
+c2
+
+we gain that
+|B(p, 4r′)| ≥
+
+1 + 1
+c2
+
+|B(p, r′)| =
+
+1 + 1
+c2
+
+|B(p, 4r)|
+=
+
+1 + 1
+c2
+ 
+1 + 1
+c2
+
+=
+
+1 + 1
+c2
+2
+If we repeat this procedure we effectively count the number of ancestors that p has located
+in each annuli around p. Note that we only count one point for each annuli, though there
+may be several points in that annuli that are actually ancestors of p. But we are using
+this to find a lower bound, so we are only interested in each annuli being non empty.
+The question now is how many times can we apply this before we have counted n non
+empty annuli. Or alternatively, what power is
+ 1 + 1
+c2
+
+raised to, in order to equal n. We
+can find this by taking the log of n with the base of
+ 1 + 1
+c2
+
+to obtain
+log(
+1+ 1
+c2
+)(n) =
+log(n)
+log
+ 1 + 1
+c2
+
+(6.13)
+Hence there are
+log(n)
+log
+(
+1+ 1
+c2
+) non empty annuli with grandparents centered at p. Additionally,
+previously we found that each unique grandparent in any annuli Si for any i exists in at
+most 4 cover sets {Ci, ..., Ci+3}, hence the number of non empty annuli centered on p is
+at most O
+log(n)
+log
+(
+1+ 1
+c2
+). Due to definition 2.3.2 we know that c ≥2, hence there is a constant
+number of grandparents located in each annuli Si. Therefore, as O(c2 log(n)) ≥O
+log(n)
+log
+(
+1+ 1
+c2
+)
+for all n ≥1 we conclude that the maximum depth of any node p is O(c2 log(n)).
+Dynamic k-clustering
+39
+==PAGE:48==
+p
+q
+q′ ≥8r
+q′′ ≥8r′ = 32
+r = d(p, q)
+2
+|
+{z
+}
+r′ = d(p, q′)
+2
+|
+{z
+}
+r′′ = d(p, q′′)
+2
+|
+{z
+}
+0 1 2
+4
+8
+16
+32
+Figure 6.3: The process of applying the growth bound can be seen here. p is the center
+point in the process, first we find q and assign r st.
+r =
+d(p,q)
+2
+, then q′ is found st.
+d(p, q′) ≥8r, then we assign r′ = d(p,q′)
+2
+= 4r, notice that this is the spot where the annuli
+q were located in stops. Continuing we then find q′′ st. d(p, q′′) ≥8r′ = 32r, then assigning
+r′′ = d(p,q′′)
+2
+= 4r′ = 16r.
+qi
+qi−1
+qi−2
+q′
+i
+q′
+i−1
+q′
+i−2
+d(q, q′) = 2i
+pi
+pi−1
+pi−2
+Qi
+Qi−1
+Qi−2
+Figure 6.4: The propagation of nodes {q, q′} ∈Qi−2 when removing the parent node
+p ∈Qi−1.
+Lemma 6.1.7. Given two nodes {q, q′} ∈Qi−2 that are children of p ∈Qi−1. If p is
+removed and if q is propagated up such that q ∈{Qi−2, Qi−1, Qi}, then q ∈Qi can cover
+q′ ∈Qi−1. Hence all but one node are propagated up at most one level.
+Proof. fig. 6.4 is used as a conceptual help, and we will use the labels as shown. E.g.
+qi−1 = q ∈Qi−1.
+Observe that both qi−2 and q′
+i−2 are covered by pi−1, hence d(q, q′) ≤2i.
+When p is
+removed, we have w.o.l.g. that q ∈{Qi−2, Qi−1, Qi}. As d(p, q) ≤2i−1 we have that
+B(p, 2i−1) ⊆B(q, 2i). We also have that d(q, q′) ≤2i, therefore it is clear that the ball
+B(q, 2i) cover q′. Hence q′
+i−1 can use qi as a parent and is only propagated one level up.
+Now that we have proven the maximum number of children and maximum depth of any
+node in our cover tree, we can use these to analyse all the other algorithms we have
+explored up until now. We shall prove their run time with regard to c and n. As we have
+40
+Dynamic k-clustering
+==PAGE:49==
+many algorithms we will go through them in turn, building up to proving both correctness
+and run time of insertions and removals of points in the cover tree.
+6.2
+Insert Algorithms
+In this section we shall prove the correctness and run time of all the algorithms used when
+inserting points into a cover tree. We shall start with the algorithms that function as they
+are. That is, they do not require other algorithms during their execution to function.
+6.2.1
+SplitNode - algorithm 5
+Theorem 6.2.1. SplitNode() - algorithm 5 correctly splits an input node qo into a top qo
+and bottom node qb such that they cover the same range as the original qo but the top stops
+at level i and the bottom starts at level i −1.
+Proof. Assuming that qo can be split.
+We create qb such that High(qb) = i −1, and
+Low(qo), and Low(qo) = i.
+Hence {qo, qb} cover the same levels and there is no gap
+between them. qb is set as child of qo so the tree is still connected. Every child c has top
+range High(c) = Low(qb) −1 as they were children of qo initially when it had lower range
+Low(qb), else c could not have been a child of qo in the first place, hence every child qo
+had initially are removed, and then added to qb. Notice that separations and coverings are
+preserved from the original node qo to the now children of qb as the top and low ranges of
+qb and c are preserved. The nesting is preserved as no gaps are left between qo and qb and
+as {qo, qb} cover the same levels.
+Now every instance of qo in the cover sets {Qx, ..., Qy} where x > y.
+We know from
+definition 5.1.7 that Low(p) represents the lowest level that p exists on a branch of the cover
+tree that has no branches on the levels {a, ..., b}, and then branches at b −1. As Qi ⊆Ci
+for all i and that CoverSet.Index = i, we see that if CoverSet.Index ̸∈Range(qo), then
+i ̸∈Range(qo), hence qo ̸∈Qi.
+If qo existed in some Qi, then in the beginning the original qo existed in Qi, hence now
+that {qo, qb} cover the same levels as the original qo. If the new qo should not be in Qi,
+then the only node with that range label is qb, hence we replace it.
+Theorem 6.2.2. SplitNode() - algorithm 5 has run time O(c4 log(n)).
+Proof. We do some constant time manipulations followed by a for-each over the children.
+Due to theorem 6.1.3, p has at most c4 children, and from theorem 6.1.6 we know there
+are at most O(c2 log(n)) cover sets. Hence the run time is O(c4 + c2 log(n)). Which is
+bounded by O(c4 log(n)).
+6.2.2
+Partial Insert - algorithm 4
+Theorem 6.2.3. Given a cover tree T on S with some root, Partial Insert(p, root,
+High(root)) - algorithm 4 will construct the cover tree T ∪p.
+Proof. The construction of Q in step 1. is analogous to the full representation construction
+due to theorem 5.2.1. Assuming that the root has infinite range1 then at some point we
+will either enter 2.′ and return False, as we found a cover set that contained p, hence p
+were already in T. Otherwise if p /∈S, then at some point we will enter 2. and return True.
+The general structure and method is identical to that of algorithm 1, so see theorem 4.2.4.
+We will however cover the changes here.
+1In the implementation it has maximum range 21024 due to the limits of the C# double
+Dynamic k-clustering
+41
+==PAGE:50==
+When inserting p we may have to split some other node q. This happens if and only if
+i > Low(q), that is, the lower limit of the parent, is smaller than the current level i that
+satisfied d(p, Qi) ≤2i. Hence if we inserted p as normal, then it would be inserted too low,
+so we run SplitNode(q, i). If i > Low(q) were false, then we know that i = Low(q) as it
+cannot be that i < Low(q) as we would have replaced q with its child in the construction
+of Q. We now have that Low(q) = i, d(p, q) ≤2i and d(p, q) > 2i−1. Hence when we
+now insert p with range {i −1, ..., −∞} we satisfy the nesting, covering and separation
+invariants.
+Theorem 6.2.4. Partial Insert() - algorithm 4 has run time O(c6 log(n))
+Proof. When inserting p we insert it under some other node q, as we saw in theorem 6.1.6,
+the furthest down q can exist is O(c2 log(n)). Hence for every recursive call, we decrees
+one level. Thus the recursion is called at most O(c2 log(n)) times. During the construction
+of Q we evaluate the nodes currently in Qi. This size varies, but due to theorem 6.1.4 we
+found that |Qi| = O(c4). The construction of Qi−1 take no more time than Q. Inside 3.b
+we have the following known run-times. SplitNode = O(c4) due to theorem 6.2.2. Finally,
+the climb up the recursive ladder take again O(c2 log(n)) time. Hence, the run time of
+Partial Insert is O(c6 log(n)).
+6.3
+Remove Algorithms
+We will again first analyse the algorithms that can function on their own, before moving
+on to the nested algorithms.
+6.3.1
+RemovePFromQis() - algorithm 8
+Theorem 6.3.1. RemovePFromQis() - algorithm 8 removes all instances of Np in all
+relevant Qi for all i.
+Proof. We only get cover sets from {Qi, Qi+1, ..., Q∞} where i is the current level that we
+have reached going up again. It is fine that we do not update the cover sets Qi−1 or lower,
+as we will not revisit those again, as we have passed them in the recursion going up. But
+we might revisit every cover sets {Qi, Qi+1, ..., Q∞} when we later repair the children of
+the removed node. So they need to be updated. It is easy to see that we remove every
+instance of Np in all relevant Q ∈Qs.
+Theorem 6.3.2. RemovePFromQis() - algorithm 8 has run time O(c2 log(n))
+Proof. We found in theorem 6.1.6 that the maximum depth of any node p is at most
+O(c2 log(n)), hence we know that there are at most O(c2 log(n)) levels, and as such at
+most as many Qi. Hence the run time is O(c2 log(n)).
+6.3.2
+ReplaceInQis() - algorithm 9
+Theorem 6.3.3. ReplaceInQis() - algorithm 9 replaces all instances of Nold with Nnew
+in all relevant Qi for all i.
+Proof. The correctness of algorithm 9 follows from the correctness of algorithm 8 found
+in theorem 6.3.1.
+Theorem 6.3.4. ReplaceInQis() - algorithm 9 has run time O(c2 log(n))
+42
+Dynamic k-clustering
+==PAGE:51==
+Proof. The run time of algorithm 9 follows from the run time of algorithm 8 found in
+theorem 6.3.2.
+6.3.3
+MergeNode() - algorithm 11
+Theorem 6.3.5. MergeNode() - algorithm 11 correctly merges a Parent node with its self
+child, such that the possible children of the self child are reassigned and that the relevant
+cover sets Qi are updated.
+Proof. If there is no child, then Parent is a leaf, hence there is nothing to merge. If the
+Parent has multiple children, the split is justified, hence there is nothing to merge. Only
+when the Parent has a single child (the self child) is there a possibility of merging. The
+links between Parent and Child are removed to cut Child out of the tree from the Parent.
+If the Parent did not have a GrandChild (self child of Child) then Child had no self child
+either hence Child were a leaf and merging between Parent and Child is suﬀicient. If
+GrandChild exists, then we need to reassign the GrandChild and its possible siblings to
+Parent. Hence, foreach child Child had (this includes GrandChild) we reassign them to
+Parent, hence Parent cover the range that the original Parent and Child did, and all
+necessary connections are re-established. Notice also that the range High(Parent) do not
+change, and Low(Parent) = Low(Child) after the merge, hence neither the covering nor
+the separation invariants are violated. And as the new Parent node cover the same as the
+old parent and old child, the nesting invariant is also satisfied.
+Finally, as we are working on the cover sets Qi we need to update those. We only get
+cover sets from {Qi−1, Qi+1, ..., Q∞} where i−1 is the current level that our removal node
+were located in. It is fine that we do not update the cover sets Qi−2 or lower, as we
+will not revisit those again as we have passed them in the recursion going up. But we
+might revisit every cover sets {Qi−1, Qi, ..., Q∞} when we later repair the children of the
+removed node. Hence we run ReplaceInQis() to replace all instances of Child with Parent
+in {Qi−1, Qi+1, ..., Q∞}.
+Theorem 6.3.6. MergeNode() - algorithm 11 has run time O(c2 log(n) + c4)
+Proof. Most of the elements of this algorithm is constant time manipulation. There are
+two places where there are loops though. Firstly, looping through every child of Child take
+O(c4) time, due to theorem 6.1.3, secondly, looping through every Qi take O(c2 log(n))
+time, as we create a Qi for each level from the top to the place where p exists, and we
+know from theorem 6.1.6 that there are at most that many. We know from theorem 6.3.4
+that ReplaceInQis() has run time at most O(c2 log(n)). Adding these two will yield the
+run time O(c2 log(n) + c4).
+6.3.4
+RemovePFromTree() - algorithm 7
+Theorem 6.3.7. RemovePFromTree() - algorithm 7 removes any and all connections to
+the removal node Np
+Proof. We see that first every child of Np gets their parent removed, then all children of
+Np are also removed, this take care of all the connections that goes down the tree. To
+remove the connections going up, if Np has a Parent then we remove Np from the children
+of the Parent and remove the parent link of Np. Now Np have been detached from the
+lower and upper tree. Notice that we just removed a node from a the child list of Parent,
+if Np were the last child other than the self child, then the split below the Parent is no
+Dynamic k-clustering
+43
+==PAGE:52==
+longer justified. Hence we run MergeNode() with Parent and Qs as input to merge the
+Parent if it is possible.
+Theorem 6.3.8. RemovePFromTree() - algorithm 7 has run time O(c4 log(n))
+Proof. We know from theorem 6.1.3 that a node p has at most O(c4) children, hence the
+first for-each take at most O(c4) time. Due to theorem 6.3.6 we know that MergeNode()
+take at most O(c2 log(n) + c4). Hence adding these yields the run time O(c2 log(n) + c4),
+which is bounded by O(c4 log(n))
+6.3.5
+RepairChildren() - algorithm 10
+Theorem 6.3.9. RepairChildren() - algorithm 10 reassign every node in Ch(Np) to a new
+parent, such that every tree invariant is satisfied.
+Proof. Due to the first loop, every child is considered. As the children were assigned to
+Np that had lower range i−1 we know due to the separation property that every child has
+distance at least 2i−2 from each other, and every other node in S. Hence no node located
+in Qi−2 would be able to cover them, as they only cover nodes that are closer or at distance
+2i−2. The same is true for all Qj where j = {i −2, ..., −∞}. The opposite is true for all
+j = {∞, ..., i−1}. Therefore we only need consider the cover sets {Qi−1, Qi, ..., Q∞}. Each
+cover set Qi do not necessarily contain a suitable parent, but there is a chance. Notice
+that the root has practically2 infinite range, hence we know that at least the root can
+cover the child, thus we are bound to reassign the child at some point. We set i′ = i −1
+to consider cover sets from Qi−1.
+Looping {Qi−1, Qi+1, ..., Q∞} with the child c we first consider Qi−1, Note that Range(c) =
+{l, ..., i −2} where l ≤i −2. If d(c, Qi−1) > 2i′ = 2i−1 we know that there is no point q
+in Qi−1 such that d(c, Qi−1) ≤2i′. We also know that Qi−1 contain all the points q such
+that d(p, q) ≤2i. Hence there is no point that can act as parent and there is no point
+to violate the separation property. As such we can safely add c to Qi−1 and extend its
+top range one higher. The extension of the range is to keep the tree in order, where the
+insertion into Qi−1 is to keep the cover sets in order. We increment i′ and consider Qi
+next.
+If however d(c, Qi−1) > 2i′ = 2i−1 were false, we know the opposite. There must exist
+some q ∈Qi−1 such that d(c, qi′) ≤2i′ = 2i−1. From the covering property we know that
+if we assign c as a child of q, then the covering property is not violated. The separation
+is not violated either, as we would have assigned c to a parent one level lower (in the
+general case). We know there must exist a Parent in Qi′ as discussed before. The Parent
+can cover an arbitrary amount of levels, so we have to consider this. Firstly, if the labels
+fit, that is Low(Parent) −1 = High(c), then we can the child c safely as the cover and
+separation follows from above.
+If not, then we know that Low(Parent)−1 < High(c). As the first time we could observe
+such a parent node is QLow(Parent), but we have only observed {Qi−1, ..., QHigh(c)}. Hence,
+to observe a parent such that Low(Parent) −1 > High(c) we must observe QHigh(c)+j,
+where j ≥1. But we have not done so yet. Hence Low(Parent) −1 < High(c). We now
+know that Low(Parent) ≤High(c). And as the range labels did not fit, we also know
+that it must be a coalesced node. Thus we are able to split it split it.
+2This is again due to the double limit of 21024 in C#
+44
+Dynamic k-clustering
+==PAGE:53==
+As we increment i′ after inserting c into Qi′, when we are in the else statement we have
+inserted c into every cover set {Qi−1, ..., Qi′−1}. We also know that d(q, Qi′) ≤2i′ so there
+is a point Parent ∈Qi′ that can cover p.
+As stated before, if the range labels fit we can just add c as a child of Parent as
+Low(Parent) = i′ and High(c) = i′ −1. If we split Parent, then we split it such that the
+top node Parentt has low range i′ and we insert like normal. Observe that the covering,
+separation and nesting invariants are satisfied as d(c, Qi′) ≤2i′, d(c, Qi′−1) > 2i′−1 and as
+Range(c) = {l, ..., i′ −1}.
+Theorem 6.3.10. RepairChildren() - algorithm 10 has run time O(c8 log(n)).
+Proof. From theorem 6.1.3 we know that Np has at most O(c4) children, and due to theo-
+rem 6.1.6 we construct at most O(c2 log(n)) cover sets as that is the lowest Np can exist.
+Adding c to cover sets, extending its range, adding it as a child or incrementing i′ all take
+constant time. From theorem 6.2.2 we know that SplitNode() take at most O(c4 log(n)) and
+we do this at most once for every child, hence for each child we use O(c2 log(n)+c4 log(n))
+which is bound by c4 log(n). Hence the total run time is O(c8 log(n)).
+6.3.6
+Partial Remove - algorithm 6
+Theorem 6.3.11. Given a tree T on the points S, a removal point p and an initial cover
+set Q∞= root. Partial - Remove(p, {root}, ∞) - algorithm 6, will construct a cover tree
+T \ p, that satisfies all cover tree invariants as described in section 4.1
+Proof. Let us first see that the negative stop conditions 0.b act as we expect. If Qi = ∅,
+then as Qi−1 = {q ∈Q : d(p, q) ≤2i}, then there were no children q of Qi+1 such that
+d(p, q) ≤2i+1. If p ∈S, the d(p, S) = 0, then this is impossible. Thus we can conclude
+that p /∈S, returning false here will set RES on step 3. to false, which will then enter the
+else part of step 4. which will return false once again. Hence the recursive stack will be
+popped and false will be returned to the final call to say that p /∈S.
+Assuming that p ∈S then d(p, S) = 0. Then as each cover set Qi−1 contains the children
+of Qi that are closer or at distance 2i, and as T satisfy the three invariants, especially the
+covering invariant, we know that at some point during the execution we will find a node
+Np associated with p in some Qi, we will continue to observe the children of Np in the
+lower cover sets until we find the leaf node of p. This node must exist due to the nesting
+invariant. Consider that we find the leaf node Np in Qi−1 we return true to the recursive
+call and step up to level i. Now RES is true and we continue into step 4. As we found the
+node Np in Qj for j = i −1, we know that Np ∈Qi−1, hence we are able to extract it and
+set the variable as shown.
+Consider that we were not able to set the variable Np, this tells us that there existed no
+node in Qi−1 that were associated with p, thus there exists no node Np ∈Qi−1 ⊆Ci−1,
+hence we neither need to remove p from the tree, nor the cover set. Thus we return true,
+as we cannot be sure we have removed p entirely from the tree yet. Hence we recurs one
+step up to level i + 1 where we observe cover set Qi, this is also where we end up after
+having removed Np in steps {4.a, 4.a′, 4.b}, this ensures that we remove p from the entire
+tree.
+Returning to step 4.′, assuming that Np ∈Qi−1 we enter the if of 4.′. Here we check
+if Np is the root, as we need to do something differently if it is. For now, assume that
+Np ̸= root, we skip 4.′′ and continue to 4.a, up until now we have not changed T or the
+Dynamic k-clustering
+45
+==PAGE:54==
+cover sets in any way, so we assume that both T and the stack of cover sets are valid.
+That is T satisfy its three invariants and each cover set are constructed as specified. We
+run RemovePFromTree() with the specified input, and due to theorem 6.3.7 we cut all
+references to Np in T. Hence, Np is not in the child list of its former parent, its parent
+link points nowhere, its child list is empty and all its former children have no parent. We
+have now removed Np from T as no node in T points to Np now.
+RepairChildren() does all its work from the stack of cover sets, so we must update this
+stack before we can re-assign the former children of Np. Hence in step 4.a′ we run Re-
+movePFromQis() which due to theorem 6.3.1 removed all instances of Np in all relevant
+Qi on the cover set stack. Now the only reference we have to Np is the variable in the
+remove algorithm where we have also saved a set containing its former children.
+Now that we have cut Np out of T and removed it from the cover sets, there is no possibility
+that we reassign any of its former children to it again, hence they must be assigned to some
+other node in T, notice also that the node root has infinite range3, so when reassigning
+the former children of Np there exists some node in T that can cover them, hence they
+can be inserted as children, thus reconnecting each of the children sub-trees. To reassign
+the children we use RepairChildren() and due to theorem 6.3.9 we know that in the end,
+all invariants are satisfied
+Casting our minds back to step 4.′′ where we checked if Np were the root. Let us now
+consider this case as well. We shall assume that Np has at least one child, otherwise we
+would leave T empty. It should be easy to see that we can assign a new root with the
+steps before 4.a. The only difference in the steps {4.a, 4.a′, 4.b} is 4.a′. Here we replace
+Np with root instead of just removing it. Before entering 4.a′, we have created a new root
+that has range ∞to −∞hence it is able to cover any node by splitting it in the correct
+places. The cover sets Np existed in denote the levels Np had children it covered. Hence
+every cover set Np did not exist in, it did not cover anything. Hence, replacing Np with
+root that can be split anywhere to cover anything, ensures that anything Np covered in
+any cover set, can be covered by root. To finish of we reassign the children by running
+RepairChildren() which we know will satisfy all invariants due to theorem 6.3.9.
+Theorem 6.3.12. Partial - Remove() - algorithm 6 has run time O(c12 log(n)2)
+Proof. Due to theorem 6.1.6 we know that the lowest level for any node p is O(c2 log(n))
+hence there are at most that many cover sets we recurs over. Due to theorem 6.1.4 we
+know that each cover set has size at most O(c4). The construction of each Q take at most
+this much time, and the construction of Qi−1 take at most the time of constructing Q.
+Inside step 4. we have the following run times.
+O(c4 log(n)) due to theorem 6.3.8, O(c2 log(n)) due to theorem 6.3.2 and O(c8 log(n))
+due to theorem 6.3.10 if Np were not the root. Or O(c4 log(n)) due to theorem 6.3.8,
+O(c2 log(n)) due to theorem 6.3.4 and O(c8 log(n)) due to theorem 6.3.10 if Np were the
+root.
+Combining this yields a final run time of O(c2 log(n)c4c8 log(n)) = O(c12 log(n)2).
+Theorem 6.3.13. It is possible to modify Partial - Remove() - algorithm 6 such that it
+has run time O(c6 log(n))
+3Maximum range is 21024 due to C#
+46
+Dynamic k-clustering
+==PAGE:55==
+Proof. The main idea behind the proof it to show that everything that is done during the
+execution of remove, can be done level by level. That is we are able to store the necessary
+information in order to carry out the tasks of the original sub-algorithms one level at a
+time. We have five algorithms we need to convince ourselves that they can be executed
+level by level.
+RemovePFromQis()
+Normally we remove Np from all the levels up that it is present
+in. Assume that we only remove Np from level Qj−1 for some j, then when the recursion
+happen we end up on level j + 1, assume that Np were in multiple levels above level j,
+then we know that Np ∈Qj+1−1 = Qj as we did not remove it yet, hence we enter 4.′ and
+remove it again.
+ReplaceInQis()
+We know that Np is the root, let us keep it in a new variable root′.
+Now set the condition of 4.′′ to test both if Np = root or if Np = root′. If we set root′ as
+the old root, and root as the new root on level j, then we replace Np ∈Qj−1 with root.
+Now, on level j + 1 we enter 4.′′ as Np ∈Qj+1−1 = Qj and as Np = root′. Hence we
+replace Np ∈Qj−1 with root again.
+RemovePFromTree()
+The problem with this one is that it runs MergNode() which
+run ReplaceInQis(). Notice that we can store the Child and Parent values that we gain
+from MergeNode(). Assume that when we remove Np it has top range t and low range l,
+then when we merge the parent with its self child, then the parent has low range t + 1.
+Now for every Qi where l ≤i ≤t, Np should at some point be removed from the levels,
+as that were the range it would have occupied in the full representation. Initially when
+removing Np we are on level l + 1 and we effectively remove Np from Ci where l ≤i ≤t
+(effectively, as we have no notion of Ci in the partial representation). When we would
+normally replace Child with Parent in Qi for all the same levels we only replace it in the
+first level Np were removed, that is Ql.
+Let us save the vales Child, Parent and t, now when we recurs up one level to l + 2 we
+can try to remove Np from Cl+2−1 = Cl+1, but we have already done this, as we removed
+it in the range {l, ..., t}, so we just need to sort out the replacement of Child with Parent
+in Ql+2−1 = Ql+1, this can be done easily as we have all three pieces of information. We
+see that the same procedure can be made for the next level up. We actually do this for
+all the levels up until level t + 1 where we replace Child with Parent in Qt+1−1 = Qt
+which coincidentally is the the last level Child exists in before being taken over by Parent
+in Qt+1, we saved the value t so we know when to stop the replacement on the recursive
+ladder. To finish, observe that we can only enter this process once, as it is necessary
+for Parent to be some other point than that of p, otherwise we would immediately exit
+MergeNode() as Parent = Np would have no self child, as that would have been removed
+at this point.
+RepairChildren()
+Instead of propagating one child all the way up until it finds a
+suitable parent, we propagate all children up once before moving to the next level with
+any of them. We also add them to the Qi’s. Assuming that Np had top range t and
+low range l we know that there is at least one parent q that covers Np on level t + 1,
+that is d(q, p) ≤2t+1. Observe that for every child c that Np had, we have the distance
+d(p, c) ≤2l. We see that d(q, c) ≤2t+1 + 2l which is bounded by 2t+2 as 2t+2 = 2(2t+1) ≥
+2t+1 + 2t ≥2t+1 + 2l. Hence d(q, c) ≤2t+2. This imply that we will find a parent for any
+c in Qt+2 at the very latest.
+Dynamic k-clustering
+47
+==PAGE:56==
+Now, assume that the parent of Np is N′
+p, a self parent. Obviously N′
+p has low range
+t + 1, hence its children has top range t, when we reach N′
+p and propagate its children, we
+might not be done with the children of Np as their parent might first be found with a low
+range of t + 2, hence we might have an overlap of 2 levels where the children of two Np’s
+are kept track of. Thus there are at most O(2c4) = O(c4) children that are propagated
+up at any point in time, due to theorem 6.1.3. As such we can keep track of every child
+and propagate them up the tree and insert them under the correct parents when they are
+found. To that end we need to look at SplitNode().
+SplitNode()
+The instance where we split a node is when we have found a suitable
+parent for some child. Let us assume that the parent is Nq and that it has range {x, ..., y}
+where x > y. Let us also assume that the child c has top range t, hence every node of p
+and every child of any node of p have been removed or propagated up in all levels Ci for
+−∞≤i ≤t. The split of Nq will happen at t+1, such that Nt
+q has range {x, ..., t+1} and
+Nb
+q has range {t, ..., y}, where as we recall from fig. 5.3 Nb
+q is the lower node (We again use
+superscripts to denote the top and bottom nodes). We have inserted the relevant children
+into all levels up to and including Qt, hence there exists just one cover set Qi for t ≤i ≤∞
+where Nt
+q exists, but where Nb
+q should be instead, that is Qt, as all Qi for i = {−∞...t−1}
+are now irrelevant, and all Qi for t + 1...x should contain Nt
+q. A single replacement can
+easily be made on that level.
+Finishing up
+We see that every algorithm and its operations can be done level by level
+without having to store too much information, or causing conflicts because some data have
+not been updated yet but should have been, or loosing references to data that should be
+updated.
+Due to theorem 6.1.6 we know that the lowest a node can exist is O(c2 log(n)) hence there
+are so many levels that we need to evaluate. For each level RemoveFromTree(), ReplaceIn-
+Qis() and RemovePFromQis() for a single layer can be done in O(c4 + c4) = O(c4), O(1)
+and O(1) time respectively. SplitNode() can be done in O(c4 + 1) time. We know from
+theorem 6.1.7 that all but one node are propagated up at most one level when removing a
+their parent, hence for each set of children that are entered into RepairChildren() we split
+nodes at most 3 times, once for the one node that is propagated up more than once, and
+twice for all the other nodes that might split the propagated node in two places. Hence
+for each set of O(c4) children we run SplitNode() at most O(1) times, hence the run time
+of RepairChildren() is O(c4 + 3c4) = O(c4). Every other action take at most this amount
+of time. Hence for one level we can do all the operations in O(c4 +1+1+c4 +c4) = O(c4)
+time. This is done for each O(c2 log(n)) hence we get the run time proposed.
+6.3.7
+Clustering Algorithms
+Theorem 6.3.14. kClustering() - algorithm 12, given an integer k, the algorithm will
+return a set of points Cluster = {c0, c1, ..., ck−1} such that |Cluster| = k and that i′ is as
+small as possible.
+Proof. Assuming k ≤|S| it is easy to see we will break out of the while loop at some
+point. As the initial clustering is the root, all sub-trees below are possible to reach form
+the initial clustering. Therefore there exists no node in T that cannot be reached.
+The for-each ensure that we only move on to the next level i′ −1 when the every node of
+the cluster has been replaced with the children of the cluster. This ensure that we only
+move on to the lower level, when we are ready.
+48
+Dynamic k-clustering
+==PAGE:57==
+The break statement ensure that as soon as |Cluster| = k, we return the clustering.
+Looping through every node c ∈Cluster we test if Low(c) > i′, if it is, then the node
+is ”out of range” of the current level i′ that we are building the clustering from. Hence
+it should be replaced with its self child, if and only if every one of its other children are
+already in the clustering, as they otherwise would not have been covered. Hence we add
+them to the clustering one by one before replacing the current c with its self child when
+every other child is are already in the clustering. This ensures that we only replace a node
+and drop down a level when every child is already in the clustering, and thus is covered.
+We do not know what radii that the clustering must use. Only that the layer it were made
+on is i′.
+Notice that when adding the last center to Cluster, we have that i′ equals the top value
+of that node. Consider that we want two clusters, and the size of our tree is k. Say the
+root splits off to the second node at j such that |Qj−1| = 2. We see that Low(root) > i′
+when i′ = j −1, hence we add the child, replace the root with its self child and break
+out of the for-each. Now we decrement i′ so i′ = j −2. But notice, as our tree has size
+2 there are no other nodes, hence with k = 2 we can have a radii of 0.
+But had we
+returned i′ we would have interpreted it as a radii of 2j−2+1, j −2 for the level and +1
+to cover every descendent. Returning r = maxc∈Cluster{Low(c)} ensures that we always
+return the absolute lowest level that every cluster node is present at, hence they cover
+every descendent with 2r+1.
+Theorem 6.3.15. kClustering() - algorithm 12 has run time O(c6 log(n)k)
+Proof. Assuming that |S| = n ≥k. Notice that the while loop decrement the level each
+time it finishes, and as we saw in theorem 6.1.6 the maximum depth of any node p is
+O(c2 log(n)), hence there are at most O(c2 log(n)) levels we can decrees to before reaching
+the lowest possible node, and as n ≥k we have had the possibility of evaluating all n
+nodes, hence the while runs at most O(c2 log(n)) times. The for-each run through every
+center in Centers, and |Centers| ≤k at all times, so the for-each run at most O(k) for
+each initialisation. In the for-each we check if every child exists in Centers, as we found in
+theorem 6.1.3, the number of children of any node p is bounded by O(c4). Hence checking
+O(c4) children against a hash table take O(c4). Thus the run time is O(c6 log(n)k)
+Theorem 6.3.16. Given a cover tree T on the points S, a query point p ∈S and an
+initial cover set Q∞= root. FindParentCenter() - algorithm 13, will return the cluster
+center c that p is assigned to or return the point p itself if p is a center.
+Proof. We know from theorem 6.3.14 that Cluster contains the cluster centers of T given
+k. Hence if p ∈Cluster, p is a center thus p is returned. If not, then if the nodes associated
+with p had been above the nodes in Cluster, then due to the nesting invariant p would
+have been in Cluster. Hence, if p is not a center and is somewhere lower in the tree.
+Given that the root with infinite range cover every point in S, the root must cover p,
+otherwise p /∈S. The construction of Q is correct due to theorem 5.2.1. As p ∈S, we
+have p ∈T, hence p must have some parent that cover it. There must therefore be some
+node q ∈Qi−1, that have p as a child, hence at some point during the construction p ∈Q,
+and we stop. So long as the grand parent of Np exists, so does the parent of Np, if the
+grandparent do not exist, then the parent of Np is the root, as it is the only node without
+a parent. Hence returning Pa(Np) will return the root. So long as the parent of Np is not
+in Cluster, then the parent is not a center, hence setting Np to its parent will move it one
+Dynamic k-clustering
+49
+==PAGE:58==
+link up the tree, if Pa(Np) ∈Cluster then the parent of Np is a center, and as nodes can
+only have one parent we have that this parent is the center p is assigned to. Notice that
+we are not interested in the nodes that we might pass through, only what node we hit in
+the Cluster is relevant.
+Theorem 6.3.17. FindParentCenter() - algorithm 13 has run time O(c6 log(n)k)
+Proof. We know that kClustering() has run time O(c6 log(n)k) from theorem 6.3.15. We
+know from theorem 6.1.6 that the lowest a node can exist is O(c2 log(n)), hence the
+traversal down take at most this amount of steps, and each step evaluate at most O(c4)
+nodes due to theorem 6.1.4. The traversal back up take at most the time of the traversal
+down. Hence the run time is O(c6 log(n)k + (c2 log(n)c4) ≤O(c6 log(n)k)
+50
+Dynamic k-clustering
+==PAGE:59==
+7
+The Cover Forest
+In this section we will create a forest of cover trees, a Cover Forest. This is of course
+inspired by the techniques used in [Gor+20] that showed how this forest principal could
+be applied for Navigating nets.
+Almost all of the work of [Gor+20] were focused on
+analysing the Navigating net collection and showing the theoretical bounds of this. As
+such their analysis is also based on this navigating net perspective. In this section we
+shall take the perspective of the cover forest, where we will first give an introduction to
+the cover forest and show how it is constructed. Then we will quickly describe how to
+handle this forest of cover trees, which, as it turns out, is not diﬀicult, as most of the
+work is done in the individual cover trees. The forest is really just a wrapping and some
+management of data. Finally we shall look through the proofs of correctness and run time,
+most of this will again just be a short extension of the cover tree correctness and run time.
+To end of we will also prove the (2 + ϵ)-approximation of the cover forest, and show how
+to compute the clustering and interpret the levels to get a cluster radii.
+7.1
+The data structure and the algorithms
+The idea behind the cover forest is the same as the collection of navigating nets used in
+[Gor+20]. We will start by introducing some variables that will be used throughout this
+section.
+The value α is the base that we raise to some power when evaluating the levels. In the
+cover trees we used α = 2 exclusively and created the level radii using 2i, now we will use
+αi to create the level radii. Notice that α > 0 as we neither want 0 or negative distances
+on the level radii.
+The value m is the amount of cover trees that are in the cover forest. It will become
+apparent soon how this is calculated and how it interacts with the forest and the approx-
+imation.
+In addition to α and m, we also use an offset ∆for each cover tree. [Gor+20] creates sets
+of scales that are given to each navigating net. Here we do it a bit differently, as each cover
+tree do not have an internal set of scales it works on. They just increment or decrement
+the level variable i in order to change their scale. This ∆is used to determine the level
+radii of each level in each cover tree, and is interpreted in the following way. The covering
+radii of a node located on level i is αi+∆−1, where ∆= f
+m, where 1 ≤f ≤m and is the
+”index” of the tree. Say that we have n trees, then we could collect them in a forest like
+so F = {T1, T2, ..., Tn}. And they would each have ∆’s like so { 1
+n, 1
+n, ..., n
+n}. Hence for any
+given tree Tf and level i, the covering radii for a node on this level is αi+∆−1 = αi+ f
+m−1.
+Hence to create a forest of m trees we just create a list of size m where each spot is reserved
+to a tree, then we insert a tree in each spot and give it its specific ∆and the α that we
+are using. Each cover tree will now handle all the insertions and removals of points given
+this new ∆. Notice that each cover tree maintains its own unique tree structure defined
+by this ∆.
+To insert a new point p /∈S we simply run through every T ∈F and insert p into T using
+its insert algorithm, the exact same is done when removing a point p ∈S. Every individual
+tree will then handle where exactly p is inserted or removed in the tree structure.
+Dynamic k-clustering
+51
+==PAGE:60==
+To obtain the clustering of F we run the kClustering() algorithm on every tree with the
+same k, from this we will get a set of points Cluster and a value i′ in return. These are
+collected in the set Fcluster = {{T1Cluster, T1i′}, {T2Cluster, T2i′}, ..., {TmCluster, Tmi′}}. Now
+that we have FCluster it is a simple task of evaluating every value i′ for each tree and then
+returning the tuple {TjCluster, Tji′} where Tji′ had the smallest i′. We shall later prove this
+next fact, but for now we return the contents of TjCluster as the cluster centers and return
+αi′
+α
+α−1 as the radii used for the clustering.
+7.2
+Proofs
+7.2.1
+Correctness and run time of Cover Forest
+Theorem 7.2.1. Insertion of a point p /∈S into a cover forest F, can be done such that
+for every tree T ∈F we have that T ∪p, and removal of a point p ∈S from a cover forest
+F, can be done such that for every tree T ∈F we have that T ∩p
+Proof. We iterate over every tree T ∈F, run the insert algorithm algorithm 4 on each
+tree. Due to theorem 6.2.3 we know that for each tree T ∈F it is run on it will construct
+the cover tree T ∪p. Hence for every tree T ∈F we will have that T ∪p. The correctness
+of the removal instance follows from the same argument
+Theorem 7.2.2. Insertion of a point p /∈S into a cover forest F can be done in
+O(c6 log(n)m) time. Removal of a point p ∈S from a cover forest F, can be done in
+O(c6 log(n)m)
+Proof. The run times follow from the run times of insert theorem 6.2.4 and remove theo-
+rem 6.3.13, just that we do each a total of m times, once for every tree. Note that we will
+soon see what size m has.
+7.2.2
+Cover forest (2 + ϵ)-approximation
+The main idea behind the following approximation proof were first presented by [Gor+20]
+(Lemma 3.1 and Lemma 3.2) in the context of navigating nets. To that end, this proof
+have been altered to the context of the cover forest, with the addition of more detailed
+descriptions of the analysis and argumentation. The goal of this is the same as for theo-
+rem 6.1.3, theorem 6.1.5 and theorem 6.1.6, make it possible for the reader to be convinced
+by the proof without any confusion. In addition to this, the last part of Lemma 3.2 by
+[Gor+20] when calculating the value of m were not quite correct. We will later see how.
+In theorem 6.1.1 we saw that a single cover tree can be used to compute an 8-approximation
+of the k-clustering problem. In this section we will prove that the cover forest can be used
+to compute an (2 + ϵ)-approximation of the k-clustering problem. We shall do this in the
+following steps. Firstly we shall find the maximum distance from a center point to any
+other point in S. We will consider the optimal solution and its radii. Then, by computing
+the minimization approximation factor, we shall find the approximation factor in terms
+of α and m. To end of we will show that this approximation factor can be bounded by
+some other function that is only reliant on ϵ, then by setting α and m to values that only
+rely on ϵ we will gain the approximation factor with regard to ϵ which will then show the
+(2 + ϵ)-approximation.
+Definition 7.2.1. The contents of layer i, that is Ci, in the cover tree T with covering
+radii αi+∆−1 = αi+(f/m)−1 is Cf
+i .
+Lemma 7.2.3. For every point p ∈S and all 1 ≤f ≤m cover trees in forest, there exists
+a point c ∈Cf
+i∗such that d(p, c) ≤costf = αi∗
+α
+α−1 for all α > 1.
+52
+Dynamic k-clustering
+==PAGE:61==
+Proof. We see that the points c ∈Cf
+i∗cover every point in p−1 ∈Cf
+i∗−1 as d(c, p−1) ≤αi∗.
+We also see that every point p−1 can cover every point p−2 ∈Cf
+i∗−2 as d(p−1, p−2) ≤αi∗−1.
+This is of course due to the covering invariant.
+Using this we can see that d(c, p−2) ≤αi∗+ αi∗−1. Extending this for all levels i below
+we can see that for any point p ∈S we have.
+d(c, p) ≤αi∗+ αi∗−1 + αi∗−2 + αi∗−3...
+(7.1)
+≤αi∗
+α0 + αi∗
+α1 + αi∗
+α2 + αi∗
+α3 ...
+(7.2)
+≤
+∞
+X
+j=0
+αi∗
+αj = αi∗+1
+α −1 = αi∗α1
+α −1
+(7.3)
+≤αi∗
+α
+α −1
+(7.4)
+Hence for any center c ∈Cf
+i∗and any point p ∈S, we have d(p, c) ≤costf = αi∗
+α
+α−1
+We are now going to discard i and the notion of multiple trees, we shall combine every
+tree and every level into a single variable j. When iterating over j we will reach every level
+of every tree. Hence, for some single value of j we have a minimum value costf∗located
+at some level of some tree. Which level and tree is not important, only that it exists and
+has some radii defined on j and m.
+To get an idea for the construction, then when incrementing j once, we move from the
+tree with some value f to the tree with value f +1. For every m times we increment j, we
+move from one level to the next. Think now that ⌊j/m⌋is the level i in the trees we are
+located. And that (j mod m) is the tree with that value f that we are located in, such
+that 1 ≤f ≤m. Hence when j ∈Z we can reach any level in any tree with just the single
+value of j. Notice that as we can reach any level and tree with j, we have that costf∗is
+the best we can do.
+We will define costf∗=
+α
+α−1α(j/m)−1 for some j ∈Z, notice that this is the clustering radii
+that cover every point in S, the radii used in the specific layer and tree is just α(j/m)−1.
+To get the approximation we now consider the optimal clustering OPT, we will find its
+radii and we can use this to compare to our best radii. The OPT clustering do not need
+to have cluster centers on the points in S, so it is not a clustering we can actually make.
+We shall compare this to the clustering Cj−1 mod m
+⌊j−1/m⌋
+, notice that we have decreased j by
+one, hence the size of the clustering is now bigger than k, as j is the smallest value such
+that its corresponding clustering size is exactly k. We know that OPT cover every point
+in Cj−1 mod m
+⌊j−1/m⌋
+, and as
+Cj−1 mod m
+⌊j−1/m⌋
+ > k, we have that
+Cj−1 mod m
+⌊j−1/m⌋
+ > |OPT| = k, hence
+there must be at least two points {p1, p2} ∈Cj−1 mod m
+⌊j−1/m⌋
+that are covered by a single point
+c∗∈OPT.
+Notice that the due to the separation property we know that d(p1, p2) > α(j−1/m)−1, as
+this is the layer radii for that level and tree. From the triangle inequality we get that
+d(c∗, p1) + d(c∗, p2) ≥d(p1, p2). As OPT is the optimal clustering, it will have as small a
+radii as possible. As we have said it covers both p1 and p2. W.o.l.g. assume that if the
+radii covers p1 then it also covers p2. Hence we get that OPT = d(c∗, p1). When combining
+this with d(c∗, p1) + d(c∗, p2) ≥d(p1, p2) we get that 2OPT ≥d(c∗, p1) + d(c∗, p2). Hence
+we finally get that OPT ≥α(j−1/m)−1/2.
+Dynamic k-clustering
+53
+==PAGE:62==
+Lemma 7.2.4. The approximation radio costf∗
+OPT is bounded by
+2α
+α−1 ·
+m√α
+Proof.
+costf∗
+OPT ≤
+α
+α−1α
+j
+m−1
+α
+j−1
+m −1/2
+=
+α·α
+j
+m −1
+α−1
+α
+j−1
+m −1
+2
+= α · α
+j
+m−1
+α −1
+·
+2
+α
+j−1
+m −1
+(7.5)
+≤
+2α · α
+j
+m−1
+(α −1)α
+j−1
+m −1 =
+2α · α
+j
+m−1
+(α −1)α
+j−1
+m
+α1
+=
+2α·α
+j
+m −1
+1
+(α−1)α
+j−1
+m
+α1
+= 2α · α
+j
+m−1
+1
+·
+α1
+(α −1)α
+j−1
+m
+(7.6)
+≤2α2 · α
+j
+m−1
+(α −1)α
+j−1
+m
+= 2α2 · α
+j−m
+m
+(α −1)α
+j−1
+m
+=
+2
+α −1 · α2 · α
+j−m
+m
+α
+j−1
+m
+=
+2
+α −1 · α
+j−m
+m +2
+α
+j−1
+m
+(7.7)
+≤
+2
+α −1 · α
+2m+j−m
+m
+α
+j−1
+m
+=
+2
+α −1 · α
+m+j
+m
+α
+j−1
+m
+=
+2
+α −1 · α
+m+j
+m −j−1
+m =
+2
+α −1 · α
+m+j−(j−1)
+m
+(7.8)
+≤
+2
+α −1 · α
+m+1
+m
+=
+2
+α −1 · α1+ 1
+m =
+2
+α −1 · α1α
+1
+m =
+2α
+α −1 · α
+1
+m
+(7.9)
+≤
+2α
+α −1 ·
+m√α
+(7.10)
+We shall bound the approximation ratio with some other statement that only rely on ϵ, so
+using only ϵ we need to find some values for α and m. When we have those values, and we
+can show that
+α
+α−1 ≤(1+ϵ) ≤1 and that
+m√α ≤(1+ϵ) ≤1 for some value of ϵ. Then when
+we set α and m to some relation on ϵ. Then we can show that
+2α
+α−1
+m√α ≤2(1 + ϵ)(1 + ϵ),
+for that value of ϵ. Which will in turn show the (2 + ϵ)-approximation.
+Theorem 7.2.5. Given α = 2/ϵ and m = (1+ϵ)(ln(2)−ln(ϵ))
+ϵ
+, then the approximation ratio
+costf∗
+OPT
+≤(2 + ϵ).
+Which imply that the Cover forest is can be used to find a (2 + ϵ)-
+approximation for the fully dynamic k-clustering problem.
+Proof. We wish to show that
+2
+α
+α −1
+m√α ≤2(1 + ϵ)(1 + ϵ)
+(7.11)
+Observe that
+2(1 + ϵ)(1 + ϵ) = 2 + 4ϵ + 2ϵ2 ≤2 + 6ϵ
+(7.12)
+When 0 < ϵ ≤1, as then ϵ2 ≤ϵ. What we will actually do in this proof, is prove a
+(2 + ϵ′)-approximation, where ϵ′ = ϵ/6. So we prove a (2 + 6ϵ)-approximation, which just
+simplifies to (2 + ϵ). Let us start by finding some value for α such that (1 + ϵ) ≥
+α
+α−1 for
+some α.
+(1 + ϵ) ≥1 +
+ϵ
+2 −ϵ ≥1(2 −ϵ) + ϵ
+2 −ϵ
+≥
+2
+2 −ϵ ≥
+2
+2ϵ
+ϵ −ϵ ≥
+2
+ϵ2
+ϵ + (−1)ϵ ≥
+2
+ϵ
+  2
+ϵ −1
+
+(7.13)
+≥2
+ϵ ·
+1
+2
+ϵ −1 ≥
+2
+ϵ
+2
+ϵ −1
+1
+≥
+2
+ϵ
+2
+ϵ −1
+(7.14)
+The first inequality pair might look a bit odd, but it works, as we always divide ϵ with
+something greater than 1 hence it is always smaller than ϵ itself. In the last inequality, if
+54
+Dynamic k-clustering
+==PAGE:63==
+we substitute 2
+ϵ with α. Then notice that we get our original
+α
+α−1. Hence if α = 2
+ϵ, then
+(1 + ϵ) ≥
+α
+α−1.
+Now let us turn our attention to the last part, that is ( m√α). Let us once again find some
+value for m, such that if we chose that or greater, then
+m√α ≤(1 + ϵ). Which will then
+satisfy eq. (7.11).
+m√α ≤(1 + ϵ)
+(7.15)
+α
+1
+m ≤(1 + ϵ)
+Dropping the square root
+(7.16)
+log1+ϵ(α
+1
+m ) ≤log1+ϵ(1 + ϵ)
+Apply log1+ϵ()
+(7.17)
+log1+ϵ(α
+1
+m ) ≤1
+(7.18)
+1
+m log1+ϵ(α) ≤1
+Extract exponent
+(7.19)
+1
+m log1+ϵ(α)
+m
+≤1
+m
+Divide by m
+(7.20)
+log1+ϵ(α) ≤m
+(7.21)
+log1+ϵ(1/ϵ) ≤m
+Apply α
+(7.22)
+ln(2) −ln(ϵ)
+ln(1 + ϵ)
+≤m
+(7.23)
+Now we bound ln(2)−ln(ϵ)
+ln(1+ϵ)
+≤m, by applying the lower bound of 1 −1
+a ≤ln(a) to ln(1 + ϵ)
+to gain that
+ln(1 + ϵ) ≥1 −
+1
+1 + ϵ = 1 + ϵ −1
+1 + ϵ
+=
+ϵ
+1 + ϵ
+(7.24)
+If we apply
+ϵ
+1+ϵ to the denominator of ln(2)−ln(ϵ)
+ln(1+ϵ) , then we make the whole bigger. Hence
+if we chose anything bigger than this, then it is also bigger than the original where the
+lower bound were not inserted. Inserting the lower bound we get that
+ln(2) −ln(ϵ)
+ln(1 + ϵ)
+≤ln(2) −ln(ϵ)
+ϵ
+1+ϵ
+≤ln(2) −ln(ϵ)
+1
+· 1 + ϵ
+ϵ
+≤(1 + ϵ)(ln(2) −ln(ϵ))
+ϵ
+(7.25)
+For the sake of comparison to [Gor+20], we can rewrite the above differently.
+(1 + ϵ)(ln(2) −ln(ϵ))
+ϵ
+= (1 + ϵ)ln(2) −ln(ϵ)
+ϵ
+(7.26)
+= (1 + ϵ)ln(2) + (−1) ln(ϵ)
+ϵ
+(7.27)
+= (1 + ϵ)ln(2) + ln(ϵ−1)
+ϵ
+(7.28)
+= (1 + ϵ)
+1
+ϵ ln(2) + 1
+ϵ ln(ϵ−1)
+
+(7.29)
+= (1 + ϵ)(ϵ−1 ln(2) + ϵ−1 ln(ϵ−1))
+(7.30)
+But we shall remain with the last value in eq. (7.25). Hence if we chose an m such that
+(1+ϵ)(ln(2)−ln(ϵ))
+ϵ
+≤m, then ln(2)−ln(ϵ)
+ln(1+ϵ)
+≤m. We see now that we have bounded eq. (7.23),
+which in turn means we have proven eq. (7.15). Combining this with α = 2/ϵ we gain that
+2
+α
+α−1
+m√α ≤2(1 + ϵ)(1 + ϵ) where 0 < ϵ ≤1. Yielding the (2 + 6ϵ)-approximation, which
+imply the (2 + ϵ)-approximation. From eq. (7.26) to eq. (7.30) we see that our value for
+m found in [Gor+20] is off by a factor of (1 + ϵ) compared to the bound found here.
+Dynamic k-clustering
+55
+==PAGE:64==
+8
+Experimental results
+In this section we evaluate the effectiveness and eﬀiciency of the developed algorithms,
+that is, the insert, remove and query algorithms. The algorithms described in chapter 5
+and chapter 7 are implemented using C# .NET Core 3.1. All executions were done on
+Windows 10 Version 20H2 using a Intel(R) Core(TM) i5-4690K CPU @ 4.20GHz with
+16GB of system memory.
+To get a base case that we can compare to throughout this section, let us first consider
+how a single Cover Tree preforms before moving on to testing the Cover Forest. In This
+case we can see our single tree as a Cover Forest with just one tree T.
+This experiment was conducted on synthetic data. In total we generate 20.000.000 (20M)
+points of data, each point has an identifier and two values denoting its position on the
+plane. Note that for each point with coordinate values x, we have that ||x||∞= maxi |xi| ≤
+10M. During the test we had a sampling rate of 1/50000. That is, for every 50K points
+that were inserted into T, we sampled the runtimes at that point count. So we insert
+points into T in sets of 50K, note that we do not time this process. When we reach values
+of 50K, 100K, 150K, ..., the insertion is temporarily stopped. Now 2K points are randomly
+sampled from the points currently in T, then for each of these points we first remove it
+from T, then insert it back into T. We time the process of removing and inserting. When
+every point have been removed and reinserted we log the current point count, and the
+average time it took to remove and reinsert the 2K points.
+In the initial experiments we will compute α and m, in the following way.
+m = ⌈
+1
+ln(1 + E) ln(1 + E)−1)⌉
+(8.1)
+α = 1 + E−1
+(8.2)
+Where E = 1
+2
+√
+2√ϵ + 2 −2. These are the values used in the [Gor+20] code. Later on
+we shall compare these wit some other values for α and m, and also different methods of
+computing them.
+8.1
+Single Tree Insert and Removal test
+Observe fig. 8.1, it contains the logged data for the insertion and removal times for the
+single tree case. Note that there are 8 out of the 800 values that have been removed
+as they were significant outliers. The graph with these 8 points included can be seen in
+fig. B.2 and the data can be seen in table A.3 where the removed data points have been
+highlighted in red and bold font. For now know that
+Insert((10250000, 2.7631), (12800000, 3.3132), (14800000, 3.9739), (16550000, 4.1995))
+(8.3)
+Remove((8500000, 2.5222), (11450000, 3.1013), (14100000, 3.8951), (19950000, 4.9613))
+(8.4)
+are excluded from fig. 8.1 in order to see the curve of the majority of the data points.
+In addition to the two sets of data we have added three equation lines, two green and
+one magenta. The green lines use an equation in O(log(n)2) and the magenta use an
+56
+Dynamic k-clustering
+==PAGE:65==
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+1.6
+1.8
+2
+·107
+0
+5 · 10−2
+0.1
+0.15
+Number of points
+ms
+Insert
+Remove
+Figure 8.1: Average Insertion and Removal time on synthetic data, sample rate of 1/50000
+and sample count of 2000
+equation in O(log(n)). Looking at the data we firstly see that the trend of the remove
+algorithm follows the O(log(n)2) equation line very well, confirming the expected runtime
+of O(c12 log(n)2) as we found in theorem 6.3.12. The insert algorithm is however more
+complicated. From theorem 6.2.4 we expect a runtime of O(c6 log(n)), but the trend follows
+the green O(log(n)2) equation line more closely than the magenta O(log(n)) leading to a
+mismatch in the runtime found in theorem 6.2.4 and the runtime implied by the data.
+8.2
+Forest Tests
+Let us now consider the case where different values for ϵ are used. In this test we used
+two data sets, the ”twitter_nodups” data set and a synthetic data set.
+8.2.1
+Twitter data set - Insert, Remove and Query
+The ”twitter_nodups” data set consist of 1M points. We sampled once every 10k inser-
+tions, and we sampled a total of 1000 points each time. The experiment were made for
+three values of ϵ, ϵ = {4, 1, 0.5}, which yielded α = {2.37, 3.41, 5.45} and m = {2, 9, 21}.
+The results of the insertion / remove test can be seen in fig. 8.2 where we again have added
+the magenta O(log(n)) and green O(log(n)2) lines. Looking at fig. 8.2a we see that insert
+roughly follow the O(log(n)) line, and that remove follow the O(log(n)2) line. Already
+at ϵ = 1 in fig. 8.2b we see that both insertion and removal follow a more linear trend.
+Which is only made more extreme at ϵ = 0.5 in fig. 8.2c. Why this linear trend is present
+is unknown, as the base case fig. 8.1 did not show this behaviour, even though it had 20
+times the input points. If we look at fig. 8.1 we see that an insertion at 1M points in the
+single tree took about 5·10−2 = 0.05ms, which would lead us to believe that with 21 trees
+an insertion would take 21 · 0.05 = 1.05ms, but in reality it took about 30 times longer.
+In fig. 8.3 the same story of linear behaviour at lower ϵ is told, just for the query time.
+8.2.2
+Synthetic data set
+The synthetic data were made from 1M randomly generated points (with replacement),
+each point had an identifier and two coordinates that map it to the plane.
+For each
+coordinate set x we have that ||x||∞= maxi |xi| ≤20000. Looking at both fig. 8.4 fig. 8.5
+we see the same story as with the Twitter data set. For smaller ϵ, the runtime trends
+roughly follow the equation lines. We see the same tendency to become more linear in
+Dynamic k-clustering
+57
+==PAGE:66==
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+5 · 10−2
+0.1
+0.15
+0.2
+0.25
+Number of points
+ms
+Insert
+Remove
+(a) ϵ = 4, m = 2
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+2
+4
+6
+8
+Number of points
+ms
+Insert
+Remove
+(b) ϵ = 1, m = 9
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+10
+20
+30
+40
+50
+Number of points
+ms
+Insert
+Remove
+(c) ϵ = 0.5, m = 21
+Figure 8.2: ”twitter_nodups” dataset with 1M points, sample rate 1/10k and sample
+count of 1000 - Insertion and Removal times
+58
+Dynamic k-clustering
+==PAGE:67==
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+Number of points
+ms
+20
+50
+100
+200
+(a) ϵ = 4, m = 2
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+5
+10
+15
+Number of points
+ms
+20
+50
+100
+200
+(b) ϵ = 1, m = 9
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+20
+40
+60
+80
+Number of points
+ms
+20
+50
+100
+200
+(c) ϵ = 0.5, m = 21
+Figure 8.3: ”twitter_nodups” dataset with 1M points, sample rate 1/10k and sample
+count of 1000 - Query times
+Dynamic k-clustering
+59
+==PAGE:68==
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+5 · 10−2
+0.1
+0.15
+0.2
+Number of points
+ms
+Insert
+Remove
+(a) ϵ = 4, m = 2
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+2
+4
+6
+Number of points
+ms
+Insert
+Remove
+(b) ϵ = 1, m = 9
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+20
+40
+60
+80
+100
+120
+Number of points
+ms
+Insert
+Remove
+(c) ϵ = 0.5, m = 21
+Figure 8.4: Synthetic data set with 1M points, sample rate 1/10k and sample count of
+1000, dimension 2, norm 20k - Insertion and Removal times
+nature when we decrese ϵ. Curiously, the amount of time used for the evaluation of the
+synthetic data is quicker when ϵ = 4.
+About 0.17ms for removal compared to about
+0.25ms for removals for the Twitter data. But at ϵ = 0.5 we see the complete opposite,
+with synthetic remove at 100ms and Twitter remove at 50ms. This may be constituted to
+more computation used because of the larger distances involved in the synthetic data. The
+synthetic data can have coordinates between {−20k, 20k} for x and y, where the Twitter
+data has values between {−180, 180} for x and {−90, 90} for y. The same is true when
+comparing fig. 8.3c with fig. 8.5c
+8.3
+Different α and m
+In this section we will look at the solution quality and query time for different forests
+with different values for α and m.
+We will first look at the values that we used in
+eq. (8.1) and eq. (8.2).
+We shall also look at the values that were given in Lemma
+3.2 in [Gor+20], and the O-Notation values from the same Lemma.
+Finally we will
+60
+Dynamic k-clustering
+==PAGE:69==
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+0.2
+0.4
+0.6
+Number of points
+ms
+20
+50
+100
+200
+(a) ϵ = 4, m = 2
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+5
+10
+15
+Number of points
+ms
+20
+50
+100
+200
+(b) ϵ = 1, m = 9
+0.2
+0.4
+0.6
+0.8
+1
+·106
+0
+50
+100
+150
+Number of points
+ms
+20
+50
+100
+200
+(c) ϵ = 0.5, m = 21
+Figure 8.5: Synthetic data set with 1M points, sample rate 1/10k and sample count of
+1000, dimension 2, norm 20k - Query times
+Dynamic k-clustering
+61
+==PAGE:70==
+try the values that we deduced in theorem 7.2.5. During the testing we shall use ϵ =
+{6, 4, 2, 1, 0.5, 0.25, 0.1, 0.05, 0.01}, these 9 values will give a 9 by 9 matrix where we tested
+the solution quality and measured how long it took to get that solution for each pair of
+α and m, hence we get 81 · 2 values for each different approach to computing α and m.
+Generally we shall see that larger values of m will yield better solutions, but also larger
+query times. Interestingly, when m is set to 2 and especially 1, we see that for bigger α
+we will see mush worse solutions, especially at very large alpha. This is most likely due
+to the imprecise nature of the distances that are used with the larger values of α where
+there are few trees to compensate. We will clearly see that when both α and m are large
+we will see the best solutions. Notice however that for all of the tests there are significant
+amounts of diminishing returns on the solution quality for lower values of ϵ.
+Note that the value of m must be an integer, hence non integer values are rounded to the
+closest integer in the actual test. The values for α need not be rounded, but similar to m
+it needs to be at least one, in all cases where this were not possible, 1 were added. In the
+cases where it were not necessary, nothing were added.
+Common for all the tables we shall see now is also the structure. On top we see the time
+and on the bottom we see the result quality. The coloured cells are coloured with respect
+to all the tables we shall see. This will make it easier to compare the values across the
+different solutions without looking too closely at the values. There will be four tables,
+one for each set of α and m calculation schemes. We will consider the code values in
+table 8.1, the report values in table 8.2, the O-Notation values in table 8.3 and our values
+in table 8.4. The code values are the ones in eq. (8.2) and eq. (8.1). The other three are
+as follows:
+Report: α = 2
+ϵ
+m = ϵ−1 ln(2) + ϵ−1 ln(ϵ−1)
+(8.5)
+O-Notation: α = ϵ−1
+m = ϵ−1 ln(ϵ−1)
+(8.6)
+Our: α = 2
+ϵ
+m = (1 + ϵ)(ln(2) −ln(ϵ))
+ϵ
+(8.7)
+It is clear that the code values in table 8.1, has the best result at ϵ = 0.01 but it also
+has a much larger query time than all the other approaches at that ϵ. If we compare the
+solution values that are similar like {10.82(49, 41.49), 11.00(75.78, 21), 11.05(462.52, 22),
+10.99(35.95, 201)} for the code, report, O-notation and our values respectively (the values
+in parenthesis are the (m, α) values), then we see that the report value is quickest at
+6.70ms against 7.12ms for our values, 8.36ms for the code and 20.33ms for the O-Notation
+values.
+Looking at what each can do with roughly 4ms of compute time, we have {4.06(21, 81.51),
+3.89(31.96, 41), 3.91(61.91, 22), 4.11(35.95, 41)} for the code, report, O-notation and our
+values respectively.
+Now we see that the O-Notation has a small lead with the best
+solution of 11.64, compared to 12.02, 12.52 and 12.43 for the report, code and our values.
+Looking at diminishing returns, observe that in the code values, we only gain 0.02 at
+α = 401.5 moving from m = 357 to m = 2405, even though the evaluation time is 6.67
+times worse. And this does not even take into account the amount of time, that is required
+to insert the points into the structure initially, which will be equally slowed.
+62
+Dynamic k-clustering
+==PAGE:71==
+α
+m
+1.00
+2.00
+4.00
+9.00
+21.00
+49.00
+153.00
+357.00
+2405.00
+2.00
+0.05
+0.09
+0.17
+0.39
+1.00
+2.17
+9.32
+19.85
+138.78
+2.37
+0.06
+0.10
+0.20
+1.80
+0.93
+2.26
+10.62
+26.65
+145.02
+3.41
+0.05
+0.10
+0.20
+0.69
+0.99
+3.24
+10.13
+29.61
+149.86
+5.45
+0.06
+0.14
+0.27
+0.57
+1.33
+4.22
+12.06
+28.29
+185.02
+9.47
+0.16
+0.21
+0.36
+1.44
+3.58
+4.23
+17.03
+35.45
+239.91
+17.49
+0.08
+0.18
+0.45
+1.01
+2.35
+6.08
+20.24
+54.93
+323.78
+41.49
+0.08
+0.33
+0.60
+1.40
+3.25
+8.36
+26.75
+63.92
+415.40
+81.50
+0.15
+0.35
+0.76
+1.76
+4.06
+10.77
+33.69
+75.63
+504.44
+401.50
+0.46
+0.55
+1.05
+2.83
+6.16
+15.26
+52.57
+107.63
+717.80
+2.00
+32.00
+22.63
+19.03
+18.66
+18.87
+18.69
+18.58
+18.58
+18.58
+2.37
+22.94
+22.94
+18.50
+17.22
+16.52
+16.14
+16.09
+16.09
+16.09
+3.41
+16.49
+16.49
+16.49
+14.38
+14.67
+14.91
+14.38
+14.32
+14.31
+5.45
+36.37
+15.58
+15.58
+14.18
+13.80
+13.33
+12.98
+12.98
+12.98
+9.47
+100.31
+32.59
+18.58
+13.60
+13.12
+12.15
+11.91
+11.86
+11.85
+17.49
+18.55
+18.55
+18.55
+13.50
+10.75
+11.62
+10.78
+10.75
+10.74
+41.49
+42.52
+42.52
+16.75
+12.28
+12.28
+10.82
+10.87
+10.39
+10.37
+81.50
+82.51
+82.51
+27.46
+11.67
+12.52
+11.44
+10.71
+10.28
+10.25
+401.50
+402.50
+20.09
+20.09
+14.40
+13.09
+11.58
+10.94
+10.18
+10.16
+Table 8.1: Code values for α and m, Twitter, 500 points, 50 centers. Top: time, Bottom:
+result
+α
+m
+1.82
+1.83
+2.00
+2.69
+4.77
+10.32
+31.96
+75.78
+531.83
+1.33
+0.06
+0.14
+0.57
+0.17
+0.33
+0.42
+0.93
+1.90
+12.00
+1.50
+0.06
+0.10
+0.10
+0.14
+0.25
+0.48
+1.08
+12.59
+15.29
+2.00
+0.05
+0.09
+0.09
+0.13
+0.23
+0.39
+0.90
+1.70
+18.78
+3.00
+0.05
+0.11
+0.10
+0.15
+0.24
+0.41
+0.98
+3.89
+11.67
+5.00
+0.06
+0.14
+0.15
+0.24
+0.28
+0.54
+1.93
+2.54
+15.28
+9.00
+0.18
+0.24
+0.23
+0.37
+0.48
+0.81
+2.52
+5.67
+21.73
+21.00
+0.07
+0.32
+0.75
+0.42
+0.74
+1.25
+2.94
+6.70
+34.04
+41.00
+0.14
+0.38
+0.36
+0.50
+0.96
+1.77
+3.89
+7.66
+44.99
+201.00
+0.54
+0.55
+0.54
+0.81
+1.60
+2.44
+6.64
+13.94
+67.44
+1.33
+24.24
+24.24
+24.24
+24.24
+21.51
+21.23
+21.03
+20.95
+20.71
+1.50
+24.60
+24.60
+24.60
+24.60
+21.81
+21.52
+20.71
+20.63
+20.55
+2.00
+32.00
+22.63
+22.63
+20.16
+21.11
+18.66
+18.87
+18.63
+18.62
+3.00
+31.07
+18.93
+18.93
+16.05
+17.15
+16.05
+15.31
+15.42
+14.83
+5.00
+28.82
+28.82
+28.82
+17.11
+15.42
+14.39
+13.69
+13.44
+13.45
+9.00
+117.88
+36.70
+36.70
+24.87
+18.22
+14.81
+12.77
+12.09
+11.83
+21.00
+32.99
+32.99
+32.99
+32.99
+16.50
+15.28
+12.26
+11.00
+10.95
+41.00
+76.79
+76.79
+76.79
+18.15
+13.60
+11.22
+12.02
+11.49
+10.82
+201.00
+532.83
+23.10
+23.10
+65.77
+12.33
+16.30
+10.94
+11.60
+10.75
+Table 8.2: Report values for α and m, Twitter.
+500 points.
+50 centers.
+Top: time.
+Bottom: result
+Dynamic k-clustering
+63
+==PAGE:72==
+α
+m
+1.70
+1.65
+1.65
+2.00
+3.39
+7.55
+25.03
+61.91
+462.52
+2.17
+0.93
+0.09
+0.13
+0.13
+0.19
+0.25
+0.48
+0.91
+6.78
+2.25
+0.12
+0.10
+0.13
+0.13
+0.16
+0.24
+0.46
+0.93
+6.59
+2.50
+0.10
+0.10
+0.13
+0.15
+0.40
+0.26
+0.51
+0.92
+6.20
+3.00
+0.09
+0.09
+0.14
+0.14
+0.19
+0.26
+2.21
+0.90
+4.68
+4.00
+0.11
+0.12
+0.16
+0.16
+0.25
+0.33
+0.61
+1.17
+5.22
+6.00
+0.15
+0.15
+0.34
+0.32
+0.40
+0.52
+0.99
+1.69
+10.51
+12.00
+0.29
+0.29
+0.39
+0.38
+0.56
+0.79
+1.72
+2.85
+20.60
+22.00
+0.34
+0.34
+0.50
+0.51
+0.75
+1.20
+2.13
+3.91
+20.33
+102.00
+0.55
+0.55
+0.83
+1.03
+1.34
+1.74
+3.37
+12.90
+41.51
+2.17
+26.51
+26.51
+24.27
+24.27
+23.21
+24.27
+23.21
+22.94
+22.44
+2.25
+24.32
+24.32
+26.44
+26.44
+24.32
+24.32
+24.32
+23.77
+23.49
+2.50
+24.32
+24.32
+26.44
+26.44
+24.32
+24.32
+24.32
+23.77
+23.49
+3.00
+22.63
+22.63
+20.16
+20.16
+19.03
+20.16
+19.03
+18.73
+18.58
+4.00
+16.27
+16.27
+16.27
+16.27
+16.27
+16.27
+14.70
+14.56
+14.44
+6.00
+23.89
+23.89
+17.06
+17.06
+14.42
+17.06
+14.42
+12.56
+12.43
+12.00
+26.07
+26.07
+26.07
+26.07
+11.65
+15.24
+11.65
+12.54
+11.12
+22.00
+62.93
+62.93
+15.91
+15.91
+22.43
+15.91
+11.28
+11.64
+11.05
+102.00
+21.55
+21.55
+59.94
+59.94
+21.55
+21.55
+12.92
+12.34
+11.12
+Table 8.3: O-Notation values for α and m, Twitter. 500 points. 50 centers. Top: time.
+Bottom: result
+α
+m
+1.72
+2.13
+3.00
+4.39
+7.16
+13.40
+35.95
+80.47
+538.13
+1.33
+0.07
+0.08
+0.09
+1.10
+0.20
+0.38
+0.86
+3.12
+9.90
+1.50
+0.07
+0.10
+0.10
+0.15
+0.22
+0.38
+0.95
+1.88
+11.62
+2.00
+0.06
+0.12
+0.10
+0.14
+0.28
+0.41
+1.05
+3.65
+12.51
+3.00
+0.06
+0.12
+0.11
+0.18
+0.30
+0.51
+1.18
+2.32
+14.36
+5.00
+0.07
+0.14
+0.69
+0.22
+0.39
+1.93
+18.50
+3.18
+19.49
+9.00
+0.13
+0.21
+0.20
+0.29
+0.51
+0.89
+2.22
+4.20
+24.70
+21.00
+0.08
+0.33
+0.33
+0.47
+0.76
+1.35
+3.25
+6.74
+47.84
+41.00
+0.15
+0.39
+0.35
+0.51
+1.07
+1.83
+4.11
+8.29
+59.33
+201.00
+0.51
+0.56
+0.55
+0.81
+1.55
+2.52
+7.12
+13.53
+63.78
+1.33
+35.83
+27.34
+27.34
+24.98
+23.24
+22.15
+22.53
+22.28
+22.19
+1.50
+18.28
+18.28
+18.28
+18.28
+18.28
+18.28
+17.63
+17.62
+17.54
+2.00
+40.50
+23.38
+23.38
+19.47
+16.82
+15.25
+14.23
+14.24
+13.95
+3.00
+24.92
+24.92
+24.92
+15.22
+13.80
+15.22
+14.19
+14.00
+13.73
+5.00
+59.57
+22.26
+22.26
+16.04
+12.34
+12.89
+13.30
+12.82
+12.31
+9.00
+14.48
+14.48
+14.48
+14.48
+14.48
+14.48
+12.79
+11.97
+11.48
+21.00
+36.98
+36.98
+36.98
+11.20
+18.07
+11.20
+11.20
+10.88
+10.43
+41.00
+81.48
+81.48
+81.48
+18.87
+14.09
+11.59
+12.43
+10.66
+10.70
+201.00
+539.13
+23.24
+23.24
+66.28
+12.39
+16.39
+10.99
+11.66
+10.14
+Table 8.4: Our values for α and m, Twitter. 500 points. 50 centers. Top: time. Bottom:
+result
+64
+Dynamic k-clustering
+==PAGE:73==
+9
+Discussion
+[KL04] introduced the navigating net data structure to find nearest neighbours in metric
+spaces quickly, and allowed for points to be inserted and removed.
+[AL06] improved
+upon this by cutting away all unnecessary connections, they constructed the cover tree
+data structure and presented three relatively simple algorithms for insertion, removal and
+query. The goal were still to solve the nearest neighbour problem quickly in metric spaces.
+[Gor+20] used the navigating net data structure to develop a data structure and algorithms
+to solve the k-center problem with a (2+ϵ)-approximation. They then proceed to use this
+technique to implement a similar structure using the cover tree structure. The cover tree
+structure itself can be implemented in two ways, either as the full representation, or as
+the partial representation. Reading through the implementations and documentation of
+[Gor+20], [AL06], and other implementations like [Cra] and [Löh]. It is not immediately
+clear whether they implement the full or partial representation, as none explicitly state if
+they used the one or the other approach, in a place where it would be logical to find such
+information. Looking at the code, most evidence point to the use of the full representation
+in all the mentioned cases, usually because the implemented node classes use single values
+to denote their level, and we believe it is necessary to have at least two to implement
+the partial representation. There is also a distinct lack of functions that split and merge
+nodes, that we also believe to be necessary to handle the partial representation correctly.
+As we saw, the partial representation posed several problems because of the coalesced
+nature of the nodes. In the case where nodes are not coalesced we would have a space
+bound of O(n · (c2 log(n))), at most n nodes on every one of the O(c2 log(n)) levels. The
+partial representation also require much more management of the nodes with merging and
+splitting of nodes. This extra computation may be undesirable in situations where speed
+is key. In that case it may be more favourable to implement the full representation and
+use a factor O(c2 log(n)) more space, which may not be a great increase in some cases.
+The cover sets that are generated during execution, constitute a large amount of volatile
+data. That is, the cover sets are created for the sole purpose of enabling the manipulation of
+the cover tree by other algorithms. They are neither saved or reused after each initialisation
+of insert or remove (notice the the query uses three cover sets that are overwritten in turn).
+Hence for each initialisation there are O(c2 log(n)) containers that are discarded. Hence the
+garbage collection during execution is quite large. Which might be one of the reasons for
+the poor performance we saw in the Experimental section. Other factors that can impact
+the performance is memory limitations, overhead in container classes, or plainly errors
+in the code. The development of the partial cover tree and its accompanying algorithms
+have not been easy, nor without its fair share of problems, hence errors are not out of the
+question.
+The algorithms that have been developed in this paper are theoretically in line with the
+findings by [AL06] and the theoretical solution quality is also in line with the findings of
+[Gor+20]. The difference is that we found m to be a factor (1+ϵ) greater than that found
+by [Gor+20]. This may be because the ϵ used during the analysis has the size 0 < ϵ ≤1
+hence this factor (1 + ϵ) is at most 2, hence it might be looked at as a constant factor.
+This may be the case for small ϵ, but not if ϵ can take any positive non zero value. Then
+again, the most interesting part of ϵ is when it is below 1 anyway.
+Dynamic k-clustering
+65
+==PAGE:74==
+10
+Conclusion
+We have fully covered the structure and algorithms that are used to create, maintain
+an query both the full representation and partial representation cover tree data struc-
+ture. It could immediately be used to solve the fully dynamic k-center problem with an
+approximation factor of 8.
+We saw that the extension of the cover tree to the cover forest is mush more interesting.
+We found that we could solve the fully dynamic k-center problem with an approximation
+factor of (2 + ϵ).
+We found the theoretical run time of insertion and removal to be
+O(c6 log(n) · ((1+ϵ)(ln(2)−ln(ϵ))
+ϵ
+)) where the last factor is the amount of cover trees in the
+cover forest. Hence the space usage is also O(n · ((1+ϵ)(ln(2)−ln(ϵ))
+ϵ
+)).
+We developed new techniques and algorithms that are required to maintain the partial
+structure. We also saw that maintaining the structure require a significant amount of
+work and is not immediately obvious how to do. In addition to this, we showed a couple
+of errors in the previously done work, and showed why and how to mitigate them.
+In the Experimental section, the single cover tree behaved as expected during removal,
+exhibiting a trend of O(log(n)2), the insertion did however not behave as expected, and
+followed the trend of O(log(n)2) similarly. When introducing the cover forest structure we
+did however see great improvements to the solution quality for smaller ϵ, that is several
+cover trees working together, we also saw a greatly increased query time. With regard to
+insertion, removal and query time we saw an almost linear trend when m > 2 for point
+counts greater than 100k. We also explored several different approaches for calculating α
+and m, none of which were superior to the others but each behaving as expected.
+66
+Dynamic k-clustering
+==PAGE:75==
+11
+Future work
+Of course it would be prudent to implement the Remove() (algorithm 6) as described
+in theorem 6.3.13 and reduce the run time of Remove() down to that of the originally
+proposed algorithm in [AL06].
+The implementation used in this paper were done using C#, as the Cover Tree / Forest are
+intended for very large data sets, it would do no harm to implement them in a language
+like C++ to gain the benefits of that. In the same train of thought, implementing parallel
+computing to evaluate multiple trees in the forest at once, and executing on HPC clusters
+along with larger data sets would be appropriate.
+Finding the reasons for why both insert, remove and query exhibit linear trends for more
+than two cover trees in the cover forest would also be of great interest. Then finding some
+way of mitigating it to gain run times closer to the theoretical.
+In the Remove() (algorithm 6) it would also be wise to save on the resources used. During
+execution, many cover sets are created for the call stack.
+They contain pointers, but
+when the function is done, every reference to the cover sets are lost. As such the garbage
+collector removes all the cover sets. If the cover sets could be kept in a list of sorts, and the
+contents of the sets be overwritten when executing Remove() later it could save greatly
+on the amount of garbage collection.
+In the Insert() (algorithm 4) we have a similar problem with the cover sets, but unlike
+Remove(), when we reach the end of Insert() and insert the point, we do not use the cover
+sets any more. As such it would be possible to keep sets Qi, Q and Qi−1 in an iterative
+fashion like the kClustering() process (algorithm 12).
+Dynamic k-clustering
+67
+==PAGE:76==
+Bibliography
+[KH79]
+O. Kariv and S. L. Hakimi. “AN ALGORITHMIC APPROACH TO NET-
+WORK LOCATION PROBLEMS. I: THE p-CENTERS*”. In: Siam Journal
+on Applied Mathematics (1979), pp. 513–538. issn: 1095712x and 00361399.
+[Gon85]
+TeoTeofilo F. Gonzalez. “Clustering to minimize the maximum intercluster
+distance”. In: Theoretical Computer Science 38 (1985), pp. 293–306. issn:
+ISSN 0304-3975. doi: https://doi.org/10.1016/0304-3975(85)90224-5.
+[Gor+20]
+Gramoz Goranci et al. “Fully Dynamic k-Center Clustering in Doubling Met-
+rics”. In: (2020). arXiv: 1908.03948 [cs.DS].
+[HS86]
+DORIT S. HOCHBAUM and DAVID B. SHMOYS. “A Unified Approach
+to Approximation Algorithms for Bottleneck Problems”. In: Association for
+Computing Machinery (1986), pp. 533–550.
+[CHA+04]
+MOSES CHARIKAR et al. “INCREMENTAL CLUSTERING AND DY-
+NAMIC INFORMATION RETRIEVAL*”. In: Siam Journal on Computing
+(2004), pp. 1417–1440.
+[CGS18]
+T.-H. Hubert Chan, Arnaud Guerqin, and Mauro Sozio. “Fully dynamic k-
+center clustering”. In: International World Wide Web Conference (WWW)
+(2018), pp. 579–587.
+[Cha+20]
+T-H. Hubert Chan et al. “Fully Dynamic k-Center Clustering with Improved
+Memory Eﬀiciency”. In: IEEE Transactions on Knowledge and Data Engi-
+neering (2020). doi: 10.1109/TKDE.2020.3023020.
+[KL04]
+Robert Krauthgamer and James R. Lee. “Navigating nets: simple algorithms
+for proximity search”. In: Symposium on Discrete Algorithms (SODA) (2004),
+pp. 798–807.
+[AL06]
+Sham Kakade Alina Beygelzimer and John Langford. “Cover trees for nearest
+neighbor”. In: ICML (2006).
+[Kol06]
+Thomas Kollar. “Fast nearest neighbors”. In: Technical report (2006).
+[LG05]
+Jean Louis and Verger Gaugry. “Covering a ball with smaller equal balls in
+Rn”. In: Discrete and Computational Geometry (2005). hal-00346015, pp. 143–
+155.
+[Cra]
+David Crane. Cover-Tree. url: https://github.com/DNCrane/Cover-Tree.
+[Löh]
+Nils Löhndorf. covertree. url: https://github.com/loehndorf/covertree.
+68
+Dynamic k-clustering
+==PAGE:77==
+A
+Tables
+Coordinate
+A
+(0, 0)
+B
+(−2, 2)
+C
+(40, 40)
+D
+(45, 35)
+E
+(250, 200)
+F
+(180, 160)
+G
+(172, 162)
+Table A.1: Partial Cover tree example point coordinates
+A
+B
+C
+D
+E
+F
+G
+A
+0
+2.83
+56.57
+57.01
+320.16
+240.83
+240.68
+B
+2.83
+0
+56.64
+57.43
+320.48
+241.01
+240.83
+C
+56.57
+56.64
+0
+7.07
+264.01
+184.39
+184.20
+D
+57.01
+57.43
+7.07
+0
+263.15
+183.98
+183.90
+E
+320.16
+320.48
+264.01
+263.15
+0
+80.62
+81.41
+F
+240.83
+241.01
+184.39
+183.98
+80.62
+0
+8.24
+G
+240.68
+240.83
+184.20
+183.90
+81.41
+8.24
+0
+Table A.2: Partial Cover tree example point distance matrix
+n
+Insert time
+Remove time
+n
+Insert time
+Remove time
+50000
+0.035
+0.0567
+10050000
+0.0972
+0.1473
+100000
+0.0446
+0.0656
+10100000
+0.1031
+0.1571
+150000
+0.044
+0.0716
+10150000
+0.0862
+0.1404
+200000
+0.0426
+0.0742
+10200000
+0.0807
+0.1735
+250000
+0.0408
+0.0756
+10250000
+2.7631
+0.1453
+300000
+0.0445
+0.0773
+10300000
+0.0872
+0.1347
+350000
+0.0507
+0.0837
+10350000
+0.0926
+0.139
+400000
+0.0457
+0.0842
+10400000
+0.1061
+0.1452
+450000
+0.0472
+0.0787
+10450000
+0.0978
+0.1597
+500000
+0.0466
+0.0924
+10500000
+0.0836
+0.1412
+550000
+0.0509
+0.0893
+10550000
+0.1056
+0.1449
+600000
+0.0517
+0.0868
+10600000
+0.0862
+0.1503
+650000
+0.0531
+0.0883
+10650000
+0.0749
+0.1373
+700000
+0.0539
+0.0919
+10700000
+0.0754
+0.1362
+750000
+0.0496
+0.0949
+10750000
+0.0851
+0.1518
+800000
+0.0518
+0.0962
+10800000
+0.0937
+0.1437
+850000
+0.0534
+0.0969
+10850000
+0.0729
+0.1393
+900000
+0.0553
+0.096
+10900000
+0.0826
+0.1422
+950000
+0.0589
+0.1214
+10950000
+0.0816
+0.1604
+1000000
+0.055
+0.1011
+11000000
+0.074
+0.1514
+Dynamic k-clustering
+69
+==PAGE:78==
+1050000
+0.0558
+0.1015
+11050000
+0.0733
+0.1371
+1100000
+0.0759
+0.134
+11100000
+0.0847
+0.1553
+1150000
+0.0582
+0.1011
+11150000
+0.0841
+0.1665
+1200000
+0.0554
+0.1042
+11200000
+0.0764
+0.1622
+1250000
+0.054
+0.1056
+11250000
+0.0715
+0.1387
+1300000
+0.0561
+0.1094
+11300000
+0.0782
+0.1401
+1350000
+0.061
+0.1275
+11350000
+0.0855
+0.1636
+1400000
+0.0597
+0.1154
+11400000
+0.0806
+0.1515
+1450000
+0.0784
+0.1783
+11450000
+0.0976
+3.1013
+1500000
+0.0679
+0.1196
+11500000
+0.0754
+0.1394
+1550000
+0.0636
+0.1164
+11550000
+0.0747
+0.1425
+1600000
+0.0695
+0.1113
+11600000
+0.0828
+0.1507
+1650000
+0.0618
+0.1114
+11650000
+0.0861
+0.1533
+1700000
+0.0607
+0.1107
+11700000
+0.0791
+0.1679
+1750000
+0.0774
+0.1504
+11750000
+0.0977
+0.1506
+1800000
+0.0594
+0.1124
+11800000
+0.083
+0.1553
+1850000
+0.0568
+0.1122
+11850000
+0.0717
+0.1456
+1900000
+0.0602
+0.1092
+11900000
+0.0997
+0.1526
+1950000
+0.0622
+0.1137
+11950000
+0.102
+0.1439
+2000000
+0.0627
+0.1157
+12000000
+0.093
+0.1583
+2050000
+0.0645
+0.1142
+12050000
+0.1044
+0.145
+2100000
+0.063
+0.1166
+12100000
+0.0883
+0.1387
+2150000
+0.0725
+0.1278
+12150000
+0.0975
+0.1521
+2200000
+0.0768
+0.1311
+12200000
+0.1224
+0.1613
+2250000
+0.0941
+0.1462
+12250000
+0.0887
+0.1424
+2300000
+0.0652
+0.118
+12300000
+0.103
+0.1592
+2350000
+0.0802
+0.1243
+12350000
+0.1048
+0.1475
+2400000
+0.0638
+0.1211
+12400000
+0.1139
+0.1461
+2450000
+0.0604
+0.1256
+12450000
+0.1246
+0.157
+2500000
+0.0943
+0.1347
+12500000
+0.1113
+0.1479
+2550000
+0.0613
+0.1196
+12550000
+0.1099
+0.1453
+2600000
+0.0703
+0.1212
+12600000
+0.1165
+0.1631
+2650000
+0.0653
+0.1171
+12650000
+0.1353
+0.1523
+2700000
+0.0771
+0.1553
+12700000
+0.1222
+0.1648
+2750000
+0.0701
+0.1194
+12750000
+0.13
+0.1586
+2800000
+0.0641
+0.1186
+12800000
+3.3132
+0.1678
+2850000
+0.0701
+0.1213
+12850000
+0.1167
+0.1623
+2900000
+0.0714
+0.1187
+12900000
+0.1073
+0.1465
+2950000
+0.0707
+0.1221
+12950000
+0.1164
+0.1712
+3000000
+0.0664
+0.1144
+13000000
+0.1261
+0.1696
+3050000
+0.0657
+0.1237
+13050000
+0.1201
+0.1531
+3100000
+0.0783
+0.143
+13100000
+0.1056
+0.1675
+3150000
+0.0699
+0.1165
+13150000
+0.1174
+0.1627
+3200000
+0.067
+0.1221
+13200000
+0.1167
+0.1663
+3250000
+0.0686
+0.1148
+13250000
+0.1104
+0.1529
+3300000
+0.086
+0.1341
+13300000
+0.1038
+0.1533
+3350000
+0.0652
+0.1226
+13350000
+0.1168
+0.1573
+3400000
+0.0712
+0.1144
+13400000
+0.1136
+0.1691
+70
+Dynamic k-clustering
+==PAGE:79==
+3450000
+0.0674
+0.1244
+13450000
+0.0989
+0.1654
+3500000
+0.0854
+0.1298
+13500000
+0.0925
+0.1665
+3550000
+0.0667
+0.1218
+13550000
+0.0991
+0.157
+3600000
+0.0644
+0.1239
+13600000
+0.0878
+0.1669
+3650000
+0.0733
+0.1517
+13650000
+0.1085
+0.1559
+3700000
+0.0647
+0.1217
+13700000
+0.1327
+0.1458
+3750000
+0.065
+0.124
+13750000
+0.0971
+0.1659
+3800000
+0.0726
+0.1331
+13800000
+0.1127
+0.1744
+3850000
+0.0874
+0.1325
+13850000
+0.1345
+0.1659
+3900000
+0.0653
+0.1243
+13900000
+0.1129
+0.1618
+3950000
+0.0712
+0.1203
+13950000
+0.1075
+0.1636
+4000000
+0.0735
+0.1516
+14000000
+0.1152
+0.1715
+4050000
+0.0694
+0.1267
+14050000
+0.1187
+0.1632
+4100000
+0.0711
+0.126
+14100000
+0.1145
+3.8951
+4150000
+0.0745
+0.1423
+14150000
+0.1132
+0.1808
+4200000
+0.0708
+0.1204
+14200000
+0.0958
+0.1594
+4250000
+0.0696
+0.1236
+14250000
+0.1042
+0.1494
+4300000
+0.0788
+0.1652
+14300000
+0.1052
+0.1815
+4350000
+0.0732
+0.1342
+14350000
+0.1169
+0.165
+4400000
+0.0682
+0.1288
+14400000
+0.1309
+0.1708
+4450000
+0.0759
+0.1481
+14450000
+0.1327
+0.1588
+4500000
+0.0692
+0.1257
+14500000
+0.0887
+0.1982
+4550000
+0.071
+0.1236
+14550000
+0.1019
+0.1635
+4600000
+0.0711
+0.1515
+14600000
+0.087
+0.1699
+4650000
+0.0641
+0.1309
+14650000
+0.0997
+0.1708
+4700000
+0.0642
+0.1299
+14700000
+0.1007
+0.1534
+4750000
+0.0818
+0.159
+14750000
+0.0994
+0.1597
+4800000
+0.0657
+0.1317
+14800000
+3.9739
+0.1587
+4850000
+0.069
+0.1262
+14850000
+0.0945
+0.1609
+4900000
+0.0728
+0.1246
+14900000
+0.0969
+0.1524
+4950000
+0.0699
+0.1285
+14950000
+0.0923
+0.1764
+5000000
+0.1009
+0.1343
+15000000
+0.0885
+0.1599
+5050000
+0.0724
+0.1297
+15050000
+0.1042
+0.1603
+5100000
+0.0747
+0.1371
+15100000
+0.0797
+0.1772
+5150000
+0.0896
+0.1577
+15150000
+0.1256
+0.1834
+5200000
+0.0706
+0.1381
+15200000
+0.0829
+0.1743
+5250000
+0.0747
+0.1738
+15250000
+0.1122
+0.1602
+5300000
+0.0791
+0.134
+15300000
+0.1081
+0.153
+5350000
+0.077
+0.1571
+15350000
+0.0898
+0.1606
+5400000
+0.0815
+0.1334
+15400000
+0.0827
+0.1639
+5450000
+0.0688
+0.1379
+15450000
+0.1009
+0.1646
+5500000
+0.084
+0.1382
+15500000
+0.1033
+0.1456
+5550000
+0.0735
+0.1364
+15550000
+0.0933
+0.1603
+5600000
+0.093
+0.1494
+15600000
+0.0996
+0.1721
+5650000
+0.0769
+0.1377
+15650000
+0.0996
+0.1486
+5700000
+0.0894
+0.1396
+15700000
+0.1004
+0.1645
+5750000
+0.0718
+0.1334
+15750000
+0.1108
+0.1493
+5800000
+0.0738
+0.1292
+15800000
+0.087
+0.1675
+Dynamic k-clustering
+71
+==PAGE:80==
+5850000
+0.0751
+0.1586
+15850000
+0.1123
+0.1534
+5900000
+0.0792
+0.1356
+15900000
+0.0928
+0.162
+5950000
+0.0929
+0.1555
+15950000
+0.0974
+0.1605
+6000000
+0.1023
+0.1477
+16000000
+0.0918
+0.1572
+6050000
+0.0948
+0.1566
+16050000
+0.0882
+0.1624
+6100000
+0.0824
+0.1356
+16100000
+0.0927
+0.1661
+6150000
+0.0958
+0.1393
+16150000
+0.1076
+0.157
+6200000
+0.1019
+0.1364
+16200000
+0.0976
+0.1459
+6250000
+0.0963
+0.1365
+16250000
+0.0962
+0.1537
+6300000
+0.108
+0.1476
+16300000
+0.1058
+0.1572
+6350000
+0.0963
+0.1397
+16350000
+0.1017
+0.1461
+6400000
+0.1036
+0.157
+16400000
+0.0924
+0.1614
+6450000
+0.1078
+0.1275
+16450000
+0.0865
+0.1665
+6500000
+0.1035
+0.1592
+16500000
+0.078
+0.1656
+6550000
+0.1002
+0.1358
+16550000
+4.1995
+0.1811
+6600000
+0.1137
+0.145
+16600000
+0.099
+0.1536
+6650000
+0.0922
+0.1404
+16650000
+0.0855
+0.1658
+6700000
+0.1076
+0.1525
+16700000
+0.0903
+0.1645
+6750000
+0.0924
+0.1417
+16750000
+0.0909
+0.1511
+6800000
+0.1168
+0.1491
+16800000
+0.1018
+0.1607
+6850000
+0.0947
+0.1361
+16850000
+0.0905
+0.152
+6900000
+0.1034
+0.1502
+16900000
+0.0983
+0.1629
+6950000
+0.0966
+0.1364
+16950000
+0.0996
+0.163
+7000000
+0.0962
+0.1414
+17000000
+0.0772
+0.1629
+7050000
+0.0934
+0.1388
+17050000
+0.0881
+0.1593
+7100000
+0.1055
+0.1481
+17100000
+0.081
+0.1746
+7150000
+0.0902
+0.133
+17150000
+0.0856
+0.1549
+7200000
+0.1069
+0.1484
+17200000
+0.0894
+0.1558
+7250000
+0.0959
+0.1344
+17250000
+0.0895
+0.1642
+7300000
+0.1212
+0.1361
+17300000
+0.0865
+0.1629
+7350000
+0.097
+0.1329
+17350000
+0.0935
+0.1594
+7400000
+0.0871
+0.1576
+17400000
+0.0912
+0.1515
+7450000
+0.0729
+0.1365
+17450000
+0.0863
+0.1596
+7500000
+0.0819
+0.1527
+17500000
+0.1018
+0.153
+7550000
+0.0714
+0.1379
+17550000
+0.0958
+0.1594
+7600000
+0.0949
+0.1563
+17600000
+0.1004
+0.1569
+7650000
+0.0744
+0.1401
+17650000
+0.0827
+0.1553
+7700000
+0.0912
+0.1622
+17700000
+0.0937
+0.1584
+7750000
+0.0688
+0.1436
+17750000
+0.1007
+0.1481
+7800000
+0.1009
+0.1493
+17800000
+0.0819
+0.1715
+7850000
+0.0713
+0.1406
+17850000
+0.1014
+0.1494
+7900000
+0.0881
+0.1587
+17900000
+0.0789
+0.1713
+7950000
+0.0705
+0.1358
+17950000
+0.0896
+0.173
+8000000
+0.0749
+0.1496
+18000000
+0.0827
+0.1599
+8050000
+0.0794
+0.155
+18050000
+0.0783
+0.1679
+8100000
+0.071
+0.1273
+18100000
+0.0938
+0.1571
+8150000
+0.0884
+0.1514
+18150000
+0.1029
+0.1573
+8200000
+0.0759
+0.1407
+18200000
+0.0856
+0.1637
+72
+Dynamic k-clustering
+==PAGE:81==
+8250000
+0.0938
+0.154
+18250000
+0.0769
+0.1653
+8300000
+0.0874
+0.1529
+18300000
+0.0922
+0.1645
+8350000
+0.0806
+0.133
+18350000
+0.0964
+0.1529
+8400000
+0.0794
+0.1515
+18400000
+0.098
+0.1516
+8450000
+0.0768
+0.1375
+18450000
+0.0868
+0.1552
+8500000
+0.0822
+2.5222
+18500000
+0.0971
+0.1628
+8550000
+0.0783
+0.1568
+18550000
+0.0783
+0.1629
+8600000
+0.0737
+0.1369
+18600000
+0.0909
+0.1602
+8650000
+0.0926
+0.1605
+18650000
+0.0897
+0.1588
+8700000
+0.0698
+0.147
+18700000
+0.0973
+0.1574
+8750000
+0.0751
+0.1372
+18750000
+0.094
+0.1557
+8800000
+0.0942
+0.1511
+18800000
+0.0891
+0.1767
+8850000
+0.0731
+0.1371
+18850000
+0.0776
+0.1782
+8900000
+0.1026
+0.149
+18900000
+0.0978
+0.1492
+8950000
+0.0978
+0.155
+18950000
+0.0853
+0.1686
+9000000
+0.0762
+0.1321
+19000000
+0.0956
+0.1534
+9050000
+0.0857
+0.1576
+19050000
+0.1037
+0.1555
+9100000
+0.1018
+0.1338
+19100000
+0.1123
+0.1975
+9150000
+0.0752
+0.1387
+19150000
+0.0862
+0.1626
+9200000
+0.0741
+0.1597
+19200000
+0.0841
+0.1704
+9250000
+0.0733
+0.1366
+19250000
+0.0867
+0.1649
+9300000
+0.102
+0.1416
+19300000
+0.0909
+0.1696
+9350000
+0.0989
+0.1613
+19350000
+0.102
+0.1515
+9400000
+0.0718
+0.142
+19400000
+0.0955
+0.1638
+9450000
+0.0836
+0.1598
+19450000
+0.0881
+0.1601
+9500000
+0.1012
+0.1448
+19500000
+0.0946
+0.1593
+9550000
+0.0767
+0.1354
+19550000
+0.0978
+0.1544
+9600000
+0.0812
+0.1701
+19600000
+0.092
+0.1651
+9650000
+0.0964
+0.1456
+19650000
+0.1002
+0.1628
+9700000
+0.0714
+0.1417
+19700000
+0.0967
+0.1571
+9750000
+0.0807
+0.1596
+19750000
+0.0924
+0.1542
+9800000
+0.0903
+0.1464
+19800000
+0.0988
+0.1548
+9850000
+0.0736
+0.1391
+19850000
+0.0944
+0.1935
+9900000
+0.1006
+0.1777
+19900000
+0.0989
+0.1611
+9950000
+0.0986
+0.1606
+19950000
+0.1092
+4.9613
+10000000
+0.0869
+0.1335
+20000000
+0.0912
+0.1633
+Table A.3: All the data points used for base case testing, all numbers in red were excluded
+from the graph
+Dynamic k-clustering
+73
+==PAGE:82==
+B
+Diagrams
+A
+B
+C
+D
+E
+F
+G
+0
+20
+40
+60
+80
+100
+120
+140
+160
+180
+200
+220
+240
+260
+0
+20
+40
+60
+80
+100
+120
+140
+160
+180
+200
+Figure B.1: Partial Cover tree example 2D plane
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+1.6
+1.8
+2
+·107
+0
+1
+2
+3
+4
+5
+Number of points
+ms
+Insert
+Remove
+Figure B.2: Average Insertion and Removal time on synthetic data, sample rate of 1/50000
+and sample count of 2000 with all points
+74
+Dynamic k-clustering
+==PAGE:83==
+Dynamic k-clustering
+75
+==PAGE:84==
+Technical
+University of
+Denmark
+Richard Petersens Plads, Bygning 324
+2800 Kgs. Lyngby
+Tlf. 4525 1700
+www.compute.dtu.dk/

@@ -1,3 +1,4 @@
+==PAGE:1==
 Storage of heat in the pipeline of 
 existing district heating grid with 
 heat pump supply  
@@ -5,7 +6,9 @@ Jonathan Slott Jensen
 Master Thesis
 DTU Mechanical Engineering
 Department of Mechanical Engineering
+==PAGE:2==
  
+==PAGE:3==
 Technical University of Denmark
 Storage of heat in the pipeline of existing
 district heating grid with heat pump supply
@@ -20,7 +23,9 @@ Wiebke Meesenburg
 Tore Gad Kjeld
 Kristian Honor´e
 June 2019
+==PAGE:4==
  
+==PAGE:5==
 Abstract
 In order to convert the energy systems of today to what is commonly known as the 4th
 generation district heating grid, the district heating system must become smarter in terms of
@@ -60,7 +65,9 @@ The results of this studies shows that the increased expenses for both heat loss
 exceed the ﬁnancial gain of even the most favourable power scenarios of the 2018 power market.
 In the future scenarios the incentive for moving the load rose as the price became more sensitive
 towards the spot price.
+==PAGE:6==
  
+==PAGE:7==
 Table of Contents
 1
 Introduction
@@ -212,6 +219,7 @@ Financial
 Environmental
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 50
+==PAGE:8==
 5
 Discussion
 51
@@ -262,6 +270,7 @@ A.7 Financial appendix . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 67
 A.8 EES coding - FlexHeatNetwork . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 67
+==PAGE:9==
 Tabeller
 1
 Nomenclature . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -295,6 +304,7 @@ The storage potential of FlexHeat Network in kWh (Water only - Network volumen
 Note that return temperature here is applied globally
 . . . . . . . . . . . . . . .
 44
+==PAGE:10==
 Figurer
 1.1
 Historical development of the emission from producing DH in CPH - The ﬁgure is
@@ -407,6 +417,7 @@ network storage test 2a - supply . . . . . . . . . . . . . . . . . . . . . . . .
 Graphs showing the relationship between production of consumption during test
 2a - Supply storage . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 36
+==PAGE:11==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -505,6 +516,7 @@ A.11 Preliminary testing: manipulation of weather compensation curve
 . . . . . . . .
 66
 Page 8 of 98
+==PAGE:12==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -516,6 +528,7 @@ A.13 Finansial analysis using average hourly variation of network storage in the
 A.14 Finansial analysis using average hourly variation of network storage in the supply
 67
 Page 9 of 98
+==PAGE:13==
 Table 1: Nomenclature
 ATES
 Aquifer thermal energy storage
@@ -596,6 +609,7 @@ Energy eﬀect consumed
 Energy eﬀect produced by the HP
 HD
 Heat demand
+==PAGE:14==
 Preface
 This master thesis was conducted in the year 2019 from the 1st of January to the 3rd
 of June and was credited 30 ECTS points. The thesis was the ﬁnal product of the master
@@ -616,6 +630,7 @@ one could hope for.
 My steadfast student colleague, Troels for the countless discussions, debugging and motivatio-
 nal talks given and taken in our small 3 by 3 meter oﬃce. Helping each other have been what
 pulled me through.
+==PAGE:15==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -668,6 +683,7 @@ emission because of the demand for heat. In ﬁg. 1.2 an example of power compos
 throughout a day. As seen the large power plants raise in production during 6 and 12 AM. This
 172 gCO2,eq/kWhth is converted from the 20 kg CO2,eq / GJ seen on ﬁg. 1.1
 Page 1 of 98
+==PAGE:16==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -701,6 +717,7 @@ and energy eﬃciency. Verda and Colella [18] claim that energy use can be reduc
 while costs can be reduced with up to about 5 % by using regular storage tanks in district heating.
 The energy and cost reductions came as product of better ﬂexibility between power and heat
 Page 2 of 98
+==PAGE:17==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -734,6 +751,7 @@ case network could be used as storage for up to 15 % of the peak load by raising
 temperature. The authors found that the DH network of Altenmarkt could in fact shift peak
 load in time. They did so by raising the supply temperature from 100 to 110◦C. Thus resulting
 Page 3 of 98
+==PAGE:18==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -785,6 +803,7 @@ storage in district heating distribution networks”and his summarised shortcomi
 • Modelling does not take additional stresses on pipes into account
 • There is no estimation of the threshold size of a network needed to enable storage
 Page 4 of 98
+==PAGE:19==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -838,6 +857,7 @@ form of e.g. MWh/m3-K, MWh/km-K or will a explipliﬁedisation need a equation f
 exempliﬁed usage of the key value will be made and applied to the DHN of Copenhagen, using
 the learnings from tests and simulations.
 Page 5 of 98
+==PAGE:20==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -889,6 +909,7 @@ consumption. The relationship between demand and production as explained here is
 ﬁg. 1.3 (b). Usual control of production would be to follow the demand (Blue line) rigorously. To
 raise the network energy content by producing more heat power in advance as shown with the
 Page 6 of 98
+==PAGE:21==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -930,6 +951,7 @@ accurate but tend to get confusing when combining the viewpoints of technology, 
 manager, clients. This paragraph will ﬁrmly established the terminology of this study. The
 primary side will refer to the heat pump cycle displayed in red in ﬁg. 1.4. Here under main
 Page 7 of 98
+==PAGE:22==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -950,6 +972,7 @@ last phase is initiated. (3) ”The discharging”phase starts when temperature 
 to the start conditions and lasts until the change has reached its counterpoint (Heat plant to
 substation and vica versa).
 Page 8 of 98
+==PAGE:23==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -992,6 +1015,7 @@ storing is a substantial part of the production. The diﬀerence between product
 is stored in the Thermal energy storage (TES) next to the plant. Production is started when
 the tank is empty and continues until the storage tank is full. Hereafter the HP shut down and
 Page 9 of 98
+==PAGE:24==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1022,6 +1046,7 @@ raising the few degrees. The capacity of the boilers are 100 kW each. They are a
 with a small standstill power in usual production. In the simulations, the electric boilers are
 deprived from considerations.
 Page 10 of 98
+==PAGE:25==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1048,6 +1073,7 @@ of 0.04 W/mK the thickness can be seen in table 2. Using small pipe as in FHN eq
 heat transfer coeﬃcient.
 Figure 2.4: Overview of the FlexHeat network
 Page 11 of 98
+==PAGE:26==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1116,6 +1142,7 @@ like explained above. The valves are adjusted automatically with an electric mot
 time of adjustments is programmed in the ECL. At fully open position the ﬂow depends on the
 operating pressure diﬀerence and diameter of the pipe.
 Page 12 of 98
+==PAGE:27==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1159,6 +1186,7 @@ recommendation of this report that the valve is checked for break down. If not t
 interval should be lowered. This change is possibly made with the ”Intgr.tid”setting. or the
 ”Tn”time step in the tab ”Reguleringsparametre”.
 Page 13 of 98
+==PAGE:28==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1249,6 +1277,7 @@ thermal energy and 150 MW is an example of 8 hours discharge. The ”capacity MW
 in the table is noting the plants maximum boiler input capacity. This value thus include heat,
 2The governing agency controlling the CPH heat market
 Page 14 of 98
+==PAGE:29==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1273,6 +1302,7 @@ Figure 2.8: Map of the entirety of the CPH DHN - Figure is taken from Varmeplan 
 [2] page 12 ﬁgure 2
 4on condition that the entire steam network (39km) is converted to regular
 Page 15 of 98
+==PAGE:30==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1325,6 +1355,7 @@ heat pump start up and the period of charging was observed as a result. Force op
 (see ﬁg. 2.6a) created an increase from the initial return temperature 35 ◦C. The test aimed at a
 10 K increase for the two terminals 2 and 3 and then having an average return increase to 45 ◦C.
 Page 16 of 98
+==PAGE:31==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1381,6 +1412,7 @@ it is restricted by the tertiary systems ability to cool, approximately 25 ◦C 
 is common that the return temperature is between 35 and 45 ( 35 for the FHN). However, a
 high return temperature is directly linked to higher heat loss in the network. DH companies
 Page 17 of 98
+==PAGE:32==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1433,6 +1465,7 @@ it will be assumed to be indiﬀerent to the results of the tests. Data shows th
 in the top of the tank, raise to the supply temperature. In worst case it can be assumed that the
 whole tank have reached this temperature. Using eq. (9) shows that 2.7 kWh will be the highest
 Page 18 of 98
+==PAGE:33==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1484,6 +1517,7 @@ diﬃculties during speciﬁc conditions. However other approaches have been fou
 study explaining alternative methods of modelling the problem here under creating dynamic
 performance. [34] [24] [35]
 Page 19 of 98
+==PAGE:34==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1563,6 +1597,7 @@ desuperheater, condenser and subcooler as shown in ﬁg. 3.1. This is to achieve
 temperature diﬀerences and heat exchange. As described in section 2.1.1 this is also the case in
 the real HP where three shell and plate exchangers is put in series.
 Page 20 of 98
+==PAGE:35==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1620,6 +1655,7 @@ The network model consist of pipelines, which is
 subdivided into sub-sections. This is seen on ﬁg. 3.2.
 The number of n determines the precision with regards
 Page 21 of 98
+==PAGE:36==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1679,6 +1715,7 @@ D
 
 (13)
 Page 22 of 98
+==PAGE:37==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1739,6 +1776,7 @@ hlast[i] = hi(τ −1) until
 X ˙Vi
 (22)
 Page 23 of 98
+==PAGE:38==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1791,6 +1829,7 @@ Making the model a number of assumption have be made. These have been necessary 
 to either keeping the problem as simple as possible or because the entities are unknown.
 • No mixing in the pipe cross section as result of fully or partly developed ﬂow. This means
 Page 24 of 98
+==PAGE:39==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1824,6 +1863,7 @@ K. Intermedia pressure is most likely ﬁxed at around 1300 kPa but the pressure
 model varieties with following constrain: Pi = √Pl ∗Ph. U and A values for the 4 HEX
 have be estimated and ﬁxed from known operating point.
 Page 25 of 98
+==PAGE:40==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1846,6 +1886,7 @@ and tarifs from the year 2018 is used. The average composition of the power pric
 ﬁg. 3.6. Of course the the composition changes through out the year and day depending on the
 production and demand.
 Page 26 of 98
+==PAGE:41==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1873,6 +1914,7 @@ The power price data used for calculation is shown in a statistical fashion in �
 hours. While the ﬁrst and fourth quartiles changes quite a bit through out the day the median
 only variate with 0.18 kr/kWh or 20 %
 Page 27 of 98
+==PAGE:42==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1895,6 +1937,7 @@ consumption. This is shown in eq. (23)
 massCO2,eq = emissiong/kWhe · We
 (23)
 Page 28 of 98
+==PAGE:43==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1907,6 +1950,7 @@ Diﬀerent scenarios of emission factors have been found and is shown in the lis
 Figure 3.9: The development of emission (g CO2 / kWhe) related to power production in four
 diﬀerent scenarios
 Page 29 of 98
+==PAGE:44==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -1973,6 +2017,7 @@ The heat consumed as shown in table 6 is the heat eﬀect over the test phase pe
 total(the three terminals) heat eﬀect before, during and after the three test is shown in ﬁg. 4.1.
 5supply=10K, Return=15K
 Page 30 of 98
+==PAGE:45==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2036,6 +2081,7 @@ diﬀerence thus the pressure diﬀerence would be expected to remain almost unc
 therefore not aﬀect the pumps. It would seem that the heat demand at the terminals aﬀect the
 pumps more than the storage changes.
 Page 31 of 98
+==PAGE:46==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2057,6 +2103,7 @@ The sudden increase in COP around 22:45 is where the supply discharge is initiat
 From the temperature/load mishap of last part of test 2a it is apparent that a 5 K higher
 supply increase and 20 % load increase has a slightly higher eﬀect than 10 K supply increase.
 Page 32 of 98
+==PAGE:47==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2075,6 +2122,7 @@ Figure 4.4: Graphs showing the relationship between production of consumption du
 Supply storage
 Charging the whole network with supply storage took 45 minutes. The time period of charging
 Page 33 of 98
+==PAGE:48==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2096,6 +2144,7 @@ have been subjected to substation optimisation and therefore does not increase t
 malfunction of DHW valve (M1) in T1 (orange line) is clearly displayed between 22:20 and 22:30.
 The presence of this malfunction does not appear to compromise the test.
 Page 34 of 98
+==PAGE:49==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2114,6 +2163,7 @@ spikes at the initiation of charging and then slowly decreases. This is unlike t
 from the supply test in ﬁg. 4.4. The decrease is owed to decreasing ﬂow as seen in ﬁg. 4.11.
 6calculated subsequently with the model
 Page 35 of 98
+==PAGE:50==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2132,6 +2182,7 @@ Figure 4.9 shows the development of the heat consumption for the three terminal 
 Return. An increase happens for Terminal 3, starting at 68 kW and gradually increases with
 30 %. Terminal 2 increases it heat demand as well but only with 16 %. The temperature in the
 Page 36 of 98
+==PAGE:51==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2152,6 +2203,7 @@ as seen on ﬁg. 4.10. The district heating water into the heat pump condenser (
 increases 3.5 K.
 7The tank meantion is the DHW tank placed at the substations. c.f ﬁg. 2.6a
 Page 37 of 98
+==PAGE:52==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2174,6 +2226,7 @@ the largest temperature increase of the three tests. 10 K on the supply and 15 K
 Likewise ﬁg. 4.13 shows the largest load shift. This charge is also the one which aﬀects the heat
 pump to the highest degree in absolute terms as shown in ﬁg. 4.12.
 Page 38 of 98
+==PAGE:53==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2191,6 +2244,7 @@ The two elements of the model was joined into a collected model used for produci
 product is ﬁrst validated and then presented below broken up in heat pump speciﬁc, network
 speciﬁc results, ﬁnancial and environmental. Lastly the key results is summarised into key values
 Page 39 of 98
+==PAGE:54==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2214,6 +2268,7 @@ drop.
 From comparison of the models ﬂow and test data ﬂow, in ﬁg. 4.15 it is clear the model have
 not included ﬂow and pressure gradient constrains.
 Page 40 of 98
+==PAGE:55==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2230,6 +2285,7 @@ In appendix A additional graph with validation is displayed including the load s
 Here is validation graphs, ﬁg. A.3 showing some notable diﬀerence between model and data. The
 diﬀerence is most pronounced when the charging is initiated where the model overshoots.
 Page 41 of 98
+==PAGE:56==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2317,6 +2373,7 @@ Figure 4.17: Log(P)-h diagram for the heat pump with diﬀerent in- outlet tempe
 condenser secondary side (DH water) - Heat pump 80 % load
 In relation to the Log(P)-h diagram a plot of the COP as a function of temperature diﬀerence
 Page 42 of 98
+==PAGE:57==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2368,6 +2425,7 @@ The density of water at 30 ◦C compared to 70 ◦C is 2% higher. The weighted a
 increases more if charged through 3 source (The three terminals) compared to one source (the
 heat pump).
 Page 43 of 98
+==PAGE:58==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2454,6 +2512,7 @@ Using return storage by increasing the return temperature at terminal 3 with 15K
 storage level of 9.6K. This is displayed in ﬁg. 4.19. The ﬁgure clearly shows that the peak load
 production using NWS peaks far lower than that of the reference production (Qsupply,ref).
 Page 44 of 98
+==PAGE:59==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2468,6 +2527,7 @@ supply storage which initially have its normal ﬂow speed but as the temperatur
 consumers node the ﬂow actually decreases. As the ﬂow continuously decrease so does the eﬀect
 of which heat energy is stored.
 Page 45 of 98
+==PAGE:60==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2482,6 +2542,7 @@ as important and the elimination of peak load. Because as what especially stands
 one the strategy is trying to removed. This point is just as relevant for each of the other ﬁgures.
 Small peak load is created when the storage is charged.
 Page 46 of 98
+==PAGE:61==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2515,6 +2576,7 @@ For comparison the maximum sensible storage in water would is equivalent to the 
 heat capacity of water. Based on Cp and density, the results can be rewritten to 1.138 kWh/K-m3
 for 70 ◦C and 1.156kWh/K-m3 for 30 ◦C.
 Page 47 of 98
+==PAGE:62==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2545,6 +2607,7 @@ Figure 4.23: Financial analysis using yearly average with return charged network
 Similar ﬁg. 4.23 shows that shifting the load using supply charge costs 4,26 DKK for every
 hour the load is shifted.
 Page 48 of 98
+==PAGE:63==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2556,6 +2619,7 @@ Figure 4.25: Financial analysis using future ampliﬁed with return charged netw
 is still predominant.
 Figure 4.26: Financial analysis using future ampliﬁed with supply charged network storage
 Page 49 of 98
+==PAGE:64==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2584,6 +2648,7 @@ initiated 1 hour beforehand, still leads to a higher emission of 0.3 % in both c
 noted the results is questionable as errors in the data sheet exists. Furthermore, there seems to
 be inconsistency through out both the ﬁnancial and environmental calculations.
 Page 50 of 98
+==PAGE:65==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2636,6 +2701,7 @@ Network storage, potential, and eﬀect on heat pump
 The performance of the FlexHeat heat pump was reduced when subjected to elevated supply
 and return temperatures. Supply temperature in connection with the role of heat pumps role
 Page 51 of 98
+==PAGE:66==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2688,6 +2754,7 @@ pump supply. However applying NWS to a large network such as CPH DHN is far more
 This topic will be discussed below
 How to apply NWS through a transmission to distribution constellation is out of scope for
 Page 52 of 98
+==PAGE:67==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2741,6 +2808,7 @@ poses the ﬁrst of two components for the operational cost of network storage. 
 10 Here proportional refers to equally relative increase of the return temperature
 11The condenser HEX that use DH water to condense the steam turbine outlet
 Page 53 of 98
+==PAGE:68==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2793,6 +2861,7 @@ would be rather limited by such a ramp rate. In the literature such as Ralf-Roma
 thermal stress may develop pipe failure faster. Frederiksen and Werner [6] describes that pipe
 failures caused by thermal fatigue is often found in return lines where instantaneous DHW HEX
 Page 54 of 98
+==PAGE:69==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2806,6 +2875,7 @@ secondary pump work is very limited and without signiﬁcant connection to the n
 options. Conﬁrming pump insigniﬁcance is values from CTR describing 2.82 kWh electric power
 usage for every GJ heat transported.
 Page 55 of 98
+==PAGE:70==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2859,6 +2929,7 @@ Both test and model data conﬁrms that peak shaving is possible using network s
 Results show that using supply storage the heat production over one hour can be reduced with
 13.6 kWh, and a maximum peak capacity can be reduced with 13.8 kW. Using return storage the
 Page 56 of 98
+==PAGE:71==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2866,6 +2937,7 @@ heat demand over one hour can be reduced with 16,2kWh, and a maximum peak capaci
 reduced with 16.6kW. Furthermore it is shown that it is possible to combine the two strategies
 and achieve a 98% yield from the two potentials.
 Page 57 of 98
+==PAGE:72==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2910,6 +2982,7 @@ systems: holistic and integrated energy systems for the era of 100 renewable ene
 [17] Lieve Helsen A. Vandermeulen, Bram van der Heijde. Controlling district heating and
 cooling networks to unlock ﬂexibility - a review. 2018.
 Page 58 of 98
+==PAGE:73==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2952,6 +3025,7 @@ networks through “virtual storage” at building level. 2016.
 [36] Petter Wallent´en. Steady-state heat loss from insulated pipes. PhD thesis, Division of
 Building Physics, 1991.
 Page 59 of 98
+==PAGE:74==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2961,6 +3035,7 @@ of ultra low temperature district heating systems with utility plant and booster
 [38] I. Jakubowicz A.Vega, N. Yarahmadi. Optimal conditions for accelerated thermal ageing of
 district heating pipes. Elsevier, 2018.
 Page 60 of 98
+==PAGE:75==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2972,6 +3047,7 @@ Figure A.1: Comparison between QT curves with an equally combined storage level 
 zero 0K base case of Ts70 Tr30
 Figure A.2: Fictive morning heat demand curve
 Page 61 of 98
+==PAGE:76==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -2982,6 +3058,7 @@ Figure A.4: Extra validation 2
 A.3
 Compressor data sheet
 Page 62 of 98
+==PAGE:77==
 Technical Data
 Technical Data
 Displacement (1450 RPM 50Hz) 151,6 m3/h
@@ -3143,6 +3220,7 @@ Condensing SDT:
 Attention: Consider also application range of compressor!
 ‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐
 W6FA-K
+==PAGE:78==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -3152,6 +3230,7 @@ Figure A.5: Power consumption secondary pumps during all three test - the full l
 indicate the active test periode
 Figure A.6: Validation graphs using test 2c data
 Page 64 of 98
+==PAGE:79==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -3159,6 +3238,7 @@ Figure A.7: The ambient temperature during the three tests - Data is from Termin
 Figure A.8: Diﬀerence in HP controller thermal network out put vs. calculated
 Figure A.9: Flow through the substations during the whole day of test 2c
 Page 65 of 98
+==PAGE:80==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -3168,6 +3248,7 @@ Figure A.10: Preliminary testing the period marked by dotted black lines are whe
 valve M2 was applied
 Figure A.11: Preliminary testing: manipulation of weather compensation curve
 Page 66 of 98
+==PAGE:81==
 DTU Mechanical Engineering
 Master thesis
 June 2019
@@ -3181,6 +3262,7 @@ Figure A.14: Finansial analysis using average hourly variation of network storag
 A.8
 EES coding - FlexHeatNetwork
 Page 67 of 98
+==PAGE:82==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:21  Page 1
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -3247,6 +3329,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
   58:  End 
   59:  //________________________________________________________________________________________ 
   60:   
+==PAGE:83==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:21  Page 2
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -3318,6 +3401,7 @@ Endif
  117:  Else
  118:  dif = Tau-Tau_last 
  119:  Endif
+==PAGE:84==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:21  Page 3
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -3390,6 +3474,7 @@ Endif
  175:   
  176:  If Tau <= 2 Then
  177:  h_s_2_chosen = h_s_2_old
+==PAGE:85==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:21  Page 4
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -3553,6 +3638,7 @@ Endif
 = c1_Q + c2_Q*te + c3_Q*tc + c4_Q*te^2 + c5_Q*te*tc + c6_Q*tc^2 + c7_Q*te^3 + c8_Q*tc*te^2 + c9_Q*te*tc^2 +
 c10_Q*tc^3
 // Comperssor polynomium for heat capacity
+==PAGE:86==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:21  Page 5
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -3641,6 +3727,7 @@ Endif
  290:  DDT= DT1 / DT2
  291:   
  292:  DELTAT_LMTD = (DT1-DT2) / ln(DDT)
+==PAGE:87==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:21  Page 6
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -3710,6 +3797,7 @@ temperatur
  346:  m_dot[1] =  m_dot_actual*n_cylinders
  347:  W_dot_comp1 = W_actual*n_cylinders
  348:   
+==PAGE:88==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:21  Page 7
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -3777,6 +3865,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  405:  W_dot_comp2 = (h[5]-h[4])*m_dot[4]
  406:  x[5]=quality(Ammonia;P=P[5];h=h[5])
  407:  //-----------------------------------------------------------------------------------------------//
+==PAGE:89==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 8
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -3853,6 +3942,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  465:  //DDT_con = DT[7] / DT[6]
  466:  //DT[7] = (T[7]-T_DH[2])
 "Temperature difference after condenser" 
+==PAGE:90==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 9
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -3921,6 +4011,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  523:   
  524:  //x[1] = 1
  525:   
+==PAGE:91==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 10
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -3987,6 +4078,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  582:  Tjekk_con[2] = T[7]
  583:  Tjekk_con[3] = T[6]
  584:  Tjekk_con[4] = T[5]
+==PAGE:92==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 11
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -4052,6 +4144,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  641:  Q_dot_T2 =tablevalue('Table 2'; Tau; 'Q_dot_T2' ) //55,6 [kW]
  //(1,59[MWh]*convert(MWh; W*s))/(60*60*24[s])
 *convert(W;kW)     "tablevalue('Table 2'; Tau; 'Q_dot_T2' ) " 
+==PAGE:93==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 12
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -4116,6 +4209,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  697:   
  698:   
  699:   
+==PAGE:94==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 13
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -4184,6 +4278,7 @@ P_r[7] = P_s[7]
 =T_r[i];P=600[kPa])  ;i=1;N ) ) *convert(kJ; kWh)
  752:   
  753:  //vol_n=21
+==PAGE:95==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 14
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -4326,6 +4421,7 @@ q[21] )
  794:   q_dot_910 = - q910*Pipe_L[9] / m_dot[9]
  795:   q_dot_101 = - q101*Pipe_L[10] / m_dot[10]
  796:   q_dot_112 = - q112*Pipe_L[11] / m_dot[11]
+==PAGE:96==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 15
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -4388,6 +4484,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  853:  T_s[7]=temperature(Water;P=P_s[7];h=h_s[7])
  854:  T_s[8]=temperature(Water;P=P_s[8];h=h_s[8])
  855:  T_s[9]=temperature(Water;P=P_s[9];h=h_s[9])
+==PAGE:97==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 16
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -4450,6 +4547,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  912:  m_dot[10] = m_dot[11]
  913:  m_dot[9] = m_dot[10] 
  914:  m_dot[8] = m_dot[9]
+==PAGE:98==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 17
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -4553,6 +4651,7 @@ h_r[1] = h_r[2] +   q_dot[2]
 h_s[1]=enthalpy(Water;T=T_s[1];P=P_s[1])
  973:   
 h_s[2] = h_s_2_chosen 
+==PAGE:99==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 18
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -4652,6 +4751,7 @@ h_r[1] = h_r_1_chosen
 1030:  hs14$ = 'h_s[14]' 
 1031:  hs15$ = 'h_s[15]' 
 1032:  hs16$ = 'h_s[16]' 
+==PAGE:100==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 19
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -4714,6 +4814,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
 1089:  TauLast_r7$ = 'Tau_last_r7' 
 1090:  TauLast_r6$ = 'Tau_last_r6'  
 1091:  TauLast_r4$ = 'Tau_last_r4' 
+==PAGE:101==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 20
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -4832,6 +4933,7 @@ TauLast18$ ;
 Tau ; 
 h_s[18] : 
 Tau_last18)
+==PAGE:102==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 21
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -5129,6 +5231,7 @@ V_dot[1] ;
 Tau ; 
 Tau_last2 : 
 tot[3])
+==PAGE:103==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 22
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -5377,6 +5480,7 @@ h_s[17] : h_s_18_chosen)
 Pipe_vol[19] ; Tau ; 
 Tau_last18 ; 
 tot[19] ;h_s_19_old ;
+==PAGE:104==
 File:EES_FlexHeat.EES
 02-06-2019 20:32:22  Page 23
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -5503,6 +5607,7 @@ h_r[2] : h_r_1_chosen)
 1283:  Pipe_vol[i] = ( Pi * Dia[i-1]^2 /4  ) * Pipe_L[i-1] 
 1284:  V_dot[i-1] = m_dot[i-1] / density(Water;T=T_s[i];P=P_s[1])
 1285:  End
+==PAGE:105==
 File:C:\Users\josl\Dropbox\KANDIDAT SPECIALE\Report\Afleveringsmappe\HP.EES
 02-06-2019 20:36:38  Page 1
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -5686,6 +5791,7 @@ volumetric efficientcy
   55:   
   56:  m_dot_actual = y_m*0,8 / convert(hr;s)
   57:   
+==PAGE:106==
 File:C:\Users\josl\Dropbox\KANDIDAT SPECIALE\Report\Afleveringsmappe\HP.EES
 02-06-2019 20:36:38  Page 2
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -5768,6 +5874,7 @@ Endif
  114:  T_DH[1] = 30[C]
  115:   
  116:   T_DH[4] = 70 [C]
+==PAGE:107==
 File:C:\Users\josl\Dropbox\KANDIDAT SPECIALE\Report\Afleveringsmappe\HP.EES
 02-06-2019 20:36:38  Page 3
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -5835,6 +5942,7 @@ temperatur
  170:  //----------------------------------------------------------------------------------------------//
  171:   
  172:  P[3] = P[2] 
+==PAGE:108==
 File:C:\Users\josl\Dropbox\KANDIDAT SPECIALE\Report\Afleveringsmappe\HP.EES
 02-06-2019 20:36:38  Page 4
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -5903,6 +6011,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
 // --------------Desuperheating --------------//
  230:   
  231:  P[6] = P[5]
+==PAGE:109==
 File:C:\Users\josl\Dropbox\KANDIDAT SPECIALE\Report\Afleveringsmappe\HP.EES
 02-06-2019 20:36:38  Page 5
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -5978,6 +6087,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  288:   
  289:   
  290:   
+==PAGE:110==
 File:C:\Users\josl\Dropbox\KANDIDAT SPECIALE\Report\Afleveringsmappe\HP.EES
 02-06-2019 20:36:38  Page 6
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -6046,6 +6156,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  347:  m_dot[12] = m_dot[11] * (1-x[11]) + m_dot[13]*(1-x[13])
  348:   
  349:   
+==PAGE:111==
 File:C:\Users\josl\Dropbox\KANDIDAT SPECIALE\Report\Afleveringsmappe\HP.EES
 02-06-2019 20:36:38  Page 7
 EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
@@ -6102,6 +6213,7 @@ EES Ver. 10.478: #0780: Department of Energy Engineering, Tech. Univ. of Denmark
  396:   
  397:   
  398:  W_dot_comp = W_dot_comp1+W_dot_comp2
+==PAGE:112==
 DTU Mechanical Engineering
 Section of Thermal Energy
 Technical University of Denmark

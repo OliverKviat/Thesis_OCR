@@ -1,7 +1,9 @@
+==PAGE:1==
 Improving Learning Plans with
 Peer Goal Revision
 Mathias Sixten Pedersen
 Kongens Lyngby 2019
+==PAGE:2==
 Technical University of Denmark
 Department of Applied Mathematics and Computer Science
 Richard Petersens Plads, building 324,
@@ -9,6 +11,7 @@ Richard Petersens Plads, building 324,
 Phone +45 4525 3031
 compute@compute.dtu.dk
 www.compute.dtu.dk
+==PAGE:3==
 Summary (English)
 This thesis’ main purpose is to serve as a pre-liminary exploratory look into
 what beneﬁts might emerge from socially making learning plans.
@@ -23,7 +26,9 @@ foreign language or a programming language. With a small sample size of users,
 the experience and outcome of this workﬂow was explored and discussed. These
 exploratory user studies show good results and indication of the revision task,
 can indeed provide beneﬁts for the revisers themselves.
+==PAGE:4==
 ii
+==PAGE:5==
 Summary (Danish)
 Denne afhandling har til formål at fungere som et udforskende kig ind i hvil-
 ke fordele kan fremkomme ved socialt at lave planer. Baseret på nuværende
@@ -34,7 +39,9 @@ Til at teste dette, en procedure indeholdende planudformning, plangennemgang
 samt planforbedring, designet. En lille gruppe deltager testede systemet med
 deres planer. Resultater viste at processen kunne hjælpe visse personer i at
 forbedre deres planer.
+==PAGE:6==
 iv
+==PAGE:7==
 Preface
 This thesis was prepared at DTU Compute in fulﬁlment of the requirements for
 acquiring an M.Sc. in Engineering.
@@ -44,7 +51,9 @@ Mathias Sixten Pedersen
 Advised by:
 Helle Rootzén, Danmarks Tekniske Universitet
 Juho Kim, Korea Advanced Institute of Science and Technology
+==PAGE:8==
 vi
+==PAGE:9==
 Acknowledgements
 I would like to express my sincerest gratitude to my two advisors. Namely Helle
 Rootzén and Juho Kim. I would like to thank them for their amazing patience,
@@ -54,7 +63,9 @@ studies. Furthermore I want to thank all the members of KAIST Interaction
 Lab for providing a great working environment and frequent feedback on my
 work. I would like to thank my family and friends, no matter close or far, for
 their support to me through the whole process.
+==PAGE:10==
 viii
+==PAGE:11==
 Contents
 Summary (English)
 i
@@ -119,6 +130,7 @@ Prototype Iterations . . . . . . . . . . . . . . . . . . . . . . . . .
 5.4
 Last iteration . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 28
+==PAGE:12==
 x
 CONTENTS
 5.5
@@ -157,6 +169,7 @@ Conclusion
 43
 Bibliography
 45
+==PAGE:13==
 Chapter 1
 Introduction
 1.1
@@ -176,6 +189,7 @@ and improving learning plans through peer goal revision. Following that, We
 described our implementation details and several prototype iterations. Finally,
 we described our user study, evaluation method and results and discussed the
 limitations and future work of this project.
+==PAGE:14==
 2
 Introduction
 1.2
@@ -209,6 +223,7 @@ trying to reach a worldwide quantity, with an individualised quality. The ﬁrst
 thing before learning anything, is to know what and how to learn that. It is to
 have a plan. Creating a plan for something you do not know is a diﬃcult task
 in itself, so why not get help from others that might know.
+==PAGE:15==
 1.4 Scope
 3
 1.4
@@ -219,8 +234,10 @@ plans from others increases motivation[ACMH16] in executing the plan.
 So,
 anyone receiving a plan beneﬁts from that, but what about one who has to
 provide that plan, do they draw any beneﬁt from it?
+==PAGE:16==
 4
 Introduction
+==PAGE:17==
 Chapter 2
 Background
 2.1
@@ -241,6 +258,7 @@ quizzes etc. are studied. The results are compared and ranked in comparison
 to other students. This solution encourages competition instead of collabora-
 tion. Utilising competitive nature as motivation. It does not provide detailed
 feedback on where or how to improve the approach.
+==PAGE:18==
 6
 Background
 In [LvdBCA18] proposes a document recommendation system for English learn-
@@ -274,6 +292,7 @@ friends and strangers had each of their own advantages. Friends provide more
 personalised plans, while users ﬁnd it easier to share personal information with
 strangers. Similarly microtasks makes larger tasks easier to execute and more
 ﬂexible in what circumstances they can be executed.
+==PAGE:19==
 Chapter 3
 Building a Plan
 3.1
@@ -292,6 +311,7 @@ to understand. Microgoals do not only make the format consistent and help
 learners to create actionable plans, but also have a limited size makes the peer
 revision easier. Breaking a plan into micro goals also makes the peer revision a
 series of micro tasks in itself.
+==PAGE:20==
 8
 Building a Plan
 Figure 3.1: Illustration of what a plan consists of.
@@ -309,6 +329,7 @@ books, videos, lectures and friends) they have at disposal, or any kind of prior
 knowledge that might inﬂuences the learning. Providing a time frame might help
 the reviser understand how the goal is broken down into the speciﬁc microgoals
 and steps.
+==PAGE:21==
 3.1 Plan framework
 9
 3.1.2
@@ -343,6 +364,7 @@ larger task is completed.
 An Independent microgoal means that it should be achievable independent from
 other micro-goals within the same main goal. It should only be dependent on
 the knowledge of the goal setter prior to creating the main goal.
+==PAGE:22==
 10
 Building a Plan
 3.1.5
@@ -376,6 +398,7 @@ Other than ensuring a clear and actionable plan for the creator, it also helps
 create a plan which purpose is easier understood by others who will have to
 revise it.
 1https://blog.udemy.com/smart-action-plan/
+==PAGE:23==
 3.2 Pilot testing
 11
 3.2
@@ -414,6 +437,7 @@ of media, time of day, place etc. for studying.
 How to decompose main goal into microgoals
 What is a microgoal? A microgoal is a very small (and independent) sub-
 goal decomposed from the main goal. It should preferably be achievable within
+==PAGE:24==
 12
 Building a Plan
 a single study session, if learner has not stated otherwise. A microgoal can be
@@ -447,6 +471,7 @@ Through the pilot study, feedback on instructions and the plan structures were
 pretty consistent across all users. Major concerns/confusions included:
 1. Relevance of prior knowledge and preferences.
 2. Lack of examples what constraints could include.
+==PAGE:25==
 3.2 Pilot testing
 13
 User 1
@@ -476,8 +501,10 @@ Discussion
 A key take-away from testing microgoal-structured plan is, several of the par-
 ticipants reported the experience made them think how this could be used in
 their own planning.
+==PAGE:26==
 14
 Building a Plan
+==PAGE:27==
 Chapter 4
 Research scope
 4.1
@@ -499,6 +526,7 @@ tackle the questions before that, concepts of micro-goals and peer planning can
 provide a good foundation for ways to collaboratively create goals and do social
 “self” reﬂection.
 In a scenario where a learner has to provide feedback or revise another’s plan,
+==PAGE:28==
 16
 Research scope
 Figure 4.1: Sequential hypothesis of revision leading to better plans.
@@ -514,6 +542,7 @@ Pre-workﬂow design questions:
 • What is collaborative planning?
 • What is social self reﬂection?
 • What key elements and interactions are needed?
+==PAGE:29==
 Chapter 5
 Design
 5.1
@@ -534,6 +563,7 @@ they revise and reﬂect upon each others goals. Version ONE: A small group
 of learners, with a common goal, work together to form a “perfect” plan for
 their goal. Here, each learner will contribute with their own ideas to form one
 plan, all of the members can follow. Version TWO: A small group of learners,
+==PAGE:30==
 18
 Design
 Figure 5.1: Caption
@@ -558,6 +588,7 @@ like-minded people or people with similar interests, can initiate a certain amou
 of self reﬂection. Revising other people’s plans or receiving suggestive inputs
 from other learner’s might help one to think diﬀerently, more abstract or with
 a new perspective of one’s own plans.
+==PAGE:31==
 5.2 Workﬂow
 19
 5.2
@@ -591,6 +622,7 @@ Creating a plan
 The ﬁrst stage is to create a plan for the desired goal. Where the goal title is
 the self-explanatory part of the plan, the remaining mandatory elements needs
 some elaboration on their role in the plan.
+==PAGE:32==
 20
 Design
 Learners are guided to create the plan in a top-down approach. Ideally the goal
@@ -624,6 +656,7 @@ porting this naturally, learners are enforced to keep a structure and think in
 ways that will make their plan actionable. A microgoal does not need to have
 a certain size, but it is encouraged that it should be attainable within a single
 study session, which is something to be provided in the constraints.
+==PAGE:33==
 5.3 Prototype Iterations
 21
 5.2.1.4
@@ -655,10 +688,12 @@ of revision and recognize the diﬀerence in the goals, microgoals and a plan. F
 screen is listing goals made by other learners. Next screen is showing all the
 microgoals attached to the chosen microgoal. Last is the plan where users can
 do the actually revision.
+==PAGE:34==
 22
 Design
 Figure 5.2: The three screens in sequential order from top left. Goals, micro-
 goals and plan.
+==PAGE:35==
 5.3 Prototype Iterations
 23
 Letting 3 people use the workﬂow for a few minutes and then provide feedback
@@ -690,18 +725,22 @@ Results
 Through testing several usability issues were addressed.
 These issues were
 mainly concerned around the revision of other learner’s goal. All included:
+==PAGE:36==
 24
 Design
 Figure 5.3: Instructions and "login" screen for creating a goal and starting the
 workﬂos
+==PAGE:37==
 5.3 Prototype Iterations
 25
 Figure 5.4: Goal creation page, with possibility to add multiple microgoals
 and steps.
+==PAGE:38==
 26
 Design
 Figure 5.5: Updated plan revision screen. Now with "delete" functionality for
 the steps.
+==PAGE:39==
 5.3 Prototype Iterations
 27
 Questions
@@ -745,6 +784,7 @@ Type of goals: Exactly the same, Similar, Diﬀerent
 Third iteration
 For the third iteration, several of the most important usability issues were ad-
 dressed. These include:
+==PAGE:40==
 28
 Design
 Figure 5.6: Visual indication of the suggestive edit made during plan revision
@@ -767,6 +807,7 @@ mainly concerned around the revision and navigation. Most prevalent include:
 Last iteration
 Few new functionalities were added to make navigation and revision easier to
 understand:
+==PAGE:41==
 5.5 Development
 29
 Figure 5.8: Indicator on the top of the page
@@ -794,6 +835,7 @@ The prototype is developed as a web application, using the Javascript library
 ReactJS1. ReactJS is an Open-Sourced modern Javascript library for building
 user interfaces. ReactJS has many advantages for building user interfaces, such
 1https://reactjs.org/
+==PAGE:42==
 30
 Design
 as UI components, great performance, and easy integration with other services.
@@ -823,6 +865,7 @@ steps the speciﬁc microgoal has. The Requirement component consists of a
 longer text ﬁeld meant for plan parts like description and constraints. The Step
 component is a list element and contains buttons for editing and deleting.
 2https://ﬁrebase.google.com/
+==PAGE:43==
 5.5 Development
 31
 Figure 5.10: This diagram illustrates the three pages and their components,
@@ -841,8 +884,10 @@ Improvement page
 Figure 5.11: Shown here are the pages and components of the last prototype
 iteration. The arrows indicate links and dataﬂow. Circles and
 ellipses show
+==PAGE:44==
 32
 Design
+==PAGE:45==
 Chapter 6
 Evaluation
 The goal of the study is to investigate whether revising other peer learners’ plans
@@ -858,6 +903,7 @@ A total of ten participants were recruited through group chats on Facebook and
 KakaoTalk, mostly consisting of international students at KAIST. 8 were male
 and 2 were female, all students (at bachelor or master level) with a background
 in engineering. The median age was 24 years old, ranging from 21 to 37.
+==PAGE:46==
 34
 Evaluation
 6.2
@@ -889,6 +935,7 @@ own plan?
 (c) After updating your plan do you ﬁnd it easier to get started?
 (d) If not asked to, would you have made a plan?
 To see full list of instructions and questions please refer to the appendix.
+==PAGE:47==
 6.3 Results
 35
 6.3
@@ -916,6 +963,7 @@ looked as follow:
 Microgoal: "Create comments"
 1. "Create a line comment"
 2. "Create a section comment"
+==PAGE:48==
 36
 Evaluation
 6.3.2
@@ -947,6 +995,7 @@ Several participants stated how revising other’s plans inspired them to update
 their own.
 In the section above, P9 updates one of their steps to be more
 speciﬁc. They even state:
+==PAGE:49==
 6.3 Results
 37
 P9: "When revising another learners’ plan, I realised that I could
@@ -980,6 +1029,7 @@ more actionable.
 Table 6.1 shows the additional microgoal of L5. L5 revised 3 diﬀerent plans
 within language learning. Only 1 of these plans mentioned "Meet once a week
 for drinking Cafe to practice italian"[P2] as a last step of having conversation
+==PAGE:50==
 38
 Evaluation
 with friends in Italian.
@@ -989,6 +1039,7 @@ order reach that exact goal.
 In general the workﬂow seemed to provide a lot of
 Users following a book tend to have less need for improvement. Either they
 have their plan locked down or they will simply adhere to the curriculum.
+==PAGE:51==
 Chapter 7
 Discussion
 There are still a lot of uncertainties and questions regarding the results, design
@@ -1010,6 +1061,7 @@ showed interesting results for how revision also can be used as a way to improve
 learning plans. Learners could encounter very similar goals to their own, that
 helped them make more speciﬁc, possibly than what generic plan examples could
 have.
+==PAGE:52==
 40
 Discussion
 7.1.1
@@ -1045,6 +1097,7 @@ improving might be completely unnecessary at this point. On the other hand
 having the freedom to switch between goal in revision phase showed to be an
 engaging way to both improve one’s own plan, but also across the other learners’
 plans.
+==PAGE:53==
 7.2 Limitations
 41
 7.2
@@ -1085,6 +1138,7 @@ and helped some more than others.
 User Interface
 One of the biggest limitations in testing the concept, was the prototype UI.
 Though it went through many iterations, and several with only minor issues,
+==PAGE:54==
 42
 Discussion
 there was several design choices that proved itself to be non-intuitive.
@@ -1121,6 +1175,7 @@ often have little knowledge to create a plan, but many other tasks and projects
 might encounter similar challenges. Many people do not engage in much plan-
 ning (or any at all) before starting a new project. Whether that be developing
 1https://www.peergrade.io/
+==PAGE:55==
 7.4 Conclusion
 43
 an application, writing an article, or engaging in a healthier lifestyle. Having a
@@ -1143,8 +1198,10 @@ programming language. With a small sample size of users, the experience and
 outcome of this workﬂow was explored and discussed. These exploratory user
 studies show good results and indication of the revision task, can indeed provide
 beneﬁts for the revisers themselves.
+==PAGE:56==
 44
 Discussion
+==PAGE:57==
 Bibliography
 [ACMH16]
 Elena Agapie, Lucas Colusso, Sean A. Munson, and Gary
@@ -1182,6 +1239,7 @@ learning groups. Teachers College Record, 113:350–374, 03 2011.
 [KKH+13]
 Nicolas Kokkalis, Thomas Köhn, Johannes Huebner, Moontae
 Lee, Florian Schulze, and Scott R. Klemmer. Taskgenies: Au-
+==PAGE:58==
 46
 BIBLIOGRAPHY
 tomatically providing action plans helps people complete tasks.

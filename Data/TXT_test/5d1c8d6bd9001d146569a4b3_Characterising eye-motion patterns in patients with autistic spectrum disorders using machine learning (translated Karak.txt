@@ -1,3 +1,4 @@
+==PAGE:1==
 Thesis: Characterising eye-motion
 patterns in patients with autistic
 spectrum disorders using machine
@@ -6,6 +7,7 @@ Niels Mikkelsen, s113590
 Supervisors: Morten Mørup, Paolo Masulli and Tobias Andersen
 Technical University of Denmark
 June 2, 2019
+==PAGE:2==
 Contents
 1
 Abstract
@@ -80,6 +82,7 @@ Outer cross validation results
 57
 References
 67
+==PAGE:3==
 1
 Abstract
 Do individuals with Autism Spectrum Disorder (ASD) look at faces diﬀerently
@@ -110,6 +113,7 @@ control groups from other features or methods and use it in the classiﬁer, by 
 tempting to use the dynamic videos instead of static pictures, and ﬁnally improve
 the quantity and quality of the data by redoing the eye tracking experiment.
 1
+==PAGE:4==
 2
 Resum´e
 Kigger individer med autismespektrumforstyrrelser (ASD) anderledes p˚a ansigter
@@ -142,6 +146,7 @@ dette i modellen, at bruge videoerne i stedet for billederne og ved at forbedre
 mængden og kvaliteten af data ved at udføre eksperimentet med forsøgspersonerne
 igen.
 2
+==PAGE:5==
 3
 Preface
 I would like to thank Jakob ˚Asberg Johnels, Daniel Hovey, Nicole Z¨urcher, Loyse
@@ -150,6 +155,7 @@ letting me use the data of their experiment [Johnels et al. 2017]. I would also
 really like to thank my supervisors, Morten Mørup, Paolo Masulli, and Tobias
 Andersen, for guiding me and always having time to meet even on short notice.
 3
+==PAGE:6==
 4
 Introduction
 Autism spectrum disorder (ASD) is a developmental disorder. Among other diﬃ-
@@ -189,6 +195,7 @@ only showed few diﬀerences between the ASD group and the control (CON) group
 in looking at the eyes versus the mouth. However, the ASD-participants in this
 study looked generally less at complex facial expressions (e.g. arrogant) versus
 4
+==PAGE:7==
 less complex (e.g., fear), and they seemed to look less towards the eyes for these
 stimuli, however the diﬀerence was not signiﬁcant. A third study used all six ba-
 sic emotions (fear, anger, disgust, happiness, sadness, and surprise). They found
@@ -228,6 +235,7 @@ towards mouths of happy faces compared to other expressions seemed to
 be present in both groups but relatively less in the ASD group. They also
 found that with increasing autism-like traits in the control group, measured
 5
+==PAGE:8==
 by the Autism Quotient (AQ), there was looked relatively less towards the
 happy mouth. So, the same observed pattern in the children/adolescent
 ASD group was also seen in the control children/adolescents with higher
@@ -264,6 +272,7 @@ control subjects in order make a diagnose tool that can determine whether a
 subject has ASD or not. The data comes from the study of Johnels et al. 2017
 and HMMs will be used for the modelling.
 6
+==PAGE:9==
 5
 The data
 5.1
@@ -300,12 +309,14 @@ later ﬁles are used since something might have happened that made them repeat
 the experiment. Hence, only 133 ﬁles are used. Consider Figure 1 for a histogram
 of the number of observations.
 7
+==PAGE:10==
 Figure 1: The number of rows/observations in the .tsv ﬁles.
 The columns
 Each ﬁle also has 209 columns/attributes. It is selected in the Tobii software
 which of these attributes to export. Consider Figure 2 for the most important
 attributes to this thesis.
 8
+==PAGE:11==
 Figure 2:
 Extraction from the data ﬁle of subject CON 90.
 Many
@@ -329,6 +340,7 @@ soon.
 2: MediaName
 The name of the media/stimuli element which the subject has looked at. I re-
 9
+==PAGE:12==
 ceived 31 short .avi videos and the corresponding 31 .jpg images with the ﬁnal
 expression of the videos, even though Johnels et al. 2017 mentioned 32 videos.
 However, after loading the data from the ﬁles it was seen that one video and the
@@ -346,6 +358,7 @@ Figure 4: The visual mask shown between faces in order to reset the
 vision.
 The MediaName attribute will be used to identify the emotion of the face looked
 10
+==PAGE:13==
 at, which in turn will be used to split the data such that we can model either one
 emotion only or them all mixed.
 3: MediaPosX (ADCSpx) and 4: MediaPosY (ADCSpx)
@@ -365,6 +378,7 @@ the same spot on the screen, hence the AOIs (areas of interest), for example the
 eyes, nose and mouth, are also almost located at the same spots (there are some
 minor diﬀerences).
 11
+==PAGE:14==
 5: StudioEvent and 6: StudioEventData
 StudioEvent is a media beginning or ending and StudioEventData is the Media-
 Name attribute. As an example, consider again Figure 2. At row 1.611, the Stu-
@@ -395,6 +409,7 @@ raw gaze points into an associated sequence of ﬁxations.” [Tobii 2019]
 No observation in any ﬁle was classiﬁed as a saccade. The percentages of ﬁxations
 versus unclassiﬁed events can be seen at Figure 6.
 12
+==PAGE:15==
 Figure 6: The percentages of ﬁxation versus unclassiﬁed gaze events for
 each subject. As seen, most of the events are ﬁxations, however there are
 quite a few unclassiﬁed events as well. Even though the x-axis is without
@@ -412,6 +427,7 @@ dia. These are empty if the ﬁxation is outside media, the media is covered or 
 media is displayed. They are measured according to the MCS coordinate system
 which has origin in the upper left corner of the image, see Figure 7.
 13
+==PAGE:16==
 Figure 7: The MCS coordinate system with origin in image’s upper left
 corner [Taken from Tobii 2016].
 Remember from Figure 5 that the upper left point of the image had the coor-
@@ -423,6 +439,7 @@ system (xM, yM):
 Consider Figure 8 for the ﬁxation points of one subject looking at one face where
 the ﬁxation points corresponds to the eyes.
 14
+==PAGE:17==
 Figure 8: The MCS ﬁxation points for subject ASD 143 looking at face
 23M F behav 073.jpg which is seen in the background. Is it not allowed
 to show the images of the models I have data for, hence the image is
@@ -439,6 +456,7 @@ to 58 and the corresponding 66 · 32 = 2.112 ASD sequences to 717. The 67 CON
 subjects are reduced to 64 and the corresponding 67 · 32 = 2.144 CON sequences
 to 1121. Hence this introduces some class imbalance. Instead of removing all
 15
+==PAGE:18==
 sequences even with just one missing value, one could also split a sequence with
 missing values up into several uninterrupted sequences of some length. However,
 this was tried and the results were not better. It was also tried to allow certain
@@ -494,6 +512,7 @@ Otherwise the Gaussian densities in the HMM modelling (to be described later)
 is aﬀected. Since the extra observations are due to a higher sample rate, the
 down-sampling will not cause important information to be lost.
 16
+==PAGE:19==
 6
 The modelling
 6.1
@@ -515,6 +534,7 @@ are given by Ajk = p(znk = 1|zn−1,j = 1) i.e. the probability of entering stat
 k at step n when at step n −1 we was in state j. Consider Figure 10 for an
 illustration of the transition probabilities.
 17
+==PAGE:20==
 Figure 10: Transition diagram showing a model whose latent variables
 have three possible states corresponding to the three boxes. The black
 lines denote the elements of the transition matrix Ajk [Taken from Bishop
@@ -541,6 +561,7 @@ other hidden state), there is a probability of 0.6 that she is sad and a probabi
 of 0.4 that she is happy. These are the emission probabilities φ. In addition, let
 us assume there is a start probability 0.9 that the ﬁrst work day is great and 0.1
 18
+==PAGE:21==
 that the ﬁrst work day is bad. This is the start probability vector
 π =
 0.9
@@ -569,6 +590,7 @@ about how her moods have been each day during the week. From only this
 information, you must calculate the diﬀerent probabilities. This problem
 can be solved by the Expectation-Maximization (EM) algorithm.
 19
+==PAGE:22==
 2. Recognition: Given the model parameters θ and observations X, estimate
 the optimal sequence of hidden states. In the example, if you only have her
 daily moods, estimate how each work day has been. This problem can be
@@ -609,6 +631,7 @@ Run the forward α and backward β recursions to update γi(zn), the probability
 of being in state i at step n given (X,θ), and ξij(zn−1, zn), the probability of
 being in state i and j at two successive steps n −1 and n given (X,θ). These
 20
+==PAGE:23==
 are (by Bayes’ theorem and other calculations) given by
 γ(zn) = p(zn|X, θ) = α(zn)β(zn)
 p(X, θ)
@@ -642,6 +665,7 @@ states be K = 3 and consider Figure 12.
 Figure 12: Illustration of forward recursion for evaluation of the α vari-
 ables [Taken from Bishop 2006 pp. 621].
 21
+==PAGE:24==
 Let n = 2, hence at Figure 12 we are looking at the two ﬁrst latent variables,
 which can be in one out of three states each, where the ﬁrst column on the ﬁgure
 is the initialization. Let π = [π1, π2, π3]T. By Equation 4, α(z1) is thus
@@ -687,6 +711,7 @@ Hence n + 1 = N. By equation 5, β(zN) is thus
 
 
 22
+==PAGE:25==
 and in the next iteration, by equation 3, the three components of β(zN−1) be-
 comes
 β(zN−1) = A β(zN) p(xN|zN)
@@ -742,6 +767,7 @@ straightforward to update the parameter values when the diﬀerent temporary
 values have been calculated in the expectation step if one just treads carefully
 and keep track of them, consider Figure 14.
 23
+==PAGE:26==
 Figure 14: The diﬀerent values needed in order to update the parameter
 values in the expectation and maximization step.
 4. Iteration
@@ -760,6 +786,7 @@ parameters the model with normal Gaussian emissions can take are the following
 1. n components (int) – Number of hidden states
 2. covariance type (string) - Which can be:
 24
+==PAGE:27==
 (a) ”full” - When the HMM is ergodic (fully connected) i.e. each state
 can be reached from any other state in ﬁnite steps. Each state has its
 own general/full covariance matrix.
@@ -795,6 +822,7 @@ nition)
 model i.e. the state-membership probabilities for each sample from X. So
 for each observation in X, a probability for being in each state is returned
 25
+==PAGE:28==
 5. sample: Generate random samples (emissions) from the model and the
 corresponding state sequence produced by the model
 6. score(X, lengths=None): Computes the log-likelihood of X. Multiple
@@ -826,6 +854,7 @@ since we have to create two models, one for each class, and a Bayes classiﬁer.
 Figure 15 for an overview of the cross validation, which are then expanded on
 below.
 26
+==PAGE:29==
 Figure 15: An overview of the two-layer cross validation that are used to
 train and evaluate the model used to predict ASD versus CON.
 In the inner cross validation, the best model for each class was to be found. Be-
@@ -849,6 +878,7 @@ This way, we can select the best model order K using both the information of
 when the likelihood is maximized and which K that predicts the best. In order
 to make this prediction, we will construct a Bayes classiﬁer. Firstly, we need the
 27
+==PAGE:30==
 prior probabilities p(y = 1) and p(y = 0) which are the proportion of inner ASD
 and CON train subjects, respectively, to the combined number of train subjects.
 We then calculate the scores for each inner test subject’s combined ﬁxation point
@@ -894,6 +924,7 @@ one. We can now select some threshold θ and say that if p(y = 1|Xtest) > θ,
 the subject having the sequences Xtest is classiﬁed as ASD and otherwise CON.
 However, due to the imposed class imbalance when removing the sequences with
 28
+==PAGE:31==
 missing values, we cannot now just predict the inner test subjects and select
 the K that correctly classiﬁes the most subjects. In order to correctly determine
 which model predicts the best, a Receiver Operating Characteristic (ROC) Curve
@@ -933,6 +964,7 @@ and 1 in order to calculate the AUC since the important things takes place close
 to 0 or 1. We would therefore need to lower the threshold down through all the
 probability values of the classiﬁer and directly calculate TPR and FPR.
 29
+==PAGE:32==
 A usual trick in order to spread the probability values of the classiﬁer is to stay in
 the log domain where the probabilities can be added instead of being multiplied
 in the normal domain. If we calculate the log of the classiﬁer
@@ -996,6 +1028,7 @@ down through the scores x1.
 In Python, we just have to feed the functions roc_auc_score and roc_curve from
 the sklearn.metrics package with the scores and output in order to calculate
 30
+==PAGE:33==
 the ROC curve and AUC. See Figure 16 for the ROC curve and AUC value of
 the example.
 Figure 16: The ROC curve for the example. The AUC is 0.75.
@@ -1016,6 +1049,7 @@ now, in order to examine whether this AUC value is signiﬁcant, a permutation
 test is performed. Hence we are testing whether the scores and labels could have
 been random and then give this AUC value. So the vector with the classes are
 31
+==PAGE:34==
 permuted for example 10,000 times and each time a new AUC value is calculated.
 Then we calculate the proportion of these new AUC values equal to or greater
 than the original AUC value. If this proportion is less than some α, for example
@@ -1025,6 +1059,7 @@ permute the labels in the beginning before the modelling and then do everything
 10,000 times, but that would take ages). Finally, this whole process can then be
 repeated a number of times in order to obtain a more robust result.
 32
+==PAGE:35==
 7
 Results
 7.1
@@ -1040,6 +1075,7 @@ K = 20 before the inner CON test log-likelihood which continues to increase.
 Figure 17: The general behaviour of the ASD test log-likelihood in the
 inner cross validation.
 33
+==PAGE:36==
 Figure 18: The general behaviour of the CON test log-likelihood in the
 inner cross validation.
 7.1.2
@@ -1058,6 +1094,7 @@ peated 5 times for K = 1..11 and K = 20 yielding 5 AUC curves as a function of
 K for each emotion. Then the mean ASD curve for each emotion was calculated,
 see Figure 19. The plots for each emotion are placed in Appendix 9.1.
 34
+==PAGE:37==
 Figure 19: For each K = 1..11 and K = 20, 10-fold inner cross validation
 was repeated 5 times with diﬀerent splits for the each emotion and the
 combined sequences. The mean AUC curves over the 5 repeats are seen
@@ -1079,6 +1116,7 @@ was signiﬁcant. The results are summarized in Table 3. See Figure 20 for the
 histogram and an explanation of the permutation test of the ﬁrst AUC value for
 the angry sequences with K = 5 from Table 3.
 35
+==PAGE:38==
 Figure 20: The histogram of permutation testing whether an AUC value
 of 0.603 for the angry sequences for K = 5 was signiﬁcant. The class
 labels used to calculate the AUC value were permuted 10,000 times and
@@ -1087,6 +1125,7 @@ The proportion of the new AUCs
 equal to or greater than 0.603 was 3.06%, hence for a signiﬁcance level
 of 5%, the original AUC 0.603 was signiﬁcant.
 36
+==PAGE:39==
 Results for the original data
 # CV
 Rep
@@ -1258,6 +1297,7 @@ This resulted in all the AUCs becoming non-signiﬁcant.
 The results are
 summarized in Table 4.
 37
+==PAGE:40==
 Results for data with permuted labels in the beginning
 # CV
 Rep
@@ -1422,6 +1462,7 @@ tion it was seen that the higher K the higher log-likelihood and that K = 20 was
 plausible to use in order to have a high log-likelihood. However, the predictions
 were not better with this value, see Figure 21.
 38
+==PAGE:41==
 Figure 21: The ROC curves and AUC values obtained from 10-fold cross
 validation for the diﬀerent emotions for K = 20.
 7.3
@@ -1431,12 +1472,14 @@ to perform close to random, all the ﬁxation points in the CON sequences were
 manually displaced by D [px] in the x- and y-axis, K was ﬁxed and the ROC
 curves were calculated, consider Figure 22 for D = 10px.
 39
+==PAGE:42==
 Figure 22: ROC curves when displacing the observations in the angry
 CON ﬁxation points with D = 10px. It was noticed that the classiﬁer
 became better, even for K = 1.
 And the more displacement, the better classiﬁer, see Figure 23 for D = 20px.
 Hence it was assumed that the classiﬁer was constructed correctly.
 40
+==PAGE:43==
 Figure 23: ROC curves when displacing the observations in the angry
 CON ﬁxation points with D = 20px for K = 1.
 7.4
@@ -1446,6 +1489,7 @@ was obtained for the happy sequences with K = 9, so this was selected as the
 ﬁnal classiﬁer. The ROC curves of this classiﬁer for the 10 repetitions of the
 happy sequences shown in Table 3 are seen on Figure 24.
 41
+==PAGE:44==
 Figure 24: 10 repetitions of 10-fold cross validation yielding 10 AUC
 values as performance measures for the ASD classiﬁer for happy sequences
 with K = 9. The p-values from the corresponding permutation test are
@@ -1457,6 +1501,7 @@ then classiﬁed using the threshold θ = 0.5 and the AUC was calculated as usua
 However, this time the confusion matrix [Herlau, Schmidt, and Mørup 2018 pp.
 108-109] was also calculated, see Figure 25.
 42
+==PAGE:45==
 Figure 25: The confusion matrix obtained from performing leave-one-out
 cross validation and predicting each test subject as ASD or CON.
 The accuracy (Acc) and error rate (Err) were
@@ -1473,6 +1518,7 @@ omitted.
 The leave-one-out cross validation was then repeated 10 times to make sure the
 high AUC and accuracy were not obtained by luck. The mean of the correspond-
 43
+==PAGE:46==
 ing 10 AUCs was 0.657 with standard deviation 0.0129. All 10 AUCs were still
 signiﬁcant with mean p = 0.02%. The average accuracy and error rate were
 Acc = TP + TN
@@ -1495,6 +1541,7 @@ Figure 26: The confusion matrix obtained from performing leave-one-out
 cross validation and predicting each test subject as ASD or CON when
 the classes have been permuted before the modelling.
 44
+==PAGE:47==
 8
 Discussion
 Individuals with ASD tend to make little or inconsistent eye contact and also
@@ -1537,6 +1584,7 @@ Skuse 2008; de-Wit, Falck-Ytter, and Hofsten 2008], which showed that there is a
 diﬀerence in viewing patterns as a function of facial emotions. Johnels et al. 2017
 also expected the ASD participants to fail to show the typical orientation toward
 45
+==PAGE:48==
 the mouth of happy faces, and they also found several diﬀerences explicitly re-
 garding happy faces. This is perhaps mirrored in this thesis, since the classiﬁer
 performs best when using just the happy faces for the number of hidden states
@@ -1582,6 +1630,7 @@ seems plausible for hidden markov models to be used with eye tracking data,
 the models just might need to be a little bit more complex than ﬁrst-order with
 Gaussian emissions and only two features.
 46
+==PAGE:49==
 9
 Appendix
 9.1
@@ -1592,54 +1641,64 @@ was repeated 5 times with diﬀerent splits for the angry sequences.
 AUC curves was thus obtained and the average AUC curve was calculated
 (black). It was noticed that K = 5 was best for predicting.
 47
+==PAGE:50==
 Figure 28: For each K = 1..11, 10-fold inner cross validation was repeated
 5 times with diﬀerent splits for the angry sequences. 5 AUC curves was
 thus obtained and the average AUC curve was calculated (black). It was
 noticed that K = 5 was best for predicting.
 48
+==PAGE:51==
 Figure 29: For each K = 1, 2, 3, 4, 5, 10, 20, 10-fold inner cross validation
 was repeated 5 times with diﬀerent splits for the fear sequences. 5 AUC
 curves was thus obtained and the average AUC curve was calculated
 (black). It was noticed that K = 5 again was best for predicting.
 49
+==PAGE:52==
 Figure 30: For each K = 1..11, 10-fold inner cross validation was repeated
 5 times with diﬀerent splits for the fear sequences. 5 AUC curves was
 thus obtained and the average AUC curve was calculated (black). It was
 noticed that K = 5 was best for predicting.
 50
+==PAGE:53==
 Figure 31: For each K = 1, 2, 3, 4, 5, 10, 20, 10-fold inner cross validation
 was repeated 5 times with diﬀerent splits for the happy sequences. 5
 AUC curves was thus obtained and the average AUC curve was calculated
 (black). It was noticed that K = 10 was best for predicting with K = 3
 almost just as good.
 51
+==PAGE:54==
 Figure 32: For each K = 1..11, 10-fold inner cross validation was repeated
 5 times with diﬀerent splits for the happy sequences. 5 AUC curves was
 thus obtained and the average AUC curve was calculated (black). It was
 noticed that K = 9 was best for predicting and not K = 10 as above
 where K = 9 was not used.
 52
+==PAGE:55==
 Figure 33: For each K = 1, 2, 3, 4, 5, 10, 20, 10-fold inner cross validation
 was repeated 5 times with diﬀerent splits for the neutral sequences. 5
 AUC curves was thus obtained and the average AUC curve was calculated
 (black). It was noticed that K = 4 was best for predicting.
 53
+==PAGE:56==
 Figure 34: For each K = 1..11, 10-fold inner cross validation was repeated
 5 times with diﬀerent splits for the neutral sequences. 5 AUC curves was
 thus obtained and the average AUC curve was calculated (black). It was
 noticed that K = 4 was best for predicting.
 54
+==PAGE:57==
 Figure 35: For each K = 1, 2, 3, 4, 5, 10, 20, 10-fold inner cross validation
 was repeated 5 times with diﬀerent splits for the combined sequences. 5
 AUC curves was thus obtained and the average AUC curve was calculated
 (black). It was noticed that K = 5 was best for predicting, with K = 20
 right after.
 55
+==PAGE:58==
 Figure 36: For each K = 1..11, 10-fold inner cross validation was repeated
 5 times with diﬀerent splits for the combined sequences. 5 AUC curves
 was thus obtained and the average AUC curve was calculated (black). It
 was noticed that K = 5 was best for predicting.
 56
+==PAGE:59==
 9.2
 Outer cross validation results
 Angry sequences
@@ -1652,10 +1711,12 @@ permutation tests is µp = 0.03045 with standard deviation sp = 0.03009. See
 Figure 38 for the histogram of the permutation test in the ﬁrst cross validation
 repetition.
 57
+==PAGE:60==
 Figure 38: The histogram of permutation testing whether the ﬁrst of the
 10 AUC values (0.603) for the angry sequences is signiﬁcant, and since
 p = 0.0306, it is.
 58
+==PAGE:61==
 Fear sequences
 Figure 39: 10 repetitions of 10-fold cross validation yielding 10 AUC
 values as performance measures for the ASD classiﬁer for fear sequences.
@@ -1666,10 +1727,12 @@ permutation tests is µp = 0.01852 with standard deviation sp = 0.02872. See
 Figure 40 for the histogram of the permutation test in the ﬁrst cross validation
 repetition.
 59
+==PAGE:62==
 Figure 40: The histogram of permutation testing whether the ﬁrst of the
 10 AUC values (0.6554) for the fear sequences is signiﬁcant, and since
 p = 0.0032, it is.
 60
+==PAGE:63==
 Happy sequences
 Figure 41: 10 repetitions of 10-fold cross validation yielding 10 AUC
 values as performance measures for the ASD classiﬁer for happy sequences
@@ -1677,10 +1740,12 @@ with K = 9. The p-values from the corresponding permutation test are
 also shown. The average AUC value was µAUC = 0.6784, and the average
 p-value from the permutation tests was µp = 0.0023.
 61
+==PAGE:64==
 Figure 42: The histogram of permutation testing whether a AUC value
 of 0.6554 for the happy sequences for K = 3 is signiﬁcant, and since
 p = 0.0026, it is.
 62
+==PAGE:65==
 Neutral sequences
 Figure 43: 10 repetitions of 10-fold cross validation yielding 10 AUC val-
 ues as performance measures for the ASD classiﬁer for neutral sequences.
@@ -1692,10 +1757,12 @@ See
 Figure 44 for the histogram of the permutation test in the ﬁrst cross validation
 repetition.
 63
+==PAGE:66==
 Figure 44: The histogram of permutation testing whether the ﬁrst of the
 10 AUC values (0.5345) for the neutral sequences is signiﬁcant, and since
 p = 0.2684, it is not.
 64
+==PAGE:67==
 Combined sequences
 Figure 45: 10 repetitions of 10-fold cross validation yielding 10 AUC
 values as performance measures for the ASD classiﬁer for combined se-
@@ -1708,10 +1775,12 @@ See
 Figure 46 for the histogram of the permutation test in the ﬁrst cross validation
 repetition.
 65
+==PAGE:68==
 Figure 46: The histogram of permutation testing whether the ﬁrst of the
 10 AUC values (0.5665) for the combined sequences is signiﬁcant, and
 since p = 0.1081, it is not.
 66
+==PAGE:69==
 References
 Bal, Elgiz et al. (2010). “Emotion recognition in children with autism spectrum
 disorders: Relations to eye gaze and autonomic state.” In: Journal of Autism
@@ -1752,6 +1821,7 @@ Tobii (2016). Tobii Studio User’s Manual - Version 3.4.5. url: https://www.
 tobiipro . com / siteassets / tobii - pro / user - manuals / tobii - pro -
 studio-user-manual.pdf. Accessed: 05-01-2019.
 67
+==PAGE:70==
 Tobii (2019). Types of eye movement. url: https : / / www . tobiipro . com /
 learn-and-support/learn/eye-tracking-essentials/types-of-eye-
 movements. Accessed: 02-06-2019.

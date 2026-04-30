@@ -1,3 +1,4 @@
+==PAGE:1==
 Technical University of Denmark
 Department of Applied Mathematics and Computer Science, DTU Compute
 MASTER THESIS
@@ -6,6 +7,8 @@ Andreea Matei
 Supervised by:
 Philip Bille and Inge Li Gørtz
 June 2025
+==PAGE:2==
+==PAGE:3==
 Abstract
 The text indexing problem [1, 18] is a central topic in computer science, highly addressed by
 many scientists and professionals throughout time. It plays a critical role in many modern sys-
@@ -25,6 +28,8 @@ The significance of these findings can be found in the benefits that anchors bri
 indexing problem.
 Keywords: Algorithms, Text Indexing, Pattern Matching, Locally Consistent Anchors, Experi-
 mental Evaluation
+==PAGE:4==
+==PAGE:5==
 Contents
 1
 Introduction
@@ -154,10 +159,12 @@ Limitations and Challenges
 21
 Bibliography
 22
+==PAGE:6==
 A Appendix A - Project Plan
 27
 B Appendix B - Problem Description
 28
+==PAGE:7==
 1
 Introduction
 1.1
@@ -195,6 +202,7 @@ perspective using experiments while the eighth chapter draws the final conclusio
 the last two sections, nine and ten, discuss the challenges and limitations faced throughout the
 study while advising upon potential future work.
 1
+==PAGE:8==
 2
 Related Work
 2.1
@@ -243,6 +251,7 @@ Variations stemming from minimizers include mod-minimizers [23], which integrate
 modulus operator in the sampling process, or the open-closed minimizers [21], which skip the
 first substring of length k within a window.
 2
+==PAGE:9==
 S = a b a b c b a b c a b, |S| = 11
 a b a b c b a b c a b, T = a b a b c
 a b a b c b a b c a b, T = b a b c b
@@ -281,6 +290,7 @@ ababcbabcab, for parameters l = 5 and r = 1. As opposed to figure 2, only the fi
 5 −1 = 4 rotations are now considered. As before, the substrings are overlined while the
 reduced bd-anchors and their rotations represent are highlighted in red.
 3
+==PAGE:10==
 The research team further improved this novel solution, particularly paying attention to
 constructing the index. The efficiency of their idea relied on a semi-external memory approach,
 which required less space [2]. They have additionally proposed a more optimal way of cal-
@@ -322,6 +332,7 @@ ends in the same way as S and starts at any position prior to the last one [12].
 speaking, it is written as S[i...|S|], where i, this time, represents the position in S where
 the suffix starts with 1 ≤i ≤|S|.
 4
+==PAGE:11==
 3
 Base Algorithm
 The algorithm proposed by Ayad et al. [2] first determines the reduced bd-anchors for the
@@ -370,6 +381,7 @@ represents the interval of ranks for the leaves in the compact tries under the n
 traversal ends. The two individual searches are essential, as they guarantee that both preceding
 and succeeding positions around the anchor are considered. Figure 5 better depicts this idea.
 5
+==PAGE:12==
 Algorithm 1 Pseudocode for the base algorithm of Ayad et al. [2]
 Require: l, r, P, |P| ≥l
 Ensure: occurences are the starting positions of P in the indexed text
@@ -422,6 +434,7 @@ acbabcbaba). Point (x3, y3) suggests the coordinates in the 2D range data struct
 with x3 = 4, since the suffix starting at position 3 is the fourth one in x_trie lexicographically
 speaking, and y3 = 2, as the string representing anchor 3 is the second one in y_trie.
 6
+==PAGE:13==
 S
 Py = ←−−−−
 P[1...a]
@@ -469,6 +482,7 @@ k
 P
 Figure 7: Part 2 of proof: anchors maintain their relative location
 7
+==PAGE:14==
 4
 Algorithm 1
 4.1
@@ -518,6 +532,7 @@ Finally, the suffix x_array and y_array are used to build the compact tries. Spe
 we insert into the x_trie the suffixes beginning at the anchors in the x_array. Similarly, we
 add the reversed prefixes ending at the locations found in the y_array to the y_trie.
 8
+==PAGE:15==
 x_trie
 10
 $
@@ -577,6 +592,7 @@ in the trie and we return the range (−1, −1). When the search ends on an int
 simply return its associated range. If it ends at a leaf node, then we return the rank of that
 leaf as an interval of one point.
 9
+==PAGE:16==
 The range lookup is done “on the spot” by:
 1. Searching the x-coordinate: collecting the points in x_array that are within the
 x_range
@@ -623,6 +639,7 @@ against pattern Px until a mismatch is found. Since the LCP is called for up to 
 per single node, then the total time spent on a node is O(c · min(ex, |Px|)). This process is
 repeated approximately |Px| times, as the entire pattern needs traversing and, in the worst
 10
+==PAGE:17==
 case, it advances with one character per iteration. Returning the associated range of a node
 requires constant time, as it is a simple lookup. Compact trie y_trie is traversed in a similar
 manner in O(|Py| · c · min(ey, |Py|)) time.
@@ -645,6 +662,7 @@ O(|Px| · min(ex, |Px|) + |Py| · min(ey, |Py|) + A2)
 O(|Px|2 + |Py|2 + A2)
 .
 11
+==PAGE:18==
 5
 Algorithm 2
 5.1
@@ -698,6 +716,7 @@ the equation further to O(|Px|2 + |Py|2 +
 √
 A + occ).
 12
+==PAGE:19==
 6
 Algorithm 3
 6.1
@@ -749,6 +768,7 @@ which coincides with the online patterns Px or Py. However, in comparison with a
 1 and 2, the next branch to follow in the trie is chosen based on one dictionary lookup for
 the first character. This quick retrieval helps determine whether there even exists a (partially)
 13
+==PAGE:20==
 matching path to follow, thus sparing us from exhaustively checking all potential branches to
 take. The dictionary lookup for the first character returns the remaining edge string and its
 child node. Then, a LCP query is performed on the remainder edge string and the currently
@@ -800,6 +820,7 @@ A + occ) = O(|Px|2 + |Py|2 +
 √
 A + occ)
 14
+==PAGE:21==
 7
 Experimental Evaluation
 7.1
@@ -856,6 +877,7 @@ spread tools whose popularity has increased tremendously over the past few decad
 Considering this, there is a large body of documentation available online for troubleshooting
 purposes [6, 40].
 15
+==PAGE:22==
 Secondly, C# is an object-oriented language at its core, which supports custom data struc-
 tures through classes and objects [39]. This was particularly advantageous in the thesis’ case,
 as it allowed for defining complex and augmented structures, like tries or trees, when building
@@ -902,6 +924,7 @@ stance, for PROTEINS dataset, when l = 1000, algorithm 2 presents an improvement
 in query times compared to algorithm 1. Following this, algorithm 3 had an improvement of
 14.23% compared to algorithm 2 and of 56.44% compared to algorithm 1.
 16
+==PAGE:23==
 Space for Data Structure The data structures of algorithms 1, 2 and 3 presented ex-
 tremely close space complexities in value. Figure 12 supports this idea through its overlapping
 graphs, indicating that the space of the three data structures did not vary by much. Besides
@@ -925,9 +948,11 @@ times considering lower bound l
 Figure 12: Results of the algorithms 1, 2, 3 for DNA, PROTEINS, XML datasets for structure
 space considering the lower bound l
 17
+==PAGE:24==
 Figure 13: Number of (bd-)anchors generated by algorithms 1, 2, 3 per dataset considering the
 lower bound l
 18
+==PAGE:25==
 8
 Conclusion
 This thesis created and presented three algorithms using the work of Ayad et al. [2], which
@@ -941,6 +966,7 @@ All three algorithms measured similar space complexities.
 All in all, the presented variants still need improvement, and could therefore act as a new
 starting point for other studies or projects.
 19
+==PAGE:26==
 9
 Limitations and Challenges
 A first limitation of this thesis was the restricted number of available community projects and
@@ -960,6 +986,7 @@ Finally, while the solution of Ayad et al. [2] relied on sdsl-lite library [17] 
 structures, the algorithms in the current thesis did not. This, of course, had a negative impact
 on the overall efficiency of the algorithms.
 20
+==PAGE:27==
 10
 Future Work
 The work on the current project is far from complete and still requires some future work.
@@ -992,6 +1019,7 @@ Lastly, the parameter r was set to ⌈4 · log(l)/log(σ)⌉[2] during the exper
 with σ being the size of the alphabet and l the minimum pattern’s length. Hence, it would be
 interesting to see how the algorithms behave when r is set to different values.
 21
+==PAGE:28==
 Bibliography
 [1]
 Srinivas Aluru. Text Indexing (1993; Manber and Myers). Lecture Notes. Entry edi-
@@ -1051,6 +1079,7 @@ GC.GetTotalMemory(Boolean) Method (System). en-us. url: https://learn.microsoft.
 com/en- us/dotnet/api/system.gc.gettotalmemory?view=net- 9.0 (visited on
 03/23/2025).
 22
+==PAGE:29==
 [16]
 Amit Kumar Ghosh. K-Dimensional Tree in Data Structures. url: https : / / www .
 scholarhat.com/tutorial/datastructures/k-dimentional-tree-in-data-structures
@@ -1110,6 +1139,7 @@ ited on 06/16/2025).
 Ragnar {Groot Koerkamp}. Minimizer papers. en. Section: posts. Feb. 2025. url: https:
 //curiouscoding.nl/posts/minimizer-papers/ (visited on 06/16/2025).
 23
+==PAGE:30==
 [30]
 Ben Langmead. Introduction to the Burrows–Wheeler Transform and FM Index. Technical
 Report. Baltimore, MD, USA: Department of Computer Science, Johns Hopkins Univer-
@@ -1170,6 +1200,7 @@ MIT Scribe. Lecture 7 Scribe Notes: Advanced Data Structures. https : / / course
 csail . mit .edu/6 .851/spring10/ scribe/lec07.pdf. Massachusetts Institute of
 Technology, 6.851 Advanced Data Structures, Spring 2010. 2010.
 24
+==PAGE:31==
 [44]
 MIT Scribe. Scribe Notes on Computational Geometry. Accessed: May 19, 2025. Unofficial
 course notes, Massachusetts Institute of Technology. 2025. url: https://courses.
@@ -1232,6 +1263,7 @@ kd-query.pdf. Accessed: 2025-06-15. 2019.
 Visual Studio Code - Code Editing. Redefined. en. url: https://code.visualstudio.
 com/ (visited on 03/08/2025).
 25
+==PAGE:32==
 [59]
 “VS Code and Visual Studio Rock the 2022 Stack Overflow Developer Report -”. en-US.
 In: Visual Studio Magazine (). url: https://visualstudiomagazine.com/articles/
@@ -1254,6 +1286,7 @@ Ming-Yang Kao. New York, NY: Springer New York, 2016, pp. 943–947. isbn: 978-1
 2864-4. doi: 10.1007/978-1-4939-2864-4_190. url: https://doi.org/10.1007/978-
 1-4939-2864-4_190.
 26
+==PAGE:33==
 A
 Appendix A - Project Plan
 Table 2
@@ -1296,6 +1329,7 @@ Week 15-17
 Week 18-19
 • Improve thesis based on received feedback
 27
+==PAGE:34==
 B
 Appendix B - Problem Description
 Problem Definition

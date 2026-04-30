@@ -1,3 +1,4 @@
+==PAGE:1==
  
  
  
@@ -14,6 +15,7 @@ blade stability using CFD
 Athanasios Kormas 
 DTU Wind Energy-M-0306 
 June 2019 
+==PAGE:2==
  
  
 Author: Athanasios Kormas 
@@ -122,6 +124,7 @@ Frederiksborgvej 399
 2800 Kgs. Lyngby 
 Denmark 
 www.vindenergi.dtu.dk 
+==PAGE:3==
  
  
  
@@ -136,6 +139,7 @@ info@vindenergi.dtu.dk
 www.vindenergi.dtu.dk 
  
  
+==PAGE:4==
 DTU Wind Energy
 Department of Wind Energy
 Technical University of Denmark
@@ -143,6 +147,7 @@ DTU Campus Risø
 Frederiksborgvej 399
 DK- 4000 Roskilde
 www.vindenergi.dtu.dk
+==PAGE:5==
 Preface
 Blade vibrations is one the critical areas of blade design as they can gravely affect
 blade performance and durability. Modern large scale wind turbine blades experi-
@@ -173,7 +178,9 @@ angle. The impact of design parameters was studied by manually adjusting the cou
 pling between the edge-wise and flap-wise deflection and using the new mode-shape
 in imposed vibrations simulations. Aforementioned study revealed a positive impact
 on blade stability when the coupling is increased.
+==PAGE:6==
 ii
+==PAGE:7==
 Acknowledgements
 It is with great pleasure and honor that I conclude my masters degree at DTU with
 my thesis. I would like to express my gratitude to all the people the supported me
@@ -197,7 +204,9 @@ as without them I would never be where I am now.
 Lyngby, Denmark
 Athanasios Kormas
 June 03, 2019
+==PAGE:8==
 iv
+==PAGE:9==
 Nomenclature
 α
 Constant used in the k - ω model
@@ -248,6 +257,7 @@ fF
 Forced vibration frequency [Hz]
 fshnat
 Natural frequency of shed vortices [Hz]
+==PAGE:10==
 vi
 Acknowledgements
 fv
@@ -309,6 +319,7 @@ DES
 Dettached Eddy Simulations
 DOF
 Degree Of Freedom
+==PAGE:11==
 Acknowledgements
 vii
 DSM
@@ -345,7 +356,9 @@ VAWT
 Vertical Axis Wind Turbine
 VIV
 Vortex Induced Vibrations
+==PAGE:12==
 viii
+==PAGE:13==
 Contents
 Preface
 i
@@ -421,6 +434,7 @@ Simulations of Non-moving blade . . . . . . . . . . . . . . . . . . . . .
 6.3
 Imposed vibrations simulations . . . . . . . . . . . . . . . . . . . . . .
 57
+==PAGE:14==
 x
 Contents
 7
@@ -437,6 +451,7 @@ A Appendix
 65
 Bibliography
 69
+==PAGE:15==
 List of Figures
 1.1
 Cumulative onshore and offshore installations in Europe [source: WindEu-
@@ -510,6 +525,7 @@ DTU 10MW IEA wind turbine[27] . . . . . . . . . . . . . . . . . . . . . .
 Normalized coordinates of airfoil cross sections
 . . . . . . . . . . . . . . .
 41
+==PAGE:16==
 xii
 List of Figures
 5.3
@@ -570,6 +586,7 @@ A.3 Example of parameters file
 67
 A.4 Example of aerodynamic configuration file . . . . . . . . . . . . . . . . . .
 68
+==PAGE:17==
 List of Tables
 5.1
 Sensitivity Analysis Simulation Matrix . . . . . . . . . . . . . . . . . . . .
@@ -598,7 +615,9 @@ Aerodynamic damping . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 6.5
 Blade Regions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 60
+==PAGE:18==
 xiv
+==PAGE:19==
 CHAPTER 1
 Introduction
 Over the past decades, the continuous rise in energy demand has shown significant
@@ -619,6 +638,7 @@ Among the available renewable energy sources, wind energy has become the leading
 one, having a total installed capacity of 189 GW in Europe [1] and 600 GW around
 the world [2], until the end of 2018. Figure 1.1 illustrates the constant increase of
 the installed capacity in the region of Europe over the past 10 years. The fact that
+==PAGE:20==
 2
 1 Introduction
 the installed capacity in Europe has increased by approximately 150% highlights the
@@ -648,6 +668,7 @@ regarding flap-wise deflections, structural engineers use thick, almost cylindri
 foils close to the root of the blade, sacrificing this way the aerodynamic performance
 [6]. The same conflict between aerodynamic and structural design is met also in the
 automotive or aviation industry, but it is intensified in the case of wind turbine blades
+==PAGE:21==
 1 Introduction
 3
 design, as there are two more factors that need to be taken into consideration. Firstly,
@@ -689,6 +710,7 @@ ing and elastic forces. Wind turbine blades experience FIV throughout their life
 In the case of wind turbines in standstill, there are two types of flow-induced vi-
 brations occurring as stated earlier: Vortex Induced Vibration and Stall Induced
 Vibrations often referred as flutter in literature.
+==PAGE:22==
 4
 1 Introduction
 Vortex Induced Vibrations
@@ -728,6 +750,7 @@ the BEM solvers include and problems of the dynamic stall models.
 BEM-based aero-elastic solvers such HAWC2 (Larsen and Hansen) [10] developed by
 Risoe and BhawC developed by Siemens Wind Power or currently known as Siemens
 Gamesa Renewable Energy, consider the blades as beams, discretized in a number
+==PAGE:23==
 1 Introduction
 5
 of elements. The BEM code calculates the unsteady induced velocities at each of
@@ -770,6 +793,7 @@ engineering models.
 As pointed out above, it is very important for blade designers to be able to accurately
 predict the occurrence of standstill vibrations and the respective vibration ampli-
 tudes caused by them. To achieve that, a more detailed study is required in order to
+==PAGE:24==
 6
 1 Introduction
 identify which blade design parameters must be altered for enhanced blade stability.
@@ -807,6 +831,7 @@ The report starts by describing in general the phenomenon of vortex induced vibr
 tions on bluff and aerodynamic shaped bodies and then focuses on the area of wind
 turbine blades and the stability issues connected. In continuation, the author goes
 through the literature and provides and overview of the approaches used and proposed
+==PAGE:25==
 1.1 Motivation and goal
 7
 in the past aiming at providing the reader with adequate information. Afterwards,
@@ -829,7 +854,9 @@ the edge-wise and flap-wise mode shapes. The next chapter focuses on a analytic
 presentation of the results and a deep analysis of them. Finally, the last chapter
 presents the conclusions of the report and provides suggestions for further research
 in the future.
+==PAGE:26==
 8
+==PAGE:27==
 CHAPTER 2
 Vortex Induced
 Vibrations
@@ -862,6 +889,7 @@ number with the Reynolds number (Re), the surface roughness, the shape of the cr
 sections and the turbulence intensity, being the major ones [13].
 The result of the formed von Karman street vortex is a periodic variation of the lift
 and drag resulting in oscillations of the blade. The lift oscillates with the vortex
+==PAGE:28==
 10
 2 Vortex Induced Vibrations
 shedding frequency, while the drag with twice the vortex shedding frequency. In the
@@ -904,6 +932,7 @@ Dfn
 (2.2)
 Where V is the in inflow speed, D is the diameter of the cylinder and fn is the natural
 frequency of the cylinder in Hertz [Hz]. The experiment showed that the cylinders
+==PAGE:29==
 2.1 Concept and Literature Review
 11
 started vibrating with a small amplitude of the natural frequency when the dimen-
@@ -931,6 +960,7 @@ Figure 2.1: Sketch of the lock-in region for a forced oscillation cylinder, adap
 Horcas 2017 [5]
 A review of the research studying the vortex induced vibrations on cylinders using
 imposed vibrations can be found in[18].
+==PAGE:30==
 12
 2 Vortex Induced Vibrations
 2.1.2
@@ -967,6 +997,7 @@ Figure 2.2: Snapshots presenting vorticity magnitude of the 3D flow around a sec
 of the extruded airfoil as results from CFD computations, adapted from Skrzypinski
 et al. [19]
 Said vortices cause fluctuations on lift and drag indicating the existence of vortex
+==PAGE:31==
 2.1 Concept and Literature Review
 13
 induced vibrations. The Strouhal number of the vortices differed from St = 0.13 to
@@ -1010,6 +1041,7 @@ angle of attack AOAtip = 90◦and AOAtip = 100◦. The results of these simulati
 showed severe edge-wise vibrations in the case where of St = 0.15 for both pitch set-
 tings, where in the case were AOAtip = 100◦, the maximum peak to peak amplitude
 after 45 seconds was 8m.
+==PAGE:32==
 14
 2 Vortex Induced Vibrations
 To investigate the aerodynamic behavior of the DTU 10-MW RWT blade, Heinz, also
@@ -1029,6 +1061,7 @@ that region, which was triggered by vortices shed in the outer part of the blade
 then convected towards the inner part.
 Figure 2.3: Spectrum using uniform inflow of 22m/s, AOAtip = 90◦, AOAroot = 72◦
 and Ψ = 25◦, adapted from Heinz et al.[12]
+==PAGE:33==
 2.1 Concept and Literature Review
 15
 Figure 2.4: Definition of flow inclination angle Ψ, adapted from Heinz et al. [12]
@@ -1052,6 +1085,7 @@ followed by the scientific community, it can be concluded that the most appropri
 way to predict vortex induced vibration is by using 2-way FSI for the whole blade.
 The possibility of simulating the whole rotor where wind shear and tower effects
 could also be included would be the next step, but as it has been proven that the
+==PAGE:34==
 16
 2 Vortex Induced Vibrations
 computational capacity of the clusters at the time the respective research was con-
@@ -1065,6 +1099,7 @@ cated process that requires the development of sophisticated tools and needs a l
 of resources for its development. This is the reason why this project will approach
 the prediction of vortex induced vibrations using 1-way FSI. The proposed method is
 presented in detail in the next chapter.
+==PAGE:35==
 CHAPTER 3
 Method
 3.1
@@ -1097,6 +1132,7 @@ When the size and shape of the domain are set, a series unsteady of simulations 
 a stiff non-moving wind turbine blade is performed, using a range of inflow condi-
 tions that could possibly lead to VIV. This kind of simulations is performed in order
 to define under which conditions the von-Karman vortex street is developed for the
+==PAGE:36==
 18
 3 Method
 specific blade. In cases of blades with no pre-bend it would be safe to assume the
@@ -1139,6 +1175,7 @@ After performing the blade modal anaysis, the required information regarding the
 edge-wise mode shape is acquired and thus the coordinates of the deformed points of
 the blade surface can be determined. In order for the latter to be accomplished, a
 method is developed using the coordinates of the blade reference line, the coordinates
+==PAGE:37==
 3.1 1-way Fluid Structure Interaction
 19
 of the points consisting the shell of the cross sections at several radial stations and
@@ -1184,6 +1221,7 @@ of deflection, affecting this way the mode shape and thus, the structural design
 the blade. It has to be noted, that the adjustments performed in this project use
 arbitrary values chosen to represent realistic scenarios. It is not in the scope of the
 project to define how the actual structural design of the blade should be changed in
+==PAGE:38==
 20
 3 Method
 0
@@ -1244,9 +1282,11 @@ Blade Surface Mapping
 The first step is the creation of the 3D CAD model of the blade used in the simula-
 tions. Typically, the model is created by using files directly exported from 3D CAD
 software. As mentioned in the introduction, the blade used in the simulations of this
+==PAGE:39==
 3.2 Input Preparation
 21
 Figure 3.2: Flow chart of proposed approach
+==PAGE:40==
 22
 3 Method
 project is the IEA 10MW blade. However, the 3D model of the 10MW IEA blade
@@ -1285,6 +1325,7 @@ The parameters file is created using the aerodynamic configuration file and stru
 information of the blade. The latter was provided by DTU and contained information
 about the structure of the blade at several radial positions. More specifically, said
 information includes values for mass, coordinates of the center line, coordinates of
+==PAGE:41==
 3.2 Input Preparation
 23
 the center of gravity, coordinates of shear center, bending stiffness, torsional stiffness,
@@ -1325,6 +1366,7 @@ this case 19). In order to get a better representation of the deflected referenc
 the deflections are interpolated at many interval points. The calculated deflections
 are then de-normalized and the values are added to the columns containing the in-
 formation of the reference line (x, y, z) and the twist angle of the file containing the
+==PAGE:42==
 24
 3 Method
 geometrical parameters; by this process the new coordinates of the reference line are
@@ -1361,6 +1403,7 @@ by altering the values of the normalized deflection and using the new values to 
 the surface of the blade. Figure 3.4, presents the surface of the deformed blade for 2
 different flap-wise/edge-wise couplings. In all 3 cases, only the flap-wise component
 of the deflection was adjusted maintaining the same edge-wise component.
+==PAGE:43==
 3.2 Input Preparation
 25
 10
@@ -1394,10 +1437,12 @@ y [m]
 3
 x [m]
 Figure 3.3: Un-deformed (grey) and deformed (red) surface of the IEA 10MW blade
+==PAGE:44==
 26
 3 Method
 Figure 3.4: Visual representation of the adjusted 1st edge-wise mode shape of the
 IEA 10MW blade
+==PAGE:45==
 CHAPTER 4
 Numerical Model and
 CFD setup
@@ -1428,6 +1473,7 @@ dition, this combination has been used by SGRE for several years, providing resu
 of great quality when it comes to rotor power calculations, development of blade aero-
 dynamic add-ons, aero-acoustic simulations etc. This means that the CFD experts
 of the company have years of experience using this model, the processes needed are
+==PAGE:46==
 28
 4 Numerical Model and CFD setup
 already developed and implemented successfully while the results are reliable. It is
@@ -1502,6 +1548,7 @@ where the term ρu′
 iu′
 j stands for the stresses due to the fluctuations, also know as
 Reynolds Stresses. In order to close the set of equations and numerically solve the
+==PAGE:47==
 4.1 Numerical model
 29
 problem, it is required to choose an appropriate turbulence model. There are several
@@ -1609,6 +1656,7 @@ while the transformed k - ϵ model is described as follows:
 ]
 + Pk −β′ρkω
 (4.8)
+==PAGE:48==
 30
 4 Numerical Model and CFD setup
 ∂(ρω)
@@ -1728,6 +1776,7 @@ max(α1ω, SF2)
 where νt = µt
 ρ and S is an invariant measure of the strain rate. In addition, the
 production of ω is calculated by Pω = (α3/νt)Pk. The final step, is the definition of
+==PAGE:49==
 4.1 Numerical model
 31
 the blending functions, as they are very important for the successful implementation
@@ -1791,6 +1840,7 @@ downstream the blade. An expansion angle in the longitudinal direction is used, 
 avoid alignment of the fluid speed with the boundary conditions lying in the outer
 surface. This is accomplished by increasing the diameter of the face downstream the
 blade.
+==PAGE:50==
 32
 4 Numerical Model and CFD setup
 Figure 4.1: Perspective view of computational domain including blocking
@@ -1809,6 +1859,7 @@ As also shown in Figure 4.1, the computational domain contains two more blocks, 
 blade and hub as well as the interface around the blade. The blade is considered as
 a wall boundary using no-slip boundary conditions, while the hub surface is treated
 as free-slip wall. The latter is chosen for minimizing the effect of the hub on the flow
+==PAGE:51==
 4.2 CFD Setup
 33
 around the blade. The interface around the blade is used to create an even more dense
@@ -1845,6 +1896,7 @@ tational domain based on the following information:
 • Blade cone angle in degrees
 • Blade design
 • Blade tip design
+==PAGE:52==
 34
 4 Numerical Model and CFD setup
 • Nacelle design
@@ -1862,6 +1914,7 @@ specific edges, created during the blocking process, presented in Figure 4.4.
 Figure 4.3: Perspective view of preliminary mesh close to the blade. Left: Preliminary
 mesh on the blade surface. Right: Preliminary mesh on the interface surrounding the
 blade
+==PAGE:53==
 4.2 CFD Setup
 35
 Figure 4.4: Block edges for the creation of the hex mesh
@@ -1887,6 +1940,7 @@ freedom to define the number of density areas needed, the size of them and their
 respective density. After running the script using the respective option ICEM CFD,
 the code generates a new geometry containing all the regions mentioned in section
 4.1.3, plus a cylinder of density regions intersecting said regions.
+==PAGE:54==
 36
 4 Numerical Model and CFD setup
 Figure 4.5: Detail of density regions close to the blade area
@@ -1899,12 +1953,15 @@ using a script in Tcl/Tk, developed by SGRE. Figure 4.6, presents a perspective 
 of the final mesh, while Figure 4.7 gives a detailed view of the inner domain and the
 interface.
 Figure 4.6: Perspective view of the final HYBRID mesh
+==PAGE:55==
 4.2 CFD Setup
 37
 Figure 4.7: Detail of inner domain and blade interface of the HYBRID mesh
 Detailed information about the size of the domain, the number of density regions etc.
 are given in the respective simulations section.
+==PAGE:56==
 38
+==PAGE:57==
 CHAPTER 5
 Simulation Strategy
 Now that the problem and numerical model are described, and the computational
@@ -1935,6 +1992,7 @@ in [27].
 The 10MW IEA wind turbine is a direct drive offshore wind turbine and its rotor is
 an optimized version of the old DTU 10MW RWT. The following table summarized
 the key parameters of the turbine:
+==PAGE:58==
 40
 5 Simulation Strategy
 Figure 5.1: left: 3D model of the DTU 10 MW IEA rotor. Right: Key parameters of
@@ -1946,6 +2004,7 @@ The IEA 10MW blade is designed using the FFA-WE airfoil family. The coordinates
 of the points forming each airfoil were provided along with the respective relative
 thickness values in the form of an ASCII file. The coordinates of the airfoil cross
 sections normalized by the chord length are presented in Figure 5.2.
+==PAGE:59==
 5.1 The 10MW IEA blade
 41
 Figure 5.2: Normalized coordinates of airfoil cross sections
@@ -1957,6 +2016,7 @@ sections, creating this way the aerodynamic configuration file. Finally, followi
 process mentioned in 3.2.1, the parameters file was crated.
 Finally, the CFG and PARAMS files, where used as input in a script developed by
 SGRE and the 3D model of the blade was created using the NX Design CAD software.
+==PAGE:60==
 42
 5 Simulation Strategy
 0
@@ -2028,6 +2088,7 @@ Radius [m]
 Twist [deg]
 Figure 5.3: Radial evolution of blade basic geometrical parameters of DTU 10MW
 IEA blade.
+==PAGE:61==
 5.1 The 10MW IEA blade
 43
 Figure 5.3 illustrates the radial evolution of some of the basic geometrical character-
@@ -2052,6 +2113,7 @@ s
 • Inclination angle: ψ = 40◦
 where the inclination angle is positive when the inflow speed is going towards the root
 of the blade, as defined in Figure 2.4.
+==PAGE:62==
 44
 5 Simulation Strategy
 5.2
@@ -2114,6 +2176,7 @@ the transient (unsteady) cases. This way, problems with the stability of the tra
 simulations during the first time steps were avoided and the convergence time was
 decreased. The total simulation time was set to 20s. The dimensions of the outer
 domain were kept constant in all studied cases and are presented in figure 5.5.
+==PAGE:63==
 5.2 Sensitivity Analysis Cases
 45
 Figure 5.5: Side view and dimensions of computational domain
@@ -2159,6 +2222,7 @@ Table 5.2: Blade surface node distribution for sensitivity analysis cases
 Figure 5.6 presents the created mesh corresponding to the cases 1 to 3 of table 5.2.
 More specifically, the left figure shows a perspective view of the blade mesh, while
 the right figure shows a detail at blade tip.
+==PAGE:64==
 46
 5 Simulation Strategy
 Figure 5.6: left: Generated mesh at blade surface for IEA 10MW blade. Right: Detail
@@ -2212,6 +2276,7 @@ attack ensure a fully detached flow that will lead to the generation of the von-
 vortex street. The choice of wind speed is based on information provided by DTU
 as mentioned earlier. The next four cases were examined in order to study the flow
 around the blade at conditions close to the critical ones stated in section 5.1.1.
+==PAGE:65==
 5.3 Simulations of Non-moving blade
 47
 5.3.1
@@ -2253,6 +2318,7 @@ orientation of the inflow, the boundary conditions has to be reconfigured. The s
 surfaces that were set as boundaries with rotational periodicity, were changed to
 openings. The new computational domain for the cases including flow inclination is
 shown in figure 5.7.
+==PAGE:66==
 48
 5 Simulation Strategy
 Figure 5.7: Side view of the computational domain for simulations with flow inclina-
@@ -2273,6 +2339,7 @@ to study the behavior of the aerodynamic damping. The total simulation time for
 these case was equal to 14.79 seconds which equals to 10 vibration periods. The fol-
 lowing table summarized the cases using imposed vibrations, including the respective
 flow conditions.
+==PAGE:67==
 5.5 Simulations using adjusted mode shape coupling
 49
 Case
@@ -2331,6 +2398,7 @@ The cases 2, 4 and 4 of table 5.4 were simulated using 2 different deflection co
 As mentioned in section 3.2.3, the adjustment in the coupling was done by keeping
 the deflection distribution in the edge-wise direction constant and by altering the
 deflection distribution in the flap-wise direction.
+==PAGE:68==
 50
 5 Simulation Strategy
 0
@@ -2363,6 +2431,7 @@ case. The red curve corresponds to the case where the absolute value of the norm
 flap-wise deflection is doubled, Finally, the yellow curve represents the case where the
 absolute value of the normalized flap-wise deflection is tripled. The results of the
 above-mentioned adjustments are presented visually in figure 3.4.
+==PAGE:69==
 CHAPTER 6
 Results
 In this chapter, the reader is presented with the results of the simulations along
@@ -2391,6 +2460,7 @@ Molar Mass
 Thermal Conductivity
 2.61E-02 [W m−1 K−1]
 Table 6.1: Fluid characteristics
+==PAGE:70==
 52
 6 Results
 0
@@ -2447,6 +2517,7 @@ TR_03fch
 1e-05
 41 h
 Table 6.2: Fluid characteristics
+==PAGE:71==
 6.2 Simulations of Non-moving blade
 53
 The first simulated case included no flow inclination and an angle of attack of 90 de-
@@ -2464,6 +2535,7 @@ of the blade due to the high angle of attack which ensures that fully detached f
 would take place. However, the von-Karman vortex street was clearly visible only
 in the range stated above. In order to understand this phenomenon, the flow was
 visualized using streamlines, figure 6.3.
+==PAGE:72==
 54
 6 Results
 Figure 6.3: Velocity Streamlines
@@ -2478,6 +2550,7 @@ and probably break down.
 However, since the vortex street is visible in specific regions of the blade, the time
 series of the forces in the edge-wise direction was extracted, and presented in figure
 6.4.
+==PAGE:73==
 6.2 Simulations of Non-moving blade
 55
 0
@@ -2523,6 +2596,7 @@ The total simulation time was set to 30s for these cases. Unfortunately, it was 
 possible to complete any of the simulations using flow inclination, as all the simula-
 tions crashed after a specific time. A study on the residuals and especially the mass
 imbalance revealed the cause of the simulations failure.
+==PAGE:74==
 56
 6 Results
 0
@@ -2584,6 +2658,7 @@ of the vortices increase and the vortices travel downstream, hitting eventually 
 opening boundary. This leads to numerical errors that build up and eventually lead
 to the failure of the simulation. All the simulations have flow inclination ended up
 failing for the same reason.
+==PAGE:75==
 6.3 Imposed vibrations simulations
 57
 6.3
@@ -2655,6 +2730,7 @@ Aerodynamic Damping
 0p_90a_05_x3
 162.245
 Table 6.4: Aerodynamic damping
+==PAGE:76==
 58
 6 Results
 (a) Velocity contours at t = 6.3 s
@@ -2673,6 +2749,7 @@ which include carbon fiber, making them less susceptible to edge-wise vibrations
 Another area that can provide valuable information when it comes to blade stability,
 is the impact of the different regions of the blade. For the study of this aspect, the
 blade was split in 6 different regions in the radial direction and the work of each
+==PAGE:77==
 6.3 Imposed vibrations simulations
 59
 (a) Velocity streamlines at t = 6.3 s
@@ -2683,6 +2760,7 @@ blade was split in 6 different regions in the radial direction and the work of e
 (f) Velocity streamlines at t = 11.3 s
 Figure 6.7: Evolution of velocity streamlines at different time steps
 region was calculated. The different blade regions are presented in table 6.5
+==PAGE:78==
 60
 6 Results
 0
@@ -2728,6 +2806,7 @@ By performing this analysis, it is possible to assess the contribution of each b
 region to the total stability of the blade. The plots presented in the 3 sub-figures of
 figure 6.9, present aerodynamic work done by each region of the blade for the cases
 2, 3 and 4 of table 6.3.
+==PAGE:79==
 6.3 Imposed vibrations simulations
 61
 0
@@ -2793,6 +2872,7 @@ Mid_2
 Mid_3
 Tip
 Figure 6.9: Aerodynamic work of different blade regions
+==PAGE:80==
 62
 6 Results
 In the first case, the results of which are depicted on the top graph of figure 6.9, it
@@ -2817,6 +2897,7 @@ dynamic work corresponding to both sections Tip and Mid3, oscillates with a phas
 difference of 180 degrees compared to the rest of the blade. Furthermore, for both
 regions, the aerodynamic work has shifted toward the positive side, revealing that
 indeed that the outer part of the blade, damps the vibrations.
+==PAGE:81==
 CHAPTER 7
 Conclusions and
 Future Work
@@ -2847,6 +2928,7 @@ model was able to capture the phenomenon when the flow around non-moving stiff
 blades was simulated. In addition, the simulations of imposed vibrations were com-
 pleted for a small range of vibration amplitudes, up to 0.5m. Simulation of larger
 vibration amplitudes were not successful as the generated meshes could not deform
+==PAGE:82==
 64
 7 Conclusions and Future Work
 enough, creating negative volumes. A thorough research regarding the mesh size and
@@ -2874,18 +2956,23 @@ regions etc.
 A separate study on mesh deformation models and mesh size needs to be performed in
 order to simulate larger vibration amplitudes. Furthermore, a study on the different
 turbulence models can be conducted in order to further improve the method.
+==PAGE:83==
 APPENDIX A
 Appendix
 Figure A.1: Example of ASCII file
+==PAGE:84==
 66
 A Appendix
 Figure A.2: Example of CSV file
+==PAGE:85==
 A Appendix
 67
 Figure A.3: Example of parameters file
+==PAGE:86==
 68
 A Appendix
 Figure A.4: Example of aerodynamic configuration file
+==PAGE:87==
 Bibliography
 [1]
 W. Europe, “Wind energy in europe in 2018: Trends and statistics,” The Journal
@@ -2931,6 +3018,7 @@ we.1967.
 P. MS., “Vortex-induced vibration parameters: Critical review,” Proceedings of
 the International Conference on Offshore Mechanics and Arctic Engineering,
 1994. doi: 10.1002/we.1976.
+==PAGE:88==
 70
 Bibliography
 [14]

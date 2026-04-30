@@ -1,3 +1,4 @@
+==PAGE:1==
  
  
  
@@ -8,6 +9,7 @@ relation to marine habitat restoration
 Master thesis by Pauli Holm Nordfoss 
 01 May 2019 
 Supervisor: Jon C. Svendsen, Senior researcher, DTU aqua 
+==PAGE:2==
 2 
  
 Abstract 
@@ -39,6 +41,7 @@ urbanization and industry are also contributors to the degradation of the marine
 Korpinen, Meski, Andersen, & Laamanen, 2012). 
 Offshore boulder reefs have a high biodiversity and are a rare and biologically important reef type at the 
 national and European level (Stenberg et al. 2015). In Denmark, boulder reefs in shallow areas have been 
+==PAGE:3==
 3 
  
 extracted for construction of sea defences and harbours (Dahl et al. 2009). Boulder reefs are important fish 
@@ -69,6 +72,7 @@ structures may also induce changes in the surrounding soft bottom, sedimentation
 communities around and under the artificial structures. It must be noted, however, that created habitat 
 seldom entirely mimics natural habitat (Race et al., 1982) and may take decades to develop full ecological 
 functions (Pratt 1994). 
+==PAGE:4==
 4 
  
 One of the most frequently discussed theories in conservation biology is the single large or several small 
@@ -100,6 +104,7 @@ and 2) several small boulder reefs.
 abundance and species richness, 2) several small reefs will host equal or higher abundance and species 
 richness than a single large reef, 3) Construction of boulder reefs will alter species community composition. 
 These hypotheses were tested to guide conservation efforts in marine areas.  
+==PAGE:5==
 5 
  
 Methods 
@@ -120,6 +125,7 @@ them. The two remaining sites were left untouched to serve as control sites. Thi
 for a BACI analysis to be conducted to reveal an impact of the restored reefs by themselves, as well as 
 reveal whether the single large or several small reefs would host a higher fish abundance and diversity. All 
 sampling was carried out at water depths ranging between 6-7m.  
+==PAGE:6==
 6 
  
 Construction of boulder reefs in Bredgrund 
@@ -143,6 +149,7 @@ equipped with intervalometers (model: Time Lapse Intervalometer or BlinkX, CamDo
 do.com). All intervalometers were programmed such that every hour, cameras turned on, recorded for 2 
 minutes, and then turned off. This setting was applied to ensure that all cameras recorded for more than 24 
 hours to ensure that data covered the entire diel cycle. Cameras recorded for 36 hours (recording 2 minutes 
+==PAGE:7==
 7 
  
 per hour) on average. Standard GoPro waterproof housing was used to keep the cameras water proof. The 
@@ -173,6 +180,7 @@ colleagues with expertise in specific fish families. Following Cundy et al. (201
 where species identification was not possible, individuals were assembled in groups by using the lowest 
 common taxonomic level possible (e.g. family level). All identified individuals were grouped into a fish and a 
 non-fish (invertebrates and mammals) group. Flounder (P. platessa), dab (L. limanda), lemon sole (M. kitt), 
+==PAGE:8==
 8 
  
 turbot (S. maximus), brill (S. rhombus) and common sole (S. solea) were assemble under the order of 
@@ -203,6 +211,7 @@ and species richness (species/2min) before and after restoring the reefs. Simila
 BACI design (Claudet et al., 2006; Mills et al., 2017), we focused on the interaction between the Year and 
 Treatment variables to assess the reef restoration effect. In particular, a significant interaction would imply a 
 difference between treatments over the two sampling years, whereas a significant effect in either of the 
+==PAGE:9==
 9 
  
 individual terms would merely constitute the within and between year variability in fish assemblages. We 
@@ -233,6 +242,7 @@ whether the community composition was different between Year and Treatment level
 species were fitted as vectors onto the constrained ordination and their significance was assessed by 
 running 999 permutations. To improve graphical representation, we only included those species that showed 
 a significant correlation (p < 0.05) with one of the two CAP axes.  
+==PAGE:10==
 10 
  
 Statistical analyses were conducted in R version 3.5.3 (R Core Team, 2019). We used the packages ‘lme4’ 
@@ -302,6 +312,7 @@ We found no significant difference in species richness between the two sample ye
 and 2018, however we saw a reef effect in 2018 as the impact sites had a significantly higer species 
 richness compared to the control sites (Figure 3 (left); table 2; p < 0.001). In 2018, a pairwise comparison 
 revealed that SS had a significantly higher species richness than the SL (Figure 3 (right); p <0.01), there was 
+==PAGE:11==
 11 
  
 observed no significant difference between control and SL site (Figure 3 (right); table 2). These findings 
@@ -363,6 +374,7 @@ No significant differences were found in fish abundance (MaxN/2min) between 2016
 impact sites had a significantly higher fish abundances than the control sites (Figure 4 (left); table 3; p < 
 0.01). SS reefs had a significant higher fish abundance compared to the control sites (Figure 4 (right); table 
 3; p < 0.01), no other differences in fish abundances were found in a pairwise comparison of SS, SL and 
+==PAGE:12==
 12 
  
 Control (Figure 4 (right)). Positive significant effects were observed when including temperature, visibility and 
@@ -410,6 +422,7 @@ gadidae family present at the 2018 impact sites was significantly higher than on
 (Top left); Table 4; p < 0.001). Using negative binomial GLMM showed that, in 2018, both the SS and SL had 
 a significant higher abundance than the control (Figure 6 (Top left); Table 5; p < 0.001). Pairwise comparison 
 showed SL having a significantly higher abundance then the SS (p < 0.001). These finding indicated that the 
+==PAGE:13==
 13 
  
 impact sites in 2018 hosted a higher abundance than control sites, with the SL hosting the highest 
@@ -441,6 +454,7 @@ differences in abundance. There was significant higher abundance in 2018 than in
 left); Table 4; p < 0.001), it was also observed that the impact sites in 2018 had a significantly higher 
 abundance of pelagic species of the gobiidae than the control sites (Figure 5 (middle left); Table 4; p < 
 0.001). Using negative binomial GLMM showed that, in 2018, there was no significant differences between 
+==PAGE:14==
 14 
  
 control, SS and SL (Figure 6 (middle left); Table 5). These data indicated, although the impact sites in 2018 
@@ -473,6 +487,7 @@ sites (Figure 5 (bottom left); Table 4; p < 0.1). A Poisson GLMM, for 2018, show
 between control, SS and SL (Figure 6 (bottom left); Table 5). These findings indicated that the impact sites in 
 2018 hosted a higher abundance than control sites, however there was no significant affinity towards either 
 SL or SS. 
+==PAGE:15==
 15 
  
 Environmental effects  
@@ -488,6 +503,7 @@ Macroalgae had a negative effect on species richness (Table2), gobiidae (benthic
 BACI analysis (Table 4) and gobiidae (benthic), C. maenas and Pleuronectiformes in the SLOSS analysis 
 (Table 5). Temperature had a significant positive effect on overall fish abundance between the impact sites 
 2018 (Table 3). 
+==PAGE:16==
 16 
  
 Figure 5. Predicted relative abundance (MaxN/2min) for the seven focal families within the BACI design. Predictions are shown for 
@@ -565,6 +581,7 @@ Carcinidae
 n.s 
 0.83 
 [Signif. codes: n.s = not significant, *** = p < 0.001; ** = p < 0.01; * = p < 0.05; ‘.’=  p < 0.1  
+==PAGE:17==
 17 
  
  
@@ -646,6 +663,7 @@ Signif. codes: n.s = not significant, *** = p < 0.001; ** = p < 0.01; * = p < 0.
  
  
  
+==PAGE:18==
 18 
  
 Community composition 
@@ -666,6 +684,7 @@ were constructed in the impact sites during the winter 2017-2018, about five mon
 The divergence to form unique assemblages is pushed along by certain species that contribute, with variable 
 strength, to the fish assemblage patterns. Figure 8 offers a visualisation of the contributing species and in 
 which way they influence the fish assemblage pattern presented in figure 7. Pomatoschistus sp (Gobiidae - 
+==PAGE:19==
 19 
  
 benthic), A. aurita, and G. niger (Gobiidae - benthic) to a lesser extent, were found to be more closely 
@@ -679,6 +698,7 @@ Figure 8. Canonical analysis of principal coordinates (CAP) of fish communities 
 treatments: restored reef (triangles) and control/sand sites, showing individual species that were significantly correlated with either 
 axis. The length of vector indicates the strength of the relationship. For example, G. morhua has the strongest influence towards 
 2018 impact sites, A. aurita and pomatoschistus sp. are the strongest influencers towards 2016 sites. 
+==PAGE:20==
 20 
  
 Discussion 
@@ -711,6 +731,7 @@ been shown to have important implications for the diversity and abundance of spe
 (e.g. Laurance, 1991). It is possible that the spread-out layout of SS boulder reefs may increase the overall 
 probability of encounters and thereby increase overall abundances and species richness. Previous studies 
 have suggested that habitat size may affect its detectability (Komyakova et al. 2019). Large habitats 
+==PAGE:21==
 21 
  
 constitute larger targets and may present stronger chemical and visual cues, therefore making them easier 
@@ -742,6 +763,7 @@ either boulder reef sites or control site (i.e. soft bottom). Benthic species of
 Pomatoschitus minutus) are known to be found in ecotones near hard bottoms (Patzner et al. 2011). This is 
 consistent with our results where the highest abundance was found in the SS sites, these sites have far 
 more ecotone area than SL sites and control sites.  
+==PAGE:22==
 22 
  
 Carcinidae appear to be highly adaptable, able to inhabit diverse habitats including sand, mud and rocks 
@@ -773,6 +795,7 @@ from predation (Kraufvelin et al. 2018). Eelgrass, surprisingly, only show negat
 richness and abundances. Macroalgae had various effects on abundance and species. Some of the negative 
 effect, especially those on gobiidae (benthic) and Carinidae could be explained by species on these families 
 are demersal and macroalgae obstructing the FOV, making them harder to notice.  
+==PAGE:23==
 23 
  
 The effects of the collected environmental measurements shows the importance of adding such “predictors” 
@@ -804,6 +827,7 @@ allowing me to be a part of this study. For always answering any questions about
 me valuable feedback on every step on this journey. I would also like to thank Tim Wilms, PhD student at 
 DTU Aqua for all help and support both during field work and back at DTU.  
  
+==PAGE:24==
 24 
  
 References  
@@ -855,6 +879,7 @@ Gaymer, C.F., Himmelman, J.H., Johnson, L.E. Distribution and feeding ecology of
 polaris and Asterias vulgaris in the northern Gulf of St Lawrence, Canada. J. Mar. Biol. Assoc. 
 UK, 81 (2001), pp. 827-843 
  
+==PAGE:25==
 25 
  
  
@@ -915,6 +940,7 @@ Approach with Seagrass Fauna. Journal of Biogeography, 20(4), 429-440. doi:10.23
  
 Mikkelsen, L., Mouritsen KN, Dahl K, Teilmann J, Tougaard J (2013) Re-established stony reef attracts 
 harbour porpoises Phocoena phocoena. Mar Ecol Prog Ser 481: 239−248 
+==PAGE:26==
 26 
  
  
@@ -975,6 +1001,7 @@ https://doi.org/10.4236/oje.2014.416086
  
 Støttrup, J.G., Dahl K, Niemann S, Stenberg C and others (2017) Restoration of a boulder reef in temperate 
 waters: strategy, methodology and lessons learnt. Ecol Eng 102: 468−482 
+==PAGE:27==
 27 
  
  
@@ -1015,6 +1042,7 @@ Teleostei). Mar. Ecol. Prog. Ser. 90, 103–112. doi:10.3354/meps090103
  
  
  
+==PAGE:28==
 28 
  
 Appendix I 

@@ -1,9 +1,11 @@
+==PAGE:1==
 Inverse Reinforcement Learning for Decision
 Making in Autonomous Ship Navigation
 Master Thesis
 Lukas Samuel Czekalla (s233561)
 DTU Electro
 Department of Electrical and Photonics Engineering
+==PAGE:2==
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Naviga­
 tion
 Master Thesis
@@ -23,6 +25,7 @@ Published by:
 DTU, Department of Electrical and Photonics Engineering, Ørsteds
 Plads, Building 343, 2800 Kgs. Lyngby Denmark
 electro.dtu.dk
+==PAGE:3==
 Approval
 This thesis has been prepared over five and a half months at the Centre for Collabora­
 tive Autonomous Systems, Department of Electrical and Photonics Engineering, at the
@@ -39,6 +42,7 @@ ii
 24.06.2025
 2025.06.24 
 17:45:51 +02'00'
+==PAGE:4==
 Abstract
 The shipping industry is progressing towards the fully autonomous operation of vessels.
 However, there are still many challenges in achieving safe and reliable decision making in
@@ -73,6 +77,7 @@ and collapses to a standard normal distribution limited the interpretability of 
 distribution.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 iii
+==PAGE:5==
 Acknowledgements
 Nicholas Hansen, Postdoc, Technical University of Denmark
 Thank you to Nicholas for proposing this exiting project, the meaningful insights into the
@@ -102,6 +107,7 @@ Thank you to Frederic and Stevan for reviewing parts of this thesis and suggesti
 able improvements to this work.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 iv
+==PAGE:6==
 Contents
 Preface . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 ii
@@ -213,6 +219,7 @@ Method
 Implementation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 94
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 v
+==PAGE:7==
 8.3
 Experiments
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 96
@@ -248,6 +255,7 @@ Graph layers
 143
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 vi
+==PAGE:8==
 Acronyms
 A­IRL Adversarial­based Inverse Reinforcement Learning. 16
 Adam Adaptive Moment Estimation. 41, 48, 53, 56, 59, 69, 71, 72, 93, 95, 96, 103
@@ -282,6 +290,7 @@ DP Dynamical Programming. 11
 DQN Deep Q­Network. 3
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 vii
+==PAGE:9==
 DTU Technical University of Denmark. ii, 5
 EA­Navigation Environment­Aware Navigation. iii, 2, 6, 21, 30, 45, 46, 50, 51, 53, 55,
 56, 66, 72, 82–84, 88, 92, 96, 103, 105, 108, 111–113, 118, 121, 123, 124, 127–129
@@ -316,6 +325,7 @@ MDP Markov Decision Process. iii, 2, 5, 6, 8, 9, 11, 14, 18, 19, 28, 45
 ML Machine Learning. ii, 5
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 viii
+==PAGE:10==
 MMP Maximum Margin Planning. 17
 MMSI Maritime Mobile Service Identity. 21, 22, 54, 138
 MPC Model Predictive Control. 1, 2
@@ -343,6 +353,7 @@ UTC Coordinated Universal Time. 21, 138
 VILD Variational Imitation Learning with Diverse­Quality Demonstrations. 20, 129
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 ix
+==PAGE:11==
 List of Figures
 2.1
 Markov Decision Process . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -428,6 +439,7 @@ Scenario 22b85a0d6 ­ Goal­only BC policy
 6.12 Vector­based BC policy in head­on & pilot­encounter sceanrios . . . . . . . 59
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 x
+==PAGE:12==
 6.13 Vector­based BC policy in crossing scenarios . . . . . . . . . . . . . . . . . 60
 6.14 Vector­based BC policy in environment restricted scenarios . . . . . . . . . 61
 6.15 Scenario 2408452e6d ­ NNConv­based BC policy in head­on scenario . . . 63
@@ -508,6 +520,7 @@ Scenario 28f64bcc4d ­ Scenario reward heatmap of goal­only AVRIL for
 different tg . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 101
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 xi
+==PAGE:13==
 8.7
 Scenario 28f64bcc4d ­ Scenario reward heatmap of goal­only AVRIL for
 different ϕg
@@ -568,6 +581,7 @@ AVRIL in test AIS scenarios . . . . . . . . . . . . . . . . . . . . . . . . . . 
 reward functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 123
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 xii
+==PAGE:14==
 List of Tables
 4.1
 Computation times for OV IS and OGRA
@@ -660,6 +674,7 @@ B.1 Parameters of graph­based observation OGRA
 C.1 Parameters of acceleration­yaw rate action Akf . . . . . . . . . . . . . . . . 141
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 xiii
+==PAGE:15==
 1
 Introduction
 1.1
@@ -707,6 +722,7 @@ can achieve either one of two objectives. The first is to develop systems that n
 to a goal location within a maritime scenario (Goal­Only Navigation (GO­Navigation)).
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 1
+==PAGE:16==
 The other is to extend this setup to the combination of waypoint following and COLREG­
 compliant collision avoidance into a single decision making system (Environment­Aware
 Navigation (EA­Navigation)).
@@ -756,6 +772,7 @@ collision avoidance. In [13] the authors also use velocity obstacles but expand 
 interactions with other vessels into account.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 2
+==PAGE:17==
 Dynamic window­based approaches
 The dynamic window method has also been used to achieve collision avoidance in mar­
 itime scenarios. By scoring predicted trajectories this method allows to choose one future
@@ -803,6 +820,7 @@ conducted. The authors of [38] show that the PPO algorithm outperforms DDPG, Twi
 Delayed Deep Deterministic Policy Gradient (TD3) and Soft Actor Critic (SAC).
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 3
+==PAGE:18==
 Imitation Learning­based approaches
 While the previously outlined approaches show promising results, most of the approaches
 do not really leverage data from human experts for maritime decision making. Therefore,
@@ -852,6 +870,7 @@ utilise a modification of the Adversarial Inverse Reinforcement Learning (AIRL) 
 method. Doing so, they use PPO [47] to learn a stochastic policy and they are able
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 4
+==PAGE:19==
 to recover a non­linear reward function. The state and action spaces are continuous.
 While the state encompasses the OVs position, heading, velocities and cross­track­
 errors, the actions are defined as the surge force and yaw moment of the vessel.
@@ -898,6 +917,7 @@ representation of the AIS­data which is suitable for learning by IRL methods.
 establish a performance baseline for IRL methods. The Behaviour Cloning (BC)
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 5
+==PAGE:20==
 method has been used, but it was not the objective to obtain peak performance
 using this method.
 • IRL methods: IRL­based policies and their application to and evaluation for the
@@ -944,6 +964,7 @@ solution for the decision making problem. BC is used as a baseline and to develo
 ate good performing policy and reward network architectures. Following up on the insights
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 6
+==PAGE:21==
 gained, Chapter 7 applies the AIRL algorithm to the decision making problem. The imple­
 mentation and training considerations are presented, and the trained policies and reward
 functions are analysed. Chapter 8 introduces AVRIL and discusses the considerations
@@ -954,6 +975,7 @@ and provides suggestions for future research.
 The code corresponding to this thesis can be found in this repository.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 7
+==PAGE:22==
 2
 Decision Making from Expert Data
 The core of this thesis is to learn decision making policies via IRL for the ASN problem.
@@ -988,6 +1010,7 @@ fully­observable settings it exactly matches the environments internal state. H
 ever, in partially­observable settings there is a divergence between both and the
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 8
+==PAGE:23==
 state St is called observation Ot. Both terms are used interchangeably in this re­
 port. A particular instance of a state is defined by St ∈S where S is the state space
 that contains all possible states. [59]
@@ -1036,6 +1059,7 @@ and a predefined reward function R(St, At) is available. The goal in RL is to le
 maximise the expected return Gt. [59]
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 9
+==PAGE:24==
 2.2.1
 Reinforcement Learning Basics
 In general, modern RL methods can be split into three distinct categories. First, there are
@@ -1093,6 +1117,7 @@ Deriving an optimal policy therefore requires learning the state­value function
 state­action­value function Q. Three different approaches exist for this problem:
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 10
+==PAGE:25==
 • Dynamical Programming: Dynamical Programming (DP) utilises the recursive bell­
 man equations to solve the MDP and estimate the state­value function V and state­
 action­value function Q. However, to do this DP requires the environment dynamics
@@ -1141,6 +1166,7 @@ The policy gradient is defined by:
 (2.6)
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 11
+==PAGE:26==
 This gives rise to the definition of a simple gradient­ascent algorithm that can be used to
 learn an optimal policy using sampled trajectories from the environment. [59]
 Actor­Critic­based Reinforcement Learning
@@ -1189,6 +1215,7 @@ Doing so, TRPO is an on­policy actor­critic algorithm suitable for continuous 
 that trains a stochastic policy. [41] [62]
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 12
+==PAGE:27==
 Proximal Policy Optimisation
 PPO builds on top of TRPO by simplifying the constraint on the update step. Instead of
 using the KL­Divergence, PPO simply limits the size of the update step by clipping the
@@ -1238,6 +1265,7 @@ tive w.r.t. the state­action­value functions parameters ϕ. α is a configurab
 eter:
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 13
+==PAGE:28==
 min
 ϕ
 EπL,θ
@@ -1294,6 +1322,7 @@ their use to only those cases, where such a model can be derived. Model­free me
 do not need such a model and are therefore more flexible. [70] [60]
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 14
+==PAGE:29==
 Last, methods can either learn purely from expert trajectories or also from non­expert
 trajectories. In the case of expert trajectories, it is assumed that the experts act optimal
 w.r.t. the task. In reality, that might not always be the case. Therefore, some methods
@@ -1334,6 +1363,7 @@ mate. The discriminator output is then used as part of a reward function to lear
 using a stochastic RL algorithm. The reward is thereby defined as:
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 15
+==PAGE:30==
 RGAIL(St, At) = −log D (St, At)
 (2.17)
 The two steps of discriminator training and policy optimisation are done interchangeably
@@ -1384,6 +1414,7 @@ where P are transition matrices and R is a vector of rewards. However, this appr
 limited, as R = 0 is a solution and its scope is quite constrained.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 16
+==PAGE:31==
 The second algorithm improves certain aspects, by assuming an infinite state space and
 using a linear function approximation for the reward function. The constraint is solved via
 linear programming and defined by:
@@ -1441,6 +1472,7 @@ tinuous partially­observable state and action spaces. Also, the reward ambiguit
 is not explicitly addressed by these methods. [80]
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 17
+==PAGE:32==
 Bayesian IRL
 B­IRL methods use the Bayesian framework to learn a posterior distribution P(R | DE) of
 the reward over trajectories of expert demonstrations DE. The goal is to learn a reward
@@ -1489,6 +1521,7 @@ Evidence Lower Bound (ELBO). For more details on this algorithm please refer to 
 8 as a detailed explanation of this method is provided there.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 18
+==PAGE:33==
 Maximum Entropy IRL
 MaxEnt­IRL, introduced by [45], primarily addresses the reward ambiguity problem, as it
 maximises the likelihood of expert trajectories given a reward function while also ensur­
@@ -1551,6 +1584,7 @@ The reward function is updated in the inner loop of policy learning, which makes
 efficient.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 19
+==PAGE:34==
 Some newer approaches based on MaxEnt­IRL also try to solve the problem of learning
 from non­expert demonstrations. In [90] the authors propose their method Variational Im­
 itation Learning with Diverse­Quality Demonstrations (VILD) which models the expertise
@@ -1582,6 +1616,7 @@ Discriminator Actor­Critic (DAC). This method uses off­policy learning of the 
 and the policy while also learning an unbiased reward function [92].
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 20
+==PAGE:35==
 3
 AIS­Data
 The development of IRL based policies for waypoint­following and collision avoidance in
@@ -1628,6 +1663,7 @@ analysing navigational behaviours. The scenarios contain three parts:
 scenario. This is a unique identifier, the start and end time of the scenario as well
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 21
+==PAGE:36==
 as the number of vessels included in the scenario. Additionally, the location of the
 scenario is provided by latitude and longitude ranges. Lastly, the sampling time of
 the vessel trajectories is included.
@@ -1659,6 +1695,7 @@ are underrepresented.
 Figure 3.1: Geographical locations of all scenarios in Danish coastal waters
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 22
+==PAGE:37==
 Figure 3.2: Distribution of the durations of all scenar­
 ios
 Second, the sampling­rates and
@@ -1696,6 +1733,7 @@ encounter situations. For this purpose, an encounter is defined as a situation w
 vessels are within 2.5 km of each other. Figure 3.6 shows that a significant number of
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 23
+==PAGE:38==
 Figure 3.4: Statistics w.r.t. the vessel type in all AIS­scenarios
 Figure 3.5: Scenario 0a7214bc6b ­ A Pilot vessel performs a planned encounter with very
 close proximity to the Cargo vessel
@@ -1721,6 +1759,7 @@ validation and testing, as well as the valid vessel trajectories that can be use
 demonstrations.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 24
+==PAGE:39==
 Figure 3.6: Share of scenarios with encounters.
 Figure 3.7: Navigation stati of vessels across all scenarios
 3.3.1
@@ -1740,6 +1779,7 @@ port shall not be learned as part of this report. The focus shall be on open­wa
 behaviour.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 25
+==PAGE:40==
 Figure 3.8: Share of scenarios that include at least one vessel acting inside or near a port
 • A valid vessel shall experience at least one encounter situation during its trajectory.
 As it is the goal to learn collision avoiding behaviour, this requirement increases the
@@ -1774,6 +1814,7 @@ For the validation and test scenarios it has also been made sure that easily int
 scenarios are included. Those scenarios shall function as a qualitative verification method
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 26
+==PAGE:41==
 in the results parts of this thesis and allow for an intuitive judgement on the waypoint­
 following and collision avoiding capabilities of the learned policies and reward functions.
 The applied splits of the data have no significant effect on the key features. As visualised
@@ -1794,6 +1835,7 @@ Figure 3.10: Distributions of number of vessels per vesseltype for all three dat
 Figure 3.11: Distributions of encounter types for all three datasubsets
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 27
+==PAGE:42==
 4
 Definition of an AIS­based MDP
 As already outlined in Chapter 2 the IRL framework builds on top of a MDP. Therefore, a
@@ -1854,6 +1896,7 @@ kinematic model. This approach is open­loop as it is not feeding back informati
 the current velocity and course.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 28
+==PAGE:43==
 Another approach issues a desired surge udes and a desired course ψdes in a closed­loop
 fashion to two separate PID­controllers as described by Equations 4.2 and 4.3. The errors
 are defined by eu = udes −u and eψ = ψdes −ψ.
@@ -1898,6 +1941,7 @@ s
 (4.6)
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 29
+==PAGE:44==
 The sampling time of this kinematic simulator has been chosen to be 1 s to allow for
 relatively fast motion control. However, the policy only makes decisions every 10 s to be
 aligned with the AIS­dataformat. This leads to the actions only being updated every 10 s.
@@ -1948,6 +1992,7 @@ dimension (length & width) of each vessel is visualised. The vessel type is enco
 via the colour of the vessel, while the navigation status is indicated via a colour
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 30
+==PAGE:45==
 Figure 4.2: Visual­based observation
 encoded circle around a vessel. The seachart is used to provide further information
 w.r.t. the environment, as land, water­depths, searoutes and buoys are included to
@@ -1997,6 +2042,7 @@ where dg is the distance and ϕg is the bearing to the goal­position which is a
 composed into the sine and cosine components. tg is the time until the goal­position
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 31
+==PAGE:46==
 shall be reached.
 Conditioning a policy on these features should be sufficient to learn waypoint­following
 behaviour in both navigational tasks.
@@ -2060,6 +2106,7 @@ where urel and ωrel are the relative velocity and heading between both vessels.
 ditionally, the distance dV and the bearing ϕV from the OV to the TV are included.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 32
+==PAGE:47==
 Both angular features ωrel and ϕV are decomposed into their sine and cosine com­
 ponents. In addition to the edges between two nodes, each node is also equipped
 with a self­loop edge connecting the node with itself, indicating the relative measure­
@@ -2131,6 +2178,7 @@ Therefore, mL points are uniformly sampled from each shore boundary.
 These
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 33
+==PAGE:48==
 points are together with the OV the nodes of the graph. Again, the node feature
 vector has 2­dimensions which indicate the correspondence to either the OV via
 zOV or the shore via zL.
@@ -2205,6 +2253,7 @@ done once policies and reward functions have been trained. However, within the s
 of this thesis an assessment w.r.t. computational complexity and memory size shall be
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 34
+==PAGE:49==
 done prior to training to assess which definition is beneficial for usage in combination with
 IRL­algorithms.
 Computational Complexity
@@ -2264,6 +2313,7 @@ RGB­images IBEV and IRADAR maintain the same resolution. The number of features
 the graph­based observation OGRA varies with the number of TVs, buoys and sampled
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 35
+==PAGE:50==
 seachart points. In comparison the graph­based observation OGRA is favourable since it
 uses considerably less features.
 Conclusion
@@ -2320,6 +2370,7 @@ udes
 (4.19)
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 36
+==PAGE:51==
 Figure 4.4: Avc ­ Action definition using desired speed udes and desired course ψdes
 Lower­level PID­controllers, as already outlined in section 4.1.1, interact with the kine­
 matic model using Avc to maneuver the OV. Figure 4.4 visualises this action definition.
@@ -2356,6 +2407,7 @@ where tj indicates the time until this waypoint shall be reached, dj expresses t
 and ϕj expresses the bearing to the j­th waypoint.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 37
+==PAGE:52==
 Figure 4.6: Awp ­ Action definition using future waypoints
 Using this waypoint definition the action is defined by:
 Awp =
@@ -2396,6 +2448,7 @@ tories as shown in Figure 4.9. Aligned with the kinematic simulator the motion p
 part of the Kalman­filter is defined by:
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 38
+==PAGE:53==
 Figure 4.8: Akf ­ Action definition using direct assignment of acceleration ˙u and yaw rate
 ˙ψ
 Figure 4.9: Inference of acceleration ˙u and yaw rate ˙ψ using a Kalman­Filter
@@ -2519,6 +2572,7 @@ u, σ2
 (4.29)
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 39
+==PAGE:54==
 where Z is the measurement vector, that just consist of the data available in a AIS­state.
 H is the measurement matrix mapping Z to X, while R describes the uncertainties about
 the measurements using the variances of the measurement variables.
@@ -2553,6 +2607,7 @@ training fINV is set to 25 000 with a 80 % training, 10 % validation and 10 % te
 This sampling is done for every PID­controller configuration and the best architecture is
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 40
+==PAGE:55==
 chosen using the R2­measure on the validation set. The learning rate is set to 1 × 10−3
 and the model is trained for 25 epochs.
 For the waypoint action Awp defined in section 4.3.2 the coefficients of both PID­controllers
@@ -2626,6 +2681,7 @@ course action Avc has the lowest error closely followed by the acceleration­yaw
 Akf. Only the waypoint action shows a rather large error in its resulting course.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 41
+==PAGE:56==
 Verifying the results obtained from the artificially generated trajectories with a real AIS­
 scenario confirms the results. Figure 4.11 shows the deviation in position, surge velocity
 and course for the same scenario using all three action definitions. The acceleration­
@@ -2685,6 +2741,7 @@ Those numbers are significant, however, the learned policies should be able to g
 and average out the unplausible and large yaw rates. Therefore, the obtained results of
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 42
+==PAGE:57==
 Figure 4.11: Validation of Avc, Awp and Akf via a real AIS­scenario
 the IRL­algorithms in the following chapters should still be valid, but caution is needed in
 the analysis of those results.
@@ -2698,11 +2755,13 @@ acceleration­yaw rate action using a Kalman­filter for action inference remain
 option.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 43
+==PAGE:58==
 (a) COG before error removal
 (b) COG after error removal
 Figure 4.12: Comparison of COG of action replay before and after error removal
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 44
+==PAGE:59==
 5
 Navigation from Expert Data
 With the analysis of the AIS­data in Chapter 3 and the definition of a suitable MDP in
@@ -2734,6 +2793,7 @@ The incorrectly inferred actions, as outlined in Chapter 4.3.4, should not have 
 this task, as the policy is not informed about the course of the vessel.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 45
+==PAGE:60==
 5.1.2
 Environment­Aware Navigation
 In EA­Navigation it is the objective to reach a goal­position while also reacting to envi­
@@ -2773,6 +2833,7 @@ which has the other on its starboard side shall give­way and avoid crossing in 
 of the other vessel. The give­way vessel shall take substantial and early action in
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 46
+==PAGE:61==
 compliance to rule 16, while the stand­on vessel shall maintain a predictable course
 as required by rule 17. [102]
 The incorrectly inferred actions, as introduced in Chapter 4.3.4, can have an effect on
@@ -2823,6 +2884,7 @@ is, that the action space needs to be discretised. Overall, this algorithm shows
 and will therefore be evaluated and compared against the other two algorithms.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 47
+==PAGE:62==
 6
 Behaviour Cloning
 The first method to be implemented and evaluated is BC. It’s purpose is to serve as the
@@ -2891,6 +2953,7 @@ regularisation within the learning process and, most importantly, the design of 
 network.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 48
+==PAGE:63==
 6.2.1
 Scaling
 Since the learned policies are non­linear function approximators based on neural net­
@@ -2942,6 +3005,7 @@ the yaw rate r have an absolute magnitude larger than 0.15 are assigned a weight
 while all other observations are assigned the weight 1. Each observation is then sampled
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 49
+==PAGE:64==
 Figure 6.2: Distribution of action values in the training dataset without oversampling
 randomly with a probability proportional to its weight. This procedure ensures that the bias
 towards small action values is smaller and that the gradient updates are more informative.
@@ -2978,6 +3042,7 @@ agent.
 Benefits of this architecture are, that the feature extractors and the regressor can be varied
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 50
+==PAGE:65==
 Figure 6.3: Policy network architecture
 in their respective architecture. Additionally, it allows to add other feature extractors to the
 architecture, so that value or reward functions can be easily built based on it.
@@ -3006,6 +3071,7 @@ to hyperparameter optimisation as described in section 6.3.
 The goal features g use the same feature extractor architecture. However, as g is already
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 51
+==PAGE:66==
 a vector, the mean and concatenation part is not included in its feature extractor.
 Graph feature extractors
 The second type of feature extractor utilises the full graph for its computations, as it is
@@ -3047,6 +3113,7 @@ regressor, however, has its output modelled as Gaussian normal distribution, whe
 the mean and variance are predicted by the model. A prediction can be done by sampling
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 52
+==PAGE:67==
 from the distribution and backpropagation is possible via the reparametrisation trick. The
 outputs are additionally clamped to be in the valid action range to improve stability of the
 learning process.
@@ -3088,6 +3155,7 @@ that the trained policy succeeds in manoeuvring the vessel towards the goal loca
 However, the standard deviation on this error is rather large with 1026.62 m indicating
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 53
+==PAGE:68==
 Symbol
 Parameter
 Values
@@ -3191,6 +3259,7 @@ However, the policy does not imitate the experts in all situations this accurate
 other scenarios the agent also manages to go towards the waypoint, but it does so by
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 54
+==PAGE:69==
 deviating much more from the expert’s path. At some point it then turns towards the
 waypoint and reaches it from a different angle. This causes the large end course errors.
 Figure 6.8 shows such a scenario.
@@ -3231,6 +3300,7 @@ of the OVs surroundings. This shall be a baseline for the graph­based policies 
 policy, it can safely be discarded.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 55
+==PAGE:70==
 Figure 6.10: Scenario 07278e42ed ­ Goal­only BC policy
 Again the experiment is set up as Bayesian hyperparameter optimisation, but this time
 the optimisation happens w.r.t. the mean average position error in all validation scenar­
@@ -3303,6 +3373,7 @@ ing the policy architecture only one thing can be summarised: the feature extrac
 dimension should be large with a value of 128.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 56
+==PAGE:71==
 The policy trained using these parameters can now be assessed w.r.t. its performance in
 the validation scenarios. First, the navigational performance metrics shown in Table 6.4
 are of interest. The average position error, with a mean of 530.28 m and a standard devi­
@@ -3390,6 +3461,7 @@ the awareness of searoutes, shallow waters and shore is evaluated in distinct sc
 First, the general goal­position following behaviour shall be assessed. Looking at scenar­
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 57
+==PAGE:72==
 ios as shown in figures 6.11 or 6.13a the policy has generally managed to learn moving
 close to the goal­position. However, it not always manages to go exactly to this position
 due to other navigational constraints or previous decisions.
@@ -3443,6 +3515,7 @@ one can see the agent manages to avoid collisions with other vessels. However, w
 doing so it is not perfectly following the searoutes nor avoiding shallower waters. These
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 58
+==PAGE:73==
 (a) Scenario 2f9e5e0647 ­ Vector­based BC pol­
 icy in head­on scenario
 (b) Scenario 2f9e5e0647 ­ Vector­based BC pol­
@@ -3474,6 +3547,7 @@ As one can see the NNConv layer performed best with an mean average position err
 of 387.61 m, which is significantly better than the baseline vector­based policy trained
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 59
+==PAGE:74==
 (a) Scenario 3362a38b21 ­ Vector­based BC policy in crossing scenario
 (b) Scenario 20cd216361 ­ Vector­based BC policy in crossing scenario
 Figure 6.13: Vector­based BC policy in crossing scenarios
@@ -3493,6 +3567,7 @@ the range of 0 to 0.1 and smaller levels of L2 regularisation with values of 1 �
 1 × 10−3 perform better. Additionally, policies trained with smaller batch sizes and using
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 60
+==PAGE:75==
 (a) Scenario 21aa7d8234 ­ Vector­based BC
 policy in env.­restricted scenario
 (b) Scenario 21aa7d8234 ­ Vector­based BC
@@ -3523,6 +3598,7 @@ with shore are on a similar level with the experts. All this leads to the conclu
 NNConv­based policy has awareness of other vessels, buoys and shore as it manages to
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 61
+==PAGE:76==
 Symbol
 Parameter
 Values
@@ -3663,6 +3739,7 @@ Traj. with shore collisions (%)
 Table 6.7: Evaluation of different feature extractor architectures
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 62
+==PAGE:77==
 Mean
 Std
 Min
@@ -3754,6 +3831,7 @@ is why it crosses behind the to be overtaken TV to reach the waypoint. This beha
 minimises collision risk and can be regarded as COLREG­compliant.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 63
+==PAGE:78==
 Figure 6.16: Scenario 3362a38b21 ­ NNConv­based
 BC policy in crossing scenario
 Crossing situations are also impor­
@@ -3787,6 +3865,7 @@ The vector­based policy generally performed better in this aspect as it avoided
 The difficulties probably stem from the fact that the policy does not know if a pilot vessel
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 64
+==PAGE:79==
 (a) Scenario 30b2993878 ­ NNConv­based BC
 policy in pilot­encounter scenario
 (b) Scenario 32ef7aa484 ­ NNConv­based BC
@@ -3815,12 +3894,14 @@ and grounding. Possible improvements include expanding the size of the graph­la
 increase the representational power or using different GNN architectures.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 65
+==PAGE:80==
 Figure 6.19: Scenario 257d3a2a1a ­ NNConv­based policy in miscellaneous scenario
 For further experiments using AIRL and AVRIL the NNConv­based architecture shall be
 used for EA­Navigation, as it shows superior performance compared with the vector­
 based policy.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 66
+==PAGE:81==
 7
 Adversarial Inverse Reinforcement
 Learning
@@ -3880,6 +3961,7 @@ t
 (7.2)
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 67
+==PAGE:82==
 Using those two sets of demonstrations, a binary classifier Dϕ is trained to distinguish
 between the expert demonstrations and the learner demonstrations. Equation 7.3 shows
 the definition of the discriminator. The learnable part is the function fϕ, which is modelled
@@ -4007,6 +4089,7 @@ that is dependent on states & actions and a policy πL that acts near­optimal w
 The whole process is summarised in Algorithm 1. [50]
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 68
+==PAGE:83==
 Algorithm 1 Adversarial Inverse Reinforcement Learning [50]
 1: Input: Expert data DE
 2: Output: Learned policy πL & reward function RAIRL
@@ -4064,6 +4147,7 @@ and entropy loss components. The optimisation is done using the Adam optimiser, 
 suggested by [107]. [47]
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 69
+==PAGE:84==
 LPPO (θ, Θ) = −LCLIP (θ) + cVF · LVF (Θ) −cENT · LENT (θ)
 (7.7)
 The first and most important loss objective is the clip loss LCLIP which optimises the policy
@@ -4190,6 +4274,7 @@ environment. Therefore, the actions are clipped to be inside a valid range. This
 improves stability of the learning process.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 70
+==PAGE:85==
 • Another important aspect, which improves the stability of the algorithm, is the global
 clipping of all gradients. This limits the magnitude of the gradients, thus limiting the
 magnitude of the updates and improving stability. [107]
@@ -4244,6 +4329,7 @@ regressor of this network is deterministic and a single output, since it just ha
 scalar reward.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 71
+==PAGE:86==
 7.3
 Experiments
 A series of experiments is also conducted for AIRL to evaluate its suitability for the GO­
@@ -4348,6 +4434,7 @@ PPO L2 regularisation
 Table 7.1: Hyperparameters for goal­only AIRL
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 72
+==PAGE:87==
 Two sweeps have been conducted due to observations about the policies and the reward
 functions related to the entropy of a trained policy. Therefore, first a High Entropy (HE)
 and a Low Entropy (LE) policy are evaluated. In a second step the corresponding reward
@@ -4415,6 +4502,7 @@ Navigation, but dissimilar to the
 experts.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 73
+==PAGE:88==
 Figure 7.3: Scenario 258096c86a ­ Goal­only HE­
 AIRL policy
 In most other scenarios this be­
@@ -4445,6 +4533,7 @@ criterium.
 Figure 7.4: Miscellaneous Scenarios ­ Goal­only HE­AIRL policy
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 74
+==PAGE:89==
 Overall, the policy learned by AIRL successfully achieves moving the OV to the goal­
 position. It does so in an unnatural way with high accelerations, decelerations and yaw
 rates. This highly dynamic behaviour is only possible in simulation and would not be ap­
@@ -4507,11 +4596,13 @@ policy does not manage to reach the goal­location in time. In this case a large
 error occurs. Figure 7.7 shows this.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 75
+==PAGE:90==
 Figure 7.5: Scenario 28f64bcc4d ­ Goal­only LE­AIRL policy
 Figure 7.6: Scenario 3c59ec52af ­ Goal­only LE­AIRL policy
 Figure 7.7: Scenario 395fdfe583 ­ Goal­only LE­AIRL policy
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 76
+==PAGE:91==
 In conclusion, the LE­policy shows good performance in the GO­Navigation task. It es­
 pecially acts more natural and less dynamic which indicates better imitation performance.
 Whether a HE or LE­policy is trained by AIRL depends on the selected parameters.
@@ -4552,6 +4643,7 @@ input features are sampled randomly from the valid feature ranges and the gradie
 reward w.r.t. those input features is computed. The value of a feature is indicated via
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 77
+==PAGE:92==
 the colour coding, where red indicates positive and blue negative feature values. To draw
 conclusions from this visualisation, one first has to understand what positive and nega­
 tive feature values correspond to in the navigation task. Then one can assess whether
@@ -4602,6 +4694,7 @@ magnitude of the gradients is smaller.
 while negative values express a turn to the port side. Analysing the gradients of the
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 78
+==PAGE:93==
 reward w.r.t. this feature one can see that increasing the yaw rate for small scaled
 feature values and decreasing the yaw rate for large scaled feature values generally
 increases the reward. This corresponds to minimising the absolute yaw rate in order
@@ -4643,6 +4736,7 @@ served, as its importance is also the lowest. Overall, this reward function enco
 policy to learn moving slowly to the goal­location, which is desired to imitate the experts.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 79
+==PAGE:94==
 The bearing feature ϕg can also be further analysed by using the visualisations from Figure
 7.11. Here the heatmap is plotted for three different orientations 15 min into the scenario
 with a SOG of 10 kn and no acceleration or turning.
@@ -4671,6 +4765,7 @@ The in­depth analysis of the reward function reveals that AIRL can learn reward
 that correctly encode the task­specific navigational goals of the experts. Despite the policy
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 80
+==PAGE:95==
 imitating not very well and being highly exploratory, the reward function correctly encodes
 the navigational goals of the GO­Navigation task. Further optimisation of the HE­policy
 w.r.t. the latest reward function estimate can most likely lead to better imitation perfor­
@@ -4724,6 +4819,7 @@ with a LE­policy represent the navigational goals in the GO­Navigation task wo
 likely reason for this can be found in the definition of the AIRL reward function and discrim­
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 81
+==PAGE:96==
 Figure 7.14: Scenario 28f64bcc4d ­ Scenario reward heatmap of goal­only LE­AIRL
 Figure 7.15: Scenario 28f64bcc4d ­ Action reward heatmap of goal­only LE­AIRL
 inator and is associated with the policy having low entropy. According to the LE­policy the
@@ -4751,6 +4847,7 @@ vessels or shallow waters into account. This information is encoded in the graph
 observation OGRA.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 82
+==PAGE:97==
 The experiment is set up has Bayesian hyperparameter optimisation which optimises the
 hyperparameters w.r.t. the mean average position error in all validation scenarios. Each
 configuration is only trained for 50 epochs as computation times would otherwise be too
@@ -4846,6 +4943,7 @@ extractors tried a total of 16 configurations, while the search using pretrained
 tractors only used a total of 8 different configurations.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 83
+==PAGE:98==
 Policy
 First, the best policy for the EA­Navigation task has to be identified from the two param­
 eter searches. The most important performance metrics of the best performing policies
@@ -4911,6 +5009,7 @@ The navigational safety metrics are analysed next. They reveal that the policy i
 of shallow waters as it runs aground in 19.80 % of all validation trajectories, which is an in­
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 84
+==PAGE:99==
 Mean
 Std
 Min
@@ -5010,6 +5109,7 @@ the learned policy does not act this dynamic. In fact, it has learned decent way
 following behaviour as shown in Figures 7.19a and 7.19b. In all, but the previously men­
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 85
+==PAGE:100==
 tioned dynamic scenarios, the policy steers the OV towards the goal­position. However,
 due to earlier decisions along the trajectory the OV does not always get very close to the
 goal­position or exhibits a different course at the goal­location.
@@ -5039,6 +5139,7 @@ REG­compliant.
 Figure 7.18: Scenario 34889e23b7 ­ Environment­aware AIRL policy in head­on scenario
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 86
+==PAGE:101==
 In crossing scenarios, the policy shows a mixed performance. While it manages to comply
 with the COLREGs in some situations it fails to do so in others. Figure 7.19a shows
 a situation where the policy almost follows the deeper waters and correctly crosses the
@@ -5056,6 +5157,7 @@ along the searoutes. Instead, it takes a more direct route.
 When a pilot vessel approaches the OV the policy does not show any avoiding action.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 87
+==PAGE:102==
 (a) Scenario 21aa7d8234 ­ Environment­aware
 AIRL­policy in env.­restricted scenario
 (b) Scenario 0cd63fe185 ­ Environment­aware
@@ -5085,6 +5187,7 @@ on the COLREGs and the awareness of environmental features like buoys, searoutes
 shallow waters. No explicit attention will be given to reward function properties explaining
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 88
+==PAGE:103==
 Figure 7.21: Cumulated expert vs. learner rewards under environment­aware AIRL re­
 ward function in validation AIS scenarios
 the waypoint­following behaviour, as this has already been covered by the dedicated ex­
@@ -5125,6 +5228,7 @@ igational behaviours.
 This scenario can also be used to
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 89
+==PAGE:104==
 assess the reward landscape relative to all possible actions. Figure 7.23 shows this for
 the same scenario and the OV moving with the same parameters. The figure shows that
 the reward function rewards large yaw rates towards the port side the most, which would
@@ -5153,6 +5257,7 @@ behind the TV, as seen from the OV, is also associated with smaller rewards. The
 function can identify TVs even though their influence is small. The heatmap relative to
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 90
+==PAGE:105==
 the actions shows that collision avoiding actions generate higher rewards. Turning to the
 port side and decelerating as well as accelerating and turning to the starbaord side are
 the two maxima of the reward function in this situation, although only the later would be
@@ -5184,6 +5289,7 @@ Other environmental factors influence the reward function only a little. In comb
 high rewards for large actions, this suggests that further training beyond the computational
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 91
+==PAGE:106==
 limitations of this experiments is needed to learn a reward function that correctly and
 reliably encodes the COLREGs and environmental features.
 Conclusion
@@ -5198,6 +5304,7 @@ in computation times. The incorrectly inferred actions of Chapter 4.3.4 did not 
 significant effect on the shown policy and reward function.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 92
+==PAGE:107==
 8
 Approximate Variational Reward
 Imitation Learning
@@ -5250,6 +5357,7 @@ Both function approximators are optimised jointly by minimising the objective sh
 Equation 8.2. This objective is a ELBO which is optimised via theAdam optimiser [101].
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 93
+==PAGE:108==
 LAVRIL(θ, ϕ) =
 1
 |DE|
@@ -5356,6 +5464,7 @@ action values across the whole scaled action range. This is done for both the ac
 ˙u and the yaw rate r resulting in a total of n2 discrete actions. Each continuous action
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 94
+==PAGE:109==
 is then mapped to the closest discretised action. The parameter n is subject to hyperpa­
 rameter tuning but should be an odd number to include a neutral action (acceleration and
 yaw rate are 0) in the discretised action space.
@@ -5405,6 +5514,7 @@ n2 continuous outputs, where every single one corresponds to the q­value of tak
 action while observing the current observation.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 95
+==PAGE:110==
 8.3
 Experiments
 The performance of AVRIL shall be evaluated on both navigational tasks. The experi­
@@ -5503,6 +5613,7 @@ policies. The increased share of erroneous inferred yaw rates due to the oversam
 seems not to have an effect on the performance.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 96
+==PAGE:111==
 The performance evaluation of the best model reveals a low mean end position error
 of 380.95 m with a standard deviation of the position error of 387.80 m. The average
 end course error is small with just 32.45°, however the minimum and maximum values
@@ -5570,6 +5681,7 @@ AVRIL also recovers a reward distribution. This reward distribution can provide 
 sides into the learned behaviour. Initially, the mean and standard deviation are assessed
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 97
+==PAGE:112==
 (a) Scenario 395fdfe583 ­ Goal­only AVRIL pol­
 icy
 (b) Scenario 07278e42ed ­ Goal­only AVRIL
@@ -5615,6 +5727,7 @@ ent of the predicted mean and standard deviation of the reward distribution w.r.
 features of the reward network. In this case the input is the goal­position feature vector
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 98
+==PAGE:113==
 g as elaborated in Chapter 8.2.5. Figure 8.5 visualises the gradients, where the left side
 shows the gradients for the mean and the right side for the standard deviation. A detailed
 explanation of this visualisation method can be found in Chapter 7.3.1.
@@ -5652,6 +5765,7 @@ mean of the reward distribution.
 The gradients for the standard deviation of the reward distribution can also be anal­
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 99
+==PAGE:114==
 ysed. Here the observations are reversed. If the OV is facing away from the goal­
 position, turning towards it will decrease the uncertainty about the reward. Intu­
 itively, this makes sense since almost all AIS­trajectories contain vessels with the
@@ -5702,6 +5816,7 @@ position gets, however the dependency on the bearing to the goal­position overp
 this trend.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 100
+==PAGE:115==
 Figure 8.6: Scenario 28f64bcc4d ­ Scenario reward heatmap of goal­only AVRIL for dif­
 ferent tg
 The bearing seems to be the most influential factor for the reward distribution. Therefore,
@@ -5719,6 +5834,7 @@ is lower, when the goal­position is on the starboard­side, encouraging the OV 
 towards the goal­position more quickly in such a state. The standard deviation of the
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 101
+==PAGE:116==
 reward distribution is largest right behind the goal­position seen in direction of travel. This
 complies with the observations from the gradient analysis. If the goal­position is towards
 the side of the OV the standard deviation of the reward distribution can, as shown by the
@@ -5760,6 +5876,7 @@ The incorrectly inferred actions of Chapter 4.3.4 did not show an effect in the 
 this experiment.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 102
+==PAGE:117==
 8.3.2
 Environment­Aware Navigation with Graph­Based Policy
 AVRIL is also applied to the EA­Navigation task to learn a policy that is capable of navi­
@@ -5849,6 +5966,7 @@ learned policy. With 949.15 m this error is larger than the error obtained in th
 GO­Navigation task (see Chapter 8.3.1). Adding information about the environment, did
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 103
+==PAGE:118==
 not lead to more accurate convergence towards the goal­location. However, the mean
 end course and velocity errors are smaller compared to the GO­Navigation task. This
 shows that being informed about the environment can align movement patterns with the
@@ -5935,6 +6053,7 @@ is the give­way vessel. Figure 8.10 shows two representative scenarios where th
 avoids collision with the TV by crossing behind it and keeping a safe distance. In Figure
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 104
+==PAGE:119==
 Figure 8.9: Scenario 34b0cd284b ­ Environment­aware AVRIL policy in overtake scenario
 8.10b the evasive action occurs relatively late, but is still sufficient to avoid collision and
 comply with the requirements of the COLREGs.
@@ -5965,6 +6084,7 @@ a standard normal distribution, which led the loss­function into a local minimu
 problem will be elaborated more in the next section.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 105
+==PAGE:120==
 (a) Scenario 3362a38b21 ­ Environment­aware AVRIL policy in
 crossing scenario
 (b) Scenario 20cd216361 ­ Environment­aware AVRIL policy in
@@ -5972,6 +6092,7 @@ crossing scenarioy
 Figure 8.10: Environment­aware AVRIL policy in crossing scenarios
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 106
+==PAGE:121==
 (a) Scenario 34889e23b7 ­ Environment­aware
 AVRIL policy in head­on scenario
 (b) Scenario 2f9e50647 ­ Environment­aware
@@ -6001,6 +6122,7 @@ icy in env.­restricted scenario
 Figure 8.12: Environment­aware AVRIL policy in miscellaneous scenarios
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 107
+==PAGE:122==
 Reward
 Besides the policy, AVRIL also learns a reward distribution that should model the experts
 navigational motives in the EA­Navigation task. This reward distribution shall now be
@@ -6057,6 +6179,7 @@ the reward space seems to be unexplored. Overall, the mean of the reward is alwa
 close to 0 while the standard deviation is always close to 1 for all actions.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 108
+==PAGE:123==
 Figure 8.14: Scenario 28f64bcc4d ­ Scenario reward heatmap of env.­aware AVRIL
 Figure 8.15: Scenario 28f64bcc4d ­ Action reward heatmap of environment­aware AVRIL
 To rule out that the collapse of the reward distribution and the uninformative reward land­
@@ -6085,6 +6208,7 @@ continues towards the goal­location along the searoute. The standard deviation 
 directly coupled to the mean, as a high mean implies a high uncertainty.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 109
+==PAGE:124==
 Figure 8.16: Scenario 360976d4c6 ­ Scenario reward heatmap of env.­aware AVRIL
 Figure 8.17: Scenario 34889e23b7 ­ Scenario reward heatmap of env.­aware AVRIL in
 head­on scenario
@@ -6106,6 +6230,7 @@ The reward distribution associated to the next best performing policy reveals qu
 tive patterns in the mean and standard deviation. The reward distribution is aligned to
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 110
+==PAGE:125==
 Figure 8.18: Scenario 360976d4c6 ­ Scenario reward heatmap of env.­aware AVRIL in
 crossing scenario
 Figure 8.19: Scenario 313a5d76ae ­ Scenario reward heatmap of env.­aware AVRIL in
@@ -6138,6 +6263,7 @@ learning objective, could be another approach to escape the local loss­function
 Additionally, a different hyperparameter optimisation objective can possibly lead to more
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 111
+==PAGE:126==
 interpretable reward functions, as the parameters would be tuned more carefully.
 Overall, AVRIL did not manage to recover an interpretable reward distribution that explains
 the behaviours learned by the policy. The parameters λAVRIL and αAVRIL require careful
@@ -6156,6 +6282,7 @@ is needed to improve this aspect. The incorrectly inferred actions of Chapter 4.
 show an effect in this experiment.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 112
+==PAGE:127==
 9
 Comparison and Discussion
 After evaluating all three methods on both navigation tasks individually, they shall now be
@@ -6238,6 +6365,7 @@ is lower. Therefore, AVRIL should also show better imitation performance compare
 the AIRL policies.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 113
+==PAGE:128==
 Apart from this metric­based assessment a qualitative comparison in real scenarios can
 confirm these observations and provide a deeper understanding of the learned behaviours.
 Figure 9.1: Scenario 324b2acf7d ­ Comparison of
@@ -6279,6 +6407,7 @@ HE­AIRL­policy does not act naturally. It again moves fast towards the goal­l
 starts rotating around the goal­location once reaching it. This time the trajectory towards
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 114
+==PAGE:129==
 the goal­location also features considerable deviations from the shortest possible path.
 Figure 9.3: Scenario 17a7ee92f0 ­ Comparison of
 goal­only BC, AIRL and AVRIL policies
@@ -6334,6 +6463,7 @@ itative inspection. Further optimisation w.r.t. one of the AIRL reward functions
 to more natural behaviours of the HE­AIRL­policy.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 115
+==PAGE:130==
 (a) LE­AIRL Reward
 (b) HE­AIRL Reward
 (c) AVRIL Reward
@@ -6352,6 +6482,7 @@ maxima is not issued directly at the goal­location. Instead, it is issued along
 to encourage slower movements to the goal­location.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 116
+==PAGE:131==
 • Interpretability: In AIRL the interpretability of the reward function is depending on
 the entropy of the policy. If the entropy is high, the reward function is able to well
 represent the navigational goals of the GO­Navigation task. However, if the entropy
@@ -6394,6 +6525,7 @@ optimisation objective possibly lead it to down­prioritise learning an interpre
 This leads to the conclusion that AIRL is the best choice if both a policy and a reward
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 117
+==PAGE:132==
 BC
 AIRL
 AVRIL
@@ -6504,6 +6636,7 @@ motions. These metrics indicate that the learned BC­policy and AVRIL­policy pe
 better in the EA­Navigation task then the learned AIRL­policy does.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 118
+==PAGE:133==
 The position, velocity and course errors at the end of the trajectories confirm this. The
 BC and AVRIL­policies show the smallest mean end position and end velocity errors with
 a large margin compared to AIRL. For the mean end course error, AVRIL acts with the
@@ -6569,6 +6702,7 @@ collision. The AIRL­policy collides on its way to the goal­location as it drif
 port side, which eventually leads to a collision with one of the TVs.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 119
+==PAGE:134==
 Figure 9.6: Scenario 1f29d36b90 ­ Comparison of environment­aware BC, AIRL and
 AVRIL policies in overtake scenario
 Figure 9.7: Scenario 17a7ee92f0 ­ Comparison of
@@ -6606,6 +6740,7 @@ TV. This is also not COLREG­compliant, but because the avoiding action is large
 distance to the TV is maximised this behaviour can still be regarded as safe.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 120
+==PAGE:135==
 Figure 9.8: Scenario 1a4eb14172 ­ Comparison of environment­aware BC, AIRL and
 AVRIL policies in crossing scenario
 Figure 9.9: Scenario 1a99369bcb ­ Comparison of
@@ -6647,6 +6782,7 @@ still need a lot of improvement to reliably master maritime navigation as seen f
 performance metrics. Especially, the awareness of shallow waters needs to be improved.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 121
+==PAGE:136==
 9.2.2
 Rewards
 AIRL and AVRIL also learned a reward function. This section compares the properties
@@ -6690,6 +6826,7 @@ some environmental features but is too inconsistent from scenario to scenario to
 derive comprehensible insights.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 122
+==PAGE:137==
 • Limitations: Both rewards can be improved. In the case of AIRL computation times
 were the main limitating factor, while AVRIL suffered from a hyperparameter selec­
 tion that prioritised good performing policies. Overcoming these issues can poten­
@@ -6725,6 +6862,7 @@ This leads to the conclusion that BC is the best choice for EA­Navigation consi
 setting of the experiments. However, further improvements may also lead to AIRL and
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 123
+==PAGE:138==
 BC
 AIRL
 AVRIL
@@ -6793,6 +6931,7 @@ parameters and is generally robust to different parameter settings. AVRIL does a
 not require the definition of many parameters, however the correct choice of those
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 124
+==PAGE:139==
 is more important in order to obtain an informative reward distribution. In contrast,
 AIRL involves considerably more parameters, split between the reward and policy
 learning components. This is especially true, if the policy is learned by an algorithm
@@ -6869,6 +7008,7 @@ The answer to this question is highly dependent on the setup of the problem. The
 main factors influencing the decision are the availability of high­quality expert data and
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 125
+==PAGE:140==
 the complexity of the task. In this context, task complexity refers to the issue of encoding
 human expert knowledge into a reward function. It is further assumed, that an environ­
 ment is available in which IRL and RL algorithms can interact. If such an environment is
@@ -6898,6 +7038,7 @@ further optimised w.r.t. unseen scenarios or a definition of a reward function p
 to difficult for a human.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 126
+==PAGE:141==
 10
 Conclusion
 This chapter concludes this thesis by first revisiting the objectives and achievements of
@@ -6945,6 +7086,7 @@ limitations still need to be addressed on this journey to overcome some of the i
 encountered in this project.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 127
+==PAGE:142==
 10.2
 Limitations and Future Work
 Some limitations of the taken approaches and chosen methods have also been identi­
@@ -6994,6 +7136,7 @@ OGRA, is to incorporate human domain knowledge. For example, adding a feature in
 dicating a collision or running aground of the OV should ease learning collision avoiding
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 128
+==PAGE:143==
 behaviours in the IRL setting. Similarly, adding features encoding the obligations of the
 COLREGs might also be a valuable addition.
 Algorithmic limitations
@@ -7043,6 +7186,7 @@ ferent prior in the regularisation objective of AVRIL. This might also help to l
 the reward distribution to something more informative.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 129
+==PAGE:144==
 10.3
 Conclusion
 Overall, this thesis demonstrates that IRL methods are a promising and viable approach
@@ -7054,6 +7198,7 @@ tions and the algorithms are needed to also excel in more advanced navigational 
 and to achieve robust, safe and COLREG­compliant autonomy at sea using IRL methods.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 130
+==PAGE:145==
 Bibliography
 [1]
 The Metro in Copenhagen is driverless. en. URL: https://intl.m.dk/about-the-
@@ -7114,6 +7259,7 @@ IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS).
 Oct. 2018, pp. 2402–2409. DOI: 10.1109/iros.2018.8594382.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 131
+==PAGE:146==
 [14]
 Bjorn­Olav H. Eriksen et al. “Radar­based maritime collision avoidance using dy­
 namic window”. en. In: 2018 IEEE Aerospace Conference. Big Sky, MT: IEEE,
@@ -7182,6 +7328,7 @@ avoidance for underactuated unmanned marine vessels”. en. In: Neurocomputing
 272 (Jan. 2018), pp. 63–73. DOI: 10.1016/j.neucom.2017.06.066.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 132
+==PAGE:147==
 [30]
 Joohyun Woo and Nakwan Kim. “Collision avoidance for an unmanned surface
 vehicle using deep reinforcement learning”. en. In: Ocean Engineering 199 (Mar.
@@ -7250,6 +7397,7 @@ AAAI Conference on Artificial Intelligence (2008). DOI: 10.5555/1620270.1620297.
 URL: https://cdn.aaai.org/AAAI/2008/AAAI08-227.pdf.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 133
+==PAGE:148==
 [46]
 Takefumi Higaki and Hirotada Hashimoto. “Human­like route planning for auto­
 matic collision avoidance using generative adversarial imitation learning”. en. In:
@@ -7322,6 +7470,7 @@ Deep Deterministic Policy Gradient — Spinning Up documentation. URL: https:
 03/28/2025).
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 134
+==PAGE:149==
 [66]
 Scott Fujimoto, Herke van Hoof, and David Meger. Addressing Function Approxi­
 mation Error in Actor­Critic Methods. Oct. 2018. DOI: 10.48550/arXiv.1802.09477.
@@ -7391,6 +7540,7 @@ ship Learning”. In: Advances in Neural Information Processing Systems. Vol. 20
 Curran Associates, Inc., 2007. URL: https://proceedings.neurips.cc/paper_files/
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 135
+==PAGE:150==
 paper/2007/hash/ca3ec598002d2e7662e2ef4bdd58278b- Abstract.html (visited on
 06/07/2025).
 [84]
@@ -7456,6 +7606,7 @@ O=570&titre_chap=&titre_page=portlocations&maxlat=58&maxlon=13.16&
 minlon=6.94&minlat=54.25&visit=570 (visited on 04/05/2025).
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 136
+==PAGE:151==
 [99]
 Thor I. Fossen. “Kinematics”. en. In: Handbook of Marine Craft Hydrodynamics
 and Motion Control. John Wiley & Sons, Ltd, 2011, pp. 15–44. ISBN: 978­1­119­
@@ -7506,6 +7657,7 @@ readthedocs.io/en/latest/generated/torch_geometric.nn.conv.GATConv.html#
 torch_geometric.nn.conv.GATConv (visited on 06/22/2025).
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 137
+==PAGE:152==
 A
 AIS­Data
 Instance
@@ -7594,6 +7746,7 @@ float
 Table A.2: Vessel trajectory features
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 138
+==PAGE:153==
 Instance
 Description
 Data Type
@@ -7624,6 +7777,7 @@ polygon
 Table A.3: Seachart features
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 139
+==PAGE:154==
 B
 Observation Parameters
 Observation specific
@@ -7697,6 +7851,7 @@ Maximum of Navigation Status
 Table B.1: Parameters of graph­based observation OGRA
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 140
+==PAGE:155==
 C
 Action Parameters
 Action specific specific
@@ -7742,6 +7897,7 @@ Please note, that these parameters correspond to the erroneous version used thro
 the report.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 141
+==PAGE:156==
 D
 Scaling functions
 Linear scaling
@@ -7782,6 +7938,7 @@ clip
 where χ is the scaling factor.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 142
+==PAGE:157==
 E
 Graph layers
 This section shall provide further insights into the definitions of the graph layers used in this
@@ -7840,6 +7997,7 @@ lθ is a linear transformation and aggregation is a aggregation function of type
 or sum. This layer is a custom implementation.
 Inverse Reinforcement Learning for Decision Making in Autonomous Ship Navigation
 143
+==PAGE:158==
 Technical
 University of
 Denmark

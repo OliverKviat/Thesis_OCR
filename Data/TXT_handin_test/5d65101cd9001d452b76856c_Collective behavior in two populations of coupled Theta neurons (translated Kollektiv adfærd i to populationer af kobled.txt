@@ -1,0 +1,3224 @@
+==PAGE:1==
+Technical University of Denmark
+Department of Applied Mathematics and
+Computer Science
+– MSc. Thesis –
+Collective behaviour in two
+populations of coupled
+Theta neurons
+Author:
+Supervisor:
+Benjamin J¨uttner
+Erik Andreas Martens
+Co-supervisor:
+Christian Henriksen
+28th of July, 2019
+==PAGE:2==
+Abstract
+Macroscopic models of neuronal networks are widely used to study synchroniza-
+tion and the average spiking activity in large ensembles of neurons, as found in
+the brain. Such networks are often grouped into populations of neurons with
+similar properties, i.e., their intrinsic tendency towards spiking or quiescence
+and their excitatory or inhibitory coupling to other neurons. Vertices of these
+networks are often one-dimensional oscillators, e.g., the Theta neuron. How-
+ever, two populations of intrinsically quiescent Theta neurons with excitatory
+intra- and inter-population coupling have, to our knowledge, not been studied.
+In this work, we obtain such a network by choosing the parameters of a recently
+introduced ODE system accordingly. This system can be reduced to a four-
+dimensional ODE system via the powerful Ott-Antonsen ansatz. We study the
+rich bifurcation structure with numerical continuation. We show that despite
+the symmetry in the parameters, asymmetric stable states, e.g., limit cycles
+with a distinct amount of oscillatory activity in both populations, occur. Our
+results add to the knowledge of the given neural model, which has already been
+analyzed in other regions of the many-dimensional parameter space.
+Acknowledgements
+The author expresses his gratitude to Erik Martens and Christian Henriksen for
+the enthusiasm, the time, and the energy they put into supervising this thesis,
+making it a valuable and enjoyable experience. The author would also like to
+thank the organizers of the conferences ICMNS 2019 and OTFCN 2019 for the
+opportunity to present and discuss results of this thesis on a poster. Finally,
+the author is grateful to Paul So for his quick and helpful response to a question
+regarding [2].
+==PAGE:3==
+Contents
+1
+Introduction
+3
+1.1
+Biophysical context . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+1.2
+Type I and type II ﬁring . . . . . . . . . . . . . . . . . . . . . . .
+4
+1.3
+The Theta neuron
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+1.3.1
+Motivation
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+1.3.2
+Bifurcation structure . . . . . . . . . . . . . . . . . . . . .
+7
+1.3.3
+Bursting and beating . . . . . . . . . . . . . . . . . . . . .
+8
+1.3.4
+Limitations . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+1.4
+Structure of this thesis . . . . . . . . . . . . . . . . . . . . . . . .
+10
+2
+The system under study
+12
+2.1
+Motivation
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+12
+2.2
+Model equations
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+3
+The Ott-Antonsen approach for dimensionality reduction
+17
+4
+Ott-Antonsen equations for Theta neuron system
+21
+4.1
+Derivation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+21
+4.2
+Unit disc as an invariant space
+. . . . . . . . . . . . . . . . . . .
+23
+4.3
+The ﬁring rate
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+24
+4.4
+Equilibria . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+25
+5
+Numerical continuation
+27
+5.1
+Equilibrium curve and active parameter . . . . . . . . . . . . . .
+27
+5.2
+Equilibrium continuation
+. . . . . . . . . . . . . . . . . . . . . .
+28
+5.3
+Bifurcation curves
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+6
+Bifurcation analysis
+30
+6.1
+Symmetric and asymmetric equilibria
+. . . . . . . . . . . . . . .
+30
+6.2
+Asymmetric equilibria for nonzero inter-population coupling . . .
+33
+6.3
+Overview of bifurcation curves found . . . . . . . . . . . . . . . .
+35
+6.4
+Bifurcation diagrams . . . . . . . . . . . . . . . . . . . . . . . . .
+37
+6.5
+Homoclinic orbits . . . . . . . . . . . . . . . . . . . . . . . . . . .
+40
+6.6
+Limit cycles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+42
+6.6.1
+Properties of limit cycles
+. . . . . . . . . . . . . . . . . .
+42
+==PAGE:4==
+6.6.2
+Destruction of limit cycles . . . . . . . . . . . . . . . . . .
+45
+6.7
+Special bifurcation points
+. . . . . . . . . . . . . . . . . . . . . .
+47
+6.8
+Codimension-2 bifurcations
+. . . . . . . . . . . . . . . . . . . . .
+50
+6.8.1
+Cusp and Bogdanov-Takens bifurcations . . . . . . . . . .
+50
+6.8.2
+Zero-Hopf bifurcation
+. . . . . . . . . . . . . . . . . . . .
+51
+6.9
+Eigenvalues . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+54
+6.10 Breaking the symmetry
+. . . . . . . . . . . . . . . . . . . . . . .
+57
+7
+Conclusion
+59
+Bibliography
+61
+==PAGE:5==
+1
+Notation
+The following symbols have this and only this meaning:
+R/2π the unit circle (a domain where 0 and 2π are identiﬁed)
+i the imaginary unit, √−1
+t time
+||x|| Euclidean norm of x (often denoted ||x||2, we omit the ”2” for brevity)
+˙x temporal derivative of x, dx
+dt
+¯x complex conjugate of x
+N number of oscillators in a population
+M number of populations
+j oscillator index 1, · · · , N
+m population index 1, · · · , M
+θjm phase of the jth oscillator in the mth population
+dx inﬁnitesimally small change in x
+f(x, y; a, b) function depending on x, y, a, b, with a, b regarded as parameters
+v vectors are written in bold
+v⊤transpose of the vector v
+All other notation will be explained upon ﬁrst occurrence.
+Deﬁnitions
+Saddle-node. An equilibrium that is on the exact point of undergoing a saddle-
+node-bifurcation.
+Degenerate limit cycle. A limit cycle that is the result of a stable and an
+unstable limit cycle coalescing in a ”saddle node of cycles” bifurcation.
+(Complex) unit disc. The set of all complex numbers with modulus less than
+or equal to 1.
+==PAGE:6==
+2
+Abbreviations
+ODE Ordinary diﬀerential equation
+OA Ott-Antonsen
+EK Ermentrout-Kopell
+rhs. Right-hand-side (of an equation)
+==PAGE:7==
+1
+Introduction
+1.1
+Biophysical context
+Neurons, or nerve cells, play a crucial role in multicellular organisms. They
+are responsible for signal transmission and processing, thus enabling complex
+functions such as the control of limbs, cognition, or maintaining a constant heart
+beat. In many organisms under study, the majority of neurons is found in the
+central nervous system, including the brain.
+The signals that neurons produce and transmit to each other are of elec-
+trical nature, constituted by action potentials propagating along the axon of a
+neuron. The axon is relatively long in the peripheral nervous system, while it
+is often very short in the central nervous system. Connections between neu-
+rons – without which most functions of neurons could not be fulﬁlled – are
+realized by either synapses or gap junctions, or as they have been called, e.g.,
+in [14], chemical synapses and electrical synapses. The latter are fast connec-
+tions between neurons, with special proteins tying the membranes of neighbour-
+ing neurons together, allowing for the exchange of ions or molecules [13]. In
+this work however, we will only pay attention to the former type, the chemical
+synapse (henceforth just ”synapse”). A neuron usually comprises a network of
+dendrites (see Fig. 1.1), which in turn host contact points to other neurons, the
+synapses [4]. In a synapse, the presynaptic neuron emits a neurotransmitter into
+the space between neurons, the synaptic cleft. The neurotransmitter travels the
+synaptic cleft and binds to an ion channel in the membrane of the postsynaptic
+neuron, which in turn mediates the ﬂow of ions in or out of the postsynaptic
+neuron, which corresponds to an electric current (see Fig. 1.2). Importantly,
+this postsynaptic transmembrane current can be excitatory or inhibitory.
+The postsynaptic neuron will, if the inputs received at its several synapses are
+predominantly excitatory, ﬁre an action potential along its axon. If it receives
+mostly inhibitory input, it will not ﬁre an action potential, but remain quies-
+cent. The axon can again touch the dendrite of another neuron in the form of
+a synapse, where it ”triggers a complex chain of biochemical processing steps
+that lead to a release of neurotransmitter” [4]. We have thus closed the circle of
+3
+==PAGE:8==
+4
+CHAPTER 1. INTRODUCTION
+Fig. 1.1: Dendritic trees of diﬀerent neurons. A,B,C,E: neurons from the brain,
+D: motor neuron from the spinal chord.
+Black bars indicate 0.1mm length.
+Taken from [4].
+Fig. 1.2: Simple drawing of a synapse, taken from [4] with modiﬁcations.
+neural signal transmission. This immediately raises the question which neurons
+are connected to which other neurons. In mathematical modelling terms, we
+ask for the coupling topology and coupling strenghts between the neurons. After
+all, there are 1011 neurons in the human brain and each neuron can have up to
+104 synapses [21].
+Another question is how and to what accuracy the synaptic and axonal
+(electro-)dynamics and the ﬁring of an action potential can and should be mod-
+elled. An important achievement in this context is the Hodgkin-Huxley model,
+based on the detailed analysis carried out on the neurons of squids in 1952. Alan
+Hodgkin and Andrew Huxley described the voltage on the axon as the voltage
+across a parallel circuit of a capacitor (the cell membrane), a current source,
+and two serial connections of a voltage source and a linear and nonlinear resistor
+(the ion gates). The resulting ODE system is nonlinear and four-dimensional
+in its original form, while there exist simpler or more complicated variations of
+the model.
+1.2
+Type I and type II ﬁring
+Neuronal models undergo bifurcations that separate them, roughly speaking,
+into a quiescent and a spiking regime. Regardless of the concrete model, we
+here want to denote the bifurcation parameter as I and the bifurcation point
+as I∗. On the quiescent side of the bifurcation, the dynamics of the neuron rest
+at a stable equilibrium. On the ”spiking” side of the bifurcation, the neuron
+ﬁres a train of action potentials. This repetitive spiking behaviour immediately
+==PAGE:9==
+5
+CHAPTER 1. INTRODUCTION
+I
+Frequency
+I*
+I
+Frequency
+I*
+Fig. 1.3: Onset of ﬁring. The neuron spikes for I > I∗and is quiescent for
+I < I∗. Left panel: type I ﬁring. Right panel: type II ﬁring.
+reminds us of a stable limit cycle with the property that a subset of the limit
+cycle exhibits fast rotation, while the dynamics slow down on the rest of the
+cycle (also known as a relaxation oscillation). Here, a quantity of interest is
+the spiking frequency, i.e., the reciprocal of the time span between two action
+potentials. If the frequency depends continuously on I, i.e., the neuron begins to
+spike at arbitrarily low frequency as I crosses I∗, we speak of type I behaviour.
+If however the neuron jumps straight to a non-zero, ﬁnite frequency as soon
+as I∗is passed, the neuron is called a type II neuron (see Fig. 1.3).
+Type
+I behaviour can be achieved by what [4] calls a ”saddle-node-onto-limit-cycle
+bifurcation”. On one side of the bifurcation, a saddle and a node exist. On the
+other side there is a stable limit cycle which passes through the region where
+the saddle and the node have coalesced. In this region, the dynamics are still
+slow, hence the arbitrarily low frequencies at the onset of spiking.
+Type II behaviour can either be achieved by a ”saddle-node-oﬀ-limit-cycle
+bifurcation” or a subcritical Hopf bifurcation. In the saddle-node-oﬀ-limit-cycle
+bifurcation, a stable limit cycle coexists with the saddle and the node, and they
+coalesce in a point somewhat distant to the limit cycle. With the stable ﬁxed
+point destroyed, the dynamics ”jump” to the limit cycle, hence the nonzero ini-
+tial spike frequency. At a Hopf bifurcation, the oscillation frequency is nonzero
+because it is proportional to the imaginary part of the complex conjugate pair
+of eigenvalues that pass the imaginary axis. In a supercritical Hopf bifurcation,
+the amplitude starts arbitrarily low, but in contrast, a spike has a large am-
+plitude. However, [21] points out that once I has enough distance to I∗, the
+limit cycle has grown in size and can indeed model a spiking behaviour. In a
+subcritical Hopf bifurcation, we remind ourselves that as higher order terms in
+the normal form are taken into account, there can be a stable limit cycle coex-
+istent with the unstable one [4] (the two coalesce in a saddle-node bifurcation
+of cycles, see Fig. 1.4). To this stable limit cycle the neuron jumps as I∗is
+passed, exhibiting a type II behaviour with nonzero frequency and amplitude.
+The Hodgkin-Huxley model can, depending on modiﬁcations and reductions,
+undergo a saddle-node-onto-limit-cycle or saddle-node-oﬀ-limit-cycle bifurca-
+tion, while the FitzHugh-Nagumo model (a Hodgkin-Huxley model reduced to
+two dimensions) undergoes a subcritical Hopf bifurcation [4].
+==PAGE:10==
+6
+CHAPTER 1. INTRODUCTION
+I*
+I
+Amplitude
+Unstable focus
+Stable focus
+Unstable
+limit
+cycle
+Stable limit cycle
+Saddle-node
+of cycles
+bifurcation
+Fig. 1.4: Subcritical Hopf bifurcation (I∗) with higher order terms of the normal
+form causing a saddle-node-of-cycles bifurcation nearby. The neuron spikes for
+I < I∗and is quiescent for I > I∗.
+In this section we have seen the spiking mechanisms of a single neuron from
+a dynamical systems point of view. In this work we consider type I neurons. It
+turns out that the ”saddle-node-onto-limit-cycle bifurcation” causing this type
+I behaviour can be further simpliﬁed, as we will see in the following section.
+1.3
+The Theta neuron
+1.3.1
+Motivation
+In 1986, Bard Ermentrout and Nancy Kopell proposed a reduction for excitable
+oscillations [6]. We assume that our system is given by
+˙x = f(x) + ε2g(x, y; ε), x ∈Rp
+(1.1a)
+˙y = εh(x, y; ε), y ∈Rq
+(1.1b)
+0 < ε ≪1,
+f, g, h suﬀ. smooth
+Further we assume that
+1. ˙x = f(x) has an attracting invariant circle S1. On the circle, at x = 0,
+lies a saddle-node (here: a stable node and a saddle coalescing).
+2. ˙y = h(0, y; 0) has a stable limit cycle L.
+If the fast x dynamics on S1 is perturbed by a slow y oscillation L, then a phase
+reduction is possible for both the x and the y dynamics. Periodic solutions of the
+full system converge to periodic solutions of the reduced system. This reduction
+==PAGE:11==
+7
+CHAPTER 1. INTRODUCTION
+(henceforth EK reduction) eventually leads to a simple one-dimensional ODE
+system that is now known as the Theta neuron:
+˙θ = F(θ) = 1 −cos θ + (1 + cos θ)I
+(1.2)
+θ ∈R/2π, I ∈R.
+Even though such a phase reduction necessarily sacriﬁces (biological and math-
+ematical) detail, the signal that the neurons sends along its axon can be cari-
+catured as a sinusoidal function of θ. I is often understood as an input current
+received by the neuron. Even so, it should be imagined as a rather abstract in-
+put current, e.g., an average of diﬀerent currents arriving at the neuron, rather
+than the current through a speciﬁc ion channel. Another interpretation is that
+I is the excitability of the neuron: for I < 0, the neuron can be made to emit
+a single spike (action potential) if a strong enough perturbation away from the
+resting state is applied. This perturbation has to be the stronger, the lower I
+is.1 The Theta neuron is interpreted to spike whenever θ = π.
+Note: the Quadratic-Integrate-and Fire (QIF) neuron ˙v = v2 + I is identical
+to the theta neuron under the coordinate transformation v = tan(θ/2).
+1.3.2
+Bifurcation structure
+The Theta neuron is the normal form of a Saddle-Node on an Invariant Cycle-
+bifurcation (SNIC) [5]. In (1.2), I is constant, as opposed to the initial setting
+in (1.1) where the dynamics in x are perturbed by a slow driving oscillation.
+The SNIC bifurcation will now be discussed.
+It is easy to check that if
+I > 0, there are no equilibria and ˙θ is positive, so the phase oscillator will
+rotate counter-clockwise for all t. However for I = 0, there is an equilibrium at
+θ = 0. This equilibrium is degenerate, since
+dF
+dθ
+
+θ=0
+= sin θ
+
+θ=0
+= 0.
+For I < 0 there are two equilibria on the circle, namely ±θ∗, obtained by:
+F(θ) = 0 ⇒1 + I
+1 −I = cos θ ⇒θ∗= arccos
+1 + I
+1 −I
+
+The equilibrium −θ∗is stable since
+dF
+dθ
+
+θ=θ∗= sin
+
+−arccos
+1 + I
+1 −I
+
+(1 −I) < 0.
+By the same argumentation, +θ∗is unstable. The equilibria at −θ∗and +θ∗
+coalesce in the SNIC as I ↗0. An illustration of the SNIC bifurcation is given
+in Fig. 1.5.
+1In the context of this perturbation, authors also speak of a ﬁring threshold. This threshold
+is regarded as a voltage in [4] (they also argue that this threshold is not constant in reality).
+The threshold is also seen as a current by some authors. The precise deﬁnition of this threshold
+is of no concern for this work.
+==PAGE:12==
+8
+CHAPTER 1. INTRODUCTION
+spike
+Fig. 1.5: Diagram of the SNIC bifurcation, taken from [5] with modiﬁcations.
+Note that (1.2) simpliﬁes the limit cycle involved in the ”saddle-node-onto-
+limit-cycle bifurcation” described in Sec. 1.2. From a (potentially many-dimensional)
+limit cycle of non-circular shape we move to the unit circle. As a direct conse-
+quence, the amplitude of the oscillation is now constant, which is why we speak
+of a phase reduction. However, solutions of the former system can be mapped
+to solutions of (1.2) [22].
+1.3.3
+Bursting and beating
+Its spiking rhythm, capable of bursting, is one of the peculiarities of the Theta
+neuron. If I is taken to be a periodic function, say,
+I(t) = η + A sin(2πft),
+A, η, f ∈R,
+(1.3)
+as, e.g., done in [2], and f is suﬃciently small, then we are in the initial setting in
+the beginning of Sec. 1.3.1 where a slow oscillation drives a fast one. The system
+then exhibits bursting, i.e., a periodic change in the spiking frequency, where
+the Theta neuron spikes faster when I(t) is around its maximum, followed by
+quiescence or at least slower spiking when the driving oscillation I(t) is around
+its minimum. The terms ”periodic bursting” and ”parabolic bursting” are often
+used as well. Moreover, we speak of ”beating” in the limit where the spikes
+become ”uniformly distributed” [6], i.e., the spiking frequency is constant. We
+show this behaviour in Fig. 1.6. In the top panel, the parameters are chosen such
+that the Theta neuron’s spiking frequency stays almost constant, i.e., the neural
+dynamics can approximately be described as beating. In contrast, the neural
+dynamics in the lower panel exhibit episodes of noticeable relative quiescence,
+i.e., we see an example of bursting.
+Interestingly, I(t) need not be sinusoidal. More details about the eﬀect of
+the waveform of the slow oscillation on the spiking pattern of the fast oscillation
+can be found in [6].
+Intuitively, bursting behaviour occurs because the SNIC bifurcation is un-
+dergone periodically, i.e., the stable and unstable equilibria periodically appear
+on the limit cycle (making the neuron rest) and coalesce (making the neuron
+spike in quick succession) [2].2
+2Generally, such considerations where bifurcation paramters are imagined to be non-
+constant have to be treated with care.
+This is because the results of bifurcation theory
+are based on the analysis of a system for several respectively constant values of parameters,
+==PAGE:13==
+9
+CHAPTER 1. INTRODUCTION
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+-1
+-0.8
+-0.6
+-0.4
+-0.2
+0
+0.2
+0.4
+0.6
+0.8
+1
+A = 1/5, η = 0.6, f = 0.015
+t
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+-1
+-0.8
+-0.6
+-0.4
+-0.2
+0
+0.2
+0.4
+0.6
+0.8
+1
+A = 1/2, η = 1/5, f = 0.015
+t
+Fig. 1.6: Time trace of the Theta neuron under periodic forcing. Black dashed
+line: I(t) = η + A sin(2πft). Blue line: sin θ. Top panel:
+beating. Bottom
+panel:
+bursting.
+The above discussion of beating and bursting was made because it is an im-
+portant aspect of the Theta neuron and the original work done in [6]. However,
+beating and bursting will be of no concern in this work. We will treat I neither
+as a constant nor as a time-dependent function, but as a linear combination of
+sinusoidal functions of the individual neurons’ phases. Moreover, we will focus
+on collective behaviour of neurons rather than their individual dynamics.
+not for slow transitions of parameter values, even though these slow transitions happen in
+reality ([11], Chapter 22).
+==PAGE:14==
+10
+CHAPTER 1. INTRODUCTION
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+-1
+-0.8
+-0.6
+-0.4
+-0.2
+0
+0.2
+0.4
+0.6
+0.8
+1
+t
+Fig. 1.7: Theta neuron driven by a too high frequency.
+Black dashed line:
+I(t) = η+A sin(2πft). Blue line: sin θ. Parameters: A = 1/2, η = 1/5, f = 1.
+1.3.4
+Limitations
+If we choose a too high frequency f, then an important assumption of the EK
+reduction is violated, namely that the driving oscillation be slow compared to
+the dynamics of the limit cycle of the neural oscillation. The result can be seen
+in Fig. 1.7: The Theta neuron now oscillates more slowly than the ”slow” driving
+oscillation. Therefore, choosing a too high frequency f of the driving oscillation
+causes the Theta neuron to be an invalid representation of the high-dimensional
+system it was supposed to reduce.
+If biophysical realism is desired, another limitation of the Theta neuron is
+that |I| may not be too high. This is because the EK reduction assumes a weak
+perturbation away from the state in which a saddle-node exists on the limit
+cycle.
+1.4
+Structure of this thesis
+The basics of neural modelling with the aid of dynamical systems, as well as the
+Theta neuron as an important one-dimensional model, have been introduced. In
+this work, our focus is not on the electrochemical processes inside the individual
+neuron, nor do we look at the details of the voltage signals that neurons send to
+one another. Rather, we are interested in the macroscopic behaviour of neural
+populations, i.e., we want to make statements about the average spiking activity,
+and the amount of synchrony therein. Such macroscopic models have received
+much attention in previous studies. Abstract macroscopic models of coupled
+oscillators can provide a ”unifying explanation of oscillatory phenomena in the
+human cortex” [9].
+In the following chapter, we motivate our model equations. In Chapter 3
+==PAGE:15==
+11
+CHAPTER 1. INTRODUCTION
+we will introduce a method that allows to reduce the dimensionality of our
+equations, and we apply this method in Chapter 4. In Chapter 5 we will explain
+numerical continuation, a method that allows a numerical bifurcation analysis
+of our system. The results of this bifurcation analysis are given in Chapter 6.
+==PAGE:16==
+2
+The system under study
+2.1
+Motivation
+The Hodgkin-Huxley model, with its many dimensions, would be an inconve-
+nient candidate for modelling large networks of neurons. We will choose the
+Theta neuron as it is one-dimensional, yet conserves the mechanisms for type I
+spiking.
+An abstract macroscopic model sacriﬁces biophysical realism at the level of
+the individual neuron as well as in the connections between the neurons, but
+it can help to understand general phenomena that might occur across neural
+architectures.
+That raises the question with what coupling function and topology these
+Theta neurons shall be connected in the network. Diﬀerent coupling topologies
+have been studied in the literature, e.g., random graphs and all-to-all-coupled
+graphs. The latter are not realistic at ﬁrst sight, since a network in which every
+vertex is connected to every other vertex has N(N −1)/2 edges, which would
+be an astronomic number in a brain of 1011 neurons. Even if the neural network
+models only a region of the brain – as is usually the case – it would be unrealistic
+to assume that every neuron keeps a synapse to every other neuron. However,
+if each edge in an all-to-all-connected graph is associated with a value that
+corresponds to the strength of the connection between the respective vertices,
+the graph becomes more realistic because some connections can be modelled
+stronger than others.
+When studying neural dynamics at a meso- or macroscopic level, it is com-
+mon to group neurons into clusters with similar properties. These clusters have
+also been called ”communities” or ”populations”. We will stick with the lat-
+ter term. Real-world counterparts of populations of neurons with homogeneous
+properties can be found in the visual, somatosensory or motor cortex [4]. Im-
+portantly, neurons of the same population are not necessarily spatially close to
+each other.
+A study carried out on newborn rats [18] suggests that neurons are organized
+in networks where populations of densely connected neurons are interconnected
+12
+==PAGE:17==
+13
+CHAPTER 2. THE SYSTEM UNDER STUDY
+sparsely. In other words, connections between neurons of the same population
+are more numerous than connections between neurons from distinct populations.
+This can be modelled in an idealized fashion by an all-to-all coupled network
+where coupling weights are higher within a population than between populations
+(Fig. 2.1). That way, connections with low weights are an abstraction of sparse
+connectivity.
+Fig. 2.1: All-to-all coupled network of 12 neurons organized in 2 populations.
+The coupling is stronger within a population (”intra”, black lines) than between
+populations (”inter”, grey lines).
+Another question is whether our neural network model should take the
+spatial distance between neurons into account. The Theta neuron (1.2) does
+not contain any spatial variables and can therefore be imagined as a zero-
+dimensional point in space, i.e., in the brain.
+Some studies, e.g., [12], have
+however considered a spatially dependent coupling function between the Theta
+neurons. We will not include any spatial dependence in the coupling, our model
+will be agnostic to the spatial distance between neurons, it will only consider
+whether two neurons are coupled strongly or weakly. Moreover, we will assume
+the coupling topology to be constant. Even though learning and neural plastic-
+ity play a role in the brain, one can choose a fast enough time scale so that no
+learning, but other interesting dynamics (such as synchronization) occur. More-
+over, not the entirety of neural circuitry is open to change through learning and
+plasticity [18].
+Another notion that comes with networks of neurons – or oscillators in gen-
+eral – is synchrony. The term expresses the level of simultaneous activity in
+the network. With the Theta neuron being a phase oscillator model, synchrony
+in our system is easily deﬁned as the degree to which oscillators are in-phase,
+i.e., a population synchronizes when the phases of its neurons draw closer to-
+gether. The population is perfectly synchronous if all its neurons have the same
+phase. Synchrony is important for various reasons. Firstly, a single neuron’s
+signal is too weak to be measured non-invasively [16], neural activity will not
+be detected by imaging techniques unless several neurons act at the same time.
+Secondly, synchrony is involved in both functional and dysfunctional brain ac-
+tivity [5], overly synchronous activity in the brain is believed to be correlated
+to pathologies as Parkinson’s or epilepsy. An especially interesting case occurs
+if the synchrony holds more than one stable state. It has been argued that ”a
+single bistable network of neurons serves as a canonical illustration of a memory
+==PAGE:18==
+14
+CHAPTER 2. THE SYSTEM UNDER STUDY
+circuit” [29]. This is because the synchrony (or, equivalently, the ﬁring activity)
+in the network can settle at two states analogous to ”0” and ”1” in a digital
+memory. The authors set and reset these states with periodic forcing.
+It has been pointed out in, e.g., [10], that a network of two populations, with
+diﬀerent intra- and inter-population coupling strengths, is the simplest network
+that can exhibit states where the level of synchrony is diﬀerent across the pop-
+ulations. Such states where the activity is incongruous between the populations
+have been called chimera states and they exist for networks of identical oscilla-
+tors as well as for networks of heterogeneous oscillators [15]. We thus keep the
+number of populations at M = 2. When networks of populations of neurons
+are studied, one often considers ”excitatory populations” and ”inhibitory pop-
+ulations”, e.g., in [20]. Excitatory populations are populations whose neurons
+positively couple into the dynamics of other neurons, while neurons of inhibitory
+populations seek to drive other neurons into the quiescent regime. In [3], one
+driving population inﬂuences a driven population without feedback from the
+driven into the driving population. In [27], an excitatory population is coupled
+bidirectionally with an inhibitory one such that both populations oscillate, with
+the inhibitory one trailing behind slightly. In [29] (Fig.4), two inhibitory pop-
+ulations of intrinsically quiescent neurons have an excitatory intra-population
+coupling strength, and the reaction of the network to external periodic forcing
+is studied. To our knowledge, the combination ”intrinsically quiescent Theta
+neurons with excitatory intra- and inter-population coupling strength” has not
+been studied before, but might still be relevant biologically, e.g., if two subsets
+of the brain stimulate each other.
+We therefore raise the following research
+question.
+What dynamics and what synchronization patterns can be observed in a net-
+work that is an idealization of two populations of neurons with intrinsic tendency
+towards quiescence, but with positive intra-population coupling and weakly pos-
+itive inter-population coupling?
+2.2
+Model equations
+For simplicity we assume that both neural populations in the network consist of
+the same number of neurons, N. We denote the phase of the jth neuron in the
+mth population as θjm. As we mentioned, neurons inside a population should
+have similar properties. The property of the Theta neuron is its inclination to
+spike or be at rest, i.e., the excitability parameter I in (1.2). We give every
+neuron its inherent excitability ηjm ∈R. If we make excitabilities of neurons
+of a population similar to, yet slightly diﬀerent from each other – by modelling
+them as random variables – we add some biological realism in the sense that
+two real-world neurons are never exactly identical.
+The coupling function shall be sensitive towards whether or not two neurons
+==PAGE:19==
+15
+CHAPTER 2. THE SYSTEM UNDER STUDY
+K11
+N
+K11
+N
+K21
+N
+K12
+N
+K22
+N
+K22
+N
+Fig. 2.2: Exemplary all-to-all coupled network of M = 2 populations with N = 6
+oscillators each. Population 1 is drawn in red, population 2 in blue. Black and
+grey arrwos show the strength of coupling on a neuron-to-neuron level. Image
+taken from [5] with modiﬁcations.
+belong to the same or population. We therefore introduce real-valued constants
+Kmm′ with m, m′ ∈{1, 2}.
+where Kmm′/N is the strength with which a neuron from population m′ couples
+into the dynamics of a neuron from population m. If Kmm′ > 0, the coupling
+is excitatory (the focus of our work), and if Kmm′ < 0, it is inhibitory. The
+interaction graph can be visualized like in Fig. 2.2.
+With the coupling structure established, we have to design equations that
+live up to this structure. The idea is that a Theta neuron θjm in the network
+receives an overall, average input from all neurons (including itself). This in-
+put can, depending on its sign, accelerate or decelerate the dynamics of θjm,
+modulating its inclination to spike. Meanwhile, the neuron is biased towards
+quiescence or spiking by its excitability ηjm. An ODE system with such prop-
+erties was studied in [2, 1] for M = 1 population, and in [3] this was generalized
+for M = 2:
+m
+∈
+{1, 2}
+˙θjm
+=
+1 −cos θjm + (1 + cos θjm) · (ηjm + Sm)
+(2.1a)
+Sm
+=
+Km1
+N
+N
+X
+j=1
+Pn(θj1) + Km2
+N
+N
+X
+j=1
+Pn(θj2)
+(2.1b)
+Pn(θ)
+:=
+an(1 −cos θ)n
+The scalar coeﬃcient an ∈R is chosen such that
+Z 2π
+0
+Pn(θ)dθ = 2π.
+An illustration of Pn is given in Fig. 2.3.
+Pn models the action potential that
+a neuron ﬁres.1 Pn is the sharper, the larger n is, and has its maximum at the
+point where the Theta neuron is said to spike, namely θjm = π.
+1For n = 1, the action potential ﬁred by a neuron is a sinusoidal function of its phase, as
+in Fig. 1.6, where sin θ modelled the neuron’s action potential.
+==PAGE:20==
+16
+CHAPTER 2. THE SYSTEM UNDER STUDY
+n = 1
+n = 2
+n = 4
+n = 9
+0
+π/2
+π
+3π/2
+2 πθ
+Fig. 2.3: Pn(θ) for some values of n, taken from [5] with modiﬁcations.
+Sm is the signal that arrives at the synapses of all neurons in population
+m, it is the average of the Pn-pulses that all neurons send, weighted with the
+respective coupling strength into population m.
+For an intuitive understanding of the role of n one might imagine that every
+time a neuron spikes, it has an ”energy” of 2π at its disposal to send to all
+other neurons. For n →∞, the neurons ﬁres all the energy at once, when its
+phase reaches π. For smaller n, this energy is emitted more uniformly, over
+a larger range of phase values around π. The analysis in [1] suggests that n
+has little qualitative inﬂuence on the bifurcation landscape of the system under
+study. Even so, the same authors argue that a low value of n is biologically
+more plausible [3] and they prefer n = 2. We choose an even simpler value of
+n, namely, n = 1.
+We should keep in mind that the model (2.1) has several underlying assump-
+tions. Firstly, even though the Theta neuron’s phase will by deﬁnition always
+stay on the limit cycle, this might not be the case for the full dimensional ODE
+that the Theta neuron mimics. The reduction in Sec. 1.3.1 assumes a weak per-
+turbation away from the state where the saddle-node exists. This perturbation
+is now given by ηjm + Sm, so in order not to jeopardize the biological realism
+we have left in the model, |Em| and |Kmm′| must not be too large.2
+With (2.1) we have established a 2N-dimensional ODE system which can be
+numerically solved if initial conditions for all neurons’ phases are given. How-
+ever, we do not want to focus at the individual θjm’s in this work, but rather
+want to study the macroscopic behaviour of (2.1). In the following chapter, we
+therefore introduce a reduction technique.
+2This does not necessarily mean |Em|, |Kmm′| ≪1, as there are is also an ε involved in
+the EK reduction. Values of |Em| and |Kmm′| considered in the literature are usually on the
+order of magnitude of 10. Moreover, how low is ”low” also depends on how these numbers
+are related to dimensional, physical values of the more realistic model before the EK and OA
+reductions.
+==PAGE:21==
+3
+The Ott-Antonsen approach for di-
+mensionality reduction
+About ten years ago, Edward Ott and Thomas Antonsen [7, 8] introduced a
+method that allows to exactly describe the macroscopic dynamics of a system
+of inﬁnitely many coupled oscillators.
+This description makes use of a low-
+dimensional dynamical system. We will refer to the method as the OA reduction.
+At ﬁrst sight, it does not seem realistic to assume a population of inﬁnitely
+many neurons. In fact, it was stated in [18] that a population of (rat) neurons
+might only consist of dozens of neurons.
+However, it has been argued that
+an OA-reduced system can approximate the macroscopic behaviour of coupled
+oscillator systems of ﬁnite size [1, 2].
+In this chapter, we explain the assumptions underlying and the steps involved
+in the OA reduction.
+Suppose a system of coupled oscillators is given by1
+˙θj = bj −1
+2
+exp(iθj) + 1 + bj +
+¯bj −1
+2
+exp(−iθj),
+j = 1, . . . , N < ∞
+(3.1)
+with bj = bj(θ, t) = ωj + f(θ, t), θ :=
+θ1
+· · ·
+θN
+
+, bj(θ, t) ∈C
+ωj can be seen as the intrinsic frequency of the jth oscillator. Importantly, f
+depends on all oscillator phases rather than an individual one, we can therefore
+say that it is inﬂuenced by the average behaviour of all oscillators. The above
+form of bj is the general one, there are systems where bj does not depend on time
+and/or bj is real-valued. (3.1) is called a sinusoidally coupled system because
+θj appears in no higher harmonics than exp(±iθj).
+We further assume that the intrinsic frequencies ωj are drawn as random
+variables from the Lorentzian distribution
+L(ω; ˆω, ∆) :=
+∆/π
+(ω −ˆω)2 + ∆2
+1This equation is equivalent to Eq. (9) in [2] if (bj −1)/2 =: f and 1 + bj =: h.
+17
+==PAGE:22==
+18
+CHAPTER 3. THE OTT-ANTONSEN APPROACH FOR
+DIMENSIONALITY REDUCTION
+with mode ˆω and width ∆.
+Now we let N →∞. This is often called a continuum limit. We have to
+drop the index j. The inﬁnitely many oscillators have to be described by a
+probability density function that we denote ρ. Since in (3.1) every oscillator is
+described by its constant frequency ω ∈R and its variable phase θ ∈R/2π we
+introduce the cylindrical domain
+D := R × R/2π.
+Thus, ρ = ρ(θ, ω, t) is a time-dependent density on D, and
+Z
+D
+ρ = 1 ∀t
+(3.2)
+has to hold.
+There are certain restrictions to how ρ(θ, ω, t) will evolve over
+time, i.e., how the oscillator concentration will move on D. First of all, move-
+ment of the oscillators occurs only in θ-direction, since the oscillators’ inherent
+frequencies ω do not change over time.
+For ﬁnite N, (3.1) tells us what phase velocity ˙θj the jth oscillator – of which
+we know that it has the intrinsic frequency ωj – has at time t. In the continuum
+limit N →∞, one has to redeﬁne ˙θj as the quantity v(θ, ω, t) representing the
+velocity (in θ-direction) of the oscillators located in the point (θ, ω) ∈D at time
+t.
+One important assumption is that the ”mass” of oscillators is conserved over
+time, see (3.2). From this conservation follows the continuity equation
+∂ρ
+∂t + ∂(ρv)
+∂θ
+= 0.
+(3.3)
+For an intuitive understanding of why this is so, we can imagine the inﬁnitely
+many oscillators as a ﬂuid that moves on D. Then ρv is the ﬂux of oscillators
+in the direction of mathematically positive rotation of θ. Now assume that ∂ρ
+∂t
+is positive for some point (θ, ω) ∈D, at a certain time t, that means the con-
+centration of oscillators in this point is currently rising. This surplus oscillator
+concentration has to come from the neighbouring point (θ −dθ, ω). There has
+to be more ﬂux through (θ −dθ, ω) than through (θ, ω) if oscillators are to ac-
+cumulate in (θ, ω). The ﬂux gradient between (θ −dθ, ω) and (θ, ω), namely
+∂(ρv)
+∂θ , is thus negative. Moreover, it has to equal ∂ρ
+∂t in magnitude to satisfy
+conservation, and therefore (3.3) is fulﬁlled.
+It is now time to introduce the Kuramoto order parameter Z:
+Z(t) :=
+Z
+D
+ρeiθ =
+Z 2π
+0
+Z ∞
+−∞
+ρ(θ, ω, t)eiθdωdθ
+(3.4)
+Z is simply the expected value of eiθ and captures the macroscopic behaviour
+of system (3.1) in the continuum limit N →∞. Importantly, while eiθ has
+modulus 1, R := |Z| attains values between 0 and 1. Ψ := arg Z is the phase
+towards which the oscillators tend, and R is the strength of that tendency. As
+==PAGE:23==
+19
+CHAPTER 3. THE OTT-ANTONSEN APPROACH FOR
+DIMENSIONALITY REDUCTION
+R →0, the phases spread uniformly around the unit circle.2 As R →1, all
+phases move towards Ψ.
+Ott and Antonsen introduced an ansatz that expands ρ – which is 2π-periodic
+in θ by assumption – in a Fourier series in θ:
+ρ(θ, ω, t) ≡L(ω)
+2π
+ 
+1 +
+∞
+X
+q=1
+ ¯α(ω, t)qeiqθ + α(ω, t)qe−iqθ
+!
+,
+(3.5)
+so the Fourier coeﬃcients are integer powers of the function α(ω, t). We demand
+|α(ω, t)| < 1, this is suﬃcient for convergence of the rhs. in (3.5) [7]. In addition,
+we demand that α(ω, t) (¯α(ω, t)) have an analytical continuation into the upper
+(lower) complex ω-half-plane, without singularities in these half-planes.
+Ott and Antonsen showed that there is a manifold in the space of all pos-
+sible probability densities. They showed that this manifold is invariant (i.e., if
+ρ(θ, ω, 0) is on the manifold, so is ρ(θ, ω, t)
+∀t) and attracting if and only if the
+following integro-diﬀerential equation system holds:
+˙α = i
+b −1
+2
+α2 + (1 + b)α +
+¯b −1
+2
+
+(3.6a)
+Z(t) =
+Z ∞
+−∞
+α(ω, t)L(ω)dω
+(3.6b)
+System (3.6) is independent of the individual phases θ. Eq. (3.6b) follows if we
+insert (3.5) into (3.4) and evaluate the integral over θ. The remaining integral in
+(3.6b) can be solved using the residue theorem of complex analysis. The shape
+of L with its poles at ˆω ± i∆allows for the closed-form solution
+Z(t) = α(ˆω + i∆, t).
+Note that we have written b in (3.6a), not bj, because we are dealing with
+inﬁnitely many oscillators. This implies that the term we used for bj in the
+ﬁnite-N-system (3.1) has to be rewritten into a form b that is consistent with the
+continuum limit N →∞and depends on no other state variable than Z. If the
+system (3.6) is written as an ODE that has the state variable Z and parameters
+∆, ˆω, the OA reduction of system (3.1) is complete. The reduced ODE system
+is autonomous or non-autonomous, depending on whether bj contains explicitly
+time-dependent terms.
+2Actually there are inﬁnitely many distributions that lead to R = 0. For example, one
+third of oscillators might have the phase θ = 0, another third might be at θ = 2π/3, and the
+phases of the last third located at 4π/3.
+==PAGE:24==
+20
+CHAPTER 3. THE OTT-ANTONSEN APPROACH FOR
+DIMENSIONALITY REDUCTION
+In summary, the OA reduction comprises the following steps:
+1. For a realization of (3.1), take bj and derive its N →∞equivalent, b.
+2. Insert the expression for b into (3.6a) (If b is real-valued, the complex
+conjugation is without eﬀect.)
+3. Insert ˆω + i∆for ω in (3.6a).
+4. Insert Z for α in (3.6a).
+Note that the order of steps 2 and 3 must not be interchanged because b de-
+pends on ω and the complex conjugation of b must be performed before ω is
+turned into something complex in step 3 (this could be conﬁrmed by carefully
+studying [2] and contacting the authors).
+After these steps, one obtains the OA equation corresponding to (3.1). Note that
+we have in this chapter regarded a system with only one population that con-
+tains all the oscillators. However, the derivation can be generalized to systems
+of more than one population if each population is granted its own probability
+density ρm. Due to coupling, the ρm’s inﬂuence each other. Each of the ρm can
+be expanded in its own Fourier series as in (3.5), and we introduce a Kuramoto
+order parameter Zm(t), deﬁned like in (3.4), that captures the macroscopic be-
+haviour of the mth population. We will show how this works for system (2.1)
+in the following chapter.
+==PAGE:25==
+4
+Ott-Antonsen equations for Theta
+neuron system
+4.1
+Derivation
+It has been pointed out in [5] that a system needs to be sinusoidally coupled to
+allow for an OA reduction. It is easy to show that (2.1) is indeed a sinusoidally
+coupled system. Deﬁne
+bjm := ηjm + Sm.
+Since Sm and ηjm in (2.1) are real-valued, we have bjm = ¯bjm and (3.1) becomes
+bjm +1+(bjm −1)· 1
+2
+ eiθjm + e−iθjm
+|
+{z
+}
+=cos θjm
+= ηjm +Sm +1+(ηjm +Sm −1)·cos θjm,
+which is equal to (2.1a).
+Another prerequisite for an OA reduction is the right type of probability
+density function (PDF) from which the ηjm’s are drawn. It is still an open
+question how large the pool of feasible PDFs for the OA reduction is [5], but
+the Lorentzian distribution is certainly in this pool. We therefore assume the
+neurons’ excitabilities are drawn from
+L(η; Em, ∆m) =
+∆m/π
+(η −Em)2 + ∆2m
+,
+where mean excitability Em and the width of the distribution ∆m are, in general,
+individual for each of the two populations.
+Next we have to ﬁnd out what Sm looks like in the continuum limit N →∞.
+Following [2] Appendix A, we apply the binomial theorem twice to (2.1b), while
+21
+==PAGE:26==
+22
+CHAPTER 4. OTT-ANTONSEN EQUATIONS FOR THETA NEURON
+SYSTEM
+keeping N ﬁnite. We get
+Sm = an
+2
+X
+m′=1
+Kmm′
+N
+N
+X
+j=1
+n
+X
+ν=0
+ν
+X
+l=0
+Qν,l,n exp[i(ν −2l)θjm′]
+(4.1)
+Qν,l,n =
+(−1)νn!
+2νl!(n −ν)!(ν −l)!.
+It is shown in [2] Appendix A that when N →∞, the last three sums in (4.1)
+can be rewritten and we get
+Sm =
+2
+X
+m′=1
+Kmm′ · H(Zm′; n)
+(4.2)
+H(Zm; n) = an
+ 
+C0,n +
+n
+X
+k=1
+Ck,n(Zk
+m + ¯Zk
+m)
+!
+Ck,n =
+n
+X
+ν,l=0
+δν−2l,kQν,l,n.
+The proof in [2] Appendix A was performed on one population, but it also holds
+for M = 2 populations since each of them has its own ρm and its own invariant
+manifold of probability densities.
+We are ready to state the N →∞continuum limit of system (2.1):
+vm(θ, η, t)
+=
+1 −cos θ + (1 + cos θ)bm
+(4.3)
+bm
+:=
+η + Sm = η +
+2
+X
+m′=1
+Kmm′H(Zm′; n).
+We have thus arrived at step 2 explained in the end of Chapter 3. It can be
+shown that H(Zm; n) ∈R regardless of n [1], therefore bm = ¯bm. We insert bm
+into (3.6a) and get
+˙αm = i
+η + Sm −1
+2
+α2
+m + (1 + η + Sm)αm + η + Sm −1
+2
+
+.
+We realize that for the Theta neuron, η plays the role of ω and Em plays the
+role of ˆω. So after step 3 and 4 the OA system equation reads:
+˙Zm = i
+Em + i∆m + Sm −1
+2
+Z2
+m + (1 + Em + i∆m + Sm)Zm + Em + i∆m + Sm −1
+2
+
+(4.4)
+For our choice n = 1, the coeﬃcients in (4.3) are a1 = C0,1 = 1, C1,1 = −1/2,
+so H(Zm; n) simply becomes 1 −Re Zm. Then (4.4) can be regrouped into
+m ∈{1, 2}
+˙Zm = i
+2(Em + Sm)(Zm + 1)2 −∆m
+2 (Zm + 1)2 −i
+2(Zm −1)2
+(4.5)
+Sm = Km1(1 −Re Z1) + Km2(1 −Re Z2).
+==PAGE:27==
+23
+CHAPTER 4. OTT-ANTONSEN EQUATIONS FOR THETA NEURON
+SYSTEM
+With (4.5), we have arrived at the OA equation corresponding to system (2.1),
+which can also be found in [3]. For ease of notation we introduce the vector
+Z :=
+Z1
+Z2
+
+∈C2.
+For the numerical continuation, it is more convenient to split the system into
+real and imaginary part
+X1 := Re Z1, Y1 := Im Z1, X2 := Re Z2, Y2 := Im Z2.
+The system (4.5) can then be written as an equivalent ODE system in four
+real-valued state variables:
+m ∈{1, 2}
+˙Xm = GXm(X1, X2, Ym)
+(4.6a)
+= −Ym(Em + Sm + 1) −(Em + Sm −1)XmYm
+−∆m
+2
+· ((Xm + 1)2 −Y 2
+m)
+˙Ym = GY m(X1, X2, Ym)
+(4.6b)
+= ((Xm + 1)2 −Y 2
+m)(Em + Sm)
+2
++ Y 2
+m −(Xm −1)2
+2
+−∆mYm(Xm + 1)
+Sm = Km1(1 −X1) + Km2(1 −X2).
+4.2
+Unit disc as an invariant space
+By deﬁning modulus and phase
+R1 := |Z1|, Ψ1 = arg Z1, R2 := |Z2|, Ψ2 = arg Z2,
+we can write system (4.5) as
+m ∈{1, 2}
+˙Rm = Em + Sm −1
+2
+· sin(Ψm) · (1 −R2
+m)
+−∆m
+2
+cos(Ψm) · (1 + R2
+m) −∆mRm
+(4.7)
+˙Ψm = Em + Sm + 1 + Em + Sm −1
+2
+cos(Ψm)(R−1
+m + Rm)
++ ∆m
+2
+sin(Ψm)(R−1
+m −Rm)
+(4.8)
+Sm = Km1(1 −R1 cos Ψ1) + Km2(1 −R2 cos Ψ2).
+==PAGE:28==
+24
+CHAPTER 4. OTT-ANTONSEN EQUATIONS FOR THETA NEURON
+SYSTEM
+Looking at (4.7) we can tell that for any initial condition R1(0) ≤1, R2(0) ≤1,
+the system state will fulﬁl R1(t), R2(t) ≤1 ∀t. In other words, the space
+{Z1 | Z1 ∈C, |Z1| ≤1} × {Z2 | Z2 ∈C, |Z2| ≤1}
+is invariant. Therefore the Euclidean norm ||Z||, deﬁned by
+||Z|| :=
+p
+Z1 ¯Z1 + Z2 ¯Z2 =
+q
+X2
+1 + Y 2
+1 + X2
+2 + Y 2
+2 =
+q
+R2
+1 + R2
+2,
+(4.9)
+can at most attain the value
+√
+2.
+4.3
+The ﬁring rate
+The ﬁring rate is a non-negative value that quantiﬁes the degree of activity in
+a population. Being a macroscopic quantity, the ﬁring rate is often used when
+describing large populations of neurons. In fact, ODE systems describing the
+macroscopic behaviour of neural populations are often formulated in such a way
+that the ﬁring rate, rather than the Kuramoto order parameter, is the state
+variable.
+Intuitively, the ﬁring rate is low if the neurons are mostly at rest and high if
+a lot of neurons are spiking in quick succession, i.e., their phases keep revolving
+around the unit circle fast.
+Formally, the ﬁring rate rm of population m is
+deﬁned as the ﬂux through θ = π:
+rm(t) :=
+Z
+R
+vm(θ, η, t)ρm(θ, η, t)dη
+
+θ=π
+It can be shown [5] that
+rm ≡π−1Re
+1 −¯Zm
+1 + ¯Zm
+
+≡π−1
+1 −|Zm|2
+1 + 2Re Zm + |Zm|2 ,
+(4.10)
+so the ﬁring rate only depends on the Kuramoto order parameter. rm is zero if
+|Zm| = 1 and Zm ̸= −1 + 0i, but rm →∞as Zm →−1 + 0i. We visualize this
+singular behaviour in Fig. 4.1.
+==PAGE:29==
+25
+CHAPTER 4. OTT-ANTONSEN EQUATIONS FOR THETA NEURON
+SYSTEM
+Fig. 4.1: Firing rate for all positions on the unit disc. The ﬁring rate was cut
+oﬀat 10 because of the pole at Zm = −1 + 0i.
+4.4
+Equilibria
+We aim to analytically ﬁnd information about possible equilibria of system (4.5).
+We set
+0 = i
+2(Em + Sm)(Zm + 1)2 −∆m
+2 (Zm + 1)2 −i
+2(Zm −1)2,
+which is equivalent to
+Em + Sm + i∆m = (Zm −1)2
+(Zm + 1)2 .
+Since Em, ∆m and Sm are real-valued, it follows that
+∆m = Im (Zm −1)2
+(Zm + 1)2 , m ∈{1, 2}.
+(4.11)
+This is a necessary (but not suﬃcient) condition for the point
+Z1
+Z2
+⊤to
+be an equilibrium. If considered for one population at a time, (4.11) deﬁnes a
+one-dimensional manifold on the complex unit disc (see Fig. 4.2). We can see
+that points Zm on this manifold either have 0 ≪|Zm| (high synchrony) and a
+low ﬁring rate, or |Zm| ≪1 and a high ﬁring rate, or mediocre synchrony and
+ﬁring rate. There is a fourth possibility: points on the manifold close to −1+0i
+have high synchrony and ﬁring rate. The ﬁring rate grows over all bounds as Zm
+moves towards −1 + 0i. Intuitively, for a very high ﬁring rate, the neurons need
+a high excitatory input and/or high intrinsic excitability, i.e. E →∞and/or
+Kmm′ →∞, jeopardizing biophysical realism.
+==PAGE:30==
+26
+CHAPTER 4. OTT-ANTONSEN EQUATIONS FOR THETA NEURON
+SYSTEM
+-1
+-0.5
+0
+0.5
+1
+-1
+-0.8
+-0.6
+-0.4
+-0.2
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+Re Zm
+Im Zm
+Firing rate rm
+Fig. 4.2: The black line shows the manifold deﬁned by (4.11), for ∆m = 1/100.
+The coloured curves are the level curves of the ﬁring rate (we truncated them
+at rm = 1.2 because of the pole at Zm = −1 + 0i).
+==PAGE:31==
+5
+Numerical continuation
+Numerical continuation is a technique that allows one to investigate how a
+(degenerate) equilibrium, limit cycle, homoclinic orbit, or other special orbit,
+changes as parameters are varied. In doing so, bifurcations of codimensions 1
+or 2 can be found. The software package that we use for numerical continuation
+is MATCONT [26].
+5.1
+Equilibrium curve and active parameter
+Assume an ODE system
+˙x = f(x; µ), x ∈Rd, µ ∈Rp,
+f suﬀ. smooth,
+with state variables x and parameters µ. Assume that an equilibrium (x∗, µ∗)
+of the system is known:
+f(x∗; µ∗) = 0.
+An interesting question is how the position x∗of the equilibrium changes if one
+of the p entries in µ∗, denote it as µact, is changed. Since f is smooth, one can
+expect that the position x∗(which still has to fulﬁl f(x∗; µact) = 0) depends
+smoothly on µact. In fact, if we assume that
+det
+∂f
+∂˜x
+
+̸= 0,
+˜x :=
+ x
+µact
+
+i.e., the Jacobian is invertible, then it follows from the Implicit Function The-
+orem that x∗can locally be parametrized by µact [25]. In other words, there
+is a one-dimensional manifold in Rd+p (or in Rd+1, since p −1 parameters are
+treated as constant) with the property that each point ˜x on the manifold is an
+equilibrium of the ODE system. We call this manifold an equilibrium curve and
+µact the active parameter.
+Note: since the vector ﬁeld f of the system is known, it is possible to cal-
+culate the Jacobian and its eigenvalues for each point (x, µ). A point on the
+27
+==PAGE:32==
+28
+CHAPTER 5. NUMERICAL CONTINUATION
+equilibrium curve is a stable equilibrium if and only if all eigenvalues of the
+Jacobian evaluated at this point have negative real part.
+Of course bifurcations can occur along the equilibrium curve. As we will
+see in the following section, numerical continuation is capable of detecting such
+bifurcations.
+5.2
+Equilibrium continuation
+Perhaps the simplest task that numerical continuation can perform is to approx-
+imate points on an equilibrium curve of a given system with a certain parameter
+treated as the active parameter. This is done by starting from a known equilib-
+rium and ﬁnding a neighbouring point on the equilibrium curve with some form
+of Newton iteration algorithm. The result is a ﬁnite sequence of C points
+( x
+µact
+(1)
+,
+ x
+µact
+(2)
+, · · · ,
+ x
+µact
+(C))
+which approximate the equilibrium curve, or, in most cases, just a segment of it.
+For brevity, we will simply call these approximations to the equilibrium curves
+”equilibrium curves” in Chapter 6.
+In addition to providing said curve, the numerical continuation algorithm
+perpetually checks whether the current point on the curve is becoming degen-
+erate. Diﬀerent degeneracies1 can occur and most of them correspond to bi-
+furcations. Criteria to detect these degeneracies are coded into so-called test
+functions. MATCONT makes sure to decrease step sizes of the Newton method
+when a bifurcation is being approached.
+5.3
+Bifurcation curves
+The concepts introduced in Sec. 5.1 can be generalized to two simultaneously
+active parameters. Assume that a degenerate equilibrium point in which a cer-
+tain bifurcation happens is given. If a neighbouring point is to hold the same
+degeneracy, two parameters will have to be manipulated simultaneously.
+In
+other words, there is a one-dimensional manifold in Rd+2 such that every point
+on the manifold is an equilibrium in which a bifurcation of the given type oc-
+curs. We call such a manifold a bifurcation curve. MATCONT can approximate
+points on a bifurcation curve by continuing a degenerate equilibrium in two ac-
+tive parameters. Along this curve, it can detect codimension-2-bifurcations. For
+example, if a saddle-node bifurcation curve (a curve of saddle-node equilibria),
+is continued, MATCONT can detect a cusp bifurcation.
+Finally it remains to be said that when using MATCONT, its numerical na-
+ture should be remembered and care should be taken before accepting results.
+1Also referred to as ”singularities” in MATCONT
+==PAGE:33==
+29
+CHAPTER 5. NUMERICAL CONTINUATION
+Quantities that theoretically become zero for a certain bifurcation are small,
+but nonzero in practice. Moreover, especially when dealing with complicated
+bifurcations and bifurcation curves, MATCONT sometimes confuses a bifurca-
+tion for another or it continues a curve without indicating that its properties
+have changed.
+==PAGE:34==
+6
+Bifurcation analysis
+With the ODE system 4.6 established, the next step is to analyze it with respect
+to bifurcations. We choose
+∆1 = ∆2 =: ∆= 1/100,
+E1 = E2 =: E = −1
+K11 = K22 =: K, K12 = K21 = aK.
+(6.1)
+We thereby reduce our number of free parameters in our analysis from eight
+(namely E1, E2, ∆1, ∆2, K11, K22, K12 and K21) to two (K and a). As E is ﬁxed
+at −1 we choose K > 0, a > 0 to reach the conﬁguration we are most interested
+in (see the ending of Sec. 2.1).
+If K > 0, a < 0, there is excitatory intra-
+population and inhibitory inter-population coupling, which is, as we mentioned,
+not our focus, but will be touched upon brieﬂy.1
+Apart from that, a special case is prominent: for a = 0 we get two popula-
+tions completely uncoupled from each other, which is the same as having two
+M = 1 systems in parallel.
+If a = 1, then every neuron is coupled to another neuron with the same
+strength K, regardless of whether or not they belong to the same population,
+so there is eﬀectively just one population. a = 1 therefore marks the limit in
+which our model loses realism, we argued earlier that coupling should be weaker
+between populations than within a population.
+6.1
+Symmetric and asymmetric equilibria
+As soon as a system of more than one population is regarded, we can ask whether
+the macroscopic activity in both populations is the same or diﬀerent. We deﬁne
+Z1 = Z2 as a symmetric state and Z1 ̸= Z2 as an asymmetric state.
+In this section, we explain a trivial way in which a system can have asym-
+metric stable ﬁxed points, and move over to a less trivial case in the following
+section. The examples discussed in these two sections will lay the groundwork
+1Interestingly, for K > 0, a = −1, the coupling scheme of [29] (Fig.4) is obtained.
+30
+==PAGE:35==
+31
+CHAPTER 6. BIFURCATION ANALYSIS
+for the understanding of the richer bifurcation structure in the rest of this chap-
+ter.
+If Z∗is an equilibrium of (4.5) for M = 1 population, then Z∗=
+Z∗
+Z∗⊤is
+an equilibrium of the M = 2 system if K is rescaled to K/(1 + a). This follows
+from the parameter symmetry (6.1).
+Since the M = 1 system has equilibria [1, 2, 19], the M = 2 system necessar-
+ily has symmetric equilibria. The question is whether it has asymmetric ones,
+too.
+To show that asymmetric equilibria indeed exist, we ﬁx E = −1, ∆= 1/100
+in the M = 1 system. There are two saddle-node-bifurcations, which we label
+SN1 and SN2 (see Fig. 6.1). The K-region between SN1 and SN2 is bistable,
+i.e., two stable equilibria coexist, which we denote ZA and ZB. In agreement
+with our expectations, R →1 and r →∞as K →∞, as stronger positive
+coupling pushes the equilibrium towards the upper left end of the manifold
+deﬁned by (4.11).
+Now we move from the case M = 1 to the case M = 2, a = 0. As we argued
+earlier, all equilibria are carried over from the 1-population to the 2-population
+system. So for KSN1 ≤K ≤KSN2, there are two stable symmetric equilibria
+Z∗
+1 =
+
+ZA
+ZA
+
+, Z∗
+2 =
+
+ZB
+ZB
+
+.
+However, since the two populations do not inﬂuence each other, one population
+can settle at ZA while the other population settles at ZB, that means there are
+also two stable asymmetric equilibria
+Z∗
+3 =
+ZA
+ZB
+
+, Z∗
+4 =
+ZB
+ZA
+
+.
+Due to the parameter symmetry (6.1), Z∗
+3 and Z∗
+4 are two redundant represen-
+tations of the same state.
+==PAGE:36==
+32
+CHAPTER 6. BIFURCATION ANALYSIS
+0
+1
+SN1
+SN2
+0.5
+Im(Z)
+0
+1
+0.5
+Re(Z)
+-0.5
+0
+-0.5
+-1
+-1
+5
+K
+10
+2
+4
+6
+8
+10
+K
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+firing rate r
+SN2
+SN1
+2
+4
+6
+8
+10
+K
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+modulus R
+SN1
+SN2
+Fig. 6.1: Equilibrium curve of system (4.5) for M = 1 population with E =
+−1, ∆= 1/100. The curve segment between the saddle-node-bifurcation points
+SN1 and SN2 consists of unstable equilibria. The other equilibria are stable.
+The upper panel shows the manifold in the full (Z, K) space (black) and its
+projection (blue) onto the unit disc. This projection necessarily coincides with
+the manifold deﬁned by (4.11) (see also Fig. 4.2). The lower left panel shows
+the equilibrium curve in (r, K) coordinates and the lower right panel shows it
+in (R, K) coordinates.
+==PAGE:37==
+33
+CHAPTER 6. BIFURCATION ANALYSIS
+6.2
+Asymmetric equilibria for nonzero inter-population
+coupling
+That asymmetric equilibria exist for a = 0 does not come as a surprise. A more
+interesting question is whether they persist as we move a away from zero. We
+set a = 0.05, K = 1. For these parameters, we ﬁnd an equilibrium, e.g., by
+numerically looking for roots of the rhs. of 4.5. This equilibrium we continue
+in the active parameter K. In doing so, we produce an equilibrium curve along
+which we encounter some bifurcations. The result can be seen in Fig. 6.2. Like
+in the a = 0 case, we get a curve of symmetric equilibria (black) with two
+saddle-node bifurcation points on it (we will again call them SN1 and SN2). At
+two points2 on this symmetric curve near SN1 and SN2, another curve (red)
+branches oﬀ. Points on this red curve are asymmetric equilibria. Apparently,
+asymmetric equilibria are not a phenomenon reserved exclusively for the trivial
+a = 0 case. On the red curve, we have another two saddle-node bifurcations (we
+will call them SNa1 and SNa2).
+2They are called ”branch points” in MATCONT and – in some cases – correspond to
+pitchfork bifurcations.
+==PAGE:38==
+34
+CHAPTER 6. BIFURCATION ANALYSIS
+2
+4
+6
+8
+K
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+Euclidean norm
+SN2
+SN1
+SNa2
+SNa1
+||Z||
+K
+Firing rates: r1 = r2, r1 ̸= r2
+r1 = r2
+r1
+r1
+r2
+r2
+r1
+r2
+Stable symmetric equilibria
+  
+Unstable symmetric equilibria
+Stable asymmetric equilibria
+  
+Unstable asymmetric equilibria
+Fig. 6.2: Equilibrium curves for M = 2 populations, E = −1, a = 0.05. Left
+panel: Euclidean norm ||Z|| of the equilibria versus the bifurcation parameter
+K. Asymmetric states branch oﬀthe symmetric ones and undergo two saddle-
+node bifurcations. The symmetric states undergo two saddle-node bifurcations
+too.
+Right panel: ﬁring rates r1 and r2 of the equilibria seen in the left
+panel. The drawing is qualitative, for otherwise the lines would be too close
+to each other to distinguish. For the asymmetric equilibria, both populations
+have diﬀerent ﬁring rates. The K-values of the two asymmetric saddle-node-
+bifurcations SNa1 and SNa2 are marked with blue lines.
+==PAGE:39==
+35
+CHAPTER 6. BIFURCATION ANALYSIS
+6.3
+Overview of bifurcation curves found
+In the previous two sections we have seen simple instances of bifurcation analysis
+of system (4.5). Through an iterative process in which we
+- varied parameters K and a
+- found equilibria, either by numerical integration or ﬁnding roots of the
+rhs. of (4.6)
+- continued an equilibria in one active parameter (K), obtaining an equilib-
+rium curve, sometimes ﬁnding bifurcations along the curve
+- continued limit cycles from Hopf bifurcations, sometimes ﬁnding global
+bifurcations of limit cycles
+- continued codimension-1 bifurcations in two active parameters (K and a),
+obtaining a bifurcation curve, sometimes ﬁnding codimension-2 bifurca-
+tions along the curve
+we were able to explore (Z, K, a) space further. We found several bifurcation
+curves and also some curves of global bifurcations (see Fig. 6.3). For distin-
+guishablility, we label the curves as follows:
+SN1-2 saddle-node bifurcation curve of symmetric equilibria (continuations of
+the saddle-node bifurcations discussed in Sec. 6.1),
+SNa1-2 saddle-node bifurcation curve of asymmetric equilibria (continuations of
+the saddle-node bifurcations discussed in Sec. 6.2),
+HB1-3 Hopf bifurcation curves (we only encountered Hopf bifurcations of asym-
+metric equilibria),
+SNoC curve of ”saddle-node of cycles” bifurcations
+HC1-2 homoclinic bifurcation curves.
+As an example, each point on HB1, HB2 and HB3 is an equilibrium with a com-
+plex conjugate pair of eigenvalues on the imaginary axis. As another example,
+if (Z⋆, K⋆, a⋆) is a point on SNa2 and 0 < ε ≪1, then (Z1(K), K⋆−ε, a⋆) and
+(Z2(K), K⋆−ε, a⋆) are two asymmetric equilibria which coalesce in (Z⋆, K⋆, a⋆)
+as ε →0. The same is true of SNoC, but here limit cycles instead of equilibria
+”crash” into each other.
+The system also exhibits codimension-2-bifurcations (BT1, BT2, CP etc.)
+which we will address in Sec. 6.8.
+==PAGE:40==
+36
+CHAPTER 6. BIFURCATION ANALYSIS
+2
+4
+6
+8
+10
+K
+-0.4
+-0.2
+0
+0.2
+0.4
+0.6
+a
+HB3
+SN2
+SN1
+SNa1
+HC2
+SNa2
+:
+:
+:
+:
+:
+:
+BT2
+BT1
+CP
+:
+1.6
+1.8
+2
+2.2
+2.4
+2.6
+K
+0.2
+0.22
+0.24
+0.26
+0.28
+0.3
+0.32
+0.34
+a
+SNa1
+HB1
+HB2
+SNa2
+:
+:
+:
+:
+:
+:
+:
+:
+HC1
+SNoC
+BT1
+BIF1
+BIF2
+BIF3
+ZH
+Bifurcation curves:
+Saddle-node bif. of symm. equilibria
+Hopf bifurcation
+Saddle-node bif. of asymm. equilibria
+Homoclinic bifurcation
+Attractors:
+.
+One symm. equilibrium
+:
+Two symm. equilibria
+.
+Asymmetric equilibrium
+◦
+Asymmetric limit cycle
+Codimension-2 bifurcations:
+ZH
+Zero-Hopf
+CP
+Cusp
+BT1/2
+Bogdanov-Takens
+Fig. 6.3: (K, a) region diagram in two diﬀerent zooms. The other parameters
+are E = −1 and ∆= 1/100, as in the rest of this chapter. The stable attrac-
+tors depicted with symbols .:◦exist in the entire sub-region conﬁned by the
+respective surrounding bifurcation curves. BIF1-3 are special points discussed
+later. The depiction of HC2 is only qualitative, as it was not continued with
+MATCONT.
+==PAGE:41==
+37
+CHAPTER 6. BIFURCATION ANALYSIS
+6.4
+Bifurcation diagrams
+With the ”big picture” of bifurcations in system (4.5) established, we want to
+take a closer look at the equilibria undergoing these bifurcations. In order to
+do so, we will ﬁx a at a value and then numerically continue the equilibria in
+the active parameter K. We want to see how the equilibria move in C2 as K
+is varied. We could visualize this movement in all dimensions (i.e., X1, Y1, X2
+and Y2), or in the ﬁring rates r1 and r2, but for brevity we resort to showing it
+in the Euclidean norm ||Z||, which sacriﬁces information.
+We show in Figs. 6.4 and 6.5 the (||Z||, K) bifurcation diagrams for four
+selected values of a.
+==PAGE:42==
+38
+CHAPTER 6. BIFURCATION ANALYSIS
+2
+4
+6
+8
+10
+K
+-0.4
+-0.2
+0
+0.2
+0.4
+0.6
+a
+a=-0.27
+HB3
+SN2
+SN1
+SNa1
+2
+4
+6
+8
+10
+12
+K
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+Euclidean norm
+SN2
+SN1
+SNa1
+HB3
+||Z||
+Left panel:
+Saddle-node bif. of symm. eq.
+Hopf bifurcation
+Saddle-node bif. of asymm. eq.
+Homoclinic bifurcation
+  
+Saddle-node bif. of cycles
+Right panel:
+Stable symmetric equilibria
+  
+Unstable symmetric equilibria
+Stable asymmetric equilibria
+  
+Unstable asymmetric equilibria
+Fig. 6.4: Behaviour of system (4.5) with (6.1), a = −0.27. Left panel: a =
+−0.27 in the context of bifurcation curves in (K, a) parameter space. Right
+panel: bifurcation diagram in ||Z|| with parameter K for a = −0.27. There
+are stable asymmetric equilibria between SNa1 and HB3. Stable limit cycles (not
+shown here) emanate from HB3 and get destroyed in a homoclinic bifurcation on
+HC2. SN1 is a saddle-node bifurcation where two unstable symmetric equilibria
+coalesce. Close to the origin of C2, one of these equilibria becomes stable and
+an asymmetric unstable equilibrium branches oﬀ.
+==PAGE:43==
+39
+CHAPTER 6. BIFURCATION ANALYSIS
+1.6
+1.8
+2
+2.2
+2.4
+2.6
+K
+0.2
+0.22
+0.24
+0.26
+0.28
+0.3
+0.32
+0.34
+a
+SNa1
+HB1
+HB2
+SNa2
+HC1
+SNoC
+BT1
+BIF1
+BIF2
+BIF3
+a=0.204
+a=0.25
+a=0.3202
+2
+3
+4
+5
+6
+7
+K
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+Euclidean norm
+a = 0.3202
+SN2
+SN1
+SNa2
+SNa1
+HB2
+HB1
+SNa2
+SNa1
+HB2
+HB1
+*)
+||Z||
+2
+4
+6
+K
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+Euclidean norm
+a = 0.25
+SN2
+SN1
+SNa1
+SNa2
+HB1
+HB2
+SNa1
+SNa2
+HB1
+HB2
+*)
+||Z||
+2
+4
+6
+8
+K
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+Euclidean norm
+a = 0.204
+SN2
+SN1
+SNa2
+SNa1 HB2
+HB1
+SNa2
+HB2
+HB1
+*)
+||Z||
+Upper left panel:
+Saddle-node bif. of asymm. eq.
+Hopf bifurcation
+  
+Saddle-node bif. of cycles
+Homoclinic bifurcation
+Other panels:
+Stable symmetric equilibria
+  
+Unstable symmetric equilibria
+Stable asymmetric equilibria
+  
+Unstable asymmetric equilibria
+Fig. 6.5: Bifurcation diagrams in ||Z|| with parameter K for three selected
+values of a. The red dashed lines branch oﬀsymmetric states near SN1 and
+SN2 respectively.
+*) The ”intersection” of the black dashed line and the red dashed line we see
+here is actually not an intersection in the full (Z, K) space.
+==PAGE:44==
+40
+CHAPTER 6. BIFURCATION ANALYSIS
+6.5
+Homoclinic orbits
+Homoclinic orbits are orbits that approach one speciﬁc saddle for t →−∞as
+well as for t →∞. The homoclinic orbit is tangential to the stable manifold Ws
+and the unstable manifold Wu of the saddle. The linearization of Ws (Wu) is
+spanned by an eigenvector vs (vu) belonging to an eigenvalue λs ∈R (λu ∈R)
+of the Jacobian
+
+
+∂GX1
+∂X1
+∂GX1
+∂Y1
+∂GX1
+∂X2
+0
+∂GY 1
+∂X1
+∂GY 1
+∂Y1
+∂GY 1
+∂X2
+0
+∂GX2
+∂X1
+0
+∂GX2
+∂X2
+∂GX2
+∂Y2
+∂GY 2
+∂X1
+0
+∂GY 2
+∂X2
+∂GY 2
+∂Y2
+
+.
+Since λs and λu are real-valued, we have vs, vu ∈R4. We scale vs, vu such that
+||vs|| = ||vu|| = 1. We want to visualize vs, vu and since we cannot do this in
+the four-dimensional space, we instead visualize in Fig. 6.6 the projections
+λs · ⟨
+1
+1
+0
+0⊤, vs⟩,
+λs · ⟨
+0
+0
+1
+1⊤, vs⟩,
+and the same forλu and vu, with ⟨, ⟩denoting the scalar product. As expected,
+the homoclinic orbit is tangential to both the stable and the unstable eigendi-
+rection of the saddle.
+In Fig. 6.7 we depict the homoclinic orbits along the curve HC1, starting
+in BT1 and ending in BIF1.
+We see that the orbit in X1, Y1 coordinates still
+resembles an ellipse with high eccentricity, but it attains a more ”crooked” shape
+as BIF1 is approached.
+==PAGE:45==
+41
+CHAPTER 6. BIFURCATION ANALYSIS
+0.71
+0.72
+0.73
+0.74
+0.75
+X1
+-0.68
+-0.67
+-0.66
+-0.65
+-0.64
+-0.63
+-0.62
+Y1
+0.1
+0.15
+0.2
+0.25
+0.3
+X2
+-0.1
+-0.08
+-0.06
+-0.04
+-0.02
+0
+0.02
+0.04
+0.06
+0.08
+Y2
+Fig. 6.6: Stable and unstable eigendirections of the saddle drawn alongside the
+limit cycle. Parameters: a = 0.3202, K = 1.6413.
+X1
+Y1
+K
+.
+X2
+Y2
+K
+.
+Fig. 6.7: Homoclinic orbits for (K, a) parameter pairs on the homoclinic bifur-
+cation curve HC1. (On the axis, we only show K, and a is implicit.) The red
+dot marks the location of the saddle, exempliﬁed for the last of the homoclinic
+orbits, namely the one in BIF1.
+==PAGE:46==
+42
+CHAPTER 6. BIFURCATION ANALYSIS
+6.6
+Limit cycles
+In [1], stable limit cycles of the Kuramoto order parameter Z have been called
+Collective Periodic Wave (CPW). These states are interesting because not only
+the individual neurons, but also their macroscopic synchrony oscillates. While
+the neurons revolve around the unit circle, their phases periodically draw closer
+together and then spread out more uniformly.3
+In MATCONT, limit cycles can be continued from Hopf bifurcations, and it
+turns out that the Hopf bifurcations on HB1 are supercritical and we get stable
+limit cycles on the right side of HB1, i.e., K > KHB1. In this section, we study
+the limit cycles, their creation and destruction.
+6.6.1
+Properties of limit cycles
+We ask how the limit cycles, created in the Hopf bifurcation HB1, evolve as
+K is varied. Limit cycles are one-dimensional closed trajectories in R4, but we
+can only visualize them in two or three coordinates. Therefore, in Fig. 6.8 i-ii),
+we show the limit cycles in Z1 and Z2 separately. We see that population 1
+oscillates in a peculiar manner: the coordinates X1 and Y1 of the oscillation are
+very linearly correlated, or in other words, the projection of the limit cycle onto
+X1 and Y1 resembles an ellipse with high eccentricity. To check the plausibility
+of this, we looked at the eigenvectors belonging to the complex conjugate pair
+of eigenvalues of the Hopf bifurcation HB1. We denote these two eigenvectors
+v ± iw, with
+v =
+
+
+vX1
+vY 1
+vX2
+vY 2
+
+∈R4,
+w =
+
+
+wX1
+wY 1
+wX2
+wY 2
+
+∈R4
+being the vectors that span the center manifold.
+We construct two square
+matrices
+U1 :=
+
+vX1
+wX1
+vY 1
+wY 1
+
+,
+U2 :=
+
+vX2
+wX2
+vY 2
+wY 2
+
+.
+Evaluation revealed that the determinant of U1 is close to zero, meaning that
+vX1
+vY 1
+⊤and
+wX1
+wY 1
+⊤are on the verge of becoming linearly depen-
+dent. So with respect to the coordinates X1, Y1, the vectors v, w barely span
+a two-dimensional plane. In contrast, U2 has full rank, so with respect to the
+coordinates X2, Y2, the eigenvectors v, w do span a two-dimensional plane. This
+explains and conﬁrms the peculiar shape of the X1, Y1 oscillation.
+Moreover, the range in which X1 and Y1 oscillate is small compared to
+population 2. We can therefore expect the contribution of population 1 to the
+shape and size of the original limit cycle in R4 to be small.
+We can verify
+this by showing one exemplary limit cycle in three coordinates, X1, X2, Y2, in
+3This of course assumes that the limit cycle is not a circle around the origin, in which case
+the synchrony measure R would be constant.
+==PAGE:47==
+43
+CHAPTER 6. BIFURCATION ANALYSIS
+Fig. 6.8 iii). We skip a projection of the limit cycle onto Y1, X2, Y2 because of
+the high correlation between X1 and Y1.
+We also show the time traces of the limit cycles in Fig. 6.8 v-vi). In terms
+of the ﬁring rate, the oscillation is dominated by population 2. Together, both
+populations exhibit a state that has been called ”breathing chimera” in [17]:
+the populations have incongruous macroscopic activity, i.e., Z2 oscillates while
+Z1 remains almost still.
+While both the ﬁring rate r2 and the modulus R2 = |Z2| increase and de-
+crease periodically, they are linked by (4.10). When r2 is at a peak, the neurons
+spike quickly, when R2 is high, they synchronize, i.e., their phases draw closer
+together. Apparently, the oscillations of r2 and R2 are opposite in phase. This
+suggests that the trade-oﬀbetween synchrony and ﬁring activity does not only
+apply to equilibria, but is also eﬀective within a limit cycle.
+In contrast, population 1 is very passive throughout the entire limit cycle
+oscillation: R1 remains close to 1 (while Ψ1 ̸= π), and r1 is low, as also follows
+from (4.10). Moreover, since 0 ≪R1 and Ψ1 ≈−π/4 ∀t (see Fig. 6.8 iv), it
+follows from the deﬁnition of the Kuramoto order parameter (3.4) that most of
+the phases of the neurons stay around −π/4.
+The orbit drawn in red in Fig. 6.8 i-ii) is the same homoclinic orbit that was
+already shown in Fig. 6.6.
+Note that there are two regions of existence of stable limit cycles: one be-
+tween HC1, HB1, HB2 and SNoC, and another between HB3 and HC2 (see
+Fig. 6.3). In the former region, K and a are moderate and positive, in con-
+trast to E, which is −1 throughout this chapter. In the latter region, K is
+more strongly positive, but the inter-population coupling strength aK and E
+are negative. This is congruent with the statement in [1, 19] that stable limit
+cycles occur when coupling strength and intrinsic excitability of the neurons
+compete, i.e., are of diﬀerent sign. Their work was performed on system (4.5)
+with M = 1 population. It seems that the concept of limit cycles being caused
+by competing parameters generalizes to multiple populations.
+==PAGE:48==
+44
+CHAPTER 6. BIFURCATION ANALYSIS
+K                         X1
+Y1
+i)
+K                         X2
+Y2
+ii)
+iii)
+-1
+-0.5
+0
+0.5
+1
+X1 and X2
+-1
+-0.8
+-0.6
+-0.4
+-0.2
+0
+0.2
+0.4
+0.6
+0.8
+1
+Y1 and Y2
+iv)
+0
+10
+20
+30
+40
+50
+t
+-0.8
+-0.6
+-0.4
+-0.2
+0
+0.2
+0.4
+0.6
+0.8
+X1
+Y1
+X2
+Y2
+v)
+0
+10
+20
+30
+40
+50
+t
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+Firing rate r    and modulus R
+r2
+r1
+R1
+R2
+vi)
+Fig. 6.8: i-ii) Limit cycles for a = 0.3202, shown separately for both populations,
+from their origin in HB1 to their destruction in the homoclinic bifurcation. iii-
+vi) Details of the limit cycle drawn in green in i-ii. iii) Limit cycle in coordinates
+X1, X2, Y2. iv) Limit cycle plotted on the same unit disc, separately for X1, Y1
+and X2, Y2. v-vi) Time traces of the limit cycle oscillation.
+==PAGE:49==
+45
+CHAPTER 6. BIFURCATION ANALYSIS
+6.6.2
+Destruction of limit cycles
+We ask where and how the limit cycles cease to exist. It is reasonable to believe
+that the limit cycles created in HB1 get destroyed in either HC1 or SNoC. How
+can we take a closer look at this process and verify what happens? We start
+with the ”saddle-node of cycles” bifurcation in SNoC. A convenient quantity is
+the average amplitude A of a cycle:
+A := 1
+T
+Z T
+0
+||Z(t) −Zmid||dt
+where T is the period and Zmid is the central point of the cycle4:
+Zmid := 1
+T
+Z T
+0
+Z(t)dt
+In Fig. 6.9 i), we use A to visualize how the stable limit cycle created in HB1
+gets destroyed in SNoC. We also learn that the unstable cycle involved in SNoC
+emanates from HB2.
+We turn our attention to HC1, as the homoclinic bifurcations on this curve
+are presumable destructors of the limit cycle. To check whether the stable limit
+cycle indeed coalesces with the saddle, we denote the location of the saddle in
+phase space as Zsd. We deﬁne the point on the limit cycle that is closest to the
+saddle as Znrsd:
+Znrsd :=
+arg min
+Z∈limit cycle
+||Zsd −Z||
+Obviously, Znrsd →Zsd if the limit cycle undergoes a homoclinic bifurcation.
+We conﬁrmed that this is the case for HC1. We show in Fig. 6.9 ii) how Znrsd
+gets closer to the saddle and eventually undergoes the homoclinic bifurcation as
+K is varied.
+The SNoC curve stops at aBIF2 and does not extend all the way down to
+aBIF3, so between aBIF2 and aBIF3 we don’t see anything that the stable limit
+cycle created in HB1 could collide with. Surprisingly, the limit cycle is short-
+lived even in that region. In Fig. 6.9 iii) we show how the Hopf bifurcations
+HB1 and HB2 are connected by a family of stable limit cycles. The size of that
+limit cycle is maximal between the two Hopf bifurcations and shrinks to zero as
+either of the Hopf points is being approached. Accordingly, both HB1 and HB2
+must be supercritical for a < aBIF2.
+The fact that the limit cycle created in HB1 can be destroyed in various
+ways raises the question how sub- or supercriticality and the eigenvalues of HB2
+change. We will answer these questions in Sec. 6.9.
+4As MATCONT gives us the limit cycles in a discretized form, we actually do not calculate
+A and Zmid with an integral, but as an average over discrete points.
+==PAGE:50==
+46
+CHAPTER 6. BIFURCATION ANALYSIS
+1.6
+1.8
+2
+2.2
+2.4
+2.6
+K
+0.2
+0.22
+0.24
+0.26
+0.28
+0.3
+0.32
+0.34
+a
+SNa1
+HB1
+HB2
+SNa2
+HC1
+SNoC
+BT1
+BIF1
+BIF2
+BIF3
+a=0.204
+a=0.25
+a=0.3202
+1.8
+2
+2.2
+2.4
+2.6
+2.8
+K
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+Average amplitude A
+a = 0.25
+HB1
+HB2
+SNoC
+i)
+1.61
+1.62
+1.63
+1.64
+K
+0.995
+1
+1.005
+1.01
+1.015
+1.02
+1.025
+1.03
+1.035
+Euclidean norm
+a = 0.3202
+SNa1
+HB1
+HC1
+||Z||
+ii)
+||Zsd||
+||Znrsd||
+2.5
+2.55
+2.6
+2.65
+2.7
+2.75
+K
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+Average amplitude A
+a = 0.204
+HB2
+HB1
+iii)
+Panels i-iii:
+Stable asymmetric limit cycles
+  
+Unstable asymmetric limit cycles
+Stable asymmetric equilibria
+  
+Unstable asymmetric equilibria
+Fig. 6.9: i) The life of limit cycles between HB1 and SNoC. ii) Limit cycle
+coalescing with the saddle. iii) Stable limit cycles existing between HB1 and
+HB2.
+==PAGE:51==
+47
+CHAPTER 6. BIFURCATION ANALYSIS
+6.7
+Special bifurcation points
+2.5
+2.55
+2.6
+2.65
+2.7
+K
+0.2
+0.205
+0.21
+0.215
+0.22
+0.225
+0.23
+0.235
+0.24
+0.245
+0.25
+a
+ZH
+BIF2
+BIF3
+HB1
+HB2
+SNa2
+SNoC
+HB2
+Fig. 6.10: Bifurcation points ZH, BIF2 and BIF3 and the relevant context in
+parameter space.
+We will now discuss the special points BIF1-3. We can see BIF1 in, e.g., Fig. 6.9,
+it is the point in which HC1 and SNoC meet. BIF2 is the point where SNoC
+and HB2 meet (see Fig. 6.10).
+Regarding both BIF1 and BIF2, an interesting question is how the degener-
+ate limit cycle changes along SNoC (see Fig. 6.11). What we see is plausible: we
+know that in BIF2 the unstable limit cycle just starts to exist. For in a neigh-
+bourhood of BIF2 the curve SNoC is still close to HB2 and thus the unstable
+limit cycle only exists in a small K-range, it cannot be very big at the point it
+crashes into the stable limit cycle. However, as we follow SNoC in the direction
+of growing a, the distance between SNoC and HB2 increases, so there is a larger
+K-range in which the unstable limit cycle can grow. It is therefore expected
+that the degenerate limit cycle grows with a.
+We can also see in Fig. 6.11
+that as the degenerate limit cycle approaches BIF1, it begins to look like a
+homoclinic orbit. One might expect that it does become a homoclinic orbit in
+BIF1. This would imply that BIF1 would be a point where a stable limit cycle,
+an unstable limit cycle and a saddle meet. However, we found that in BIF1,
+there is still considerable distance between the degenerate limit cycle and the
+saddle, ||Znrsd −Zsd|| ≈0.31. We can also see in Fig. 6.12 that in BIF1, the
+degenerate limit cycle and the homoclinic orbit are similar, but not quite the
+same. An investigation of the period of the degenerate limit cycle along SNoC
+==PAGE:52==
+48
+CHAPTER 6. BIFURCATION ANALYSIS
+a
+X1
+Y1
+X2
+Y2
+a
+Fig. 6.11: Degenerate limit cycles for points in (K, a) parameter space lying on
+SNoC. On the axis, we only show a, and K is implicit. The a-values shown here
+range from aBIF2 (left) to aBIF1 (right).
+reveals that towards BIF1, the period increases, but there is no strong evidence
+that it goes to inﬁnity as BIF1 is approached, which would be the case if the
+degenerate limit cycle crashed into a saddle. Fig. 6.13 shows that if a is ﬁxed at
+a value slightly smaller than aBIF1 and K is varied, the stable limit cycles ﬁrst
+get close to the saddle, but then they move away from it as SNoC is reached.
+It is still unclear whether the degenerate limit cycle collides with a saddle in
+BIF1. In other words: is BIF1 only an intersection of HC1 and SNoC in (K, a)
+parameter space or in the full (Z, K, a) space? Moreover, it is an interesting
+question for future work how HC1 and SNoC continue beyond BIF1 and what
+the interplay between the limit cycles and saddles involved in these bifurcations
+looks like.
+The last point to discuss is BIF3. BIF3 is a Hopf point and it is also the
+point where HB1 and HB2 meet (see Fig. 6.10). For a > aBIF3, there are two
+supercritical Hopf points, whereas for a < aBIF3, there is no Hopf point. Thus,
+we might call BIF3 a ”saddle-node bifurcation of Hopf points”. At ﬁrst sight,
+this analogy seems inappropriate. After all, in a saddle-node bifurcation, two
+equilibrium points with diﬀerent stability properties coalesce. In BIF3, how-
+ever, two points with the same stability properties (both are supercritical Hopf
+points) coalesce. A closer look at the eigenvalues (see Fig. 6.14) reveals that for
+points on HB1, the complex conjugate pair passes the imaginary axis from left
+to right in the direction of growing K. For points on HB2, the complex conju-
+gate pair moves from right to left as K grows. This is a qualitative diﬀerence
+between both Hopf bifurcations, reﬂected in a diﬀerence in Hopf normal form
+coeﬃcients [11]. In contrast, if a < aBIF3, the complex conjugate pair stays on
+the left side of the imaginary axis, so there is no Hopf bifurcation. We conclude
+==PAGE:53==
+49
+CHAPTER 6. BIFURCATION ANALYSIS
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+-0.7
+-0.6
+-0.5
+-0.4
+-0.3
+-0.2
+-0.1
+0
+0.1
+0.2
+0.3
+X1
+Y1
+-0.5
+0
+0.5
+-0.6
+-0.4
+-0.2
+0
+0.2
+0.4
+X2
+Y2
+Degenerate limit cycle
+Homoclinic orbit
+Fig. 6.12: The homoclinic orbit of HC1 and the degenerate limit cycle of SNoC.
+Parameters: (K, a) = (K, a)BIF1.
+1.6
+1.8
+2
+2.2
+2.4
+2.6
+K
+0.26
+0.27
+0.28
+0.29
+0.3
+0.31
+0.32
+a
+a=0.2875
+SNa1
+HB1
+HB2
+SNa2
+HC1
+SNoC
+BIF1
+1.6
+1.8
+2
+2.2
+2.4
+2.6
+K
+0.85
+0.9
+0.95
+1
+1.05
+1.1
+1.15
+1.2
+Euclidean norm
+SNa2
+SNa1
+HB1
+HB2
+||Z||
+SNoC
+||Zsd||
+Right panel:
+Stable asymmetric equilibria
+  
+Unstable asymmetric equilibria
+||Znrsd|| of stable limit cycle
+  
+||Znrsd|| of unstable limit cycle
+  
+Unstable symmetric equilibria
+Fig. 6.13: Life of limit cycles for a = 0.2875. The stable limit cycle comes near
+the saddle but moves away from it before it coalesces with the unstable limit
+cycle in SNoC.
+==PAGE:54==
+50
+CHAPTER 6. BIFURCATION ANALYSIS
+2.6
+2.65
+2.7
+2.75
+K
+-4
+-3
+-2
+-1
+0
+1
+2
+3
+10 -4
+HB1
+HB2
+2.6
+2.65
+2.7
+2.75
+K
+-4
+-3
+-2
+-1
+0
+1
+2
+3
+10 -4
+Fig. 6.14: Behaviour of eigenvalues in a neighbourhood of the BIF3 point. µ
+is the real part of the complex conjugate pair of eigenvalues involved in the
+Hopf bifurcations HB1 and HB2. Left panel: a = 0.201 (slightly above BIF3).
+Right panel: a = 0.199 (slightly below BIF3).
+that in the point BIF3, the complex conjugate pair just touches the imaginary
+axis without crossing it. So in BIF3, two supercritical Hopf bifurcation points
+coalesce in a degenerate5 Hopf bifurcation point.
+6.8
+Codimension-2 bifurcations
+6.8.1
+Cusp and Bogdanov-Takens bifurcations
+The cusp bifurcation CP (see Fig. 6.3, left panel) occurs at the point where
+SNa1 and SNa2 become tangent and stop. At any cusp bifurcation point, one
+eigenvalue of the Jacobian is 0+0i, since saddle-node-curves meet in this point.
+A condition on the normal form coeﬃcients of the saddle-node-bifurcation has
+to be fulﬁlled as well [31], therefore it is a codimension-2 bifurcation. However,
+in CP more than that happens: not only SNa1 and SNa2, but also HB2 meet
+in this point. It can be checked in the eigenvalues along HB2 that not only one,
+but three eigenvalues become 0 + 0i in CP. This necessarily means that µ, the
+real part of the complex conjugate pair of eigenvalues on HB2, becomes zero in
+CP. Since asymmetric states are only observed between SNa1 and SNa2, and
+the Hopf curves also originate from CP, the point CP marks the upper edge of
+the region of existence of asymmetric states.
+5 A Hopf bifurcation is degenerate if at least one of two nondegeneracy conditions [33]
+is violated. One of these conditions, namely ∂µ/∂K ̸= 0, is indeed violated in BIF3: the
+complex conjugate pair of eigenvalues does not cross the imaginary axis, therefore ∂µ/∂K = 0
+holds.
+==PAGE:55==
+51
+CHAPTER 6. BIFURCATION ANALYSIS
+Two Bogdanov-Takens bifurcations (BT1 and BT2, see Fig. 6.3) are encountered
+in the system. In a Bogdanov-Takens point, two eigenvalues of an equilibrium
+become 0+0i [24]. In a Bogdanov-Takens point, a saddle-node bifurcation curve,
+a Hopf bifurcation curve and a homoclinic bifurcation curve become tangent, the
+latter two stop in the Bogdanov-Takens point [30]. The Hopf curve continues
+as a neutral saddle curve6 (not shown in our ﬁgures). For the Bogdanov-Takens
+points in system (4.5), all equilibria, limit cycles and homoclinic orbits involved
+are of asymmetric nature, i.e., Z1(t) ̸≡Z2(t) is fulﬁlled.
+With µ becoming zero in both BT1 and CP, these two points mark the limits
+in which the oscillations in HB1-2 come to a complete standstill. In contrast,
+it can be checked via the eigenvalues on HB1-2 that the oscillations are fastest
+around BIF3.
+6.8.2
+Zero-Hopf bifurcation
+Where the curves SNa2 and HB2 become tangent, a Zero-Hopf bifurcation7
+(ZH) occurs:
+ZZH =
+−0.200669 −0.001063i
+0.895994 −0.232701i
+
+,
+KZH = 2.660916,
+aZH = 0.221766.
+We have seen the ZH point and its relevant context in Fig. 6.10. Since a ZH
+is not a trivial bifurcation theoretically, and not easy to treat with numerical
+continuation, we will ﬁrst carefully investigate system (4.5) near the ZH with
+MATCONT and then compare the ﬁndings to the theory of ZH bifurcations in
+[30, 32]. That way we make sure to check the plausibility of the results.
+In Fig. 6.15 we visualize the equilibria that undergo the Hopf and the saddle-
+node bifurcations near the ZH point. We chose two values of a, one slightly larger
+and one slightly smaller than aZH. For both of them, we numerically continued
+equilibria in the parameter K so that the Hopf and the saddle-node bifurcations
+of HB2 and SNa2 are visited. We see in Fig. 6.15 (and in Fig. 6.5, lower panels)
+that the Hopf bifurcation point ”moves” from one branch of the saddle-node
+bifurcation to the other as a passes aZH. This is the ﬁrst qualitative diﬀerence
+between the bifurcation structures on either side of the ZH that we notice.
+Apart from that, it would be interesting to know whether the Hopf bifur-
+cations are sub- or supercritical. This question can be answered with the sign
+of the ﬁrst Lyapunov coeﬃcient l1, of the Hopf points [26] on HB2. However,
+the sub- or supercriticality only determines whether the limit cycles are unsta-
+ble or stable on the center manifold of the Hopf bifurcation. This manifold is
+two-dimensional, but system (4.5) is four-dimensional. That means a limit cycle
+created in a supercritical Hopf bifurcation is not necessarily stable in R4. Look-
+ing at the l1’s calculated by MATCONT, the Hopf bifurcations are subcritical
+for a < aZH and supercritical for a > aZH. A subcritical Hopf bifurcation pro-
+duces limit cycles that are unstable on the center manifold, so they are unstable
+6A curve every point of which is an equilibrium with a pair of real-valued eigenvalues λ1, λ2
+that fulﬁl λ1 = −λ2.
+7Other names are Garilov-Guckenheimer, zero-pair, or fold-Hopf bifurcation.
+==PAGE:56==
+52
+CHAPTER 6. BIFURCATION ANALYSIS
+2.6693
+2.66935
+2.6694
+2.66945
+2.6695
+K
+0.9465
+0.947
+0.9475
+0.948
+0.9485
+Euclidean norm
+SNa2
+HB2
+||Z||
+2.65245
+2.6525
+2.65255
+2.6526
+2.65265
+K
+0.9455
+0.946
+0.9465
+0.947
+0.9475
+0.948
+Euclidean norm
+SNa2
+HB2
+||Z||
+Fig. 6.15: Equilibria in a neighbourhood of the ZH point. Solid line: stable
+equilibria (all four eigenvalues have negative real part), dotted lines: unstable
+equilibria (at least one eigenvalues has positive real part). All equilibria involved
+shown here are asymmetric. Left panel: a = 0.2205 (slightly below the ZH
+point). Right panel: a = 0.223 (slightly above the ZH point).
+in R4 too. The supercritical version of HB2 has to be checked more carefully:
+the limit cycle exists to the right of HB2 (see Fig. 6.9 i), so for a > aZH, we
+have to check all four eigenvalues of the equilibrium on the right side of HB2
+(see Fig. 6.15, right panel). It turns out that one of the two eigenvalues not
+belonging to the complex conjugated pair is positive, so the center manifold is
+not attracting and the limit cycle is unstable (in R4).
+We will now compare these results to the theory. First of all, a ZH bifurca-
+tion occurs in systems of three or more dimensions when one eigenvalue of an
+equilibrium becomes 0 + 0i and two other eigenvalues are a complex conjugated
+pair with zero real and nonzero imaginary part. A ZH point is classiﬁed into
+one of four cases based on the signs of two coeﬃcients of the normal form, s
+and θ, which are calculated by MATCONT. For our ZH point, they are both
+negative. In what follows, we will focus on this case only.
+On the three-dimensional center manifold, the truncated normal form is
+given by [30]
+˙ξ = β1 + ξ2 + sρ2
+˙ρ = ρ(β2 + θξ + ξ2)
+˙ϕ = ω1 + ϑξ
+where ρ and ϕ are modulus and phase of a pair of polar coordinates.
+The
+dynamics of ξ and ρ is decoupled from ϕ, so one can sketch the phase portrait
+of the planar (ξ, ρ) subsystem dependent on the parameters β1, β2 (Fig. 6.16).
+Here the horizontal straight line that exists in all the phase portraits is the
+==PAGE:57==
+53
+CHAPTER 6. BIFURCATION ANALYSIS
+2
+1
+S -
+0
+1
+2
+3
+4
+S -
+S +
+S +
+4
+3
+H
+β
+β
+2
+1
+0
+ξ
+E1
+E2
+E3
+E1
+E2
+E2
+E3
+ξ
+ξ
+Fig. 6.16: Phase portraits of the ZH normal form system for diﬀerent regions in
+parameter space. Taken from [30] with modiﬁcations.
+ξ-axis. The two equilibria that exist on it (denoted E1 and E2) coalesce as
+β1 turns positive. This is the saddle-node bifurcation involved in the ZH. In
+addition to that, there is another saddle (denoted E3) that disappears in region
+3 of the parameter space.
+We now consider the fact that the dynamics in ϕ is a rotation around the
+ξ-axis. If we imagine E3 rotating around that axis, it becomes a limit cycle
+with attracting and repelling directions. The bifurcation that creates E3 occurs
+on the curve H in parameter space. We consider the lower branch of H ﬁrst
+(β2 < 0). In region 3, E1 has a one-dimensional unstable manifold facing away
+from the ξ-axis. In region 4, this direction faces toward E1 and away from the
+newly created E3. This corresponds to a Hopf bifurcation whose 2-dimensional
+center manifold is spanned by the unstable direction of E3 and the rotation
+around the ξ-axis.
+The Hopf bifurcation is subcritical, as an unstable limit
+cycle is created around a stable equilibrium.
+By the same argumentation, the upper branch of H corresponds to a su-
+percritical Hopf bifurcation curve, since a stable (on the 2-dimensional center
+manifold of the Hopf bifurcation) limit cycle surrounds an unstable equilibrium.
+In any case, the limit cycles created as the curve H in parameter space is
+crossed from left to right are unstable, since in the R3 system the cycles always
+have one unstable direction (see also Fig. 6.17 for a three-dimensional view of
+the limit cycle).
+==PAGE:58==
+54
+CHAPTER 6. BIFURCATION ANALYSIS
+(   )
+W u
+E 3
+L
+ρ
+(   )
+W s
+L
+ξ
+ξ
+L
+ρ
+Fig. 6.17: Rotation of the equilibrium E3 around the ξ-axis corresponds to a
+limit cycle with stable and unstable one-dimensional manifolds in R3 (taken
+from [30])
+To summarize, our numerical ﬁndings and the theory of ZH bifurcations
+agree on the following:
+• in a neighbourhood of the ZH, limit cycles are created on the side of the
+Hopf bifurcation curve that faces the saddle-node bifurcation curve
+• two equilibria coalesce as the saddle-node bifurcation curve is crossed in
+the direction away from the Hopf bifurcation curve
+• the Hopf bifurcation curve has a subcritical and a supercritical branch8
+• On both branches of the Hopf curve, the limit cycles are unstable (in the
+full-dimensional system).
+In the following section, we will embed our ﬁndings in the context of the BIF2
+point, and comment on the properties of the eigenvalues of equilibria as the ZH
+and BIF2 are passed.
+6.9
+Eigenvalues
+In Fig. 6.18, we show the eigenvalues of the equilibrium as it undergoes the
+bifurcations HB1, HB2 and SNa2, in the context of ZH and BIF2. We see that
+the Hopf bifurcations on HB2 are supercritical (l1 < 0) for aBIF3 < a < aBIF2
+and subcritical (l1 > 0) for aBIF2 < a < aZH. For both these a-intervals, the
+complex conjugate pair of eigenvalues passes the imaginary axis from right to
+left as the Hopf bifurcation on HB2 is undergone in the direction from lower to
+greater K. In a supercritical Hopf bifurcation, the limit cycle exists on the side
+of the bifurcation where the equilibrium is unstable on the center manifold. In a
+8 [32] refers to all Hopf bifurcations (i.e., for both a < aZH and a > aZH) for s = −1, θ < 0
+(our case) as ”subcritical”. Perhaps this usage of the term refers to the fact that the limit
+cycles created are unstable in the full-dimensional system.
+==PAGE:59==
+55
+CHAPTER 6. BIFURCATION ANALYSIS
+subcritical Hopf bifurcation, the limit cycle exists on the side of the bifurcation
+where the equilibrium is stable on the center manifold. That is the reason why
+there are stable limit cycles to the left of HB2 for a < aBIF2 and unstable limit
+cycles to the right of HB2 for a > aBIF2. When now a > aZH, the limit cycles
+still exist to the right of HB2 since the Hopf bifurcation is now supercritical
+and the equilibrium undergoing HB2 is stable on the center manifold (i.e., the
+complex conjugate pair has negative real part) when K < KHB2. Even so, the
+cycles created in HB2 for a > aZH are unstable in R4 because on this side of
+SNa2, one eigenvalue is positive, so the center manifold is not attracting.
+==PAGE:60==
+56
+CHAPTER 6. BIFURCATION ANALYSIS
+2.5
+2.55
+2.6
+2.65
+2.7
+K
+0.2
+0.205
+0.21
+0.215
+0.22
+0.225
+0.23
+0.235
+0.24
+0.245
+0.25
+a
+a = 0.25
+a = 0.21
+a = 0.204
+ZH
+BIF2
+BIF3
+HB1
+HB2
+SNa2
+SNoC
+HB2
+1.8
+2
+2.2
+2.4
+K
+0.9
+0.92
+0.94
+0.96
+0.98
+1
+Euclidean norm
+a = 0.25
+SNa1
+SNa2
+HB1
+HB2
+, <0
+<0,
+>0
+1<0,
+, 2>0
+1, <0,
+2>0
+supercritical
+||Z||
+2.3
+2.4
+2.5
+2.6
+2.7
+K
+0.95
+0.955
+0.96
+0.965
+0.97
+0.975
+Euclidean norm
+a = 0.21
+SNa2
+HB1
+HB2
+, <0
+<0,
+>0
+, <0
+subcritical
+||Z||
+1.6
+1.8
+2
+2.2
+2.4
+2.6
+2.8
+K
+0.92
+0.94
+0.96
+0.98
+1
+1.02
+1.04
+Euclidean norm
+SNa2
+SNa1
+HB2
+HB1
+, <0
+<0,
+>0
+, <0
+a = 0.204
+supercritical
+||Z||
+Fig. 6.18: Qualitative change of the eigenvalues of the equilibrium as it under-
+goes the bifurcations HB1, SNa2, and HB2. λ := (λ1, λ2) are the two real-valued
+eigenvalues of the equilibrium, µ is the real part of the two complex conjugated
+eigenvalues. The sub-or supercriticality of HB2 is determined by the ﬁrst Lya-
+punov coeﬃcient l1.
+==PAGE:61==
+57
+CHAPTER 6. BIFURCATION ANALYSIS
+6.10
+Breaking the symmetry
+Throughout this chapter, we have seen a rich bifurcation landscape. However, it
+is unclear how much this landscape depends on the symmetric choice of param-
+eters 6.1. Since it is biologically unrealistic that two populations have exactly
+the same parameters, we should check what happens if the symmetry is broken.
+We choose
+∆1 = ∆2 =: ∆= 1/100,
+E1 = −1, E2 = −0.9
+K11 = K22 =: K, K12 = K21 = aK
+(6.2)
+and subsequently
+∆1 = ∆2 =: ∆= 1/100,
+E1 = −1, E2 = −0.9
+K11 =: K, K22 = 0.9K, K12 = K21 = aK.
+(6.3)
+It turns out that the saddle-node-bifurcation curves, the Hopf curves as well as
+the cusp, Zero-Hopf and Bogdanov-Takens points persist under (6.2) and (6.3)
+(see Fig. 6.19). The equilibria involved in the bifurcations SN1 and SN2 are now
+asymmetric too, since the argument by which equilibria of the M = 1 system
+live on as symmetric equilibria in the M = 2 system (see Sec. 6.1) was based on
+the assumption that E1 = E2.
+Since BT1 persists, we can expect that there
+is still a homoclinic bifurcation curve, analogous to HC1, under (6.2) and (6.3).
+It would be an interesting direction for future work whether the curve SNoC
+also remains and whether it interacts with HB2 in the way we have seen in this
+chapter.
+==PAGE:62==
+58
+CHAPTER 6. BIFURCATION ANALYSIS
+1
+2
+3
+4
+5
+6
+K
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+a
+SN2
+SN1
+CP
+CP
+1.5
+2
+2.5
+K
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+a
+ZH
+BT1
+CP
+CP
+Saddle-node bif. curve of (6.2)
+Hopf curve of (6.2)
+Saddle-node bif. curve of (6.3)
+Hopf curve of (6.3)
+Fig. 6.19: Bifurcation curves of (4.5) as the parameter symmetry (6.1) is broken.
+==PAGE:63==
+7
+Conclusion
+In this work we analyzed a macroscopic model of a network of two interact-
+ing neural populations. Our aim was to study the bifurcation structure of the
+overall ﬁring activity (or, equivalently, the synchrony) of the network. We were
+especially interested in asymmetric states, where both populations behave dif-
+ferently. While ”our” model is strongly inspired by the ones studied in [1, 2, 3],
+it has – to the best of our knowledge – never been studied for the parameter
+values chosen in this work. We investigated how we can correctly perform the
+popular Ott-Antonsen reduction on the model and obtained the closed four-
+dimensional ODE system (4.5), in accordance with [3].
+We showed that all
+equilibria of system (4.5) must lie on a one-dimensional manifold in the lower
+half of the unit disc. On this manifold, there is a trade-oﬀbetween synchrony
+and ﬁring rate.
+Under careful consideration of the capabilities and limitations of the software
+package MATCONT, we investigated the bifurcation structure of the system.
+Even though both populations have the same parameters, the system exhibits
+asymmetric states.
+This includes asymmetric limit cycles, in which the ﬁr-
+ing rate of one population oscillates between a relatively high minimum and
+maximum, while the other population remains almost silent. The bifurcation
+structure of system (4.5) is quite rich, with several global and codimension-2
+bifurcations. Moreover, many of these bifurcations persist as the symmetry in
+the parameters is broken. MATCONT is not a trivial tool to use. We therefore
+double-checked the bifurcation points and curves, especially the complicated
+points BIF1-3, with the aid of bifurcation-theoretical considerations. Note that
+there is no guarantee that our numerical continuations have found every bifur-
+cation in the parameter region we studied.
+Future work should consider realizations of the model with N < ∞in or-
+der to check whether, and if so, how strongly and quickly, two populations of
+realistically many neurons are attracted to the stable states seen in this work.
+Moreover, our work can easily be generalized to more than two populations.
+It would be interesting to take our choices of parameters as a starting point for
+introducing a third population, which is at ﬁrst only weakly coupled to the other
+59
+==PAGE:64==
+60
+CHAPTER 7. CONCLUSION
+two, analogous to how we took two populations uncoupled from each other and
+introduced a small coupling between them in Secs. 6.1 and 6.2.
+How macroscopic neural dynamical models are related to function and dys-
+function in the actual brain is still poorly understood. However, this thesis might
+make an inﬁnitesimal contribution towards understanding the rich dynamics in
+these models.
+==PAGE:65==
+Bibliography
+[1] Tanushree Luke, Ernest Barreto, Paul So. Complete classiﬁcation of the
+macroscopic behavior of a heterogeneous network of Theta neurons. Neural
+Computation 25 pp. 3207–3234 (2013)
+[2] Paul So, Tanushree Luke, Ernest Barreto. Networks of Theta neurons with
+time-varying excitability: macroscopic chaos, multistability, and ﬁnal-state
+uncertainty. Physica D (2013)
+[3] Tanushree Luke, Ernest Barreto, Paul So. Macroscopic complexity from an
+autonomous network of networks of Theta neurons. Frontiers in Computa-
+tional Neuroscience (2014)
+[4] Wulfram Gerstner, Werner Kistler, Richard Naud, Liam Paninski. Neuronal
+dynamics: from single neurons to networks and models of cognition. Cam-
+bridge University Press (2014)
+[5] Christian Bick, Marc Goodfellow, Carlo Laing, Erik Martens. Understanding
+the dynamics of biological and neural oscillator networks through mean-ﬁeld
+reductions: a review. Preprint (2019)
+[6] Bard Ermentrout, Nancy Kopell. Parabolic bursting in an excitable system
+coupled with a slow oscillation. SIAM Journal on Applied Mathematics Vol.
+46 No. 2 pp. 233-253 (1986)
+[7] Edward Ott, Thomas Antonsen. Low dimensional behavior of large systems
+of globally coupled oscillators. Chaos Vol. 18 No. 6 (2008)
+[8] Edward Ott, Thomas Antonsen. Long time evolution of phase oscillator sys-
+tems. Chaos Vol. 19 No. 2 (2009)
+[9] Michael Breakspear, Stewart Heitmann, Andreas Daﬀertshofer. Generative
+models of cortical oscillations: neurobiological implications of the Kuramoto
+model. Frontiers in Human Neuroscience Vol. 4 Art. 190 (2010)
+[10] Erik Martens, Christian Bick, Mark Panaggio. Chimera states in two pop-
+ulations with heterogeneous phase-lag. Chaos 26 094819 (2016)
+[11] Stephen Wiggins. Introduction to applied nonlinear dynamical systems and
+chaos, 2nd edition. Springer Texts in Applied Mathematics 2 (2003)
+61
+==PAGE:66==
+62
+BIBLIOGRAPHY
+[12] Carlo Laing. Derivation of a neural ﬁeld model from a network of Theta
+neurons. Physical Review E (2014)
+[13] Peter Ashwin, Stephen Coombes, Rachel Nicks. Mathematical frameworks
+for oscillatory network dynamics in neuroscience. Journal of Mathematical
+Neuroscience (2016)
+[14] Bastian Pietras, Federico Devalle, Alex Roxin, Andreas Daﬀertshofer,
+Ernest Montbri´o. An exact ﬁring rate model reveals the diﬀerential eﬀects of
+chemical versus electrical synapses in spiking networks. Preprint (2019)
+[15] Carlo Laing. Chimera states in heterogeneous networks. Chaos (2009)
+[16] Stephen Coombes,
+´Aine Byrne. Next generation neural mass models.
+Springer Nonlinear Dynamics in Computational Neuroscience (2019)
+[17] Daniel Abrams, Rennie Mirollo, Steven Strogatz, Daniel Wiley. Solvable
+model for chimera states of coupled oscillators. Physical Review Letters 101
+084103 (2008)
+[18] Rodrigo Perin, Thomas Berger, Henry Markram. A synaptic organizing
+principle for cortical neuronal groups. PNAS Vol. 108 No. 13 (2011)
+[19] Benjamin J¨uttner, Poul Hjorth, Erik Martens. Dynamic behaviour of Theta
+neurons. Project at DTU Compute (2018)
+[20] David Hansel, German Mato. Asynchronous states and the emergence of
+synchrony in large networks of interacting excitatory and inhibitory neurons.
+Neural Computation 15 1–56 (2003)
+[21] Eugene Izhikevich. Dynamical systems in neuroscience: the geometry of
+excitability and bursting. MIT Press (2005)
+[22] Eugene Izhikevich. Neural excitability, spiking and bursting. International
+Journal of Bifurcation and Chaos Vol. 10 No. 6 (2000)
+[23] Steven Strogatz. Nonlinear dynamics and chaos. Perseus Books (1994)
+[24] James Meiss. Diﬀerential dynamical systems. SIAM Series on Mathematical
+Modeling and Computation (2007)
+[25] Eugene Allgower, Kurt Georg. Numerical continuation methods: an intro-
+duction. Springer Series in Computational Mathematics 13 (1990)
+[26] Annick Dhooge, Willy Govaerts, Yuri Kuznetsov, Hil Meijer, Bart Sautois.
+New features of the software MatCont for bifurcation analysis of dynamical
+systems. MCMDS Vol. 14 No. 2 pp. 147-175 (2008)
+[27] Carlo Laing. Phase oscillator network models of brain dynamics. Compu-
+tational Models of Brain and Behavior pp. 505-517 (2017)
+==PAGE:67==
+63
+BIBLIOGRAPHY
+[28] Bastian Pietras. Modeling phase synchronization of interacting neuronal
+populations – from phase reductions to collective behavior of oscillatory neu-
+ral networks. PhD dissertation at Vrije Universiteit Amsterdam and Lan-
+caster University (2018)
+[29] Helmut Schmidt, Daniele Avitabile, Ernest Montbri´o, Alex Roxin. Net-
+work mechanisms underlying the role of oscillations in cognitive tasks. PLOS
+Computational Biology (2018)
+[30] Yuri Kuznetsov. Elements of applied bifurcation theory, 2nd edition.
+Springer Applied Mathematical Sciences Vol. 112 (1998)
+[31] John Guckenheimer, Yuri Kuznetsov. Cusp bifurcation. Scholarpedia,
+2(4):1852. revision #137541 (2019)
+[32] John Guckenheimer, Yuri Kuznetsov. Fold-Hopf bifurcation. Scholarpedia,
+2(10):1855. revision #91277 (2019)
+[33] Yuri Kuznetsov. Andronov-Hopf bifurcation. Scholarpedia, 1(10):1858. re-
+vision #90964 (2019)

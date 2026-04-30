@@ -1,3 +1,4 @@
+==PAGE:1==
 Parallel All Nearest Smaller Values and Range Minimum Query on
 the GPU
 A step towards parallel lossless compression on the GPU
@@ -7,6 +8,7 @@ Technical University of Denmark
 Supervisors:
 Inge Li Gørtz
 Philip Bille
+==PAGE:2==
 CONTENTS
 s184009
 25th June 2025
@@ -132,6 +134,7 @@ Correctness . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 Work and span . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 26
 Page 2 of 57
+==PAGE:3==
 CONTENTS
 s184009
 25th June 2025
@@ -236,6 +239,7 @@ Conclusion
 12 Future work
 56
 Page 3 of 57
+==PAGE:4==
 CONTENTS
 s184009
 25th June 2025
@@ -246,6 +250,7 @@ I
 B Data points from the RMQ benchmarks
 II
 Page 4 of 57
+==PAGE:5==
 s184009
 25th June 2025
 1
@@ -266,6 +271,7 @@ q
 n
 lg(n) −1 threads on a CREW PRAM.
 Page 5 of 57
+==PAGE:6==
 s184009
 25th June 2025
 2
@@ -304,6 +310,7 @@ from (Berkman et al., 1993) into one that can run on a GPU.
 using data precomputed from the output of the ANSV algorithm. We therefore decided to also
 convert this algorithm to a version capable of running on a GPU.
 Page 6 of 57
+==PAGE:7==
 s184009
 25th June 2025
 Part I
@@ -340,6 +347,7 @@ allowing us to write r(bi) instead of r(bgl(bk)). Similarly the subset containin
 and we sometimes write l(bj) instead of l(bgr(bk)).
 • In the same way, the subsets containing nl(bk) and nr(bk) are gnl(bk) and gnr(bk).
 Page 7 of 57
+==PAGE:8==
 3.1
 Computation model and analysis terms s184009
 25th June 2025
@@ -392,6 +400,7 @@ sub-arrays originating from the same array, and that A1 is located left of A2. T
 are looking for right matches for elements in A1 and left matches for elements in A2. We also assume
 that all elements in the input arrays are distinct.
 Page 8 of 57
+==PAGE:9==
 4.3
 The full ANSV algorithm
 s184009
@@ -443,6 +452,7 @@ The first thing a thread does is to perform calculations local to its subset. Sp
 • Calculating the prefix minima.
 • Calculating the suffix minima.
 Page 9 of 57
+==PAGE:10==
 4.3
 The full ANSV algorithm
 s184009
@@ -500,6 +510,7 @@ performs O(n) work with O(log(n)) span on
 n
 lg(n) threads.
 Page 10 of 57
+==PAGE:11==
 s184009
 25th June 2025
 5
@@ -545,6 +556,7 @@ We can then find the matches by iterating over C and using the following logic:
 • Let a be the element we are currently trying to find a match for.
 1Berkman et al., 1993, Lemma 3.1, page 351.
 Page 11 of 57
+==PAGE:12==
 5.2
 Selecting subarrays to merge
 s184009
@@ -580,6 +592,7 @@ output, the purple element should have been part of the blue subarray.
 the merging procedure should be run on the red and black elements.
 Informally, the three issues can be solved in the following way:
 Page 12 of 57
+==PAGE:13==
 5.2
 Selecting subarrays to merge
 s184009
@@ -622,6 +635,7 @@ very similar, their differences are very important. The difference in their usag
 nonlarger values is what ensures that two threads do not perform overlapping work. I.e. it is what
 guarantees that the algorithm stays in the CREW PRAM computation model.
 Page 13 of 57
+==PAGE:14==
 5.3
 Multiple minima within a subset
 s184009
@@ -668,6 +682,7 @@ the right match of the rightmost minimum element and the left match of the leftm
 element and copy those to all the other minima elements. This way, all minima within a subset, find
 the same left and right matches, just as they should.
 Page 14 of 57
+==PAGE:15==
 5.4
 Algorithmic properties
 s184009
@@ -731,6 +746,7 @@ span.
 2Shun and Zhao, 2013a.
 3Sitchinava and Svenning, 2024, p. 261.
 Page 15 of 57
+==PAGE:16==
 s184009
 25th June 2025
 subset k
@@ -779,6 +795,7 @@ a kernel, we run many workgroups at a time. The actual hardware that executes th
 a workgroup is called a SIMD. A GPU is designed to have as many SIMDs as possible, typically
 hundreds.
 Page 16 of 57
+==PAGE:17==
 7.3
 Assumptions and tricks
 s184009
@@ -828,6 +845,7 @@ We need to point out a two assumptions that we make. They are strictly speaking 
 algorithm itself, and lean more towards implementing the algorithm in practice, but they straighten
 a couple rough edges in the explanations.
 Page 17 of 57
+==PAGE:18==
 7.4
 Common algorithm patterns on GPUs
 s184009
@@ -871,6 +889,7 @@ We can therefore conclude that performing tree reduction requires O(n) work and 
 O(log(n)) span depending on if the number of threads or the number of elements per thread is set
 to be constant.
 Page 18 of 57
+==PAGE:19==
 7.4
 Common algorithm patterns on GPUs
 s184009
@@ -935,6 +954,7 @@ the prefix
 minima
 6
 Page 19 of 57
+==PAGE:20==
 7.4
 Common algorithm patterns on GPUs
 s184009
@@ -987,6 +1007,7 @@ both binary searches at the same time until we satisfy the condition
 
 with k being the thread index. The condition has two parts:
 Page 20 of 57
+==PAGE:21==
 7.4
 Common algorithm patterns on GPUs
 s184009
@@ -1056,6 +1077,7 @@ Running two binary searches concurrently only performs at most 2 lg(n) steps, so
 span are dominated by actually merging elements. Since the number of threads is constant, both
 work and span are O(n).
 Page 21 of 57
+==PAGE:22==
 7.5
 The ANSV algorithm
 s184009
@@ -1104,6 +1126,7 @@ The third kernel’s job is to solve the ANSV problem locally within each subset
 Each workgroup is assigned a subgroup and runs the entire parallel CPU ANSV algorithm as
 described in section 4.3 over the 32 threads in the workgroup.
 Page 22 of 57
+==PAGE:23==
 7.5
 The ANSV algorithm
 s184009
@@ -1152,6 +1175,7 @@ Since all we do is read two values from an array and run the leftmost- and right
 value algorithms with the input array being a subset of size m, the work and span of the algorithm
 is O(m).
 Page 23 of 57
+==PAGE:24==
 7.5
 The ANSV algorithm
 s184009
@@ -1201,6 +1225,7 @@ Kernel 3 finds all the matches local to the subsets. Kernel 4 finds the ANSV of 
 Kernel 5 figures out which subarrays to merge. Kernel 6 finds the remaining ANSV using the merging
 procedure.
 Page 24 of 57
+==PAGE:25==
 7.5
 The ANSV algorithm
 s184009
@@ -1252,6 +1277,7 @@ runs the merging procedure on said subsets to find the remaining matches for the
 In the GPU version, kernel 5 calculates the subarrays to run the merging procedure on, after
 which kernel 6 runs the merging procedure and writes the ANSV output.
 Page 25 of 57
+==PAGE:26==
 7.5
 The ANSV algorithm
 s184009
@@ -1323,6 +1349,7 @@ lg(n) + 1
 
 ≤2cn = O(n).
 Page 26 of 57
+==PAGE:27==
 7.5
 The ANSV algorithm
 s184009
@@ -1397,6 +1424,7 @@ n
 lg(n)
 threads.
 Page 27 of 57
+==PAGE:28==
 s184009
 25th June 2025
 8
@@ -1440,6 +1468,7 @@ For our GPU implementation, however, we decided to let the input be unsigned 32 
 since it made a complex codebase slightly simpler.
 4Shun and Zhao, 2013a.
 Page 28 of 57
+==PAGE:29==
 8.2
 Test systems
 s184009
@@ -1485,6 +1514,7 @@ spent running the merging procedure. Specifically, we arrange the elements such 
 over the elements from smallest to largest, we would alternatively pick a value from the start of the
 array and the end of the array. An array of six elements would therefore look like [0,2,4,5,3,1].
 Page 29 of 57
+==PAGE:30==
 8.4
 Results
 s184009
@@ -1533,6 +1563,7 @@ dataset.
 This suggests that we were right in worrying about the branch prediction and memory prefetch-
 ing hardware being very efficient at tackling the worst case dataset.
 Page 30 of 57
+==PAGE:31==
 8.4
 Results
 s184009
@@ -1592,6 +1623,7 @@ ANSV benchmarks on the worst case dataset
 Figure 7: A plot of the data from table 4, table 5, and table 6. To not clump the lines too much, we
 have cut off the data points for when the benchmarks are run on one thread.
 Page 31 of 57
+==PAGE:32==
 8.5
 Optimising the CPU algorithm
 s184009
@@ -1646,6 +1678,7 @@ So while our code is slightly slower than the BSZ implementation, we believe it 
 to our choice of algorithm, programming language, and (if we believe the profiling output) library
 selection.
 Page 32 of 57
+==PAGE:33==
 8.6
 Optimising the GPU algorithm
 s184009
@@ -1704,6 +1737,7 @@ RADV driver is made by the community and it has a reputation of being much bette
 obvious last thing to try. We first found that the RADV only crashes when the subset size becomes
 2500 elements. This is 2.5 times larger than with the AMDGPU Pro driver. We still, however, found
 Page 33 of 57
+==PAGE:34==
 8.6
 Optimising the GPU algorithm
 s184009
@@ -1724,6 +1758,7 @@ represents how “busy” the GPU is measured as the number of workgroups active
 hardware. The unmarked parts are the recursive call replacing kernel 2 in-between kernel 1 and 3,
 and kernel 5 which is inbetween kernel 4 and 6.
 Page 34 of 57
+==PAGE:35==
 s184009
 25th June 2025
 Part II
@@ -1765,6 +1800,7 @@ The four precomputed values are:
 6Berkman et al., 1993, p. 364.
 7Berkman et al., 1993, p. 364.
 Page 35 of 57
+==PAGE:36==
 9.1
 How to parallelise the precomputation
 s184009
@@ -1817,6 +1853,7 @@ The final thing we need to calculate is the head table. We do this by having eac
 head[inlabel[u]] = u if inlabel[u] ̸= inlabel[p], or if it is the root node. This is trivial to parallelise
 as all the calculations are independent of each other.
 Page 36 of 57
+==PAGE:37==
 9.2
 How to answer LCA queries
 s184009
@@ -1877,6 +1914,7 @@ V] = 1 > 0 = level [y
 V], then y
 V (i.e. node 1) must be the LCA of node 3 and node 6.
 Page 37 of 57
+==PAGE:38==
 9.3
 Parallel list ranking
 s184009
@@ -1921,6 +1959,7 @@ algorithm.
 3. Construct a linked list of the part sums.
 4. Solve the list ranking problem for the part sums.
 Page 38 of 57
+==PAGE:39==
 s184009
 25th June 2025
 5. Solve the list ranking problem for each part, but add the rank of the part sum to all the
@@ -1968,6 +2007,7 @@ We initialise an array of zeroes containing two elements per node in the Cartesi
 a one to index 2p. If it is the right child it writes a one to index 2p + 1.
 This obviously performs O(n) work and has O(1) span.
 Page 39 of 57
+==PAGE:40==
 10.3
 Kernel 3: Count children part 2
 s184009
@@ -2018,6 +2058,7 @@ to write the edges:
 • Zero children: The thread assigned to the node itself writes to its first element the index of
 its parent.
 Page 40 of 57
+==PAGE:41==
 10.6
 Kernel 6: Convert Cartesian tree to Euler tour
 s184009
@@ -2061,6 +2102,7 @@ number of elements (edges) in the Euler tour array must be twice the number of e
 Cartesian tree minus one. The reason we know this is that since the Euler tour is based on a tree,
 each node has one edge from its parent and one edge back to its parent. This accounts for all edges
 Page 41 of 57
+==PAGE:42==
 10.7
 Kernel 7: Find starting edge in Euler tour
 s184009
@@ -2108,6 +2150,7 @@ list ranking algorithm, and it makes it easier to know the index of the start el
 calls to the linked list algorithm.
 This kernel performs O(n) work and has O(1) span.
 Page 42 of 57
+==PAGE:43==
 10.10
 Kernel 10: List ranking - calculating part weights
 s184009
@@ -2158,6 +2201,7 @@ the Cartesian tree. In this case we just do nothing since there are no edges tha
 Since we perform a constant number of operations per thread, the work is O(n) and the span is
 O(1).
 Page 43 of 57
+==PAGE:44==
 10.14
 Kernel 14: Calculate ascendant
 s184009
@@ -2239,6 +2283,7 @@ prefix_sum_num_edges = kernel4(prefix_sum_num_edges_1, prefix_sum_num_edges_2)
 workgroups for n total threads.
 euler_tour = kernel6(cartesian_tree, prefix_sum_num_edges)
 Page 44 of 57
+==PAGE:45==
 10.16
 Running the entire algorithm
 s184009
@@ -2332,6 +2377,7 @@ Despite us describing that for many of the kernels each thread thread performs t
 related to one node in the Cartesian tree, in practice we actually have each thread handle a constant
 number of calculations in order to reduce the overhead of spawning a thread.
 Page 45 of 57
+==PAGE:46==
 10.17
 Correctness
 s184009
@@ -2393,6 +2439,7 @@ ln(n) −1 we the lower bound on s is
 s ≥p ln(n) + 1
 8Helman and JáJá, 2001, Lemma 1, p. 270.
 Page 46 of 57
+==PAGE:47==
 10.18
 Work and span
 s184009
@@ -2502,6 +2549,7 @@ We note that we assumed that n ≥137 in order to make the inequality 64
 √
 ln(n) −64 ≤2n hold.
 Page 47 of 57
+==PAGE:48==
 10.18
 Work and span
 s184009
@@ -2575,6 +2623,7 @@ n log(n)
 span on p threads, just
 as the above mentioned kernels.
 Page 48 of 57
+==PAGE:49==
 10.18
 Work and span
 s184009
@@ -2713,6 +2762,7 @@ n ln(n) we
 can solve the recurrence.
 9Helman and JáJá, 2001, Lemma 1, p. 270.
 Page 49 of 57
+==PAGE:50==
 s184009
 25th June 2025
 Base case
@@ -2817,6 +2867,7 @@ the interval [a; b]. An example of this case can be seen in fig. 11, where the b
 form the Cartesian tree, so it can easily be seen that the LCA of a and b is p, which is left of both
 of them.
 Page 50 of 57
+==PAGE:51==
 11.1
 Implementation and test setup
 s184009
@@ -2861,6 +2912,7 @@ When implementing our GPU algorithm, we had trouble implementing kernel 9. Speci
 since RustGPU is still early in development, we couldn’t find a way to generate the random numbers
 10Petri, 2024.
 Page 51 of 57
+==PAGE:52==
 11.2
 Test setup
 s184009
@@ -2935,6 +2987,7 @@ The hardware that we utilise is the AMD Ryzen 5 7600x CPU (since it is the faste
 threaded CPU we have available), and all the GPUs that we used for the ANSV benchmarks.
 11https://xkcd.com/221/
 Page 52 of 57
+==PAGE:53==
 11.3
 Results
 s184009
@@ -2987,6 +3040,7 @@ so it cannot be combined with the other two.
 Even if we implement all these optimisations we are unlikely to get much more than a 20%-30%
 (based on the timeline in fig. 12 which is obtained while collecting profiling information, so it is very
 Page 53 of 57
+==PAGE:54==
 11.4
 Optimisations
 s184009
@@ -3012,6 +3066,7 @@ The best way to remedy this is to have the entire linked list in the cache, but 
 less cache space per thread than a CPU, so when the input data is large enough that a GPU becomes
 relevant, it will have no chance of keeping the linked list in the cache.
 Page 54 of 57
+==PAGE:55==
 s184009
 25th June 2025
 Part III
@@ -3052,6 +3107,7 @@ span algorithm on
 n
 lg(n) threads.
 Page 55 of 57
+==PAGE:56==
 s184009
 25th June 2025
 12
@@ -3075,6 +3131,7 @@ the project.
 Thanks to Albert Sidenius Garde for helping me figure out proc macros in Rust, which made
 optimising GPU kernels easier.
 Page 56 of 57
+==PAGE:57==
 REFERENCES
 s184009
 25th June 2025
@@ -3101,6 +3158,7 @@ Sitchinava, N., & Svenning, R. (2024). The all nearest smaller values problem re
 parallel and external memory. Proceedings of the 36th ACM Symposium on Parallelism in
 Algorithms and Architectures, 259–268. https://doi.org/10.1145/3626183.3659979
 Page 57 of 57
+==PAGE:58==
 s184009
 25th June 2025
 A
@@ -3236,6 +3294,7 @@ Xeon Gold 6226R
 Table 5: Benchmarks of our modified CPU ANSV algorithm on the worst case dataset. Red data
 points designate when we utilise multithreading.
 Appendix page I of II
+==PAGE:59==
 s184009
 25th June 2025
 Hardware\Threads

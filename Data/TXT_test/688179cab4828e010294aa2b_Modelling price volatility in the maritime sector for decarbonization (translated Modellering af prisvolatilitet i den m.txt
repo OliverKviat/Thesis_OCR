@@ -1,9 +1,12 @@
+==PAGE:1==
 Modelling Market Dynamics within the Maritime Sector
 Towards Realistic Maritime Predictions: Enhancing NavigaTE with Market Dynamics
 Mærsk Mc­Kinney Møller Center for Zero Carbon Shipping
 Master Thesis
 DTU Management
 Department of Technology, Management and Economics
+==PAGE:2==
+==PAGE:3==
 Modelling Market Dynamics within the Maritime Sector
 Towards Realistic Maritime Predictions: Enhancing NavigaTE with Market Dynamics
 Master Thesis
@@ -19,6 +22,7 @@ Published by:
 DTU, Department of Technology, Management and Economics, Brovej, Build­
 ing 258, 2800 Kgs. Lyngby Denmark
 www.byg.dtu.dk
+==PAGE:4==
 Approval
 This thesis was conducted as part of the Master of Science in Business Analytics (MSc Eng.)
 programme at the Technical University of Denmark (DTU), under the Department of Technology,
@@ -28,6 +32,7 @@ Signature
 Date
 ii
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:5==
 Abstract
 This thesis introduces an original integration of market dynamics into the bunker optimization
 module of the NavigaTE algorithm, developed within the Mærsk Mc­Kinney Møller Center for
@@ -39,6 +44,7 @@ carbonisation, improving the fidelity of system level assessments under regulato
 limitations.
 Modelling Market Dynamics within the Maritime Sector
 iii
+==PAGE:6==
 Acknowledgements
 Juan Santos González­Llanos & Norma Henríquez Serrano,
 MSc Business Analytics,
@@ -59,6 +65,7 @@ This thesis has made use of AI for assistance in writing clarity, code documenta
 tural organization, serving as a support tool under the author’s full supervision and direction.
 iv
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:7==
 List of Abbreviations
 Abbreviation
 Definition
@@ -119,8 +126,10 @@ Levelised cost of Fuel
 Abbreviations used throughout the thesis.
 Modelling Market Dynamics within the Maritime Sector
 v
+==PAGE:8==
 vi
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:9==
 Contents
 Preface . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 ii
@@ -251,6 +260,7 @@ Cross­Scenario Comparison and Discussion
 56
 Modelling Market Dynamics within the Maritime Sector
 vii
+==PAGE:10==
 8
 Discussion
 61
@@ -357,6 +367,7 @@ K.1 Performance Diagnostics
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118
 viii
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:11==
 K.2 Market Dynamics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118
 L
 Numeric Performance Analytics Results
@@ -367,8 +378,10 @@ N Numeric Expenses Results
 130
 Modelling Market Dynamics within the Maritime Sector
 ix
+==PAGE:12==
 x
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:13==
 1
 Introduction
 1.1
@@ -418,6 +431,7 @@ solver to compute results.
 senting all combinations of four regulatory environments and four market typologies. Of
 Modelling Market Dynamics within the Maritime Sector
 1
+==PAGE:14==
 these, 12 scenarios include dynamic pricing mechanisms, while 4 serve as cost reference
 cases. Model outputs include fuel switching trends, total GHG emissions, and overall cost
 outcomes for the system over the 2025 to 2050 simulation period.
@@ -463,6 +477,7 @@ mechanisms could be integrated into a maritime fuel allocation model, and how fu
 interact under realistic policy and supply conditions.
 2
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:15==
 2
 Literature Review
 2.1
@@ -513,6 +528,7 @@ trading nodes are and the extent of frictions that prevent prices from aligning 
 integrated markets, where trade flows freely and information is transparent, arbitrage leads to
 Modelling Market Dynamics within the Maritime Sector
 3
+==PAGE:16==
 a single, shared price. However, when logistical or regulatory barriers exist, markets become
 segmented, and price differences emerge across regions. A third scenario arises when public
 policies like quotas, mandates, or taxes intervene in supply and demand, adding non­market
@@ -596,6 +612,7 @@ activity and policy tools like subsidies or carbon levies. These interventions a
 for making low­carbon fuels viable in the short term.
 4
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:17==
 From a modelling point of view, each market type requires a tailored approach to price formation.
 In global hubs, a single benchmark per fuel is usually enough due to competitive alignment. In
 contrast, smaller or more isolated ports may face higher local costs driven by infrastructure
@@ -650,6 +667,7 @@ subject to
 AT y ≤c
 Modelling Market Dynamics within the Maritime Sector
 5
+==PAGE:18==
 The strong duality theorem ensures that, under certain conditions, the optimal values of a linear
 program and its dual are equal. This property allows one to validate solutions and extract mean­
 ingful economic insights. As shown in Anstee [23], for a standard primal­dual pair, the optimal
@@ -700,6 +718,7 @@ This hybrid structure helps close the gap between theoretical efficiency and the
 commercial realities of fuel transition.
 6
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:19==
 2.4.2
 Shadow Prices under Agent­Specific Constraints
 In traditional optimisation, shadow prices reflect the uniform marginal value of relaxing a con­
@@ -747,6 +766,7 @@ The market­clearing price ¯p is the value at which they intersect :
 ˜D(¯p) = ˜S(¯p).
 Modelling Market Dynamics within the Maritime Sector
 7
+==PAGE:20==
 Figure 2.1: Basic supply and demand curves intersecting at the equilibrium point (p∗, q∗).
 Figure 2.2: Market­clearing mechanism in electricity markets under the merit­order principle.
 The intersection of total demand with the last (most expensive) accepted bid sets the spot price
@@ -772,6 +792,7 @@ i = P
 i ωi.
 8
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:21==
 Term
 Definition
 ui(qi)
@@ -831,6 +852,7 @@ in large­scale or complex systems, such as logistics, scheduling, or market sim
 quick decision­making can be more critical than absolute mathematical precision [39, 40].
 Modelling Market Dynamics within the Maritime Sector
 9
+==PAGE:22==
 In all cases, the appeal of heuristic methods lies in their flexibility and speed, making them ideal
 for real­time or exploratory simulations.
 2.6.3
@@ -883,6 +905,7 @@ gence, using the form αk =
 kp for p > 0.
 10
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:23==
 MSA is particularly well­suited for equilibrium problems involving feedback loops and decen­
 tralised decisions, such as dynamic fuel pricing and multi­agent transport systems.
 The iterative methods introduced in this section form the practical backbone of NavigaTE’s fuel
@@ -893,8 +916,10 @@ Successive Averages (MSA), are explored for future versions to handle more compl
 rium behaviour.
 Modelling Market Dynamics within the Maritime Sector
 11
+==PAGE:24==
 12
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:25==
 3
 NavigaTE Framework
 3.1
@@ -940,6 +965,7 @@ constraints, and unused variables, to keep the model compact.
 ulation variables.
 Modelling Market Dynamics within the Maritime Sector
 13
+==PAGE:26==
 – Objectives: minimise total cost (fuel + emissions storage); secondary objectives
 enforce inter­port fuel consistency and regulatory compliance.
 – Constraints: fuel mass balance, energy conservation, tank capacity, emission
@@ -988,6 +1014,7 @@ balance supply and demand across a decentralised system. In the context of multi
 logistics, this translates into assigning implicit marginal prices πpf to each port­fuel combination.
 14
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:27==
 These prices act as coordination variables that guide the distribution of limited fuel resources
 across competing vessels.
 The model handles allocation according to the selected market structure. In a global market,
@@ -1022,6 +1049,7 @@ willingness to pay, ensuring that no allocation is inefficient or economically u
 dual­optimality, clearing the market while respecting the marginal valuation of each actor, rep­
 Modelling Market Dynamics within the Maritime Sector
 15
+==PAGE:28==
 resents a key strength of the mechanism, balancing efficiency and individual rationality without
 imposing centralised fairness constraints. As a result, the system reaches a state where supply
 meets demand through price signals alone, embodying a decentralised yet optimal distribution
@@ -1056,22 +1084,26 @@ were left unchanged; blue boxes mark the components added or modified in this r
 dashed frame encloses the outer loop, which repeats until a market­clearing price is achieved; a
 16
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:29==
 green dashed frame encloses the inner (bisection) loop, where the provisional price is updated
 and each vessel’s LP is re­optimised.
 Figure 3.3: Flowchart of NavigaTE’s Bunker Algorithm which highlights the modified and in­
 volved areas for the market pricing feature on a high level
 Modelling Market Dynamics within the Maritime Sector
 17
+==PAGE:30==
 Fair­Share Flowchart
 Figure 3.4: Detailed view of the Fair­Share allocation in NavigaTE, illustrating how the model
 iteratively updates constraints and reassigns fuel until convergence.
 18
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:31==
 Market­Clearing Flowchart
 Figure 3.5: Structure of the Market Dynamics module in NavigaTE, highlighting the ceiling ini­
 tialisation and the iterative bisection loop used to reach market price equilibrium.
 Modelling Market Dynamics within the Maritime Sector
 19
+==PAGE:32==
 3.4
 Configuration File Structure
 The NavigaTE modelling framework is structured around a set of configuration files that, to­
@@ -1088,6 +1120,7 @@ mation about the run. This output helps users validate model performance and tro
 potential issues during scenario development.
 20
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:33==
 4
 Methodology
 This chapter describes the integration of the new market pricing mechanism into NavigaTE and
@@ -1136,6 +1169,7 @@ The fuel supply space includes conventional and alternative fuels, grouped into 
 • Other emerging fuels.
 Modelling Market Dynamics within the Maritime Sector
 21
+==PAGE:34==
 Each fuel type is assigned a production cost, emission factor, and energy density, and supply
 limits vary by port and year according to infrastructure assumptions.
 Vessels ­ Demand
@@ -1187,6 +1221,7 @@ arise from outbound voyages starting within the jurisdiction, and extra emission
 outside the regulated region.
 22
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:35==
 In practice, the implementation of these regulations follows a Marginal Abatement Cost Curve
 (MACC) logic. Each vessel is assigned a maximum allowable emission intensity based on IMO
 targets. If this limit is exceeded, a penalty is applied up to a predefined ceiling price. Shipowners
@@ -1232,6 +1267,7 @@ model without requiring repeated reinstallation or manual launching via PowerShe
 and .nav).
 Modelling Market Dynamics within the Maritime Sector
 23
+==PAGE:36==
 Together, these tools provided a robust environment for iterative development, performance
 monitoring, and scenario execution, while maintaining full flexibility for future updates or exten­
 sions to the model.
@@ -1278,6 +1314,7 @@ meet convergence criteria. This metric is used to evaluate the efficiency of the
 where markets are constrained.
 24
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:37==
 • Emissions and regulation compliance: Total emissions produced, along with any re­
 sulting penalties or credit transactions under regulatory schemes.
 • System costs: Overall system expenditure, including baseline fuel costs, levies, and
@@ -1328,6 +1365,7 @@ switch was made to an external bisection loop, with warm­starts and carefully d
 convergence tolerances to ensure computational efficiency and numerical stability.
 Modelling Market Dynamics within the Maritime Sector
 25
+==PAGE:38==
 • Debugging and versioning: As the model evolved, several interdependencies between
 fuel types, regulations, and vessel­port links required continuous testing and staged de­
 bugging. Modularisation of configuration files helped isolate bugs and improved the trace­
@@ -1368,6 +1406,7 @@ vergence stability in the market­clearing process.
 support the efficiency analysis in Chapter 7.
 26
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:39==
 5
 Market­Based Fuel Pricing Module
 5.1
@@ -1406,6 +1445,7 @@ sources.
 proximate market­clearing is achieved.
 Modelling Market Dynamics within the Maritime Sector
 27
+==PAGE:40==
 The setup keeps full compatibility with the original fair­share method, making it easy to switch
 between approaches focused on fairness and those that follow market signals. This kind of
 flexibility matters, especially when testing different policies, since users may want to compare
@@ -1458,6 +1498,7 @@ This means that if we could increase the capacity of fuel 1 by one unit, the tot
 decrease by $150, highlighting the economic value of that constraint.
 28
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:41==
 Impact of Changing Capacities
 A new scenario where fuel 2 becomes more available is simulated:
 c1 = 100,
@@ -1509,6 +1550,7 @@ This is done using a bisection method. For each fuel and location, the algorithm
 price range, between a floor, usually based on production and regulatory costs, and a ceiling,
 Modelling Market Dynamics within the Maritime Sector
 29
+==PAGE:42==
 where demand becomes negligible. In each step, it sets πpf to the midpoint, solves the fair­
 share allocation, and checks the result. Based on whether supply is met or not, the range is
 updated. This continues until convergence.
@@ -1550,6 +1592,7 @@ the price loop finds an outcome that balances supply and demand based on actual 
 to pay.
 30
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:43==
 5.2
 Mathematical Formulation and Iterative Convergence
 5.2.1
@@ -1637,6 +1680,7 @@ f∈F
 (5.2)
 Modelling Market Dynamics within the Maritime Sector
 31
+==PAGE:44==
 In this formulation, πpf denotes the willingness to pay for fuel type f at port p, reflecting both
 scarcity and operational urgency through a price signal that adjusts during the iterative solution
 process. This approach turns the model into a system that responds to market conditions,
@@ -1688,6 +1732,7 @@ abling more efficient allocation. This iterative logic allows the algorithm to r
 based on vessel­level demand signals while respecting the original equity rule in the first round.
 32
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:45==
 Vessel­Port­Fuel Access Feasibility
 xvpf = 0
 if Accessvpf = 0
@@ -1775,6 +1820,7 @@ vpf
 (5.14)
 Modelling Market Dynamics within the Maritime Sector
 33
+==PAGE:46==
 Convergence Criterion
 The iteration converges when the change in bunker decisions satisfies:
 ∆x(t) =
@@ -1835,6 +1881,7 @@ price is zero, the upper bound is reduced. The visual representation of this in 
 found in Chapter 3.
 34
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:47==
 5.4
 Test Environment and Scenario Setup
 This section covers the text environment information regarding the model setup along with the
@@ -1881,6 +1928,7 @@ clearing algorithm and analysing how it responds to different policy choices and
 of alternative fuels over time.
 Modelling Market Dynamics within the Maritime Sector
 35
+==PAGE:48==
 5.4.2
 Test Results and Convergence Behaviour
 This test environment is designed to validate the correct functioning of the market­clearing al­
@@ -1925,6 +1973,7 @@ only used, with no market­clearing routine. As a result, prices reflect individ
 ences and constraints, rather than a unified market mechanism.
 36
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:49==
 6
 Scenario Design and Simulation Setup
 This chapter outlines the design of the simulation scenarios and describes how they are inte­
@@ -1972,6 +2021,7 @@ determined independently at each port, introducing spatial differences in fuel a
 emerging market reflects a fragmented context where fuel is allocated using vessel specific
 Modelling Market Dynamics within the Maritime Sector
 37
+==PAGE:50==
 costs without activating the price formation routine. Further explanation of these market types
 is provided in Chapters 2.2 and 4.4.
 6.1.1
@@ -2021,6 +2071,7 @@ without trading, or across the fleet, with trading allowed, as defined by the Sc
 attribute. These settings are implemented through the .NAV scenario file.
 38
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:51==
 • report.inc: This file activates output logging for computational performance. It gener­
 ates reports such as performance_statistics.xlsx, recording key metrics like model
 size, solve time, and the number of iterations across solver types (LP, fair­share, and
@@ -2070,6 +2121,7 @@ Each simulation run in NavigaTE follows a structured workflow consisting of thre
 preprocessing, optimisation, and post processing. These stages are implemented as modular
 Modelling Market Dynamics within the Maritime Sector
 39
+==PAGE:52==
 Python scripts. The process adapts dynamically to the configuration files loaded at runtime,
 enabling the same core engine to simulate a wide range of market structures and policy settings.
 The first stage involves reading and processing all configuration files associated with the se­
@@ -2120,6 +2172,7 @@ policy and supply assumptions are applied precisely when scheduled. Levies, regu
 and technologies are introduced or restricted at specific milestones throughout the time horizon.
 40
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:53==
 The model assumes investment and bunkering decisions at each time step are based on cur­
 rent expectations of future conditions. While these expectations guide decision­making, the
 actual future may diverge, capturing a more realistic representation of decision making under
@@ -2163,6 +2216,7 @@ higher total expenses due to penalties or carbon costs. These values are extract
 basecase_report_default.xlsx and validated for each run.
 Modelling Market Dynamics within the Maritime Sector
 41
+==PAGE:54==
 • Emissions trajectories: CO2­equivalent emissions follow consistent patterns. In un­
 regulated scenarios, emissions remain relatively flat or increase slightly.
 In regulated
@@ -2192,6 +2246,7 @@ validation complements the checks on convergence and supply demand balance, prov
 reliable foundation for the scenario based analysis presented in Chapter 7.
 42
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:55==
 7
 Results & Analysis
 Following the scenario description, this chapter presents the outcomes of all the 16 simula­
@@ -2239,6 +2294,7 @@ purely by market forces, where fuel choices and technology adoption depend only 
 costs and fuel availability.
 Modelling Market Dynamics within the Maritime Sector
 43
+==PAGE:56==
 7.1.1
 Performance Analytics
 Figure 7.1: Runtime evolution in seconds from 2025 to 2050 across the four market configura­
@@ -2283,6 +2339,7 @@ relatively small available supply capacity. No pricing mechanism exists in this 
 allocation strictly follows production cost hierarchies.
 44
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:57==
 When price coordination is introduced in the Global, Local, and Emerging configurations, bio­
 fuels gain slightly more market share as vessels adjust willingness to pay in response to price
 signals. These pricing mechanisms allow some substitution towards biofuels when market con­
@@ -2317,6 +2374,7 @@ Figure 7.3: Stacked expenses in USD (y­axis) across the four market configurati
 the No Regulation scenario.
 Modelling Market Dynamics within the Maritime Sector
 45
+==PAGE:58==
 The expense structure across all markets remains almost identical, seen in detail in Table N.1.
 Since there are no penalties or regulatory charges applied, regulation related costs are zero.
 The vessel related expenses are the largest contributor to total system costs, reflecting fleet
@@ -2357,6 +2415,7 @@ The Emerging configuration remains relatively efficient but shows longer solve t
 Cost-Only case. This is due to more frequent fair­share iterations. These are likely triggered by
 46
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:59==
 new fuel prices that affect decisions elsewhere in the model, which then leads to more complex
 linear problems solved in later time steps.
 Computational effort is highest in the Global and Local configurations. In Global, the price al­
@@ -2401,6 +2460,7 @@ The introduction of the IMO flexible regulation at 380 USD makes overall emissio
 WTW emissions remain close across all market configurations.
 Modelling Market Dynamics within the Maritime Sector
 47
+==PAGE:60==
 (a) Total Equivalent WTW Emissions (in tons
 CO2eq/year).
 (b) Total Intensity Equivalent WTW Emissions
@@ -2436,6 +2496,7 @@ When applying the 1200 USD/ton CO2eq penalty in the Regulation with Flexibility 
 nario, the model exhibits a clear increase in computational effort compared to lower regulation
 48
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:61==
 levels. The stronger carbon price forces the system to adjust fuel allocation more drastically,
 creating increasingly complex market dynamics that directly impact computational performance.
 Figure 7.7: Runtime evolution in seconds from 2025 to 2050 across the four market configura­
@@ -2475,6 +2536,7 @@ With the system now supply­constrained, the pricing algorithm plays a greater r
 the fuel mix. The higher penalty shifts the focus from cost minimisation to marginal abatement
 Modelling Market Dynamics within the Maritime Sector
 49
+==PAGE:62==
 efficiency, activating a wider range of low­ and zero­carbon fuels. Most options are now sup­
 plied in substantial volumes, while grey ammonia sees no supply due to its emissions profile.
 Although supply timing is broadly consistent across scenarios, volumes and ramp­up patterns
@@ -2517,6 +2579,7 @@ Regulatory expenses vary across markets. In the Cost Only case, operators face h
 ties because they do not adjust fuel use. Markets with flexibility, such as Global, Local, and
 50
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:63==
 Emerging, reduce these costs by shifting to cleaner fuels or using trading mechanisms. Numer­
 ical results are provided in Table N.1.
 Figure 7.9: Stacked expenses in USD (y­axis) across the four market configurations (x­axis) in
@@ -2545,6 +2608,7 @@ Histogram plots supporting these outcomes can be found in Appendix H, and all nu
 details supporting these observations are provided in L.
 Modelling Market Dynamics within the Maritime Sector
 51
+==PAGE:64==
 7.3.2
 Market Dynamics
 Under the Regulation without Flexibility scenario with a 1,200 USD penalty, aggregated out­
@@ -2593,6 +2657,7 @@ look at emissions intensity, it declines consistently to 30 gCO2eq/MJ until 2050
 a slightly higher than the regulations with flexibility.
 52
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:65==
 Figure 7.12: Stacked expenses in USD (y­axis) across the four market configurations (x­axis)
 in the Regulation without Flexibility scenario under the 1200 USD penalty.
 As shown in Figure 7.12 and Table N.1, applying a strict regulation without flexibility results in
@@ -2634,6 +2699,7 @@ imisation with no dynamic pricing loops. The Local Market shows the highest comp
 burden, peaking above 30,000 seconds by the end of the horizon. In this case, each port clears
 Modelling Market Dynamics within the Maritime Sector
 53
+==PAGE:66==
 fuel prices independently, resulting in multiple isolated iterations and slower convergence as
 supply becomes more constrained over time.
 Figure 7.13: Runtime evolution in seconds from 2025 to 2050 across the four market configu­
@@ -2674,6 +2740,7 @@ thresholds for economic viability.
 In terms of pricing, all three market configurations with computed prices display similar shapes
 54
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:67==
 and remain within a tighter value range, especially when compared to the Regulation scenar­
 ios. This is a direct consequence of how the price generation algorithm responds under a levy
 framework. Since levies increase operational costs proportionally to emissions without directly
@@ -2709,6 +2776,7 @@ ranging between 1.43×1013 EUR and 1.44×1013 EUR. This small increase reflects 
 in fuel mix and regional allocation but no major structural changes in overall fuel demand. This
 Modelling Market Dynamics within the Maritime Sector
 55
+==PAGE:68==
 suggests that, under a flat levy of 800 EUR per tonne CO2eq, the pricing signal is not strong
 enough to trigger large­scale structural shifts in the system.
 Vessel­related expenses remain nearly constant across all market designs. The minimal differ­
@@ -2752,6 +2820,7 @@ dominate a large share of bunker consumption, but their unlimited availability m
 excluded from the aggregated supply figures presented here.
 56
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:69==
 7.5.2
 Performance Analytics
 The performance results clearly illustrate how different regulatory designs affect both the com­
@@ -2803,6 +2872,7 @@ In the Regulation without Flexibility case, where vessels cannot adjust fuel cho
 namically, the system reaches its highest peak prices at 125 USD/GJ across all markets. The
 Modelling Market Dynamics within the Maritime Sector
 57
+==PAGE:70==
 lack of flexibility amplifies the cost of compliance for constrained vessels, placing additional
 pressure on the highest­priced fuels required to meet emissions caps.
 Finally, in the Levies (800) scenario, price signals are less extreme but still pronounced, with
@@ -2853,6 +2923,7 @@ fuel demand and fleet activity, without any regulatory forces to curb this growt
 Turning to expenses (Table N.1), the regulatory design also has a direct impact on total system
 58
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:71==
 costs. Without regulation, the system remains cheapest, as fuel allocation follows the lowest­
 cost pathway, relying mainly on conventional fuels.
 As flexibility is introduced with a moderate penalty (Regulation with Flexibility 380 USD),
@@ -2876,8 +2947,10 @@ head. In contrast, rigid caps and simple levies lead to higher total costs, as t
 mechanisms to dynamically adjust its decarbonisation pathways.
 Modelling Market Dynamics within the Maritime Sector
 59
+==PAGE:72==
 60
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:73==
 8
 Discussion
 This chapter outlines several promising avenues for future research and development, reflecting
@@ -2931,6 +3004,7 @@ linear effects, tipping points, or diminishing returns in policy stringency, hel
 global regulators but also regional authorities seeking to tailor effective carbon pricing strategies.
 Modelling Market Dynamics within the Maritime Sector
 61
+==PAGE:74==
 While highly relevant, this type of in­depth sensitivity study could not be conducted within the
 time constraints of this thesis and is therefore proposed as a promising area for future research.
 8.1.5
@@ -2947,6 +3021,7 @@ for policy design and industry forecasting. These improvements will enable even 
 assessments of future global shipping policies as the sector moves toward full decarbonisation.
 62
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:75==
 9
 Conclusion
 9.1
@@ -2996,6 +3071,7 @@ Main Insights Across Scenarios
 The cross­scenario comparison highlights several key conclusions:
 Modelling Market Dynamics within the Maritime Sector
 63
+==PAGE:76==
 • Decarbonization effectiveness: Strong price signals are essential. The Regulation with
 Flexibility 1200 USD scenario is the only one capable of triggering substantial fuel switch­
 ing and significant emission reductions. Lower penalties such as the current IMO 380
@@ -3031,6 +3107,7 @@ tools used by the Center to support future scenario analysis and policy discussi
 level.
 64
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:77==
 References
 [1]
 International Maritime Organization. IMO 2023 Revised Strategy on Reduction of GHG
@@ -3103,6 +3180,7 @@ Simplex Method”. In: Journal of Minerals and Materials Characterization and En
 (2013). url: https://www.scirp.org/journal/paperinformation?paperid=36919.
 Modelling Market Dynamics within the Maritime Sector
 65
+==PAGE:78==
 [22]
 V Gabrel and C Murat and. “Robustness and duality in linear programming”. In: Journal of
 the Operational Research Society 61.8 (2010), pp. 1288–1296. doi: 10.1057/jors.2009.81.
@@ -3172,6 +3250,7 @@ Herbert Scarf. “Some Examples of Global Instability of the Competitive Equilib
 International Economic Review 1.3 (1960), pp. 157–172.
 66
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:79==
 [39]
 P. Tormos and A. Lova. “A Competitive Heuristic Solution Technique for Resource­Constrained
 Project Scheduling”. In: Annals of Operations Research (2001). doi: 10.1023/A:10109978
@@ -3210,8 +3289,10 @@ transport modelling: an explorative study on behavioural responses and model dyn
 ce_in_transport_modelling.pdf.
 Modelling Market Dynamics within the Maritime Sector
 67
+==PAGE:80==
 68
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:81==
 A
 Mockup of NavigaTE functionality for
 price convergence
@@ -3323,6 +3404,7 @@ for f in model.getVars():
 print(f"Variable {f.VarName}: Value = {f.X}")
 Modelling Market Dynamics within the Maritime Sector
 69
+==PAGE:82==
 57
 58
 #-----Change of constraint capacity ---------------
@@ -3381,6 +3463,7 @@ constraints and one with relaxed capacity on the second supplier. The resulting 
 conditions.
 70
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:83==
 B
 Initial MVP for concept proving of duality
 for NavigaTE
@@ -3483,6 +3566,7 @@ all_results_without_shadow = []
 # Initializes the prices with prduction costs
 Modelling Market Dynamics within the Maritime Sector
 71
+==PAGE:84==
 52
 prices = {fuel: production_costs[fuel] for fuel in fuels}
 53
@@ -3595,6 +3679,7 @@ results_without_shadow[f + "_supply"] = supply[f][years.index(t)]
 results_with_shadow["penalty"] = e.X
 72
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:85==
 110
 results_without_shadow["penalty"] = e.X
 111
@@ -3698,6 +3783,7 @@ plt.savefig('all_fuels_price_and_quantity_dynamics.png')
 plt.show()
 Modelling Market Dynamics within the Maritime Sector
 73
+==PAGE:86==
 Listing B.1: Illustrative Python implementation of a simplified multi­year, multi­fuel market
 equilibrium model used to demonstrate the effect of shadow prices on price formation and
 fuel allocation. The code simulates demand, supply constraints, and emissions limits for four
@@ -3708,6 +3794,7 @@ to highlight their role in guiding economically consistent pricing under constra
 behavior.
 74
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:87==
 C
 NavigaTE Bunker Pricing Algorithm
 C.1
@@ -3799,6 +3886,7 @@ floors = {k: 0. for k in self._bunker_supply}
 20
 Modelling Market Dynamics within the Maritime Sector
 75
+==PAGE:88==
 21
 # initial ceilings where demand < supply
 22
@@ -3899,6 +3987,7 @@ min_ceiling = self._options.get_market_price_ceiling_minimum()
 tol_quantity = self._options.get_market_tolerance_quantity()
 76
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:89==
 5
 6
 self._optimize_fair_share()
@@ -3989,6 +4078,7 @@ Update Vessel Market Objective
 def _update_vessel_market_objective(self, shadow_price):
 Modelling Market Dynamics within the Maritime Sector
 77
+==PAGE:90==
 2
 for (v, p, f), bunker in self._bunker.items():
 3
@@ -4080,6 +4170,7 @@ continue
 11
 78
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:91==
 12
 market_key = self._get_market_key(port_name , f)
 13
@@ -4162,6 +4253,7 @@ extremum_shadow_prices[key] = shadow_price
 else:
 Modelling Market Dynamics within the Maritime Sector
 79
+==PAGE:92==
 18
 extremum_shadow_prices[key] = method(extremum_shadow_prices[key],
 shadow_price)
@@ -4214,6 +4306,7 @@ on bunkering permission and supply thresholds to ensure only relevant market seg
 considered.
 80
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:93==
 D
 Test Environment Files
 The following configuration files are used to construct and execute the test environment:
@@ -4257,6 +4350,7 @@ The following configuration files are used to construct and execute the test env
 • test_vessels
 Modelling Market Dynamics within the Maritime Sector
 81
+==PAGE:94==
 E
 Modelling Framework
 Scenario
@@ -4331,6 +4425,7 @@ Table E.1: Summary of active mechanisms across all simulated scenarios, highligh
 presence of dynamic pricing, policy application, and resulting fuel mix behaviour.
 82
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:95==
 F
 Test Environment Plots
 F.1
@@ -4353,8 +4448,10 @@ evolution in [USD/GJ] of each fuel type while right figure shows bunker demand v
 supply in [kt/yr] for key alternative fuels.
 Modelling Market Dynamics within the Maritime Sector
 83
+==PAGE:96==
 84
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:97==
 G
 No Regulation Environment ­ Results
 G.1
@@ -4373,6 +4470,7 @@ Africa
 Figure G.2: Bunker fuel cost (left), and fuel supply and demand (right) in African ports.
 Modelling Market Dynamics within the Maritime Sector
 85
+==PAGE:98==
 Americas
 Figure G.3: Bunker fuel cost (left), and fuel supply and demand (right) in American ports.
 Asia
@@ -4383,6 +4481,7 @@ Middle East
 Figure G.6: Bunker fuel cost (left), and fuel supply and demand (right) in Middle Eastern ports.
 86
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:99==
 Global Overview
 Figure G.7: Global fuel supply and demand overview for the Cost­Only scenario.
 G.2.2
@@ -4395,6 +4494,7 @@ Figure G.9: Market price (left), and fuel supply and demand (right) in American 
 Emerging configuration.
 Modelling Market Dynamics within the Maritime Sector
 87
+==PAGE:100==
 Asia
 Figure G.10: Market price (left), and fuel supply and demand (right) in Asian ports under the
 Emerging configuration.
@@ -4408,6 +4508,7 @@ Global Overview
 Figure G.13: Global fuel supply and demand overview for the Emerging configuration.
 88
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:101==
 G.2.3
 Fuel Supply and Bunker Prices – Global
 Africa
@@ -4421,6 +4522,7 @@ Figure G.16: Market price (left), and fuel supply and demand (right) in Asian po
 Global configuration.
 Modelling Market Dynamics within the Maritime Sector
 89
+==PAGE:102==
 Europe
 Figure G.17: Market price (left), and fuel supply and demand (right) in European ports under
 the Global configuration.
@@ -4431,6 +4533,7 @@ Global Overview
 Figure G.19: Global fuel supply and demand overview for the Global configuration.
 90
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:103==
 G.2.4
 Fuel Supply and Bunker Prices – Local
 Africa
@@ -4444,6 +4547,7 @@ Figure G.22: Market price (left), and fuel supply and demand (right) in Asian po
 Local configuration.
 Modelling Market Dynamics within the Maritime Sector
 91
+==PAGE:104==
 Europe
 Figure G.23: Market price (left), and fuel supply and demand (right) in European ports under
 the Local configuration.
@@ -4454,6 +4558,7 @@ Global Overview
 Figure G.25: Global fuel supply and demand overview for the Local configuration.
 92
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:105==
 H
 Regulation with Flexibility Environment
 IMO Regulation 380 USD ­ Results
@@ -4473,6 +4578,7 @@ Africa
 Figure H.2: Bunker fuel cost (left), and fuel supply and demand (right) in African ports.
 Modelling Market Dynamics within the Maritime Sector
 93
+==PAGE:106==
 Americas
 Figure H.3: Bunker fuel cost (left), and fuel supply and demand (right) in American ports.
 Asia
@@ -4483,6 +4589,7 @@ Middle East
 Figure H.6: Bunker fuel cost (left), and fuel supply and demand (right) in Middle Eastern ports.
 94
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:107==
 Global Overview
 Figure H.7: Global fuel supply and demand overview for the Cost­Only scenario.
 H.2.2
@@ -4495,6 +4602,7 @@ Figure H.9: Market price (left), and fuel supply and demand (right) in American 
 Emerging configuration.
 Modelling Market Dynamics within the Maritime Sector
 95
+==PAGE:108==
 Asia
 Figure H.10: Market price (left), and fuel supply and demand (right) in Asian ports under the
 Emerging configuration.
@@ -4508,6 +4616,7 @@ Global Overview
 Figure H.13: Global fuel supply and demand overview for the Emerging configuration.
 96
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:109==
 H.2.3
 Fuel Supply and Bunker Prices – Global
 Africa
@@ -4521,6 +4630,7 @@ Figure H.16: Market price (left), and fuel supply and demand (right) in Asian po
 Global configuration.
 Modelling Market Dynamics within the Maritime Sector
 97
+==PAGE:110==
 Europe
 Figure H.17: Market price (left), and fuel supply and demand (right) in European ports under
 the Global configuration.
@@ -4531,6 +4641,7 @@ Global Overview
 Figure H.19: Global fuel supply and demand overview for the Global configuration.
 98
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:111==
 H.2.4
 Fuel Supply and Bunker Prices – Local
 Africa
@@ -4544,6 +4655,7 @@ Figure H.22: Market price (left), and fuel supply and demand (right) in Asian po
 Local configuration.
 Modelling Market Dynamics within the Maritime Sector
 99
+==PAGE:112==
 Europe
 Figure H.23: Market price (left), and fuel supply and demand (right) in European ports under
 the Local configuration.
@@ -4554,6 +4666,7 @@ Global Overview
 Figure H.25: Global fuel supply and demand overview for the Local configuration.
 100
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:113==
 I
 Regulation with Flexibility Environment
 1200 USD penalty ­ Results
@@ -4574,6 +4687,7 @@ Africa
 Figure I.2: Bunker fuel cost (left), and fuel supply and demand (right) in African ports.
 Modelling Market Dynamics within the Maritime Sector
 101
+==PAGE:114==
 Americas
 Figure I.3: Bunker fuel cost (left), and fuel supply and demand (right) in American ports.
 Asia
@@ -4584,6 +4698,7 @@ Middle East
 Figure I.6: Bunker fuel cost (left), and fuel supply and demand (right) in Middle Eastern ports.
 102
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:115==
 Global Overview
 Figure I.7: Global fuel supply and demand overview for the Cost­Only scenario.
 I.2.2
@@ -4596,6 +4711,7 @@ Figure I.9: Market price (left), and fuel supply and demand (right) in American 
 Emerging configuration.
 Modelling Market Dynamics within the Maritime Sector
 103
+==PAGE:116==
 Asia
 Figure I.10: Market price (left), and fuel supply and demand (right) in Asian ports under the
 Emerging configuration.
@@ -4609,6 +4725,7 @@ Global Overview
 Figure I.13: Global fuel supply and demand overview for the Emerging configuration.
 104
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:117==
 I.2.3
 Fuel Supply and Bunker Prices – Global
 Africa
@@ -4622,6 +4739,7 @@ Figure I.16: Market price (left), and fuel supply and demand (right) in Asian po
 Global configuration.
 Modelling Market Dynamics within the Maritime Sector
 105
+==PAGE:118==
 Europe
 Figure I.17: Market price (left), and fuel supply and demand (right) in European ports under the
 Global configuration.
@@ -4632,6 +4750,7 @@ Global Overview
 Figure I.19: Global fuel supply and demand overview for the Global configuration.
 106
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:119==
 I.2.4
 Fuel Supply and Bunker Prices – Local
 Africa
@@ -4645,6 +4764,7 @@ Figure I.22: Market price (left), and fuel supply and demand (right) in Asian po
 Local configuration.
 Modelling Market Dynamics within the Maritime Sector
 107
+==PAGE:120==
 Europe
 Figure I.23: Market price (left), and fuel supply and demand (right) in European ports under the
 Local configuration.
@@ -4655,6 +4775,7 @@ Global Overview
 Figure I.25: Global fuel supply and demand overview for the Local configuration.
 108
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:121==
 J
 Regulation w/o Flexibility ­ Results
 J.1
@@ -4675,6 +4796,7 @@ Figure J.2: Market price (left), and fuel supply and demand (right) in African p
 Cost­ Only configuration.
 Modelling Market Dynamics within the Maritime Sector
 109
+==PAGE:122==
 Americas
 Figure J.3: Market price (left), and fuel supply and demand (right) in American ports under the
 Cost­ Only configuration.
@@ -4686,6 +4808,7 @@ Figure J.5: Market price (left), and fuel supply and demand (right) in European 
 Cost­ Only configuration.
 110
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:123==
 Middle East
 Figure J.6: Market price (left), and fuel supply and demand (right) in Middle Eastern ports under
 the Cost­Only configuration.
@@ -4698,6 +4821,7 @@ Figure J.8: Market price (left), and fuel supply and demand (right) in African p
 Emerging configuration.
 Modelling Market Dynamics within the Maritime Sector
 111
+==PAGE:124==
 Americas
 Figure J.9: Market price (left), and fuel supply and demand (right) in American ports under the
 Emerging configuration.
@@ -4709,6 +4833,7 @@ Figure J.11: Market price (left), and fuel supply and demand (right) in European
 Emerging configuration.
 112
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:125==
 Middle East
 Figure J.12: Market price (left), and fuel supply and demand (right) in Middle Eastern ports
 under the Emerging configuration.
@@ -4721,6 +4846,7 @@ Figure J.14: Market price (left), and fuel supply and demand (right) in African 
 Global configuration.
 Modelling Market Dynamics within the Maritime Sector
 113
+==PAGE:126==
 Americas
 Figure J.15: Market price (left), and fuel supply and demand (right) in American ports under the
 Global configuration.
@@ -4732,6 +4858,7 @@ Figure J.17: Market price (left), and fuel supply and demand (right) in European
 Global configuration.
 114
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:127==
 Middle East
 Figure J.18: Market price (left), and fuel supply and demand (right) in Middle Eastern ports
 under the Global configuration.
@@ -4744,6 +4871,7 @@ Figure J.20: Market price (left), and fuel supply and demand (right) in African 
 Local configuration.
 Modelling Market Dynamics within the Maritime Sector
 115
+==PAGE:128==
 Americas
 Figure J.21: Market price (left), and fuel supply and demand (right) in Asian ports under the
 Local configuration.
@@ -4757,10 +4885,12 @@ Figure J.24: Market price (left), and fuel supply and demand (right) in Middle E
 under the Local configuration.
 116
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:129==
 Global Overview
 Figure J.25: Global fuel supply and demand overview for the Local scenario.
 Modelling Market Dynamics within the Maritime Sector
 117
+==PAGE:130==
 K
 Levy­Based Regulation ­ Results
 K.1
@@ -4780,6 +4910,7 @@ Figure K.2: Market price (left), and fuel supply and demand (right) in African p
 Cost­Only configuration.
 118
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:131==
 Americas
 Figure K.3: Market price (left), and fuel supply and demand (right) in American ports under the
 Cost­Only configuration.
@@ -4791,6 +4922,7 @@ Figure K.5: Market price (left), and fuel supply and demand (right) in European 
 Cost­Only configuration.
 Modelling Market Dynamics within the Maritime Sector
 119
+==PAGE:132==
 Middle East
 Figure K.6: Bunker price and fuel supply in Middle Eastern ports.
 Global Overview
@@ -4802,6 +4934,7 @@ Figure K.8: Market price (left), and fuel supply and demand (right) in African p
 Emerging configuration.
 120
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:133==
 Americas
 Figure K.9: Market price (left), and fuel supply and demand (right) in American ports under the
 Emerging configuration.
@@ -4813,6 +4946,7 @@ Figure K.11: Market price (left), and fuel supply and demand (right) in European
 Emerging configuration.
 Modelling Market Dynamics within the Maritime Sector
 121
+==PAGE:134==
 Middle East
 Figure K.12: Market price (left), and fuel supply and demand (right) in Middle Eastern ports
 under the Emerging configuration.
@@ -4825,6 +4959,7 @@ Figure K.14: Market price (left), and fuel supply and demand (right) in Middle E
 under the Global configuration.
 122
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:135==
 Americas
 Figure K.15: Market price (left), and fuel supply and demand (right) in American ports under the
 Global configuration.
@@ -4836,6 +4971,7 @@ Figure K.17: Market price (left), and fuel supply and demand (right) in European
 the Global configuration.
 Modelling Market Dynamics within the Maritime Sector
 123
+==PAGE:136==
 Middle East
 Figure K.18: Market price (left), and fuel supply and demand (right) in Middle Eastern ports
 under the Global configuration.
@@ -4848,6 +4984,7 @@ Figure K.20: Market price (left), and fuel supply and demand (right) in African 
 Local configuration.
 124
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:137==
 Americas
 Figure K.21: Market price (left), and fuel supply and demand (right) in American ports under the
 Local configuration.
@@ -4859,6 +4996,7 @@ Figure K.23: Market price (left), and fuel supply and demand (right) in European
 the Local configuration.
 Modelling Market Dynamics within the Maritime Sector
 125
+==PAGE:138==
 Middle East
 Figure K.24: Market price (left), and fuel supply and demand (right) in Middle Eastern ports
 under the Local configuration.
@@ -4866,6 +5004,7 @@ Global Overview
 Figure K.25: Global fuel supply and demand overview for the Local configuration.
 126
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:139==
 L
 Numeric Performance Analytics Results
 Indicator
@@ -5034,6 +5173,7 @@ Emerging
 Table L.2: Cross­scenario comparison: LP Size and Linear Solves.
 Modelling Market Dynamics within the Maritime Sector
 127
+==PAGE:140==
 Indicator
 No Regulation
 Reg. Flex 380
@@ -5118,6 +5258,7 @@ Emerging
 Table L.3: Cross­scenario comparison: Iterations Statistics.
 128
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:141==
 M
 Numeric Market Dynamic Results
 Scenario
@@ -5236,6 +5377,7 @@ Table M.1: Comparison of aggregated system indicators across all policy scenario
 typologies.
 Modelling Market Dynamics within the Maritime Sector
 129
+==PAGE:142==
 N
 Numeric Expenses Results
 Indicator
@@ -5323,8 +5465,10 @@ Table N.1: Cross­scenario comparison of all expenses across five policy setting
 ket typologies.
 130
 Modelling Market Dynamics within the Maritime Sector
+==PAGE:143==
 Modelling Market Dynamics within the Maritime Sector
 131
+==PAGE:144==
 Technical
 University of
 Denmark

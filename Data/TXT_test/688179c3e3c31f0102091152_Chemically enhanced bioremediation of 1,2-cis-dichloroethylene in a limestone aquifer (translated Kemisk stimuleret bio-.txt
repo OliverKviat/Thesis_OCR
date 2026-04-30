@@ -1,3 +1,4 @@
+==PAGE:1==
 Chemically Enhanced Biodegradation of
 cis‐1,2 Dichloroethylene in a Limestone
 Aquifer
@@ -8,6 +9,7 @@ School of Engineering and Design
 Department of Civil and Environmental Engineering
 Master of Sciences in Environmental Engineering
 Kongens Lyngby , June 2025
+==PAGE:2==
 Chemically Enhanced Biodegradation of
 cis‐1,2 Dichloroethylene in a Limestone
 Aquifer
@@ -27,7 +29,9 @@ Department of Civil and Environmental Engineering
 Master of Sciences in Environmental Engineering
 Master's Thesis
 Kongens Lyngby , June 2025
+==PAGE:3==
 This page intentionally left blank.
+==PAGE:4==
 DECLARATION OF AUTHORSHIP
 Has undersigned, hereby it his declared that this work entitled “Chemically Enhanced Biodegra-
 dation of cis-1,2 Dichloroethylene in a Limestone Aquifer” is the original work and that it
@@ -39,7 +43,9 @@ citation is made.
 Kongens Lyngby , June 2025
 Sithara Dhinethi Weeratunga
 i
+==PAGE:5==
 This page intentionally left blank.
+==PAGE:6==
 ACKNOWLEDGEMENTS
 First and foremost, I would like to express my deepest gratitude to my parents for their
 unwavering support throughout this journey. Their financial sacrifices and steadfast en-
@@ -65,7 +71,9 @@ Finally, to the countless individuals working to innovate and advocate for susta
 solutions: your dedication inspires me daily. This thesis is a small contribution to a much
 larger fight; one I am proud to join.
 iv
+==PAGE:7==
 This page intentionally left blank.
+==PAGE:8==
 ABSTRACT
 Groundwater contamination by chlorinated solvents, particularly cis-1,2-dichloroethylene
 (cDCE), poses a significant threat to drinking water resources, especially in fractured lime-
@@ -91,7 +99,9 @@ capacity, ERD using KB-1® is recommended for field-scale implementation.
 Keywords: Chlorinated ethenes, Groundwater treatment, Bioaugmentation, Aquifer geo-
 chemistry, Laboratory microcosms
 vii
+==PAGE:9==
 This page intentionally left blank.
+==PAGE:10==
 CONTENTS
 Contents
 x
@@ -174,6 +184,7 @@ KB-1®
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 29
 x
+==PAGE:11==
 CONTENTS
 xi
 5.4
@@ -296,6 +307,7 @@ Chlorinated ethylenes and ethanes . . . . . . . . . . . . . . . . . . . . .
 A.5.2
 Gas analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 85
+==PAGE:12==
 xii
 CONTENTS
 A.5.3
@@ -321,6 +333,7 @@ NVOC . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
 B
 Appendix B
 103
+==PAGE:13==
 LIST OF FIGURES
 2.1
 Batch test design
@@ -393,6 +406,7 @@ day 0, GeoForm was added to batch B and GeoForm and KB-1 was added to
 batch C . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 40
 xiii
+==PAGE:14==
 xiv
 LIST OF FIGURES
 6.6
@@ -479,6 +493,7 @@ A.17 Molar fraction of KB-1 over time, without ethane or ethene except for day 7
 92
 A.18 VC levels in the control batches . . . . . . . . . . . . . . . . . . . . . . . . . . .
 93
+==PAGE:15==
 LIST OF FIGURES
 xv
 A.19 VC levels in the GeoForm batches. The outliers seen in B1 and B3 were ig-
@@ -519,6 +534,7 @@ The transect of the geology cross-section shown in Figure 4.1 from COWI, 2023105
 B.3
 Smaller scale geology of the site COWI, n.d.
 . . . . . . . . . . . . . . . . . . . 106
+==PAGE:16==
 LIST OF TABLES
 3.1
 Physical and chemical properties of TCE, cDCE, and VC. . . . . . . . . . . . .
@@ -557,6 +573,7 @@ sisting 1000 mL groundwater. . . . . . . . . . . . . . . . . . . . . . . . . . .
 A.3 NVOC levels [mg/L] in all 12 batches throughout the experiment
 . . . . . . 100
 xvi
+==PAGE:17==
 ACRONYMS
 𝐾d
 Soil-Water Distribution Coeﬀicient. (p. 6, 34)
@@ -601,6 +618,7 @@ Non-Aqueous Phase Liquids. (p. 1)
 NVOC
 Non-Volatile Oragnic Compounds. (p. 31–33, 48, 54, 55, 100)
 xvii
+==PAGE:18==
 OHRB
 Organohalide-respiring Bacteria. (p. 10, 15, 78, 79)
 PCE
@@ -623,7 +641,9 @@ Volatile Organic Compounds. (p. 1)
 ZVI
 Zero Valent Iron. (p. 2, 16, 53, 77, 78)
 xviii
+==PAGE:19==
 This page intentionally left blank.
+==PAGE:20==
 1
 INTRODUCTION
 Groundwater is an essential resource, supplying daily water needs for over two billion
@@ -655,6 +675,7 @@ stance, is underlain by semi-confined, fractured, and locally karstic carbonate 
 aquifers, water is stored in the matrix (pore spaces of the low-permeability host rock), while
 groundwater travels rapidly along preferential flow paths through a network of conduits
 1
+==PAGE:21==
 2
 1. Introduction
 and fractures [Nilsson et al., 2018]. The transport of contaminants in such systems is heav-
@@ -695,6 +716,7 @@ in the aquifer, but might also be supplemented [Kennedy et al., 2006]. BiRD reli
 mon sulfate-reducing soil bacteria to facilitate the conversion of ferrous iron into iron sul-
 fides [Kennedy et al., 2006]. Though this thesis is limited to lab-scale experiments, the
 results could provide insights for future field applications. Unlike ZVI, finer-grained ZVI,
+==PAGE:22==
 1. Introduction
 3
 BiRD, and ERD do not require excavation and backfill or trenching to be put into the sub-
@@ -703,6 +725,7 @@ such as the one at the Naverland site [Vidic, 2001; Thiruvenkatachari et al., 20
 tinction lies in their delivery mechanisms: while micro-scale ZVI (mZVI) and nano-scale
 ZVI (nZVI) are particle injections, BiRD and ERD are injected as dissolved compounds,
 which could affect the distribution .
+==PAGE:23==
 2
 OBJECTIVES
 The overall purpose of this thesis is to provide specific knowledge on the potential for bio-
@@ -721,6 +744,7 @@ specific conditions to identify key factors influencing DCE degradation.
 experimental results and reflect on a pilot field project for the implementation of the
 most promising approach.
 4
+==PAGE:24==
 3
 DCE DEGRADATION MECHANISMS AND THEIR
 APPLICATION TO NAVERLAND
@@ -780,6 +804,7 @@ Agency, 2011] 5 [Hansch et al., 1995; Sakuratani et al., 2007] 6[Brigmon et al.,
 1998; Garbarini et al., 1986; Mouvet et al., 1993; Rathbun, 1998; Sahoo et al., 1997; Lu et al., 2011 ] 7
 [Gossett, 1987]
 5
+==PAGE:25==
 6
 3. DCE Degradation Mechanisms and Their Application to Naverland
 Henry’s law constant quantifies the equilibrium partitioning of a compound between
@@ -819,6 +844,7 @@ surrounding groundwater, a process termed retardation [Cwiertny et al., 2010]. T
 dation in the matrix, expressed by the retardation factor 𝑅𝑚, is moderate for cDCE, 1.13 in
 limestone aquifers calculated where the matrix porosity (𝜙𝑚) is 0.4 and bulk density (𝜌𝑏)
 is 1.75 [Salzer, 2013; Broholm et al., 2016.]
+==PAGE:26==
 3.1. DCE properties, degradation and toxicity
 7
 As previously mentioned, long-term sources of dissolved-phase groundwater pollution
@@ -844,6 +870,7 @@ fracture walls is negligible, dispersion in the fractures is frequently ignored 
 transport in chalk aquifers [Reilly et al., 1994]. However, Schulze-Makuch, 2005’s assess-
 ment of dispersion in aquifers with varying geology revealed significant variances in the
 longitudinal dispersivity for carbonates and, hence, significant on an aquifer scale.
+==PAGE:27==
 8
 3. DCE Degradation Mechanisms and Their Application to Naverland
 Similar to volatilisation, biodegradation rates are governed by temperature. Temper-
@@ -891,6 +918,7 @@ DCE
 VC
 0.4
 0.2
+==PAGE:28==
 3.2. Remediation methods based on reductive dechlorination
 9
 3.2
@@ -917,6 +945,7 @@ and VC requires stronger reducing conditions, such as sulfate-reducing or methan
 conditions [Bradley et al., 2010; Spormann, 2006; Maymó-Gatell et al., 1999; Ballapragada
 et al., 1997; T. M. Vogel et al., 1985].
 Figure 3.2: Biotic pathway under anaerobic conditions [C. B. Ottosen, 2020]
+==PAGE:29==
 10
 3. DCE Degradation Mechanisms and Their Application to Naverland
 Bioremediation typically can be categorised into:
@@ -953,6 +982,7 @@ Jiangsu, China, in a site primarily consisting of silty sand, R. Wu et al., 2023
 of VC dechlorination to ethene within 3 months. It should be noted that this study em-
 ployed thermal pretreatment, maintaining groundwater temperatures at ∼30°C - a condi-
 tion known to accelerate microbial dechlorination rates, as discussed in Section 3.1.2.
+==PAGE:30==
 3.2. Remediation methods based on reductive dechlorination
 11
 3.2.2
@@ -975,6 +1005,7 @@ to remove cDCE in a sandy aquifer in Minnesota; the first-order rate of attenuat
 years of monitoring was 0.52 ± 0.195 per year for cDCE [Ferrey et al., 2004].
 Figure 3.3: Possible pathways for the reductive dechlorination of chlorinated ethenes by iron sulphides [Lee
 et al., 2002; Han et al., 2012]
+==PAGE:31==
 12
 3. DCE Degradation Mechanisms and Their Application to Naverland
 The pathway cDCE →acetylene (by β-dichloroelimination) →ethylene (by hydrogena-
@@ -1012,6 +1043,7 @@ possible amendments for ISBGT are shown in Table 3.3. Additionally, without iron
 the high levels of sulphides are toxic to microorganisms. For example, according to Mao
 et al., 2017, environments with sulphate concentration of 5 mM, had no effect on the cell
 yield of Dehalococcoides (strain 195) but decreased by about 65% in sulphide environments.
+==PAGE:32==
 3.2. Remediation methods based on reductive dechlorination
 13
 Table 3.3: Common amendments used in ISBGT engineered systems [Darlington and Rectanus, 2015]
@@ -1070,6 +1102,7 @@ where the contaminant can come into contact with the reactive amendments [Darlin
 and Rectanus, 2015]. Most effective in unconsolidated geology and in groundwater plumes
 with high hydraulic conductivity, as excessive flow rates would prevent the reaction and
 restrict hydraulic retention time [Darlington and Rectanus, 2015].
+==PAGE:33==
 14
 3. DCE Degradation Mechanisms and Their Application to Naverland
 Figure 3.4: Recirculation system configuration for engineering ISBGT [Darlington and Rectanus, 2015]
@@ -1088,6 +1121,7 @@ ton and Rectanus, 2015; Hyun et al., 2015]. Therefore, nucleation being dominant
 desired than crystal growth [Whiting et al., 2014]. Additionally, freeze-dried mackinaw-
 ite is unreactive and therefore, fresh mackinawite or pyrite should be formed in the site
 [Hyun et al., 2015]. The cause could be aggregation development or the loss of reactiv-
+==PAGE:34==
 3.2. Remediation methods based on reductive dechlorination
 15
 ity in nano-sized mackinawite suspensions during the rinse and freeze-drying processes
@@ -1133,6 +1167,7 @@ a study by Yaru Li et al., 2021 demonstrated that in-situ formed FeS nanoparticl
 𝐹𝑒2+ + 𝑆2−) enhanced TCE dechlorination by Dehalococcoides mccartyi strain 195, increasing
 rates from 25.46 ± 1.15 to 37.84 𝜇𝑚𝑜𝑙· 𝐿−1 · 𝑑𝑎𝑦−1 as well as the abundance of key genes.
 These results suggest low FeS concentrations may stimulate Dhc 195’s electron transport.
+==PAGE:35==
 16
 3. DCE Degradation Mechanisms and Their Application to Naverland
 Similar to Liu et al., 2023’s observation, dechlorination rate of TCE was inhibited slightly
@@ -1161,6 +1196,7 @@ Iron, which combines colloidal activated carbon and nano-ZVI (nZVI) to accumulat
 for ERD, but the site being studied here is slightly deeper than Katrin et al., 2016’s, and
 they had a higher pH. A more detailed discussion of these alternative methodologies can
 be found in Section A.1
+==PAGE:36==
 4
 SITE: NAVERLAND
 4.1
@@ -1180,9 +1216,11 @@ limestone is a more general term [Bromley, 1979]. To be more specific, on this s
 Cretaceous (Maastrichtian) chalk, which is a carbonate mudstone composed primarily of
 calcareous nannofossils (especially coccoliths) [Jakobsen et al., 2017].
 17
+==PAGE:37==
 18
 4. Site: Naverland
 Figure 4.1: Geology of the Naverland site [COWI, 2023]
+==PAGE:38==
 4.2. Contamination
 19
 The limestone’s bulk density ranges from 1.42 to 2.36 𝑔/𝑐𝑚3. It has a high porosity,
@@ -1224,6 +1262,7 @@ was used till 1982, when it was emptied and filled with sand. According to Hedes
 levels indicating the presence of a free phase. Hence, it is reasonable to assume there was
 improper handling or disposal of PCE, e.g. spills, leaks or incomplete emptying, especially
 since the storage and handling practices were probably not as strict as modern standards
+==PAGE:39==
 20
 4. Site: Naverland
 [Sørensen, 2013].CE are most frequently used as degreasing solvent in the metal industries
@@ -1254,6 +1293,7 @@ A student project consisting of biostimulation was done by Sørensen, 2013 using
 groundwater and sediment samples from the Naverland site, but no degradation of cDCE
 was observed. This is because Dehalococcoides were below the detection limit due to the
 mildly reduced redox conditions [Sørensen, 2013]. When Sørensen, 2013 carried out bioaug-
+==PAGE:40==
 4.3. Remediation strategies
 21
 mentation using the bacteria in KB-1® (SiREM) (containing Dehalococcoides) at 15 mbs and
@@ -1280,6 +1320,7 @@ propionic and butyric when bacteria ferment it [EVONIK, n.d.(b)]. The scope of t
 does not include considerations of the contamination in the hot spot, the plume extend-
 ing south-east and west of the site, or the low concentration of contamination by 1,1,1-
 trichloroethane.
+==PAGE:41==
 5
 METHODOLOGY
 This study evaluates GeoForm® and ERD (KB-1®) for enhanced biodegradation of cDCE
@@ -1312,6 +1353,7 @@ Naverland site would require invasive drilling due to its unexcavated subsurface
 Although Naverland’s native sediments would be ideal for bioremediation, given their in-
 herent anaerobic conditions, organic carbon content, and diverse microbial communities
 22
+==PAGE:42==
 5.1. Field sampling and storage
 23
 [Himmelheber et al., 2007], the logistical constraints made Faxe Quarry a practical alterna-
@@ -1341,11 +1383,13 @@ VC
 4
 63 µg/l
 0.3 µg/l
+==PAGE:43==
 24
 5. Methodology
 Figure 5.2: Results from the monitoring of the pollution spread in 2023 shown as sum concentrations of all
 chlorinated solvents (in μg/l). Screen 1 is the deepest screen and screen 4 is the uppermost screen. The yellow
 line shows the approximate course of the geological section presented in Figure 4.2 [Sø, 2023].
+==PAGE:44==
 5.1. Field sampling and storage
 25
 The water table was 8.66 mbs. The water extracted using a submersible MP1 pump and
@@ -1361,6 +1405,7 @@ the majority of the plume area is primarily iron-reducing. There was 2.48 mg/L o
 amendments required for this experiment arrived, the groundwater was stored in a 10◦C
 room.
 Figure 5.3: Set up for groundwater extraction
+==PAGE:45==
 26
 5. Methodology
 Unfortunately, while sampling, some oxygen exposure occurred, leading to oxidised
@@ -1376,6 +1421,7 @@ tivity (buffering capacity) and improves access to the matrix micropores where d
 controlled processes dominate. More information is found in Section A.2.
 (a) Limestone after passing through lab jaw crusher
 (b) Sieving crushed limestone
+==PAGE:46==
 5.3. Set up of microcosm
 27
 5.3
@@ -1427,10 +1473,12 @@ X
 X
 X
 X
+==PAGE:47==
 28
 5. Methodology
 Figure 5.6 shows the steps taken for each scenario.
 Figure 5.6: Procedure for experimental set up
+==PAGE:48==
 5.3. Set up of microcosm
 29
 This study did not use buffers like other experiments (e.g. Hyun et al., 2015) as lime-
@@ -1469,6 +1517,7 @@ present in the aqueous phase, the resulting Dhc count in the bioaugmented flasks
 proximately 108 - 109 cells/mL. This concentration corresponds to a cell density 1−10 times
 higher than the minimum density strived for in the site barrier (108 cells/L). To scenario C,
 9.0 ml of KB-1® culture was added.
+==PAGE:49==
 30
 5. Methodology
 Scenario D
@@ -1496,6 +1545,7 @@ were taken for all scenarios and were used to support the interpretations attain
 degradation products. The infusion flasks were weighed before and after each extraction
 for mass balance. Nitrogen was added into the infusion flasks before extractions over 1 mL
 to avoid making a vacuum that sucks air so the system remains anaerobic.
+==PAGE:50==
 5.4. Monitoring
 31
 The sampling frequency is presented in Table 5.3 and is the same for all scenarios. A
@@ -1605,6 +1655,7 @@ measured on the same batch however when checked with the lab, no calibration or 
 standard issues were mentioned (Figure A.10 in the appendix).
 Most samples from the GeoForm-containing batches had an interference for the VC mea-
 surement (could be the precipitation/limestone/white powder in the vials).
+==PAGE:51==
 32
 5. Methodology
 Ethene, Ethane and Acetylene - Headspace analysis
@@ -1643,6 +1694,7 @@ NVOC is measured to help assess the natural capacity of the system to support de
 nation and is done using a TOC 5000A Shimadzu analyzer equipped with an ASI-5000 au-
 tosampler. The samples was be filtered through 0.45 µm nylon filters, and then preserved
 by refrigeration at 4◦𝐶. The NVOC quantification limit was 0.1 mg/L based on C8H5KO4
+==PAGE:52==
 5.4. Monitoring
 33
 standard solutions [Broholm et al., 2016].
@@ -1677,6 +1729,7 @@ measured using the pH strips seems to fluctuate when it shouldn’t, especially 
 where the pH was 6 for the control, lower than the pH measured at the M1, F3 well (pH 7)
 and then rose to 7.5 on day 17, therefore the pH was simply measured on day 57 using a pH
 electrode instead.
+==PAGE:53==
 34
 5. Methodology
 5.5
@@ -1717,6 +1770,7 @@ r is the rate of dechlorination [𝜇𝑚𝑜𝑙𝐿−1𝑑𝑎𝑦−1]
 𝐶𝑖is the initial CE concentration in 𝜇𝑚𝑜𝑙𝐿−1
 For cDCE day -12 to day 29 was considered and for VC day 10 to 51 was considered which
 excludes the production of VC.
+==PAGE:54==
 6
 RESULTS
 6.1
@@ -1750,6 +1804,7 @@ and D), but on the 13th day onwards, batch C became much easier to filter.
 The control and KB-1-only batches (A and D) exhibited a more pronounced stagnant
 water odour compared to GeoForm-containing batches (B and C). While GeoForm’s high
 35
+==PAGE:55==
 36
 6. Results
 iron content generated a metallic odor, the expected ”rotten egg” smell from 𝐻𝑆formation
@@ -1760,11 +1815,13 @@ sulphide precipitation.
 Figure 6.1: Appearance of all the microcosms on at the start of the experiment
 B3                 B2                    B1              A3                 A2                A1
 D3                    D2                  D1               A3               A2                 A1
+==PAGE:56==
 6.1. Physical observations
 37
 Figure 6.2: On day 3 GeoForm (B) and GeoForm + KB1 (C) look similar
     B1                             B2                            B3
  C1                          C2                            C3
+==PAGE:57==
 38
 6. Results
 (a) GeoForm (B) and GeoForm + KB1 (C) look different
@@ -1777,6 +1834,7 @@ D3               D2              D1
 C1            C2            C3
                    B2              B3
 B1                                               C1            C2          C3
+==PAGE:58==
 6.2. Data analysis
 39
 6.2
@@ -1816,6 +1874,7 @@ der partial inhibition from GeoForm as shown by previous studies (Section 3.2.3)
 concentrations in the GeoForm +KB-1 microcosm (C) remained below 1 μg/L throughout
 the experiment (Figure 6.6. However, this limited VC accumulation occurred without an
 obvious corresponding decrease in cDCE concentrations.
+==PAGE:59==
 40
 6. Results
 Figure 6.5: Average cDCE concentration of all the batches over time. On day -22, ELS was added and day
@@ -1823,6 +1882,7 @@ Figure 6.5: Average cDCE concentration of all the batches over time. On day -22,
 and KB-1 was added to batch C
 Figure 6.6: Average VC levels and ethene level in the control, GeoForm and GeoForm+KB-1 batches. The
 ethene level was only for day 51
+==PAGE:60==
 6.2. Data analysis
 41
 Figure 6.7: Average chlorinated ethenes and ethene concentration in KB-1 batch. ELS was added on day -22,
@@ -1834,12 +1894,15 @@ by Yaru Li et al., 2021 who reported that the addition of 0.2 mM 𝐹𝑒2+ and 
 the dechlorination rate of TCE from 25.46 ± 1.15 to 37.84 ± 1.89 μmol·𝐿1 · 𝑑𝑎𝑦1 in a batch
 experiment. While the VC dechlorination observed is slower, the dechlorination rate is 4.22
 𝜇𝑚𝑜𝑙𝐿−1𝑑𝑎𝑦−1.
+==PAGE:61==
 42
 6. Results
 Figure 6.8: cDCE degradation rate in the KB-1 batch
+==PAGE:62==
 6.2. Data analysis
 43
 Figure 6.9: VC degradation rate in the KB-1 batch
+==PAGE:63==
 44
 6. Results
 6.2.2
@@ -1874,11 +1937,13 @@ Finally, when lactic acid (a non-volatile fatty acid) was measured in all batche
 from day 38 (unintentionally), none exceeded the detection limit of 0.050 g/L. As the pH of
 the system is >5.5, the VFA is acetate instead of acetic acid. It is to be noted that other than
 acetate, no VFAs were detected despite being measured.
+==PAGE:64==
 6.2. Data analysis
 45
 Figure 6.10: VFA levels in the controls over the 38 days
 Figure 6.11: acetate levels in the GeoForm batches over the 38 days
 Figure 6.12: acetate levels in the GeoForm + KB-1 batches over the 38 days
+==PAGE:65==
 46
 6. Results
 Figure 6.13: acetate levels in the KB-1 batches over the 38 days
@@ -1900,10 +1965,12 @@ of both sulfate and iron for maybe a couple of months depending on the water mov
 and rate of diffusion (which is somewhat controlled by the rate of sulfate reduction). The
 spike since on day 1 for C1 is not because the conditions were not reduced enough but the
 dissolving of Fe (Figure 6.15).
+==PAGE:66==
 6.2. Data analysis
 47
 Figure 6.14: Average dissolved iron in the biotic control and KB-1 batches over time
 Figure 6.15: Dissolved iron in the GeoForm containing batches over time (note the axis)
+==PAGE:67==
 48
 6. Results
 6.2.4
@@ -1966,14 +2033,17 @@ Average
 0.062
 0.66
 >3.46
+==PAGE:68==
 6.2. Data analysis
 49
 Figure 6.16: Sulphate concentration over time in the biotic controls
 Figure 6.17: Sulphate concentration over time in the GeoForm batches (note the axis)
+==PAGE:69==
 50
 6. Results
 Figure 6.18: Sulphate concentration over time in the GeoForm + KB-1 batches (note the axis)
 Figure 6.19: Sulphate concentration over time in the KB-1 batches
+==PAGE:70==
 6.2. Data analysis
 51
 6.2.5
@@ -1994,6 +2064,7 @@ Figure 6.20 shows the mean pH over time for each scenario, showing that though t
 fluctuates, it does not go below 6, or above 8 and therefore remained in a favourable range
 for microbes.
 Figure 6.20: average pH over time
+==PAGE:71==
 7
 DISCUSSION AND PERSPECTIVES
 The main objective of this research is to advance the understanding of chlorinated solvent
@@ -2024,6 +2095,7 @@ cDCE remediation in the Naverland site. BiRD would be not supported under the av
 time-frame and test conditions. Clearly demonstrating that the recommended hydraulic
 retention time of 15 to 30 days for FeS formation and dechlorination by Darlington and
 52
+==PAGE:72==
 7.2. BiRD + ERD
 53
 Rectanus, 2015 is too short even with SRB supplementation. The critical constraint emerged
@@ -2066,6 +2138,7 @@ ERD was also considered a promising approach, particularly due to the potential 
 plete dechlorination of cDCE and VC in the presence of Dehalococcoides. Unlike ZVI, which
 is particulate and dependent on surface area for reactivity (often leading to distribution
 challenges and potential aquifer clogging), ERD relies on dissolved-phase amendments
+==PAGE:73==
 54
 7. Discussion and Perspectives
 (dissolved electron donors and microbial culture), allowing for more effective delivery in
@@ -2105,6 +2178,7 @@ iron, concentrations of CE, and VFAs to ensure enough electron donors are suppli
 NVOC levels in the Naverland site are different to the microcosm test done. The specific
 conditions at Naverland, including the chalk aquifer’s depth and carbonate buffering ca-
 pacity, appear generally favorable for ERD implementation. Previous failures of BiRD in
+==PAGE:74==
 7.5. Perspectives
 55
 field applications [Darlington, Lehmicke, et al., 2013], further support the recommenda-
@@ -2144,6 +2218,7 @@ and abiotic (FeS-mediated) pathways due to enhanced reaction kinetics at elevate
 atures. Similarly, the lag phase observed in GeoForm-only batches, which was attributable
 to slow microbial acclimation at 10 ◦𝐶, would probably have been shorter given the known
 temperature dependence of microbial metabolic rates.
+==PAGE:75==
 8
 CONCLUSION
 This thesis investigated the potential for Biogeochemical Reductive Dechlorination (BiRD)
@@ -2174,7 +2249,9 @@ Ultimately, this study contributes valuable insights into the practical challeng
 portunities of treating chlorinated solvent plumes in limestone aquifers and supports the
 broader application of ERD as a robust remediation approach.
 56
+==PAGE:76==
 This page intentionally left blank.
+==PAGE:77==
 BIBLIOGRAPHY
 Andersen, Thomas Breum and Mads Robenhagen Mølgaard (2018). Copenhagen Area Overview of
 the geological conditions in the Copenhagen area and surrounding areas. Tech. rep. GeoAtlas Live. URL:
@@ -2209,6 +2286,7 @@ Mutagenesis 4.4, pp. 365–375. DOI: https://doi.org/10.1002/tcm.1770040406.
 Brusseau, M.L. and J. Chorover (2019). “Chapter 8 - Chemical Processes Affecting Contaminant
 Transport and Fate”. In: Environmental and Pollution Science (Third Edition). Ed. by Mark L. Brusseau,
 59
+==PAGE:78==
 60
 BIBLIOGRAPHY
 Ian L. Pepper, and Charles P. Gerba. Third Edition. Academic Press, pp. 113–130. ISBN: 978-0-12-
@@ -2251,6 +2329,7 @@ Cwiertny, David M. and Michelle M. Scherer (2010). “Abiotic Processes Affectin
 Chlorinated Solvents”. In: In Situ Remediation of Chlorinated Solvent Plumes. Ed. by H.F. Stroo and C.H.
 Ward. New York, NY: Springer New York, pp. 69–108. ISBN: 978-1-4419-1401-9. DOI: 10.1007/978-1-
 4419-1401-9_4.
+==PAGE:79==
 BIBLIOGRAPHY
 61
 Damgaard, Jesper, Bernt Grosen, Kerim Martinez, Nielsen Ole Frits, Torben H. Jørgensen, Gry Sander
@@ -2295,6 +2374,7 @@ TCE-contaminated aquifers”. PhD thesis. Technical University of Denmark.
 Galizia, D. Audrey and Charles Thompson (2010). Toxicological review of cis-1,2-dichloroethylene and
 trans-1,2-dichloroethylene. Tech. rep. Integrated Risk Information System (IRIS) U.S. Environmental
 Protection Agency. eprint: https://iris.epa.gov/static/pdfs/0418tr.pdf.
+==PAGE:80==
 62
 BIBLIOGRAPHY
 Garbarini, Doug R. and Leonard W. Lion (1986). “Influence of the nature of soil organics on the sorp-
@@ -2339,6 +2419,7 @@ org/10.1201/b17118.
 He, Jianzhong, Victor F. Holmes, Patrick K. H. Lee, and Lisa Alvarez-Cohen (2007). “Influence of
 Vitamin B12 and Cocultures on the Growth of Dehalococcoides Isolates in Defined Medium”. In:
 Applied and Environmental Microbiology 73.9, pp. 2847–2853. DOI: 10.1128/AEM.02574-06.
+==PAGE:81==
 BIBLIOGRAPHY
 63
 He, Y. T., J. T. Wilson, C. Su, and R. T. Wilkin (2015). “Review of Abiotic Degradation of Chlo-
@@ -2382,6 +2463,7 @@ Hvid, Jens Martin, Frans Van Buchem, Frank Aandreasen, Emma Sheldon, and Ida Lyk
 (2021). “Stratigraphy and petrophysical characteristics of Lower Paleocene cool-water carbonates,
 Faxe quarry, Denmark”. In: Bulletin of the Geological Society of Denmark. URL: https://doi.org/10.
 37570/bgsd-2021-69-07.
+==PAGE:82==
 64
 BIBLIOGRAPHY
 Hyun, Sung Pil and Kim F. Hayes (2015). “Abiotic reductive dechlorination of cis-DCE by ferrous
@@ -2426,6 +2508,7 @@ Zero Valent Iron Injection”. In: Environmental Science & Technology 49.14. PMI
 8656. DOI: 10.1021/acs.est.5b00719.
 Kondo, Katsuhito, Akihiro Okamoto, Kazuhito Hashimoto, and Ryuhei Nakamura (2015). “Sulfur-
 Mediated Electron Shuttling Sustains Microbial Long-Distance Extracellular Electron Transfer with
+==PAGE:83==
 BIBLIOGRAPHY
 65
 the Aid of Metallic Iron Sulfides”. In: Langmuir 31.26. PMID: 26070345, pp. 7427–7434. DOI: 10.1021/
@@ -2469,6 +2552,7 @@ In: Journal of Hydrology 175.1, pp. 473–509. ISSN: 0022-1694. DOI: https://doi
 1694(96)80021-7.
 Liu, Xiaokun, Lian Zhang, Rui Shen, Qihong Lu, Qinglu Zeng, Xiaojun Zhang, Zhili He, Simona
 Rossetti, and Shanquan Wang (2023). “Reciprocal Interactions of Abiotic and Biotic Dechlorination
+==PAGE:84==
 66
 BIBLIOGRAPHY
 of Chloroethenes in Soil”. In: Environmental Science & Technology 57.37. PMID: 37665676, pp. 14036–
@@ -2513,6 +2597,7 @@ Adrian, and Ernest Marco-Urrea (2017). “Detoxification of 1,1,2-trichloroethan
 actor co-culture of Dehalogenimonas and Dehalococcoides mccartyi strains”. In: Journal of Hazardous
 Materials 331, pp. 218–225. ISSN: 0304-3894. DOI: https://doi.org/10.1016/j.jhazmat.2017.02.
 043. URL: https://www.sciencedirect.com/science/article/pii/S0304389417301310.
+==PAGE:85==
 BIBLIOGRAPHY
 67
 Mouvet, Christophe, Delphine Barberis, and Alain C.M. Bourg (1993). “Adsorption isotherms of tri-
@@ -2555,6 +2640,7 @@ Puri, Shammy (2003). “Transboundary Aquifer Resources”. In: Water Internatio
 URL: https://api.semanticscholar.org/CorpusID:153241299.
 Rathbun, R. E. (1998). “Transport, behavior, and fate of volatile organic compounds in streams”. In:
 U.S. Geological survey. DOI: 10.3133/pp1589.
+==PAGE:86==
 68
 BIBLIOGRAPHY
 Reilly, Thomas E., L. Niel Plummer, Patrick J. Phillips, and Eurybiades Busenberg (1994). “The use of
@@ -2597,6 +2683,7 @@ Sø, Helle Ugilt (2023). Naverland 26A-B, Albertslund Forureningskilder, potenti
 sudbredelse - 2023. Tech. rep. HOFOR Plan Vand.
 Sonnenborg, Torben O. (2006). “Vandressource- og stoftransportmodellering i kalk: status og mu-
 ligheder - KALK PÅ TVÆRS ATV Jord og Grundvand”. In: Danmarks og Grønlands Geologiske Under-
+==PAGE:87==
 BIBLIOGRAPHY
 69
 søgelser (GEUS). URL: https://backend.miljoeogressourcer.dk/media/lix/3130/Sonnenborg.
@@ -2640,6 +2727,7 @@ Department of Health and Human Services, Public Health Service. URL: https://her
 hero/index.cfm/reference/details/reference_id/723873.
 U.S. Environmental Protection Agency (2011). Archived Technical Fact Sheet on 1,2-Dichloroethylene.
 Technical Report EPA/690/R-11/020F. U.S. Environmental Protection Agency. URL: https://archive.
+==PAGE:88==
 70
 BIBLIOGRAPHY
 epa.gov/water/archive/web/pdf/archived-technical-fact-sheet-on-1-2-dichloroethylene.
@@ -2684,6 +2772,7 @@ Li, and Yong Yang (2020). “Field study of chlorinated aliphatic hydrocarbon de
 inated groundwater via micron zero-valent iron coupled with biostimulation”. In: Chemical Engineer-
 ing Journal 384, p. 123349. ISSN: 1385-8947. DOI: https://doi.org/10.1016/j.cej.2019.123349.
 URL: https://www.sciencedirect.com/science/article/pii/S1385894719327627.
+==PAGE:89==
 BIBLIOGRAPHY
 71
 Wu, Rifeng, Rui Shen, Zhiwei Liang, Shengzhi Zheng, Yong Yang, Qihong Lu, Lorenz Adrian, and
@@ -2716,9 +2805,13 @@ situ synthesis of FeS nanoparticles enhances Sulfamethoxazole degradation via ac
 transfer in anaerobic bacterial communities”. In: Water Research 273, p. 123025. ISSN: 0043-1354. DOI:
 https://doi.org/10.1016/j.watres.2024.123025. URL: https://www.sciencedirect.com/
 science/article/pii/S0043135424019250.
+==PAGE:90==
 This page intentionally left blank.
+==PAGE:91==
 APPENDICES
+==PAGE:92==
 This page intentionally left blank.
+==PAGE:93==
 A
 APPENDIX A
 A.1
@@ -2750,6 +2843,7 @@ ever, through direct injection and soil mixing, micro ZVI (mZVI) can be added, w
 ZVI (nZVI) can be added through injection wells (and direct injection). At the same time,
 mZI and nZVI have lower longevity as they have smaller particle diameters and higher reac-
 77
+==PAGE:94==
 78
 A. Appendix A
 tive surface areas. ZVI dechlorinates CEs via the beta elimination pathway (Figure 3.3). Fur-
@@ -2794,6 +2888,7 @@ Another combination is composite material Carbo-Iron which combines colloidal ac
 vated carbon (𝑑50 < 1𝜇m) and nZVI whose intention is to accumulate PCE for ERD. It was
 tested 4 - 6 mbs in the first aquifer of the site [Katrin et al., 2016]. However, as VC wasn’t
 found and when CSIA was conducted, isotope fractionation was found as is known from
+==PAGE:95==
 A.2. Grain size
 79
 sorption-dominated processes, microbial dechlorination by OHRB is less likely and there-
@@ -2819,6 +2914,7 @@ Figure A.1: Batch test bottles after the limestone settles
 (a) for 1 hour
 (b) for 15 hours
 Figure A.2: Vials of water extracted after the limestone settles
+==PAGE:96==
 80
 A. Appendix A
 A.3
@@ -2882,6 +2978,7 @@ produced per ELS concentrate kg [g/g] = 0.194 / 0.349 =0.556 g
 The concentration of ELS Microemulsion is 15g/L, volume of ELS Microemulsion re-
 quired [mL] = ELS concentrate mass [g] / concentration of ELS Microemulsion = 0.556/15 =
 37.075 mL
+==PAGE:97==
 A.3. Reagent calculations
 81
 Scenario D
@@ -2930,6 +3027,7 @@ produced per ELS concentrate kg [g/g] = 0.018 / 0.349 =0.052 g
 The concentration of ELS Microemulsion is 3g/L, volume of ELS Microemulsion re-
 quired [mL] = ELS concentrate mass [g] / concentration of ELS Microemulsion = 0.052/3 =
 17.368 mL
+==PAGE:98==
 82
 A. Appendix A
 A.4
@@ -2946,6 +3044,7 @@ of GeoForm powder in 10, 20 and 50 mL of tap (aerobic) water. In 10 ml, it was t
 cake batter, while 20 ml was still not fully dissolved; therefore, batches B and C, GeoForm
 (12.16g), were dissolved in 50 ml of nitrogen-purged water as it had the appropriate con-
 sistency.
+==PAGE:99==
 A.4. Experimental setup
 83
 Figure A.4: Results of dissolving GeoForm powder in varying water quantities
@@ -2958,6 +3057,7 @@ It is important to note that due to unexpected delays by the time the KB-1 was a
 batches, it was technically expired by 3 weeks. This is probably why the KB-1 changed in
 appearance as shown in Figure A.6; however, when shaken, it looked the same as before as
 seen in Figure 5.7.
+==PAGE:100==
 84
 A. Appendix A
 Figure A.6: KB-1 comparison
@@ -2968,6 +3068,7 @@ ter [mg/L] = 𝐶𝑎[%]·101325·𝐾ℎ[𝑚𝑜𝑙/𝑚3𝑃𝑎] [mol/L]* m
 A.5
 Sampling frequency and instruments
 Figure A.7: Sampling frequency and volume
+==PAGE:101==
 A.5. Sampling frequency and instruments
 85
 A.5.1
@@ -3010,6 +3111,7 @@ Anions are separated on an anion-exchange column equipped with a guard column (I
 AS22, 4 x 250mm, Ionpac AS22 Guard column, 4 x 50 mm, Thermo Scientific). Separation is
 achieved at isocratic conditions with 4.5 mM bicarbonate/ 1.4 mM carbonate as eluant. The
 flow is kept constant at 1,2 ml/min, the column compartment at 20 degrees and the total
+==PAGE:102==
 86
 A. Appendix A
 analysis time is 13 min per sample (Appendix A). A 200 µl sample loop is used, enabling
@@ -3019,6 +3121,7 @@ suppressor (Dionex AERS 500 for Carbonate, 4 mm, ThermoScientific) is operated a
 mA when using the chromatographic conditions above with the compartment held at 20
 °C. Detection is achieved by a conductivity detector (ICS-5000 Conductivity detector, Ther-
 moScientific) held at 20 °C.
+==PAGE:103==
 A.6. Results
 87
 A.6
@@ -3031,45 +3134,55 @@ Figure A.8: Batch B1 and B3 on day 57, showing darkening of B3 similar to B1 on 
 As shown in Figure A.9, the internal standard area (ISTD Area) in yellow is double
 the rest of the data and therefore the cDCE concentration of the first 16 samples should be
 doubled from approximately 60 to 120𝜇𝑔/𝐿.
+==PAGE:104==
 88
 A. Appendix A
 Figure A.9: ISTD Area is the internal standard
+==PAGE:105==
 A.6. Results
 89
 Figure A.10: cDCE levels in the control batches over time
 Figure A.11: cDCE levels in GeoForm batches over time, on day 0, ELS Microemulsion and GeoForm was
 added
+==PAGE:106==
 90
 A. Appendix A
 Figure A.12: cDCE levels in GeoForm + KB-1 batches over time, on day 0, ELS Microemulsion, KB-1 and
 GeoForm was added
 Figure A.13: cDCE levels in KB-1 batches over time
+==PAGE:107==
 A.6. Results
 91
 A.6.1
 Molar fraction of CE
 Figure A.14: Molar fraction of control over time
 Figure A.15: Molar fraction of GeoForm over time
+==PAGE:108==
 92
 A. Appendix A
 Figure A.16: Molar fraction of GeoForm+KB-1 over time
 Figure A.17: Molar fraction of KB-1 over time, without ethane or ethene except for day 73 (day 51 if. Ethene
 probably formed
+==PAGE:109==
 A.6. Results
 93
 Figure A.18: VC levels in the control batches
+==PAGE:110==
 94
 A. Appendix A
 Figure A.19: VC levels in the GeoForm batches. The outliers seen in B1 and B3 were ignored and not
 considered because it was not seen on day 51 and there was no ethene formation for it to be degradation and
 in this microcosm would have to be abiotic, if any. The interferences in the VC measurements is also a reason
 the error bars are not in all points of the GeoForm-containing batches.
+==PAGE:111==
 A.6. Results
 95
 Figure A.20: VC levels in the GeoForm+KB-1 batches
+==PAGE:112==
 96
 A. Appendix A
 Figure A.21: VC levels in the KB-1 batches
+==PAGE:113==
 A.6. Results
 97
 A.6.2
@@ -3078,13 +3191,16 @@ Figure A.22: Average Mn concentration over time in the GeoForm containing batche
 A.6.3
 Nitrate
 Figure A.23: Nitrate levels over time in the control batches
+==PAGE:114==
 98
 A. Appendix A
 Figure A.24: Nitrate levels over time in GeoForm batches
+==PAGE:115==
 A.6. Results
 99
 Figure A.25: Nitrate levels over time in the GeoForm + KB-1 batches
 Figure A.26: Nitrate levels over time in the KB-1 batches
+==PAGE:116==
 100
 A. Appendix A
 A.6.4
@@ -3202,22 +3318,28 @@ D3
 1971
 1950
 Figure A.27: NVOC levels in batch A, only points below the red line should be considered
+==PAGE:117==
 A.6. Results
 101
 Figure A.28: NVOC levels in batch B, only points below the red line should be considered
 Figure A.29: NVOC levels in batch C, only points below the red line should be considered
+==PAGE:118==
 102
 A. Appendix A
 Figure A.30: NVOC levels in batch D, only points below the red line should be considered
+==PAGE:119==
 B
 APPENDIX B
 103
+==PAGE:120==
 104
 B. Appendix B
 Figure B.1: Geology of the Naverland site COWI, 2023
+==PAGE:121==
 B. Appendix B
 105
 Figure B.2: The transect of the geology cross-section shown in Figure 4.1 from COWI, 2023
+==PAGE:122==
 106
 B. Appendix B
 Figure B.3: Smaller scale geology of the site COWI, n.d.

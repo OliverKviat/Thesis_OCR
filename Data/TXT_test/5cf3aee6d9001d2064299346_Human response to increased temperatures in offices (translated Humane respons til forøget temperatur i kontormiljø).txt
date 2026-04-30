@@ -1,9 +1,11 @@
+==PAGE:1==
 HUMAN RESPONSE TIL FORØGET TEMPERATUR I
 KONTORMILJØ
 Danmarks Tekniske Universitet
 Afandling skrevet af
 Rihab Hejjo
 Maj 2019
+==PAGE:2==
 Titel blad
 Titel
 Human response til forøget temperatur i kontormiljø
@@ -27,6 +29,7 @@ Universitet
 Danmarks Tekniske Universitet
 Vejleder
 Pawel Wargocki
+==PAGE:3==
 Forord
 Denne rapport er et speciale projekt p˚a Danmarks Tekniske Universitet indenfor studieretnin-
 gen bygningsdesign med energi og indeklima som hovedretning. Projektperioden varede fra den
@@ -42,6 +45,7 @@ samt udførelse. En tak skal ogs˚a g˚a til de testpersoner, som deltog i ekspe
 gjorde det muligt at udføre. Den sidste tak er til min familie, som har støtet mig og hjulpet mig
 igennem det nye ˚ar med pasning af min nyfødte dater, der har overværet min rapport skrivning
 og mine op- og nedture, som hun har besvaret med smil og later.
+==PAGE:4==
 Resume
 Denne rapport repræsenterer et feltstudie, som har haf til form˚al at belyse hvordan et speciﬁkt
 indeklima, kan have indﬂydelse og for˚arsage en ringere præstation hos mennesker samt give
@@ -65,6 +69,7 @@ net set ikke indﬂydelse p˚a deres præstation. Af de tests, som skulle m˚ale
 tion, var der kun f˚a af disse, som viste en signiﬁkant forskel p˚a p <0,05. For de fysiologiske tests
 var det kun ETCO2 under den sidste m˚aling, som gav en signiﬁkant forskel, mens de resterende
 fysiologiske m˚alinger ikke viste nogen forskel i mellem de to forhold.
+==PAGE:5==
 Abstract
 This thesis represents a ﬁeld study aimed to illustrate how a speciﬁc indoor climate can inﬂuen-
 ce and cause a poor performance in humans and further more if physical and mental discomfort
@@ -89,6 +94,7 @@ expectations, this had no major inﬂuence on their performance. Only few of the
 tests showed a signiﬁcant diﬀerence of p <0.05 between the two condition 22°C and 27°C. For the
 physiological measurements only ETCO 2 gave a signiﬁcant diﬀerence, which was not expected.
 Te remaining physiological measurements showed no diﬀerence between the two conditions.
+==PAGE:6==
 Forkortelser
 Bygningsreglementet 2018 = BR 2018
 PMV = Predicted Mean Vote = Forventet middelvotering
@@ -99,6 +105,7 @@ ETCO2 = End tidal Carbondioxid = Partialtrykket af CO2 til sidst i ud˚andingslu
 SpO2 = Blood Oxygen Saturation = blodets iltmætning i procent
 RR = Respirationshastighed
 min = Minuter
+==PAGE:7==
 Indholdsfortegnelse
 1 Introduktion
 1
@@ -212,6 +219,7 @@ Opfatelse af miljøet
 5.2.2
 Subjektive vurderinger af egen præstation . . . . . . . . . . . . . . . . . .
 27
+==PAGE:8==
 5.2.3
 SBS - Syg Bygning Syndrom . . . . . . . . . . . . . . . . . . . . . . . . . .
 29
@@ -252,6 +260,7 @@ Tabeller
 47
 Bilag
 48
+==PAGE:9==
 1
 Introduktion
 I Danmark er der nogle generelle regler og anbefalinger inden for det termiske indeklima, som
@@ -272,6 +281,7 @@ b˚ade om sommeren og vinteren. Rum med for kolde temperaturer kan give anlednin
 eksempel tør hud mens høje temperaturer kan give anledning til træthed og hovedpine. Selvom
 at temperatur opleves forskelligt, er det vigtigt at opretholde den p˚a et acceptabelt niveau.
 1
+==PAGE:10==
 2
 Litteratur studie
 2.1
@@ -310,6 +320,7 @@ samtidig med at testpersonerne er termisk neutrale, vil arbejdskvaliteten ikke v
 som ved 22°C, hvor de ogs˚a er termisk neutrale. Derfor g˚ar Lan et al kritik ud p˚a, at den adaptive
 model ikke altid kan forudsige termiske eﬀekt p˚a ens performance.
 2
+==PAGE:11==
 2 Litteratur studie
 2.2
 Indeklima
@@ -342,6 +353,7 @@ eksempel bliver for koldt eller varmt. Det kan være at skife tøj til noget mer
 ˚abne/lukke vinduer eller ﬁnde andre omgivelselser s˚asom at ligge sig under dynen ved kulde
 (Humphreys et al, 1998).
 3
+==PAGE:12==
 2 Litteratur studie
 2.2.2
 PMV model
@@ -370,6 +382,7 @@ over henvises der til DS 474 med hensyn til vejledende temperaturer i kontormilj
 bør temperaturen ligge mellem 20-24°C, dog er det tilladt i sommerperioden at have temperaturer
 mellem 23-26°C.
 4
+==PAGE:13==
 2 Litteratur studie
 Tabel 1 viser anbefalinger for PMV ifølge DS/EN 15251. Den viser tre forskellige kategorier A, B
 og C, som hver især indeholder grænser for PMV og angiver dermed ogs˚a en PPD.
@@ -407,6 +420,7 @@ ogs˚a være med til at p˚avirke den termiske komfort, som for eksempel de fakt
 benyter til beregning af termisk komfort s˚asom tøjniveau. N˚ar alle disse faktorer er i balance kan
 termisk komfort opn˚as, hvilket vil være tilfredsstillende for 95 % jf. Figur 1.
 5
+==PAGE:14==
 2 Litteratur studie
 2.3
 Hypotese
@@ -423,6 +437,7 @@ ikke fysisk og psykisk ubehag under forudsætningen, at de beﬁnder sig i termi
 Hypotese 1: Højere temperatur i kontorlokaler p˚avirker personers præstation ringere og for˚arsager
 ogs˚a fysisk og psykisk ubehag selv med forudsætningen, at de beﬁnder sig i termisk komfort
 6
+==PAGE:15==
 3
 Metode
 I dete afsnit er det beskrevet hvordan eksperimentet er udført, under hvilke betingelser og hvilket
@@ -503,6 +518,7 @@ Gruppe 2
 Gruppe 1
 Gruppe 2
 7
+==PAGE:16==
 3 Metode
 Prøveugen uge 43 blev brugt p˚a at gøre testpersonerne bekendt med m˚aleudstyret, testene og
 spørgeskemaerne s˚aledes, at det ikke var nyt for dem til selve eksperimentet. Derudover var der
@@ -527,6 +543,7 @@ og der var ingen mulighed for at tage en rygepause. Da manglende nikotin typisk 
 svær koncentrationsbesvær, kunne det muligvis p˚avirke og have indﬂydelse p˚a resultaterne, som
 alts˚a ikke blev for˚arsaget af den termiske eksponering (min.medicin.dk, 2016).
 8
+==PAGE:17==
 3 Metode
 3.3
 Testlokale
@@ -552,6 +569,7 @@ turen i b˚ade test- og ventelokalet. I Tabel 3 kan rækkevide samt nøjagtighed
 parametre i HOBO loggeren. HOBO loggeren m˚aler i intervaller p˚a et minut (onsetcomp.com,
 2019)
 9
+==PAGE:18==
 3 Metode
 Tabel 3: HOBO logger
 HOBO logger
@@ -591,6 +609,7 @@ M˚aleudstyret kommer fra Japan og er vist i Tabel 5 (LifeSense, 2014). ETCO2 m�
 % CO2 der ud˚andes. ETCO2 kan m˚ales i &/kPa eller i mmHg. Normale værdier for ETCO2 ligger
 mellem 4-5,7 %/kPa (respironics.com, 2018). SpO2 m˚aler blodets iltmætning i procent.
 10
+==PAGE:19==
 3 Metode
 Den viser alts˚a hvor mange % O2 blodets celler indeholder. Normale værdier for SpO2 ligger
 mellem 95-100 % (withings.com, 2018). Respirationshastigheden viser hvor mange vejrtrækninger,
@@ -627,6 +646,7 @@ Nøjagtighed
 • Ingen info
 • Ingen info
 11
+==PAGE:20==
 3 Metode
 3.4.5
 Finger temperatursensor
@@ -643,6 +663,7 @@ Nøjagtighed
 • ± 0,2°C
 Figur 4: Skin spot
 12
+==PAGE:21==
 3 Metode
 3.4.6
 T˚areﬁlm
@@ -671,6 +692,7 @@ Redirection = Testen viser en person, som har to runde hænder. I testen vil den
 sort, mens den anden være hvid, og her skal testpersonerne besvare med tastaturknapperne hvil-
 ken af de to hænder, der er sort.
 13
+==PAGE:22==
 3 Metode
 Figur 5: Redirection eksempel
 Derudover er der ogs˚a addition, subtraktion og multiplikation b˚ade uden og med feedback.
@@ -689,6 +711,7 @@ Figur 6. Alle spørgeskemaer kan ses i Bilag A. Derudover blev de testet i en Ts
 hvor de stigende skal forbinde tal p˚a 40 sekunder. Denne test kan ﬁndes i Bilag B.
 Figur 6: Eksempel p˚a besvarelse af spørgeskema skala (Clausen, 2018)
 14
+==PAGE:23==
 3 Metode
 3.5
 Eksperimentet
@@ -712,9 +735,11 @@ af testene ses samt hvilke fysiologiske tests der blev foretaget hvorn˚ar. P˚a
 le celler spørgeskemaerne mens de lilla celler illustrerer de fysiologiske tests af testpersonerne.
 Eksperimentet afslutes ved at tage en spytprøve, t˚areﬁlm test samt m˚aling af ETCO2 og SpO2.
 15
+==PAGE:24==
 3 Metode
 Figur 7: Tidsplan under eksperimentet, som viser tiden for hver enkel m˚aling samt tests
 16
+==PAGE:25==
 4
 Databehandling
 Inden p˚abegyndelse af analyse af resultaterne, sorteres først den data, som ikke skal benytes i
@@ -735,6 +760,7 @@ Omregning af acceptabilitet skala:
 (b) Omregningsformel
 Figur 8: Eksempel p˚a omregning af skala
 17
+==PAGE:26==
 4 Databehandling
 4.2
 Statistik og sofware
@@ -751,6 +777,7 @@ spørgeskemaerne og de fysiologiske test. Denne analysemodel er designet til at 
 prøver med en signiﬁkant p˚a p = 0,05, og fortæller om hvorvidt de to relateret prøver er ens (Sie-
 gel, 1956).
 18
+==PAGE:27==
 5
 Resultater
 I dete kapitel vil resultaterne af eksperimentet blive præsenteret. Resultaterne er illustreret ved
@@ -774,6 +801,7 @@ nogenlunde efer lidt over en time og forbliver lige over 27°C. 9 viser, at midd
 27,4°C mens maksimum er 27,6°C, hvilket er forholdsvist acceptabelt.
 Figur 9: Temperaturen i testlokalet for 22°C og 27°C som funktion af tiden
 19
+==PAGE:28==
 5 Resultater
 Tabel 9: Minimum, maksimum,
 middelværdi og std.afvigelse for
@@ -806,6 +834,7 @@ dog som en lodret ret linje. Dete er p˚a grund af, at der er forskellige slutid
 ﬁre forskellige eksperimenter, som hvert forhold indeholder gennemsnitet af. Koncentrationen
 for begge forhold holder sig dog under 1000 ppm, hvilket er kravet i kontorbygninger (BR, 2018).
 20
+==PAGE:29==
 5 Resultater
 Figur 11 viser den relative luffugtighed i procent for begge forhold. Ligesom for temperaturen
 og CO2 koncentrationen, s˚a stiger den relative luffugtighed ogs˚a, n˚ar testpersonerne indtræder
@@ -831,6 +860,7 @@ sonerne vurderer deres termiske sensation i starten til tiden 0 min at være mel
 neutral for 22°C. Efer 17 min ligger deres vurderinger tætere p˚a neutral, hvor enkelte enten føler
 sig lidt varmere eller lidt køligere.
 21
+==PAGE:30==
 5 Resultater
 Dete ændrer sig igen, hvor hovedparten af vurderingerne ligger mellem neutral og lidt køligt,
 og hvor minimumværdien ligger mellem -1,9 og -0,15 jf. Tabel 10. For forholdet 27°C ligger me-
@@ -842,6 +872,7 @@ Figur 12: Termisk sensation for 22°C og 27 °C: y-aksen angiver -3 =
 koldt, -2 = køligt, -1 = lidt køligt, 0 = neutral, 1 = lidt varmt, 2 =
 varmt, 3 = hedt
 22
+==PAGE:31==
 5 Resultater
 Tabel 10: Statistiske værdier for termisk sensation, hvor eﬀekt størrelse (ES) med værdierne 0,2, 0,5, og
 0,8 indikerer henholdsvis lille, mellem og stor ændring
@@ -929,6 +960,7 @@ forholdet 27°C.
 Figur 13: Termisk sensation for 22°C og 27°C: y-aksen angiver -3 = koldt, -2 = køligt, -1 = lidt køligt, 0 = neutral, 1 =
 lidt varmt, 2 = varmt, 3 = hedt
 23
+==PAGE:32==
 5 Resultater
 Figur 14 viser testpersonernes vurdering af det termiske miljø som funktion af tiden. Grafen viser,
 at for begge temperaturer vurderer testpersonerne et d˚arligere termisk miljø sidst i eksperimen-
@@ -1015,6 +1047,7 @@ ES
 0,24
 0,20
 24
+==PAGE:33==
 5 Resultater
 Figur 15 viser testpersonernes opfatelse af lufkvaliteten som funktion af tiden. For 22°C opfater
 testpersonerne lufkvaliteten acceptabelt og nogenlunde ens i løbet af hele eksperimentet. De
@@ -1101,6 +1134,7 @@ ES
 0,28
 0,31
 25
+==PAGE:34==
 5 Resultater
 P˚a Figur 16 kan testpersonernes vurdering af lugten i testlokalet ses som funktion af tiden. For
 begge forhold vurderer testpersonerne, at der er lidt lugt i lokalet. Det kan ses, at graferne falder
@@ -1188,6 +1222,7 @@ ES
 0,18
 0,07
 26
+==PAGE:35==
 5 Resultater
 5.2.2
 Subjektive vurderinger af egen præstation
@@ -1249,6 +1284,7 @@ ES
 0,04
 0,18
 27
+==PAGE:36==
 5 Resultater
 Testpersonernes egen vurdering af deres ydeevne fra spørgeskemaet NASA-TLX er illustreret p˚a
 Figur 18. Med ydeevne forst˚as deres egen vurdering af hvor godt de løste testene, hvor 100 angiver
@@ -1265,6 +1301,7 @@ med at være v˚agne og ender med at vurdere dem selv som hverken v˚agne eller 
 15 kan det ses, at middelværdien som funktion af tiden er stigende for begge forhold, dog med
 undtagelse ved 225 min, hvor den ved 27°C afager lidt.
 28
+==PAGE:37==
 5 Resultater
 Figur 19: Søvnighed for 22°C og 27°C: y-aksen angiver 0 = Meget v˚agen, 9 = Meget søvnig
 Tabel 15: Statistiske værdier for søvnighed, hvor eﬀekt størrelse (ES) med værdi-
@@ -1341,6 +1378,7 @@ d˚arligere og mere indelukket. Det ses ogs˚a i Tabel 16, som viser, at middelv
 17 min til 225 min. Der er ogs˚a en tydelig signiﬁkant forskel med en p-værdi ≤0,001 ved alle 3
 tidspunkter.
 29
+==PAGE:38==
 5 Resultater
 Figur 20b fortæller om hvorvidt testpersonerne har en løbende næse eller en tør næse. Mellem
 22°C og 27°C er der næsten ingen forskel til tiden 17 min og 110 min, men ved 225 min ses en
@@ -1427,6 +1465,7 @@ ES
 0,09
 0,32
 30
+==PAGE:39==
 5 Resultater
 Figur 21a viser deres vurdering om hvorvidt de føler tør hud. Det vises som funktion af tiden
 og y-aksens værdier angiver tør hud ved 100 og ikke tør hud ved 0. Figuren viser den største
@@ -1526,6 +1565,7 @@ ES
 0,26
 0,30
 31
+==PAGE:40==
 5 Resultater
 5.3
 Fysiologiske test
@@ -1549,6 +1589,7 @@ Mellem 22°C og 27°C er der ingen signiﬁkant forskel under nogen tidspunkter.
 (b) y-aksen angiver vejrtrækning/minut
 Figur 22: ETCO2 og Respirationshastighed for 22°C og 27°C
 32
+==PAGE:41==
 5 Resultater
 Tabel 20: Statistiske værdier for ETCO2, hvor eﬀekt
 størrelse (ES) med værdierne 0,2, 0,5, og 0,8 indikerer hen-
@@ -1682,6 +1723,7 @@ lavet en Cochran Q analyse, som er en analysemodel passende til denne t˚areﬁl
 analyse beregningen kan ses i Bilag E. Analysemodellen gav en signiﬁkantniveau p˚a p-værdi =
 0,20, hvilket betyder, at der ikke er signiﬁkant forskel mellem 22°C og 27°C for t˚areﬁlm kvaliteten.
 33
+==PAGE:42==
 5 Resultater
 Figur 23: T˚areﬁlm kvalitet for 22°C og 27°C: type 1 = god, type 2 = mindre god, type 3 = mindre ringe, type 4 = ringe
 5.4
@@ -1737,6 +1779,7 @@ Efer blok 2 (225)
 56,4
 I>II>III
 34
+==PAGE:43==
 5 Resultater
 5.5
 Neurobehavioral test
@@ -1750,6 +1793,7 @@ lille smule bedre under forholdet for 27°C, hvilket ikke var forventet.. Der er
 tilvæksten i % er negativ, hvilket er ensbetydende med, at der blev scoret ﬂere point ved 27°C.
 Figur 24: Beregningstests og neurobehavioral test under 22°C og 27°C for blok 1 og blok 2
 35
+==PAGE:44==
 5 Resultater
 Tabel 24: Tabel for beregningstests og neurobehavioral test med p-værdi, ES og △. ES har
 værdierne 0,2, 0,5, og 0,8 som indikerer henholdsvis lille, mellem og stor ændring
@@ -1816,6 +1860,7 @@ Blok 2 (167)
 -4%
 4%
 36
+==PAGE:45==
 6
 Diskussion
 Form˚alet med eksperimentet var at undersøge om hvorvidt temperaturer under almindeligt kon-
@@ -1848,6 +1893,7 @@ forventes, da den ønskede temperatur i testlokalet netop var højere. Overordne
 det termiske miljø, luf friskheden og lufkvaliteten vurderet d˚arligere for forholdet 27°C med en
 signiﬁkant forskel p˚a p < 0,05.
 37
+==PAGE:46==
 6 Diskussion
 Søvnighed jf. Figur 19 og viljen til at udøve en indsat jf. Figur 17 blev vurderet ringere i løbet
 af eksperimentet. De vurderede sig mere søvnige i slutningen af eksperimentet end i starten, og
@@ -1886,6 +1932,7 @@ forskel p˚a p = 0,025, hvilket er ret interessant, da det ikke var forventet. E
 min og 260 min. Der er alts˚a 20 min forskel fra n˚ar ETCO2 bliver m˚alt ved 240 min, til der igen
 skal m˚ales ved 260 min og indimellem disse 20 min, ligger der en pause p˚a 5 min.
 38
+==PAGE:47==
 6 Diskussion
 Respirationshastighedens resultater er i sig selv ikke særlig spændende, men da den let hænger
 sammen med ETCO2, er det meget interessante resultater. Da ETCO2 stiger ved 260 min, har det
@@ -1924,6 +1971,7 @@ at sammenligne resultaterne med disse to temperaturer alligevel, da det vil vær
 ringere subjektive vurderinger og præstation i det aktuelle eksperiment i forhold til det tidligere
 eksperiment.
 39
+==PAGE:48==
 6 Diskussion
 Lufkvaliteten ved 22°C indikerer, at der ikke er stor forskel mellem det tidligere eksperiment og
 det aktuelle eksperiment, hvorimod der for 27°C ﬁndes en større forskel. I det tidligere eksperi-
@@ -2025,6 +2073,7 @@ ETCO2
 39,8
 35,3
 40
+==PAGE:49==
 6 Diskussion
 6.1
 Fejlkilder og usikkerheder
@@ -2061,6 +2110,7 @@ løsninger fra de testpersoner, som var langsommere, og som derfor resulterede i
 nemtænkte løsninger. Der blev nemlig lagt vægt p˚a, at testene skulle løses s˚a godt, præcist og
 hurtigt som muligt.
 41
+==PAGE:50==
 7
 Konklusion
 Rapporten har haf til form˚al at undersøge hvilke parametre og i hvilket omfang
@@ -2093,6 +2143,7 @@ Hypotese 0: Højere temperatur i kontorlokaler p˚avirker ikke personers præsta
 ikke fysisk og psykisk ubehag under forudsætningen, at de beﬁnder sig i termisk komfort
 Dermed accepteres Hypotese 0 mens hypotese 1 forkastes.
 42
+==PAGE:51==
 8
 Yderligere analyser og undersøgelser
 Eksperimentet har ikke beskæfiget sig med alle resultater, da tekstskrivningen uden feedback og
@@ -2111,6 +2162,7 @@ ligt. Kvinder er tilbøjelig til at have mindre tøj p˚a end mænd og det kan a
 analysere, hvor forskellige kvinderne var fra mændene i forhold til vurderingen af indeklimaet
 og den termiske sensation.
 43
+==PAGE:52==
 Referencer
 Howald Petersen , B. (2005) Komfortventilation. DTU byg.
 Rupp, R. F.
@@ -2173,6 +2225,7 @@ Pyrobuton. Fundet [05/03/2019]. P˚a [htp://www.pyrobuton.com/products/datalogge
 [htps://www.sundhed.dk/borger/patienthaandbogen/hud/sygdomme/svedgener/sved/].
 (2012) - Bedøvelse med bivirkning. Fundet [03/04/2019]. P˚a
 44
+==PAGE:53==
 [htps://aktuelnaturvidenskab.dk/ﬁleadmin/Aktuel˙Naturvidenskab/nr-4/an4-2012ph-mus.pdf].
 Lars
 Nielsen:
@@ -2193,6 +2246,7 @@ and-pulse-oximeter/pulse-oximeter/po-30.php].
 Yoshitake H. 1973. Occupational fatigue-Approach from subjective symptoms, Tokyo, Japan: Te insti-
 tute for science of labour( in Japanese).
 45
+==PAGE:54==
 Figurer
 1
 Termisk komfort index (Tofum, 2018) . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -2279,6 +2333,7 @@ mindre ringe, type 4 = ringe
 Beregningstests og neurobehavioral test under 22°C og 27°C for blok 1 og blok 2 .
 35
 46
+==PAGE:55==
 Tabeller
 1
 PMV anbefalinger fra DS/EN 15251
@@ -2380,8 +2435,10 @@ Resultater fra Lan et al’s eksperiment sammenlignet med det aktuelle eksperime
 kante resulter fra aktuel eksperiment er taget med . . . . . . . . . . . . . . . . . . . . . . .
 40
 47
+==PAGE:56==
 Bilag
 48
+==PAGE:57==
 Time:   
 00 
 Subject No. 
@@ -2398,6 +2455,7 @@ Not at all
 Extremely  
 Bilag A - spørgeskemaer
 49
+==PAGE:58==
 Time:   
 00 
 Subject No. 
@@ -2446,6 +2504,7 @@ Sleepy (but not fighting sleep)
 Very sleepy (fighting sleep)
 Bilag A - spørgeskemaer
 50
+==PAGE:59==
 Time: 
 00 
 Subject No. 
@@ -2515,6 +2574,7 @@ Y / N
  
 Bilag A - spørgeskemaer
 51
+==PAGE:60==
 Time:   
 1-1 
 Subject No. 
@@ -2577,6 +2637,7 @@ Notice the distinction between acceptable and unacceptable.
  
 Bilag A - spørgeskemaer
 52
+==PAGE:61==
 2. Assess odour intensity. 
  
  
@@ -2643,6 +2704,7 @@ Nose
 Throat 
 Bilag A - spørgeskemaer
 53
+==PAGE:62==
 Time:   
 1-1 
 Subject No. 
@@ -2717,6 +2779,7 @@ Cold
 Hot 
 Bilag A - spørgeskemaer
 54
+==PAGE:63==
 Time:   
 1-2 
 Subject No. 
@@ -2771,6 +2834,7 @@ Too quiet
 Too noisy 
 Bilag A - spørgeskemaer
 55
+==PAGE:64==
 Right now, I feel as follows: 
 （please tick the scales below at the place that best represents how you feel at this moment） 
  
@@ -2837,6 +2901,7 @@ Feeling bad
 Feeling good 
 Bilag A - spørgeskemaer
 56
+==PAGE:65==
  
                                                                        
  
@@ -2881,6 +2946,7 @@ Low
 High 
 Bilag A - spørgeskemaer
 57
+==PAGE:66==
 Time:   
 1-3 
 Subject No. 
@@ -2932,6 +2998,7 @@ A little
 A lot 
 Bilag A - spørgeskemaer
 58
+==PAGE:67==
 Cue Utilization
 Page 1 of 1
 Indeklimaundersøgelse
@@ -2940,55 +3007,79 @@ http://www.ie.dtu.dk/kontorstoj/tsai.asp?ve=a
 TPT-01           Subject ID:_________
 Bilag B - Tsai Partingson
 59
+==PAGE:68==
 Bilag C - Omregningsformler
 Omregning af skala for PAQ - lugt, øjne, næse og hals:
 Omregning af søvnighed skala:
 Omregning af termisk sensation skala:
 60
+==PAGE:69==
 Bilag D -Boksplots og diagrammer
 61
+==PAGE:70==
 Bilag D -Boksplots og diagrammer
 62
+==PAGE:71==
 Bilag D -Boksplots og diagrammer
 63
+==PAGE:72==
 Bilag D -Boksplots og diagrammer
 64
+==PAGE:73==
 Bilag D -Boksplots og diagrammer
 65
+==PAGE:74==
 Bilag D -Boksplots og diagrammer
 66
+==PAGE:75==
 Bilag D -Boksplots og diagrammer
 67
+==PAGE:76==
 Bilag D -Boksplots og diagrammer
 68
+==PAGE:77==
 Bilag D -Boksplots og diagrammer
 69
+==PAGE:78==
 Bilag D -Boksplots og diagrammer
 70
+==PAGE:79==
 Bilag D -Boksplots og diagrammer
 71
+==PAGE:80==
 Bilag D -Boksplots og diagrammer
 72
+==PAGE:81==
 Bilag D -Boksplots og diagrammer
 73
+==PAGE:82==
 Bilag D -Boksplots og diagrammer
 74
+==PAGE:83==
 Bilag D -Boksplots og diagrammer
 75
+==PAGE:84==
 Bilag D -Boksplots og diagrammer
 76
+==PAGE:85==
 Bilag D -Boksplots og diagrammer
 77
+==PAGE:86==
 Bilag D -Boksplots og diagrammer
 78
+==PAGE:87==
 Bilag D -Boksplots og diagrammer
 79
+==PAGE:88==
 Bilag D -Boksplots og diagrammer
 80
+==PAGE:89==
 Bilag D -Boksplots og diagrammer
 81
+==PAGE:90==
 Bilag D -Boksplots og diagrammer
 82
+==PAGE:91==
 1 = type 3+4
 0 = type 1+2
 Subject
@@ -3112,6 +3203,7 @@ ifølge tabel C (Siegel, 1956) giver det en p værdi på p = 0.20, hvor df = 1
 Cochran Q test
 Bilag E - Cochran Q test for t˚arefilm
 83
+==PAGE:92==
 N
 T
 Z
@@ -3486,6 +3578,7 @@ SBS
 78
 Bilag F - p-værdier og ES-værdier
 84
+==PAGE:93==
 N
 T
 Z

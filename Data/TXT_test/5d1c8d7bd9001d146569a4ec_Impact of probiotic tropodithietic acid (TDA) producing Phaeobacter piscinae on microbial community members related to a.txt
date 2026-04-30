@@ -1,3 +1,4 @@
+==PAGE:1==
  
  
  
@@ -12,6 +13,7 @@ producing Phaeobacter piscinae on microbial
 community members related to aquaculture 
 live-feed 
  
+==PAGE:2==
 Josefine Hansen 
 101577/S144493  
 Page 2 of 66 
@@ -46,6 +48,7 @@ Faculty of Science and Technology
 NO - 1432 Ås 
 Norway 
  
+==PAGE:3==
 Josefine Hansen 
 101577/S144493  
 Page 3 of 66 
@@ -104,6 +107,7 @@ Evaluation of interactions of selected strains .................................
 Selection of strains for further investigation ........................................................................... 24 
 2.5.2 
 Standard curve comparing OD600 and CFU/mL ........................................................................ 24 
+==PAGE:4==
 Josefine Hansen 
 101577/S144493  
 Page 4 of 66 
@@ -167,6 +171,7 @@ Appendix D – Growth graphs of mix-cultures ...................................
  
  
  
+==PAGE:5==
 Josefine Hansen 
 101577/S144493  
 Page 5 of 66 
@@ -205,6 +210,7 @@ Tropodithietic acid
  
  
  
+==PAGE:6==
 Josefine Hansen 
 101577/S144493  
 Page 6 of 66 
@@ -237,6 +243,7 @@ in marine larviculture.
  
  
  
+==PAGE:7==
 Josefine Hansen 
 101577/S144493  
 Page 7 of 66 
@@ -273,6 +280,7 @@ Phaeobacter slægten som probiotika i levende foder brugt i akvakultur, og derme
 mod vibriosis i marin fiskelarve kultur.  
  
  
+==PAGE:8==
 Josefine Hansen 
 101577/S144493  
 Page 8 of 66 
@@ -309,6 +317,7 @@ vibiosis in marine larviculture.
  
  
  
+==PAGE:9==
 Josefine Hansen 
 101577/S144493  
 Page 9 of 66 
@@ -343,6 +352,7 @@ Tetraselmis suecica.
 Though different finfish are being produced in somewhat the same way, there are differences dependent 
 on which species are farmed and what the individual farmer prefers to do. One procedure which is 
 consistent is how the individual species of fish is introduced to their first meal after hatching.  
+==PAGE:10==
 Josefine Hansen 
 101577/S144493  
 Page 10 of 66 
@@ -366,6 +376,7 @@ Sea bass (Dicentrarchus labrax), Sea bream (Sparus aurata), Cod (Gadus morhua) a
 (Scophthalmus maximus) which are fed live feed (Shields 2001; Sandlund and Bergh 2008).  
 The natural live feed of such fish is often copepods; however, they have been difficult to produce at 
 commercial scale. Whilst copepods and other zooplankton are used, the typical live feeds include Artemia 
+==PAGE:11==
 Josefine Hansen 
 101577/S144493  
 Page 11 of 66 
@@ -401,6 +412,7 @@ Some of the most economically important pathogens of the finfish species fed liv
 Vibrio anguillarum, Aliivibrio salmonicida, Tenacibaculum maritimum (Flexibacter maritimus) and 
 Aeromonas salmonicida¸ which cause vibriosis, flexibacteriosis and furunculosis, respectively. These 
 diseases all have preventive measure in the form of vaccines available for one or several fish species, 
+==PAGE:12==
 Josefine Hansen 
 101577/S144493  
 Page 12 of 66 
@@ -436,6 +448,7 @@ looked upon with discredit (Shields 2001; Cabello 2006). The development of resi
 several antibiotics, in bacteria, is not controllable, and continuous use can have negative consequences on  
 ecology and  general public health (Oliveira et al. 2012; Shields 2001; Skjermo and Vadstein 1999). 
 Furthermore, antibiotics are often given orally via feed and thereby rely on the individual ingestion. The 
+==PAGE:13==
 Josefine Hansen 
 101577/S144493  
 Page 13 of 66 
@@ -472,6 +485,7 @@ in the upper mixing layer and coastal areas, and lives as surface colonizers. Se
 group produce antibacterial bioactive compounds. The two most studied of these are tropodithietic acid 
 (TDA) and Indigoidine (Buchan, González, and Moran 2005; Dittmann et al. 2018; Gram et al. 2015). 
 Indigoidine is a blue pigment which has been known for many years with the colouration of the compound 
+==PAGE:14==
 Josefine Hansen 
 101577/S144493  
 Page 14 of 66 
@@ -502,6 +516,7 @@ autoinducer when present in sub-lethal concentrations. This function of TDA has 
 Silicibacter sp. and Phaeobacter gallaeciensis, suggesting that it applies to the Roseobacter group and the 
 potential of TDA being more than an antimicrobial compound (Berger et al. 2011; Beyersmann et al. 2017; 
 H. Geng and Belas 2010). 
+==PAGE:15==
 Josefine Hansen 
 101577/S144493  
 Page 15 of 66 
@@ -538,6 +553,7 @@ negative mutant was used (Figure 3). In addition it was seen that the presence o
 reduces mortality, regardless of the pathogen not being present.  Further, Phaeobacter piscinae and P. 
 inhibens, which also effects V. harveyi, has also been proven efficient towards V. anguillarum (Grotkjær et 
 al. 2016; D’Alvise et al. 2012; E. C. Sonnenschein et al. 2017). In connection to the study by D’Alvise et al. 
+==PAGE:16==
 Josefine Hansen 
 101577/S144493  
 Page 16 of 66 
@@ -564,6 +580,7 @@ The use of a probiotic that produces an antibacterial compound could raise the c
 development of resistance or tolerance. However, several studies involving both long term exposure, and 
 increased concentration of TDA towards V. anguillarum have not been able to isolate resistant bacterial 
 mutants (Porsby et al. 2011; Rasmussen et al. 2016).  
+==PAGE:17==
 Josefine Hansen 
 101577/S144493  
 Page 17 of 66 
@@ -599,6 +616,7 @@ these types interactions is present, is dependent of the involved organisms and 
 live in. The mutualistic interaction is beneficial for both organisms, as they benefit from products from one 
 another, while only one benefits from a commensal interaction. These cause no harm to each other, as a 
 parasitic interaction does. Here one benefits from the other while harming the host (Leung 2008; Shandy. 
+==PAGE:18==
 Josefine Hansen 
 101577/S144493  
 Page 18 of 66 
@@ -634,6 +652,7 @@ weapon and signal molecule.
 From this knowledge the question of the function of Phaeobacter as probiotic was raised; is the probiosis 
 an attack on the target organism or is it a result of signal molecules, or a combination of both? This is yet to 
 be answered (Beyersmann et al. 2017).  
+==PAGE:19==
 Josefine Hansen 
 101577/S144493  
 Page 19 of 66 
@@ -668,6 +687,7 @@ community. During the study, the found community members of rotifers were compar
 of the production water. Here it was found that they do not correspond completely, but when rotifers were 
 cultured before identification, they were more similar (Ishino et al. 2012). With this it is suggested that 
 laboratory cultures communities might not fully reflect the natural abundance of the members.   
+==PAGE:20==
 Josefine Hansen 
 101577/S144493  
 Page 20 of 66 
@@ -702,6 +722,7 @@ use in a live feed model system, where the interactions of the community and the
 2.1 Bacterial strains 
 Bacterial strains used in this study were isolated from the natural microbiome of microalgae Tetraselmis 
 suecica obtained from SELONDA Aquaculture SA, Greece. All of the 16 isolated bacteria were randomly 
+==PAGE:21==
 Josefine Hansen 
 101577/S144493  
 Page 21 of 66 
@@ -734,6 +755,7 @@ mixing colony mass into it. If formation of bubbles was seen this indicated a po
 By smearing colony mass onto ready-made oxidase slides from BD BBLTM DrySlideTM Oxidase [231746, 
 Becton Dickinson and Company, MD 21152 USA], the oxidase activity was tested. Development of 
 blue/purple colour within 20 sec indicated a positive oxidase activity.  
+==PAGE:22==
 Josefine Hansen 
 101577/S144493  
 Page 22 of 66 
@@ -768,6 +790,7 @@ Until further use the PCR products were stored at -20°C.
 Purification of PCR product was done by a modified procedure of the single-step PCR product purification 
 by Werle et al. (1994). 10 U Exonuclease [Fisher Scientific; EN0581] and 5 U Fast Alkaline Phosphatase 
 [Fisher Scientific; EF0651] were added to each PCR product and in T100TM Thermal Cycler [Biorad] incubated 
+==PAGE:23==
 Josefine Hansen 
 101577/S144493  
 Page 23 of 66 
@@ -799,6 +822,7 @@ The strains were recovered on MA and one colony of each strain were inoculated s
 and incubated at 25°C, 200 rpm. One colony were re-streaked on IOCMA, and incubated at 25°C. For test in 
 IOCG, strains were inoculated in 5 mL IOCG from freeze stock, and incubated at 25°C, 200 rpm. All cultures 
 and plates were incubated for 1 week with daily inspection for growth. 
+==PAGE:24==
 Josefine Hansen 
 101577/S144493  
 Page 24 of 66 
@@ -832,6 +856,7 @@ cell density when performing the co-inoculation experiments.
 Strains were recovered in MB from freeze stock. A 10-fold dilution series was made, of each overnight 
 culture, with 2% IO to a dilution of 10-7 and 100µL of the dilutions 10-4 – 10-7 were plated on MA and 
 incubated at 25°C, CFU were counted after 4-5 days. Additionally a 2-fold dilution series to a total dilution 
+==PAGE:25==
 Josefine Hansen 
 101577/S144493  
 Page 25 of 66 
@@ -867,6 +892,7 @@ improved counting chamber. Culture was diluted with f/2-Si+NH4 to a concentratio
 and 10 mL transferred to each a 50 mL Erlenmeyer flask.   
 Each bacterial pre-culture was diluted 100-fold and 100µL inoculated individually in each one algae culture, 
 resulting in an inoculation level of approximately 105 cells/mL.  
+==PAGE:26==
 Josefine Hansen 
 101577/S144493  
 Page 26 of 66 
@@ -898,6 +924,7 @@ made from each mono-culture and 100µL of the dilutions 10-2 – 10-9 were plate
 Data was evaluated with Tukey's multiple comparisons test with a significance level of 0.05, by using 
 GraphPad Prism 8, version 8.1.1.  
  
+==PAGE:27==
 Josefine Hansen 
 101577/S144493  
 Page 27 of 66 
@@ -935,6 +962,7 @@ All strains were catalase positive and 12 strains positive for cytochrome C oxid
 motile and nine strains showed twitching motility. Three of the strains were ovoid of shape, and the 
 remaining strains rod shaped, of which three were elongated rods. 
  
+==PAGE:28==
 Josefine Hansen 
 101577/S144493  
 Page 28 of 66 
@@ -1149,6 +1177,7 @@ Four strains were identified as the genus Oceanicaulis, and three strains each o
 Marinobacter and Muricauda, two strains of Algoriphagus and one strain of Roseovarius (Figure 4).  
 These six genera are within the two phyla Proteobacteria and Bacteriodetes, and belonged to the classes 
 Alphaproteobacteria and Gammaproteobacteria, and Flavobacteria and Cytophaga (Figure 4).  
+==PAGE:29==
 Josefine Hansen 
 101577/S144493  
 Page 29 of 66 
@@ -1173,6 +1202,7 @@ checked with the NCBI Common taxonomy tree tool.
  
  
  
+==PAGE:30==
 Josefine Hansen 
 101577/S144493  
 Page 30 of 66 
@@ -1283,6 +1313,7 @@ sp. (vinifirmus)
 1992; Liebgott et al. 2006; Gorshkova 2003; Wang 
 et al. 2015) 
  
+==PAGE:31==
 Josefine Hansen 
 101577/S144493  
 Page 31 of 66 
@@ -1302,6 +1333,7 @@ Not all the strains were able to use both of the carbon sources, mannose and glu
 utilize both, either equally good or with minor differences. A few strains were only able to utilize one of the 
 two tested carbon sources.  Glucose appeared to be the best carbon source overall (Table 4), as 10 strains 
 were able to form a dense turbidity, of which 7 were within the 3 first days. 5 strains were able to form 
+==PAGE:32==
 Josefine Hansen 
 101577/S144493  
 Page 32 of 66 
@@ -1421,6 +1453,7 @@ Due to the fact that all strains were not able to grow in one of the liquid medi
 proceed with any of these media for the further tests, but instead continue with Marine Broth and Marine 
 agar, as all strains grew well under these conditions.  
  
+==PAGE:33==
 Josefine Hansen 
 101577/S144493  
 Page 33 of 66 
@@ -1785,6 +1818,7 @@ fuzzy edges, compared to the elsewise sharp edges for other strains.
 The three strains AS04, AS05 and AS07 were all somewhat tolerant to Phaeobacter supernatant and were 
 only marginally inhibited with a very small clearing zone, less than 1 mm larger than the diameter of the 
 culture. These three tolerant strains are of the same genus, Mameliella sp. Furthermore AS05 and AS07 
+==PAGE:34==
 Josefine Hansen 
 101577/S144493  
 Page 34 of 66 
@@ -1822,6 +1856,7 @@ A factor for each strain was determined as following:
 𝑛
  
 This factor was further used for determination of cell density based on OD600 measurements. 
+==PAGE:35==
 Josefine Hansen 
 101577/S144493  
 Page 35 of 66 
@@ -1855,6 +1890,7 @@ was the only representative of the Roseovarius sp., it was chosen to keep those 
 Thereby the bacterial community were done with the strains AS01, AS02, AS07, AS15 and AS16.  
 When the experiments were conducted it turned out to be harder to distinguish the strains AS15 and AS16 
 than first expected. It was possible to determine if the two different morphologies were present, however, 
+==PAGE:36==
 Josefine Hansen 
 101577/S144493  
 Page 36 of 66 
@@ -1875,6 +1911,7 @@ probiont was introduced but manage regrowth after 24 hours.
 Figure 6. Growth curves of bacterial communities, tested at both shaken and stagnant growth conditions.  Doted lines and 
 arrows indicate cell densities lower than detection limits. A) Shaken community, B) Shaken community with probiont P. piscinae 
 S26, C) Stagnant community, D) Stagnant community with probiont P. piscinae S26 
+==PAGE:37==
 Josefine Hansen 
 101577/S144493  
 Page 37 of 66 
@@ -1891,6 +1928,7 @@ and thereby algae cells were potentially clustered, thus not correctly represent
  
 Figure 7. Growth curves of monocultures in algal medium with axenic Tetraselmis suecica. A) AS01, B) AS02, C) AS07, D) AS15, E) 
 AS16, F) P. piscinae S26 
+==PAGE:38==
 Josefine Hansen 
 101577/S144493  
 Page 38 of 66 
@@ -1915,6 +1953,7 @@ characterized by sequencing of 16S rRNA gene, as done with the bacterial isolate
  
 When growing the algae Tetraselmis suecica with the selected bacterial community, either with (BCP) or 
 without P. piscinae S26 (BC), the bacterial strains were influenced differently, Figure 9.  
+==PAGE:39==
 Josefine Hansen 
 101577/S144493  
 Page 39 of 66 
@@ -1949,6 +1988,7 @@ strains in both BC and BCP cultures. AS07 was inoculated significantly higher th
 types. Of particular interest the significant differences over time in both culture types are the following.  
 After one day the probiont significantly overgrew all other members, while in the BC culture AS07 is 
 significantly higher than AS01 and AS16. At the second day sample the probiont is no longer significantly 
+==PAGE:40==
 Josefine Hansen 
 101577/S144493  
 Page 40 of 66 
@@ -1962,6 +2002,7 @@ any of the samplings throughout the rest of the sampling time.
 Figure 9. Individual growth of selected members of the bacterial community, in live feed model system, with and without 
 probiont Phaeobacter piscinae S26. Arrows indicates measurements of cell density to be below detection limit of 103. A: AS01, B: 
 AS02, C: AS07, D: AS15, E: AS16, F: Contaminant 
+==PAGE:41==
 Josefine Hansen 
 101577/S144493  
 Page 41 of 66 
@@ -1979,6 +2020,7 @@ cultures containing the BC and BCP. The algae density after one day of BCP was s
 higher than the control and BC (Figure 11). After two days the algae density of both BCP and BC were 
 significantly higher than the control culture. Throughout the remaining sampling period no significant 
 differences were present. Individually the three cultures only had significant differences in BCP and BC 
+==PAGE:42==
 Josefine Hansen 
 101577/S144493  
 Page 42 of 66 
@@ -2002,6 +2044,7 @@ All six genera are known from various marine environments, found in the water co
 sediments. More importantly they have been found in association with algae.  Algoriphagus sp. has been 
 isolated from both green and brown macro algae, Acrosiphonia sonderi and Chorda filu, as well as the 
 microalgae Dunaliella and Tetraselmis suecica (Biondi et al. 2017; Nedashkovskaya 2004). The finding of this 
+==PAGE:43==
 Josefine Hansen 
 101577/S144493  
 Page 43 of 66 
@@ -2037,6 +2080,7 @@ dependent (Bruhn, Gram, and Belas 2007). Roseovarius strains examined for the ge
 antibacterial activity being due to the production of TDA, gave a negative result (Haifeng Geng et al. 2008). 
 Roseovarius sp. is the only strain, in this study, of the six found genera which is known as marine pathogen. 
 Roseovarius crassostreae is the causing agent of Roseovarius Oyster Disease, previously known as Juvenile 
+==PAGE:44==
 Josefine Hansen 
 101577/S144493  
 Page 44 of 66 
@@ -2072,6 +2116,7 @@ production (D’Alvise et al. 2016) this is not the cause for the tolerance. But
 Phaeobacter, could potentially be the key, if the genus have the same or similar abilities to prevent 
 influence of TDA as Phaeobacter (Wilson et al. 2016). No previous studies have been found on Mameliella 
 being able to produce or tolerate TDA.  
+==PAGE:45==
 Josefine Hansen 
 101577/S144493  
 Page 45 of 66 
@@ -2107,6 +2152,7 @@ Investigating the influence of Phaeobacter piscinae S26 on the full live model s
 cell densities that some members were influenced; Algoriphagus were initially supressed, while Muricauda 
 and Oceanicaulis were enhanced shortly compared to the control community. After the initial effect no 
 significant influence were observed when compared to the final samplings. Thus, S26 did not influence the 
+==PAGE:46==
 Josefine Hansen 
 101577/S144493  
 Page 46 of 66 
@@ -2142,6 +2188,7 @@ strains. Here they found no significant differences on the control and the treat
 revealed the importance of the competition between the bacterial from the product and the natural 
 occurring bacteria in terms of the efficiency of the product. From this it can be stated that the influence of 
 P. piscinae S26, could vary if other strain were introduced in the bacterial community. 
+==PAGE:47==
 Josefine Hansen 
 101577/S144493  
 Page 47 of 66 
@@ -2177,6 +2224,7 @@ present on high density plates. Avoiding the issues of high densities on plates 
 potentially influencing the results, the determination of the individual cell density, should be assessed 
 differently. An approach previously found useful for microbial community studies is quantification by qPCR. 
 Though this still implicates a detection limit (Dittmann et al. 2018).  
+==PAGE:48==
 Josefine Hansen 
 101577/S144493  
 Page 48 of 66 
@@ -2211,6 +2259,7 @@ Oceanicaulis sp., but neither with any influence after 8 days.
 Thus, this study concludes that P. piscinae S26 is implementable in T. suecica cultures without causing 
 significant changes to the microbial community or the algae itself, keeping the initial adaption of the 
 community in mind in terms of how frequently the probiont is added.  
+==PAGE:49==
 Josefine Hansen 
 101577/S144493  
 Page 49 of 66 
@@ -2220,6 +2269,7 @@ on commercial use of Phaeobacter spp. as probiont in aquaculture live feed, and 
 measure towards vibriosis in marine larviculture.  
  
  
+==PAGE:50==
 Josefine Hansen 
 101577/S144493  
 Page 50 of 66 
@@ -2256,6 +2306,7 @@ probiont Phaeobacter piscinae S26, and only the algae, given in cell density (ce
 Figure 12. Standard curves relating OD600 and CFU/mL of the 6 pre-selected strains and P. piscinae S26. A: 
 AS01, B: AS02, C: AS07, D: AS13, E:AS15, F: AS16, G: P. piscinae S26 ............................................................. 63 
  
+==PAGE:51==
 Josefine Hansen 
 101577/S144493  
 Page 51 of 66 
@@ -2299,6 +2350,7 @@ International Journal of Systematic and Evolutionary MicrobiologyI 55 (6): 2377�
 Biondi, Natascia, Giulia Cheloni, Enrico Tatti, Francesca Decorosi, Liliana Rodolfi, Luciana Giovannetti, Carlo Viti, and Mario R. 
 Tredici. 2017. “The Bacterial Community Associated with Tetraselmis Suecica Outdoor Mass Cultures.” Journal of Applied 
 Phycology 29 (1): 67–78. https://doi.org/10.1007/s10811-016-0966-5. 
+==PAGE:52==
 Josefine Hansen 
 101577/S144493  
 Page 52 of 66 
@@ -2361,6 +2413,7 @@ Applied and Environmental Microbiology 82 (2): 502–9. https://doi.org/10.1128/
 D’Alvise, Paul W., Christopher B.W. Phippen, Kristian F. Nielsen, and Lone Gram. 2015. “Influence of Iron on the Production of the 
 Antibacterial Compound Tropodithietic Acid and Its Non-Inhibitory Analog in Phaeobacter Inhibens.” Applied and 
 Environmental Microbiology, no. October: AEM.02992-15. https://doi.org/10.1128/AEM.02992-15. 
+==PAGE:53==
 Josefine Hansen 
 101577/S144493  
 Page 53 of 66 
@@ -2421,6 +2474,7 @@ Structure Associated with a Dimethylsulfoniopropionate-Producing North Atlantic 
 Microbiology 66 (10): 4237–46. https://doi.org/10.1128/AEM.66.10.4237-4246.2000. 
 Gorshkova, N. M. 2003. “Marinobacter Excellens Sp. Nov., Isolated from Sediments of the Sea of Japan.” International Journal of 
 Systematic and Evolutionary Microbiology 53 (6): 2073–78. https://doi.org/10.1099/ijs.0.02693-0. 
+==PAGE:54==
 Josefine Hansen 
 101577/S144493  
 Page 54 of 66 
@@ -2470,6 +2524,7 @@ Kim, Ju-Ok. 2017. “Marinobacter Halotolerans Sp. Nov., a Halophilic Bacterium 
 International Journal of Systematic and Evolutionary Microbiology 67 (2): 460–65. https://doi.org/10.1099/ijsem.0.001653. 
 Kintaka, K, H Ono, S Tsubotani, S Harada, and H Okazaki. 1984. “Thiotropocin, a New Sulfur-Containing 7-Membered-Ring Antibiotic 
 Produced by a Pseudomonas Sp.” The Journal of Antibiotics 37 (11): 1294–1300. https://doi.org/10.7164/antibiotics.37.1294. 
+==PAGE:55==
 Josefine Hansen 
 101577/S144493  
 Page 55 of 66 
@@ -2528,6 +2583,7 @@ Martin, S. 2003. “Marinobacter Lipolyticus Sp. Nov., a Novel Moderate Halophil
 Systematic and Evolutionary Microbiology 53 (5): 1383–87. https://doi.org/10.1099/ijs.0.02528-0. 
 Martínez Cruz, Patricia, Ana L. Ibáñez, Oscar A. Monroy Hermosillo, and Hugo C. Ramírez Saad. 2012. “Use of Probiotics in 
 Aquaculture.” ISRN Microbiology 2012: 1–13. https://doi.org/10.5402/2012/916845. 
+==PAGE:56==
 Josefine Hansen 
 101577/S144493  
 Page 56 of 66 
@@ -2610,6 +2666,7 @@ Chemical
 Society 
 136: 
 15150–53. 
+==PAGE:57==
 Josefine Hansen 
 101577/S144493  
 Page 57 of 66 
@@ -2683,6 +2740,7 @@ Research
 (20): 
 4354–55. 
 https://doi.org/10.1093/nar/22.20.4354. 
+==PAGE:58==
 Josefine Hansen 
 101577/S144493  
 Page 58 of 66 
@@ -2745,6 +2803,7 @@ https://doi.org/10.1111/are.13270.
  
  
  
+==PAGE:59==
 Josefine Hansen 
 101577/S144493  
 Page 59 of 66 
@@ -2978,6 +3037,7 @@ zhangzhouensis
 Flavobacteria 
 Muricauda 
 sp. 
+==PAGE:60==
 Josefine Hansen 
 101577/S144493  
 Page 60 of 66 
@@ -3140,6 +3200,7 @@ Marinobacter
  
 sp. 
 (vinifirmus) 
+==PAGE:61==
 Josefine Hansen 
 101577/S144493  
 Page 61 of 66 
@@ -3149,6 +3210,7 @@ Pictures of inhibition assay. Embedded strain is stated in the upper left corner
 spotted strains stated right above each spot.  
  
  
+==PAGE:62==
 Josefine Hansen 
 101577/S144493  
 Page 62 of 66 
@@ -3157,6 +3219,7 @@ Page 62 of 66
  
  
  
+==PAGE:63==
 Josefine Hansen 
 101577/S144493  
 Page 63 of 66 
@@ -3165,6 +3228,7 @@ Page 63 of 66
  
 Figure 12. Standard curves relating OD600 and CFU/mL of the 6 pre-selected strains and P. piscinae S26. A: AS01, B: AS02, C: 
 AS07, D: AS13, E:AS15, F: AS16, G: P. piscinae S26 
+==PAGE:64==
 Josefine Hansen 
 101577/S144493  
 Page 64 of 66 
@@ -3174,6 +3238,7 @@ Page 64 of 66
 Appendix figure 9.a Growth curves of mix cultures. Dotted lines and arrows indicate a cell density below detection limit. The 
 strain in each mix culture is as following; A) AS01/AS02, B) AS01/AS07, C) AS01/AS13, D) AS01/AS15, E) AS01/AS16, F) AS01/P. 
 piscinae S26, G) AS02/AS07, H) AS02/AS13 
+==PAGE:65==
 Josefine Hansen 
 101577/S144493  
 Page 65 of 66 
@@ -3182,6 +3247,7 @@ Page 65 of 66
 Appendix figure 9.b Growth curves of mix cultures. Dotted lines and arrows indicate a cell density below detection limit. The 
 strain in each mix culture is as following; I ) AS02/AS15, J) AS02/AS16, K) AS02/P. piscinae S26, L) AS07/AS13, M) AS07/AS15, N) 
 AS07/AS16, O) AS07/P. piscinae S26, P) AS13/AS15 
+==PAGE:66==
 Josefine Hansen 
 101577/S144493  
 Page 66 of 66 
