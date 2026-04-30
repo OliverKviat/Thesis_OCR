@@ -1,0 +1,1255 @@
+==PAGE:1==
+M.Sc. Thesis
+Master of Science in Engineering Acoustics
+Electrophysiological and psychoacoustic
+measures of amplitude modulation process-
+ing
+AUTHOR: Anders Søe
+STUDY ID: s153045
+SUPERVISORS:
+Jens Hjortkær, Jonatan Märcher-Rørsted, and Sam
+David Watson
+Kongens Lyngby 2021
+==PAGE:2==
+Abstract
+In this study, a paradigm was developed to identify electrophysiological correlates of
+behavioral amplitude modulation (AM) detection and discrimination. A 128 Hz ampli-
+tude modulated broad-band noise stimulus that alternated at 2 Hz between a reference
+and target AM depth was used to elicit cortical (2 Hz) and sub-cortical (128 Hz) enve-
+lope following responses (EFRs) simultaneously, recorded with electroencephalography
+(EEG). The same depth-alternating stimulus was used to measure behavioral AM detec-
+tion and discrimination thresholds psychophysically. Thus, the 2 Hz alternation between
+different degrees of AM depth was used to probe AM depth discrimination both at the
+neural and behavioral level. 8 young (18-28 years) and 10 elderly (55-70 years) subjects
+with normal hearing thresholds were tested in the study. Both EFRs and behavioral
+thresholds were measured with either unmodulated or 40 % modulated reference stimuli.
+It was found that increasing AM depth relative to the reference increased the EFRs
+at both 2 Hz and 128 Hz. However, small depth differences failed to yield significant
+EFRs in many subjects. For fully modulated stimuli alternating with an unmodulated
+reference, EFR magnitudes at 2 Hz and at 128 Hz were correlated. Yet, only EFRs at
+2 Hz, but not at 128 Hz, were significantly correlated with behavioral AM detection
+thresholds. Thus, subjects that were behaviorally better able to detect the difference in
+modulation depth had stronger cortical responses to AM depth differences. Elderly sub-
+jects had significantly reduced 128 Hz EFRs for fully modulated stimuli. A significant
+interaction between age and the rate of the EFR (2 Hz vs 128 Hz) was found, possi-
+bly indicating a cortical gain mechanism that compensates for the reduced sub-cortical
+AM coding. These results suggest that the considered paradigm is useful for detecting
+cortical responses related to behavioral AM detection and discrimination tasks. The
+results further support the idea of a central compensation of age-related decline in AM
+processing.
+==PAGE:3==
+Acknowledgements
+I would like to thank my supervisors Jens Hjortkær, Jonatan Märcher-Rørsted, and
+Sam David for putting remarkable effort into guidance and discussions throughout the
+project. It has been encouraging working with you!
+Thanks to Jonathan Regev for helpful discussions and Rikke Skovhøj Sørensen for help-
+ing gather participants for the project.
+I would also like to thank all participants for your contribution to the project. And
+for your patience and endurance during the measurements.
+Finally, I would like to thank DTU Electrical Engineering for providing access to all
+necessary equipment for the project.
+==PAGE:4==
+Contents
+Abstract
+i
+Acknowledgements
+ii
+Contents
+iii
+List of Figures
+v
+1
+Introduction
+1
+2
+Background
+4
+2.1
+Electroencephalography
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+2.2
+Amplitude modulation processing . . . . . . . . . . . . . . . . . . . . . .
+4
+2.3
+Envelope following responses . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+3
+Methods
+7
+3.1
+Subjects . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+3.2
+Stimulus . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+3.3
+Electrophysiological experiment . . . . . . . . . . . . . . . . . . . . . . .
+10
+3.4
+Pilot measurements . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+13
+3.5
+Statistics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+4
+Results
+15
+4.1
+Psychoacoustic AM detection and discrimination thresholds
+. . . . . . .
+15
+4.2
+SRT
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+4.3
+EEG measures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+4.4
+Correlation of physiological and behavioral measures of AM coding
+. . .
+18
+4.5
+Examination of EFRs . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+20
+5
+Discussion
+23
+5.1
+Psychoacoustic experiments
+. . . . . . . . . . . . . . . . . . . . . . . . .
+23
+5.2
+EEG measures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+23
+5.3
+Correlation of physiological and behavioral measures of AM coding
+. . .
+24
+5.4
+Examination of EFRs . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+25
+6
+Conclusion
+26
+==PAGE:5==
+Contents
+iv
+A Appendix
+28
+Bibliography
+31
+==PAGE:6==
+List of Figures
+1.1
+Illustration of the EEG experiment . . . . . . . . . . . . . . . . . . . . . . .
+2
+2.1
+Illustration of the envelope power spectrum model by Ewert and Dau et al.
+2000 [1]. In the left side the power spectrum of a sinusoid is seen. When
+the sinusoid is multiplied with the broadband noise (the middle) in the time-
+domain, the resulting envelope domain is seen to the right. Marked with blue
+in the right side is the modulation-filter in which the power of the AM needs
+to be higher than the power of the carrier to be detectable . . . . . . . . . .
+5
+2.2
+Illustration of how the ear transforms an amplitude modulated pure tone into
+a neural response. In the left side the acoustical sound wave in seen. When
+it reaches the inner ear and causes movements on the basilar membrane,
+the outer hair cells amplifies these movements in a non-linear manner. The
+movement of a point of the basilar membrane, which characteristic frequency
+corresponds to the pure tone frequency, is seen in the middle. When the
+signal is transformed a neural response, the signal is rectified. This is seen
+in to the right in the figure. In the lower part of the figure the frequency
+spectrum of each stage is shown. The figure is taken from Picton (2010) [2] .
+6
+3.1
+Audiograms for the ipsilateral ear for the two groups. The shadow illustrates
+the standard deviation across all participants in each group . . . . . . . . . .
+7
+3.2
+Visualization of the stimuli with the propagation between standard and tar-
+get intervals . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+3.3
+Visualization of stimuli for the psychoacoustic experiment
+. . . . . . . . . .
+9
+3.4
+Illustration of the oddballs included in the measurement. To the left is an
+overview of the target depth of the oddballs.
+The first three conditions
+where ms = 0% seen to the left whereas the last three conditions where
+ms = 40% seen to the right. The whiskers of the matching color of a condition
+indicates the distribution of the oddball depths in that condition. The blue
+line indicates the AM depth of the standard. To the right a visualization of
+an oddball within condition 3 is seen. At first the target AM depth is 100 %.
+At the onset of the oddball the target AM depth is decreased in two target
+intervals. The subjects had to response to the oddball within 1.5 seconds to
+get a hit . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+==PAGE:7==
+List of Figures
+vi
+4.1
+Thresholds found from the psychoacoustic experiment. The lines indicates
+the mean of each group and the transparent markers illustrates the standard
+deviation. The difference in the two groups where non-significant for all AM
+standards . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+4.2
+SRT’s measured for the two groups in the different conditions. The difference
+in the two groups were non-significant for all the three SRT conditions [3] . .
+16
+4.3
+SNR as function of AM depth of the target interval for 2 Hz and 128 Hz
+EFRs. In the left column the standard intervals were ms = 0 % in the right
+column the standard intervals were ms = 40 %. The transparent markers
+illustrates the standard deviation for each group. The correlation coeﬀicient
+and p-value for each plot is calculated upon all subjects . . . . . . . . . . . .
+17
+4.4
+Correlates of psychoacoustic thresholds and SNRs at 100 % target AM depth.
+To the left, psychoacoustic thresholds at ms = 0 % is correlated with SNRs
+of the EFRs from the EEG condition where ms = 0 % and the target AM
+depth were of 100 %. To the right, psychoacoustic thresholds at ms = 40 % is
+correlated with SNRs of the EFRs from the EEG condition where ms = 40 %
+and the target AM depth were of 100 %. The blue points are elderly subjects
+whereas the young adults are marked with red. The dotted lines indicates
+the 95 % confidence interval for the predicted value of the linear regressions
+19
+4.5
+Violin plot of the 2 Hz, 128 Hz and 4 Hz EFRs at ms = 0 % for the young
+adults and elderly group. The significance bars between the EFR groups
+indicates statistical significance of the interaction between age and EFR rate
+while the significance bars within each rate indicates the statistical signifi-
+cance between age groups for that rate. ∗∗= p < 0.01 [3] . . . . . . . . . . .
+21
+4.6
+Correlates between the 2 Hz EFR and the 128 Hz EFR (left), and between the
+4 Hz EFR and the 128 Hz EFR (right). The blue points are elderly subjects
+whereas the young adults are marked with red. The dotted lines indicates
+the 95 % confidence interval for the predicted value of the linear regressions.
+In the left plot, the r and p values is shown for individual correlates of the
+two groups . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+22
+A.1 Scatter plot of the behavioral thresholds and SRTs. The lines indicates linear
+regressions. Thresh0 is the behavioral threshold at ms = 0 %, Thresh20 at
+ms = 20 % and so forth
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+A.2 Psychometric functions fitted to the mean of the hit rate of the oddballs
+for each condition. The blue lines indicates the mean of the elderly group
+whereas the red lines indicates the mean of the young adults. The transparent
+markers illustrates the standard deviation for each group. The top row shows
+the conditions where ms = 0 % and the bottom row where ms = 40 %
+. . .
+29
+A.3 Topography of the mean 2 Hz EFR at condition 3 (ms = 0 %, mtot = 100 %)
+for elderly and young adults . . . . . . . . . . . . . . . . . . . . . . . . . . .
+30
+A.4 Topography of the mean 128 Hz EFR at condition 3 (ms = 0 %, mtot = 100 %)
+for elderly and young adults . . . . . . . . . . . . . . . . . . . . . . . . . . .
+30
+==PAGE:8==
+CHAPTER 1
+Introduction
+Elderly people often experience diﬀiculties hearing speech in noisy environments, despite
+having clinically normal audiograms [4] [5]. This could possibly be due to supra-threshold
+temporal processing deficits [6]. Speech perception relies critically on the processing of
+amplitude modulations [7] [8], and deficits in the coding of AM with age may compro-
+mise speech understanding [9] [10]. It is therefore critical to investigate AM detection
+and discrimination, how this is affected by age, and how AM processing predict speech
+comprehension. AM detection and discrimination have been extensively studied behav-
+iorally [11] [12], but objective neural correlates of AM perception are missing. Hence,
+our understanding of the mechanisms in the neural system in relation to changes in AM
+perception is lacking. It is therefore interesting to further investigate this relation, and
+potentially find an objective diagnostic of supra-threshold temporal processing deficits.
+In this project, an electrophysiological measure of AM processing was developed
+with the aim to identify objective correlates to psychoacoustic AM detection and dis-
+crimination thresholds. Particularly, envelope-following responses (EFRs) to amplitude
+modulated noise at different rates were considered. The EFR in response to fast AM
+rates measure earlier stages of sub-cortical processing [13], while EFRs to slower rate
+AM are dominated by activity at later cortical stages [14] [15] [16].
+We know that age has neural consequences, and it has been found that auditory
+nerve fibers (ANFs) degenerates with age [17] [18]. Degeneration of ANFs, or cochlear
+neuropathy, could possibly lead to supra-threshold deficits in AM processing [19] [20].
+In non-human mammal studies it has been shown that synapses of the inner hair cells
+can be divided into those that synapse onto high threshold and low threshold ANFs [21].
+It is suggested that low-threshold nerve fibers degenerate prior to high-threshold fibers
+when the ear is exposed to noise or ages [22] [23]. If this is the case for humans, those
+afflicted by cochlear neuropathy may preserve relatively normal pure-tone thresholds,
+and yet have worse neural encoding supra-threshold, and therefore perform worse in
+AM detection and discrimination tasks.
+In this study, we therefore consider elderly
+people at age>55 years with NH pure-tone thresholds as possible cochlear neuropathy
+patients. A group of young adults (age mean = 22 years) was used as a control group.
+In psychoacoustic tasks it has earlier been shown, that elderly people with NH pure-
+tone thresholds perform worse in AM discrimination tasks at an AM rate of 128 Hz [24],
+both using pure tone and wide-band noise carriers. It has also been found the hearing
+impaired listeners obtain lower thresholds for AM detection [11]. Hence it it interesting
+to investigate the relation between AM detection and discrimination.
+Using amplitude modulated signals, neural responses to AM at this rate can be
+measured as an EFR electrophysiologically and is thought to come from the brainstem
+==PAGE:9==
+1 Introduction
+2
+(sub-cortical), whereas slower rates (< 20 Hz) is thought to primarily originate from the
+auditory cortex [16]. A paradigm to test both sub-cortical and cortical EFRs simulta-
+neously was designed in this project. With an amplitude modulated broad-band noise
+as carrier, a slow alternation rate of 2 Hz between reference intervals and intervals of
+increased modulation depth were used to identify cortical responses that might be di-
+rectly compared to psychoacoustic thresholds, while at the same time resolving the fast
+modulation rate of 128 Hz from sub-cortical measures. An illustration of the paradigm
+is shown in Figure 1.1.
+Figure 1.1: Illustration of the EEG experiment.
+The same stimuli were also examined in a separate psychoacoustic paradigm. The
+threshold of the increased target was measured for various reference AM depths. It was
+expected that the elderly group obtained higher thresholds for both the AM detection
+and discrimination tasks due to age-related degeneration of ANFs.
+As the 2 Hz alternation rate is perceived exclusively above the behavioral AM thresh-
+old, it’s reasonable to assume that the EFR to the alternation rate can only be measured
+above this threshold. Hence we assume that there is a relation between the threshold of
+the psychoacoustic experiment and the strength of the 2 Hz component in the EFR. At
+a fixed value of the AM depth in the target intervals, the perception of the alternation
+will be obvious for some subjects, whereas it may be perceived as a stationary signal for
+others. Therefore it is expected that the amplitude of the 2 Hz component in the EFR,
+in response to a fixed target AM depth, reflects the threshold of similar psychoacoustic
+AM detection and AM discrimination tasks. This might be more apparent when the
+target is at high AM depths where the alternation rate is more salient, as the magnitude
+of the EFR for these depths should grow.
+Decision mechanisms underlying auditory object identification resides in the auditory
+cortex [25]. Hence, the 2 Hz EFR, which is primarily measured from the auditory cortex
+[16], might be directly compared with the ability to distinguish the 2 Hz alternation in
+a psychoacoustic experiment. Specifically we expect the elderly group to obtain lower
+magnitudes for the cortical slow-rate EFRs compared to the group of young adults.
+To quantify the speech comprehension of the subjects used in the study, speech
+reception thresholds (SRTs) were measured in stationary- and in amplitude-modulated
+noise. It has earlier been shown that elderly people of NH have worse speech perception
+compared to young NH people in both stationary noise and amplitude modulated noise
+==PAGE:10==
+1 Introduction
+3
+[26]. Manju et al. 2014 [27] found a correlation between EFRs and SRTs in the presence
+of noise. Syllable rates are in the order of 3-6 Hz [28]. Perception of speech might
+therefore be comparable with the 2 Hz alternation rate. It is expected that the ability to
+detect AM detection and AM discrimination is correlated with SRTs, such that the SRTs
+are lower when the AM detection and discrimination thresholds are lower. Similarly, it
+is expected that a low SRT will promote a greater cortical EFRs to slow AM.
+==PAGE:11==
+CHAPTER 2
+Background
+This section serves as a brief introduction to some of the concepts used or investigated
+in this master thesis.
+2.1
+Electroencephalography
+It is suggested that the human brain consists of around eighty-six billion neurons [29].
+These neurons create individual electric potential spikes, which are often synchronous
+within larger groups of other neurons. The summed potential of multiple neurons re-
+sponding to a stimulus can create an electrical response measurable from the scalp with
+the use of electrodes, which are connected with electrical conducting gel. This type
+of measurement is known as electroencephalography (EEG). The spacial resolution of
+EEG is in the order of centimeters [30], while the temporal resolution is great, depend-
+ing on the sample rate used to record the potentials from the electrodes. Due to the
+high temporal resolution, it is very useful to obtain neural responses to sound with
+EEG. Responses to steady-state signals are easily measured with EEG as they can be
+averaged over time, which yields a higher SNR. Such responses are known as auditory
+steady-state responses. Among them are frequency following responses (FFRs) and en-
+velope following responses (EFRs), which are useful for determining temporal processing
+characteristics of the auditory system.
+2.2
+Amplitude modulation processing
+The auditory system is complex and codes information in sound such as frequency infor-
+mation, spatial information and temporal information. The focus of this thesis is tem-
+poral information which is an important factor in the perception of speech [8], among
+others. The coding of temporal information in the auditory system is referred to as
+temporal processing.
+The temporal processing ability of the auditory system can be measured in different
+ways. One of the classical methods is to apply amplitude modulation to a carrier signal
+and find the threshold in AM depth of when the AM can be identified. The frequency
+of the AM and the type of carrier signal can make great differences in how easily AM is
+recognised.
+==PAGE:12==
+2.3 Envelope following responses
+5
+Typical choices of carrier signals are sinusoids, narrow-band noise, broad-band noise
+or speech-shaped noise. Broad-band noise, which is used in this study, contains a lot
+of inherent fluctuations, which leaks into the envelope spectrum. The envelope power
+spectrum model introduced by Ewert and Dau et al. 2000 [1] suggests that the temporal
+processing highly depends on the envelope spectrum of the carrier signal. An illustration
+of the model can be seen in Figure 2.1. In particular they suggest that the ratio between
+the envelope power of the carrier signal and the envelope power applied by the AM
+within a modulation-filter can be used to predict the AM depth threshold. Thus, the
+task is to identify the envelope of the AM in the presence of inherent fluctuations from
+the wide-band noise carrier itself.
+Figure 2.1: Illustration of the envelope power spectrum model by Ewert and Dau et al.
+2000 [1]. In the left side the power spectrum of a sinusoid is seen. When
+the sinusoid is multiplied with the broadband noise (the middle) in the
+time-domain, the resulting envelope domain is seen to the right. Marked
+with blue in the right side is the modulation-filter in which the power of
+the AM needs to be higher than the power of the carrier to be detectable.
+2.3
+Envelope following responses
+When the ear is exposed to sound, movements will occur in the basilar membrane.
+Located on top of the basilar membrane is the organ of corti which consists of around
+3500 inner hair cells and 12000 outer hair cells.
+The outer hair cells amplifies the
+movements of the basilar membrane non-linearly as shown in Figure 2.2 (Compression).
+The inner hair cells are sensory cells, which synapse onto auditory nerve fibers (ANFs),
+which transmits electrical pulses through the ascending auditory pathway to the auditory
+cortex. When movements occur on the basilar membrane, the inner hair cells of the
+organ of corti will bend back and forth, and this will trigger the inner hair cells to send
+electrical impulses through the auditory nerve (AN). This step is shown in Figure 2.2
+as rectification. The rectification makes the envelope rate detectable in the frequency
+spectrum of the neural response to the signal. The neural response to the envelope
+is called the envelope following response (EFR). In the auditory pathway, when many
+neurons synchronize their discharge, an electrical field strong enough to measure with
+EEG is evoked.
+An amplitude modulated signal can be used to measure the EFR.
+Measured EFRs to slow modulation frequencies (< 20 Hz) will primarily originate from
+==PAGE:13==
+2.3 Envelope following responses
+6
+cortical regions (auditory cortex), as it is closer to the scalp [16], while higher modulation
+frequencies (> 32 Hz) will originate from sub-cortical regions (brainstem) [31]. Hence
+a way to distinguish EFRs from the cortical and sub-cortical regions is by modulation
+at low frequencies beneath 20 Hz or high frequencies above 32 Hz. EFRs in the cortical
+region are highly affected by attention, as listening actively to stimulus a significantly
+higher EFR is evoked [32].
+Figure 2.2: Illustration of how the ear transforms an amplitude modulated pure tone
+into a neural response. In the left side the acoustical sound wave in seen.
+When it reaches the inner ear and causes movements on the basilar mem-
+brane, the outer hair cells amplifies these movements in a non-linear man-
+ner. The movement of a point of the basilar membrane, which characteris-
+tic frequency corresponds to the pure tone frequency, is seen in the middle.
+When the signal is transformed a neural response, the signal is rectified.
+This is seen in to the right in the figure. In the lower part of the figure
+the frequency spectrum of each stage is shown. The figure is taken from
+Picton (2010) [2].
+==PAGE:14==
+CHAPTER 3
+Methods
+3.1
+Subjects
+A total of 19 subjects were tested. Eight (5 female) which were relatively young subjects,
+with ages ranging from 18 to 28 years (mean was 22 years), and eleven (6 female) which
+were elderly, ranging in age from 55 to 70 years (mean was 61 years). All subjects were
+of NH with a maximum pure tone threshold of 20 dB HL from 0.125-4 kHz. Two of
+the elderly subjects had hearing thresholds at respectively 25- and 35 dB HL at 4 kHz.
+The subject who had a pure tone threshold of 35 dB HL at 4 kHz was considered an
+outlier and hence not included in further analysis. Pure tone audiometry was run using
+an Interacoustics AC40 clinical audiometer and Sennheiser HDA200s headphones for
+125 Hz and all octaves up to 8 kHz. All subjects were danish natives except for one
+elderly subject, who was excluded from the analysis of speech perception. Five out of
+ten in the elderly group were musicians, while none in the young group were musicians.
+The audiograms of the two groups can be seen in Figure 3.1.
+Figure 3.1: Audiograms for the ipsilateral ear for the two groups. The shadow illus-
+trates the standard deviation across all participants in each group.
+3.2
+Stimulus
+The stimulus used in the experiments was an amplitude modulated broadband noise
+carrier, which alternated between a standard interval at an AM depth, ms, and a target
+interval which was modulated at a higher AM depth ms + minc. A half-wave rectified
+==PAGE:15==
+3.2 Stimulus
+8
+modulator was used, as it was found to evoke stronger EFRs in preliminary measure-
+ments. The stimuli is inspired by Ewert and Dau et al. 2004 [33], who measured AM
+discrimination thresholds using a 3-AFC procedure. The alternation rate between the
+two intervals was 2 Hz (two of each in a second). Each interval of the stimuli s(t), can
+be described by the equation
+s(t) = (mtot · max{sin(2πfmt), 0} + 1 −mtot) c(t)
+(3.1)
+where mtot = ms + minc and t is time. In each standard interval minc = 0. c(t)
+represents the carrier signal, which was a broad-band white-noise carrier with a pass-
+band of 500-4000 Hz. A broadband noise was used as it evokes a greater EFR [34]
+[35]. It was created using the normal distributed random number generator in Matlab
+which had random seed each time a signal for any condition for any subject were made.
+This avoided frozen noise effects. An 8th order butterworth high-pass and an 8th order
+butterworth low-pass was used to filter the AM stimuli. The modulation frequency, fm,
+was set to 128 Hz. All intervals were normalised with its RMS, whereafter the combined
+stimuli was calibrated to an RMS level of 80 dB SPL for all experiments. The waveform
+of the stimuli alternating between the standard AM depth and the target can be seen
+in Figure 3.2.
+Figure 3.2: Visualization of the stimuli with the propagation between standard and
+target intervals.
+3.2.1
+Psychoacoustic experiments
+3.2.2
+AM detection/discrimination
+For the psychoacoustic experiment, five alternations of the stimuli were put together to
+create a single interval. Three of these intervals were made, with two of them being
+references, only containing standard intervals, and one of them being the target interval,
+alternating between the standard and the target intervals at a rate of 2 Hz. In the target
+interval of the psychoacoustic experiment, the signal would start and end on a reference
+interval. An example of the intervals can be seen in Figure 3.3.
+==PAGE:16==
+3.2 Stimulus
+9
+Figure 3.3: Visualization of stimuli for the psychoacoustic experiment.
+The subjects were presented with the three intervals of duration = 1.25 s in random
+order with a gap of 0.5 s silence between. The task of the subject was to identify the
+target interval, which contained a larger AM depth, as seen in the second interval of
+Figure 3.3. The threshold of when the target interval could be detected was found for
+standard AM depths of 0-, 20-, 40-, 50-, 60- and 70 %. The standard AM depth refers
+to the depth of the reference intervals as well as the standard intervals inside the target
+interval. A three-alternative forced choice paradigm with 2-down/1-up procedure was
+used to find the 71% correct point on the psychometric function for each of the standard
+AM depths [36]. The initial step-size was 4 %. After every two reversals it was halved,
+until it reached 1 %. A 50 ms sine-ramp was used in the beginning and in the end of each
+waveform. The subjects received visual feedback on whether the response was correct
+or incorrect. The subjects performed the task for each standard in random order. To
+familiarize the subjects with the task prior to the experiment, each subject performed
+test-rounds at the 0 % (unmodulated) standard, until the result converged towards a
+stable threshold. In that way it was certain that the subjects understood the experiment.
+The headphones used for the experiment were Sennheiser HD 580 headphones, calibrated
+to an RMS level of 80 dB SPL. For each subject, only one ear was stimulated. The right
+ear was prioritised for all subjects, but the left ear was chosen for one young and two
+elderly subjects as their right ear had either pure tone thresholds above 20 dB-HL in
+the range of 500 - 4000 Hz or if much earwax in the ear canal was observed.
+3.2.3
+SRT
+A hearing-in-noise-test (HINT) in danish [37] was carried out in order to estimate the
+speech recognition threshold (SRT) for each subject. The SRT was found for two maskers;
+One masker was a stationary broadband white-noise masker with a pass-band of 500-
+4000 Hz, similar to the carrier signal of the earlier described stimuli. The second masker
+was identical to the first masker but amplitude modulated at a depth of 100 % by a
+4 Hz sinusoidal modulator. Each masker was calibrated to an RMS level of 80 dB SPL.
+The subjects were first presented with a list of 20 sentences in the stationary noise as a
+training round. Thereafter the subjects were presented with two lists of 20 sentences for
+each of the maskers, starting with two lists for the stationary noise followed by two lists
+for the amplitude modulated noise. For each condition the mean SRT was found. A
+==PAGE:17==
+3.3 Electrophysiological experiment
+10
+masking release SRT was found by extracting the SRT of the modulated noise condition
+from the SRT of the stationary noise condition (in dB).
+3.3
+Electrophysiological experiment
+3.3.1
+Stimuli
+For the electrophysiological experiment, six conditions of the stimuli were made. Three
+in which the standard intervals were of 0 % AM depth and three of which the standard
+were of 40 % AM depth which corresponds to approximately -8 dB. For the conditions
+of 0 % standard modulation, the targets were of 50 %, 70 % and 100 % AM depth. For
+the conditions of 40 % standard modulation, the targets were of 60 %, 80 % and 100 %
+AM depth. Each of the six stimulus conditions lasted 4 minutes.
+3.3.2
+Oddballs
+Preliminary measurements suggested that the EFR magnitudes may depend on the
+subject’s attention. This was observed by presenting the same stimulus while either
+watching a movie or listening actively to the stimulus. In one pilot experiment, the
+magnitude for both the alternation rate and the 128 Hz AM rate were respectively
+4 dB and 8 dB stronger when listening actively to the stimuli. Hence, it was decided
+to include an oddball detection task in the experiment in order to ensure that the
+subjects attended the stimuli. The oddballs were chosen to be changes in the target AM
+depth of two subsequent target intervals. The task was to push a button whenever the
+subject heard a change in the ongoing stimuli. The response window for the oddball
+detection was 1.5 seconds from the onset of the oddball. The oddballs were presented
+on average each 15 seconds, but each oddball was presented randomly in an interval of
+± 2.5 s. This made a total of 16 oddballs, which were presented three times for each
+condition. The target AM depth, minc, of each oddball was randomly chosen from a
+linearly spaced uniform distribution over an interval, in an attempt to make the task
+approximately equally diﬀicult for each condition. This also allowed a behavioral readout
+of AM detection or discrimination performance during the EEG experiment. The target
+AM depths for each condition can be seen in the table below:
+A psychometric function was fitted to the mean of the hit rate of the oddballs for each
+condition. The EEG data recorded while the oddballs were presented is not included
+in the EEG analysis. The resulting psychometric functions can be seen in the appendix
+Figure A.2. Before starting the data collection, the subjects were introduced to the
+paradigm in a test round, where they were told to detect the oddballs of condition 1 & 3.
+When their response were stable for the ’easier’ oddballs in both conditions, they went
+on with the actual experiment. The oddballs were presented each 4 seconds on average
+in the test round, to obtain training for the experiment faster.
+==PAGE:18==
+3.3 Electrophysiological experiment
+11
+Figure 3.4: Illustration of the oddballs included in the measurement. To the left is an
+overview of the target depth of the oddballs. The first three conditions
+where ms = 0% seen to the left whereas the last three conditions where
+ms = 40% seen to the right.
+The whiskers of the matching color of a
+condition indicates the distribution of the oddball depths in that condition.
+The blue line indicates the AM depth of the standard. To the right a
+visualization of an oddball within condition 3 is seen. At first the target
+AM depth is 100 %. At the onset of the oddball the target AM depth
+is decreased in two target intervals. The subjects had to response to the
+oddball within 1.5 seconds to get a hit.
+3.3.3
+Setup and procedure
+For the EEG recording a BioSemi ActiveTwo AD-box was used to capture the signals
+at a 2048 Hz sample rate. For each of the six conditions, a different trigger value was
+sent at each target interval, such that a trigger was sent at a rate of 2 Hz. A 32 channel
+BioSemi layout was used in addition to four external electrodes which were mounted on
+the left- and right mastoids, and below and above the right eye. The subjects were seated
+in a soundproof room with a screen in front of them, to provide visual feedback whether
+they had a correct or incorrect response to an oddball. All conditions of the stimuli were
+repeated three times, each time in random order, so that a total of 12 minutes of data
+was collected for each condition. Between each condition the subject had a break to
+stretch, after which the subject choose when to continue with the next condition. The
+==PAGE:19==
+3.3 Electrophysiological experiment
+12
+same ear as the one tested in the psychoacoustic experiment were tested in experiment.
+The stimulus were presented using Etymotic Research ER-3A insert earphones.
+3.3.4
+Post-processing
+The data post-processing was done in Matlab R2020a.
+Using the Fieldtrip toolbox
+[38] the recordings from each condition were divided into epochs of 1024 data points
+corresponding to 0.5 seconds, and the 50 Hz line-noise was removed with the dftfilter in
+Fieldtrip. Then two different filters were applied for the analysis of the 2- and 4 Hz rates,
+and the analysis of the of 128 Hz rate. For the slow rates a band pass FIR filter was made
+in Matlab with pass band from 1-40 Hz and stop bands at 0.2- and 60 Hz. For the fast
+rate the pass band was set from 80-200 Hz and stop bands at 40- and 400 Hz. For both
+filters the attenuation at the stop band was set to 60 dB and the pass band ripple to a
+maximum of 0.1 dB. The recordings were convolved with the filters in both directions
+using Matlab’s filtfilt() to achieve zero phase filtering and get a squared attenuation
+(double in dB). After filtering, the slow rate filtered recordings were down sampled to
+a sample rate of 128 Hz and the fast rate filtered recordings to 512 Hz. After that the
+eye blink artifacts were removed using the nt_eyeblink function from the NoiseTools
+toolbox [39], with the two external eye electrodes as input. The component of highest
+variance was removed. To achieve a better SNR, each epoch for each channel was then
+normalized by their variance, and the mean variance for each channel were multiplied to
+each epoch, to keep the summed variance for each channel intact, as protocol 2 of (John
+et al. 2001 [40]). For the fast rate filtered signals, the first 128 samples from each epoch
+was extracted, to keep only the data from the target intervals, of increased AM depth,
+for each condition. Finally, each 32 consecutive epochs were grouped into segments of
+respectively 16 s for the slow rates and 8 s for the fast rate.
+To obtain the SNR for 2 Hz, 4 Hz, and 128 Hz EFRs, all 42 segments were averaged
+for each channel in the time domain after which it was transformed into the fourier
+domain using a fast fourier transform. In the fourier domain, the magnitudes of the
+AF3, F3, Fz, FC2 and F4 channels were averaged for the 2 Hz and 4 Hz EFRs. For the
+128 Hz EFRs the magnitudes of Fz, FC1, Cz, and CP1 were averaged. Channel selection
+was based upon the highest mean SNR of each channel across all subjects. Topographies
+can be found in the appendix A. For the 2- and 4 Hz rates, the surrounding ± 0.99 Hz
+bins were used as noise floor for the SNR, corresponding to the 30 surrounding bins. For
+the 128 Hz SNR the noise floor set to the mean of the surrounding ± 10 Hz bins with
+all the bins divisible by 2 Hz removed, to avoid inter-modulation distortion products in
+the noise floor, corresponding to the surrounding 150 bins.
+==PAGE:20==
+3.4 Pilot measurements
+13
+3.4
+Pilot measurements
+3.4.0.1
+Behavioral piloting
+The first behavioral measurements were carried out using the method described by Ewert
+and Dau et al.
+2004 [33].
+The experiment were similar to the psychoacoustic AM
+experiment of this thesis, but no alternation between reference and target depths were
+used. Instead two reference intervals and one target interval was presented. Results
+similar to that of Ewert and Dau was found and used as a reference for future results. By
+applying the alternating paradigm, the pattern of discrimination thresholds as function
+of reference depth was preserved, but all thresholds were elevated. Different alternating
+rates were investigated, and it was found that higher alternation rates led to elevated
+thresholds. When presenting the stimuli to only one ear, further elevation of thresholds
+were found. When the width of the broad band carrier was wider, the thresholds were
+reduced, which complies with the envelope power spectrum model [33]. Different AM
+frequencies were tested in the range of 50-250 Hz. It was found that lower rates led
+to a lower thresholds. The rectified amplitude modulator was primarily used due to
+stronger EFRs. Behaviorally it led to slightly lower thresholds. When the stimulus
+properties were chosen, an uncalibrated behavioral experiment was run on 10 subjects
+to find the standard AM depths most beneficial for finding temporal AM processing
+differences in young and elderly NH subjects. Thresholds of the detection (unmodulated
+reference) condition and 40 % modulated reference condition showed biggest differences
+between the two groups, and hence these two standard depths were used for the final
+EEG experiment.
+3.4.0.2
+EEG piloting
+Concurrently with the behavioral piloting, EFRs to different stimulus properties were
+investigated. The target AM depth of all pilot tests were of 100 % except for when
+oddballs were tested. EFRs to alternation rates of 1, 1.6, 2, 2.56 and 3.2 Hz were tested.
+Rates of 1 Hz and 1.6 Hz evoked weaker SNRs for the EFRs. Due to results of the
+behavioral pilots, the 2 Hz rate was chosen, as the discrimination threshold was not
+measurable for some subjects at the highest standard AM depth (ms = 70%). Fast AM
+rates of 40 Hz, 128 Hz and 256 Hz all evoked similar SNRs for the EFRs. Attention
+effects were found for 40 Hz and 128 Hz as reported in subsection 3.3.2 and oddballs
+were therefore included in the experiment. An increase of SNR in the EFR to the 2 Hz
+rate was found for the 128 Hz fast AM compared to the 40 Hz fast AM. Besides this it
+was found that the EFR to the alternation rate decreased as the standard AM depth
+was increased.
+In order to better distinguish the sub-cortical and cortical EFRs, an AM rate of
+128 Hz was chosen [31]. Another argument to select this rate was that Regev et al. 2020
+[24] found a difference between thresholds for young and elderly NH subjects for 128 Hz,
+when conducting a measurement similar to that of Ewert and Dau et al. 2004 [33].
+==PAGE:21==
+3.5 Statistics
+14
+3.5
+Statistics
+Statistical tests were conducted in MATLAB. 2-way analysis of variance (ANOVA) were
+performed to check for significant differences and interaction effects using anovan(). Post
+hoc analysis were performed using multcompare() and Bonferroni corrected for multiple
+comparisons. For comparison of measures corr() was used to find Pearsons r coeﬀicient
+as well as the probability p. A significance level of 95 % was used for these measures.
+F-tests where used to find the limit of which the SNRs of the EFRs were significant,
+according to the method described by Dobie et al. 1996 [41]. The chosen statistical
+significance were 99 % which with the chosen amount of surrounding bins yields an SNR
+of 6 dB for the 2 Hz and 4 Hz EFRs and 5.65 dB for the 128 Hz EFR.
+==PAGE:22==
+CHAPTER 4
+Results
+4.1
+Psychoacoustic AM detection and
+discrimination thresholds
+AM detection and discrimination thresholds were measured in a psychoacoustic experi-
+ment. The thresholds of the young adult and the elderly group is shown in Figure 4.1.
+The target AM depth on the y-axis shows how much the AM depth was increased as func-
+tion of the AM depth of the standard intervals. ms = 0 % corresponds to AM detection.
+The difference between the young adults (red) and elderly (blue), were non-significant
+for all the standard AM depths in a 2 way ANOVA (F1(1,96) = 2.6, p = 0.11).
+Figure 4.1: Thresholds found from the psychoacoustic experiment. The lines indicates
+the mean of each group and the transparent markers illustrates the stan-
+dard deviation. The difference in the two groups where non-significant for
+all AM standards.
+Although we did not find any significant difference between the young adults and
+the elderly group, we do observe large individual differences within the two groups. In
+general a high variance is observed for all standard depths. One could argue that subjects
+having thresholds beneath a target AM depth of 40 % for AM detection (ms = 0%) is
+perceiving the behavioral task at ms = 40% as a detection task and hence achieve a
+lower threshold at ms = 40%. However, a correlation between thresholds at ms = 0%
+and ms = 40% revealed that this was not the case (r = 0.30, p = 0.23).
+==PAGE:23==
+4.2 SRT
+16
+4.2
+SRT
+AM processing may influence speech comprehension in absence of fluctuating noise.
+Hence SRTs were measured in stationary and amplitude modulated noise. It hypothe-
+sized that SRTs for elderly people are higher than for young adults. The SRT for both
+groups can be seen in Figure 4.2. A two-way ANOVA revealed that there was no effect
+of age for SRTs in stationary and modulated noise (F(1,32) = 1.25, p = 0.27) as well as no
+interaction effect (F(1,32) = 0.12, p = 0.73). It implies that both groups benefited equally
+from the 4 Hz AM (i.e. no effect of age on masking release). A scatter plot of the SRTs
+and the behavioral thresholds can be seen in the appendix in Figure A.1.
+Figure 4.2: SRT’s measured for the two groups in the different conditions. The differ-
+ence in the two groups were non-significant for all the three SRT conditions
+[3].
+4.3
+EEG measures
+To get a physiological measure of the AM coding, we measured the EFRs as function of
+AM depth when the standard intervals were 0 % and 40 % AM depth. The SNR of the
+EFR measures as a function of AM depth is shown in Figure 4.3. It was expected to see a
+growth of the EFR magnitudes as function of the target AM depth. Correlates between
+the mean SNR of the EFRs and their corresponding target AM depth showed that the
+growth was significant for both the 2 Hz and 128 Hz EFR (r = 0.4, p = 0.00028 and
+r = 0.34, p = 0.012), when the AM depth of the standard intervals were of ms = 0 %.
+For the elderly group, the 128 Hz EFR saturated at a target AM depth of 70 % for
+ms = 0 %. For ms = 40 % it was found that the growth of the 2 Hz EFR was highest
+and most significant (r = 0.56, p = 1.2e −5) but that the growth of the 128 Hz EFR
+for this standard was non-significant (r = 0.11, p = 0.42). This was also found when
+the group of young adults were analysed separately.
+==PAGE:24==
+4.3 EEG measures
+17
+Figure 4.3: SNR as function of AM depth of the target interval for 2 Hz and 128 Hz
+EFRs. In the left column the standard intervals were ms = 0 % in the
+right column the standard intervals were ms = 40 %. The transparent
+markers illustrates the standard deviation for each group. The correlation
+coeﬀicient and p-value for each plot is calculated upon all subjects.
+We found that both amplitudes and SNRs varies strongly across individuals both
+for young adults and elderly subjects.
+The SNR of the EFR rates were tested in
+a two-way ANOVA to check for interaction effects between the age group and EFR
+frequency.
+For ms = 0 % significant differences was found between the young and
+elderly group (F(1,32)
+=
+6.78, p
+=
+0.0139), the 2 Hz EFR and the 128 Hz EFR
+(F(1,32) = 10.64, p = 0.0026), as well as a significant interaction effect between age
+and EFR rate (F(1,32) = 8.06, p = 0.0078). The interaction indicates that the SNR
+difference for the two EFR rates was higher for the young adults compared to the elderly.
+A post hoc test showed that there was no effect of age on the 2 Hz EFR (p = 1), but
+a significant effect of age for the 128 Hz EFR (p = 0.0032). For the 128 Hz EFR at a
+target AM depth of 100 % and ms = 0 % the mean difference between the two groups
+was 10.7 dB.
+Similarly, these measures were significantly different at ms = 40 %.
+Significant
+differences between the young and elderly group (F(1,32) = 5.42, p = 0.0263), the 2 Hz
+EFR and the 128 Hz EFR (F(1,32) = 5.59, p = 0.0243), as well as an interaction effect
+between age and EFR rate (F(1,32) = 4.88, p = 0.0344) was found. Again a post hoc
+test showed that there was no effect of age on the 2 Hz EFR (p = 1), but a significant
+==PAGE:25==
+4.4 Correlation of physiological and behavioral measures of AM coding
+18
+effect of age for the 128 Hz EFR (p = 0.0262). A correlation between the 128 Hz EFR
+at standard depths of ms = 0 % and ms = 40 % was made, both at the 100 % target
+AM depth condition. The results were r = 0.9067 and p = 2e-07, indicating that the
+AM coding of the brainstem does not change between the detection and discrimination
+conditions.
+At a standard AM depth of 0 % and a target AM depth of 50 %, the percentage of
+significant 128 Hz EFRs was 42 %. Nevertheless, only 21 % significant responses were
+obtained for the 2 Hz EFR. This indicates that even when the 128 Hz EFR is measured
+at the brainstem, the cortical response to the difference between the stationary- and
+amplitude modulated intervals is not necessarily strong.
+4.4
+Correlation of physiological and
+behavioral measures of AM coding
+It was hypothesized that the 2 Hz EFRs, in response to a fixed target AM depth, would
+correlate with the psychoacoustic thresholds in the AM detection or discrimination tasks.
+Since no effect of age were found in the behavioral thresholds, all subjects were included
+in the correlates between EFRs and psychoacoustic thresholds. As can be seen in Fig-
+ure 4.3, most significant responses were recorded at an AM depths of 100 %. Hence,
+only EFRs at this target AM depth were correlated with the behavioral thresholds. A
+weakness of correlating the EFRs captured at a target AM depth of 100 % with the
+psychoacoustic thresholds, is that the mean target AM depths of the psychoacoustic
+thresholds were 39.5 % and 55 % for ms = 0 % and ms = 40 % respectively. Hence,
+there is a big difference in the target AM depth of the EFR and psychoacoustic thresh-
+olds. A significant SNR of the 2 Hz EFRs was not achieved in most cases, and hence all
+measures with SNRs above 2 dB is included in the further analysis. With the number of
+surrounding bins used, SNRs above 2 dB have a statistical significance of about 92 %.
+==PAGE:26==
+4.4 Correlation of physiological and behavioral measures of AM coding
+19
+Figure 4.4: Correlates of psychoacoustic thresholds and SNRs at 100 % target AM
+depth. To the left, psychoacoustic thresholds at ms = 0 % is correlated
+with SNRs of the EFRs from the EEG condition where ms = 0 % and the
+target AM depth were of 100 %. To the right, psychoacoustic thresholds at
+ms = 40 % is correlated with SNRs of the EFRs from the EEG condition
+where ms = 40 % and the target AM depth were of 100 %. The blue points
+are elderly subjects whereas the young adults are marked with red. The
+dotted lines indicates the 95 % confidence interval for the predicted value
+of the linear regressions.
+Correlates of EFRs and psychoacoustic thresholds can be seen in Figure 4.4. For
+the AM stimulus with ms = 0 % (unmodulated) standard depth, a moderate negative
+correlation between the 2 Hz EFR and the psychoacoustic thresholds was found (top left)
+(r = −0.48, p = 0.045). When the SNR of the 2 Hz EFR is higher, the AM detection
+threshold is lower, as hypothesized. This means that subjects who are better able to
+discriminate the AM depths have stronger EFRs to the difference in AM depth, although
+measured above the psychoacoustic threshold. The same pattern is seen for the 128 Hz
+SNR when ms = 0 % (r = −0.39, p = 0.12), although it is not significant.
+For the ms = 40 % standard AM depth (corresponding to AM discrimination), no
+correlation between the 2 Hz EFR and the psychoacoustic thresholds were found. The
+128 Hz EFR, however, revealed a positive correlation with the psychoacoustic thresholds
+==PAGE:27==
+4.5 Examination of EFRs
+20
+at ms = 40 % (r = 0.5, p = 0.041). This implies that a stronger 128 Hz EFR results in
+a higher threshold of AM discrimination.
+Correlation coeﬀicients between SRT measures and 2 Hz and 128 Hz EFRs at a 100 %
+AM target depth for both standard depths were not statistical significant (p > 0.05).
+4.5
+Examination of EFRs
+During the analysis it was found that the elderly group had significantly weakened EFRs
+to the 128 Hz AM rate in the brainstem. Altered activity in the cortex, has earlier
+been found to be consequence of deficits in AM coding in the ANFs [42]. Relations
+between responses in the auditory cortex in absence of ANFs has been studied in mice
+by Chambers et al. 2016. [43]. They found that responses from the auditory cortex were
+elevated in the absence of ANFs. She suggests that a central gain mechanism is apparent
+in the auditory cortex when the response from ANFs is weakened. In this study it was
+found that although the AM coding in the brainstem was weaker in the elderly group,
+they obtained similar responses to the 2 Hz alternation rate from the cortex, compared
+to the young adult. It has earlier been found that neural responses to slow rate AM are
+less sinusoidal for elderly people [44]. This might be apparent in the harmonics of the
+2 Hz EFR.
+To investigate this further, we looked at the relation between the 2 Hz, 4 Hz and
+128 Hz EFR at the ms = 0 % standard AM depth, as the 2 Hz and 128 Hz EFRs showed
+greatest differences for this condition. Similar to the other EFR rates, the 4 Hz EFR for
+all subjects showed a growth (r = 0.7), but it was far more significant (p = 3.66e-9).
+The SNR of the 4 Hz and 128 Hz EFR rates were tested in a two-way ANOVA to
+check for interaction effects between the age group and EFR frequency. For ms = 0 %
+a significant difference between the 4 Hz EFR and the 128 Hz EFR (F(1,32) = 5.83, p =
+0.0217) was found, as well as a highly significant interaction effect between the age group
+and the EFR rate (F(1,32) = 12.53, p = 0.0012). This implies that the difference between
+the strength of the two EFR rates is much higher for the young adults compared to the
+elderly group. No significant differences was found between the young and elderly group
+(F(1,32) = 3.44, p = 0.0731) . The difference in the two groups for the 2 Hz, 128 Hz and
+4 Hz EFRs at a target depth of 100 % and ms = 0 % is shown in Figure 4.5.
+==PAGE:28==
+4.5 Examination of EFRs
+21
+Figure 4.5: Violin plot of the 2 Hz, 128 Hz and 4 Hz EFRs at ms = 0 % for the young
+adults and elderly group. The significance bars between the EFR groups
+indicates statistical significance of the interaction between age and EFR
+rate while the significance bars within each rate indicates the statistical
+significance between age groups for that rate. ∗∗= p < 0.01 [3].
+As an interaction effect was found for both 2 Hz and 4 Hz EFRs when compared
+against the 128 Hz EFR rate, it is interesting to take a look at the correlates between
+the 128 Hz EFR measured in the brainstem and the 2 Hz and 4 Hz EFRs measured in
+the cortex. These are shown in Figure 4.6. As seen in the left plot, a significant positive
+correlation was found between the 2 Hz EFR and the 128 Hz EFR (r = 0.67, p = 0.0022).
+The correlation of these rates was also made individually for the young and the elderly
+group. The elderly group showed a strong positive correlation (r = 0.94, p = 6.1e-5)
+and so did the group of young adults (r = 0.86, p = 0.0065). The two groups had a
+significant offset in the correlation, which was found in the interaction of the ANOVA.
+==PAGE:29==
+4.5 Examination of EFRs
+22
+Figure 4.6: Correlates between the 2 Hz EFR and the 128 Hz EFR (left), and between
+the 4 Hz EFR and the 128 Hz EFR (right). The blue points are elderly
+subjects whereas the young adults are marked with red. The dotted lines
+indicates the 95 % confidence interval for the predicted value of the linear
+regressions. In the left plot, the r and p values is shown for individual
+correlates of the two groups.
+The correlation between the 4 Hz EFR and the 128 Hz EFR (right plot) was not
+significant, but interestingly r = 0.31, which means that there was a tendency towards
+a stronger 4 Hz EFR when the 128 Hz EFR was weaker.
+==PAGE:30==
+CHAPTER 5
+Discussion
+5.1
+Psychoacoustic experiments
+In this study, relations between electrophysiological and psychoacoustic measures of
+temporal processing were investigated.
+It was hypothesized that elderly people had
+higher thresholds for both psychoacoustic AM detection and discrimination tasks. The
+latter was found by Regev et al. 2020 [24]. However, no significant differences between
+the two groups was found in this study. The paradigm of this study is different from
+others in that the stimulus alternates between the target AM depth and the reference AM
+depth. The perceived difference of the intervals in the psychoacoustic experiment is the
+slow alternation in depth rather than the fast AM. The elderly group had significantly
+reduced responses to the fast AM. However, the reduced coding of the fast AM in sub-
+cortical stages might be compensated for in cortical stages as is suggested for speech
+comprehension [42]. This could explain why the alternation rate is perceived similarly
+in the two groups although the elderly had reduced sub-cortical responses. Other reasons
+are that only one training round was completed prior to the experiment. Hence, there
+might be a considerable difference in how trained the subjects were. Five out of ten in
+the elderly group were musicians which might have had an impact on the results.
+No differences in SRTs between the two groups were observed even though the elderly
+group had significantly worse EFRs to the 128 Hz AM rate, which indicates worse AM
+coding in the brainstem. Schoof et al. 2014 [45], who found higher SRTs for elderly in
+multi-talker babble (i.e. informational masking), did not find any effect of age for SRTs
+in stationary or modulated noise, which complies with results of this study. Peelle et
+al. 2016 [42] suggests that the cortex of elderly people compensates altered temporal
+processing and that performance in acoustical diﬀicult environments is similar to that
+of young people, but listening effort is higher and words or stories are memorized worse.
+It has also been shown that musical training has a great impact on speech perception
+[46], and hence the five musicians in the elderly group might benefit from this.
+5.2
+EEG measures
+EFRs were measured as function of target AM depth for standard AM depths of ms = 0 %
+and ms = 40 %. For both standard depths, the growth of the response with increases in
+depth difference was higher for the 2 Hz EFR (r=0.4 & r=0.56) compared to the 128 Hz
+EFR (r=0.34 & r=0.11). The growth difference between the two rates was particularly
+==PAGE:31==
+5.3 Correlation of physiological and behavioral measures of AM coding
+24
+prominent for the ms = 40 % modulated standard (r=0.56 for 2 Hz and r=0.11 for
+128 Hz). This implies that the paradigm of the electrophysiological experiment works as
+exclusively changing the 128 Hz AM depth in the target intervals causes stronger effect
+on the 2 Hz EFR compared to the 128 Hz EFR.
+For the unmodulated standard (ms = 0 %), and a fully modulated target AM (depth
+of 100 %), a significant difference in the 128 EFR between the two groups were found.
+This was also found by Purcell et al. 2004 [47] for EFRs above 100 Hz. Purcell sug-
+gests that EFRs at these rates reflects the temporal acuity of the aging nervous system.
+Shaheen et al. 2015 [48] found that noise-induced cochlear neuropathy highly reduced
+EFRs in mice, while Wu et al. 2019 [17] found that ANFs degenerates with age in human.
+Hence, the reduced 128 Hz EFRs in the elderly group supports that they could suffer
+from cochlear neuropathy to some degree.
+At the most shallow target depth for both standards, a greater proportion of subjects
+had significant responses for the 128 Hz EFR compared to the 2 Hz EFR. This implies
+that the 128 Hz EFR is apparent at the brainstem but that the 2 Hz alternation between
+the target intervals and standard intervals is not clearly resolved by the EEG. It was
+hypothesized that the alternation rate would be apparent in the 2 Hz EFR if it was
+resolved perceptually since decision mechanisms lies within the auditory cortex [25]. If
+the hypothesis holds true, the slow alternation of the AM depth is not perceived at
+the most shallow target depth when the stimulus is ongoing rather than short as in the
+psychoacoustic experiment. Other possible explanations is that internal noise [33] in the
+cortex dominates the alternation rate or that measurement noise exceeds the 2 Hz EFR.
+5.3
+Correlation of physiological and
+behavioral measures of AM coding
+The EFRs to the fully modulated targets (100 % depth) at standard depths of ms = 0 %
+and ms = 40 % were correlated with psychoacoustic thresholds measured at the same
+standard AM. A negative correlation between the 2 Hz EFR and the psychoacoustic
+thresholds were found for the unmodulated standard AM depth (ms = 0 %). This means
+that subjects who achieved better thresholds in the psychoacoustic AM detection task
+(ms = 0 %), did also have stronger responses to the alternation rate between the target
+and standard intervals. This correlation occurred although the EFRs were measured at
+a target AM depth of 100 % while the mean thresholds of the psychoacoustic experiment
+for ms = 0 % were 39.5 %. The same pattern was found for the 128 Hz EFR rate, but it
+was not significant. This implies that the the alternation of AM depth elicit a cortical
+readout of the decision processes that is better correlated with the behavioral threshold
+than the sub-cortical EFR to the fast AM.
+No correlation was found between the 2 Hz EFRs and the psychoacoustic thresholds
+at a standard AM depth of ms = 40 %, but a significant positive correlation between
+the 128 Hz EFRs and the psychoacoustic thresholds was found. This is opposite of the
+==PAGE:32==
+5.4 Examination of EFRs
+25
+pattern observed for a standard AM depth of ms = 0 %. It implies that a strong coding of
+the 128 Hz EFR leads to a worse AM discrimination thresholds. This is counter-intuitive,
+as one would expect a strong AM coding to result in better AM discrimination thresholds.
+A possible explanation is that those who have a strong 128 Hz EFR response at a target
+AM depth of 100 % do also have a strong AM coding at the standard AM depth of 40 %.
+Hence, if one has a strong coding of the standard AM depth itself, a higher difference
+between the standard AM depth and the target AM depth might be needed in order
+to recognise the 2 Hz alternation rate of the stimulus in the psychoacoustic experiment.
+This implies that the strength of the sub-cortical EFR does not necessarily reflect the
+ability to detect differences in AM depths. A possible cortical compensation for reduced
+AM coding [44], could have great effect on the identification of the 2 Hz alternation rate.
+The sub-cortical EFR to the fast rate is independent of the standard AM depth. Hence,
+a readout related to difference in AM depth, that the behavioral task relies on, is needed.
+Another explanation for the positive correlation is that the elderly group, in which 5/10
+were musicians, have weakened 128 Hz EFRs but low discrimination thresholds due to
+musical training.
+5.4
+Examination of EFRs
+Correlates between the EFRs at a standard AM depth of ms = 0 % were investigated. A
+significant positive correlation between the 2 Hz EFR and the 128 Hz EFR at was found
+for the unmodulated standard. This seems logical as both of these EFRs correlates
+negatively with the psychoacoustic AM thresholds at ms = 0 %.
+This means that
+a strong AM coding, leads to a strong neural response to the alternation rate in the
+auditory cortex, which is revealed by lower psychoacoustic AM detection thresholds due
+to better perception of the alternation rate.
+The two groups had an offset in the correlates between 2 Hz and 128 Hz EFRs,
+as was seen in Figure 4.6. The offset shows that elderly subjects have a higher ratio
+between the cortical EFRs and sub-cortical EFRs compared to the group of young
+adults. This indicates the deficits of the AM coding in the brainstem is compensated for
+in the auditory cortex. Particularly the EFR to the 2 Hz alternation rate is apparent at
+smaller 128 Hz EFRs compared to the young adults. This implies that the compensatory
+plasticity of the auditory cortex found in mice (Chambers et al 2016 [43]), is also apparent
+in human with damaged ANFs.
+The correlation between the 4 Hz EFR and the 128 Hz EFR were non-significant.
+However, the highly significant interaction effect between these EFRs and the age group
+shows that the ratio between the 4 Hz EFR and the 128 Hz EFR is much higher for
+the elderly group. It has earlier been found that neural responses to AM at slow rates
+are less sinusoidal for elderly people [44]. This is supported by a stronger 4 Hz EFR
+(harmonic to the 2 Hz) compared to the 128 Hz EFR for the elderly group.
+==PAGE:33==
+CHAPTER 6
+Conclusion
+1. In this study a novel EEG paradigm with nested AM rates was used to create a
+readout related to behavioral discrimination of AM depth. A 128 Hz modulated
+broad-band noise stimulus that alternated between reference intervals and target
+intervals of increased AM depth at 2 Hz was used to evoke cortical (2 Hz) and
+sub-cortical (128 Hz) EFRs. The paradigm worked, in that changing the 128 Hz
+AM depth had a greater impact on the growth of the cortical EFRs compared to
+the sub-cortical EFRs.
+2. No difference in behavioral AM detection and discrimination tasks were found
+between the two groups. Possible reasons why the results differs from earlier studies
+on AM discrimination is musical training within the elderly group, training effects,
+or the paradigm, in which the perceived difference between the three intervals
+of alternating stimuli, is the alternation rate rather than the AM rate. Hence
+plasticity of the auditory cortex might compensate for worsened AM coding in the
+brainstem. Another reason could be training effects.
+3. Speech-in-noise perception measured with SRTs did not show any differences be-
+tween the two groups, and neither did the correlates of SRTs and EEG measures.
+4. The group of young adults obtained significantly higher EFRs to the 128 Hz AM
+rate, which indicates that AM coding in the brainstem declines with age.
+5. For AM detection (ms = 0 %) the psychoacoustic thresholds correlated negatively
+with 2 Hz EFRs in response to target intervals of 100 % AM depth at standard
+AM depth of ms = 0 %. This implies that the cortical 2 Hz EFR can be directly
+compared to the perception of the alternation between the intervals.
+6. Correlates between EEG and psychoacoustic thresholds suggested that stronger
+EFR of the 128 Hz rate led to a lower threshold for AM detection (unmodulated
+standard), while it led to a higher threshold for AM discrimination (modulated
+standard). This could be due to cortical compensation for damaged ANFs, which
+might have bigger impact on the perception of the 2 Hz alternation rate rather
+than the 128 Hz AM rate, or simply a training effect for elderly subjects, who had
+significantly lower 128 Hz EFRs.
+7. Correlates between cortical 2 Hz EFRs and sub-cortical 128 Hz EFRs revealed a
+strong correlation between the two. However, an interaction effect between age
+group and the two EFR rates revealed that the ratio between cortical EFRs and
+==PAGE:34==
+6 Conclusion
+27
+the sub-cortical EFRs was higher for the elderly group. The same interaction effect
+was found for the 4 Hz EFR (harmonic of the 2 Hz EFR). This implies that the
+absence of sub-cortical AM coding is compensated for in the auditory cortex.
+==PAGE:35==
+APPENDIX A
+Appendix
+Figure A.1: Scatter plot of the behavioral thresholds and SRTs. The lines indicates lin-
+ear regressions. Thresh0 is the behavioral threshold at ms = 0 %, Thresh20
+at ms = 20 % and so forth.
+==PAGE:36==
+A Appendix
+29
+Figure A.2: Psychometric functions fitted to the mean of the hit rate of the oddballs
+for each condition. The blue lines indicates the mean of the elderly group
+whereas the red lines indicates the mean of the young adults. The trans-
+parent markers illustrates the standard deviation for each group. The top
+row shows the conditions where ms = 0 % and the bottom row where
+ms = 40 %.
+==PAGE:37==
+A Appendix
+30
+Figure A.3: Topography of the mean 2 Hz EFR at condition 3 (ms = 0 %,
+mtot = 100 %) for elderly and young adults.
+Figure A.4: Topography of the mean 128 Hz EFR at condition 3 (ms = 0 %,
+mtot = 100 %) for elderly and young adults.
+==PAGE:38==
+Bibliography
+[1]
+Stephan D. Ewert and Torsten Dau. Characterizing frequency selectivity for enve-
+lope fluctuations. The Journal of the Acoustical Society of America, 108(3):1181,
+2000.
+[2]
+Terence W Picton. Human auditory evoked potentials. Plural Publishing, 2010.
+[3]
+Bastian Bechtold, Patrick Fletcher, Seamusholden, and Srinivas Gorur-Shandilya.
+bastibe/Violinplot-Matlab: A Good Starting Point, feb 2021.
+[4]
+Rohima Badri, Jonathan H. Siegel, and Beverly A. Wright. Auditory filter shapes
+and high-frequency hearing in adults who have impaired speech in noise performance
+despite clinically normal audiograms.
+The Journal of the Acoustical Society of
+America, 129(2):852–863, 2011.
+[5]
+Judy R. Dubno, Donald D. Dirks, and Donald E. Morgan. Effects of age and mild
+hearing loss on speech recognition in noise. Journal of the Acoustical Society of
+America, 76(1):87–96, 1984.
+[6]
+Anne Strouse, Daniel H. Ashmead, Ralph N. Ohde, and D. Wesley Grantham.
+Temporal processing in the aging auditory system. The Journal of the Acoustical
+Society of America, 104(4):2385–2399, 1998.
+[7]
+Robert V Shannon, Fan-gang Zeng, Vivek Kamath, John Wygonski, and Michael
+Ekelid. Temporal Cues. Science, 270(5234):303–304, 2007.
+[8]
+Nirmal Kumar Srinivasan and Pavel Zahorik. Enhancement of speech intelligibility
+in reverberant rooms: Role of amplitude envelope and temporal fine structure. The
+Journal of the Acoustical Society of America, 135(6):EL239–EL245, 2014.
+[9]
+Karen B. Snell and D. Robert Frisina. Relationships among age-related differences
+in gap detection and word recognition. The Journal of the Acoustical Society of
+America, 107(3):1615–1626, 2000.
+[10] Nicolas Wallaert, Brian C. J. Moore, and Christian Lorenzi. Comparing the effects
+of age on amplitude modulation and frequency modulation detection. The Journal
+of the Acoustical Society of America, 139(6):3088–3096, 2016.
+[11] Josef Schlittenlacher and Brian C. J. Moore.
+Discrimination of amplitude-
+modulation depth by subjects with normal and impaired hearing.
+The Journal
+of the Acoustical Society of America, 140(5):3487–3495, 2016.
+==PAGE:39==
+Bibliography
+32
+[12] Brian C.J. Moore, Sashi Mariathasan, and Aleksander P. Se￿k. Effects of Age and
+Hearing Loss on the Discrimination of Amplitude and Frequency Modulation for 2-
+and 10-Hz Rates. Trends in Hearing, 23:1–12, 2019.
+[13] Terence W. Picton, M. Sasha John, Andrew Dimitrijevic, and David Purcell. Hu-
+man auditory steady-state responses. International Journal of Audiology, 42(4):177–
+219, 2003.
+[14] Terence W. Picton, Christopher R. Skinner, Sandra C. Champagne, Adrian J.C.
+Kellett, and Anita C. Maiste. Potentials evoked by the sinusoidal modulation of
+the amplitude or frequency of a tone. Journal of the Acoustical Society of America,
+82(1):165–178, 1987.
+[15] Gavin M. Bidelman, Joshua W. Villafuerte, Sylvain Moreno, and Claude Alain.
+Age-related changes in the subcortical-cortical encoding and categorical perception
+of speech. Neurobiology of Aging, 35(11):2526–2540, 2014.
+[16] Robin Gransier, Michael Hofmann, Astrid van Wieringen, and Jan Wouters.
+Stimulus-evoked phase-locked activity along the human auditory pathway strongly
+varies across individuals. Scientific Reports, 11(1):1–13, 2021.
+[17] P. Z. Wu, L. D. Liberman, K. Bennett, V. de Gruttola, J. T. O’Malley, and M. C.
+Liberman.
+Primary Neural Degeneration in the Human Cochlea: Evidence for
+Hidden Hearing Loss in the Aging Ear. Neuroscience, 407:8–20, 2019.
+[18] Lucas M. Viana, Jennifer T. O’Malley, Barbara J. Burgess, Dianne D. Jones, Car-
+los A.C.P. Oliveira, Felipe Santos, Saumil N. Merchant, Leslie D. Liberman, and
+M. Charles Liberman. Cochlear neuropathy in human presbycusis: Confocal anal-
+ysis of hidden hearing loss in post-mortem tissue. Hearing Research, 327:78–88,
+2015.
+[19] Hari M. Bharadwaj, Sarah Verhulst, Luke Shaheen, M. Charles Liberman, and
+Barbara G. Shinn-Cunningham.
+Cochlear neuropathy and the coding of supra-
+threshold sound. Frontiers in Systems Neuroscience, 8(FEB), 2014.
+[20] Hari M. Bharadwaj, Salwa Masud, Golbarg Mehraei, Sarah Verhulst, and Bar-
+bara G. Shinn-Cunningham. Individual differences reveal correlates of hidden hear-
+ing deficits. Journal of Neuroscience, 35(5):2161–2172, 2015.
+[21] M. Charles Liberman.
+Auditory-nerve response from cats raised in a low-noise
+chamber. Journal of the Acoustical Society of America, 63(2):442–455, 1978.
+[22] Adam C. Furman, Sharon G. Kujawa, and M. Charles Liberman. Noise-induced
+cochlear neuropathy is selective for fibers with low spontaneous rates. Journal of
+Neurophysiology, 110(3):577–586, 2013.
+==PAGE:40==
+Bibliography
+33
+[23] Harrison W. Lin, Adam C. Furman, Sharon G. Kujawa, and M. Charles Liberman.
+Primary neural degeneration in the guinea pig cochlea after reversible noise-induced
+threshold shift. JARO - Journal of the Association for Research in Otolaryngology,
+12(5):605–616, 2011.
+[24] J. Regev, P.A. Mesiano, J. Zaar, and T. Dau (2020). Characterizing comodulation
+masking release in hearing-impaired listeners. In poster PS513, presented at the
+43rd ARO MidWinter Meeting, San Jose, USA, 2020.
+[25] Jeffrey R. Binder, Einat Liebenthal, Edward T. Possing, David A. Medler, and
+B. Douglas Ward. Neural correlates of sensory and decision processes in auditory
+object identification. Nature Neuroscience, 7(3):295–301, 2004.
+[26] Christian Füllgrabe, Brian C.J. Moore, and Michael A. Stone. Age-group differences
+in speech identification despite matched audiometrically normal hearing: Contribu-
+tions from auditory temporal processing and cognition. Frontiers in Aging Neuro-
+science, 7(JAN):1–25, 2015.
+[27] Venugopal Manju, Kizhakke Kodiyath Gopika, and Pitchai Muthu Arivudai Nambi.
+Association of Auditory Steady State Responses with Perception of Temporal Mod-
+ulations and Speech in Noise. ISRN Otolaryngology, 2014:1–8, 2014.
+[28] Nanna Haug Hilton, Anja Schüppert, and Charlotte Gooskens. Syllable reduction
+and articulation rates in Danish, Norwegian and Swedish. Nordic Journal of Lin-
+guistics, 34(2):215–237, 2011.
+[29] Suzana Herculano-Houzel.
+The human brain in numbers: A linearly scaled-up
+primate brain. Frontiers in Human Neuroscience, 3(NOV):1–11, 2009.
+[30] Michael X. Cohen. Where Does EEG Come From and What Does It Mean? Trends
+in Neurosciences, 40(4):208–218, 2017.
+[31] Anne Lise Giraud, Christian Lorenzi, John Ashburner, Jocelyne Wable, Ingrid
+Johnsrude, Richard Frackowiak, and Andreas Kleinschmidt.
+Representation of
+the temporal envelope of sounds in the human brain. Journal of Neurophysiology,
+84(3):1588–1598, 2000.
+[32] Emma Holmes, David W. Purcell, Robert P. Carlyon, Hedwig E. Gockel, and In-
+grid S. Johnsrude.
+Attentional Modulation of Envelope-Following Responses at
+Lower (93–109 Hz) but Not Higher (217–233 Hz) Modulation Rates. JARO - Jour-
+nal of the Association for Research in Otolaryngology, 19(1):83–97, 2018.
+[33] Stephan D. Ewert and Torsten Dau. External and internal limitations in amplitude-
+modulation processing.
+The Journal of the Acoustical Society of America,
+116(1):478–490, 2004.
+==PAGE:41==
+Bibliography
+34
+[34] Markus Garrett and S. Verhulst. Applicability of subcortical EEG metrics of synap-
+topathy to older listeners with impaired audiograms. Hearing Research, 380:150–165,
+2019.
+[35] Shaum P Bhagat and Craig A Champlin. Effect of frequency region and noise band-
+width on the amfr. The Journal of the Acoustical Society of America, 108(5):2596–
+2597, 2000.
+[36] H. Levitt. Transformed Up‐Down Methods in Psychoacoustics. The Journal of the
+Acoustical Society of America, 49(2B):467–477, 1971.
+[37] Jens Bo Nielsen and Torsten Dau. The Danish hearing in noise test. International
+Journal of Audiology, 50(3):202–208, 2011.
+[38] Robert Oostenveld, Pascal Fries, Eric Maris, and Jan-Mathijs Schoffelen. FieldTrip:
+Open Source Software for Advanced Analysis of MEG, EEG, and Invasive Elec-
+trophysiological Data. Computational Intelligence and Neuroscience, 2011:156869,
+2011.
+[39] Noisetools toolbox. http://audition.ens.fr/adc/NoiseTools/. Accessed: 2021-
+04-30.
+[40] M. Sasha John, Andrew Dimitrijevic, and Terence W. Picton. Weighted averaging
+of steady-state responses. Clinical Neurophysiology, 112(3):555–562, 2001.
+[41] Robert A. Dobie and Michael J. Wilson.
+A comparison of t test, F test, and
+coherence methods of detecting steady‐state auditory‐evoked potentials, distor-
+tion‐product otoacoustic emissions, or other sinusoids . The Journal of the Acous-
+tical Society of America, 100(4):2236–2246, 1996.
+[42] Jonathan E. Peelle and Arthur Wingfield. The Neural Consequences of Age-Related
+Hearing Loss. Trends in Neurosciences, 39(7):486–497, 2016.
+[43] Anna R. Chambers, Jennifer Resnik, Yasheng Yuan, Jonathon P. Whitton, Albert S.
+Edge, M. Charles Liberman, and Daniel B. Polley. Central Gain Restores Auditory
+Processing following Near-Complete Cochlear Denervation. Neuron, 89(4):867–879,
+2016.
+[44] Vanessa C Irsik, Ala Almanaseer, Ingrid S Johnsrude, and Björn Herrmann. Cor-
+tical responses to the amplitude envelopes of sounds change with age. Journal of
+Neuroscience, 41(23):5045–5055, 2021.
+[45] Tim Schoof and Stuart Rosen. The role of auditory and cognitive factors in un-
+derstanding speech in noise by normal-hearing older listeners. Frontiers in Aging
+Neuroscience, 6(OCT):1–14, 2014.
+[46] Chandni Jain, Hijas Mohamed, and Ajith Kumar U. The Effect of Short-Term
+Musical Training on Speech Perception in Noise.
+Audiology Research, 5(1):5–8,
+2015.
+==PAGE:42==
+Bibliography
+35
+[47] David W. Purcell, Sasha M. John, Bruce A. Schneider, and Terence W. Picton.
+Human temporal auditory acuity as assessed by envelope following responses. The
+Journal of the Acoustical Society of America, 116(6):3581–3593, 2004.
+[48] Luke A. Shaheen, Michelle D. Valero, and M. Charles Liberman. Towards a Diag-
+nosis of Cochlear Neuropathy with Envelope Following Responses. JARO - Journal
+of the Association for Research in Otolaryngology, 16(6):727–745, 2015.

@@ -1,0 +1,1822 @@
+==PAGE:1==
+M.Sc. Thesis
+Master of Science in Engineering
+Diagnosis and Fault-Tolerant Control of a
+Magnetic Levitation System
+Kun Du (s192231)
+Kongens Lyngby 2021
+==PAGE:2==
+DTU Elektro
+Department of Electrical Engineering
+Technical University of Denmark
+==PAGE:3==
+Summary
+Based on the ECP M730 platform, this thesis mainly analyzes the dynamic model,
+Fault Detection and Isolation (FDI), and Fault Tolerance Control (FTC) of the ma-
+glev system. In this thesis, Single-Input Single-Output system (SISO) and Multiple-
+Input Multiple-Output system (MISO) are the two main analysis scenarios. Time-
+invariant step signals are the main types of faults. In order to diagnose such faults in
+time, this article applies the observer-based method to obtain the residuals. Generalized
+Likelihood Ratio Test (GLRT) is performed on these residuals to complete the fault
+diagnosis and isolation. For fault-tolerant control, this thesis adopts two methods,
+fault accommodation and fault reconfiguration, to restore the SISO and MISO sys-
+tem’s failure respectively.
+==PAGE:4==
+ii
+==PAGE:5==
+Preface
+This master thesis was accomplished at the group of Automation and Control at the
+Technical University of Denmark to fulfill the requirements for acquiring a Master of
+Science degree in Electrical Engineering.
+==PAGE:6==
+iv
+==PAGE:7==
+Acknowledgements
+I would like to thank my supervisor Assistant Professor Dimitrios Papageorgiou for
+the help, support and encouragement, especially for the time spent on the weekly
+meeting as well as the patience for answering the questions.
+I would like to thank DTU for providing the laboratory equipment, allowing me to
+have the opportunity to put the theory into practice to have a further recognition
+about the whole system.
+I also be grateful to Sigurd Engvik Rasch for the previous work.
+==PAGE:8==
+vi
+==PAGE:9==
+List of Abbreviations
+FDI Fault Detection and Isolation . . . . . . . . . . . . . . . . . . . . . . . . .
+i
+FTC Fault Tolerance Control . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+i
+SISO Single-Input Single-Output system
+. . . . . . . . . . . . . . . . . . . . .
+i
+MISO Multiple-Input Multiple-Output system . . . . . . . . . . . . . . . . . .
+i
+GLRT Generalized Likelihood Ratio Test . . . . . . . . . . . . . . . . . . . . .
+i
+CR controller reconfiguration . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+DSP Digital Signal Processor . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+ADC analog-to-digital converters
+. . . . . . . . . . . . . . . . . . . . . . . . .
+4
+DAC digital-to-analog converters . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+AAR Analytical Redundancy Relations . . . . . . . . . . . . . . . . . . . . . .
+21
+CDF Cumulative Distribution Function . . . . . . . . . . . . . . . . . . . . . .
+ix
+==PAGE:10==
+List of Figures
+1.1
+The magnetic levitation train . . . . . . . . . . . . . . . . . . . . . . . . .
+1
+1.2
+The magnetic levitation bearing
+. . . . . . . . . . . . . . . . . . . . . . .
+2
+1.3
+EPC M730
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+1.4
+The ECP M730 experimental control system
+. . . . . . . . . . . . . . . .
+5
+1.5
+MagLev apparatus . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+2.1
+The SISO system (m: The mass of the magnet. g: The gravity. Fu: The
+magnetic force. x: The height of magnet. ˙x: The velocity of the magnet.
+c: The coeﬀicient of viscous friction. u: The input voltage.) . . . . . . . .
+9
+2.2
+The Simulink Model of SISO nonlinear system (The top part is for the
+situation where lower coil is the drive coil and the bottom part is for the
+situation where upper coil is the drive coil ) . . . . . . . . . . . . . . . . .
+10
+2.3
+The MISO system (m: The mass of the magnet. g: The gravity. Fu: The
+magnetic force. x: The height of magnet. ˙x: The velocity of the magnet.
+c: The coeﬀicient of viscous friction. u: The input voltage.) . . . . . . . .
+11
+2.4
+The Simulink Model of MISO nonlinear system(u1 is the input of lower coil,
+u2 is the input of the upper coil and the unit of u1 and u2 is counts) . . .
+12
+2.5
+Experimental digital count values obtained through ECP Software versus
+magnet height (data) and calibration functions fitted to empirical data (ycal) 13
+2.6
+The Simulink Model of SISO linear system (The operating point is 1 cm.
+The top part demonstrates the situation where lower coil is the drive coil.
+The bottom part illustrates the situation where upper coil is the drive coil) 16
+2.7
+The Simulink Model of MISO linear system(u1 is the input of lower coil, u2
+is the input of the upper coil and the unit of u1 and u2 is counts)
+. . . .
+17
+2.8
+The SISO system output from the test rig by the full state feedback con-
+troller (Reference position is 1 cm) . . . . . . . . . . . . . . . . . . . . . .
+18
+2.9
+The MISO system output from the test rig by the full state feedback con-
+troller (Reference position is 1 cm) . . . . . . . . . . . . . . . . . . . . . .
+18
+3.1
+Different fault types with regard to time characteristics
+. . . . . . . . . .
+19
+3.2
+The abrupt fault of actuator
+. . . . . . . . . . . . . . . . . . . . . . . . .
+20
+3.3
+The effect on the performance of the system when a fault happens(faulty
+case) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+20
+3.4
+The Simulink Model of Kalman filter(Residual generator) . . . . . . . . .
+23
+==PAGE:11==
+3.5
+No fault case . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+23
+3.6
+The fault case in SISO system
+. . . . . . . . . . . . . . . . . . . . . . . .
+24
+3.7
+The fault case in MISO system . . . . . . . . . . . . . . . . . . . . . . . .
+24
+3.8
+The fault case in SISO system
+. . . . . . . . . . . . . . . . . . . . . . . .
+27
+3.9
+The Cumulative Distribution Function (CDF) under H0 and H1 for the
+GLR test, window size M = 80 . . . . . . . . . . . . . . . . . . . . . . . .
+28
+3.10 g(k) and the threshold h in the GLR test
+. . . . . . . . . . . . . . . . . .
+28
+3.11 The alarm of GLR test . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+29
+3.12 g(k) and the threshold h in the GLR test
+. . . . . . . . . . . . . . . . . .
+29
+3.13 The alarm of GLR test . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+30
+4.1
+Fault accommodation
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+31
+4.2
+The Siumlink Model of the fault observer
+. . . . . . . . . . . . . . . . . .
+33
+4.3
+Fault reconfiguration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+34
+4.4
+Virtual actuator
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+34
+4.5
+The Simulink Model of the Virtual actuator . . . . . . . . . . . . . . . . .
+37
+5.1
+The output of the simulation in no fault case . . . . . . . . . . . . . . . .
+39
+5.2
+The estimated fault of the simulation in no fault case
+. . . . . . . . . . .
+40
+5.3
+The output of the simulation in the faulty case(1000counts )
+. . . . . . .
+40
+5.4
+The estimated fault of the simulation in faulty case (1000counts )
+. . . .
+41
+5.5
+The output of the simulation in the faulty case(8000counts )
+. . . . . . .
+41
+5.6
+The estimated fault of the simulation in faulty case (8000counts) . . . . .
+42
+5.7
+The result of the simulation to recover from the faulty case (1000counts)
+42
+5.8
+The result of the simulation to recover from the faulty case in the upper
+actuator . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+43
+5.9
+The value of the lower actuator in the simulation . . . . . . . . . . . . . .
+44
+5.10 The value of the upper actuator in the simulation . . . . . . . . . . . . . .
+44
+5.11 The output of the test rig in the faulty case(1000counts ) . . . . . . . . .
+45
+5.12 The estimated fault of the simulation in faulty case (1000counts) without
+compensation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+46
+5.13 The estimated fault of the test rig in faulty case (1000counts) wit compen-
+sation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+46
+5.14 The result of the test rig to recover from the faulty case(1000counts) . . .
+47
+5.15 The result of the test rig to recover from the faulty case(−2000counts) . .
+48
+5.16 The value of the lower actuator in the test rig . . . . . . . . . . . . . . . .
+49
+5.17 The value of the upper actuator in the test rig
+. . . . . . . . . . . . . . .
+49
+==PAGE:12==
+x
+List of Tables
+List of Tables
+2.1
+Sensor Calibration Data using Simulink Extension . . . . . . . . . . . . .
+13
+2.2
+Coeﬀicients for sensor calibration obtained by Simulink Extension
+. . . .
+14
+5.1
+The error of the position after recovering in different fault cases in the
+simulation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+43
+5.2
+The error of the position after recovering in different fault cases in the
+experiment
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+47
+A.1 The experimental data to determine the constant ∆f
+. . . . . . . . . . .
+55
+==PAGE:13==
+Contents
+Summary
+i
+Preface
+iii
+Acknowledgements
+v
+List of Abbreviations
+vii
+List of Figures
+viii
+List of Tables
+x
+Contents
+xi
+1
+Thesis Introduction
+1
+1.1
+Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1
+1.2
+Literature review . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.3
+The EPC M730 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+1.4
+Problem statement . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+1.5
+Thesis Outline
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+2
+Dynamic Model Of the System
+9
+2.1
+The Mathematical Model of the System . . . . . . . . . . . . . . . . .
+9
+2.2
+System Identification . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+12
+2.3
+Linearization
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+2.4
+Full state feedback controller with the observer . . . . . . . . . . . . .
+17
+3
+Fault Detection and Isolation (FDI)
+19
+3.1
+Fault cases and their effects on the performance of the system . . . . .
+19
+3.2
+The residual generator based observer
+. . . . . . . . . . . . . . . . . .
+21
+3.3
+GLR test
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+25
+4
+Fault Tolerance Control (FTC)
+31
+4.1
+Fault accommodation
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+31
+4.2
+Fault reconfiguration . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+33
+==PAGE:14==
+xii
+Contents
+5
+Result analysis
+39
+5.1
+The simulation result . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+39
+5.2
+The experiment result . . . . . . . . . . . . . . . . . . . . . . . . . . .
+45
+6
+Conclusion
+51
+7
+Future Work
+53
+A
+An Appendix
+55
+B
+An Appendix
+57
+Bibliography
+59
+==PAGE:15==
+CHAPTER 1
+Thesis Introduction
+1.1
+Introduction
+1.1.1
+The magnetic levitation system
+The use of magnetic levitation systems in the industry is increasing. Because the
+lack of physical contact, the magnetic levitation system provides less resistance, less
+noise, lower cost, but higher speed. Today, the two most common application areas
+for magnetic levitation are magnetic levitation trains [ZLL19] and magnetic levita-
+tion bearings[Wan+20]. Maglev train is through the electromagnetic force to levitate
+the vehicle upon the track contactless and run the train by the linear motor. Mag-
+netic bearing uses magnetic force to suspend the rotor in the air so that there is no
+mechanical contact between the rotor and the stator. In these magnetic levitation
+systems, the stability and fault tolerance of the system are very important since they
+are the prerequisites of safe running. Through the research of the ECP M730, the
+teaching experiment equipment of magnetic levitation system, this thesis can lay a
+good foundation for future research on magnetic levitation trains and bearings.
+Figure 1.1: The magnetic levitation train.
+==PAGE:16==
+2
+1 Thesis Introduction
+Figure 1.2: The magnetic levitation bearing.
+1.1.2
+Fault Detection and Isolation (FDI)
+Faults in the industrial system may cause degraded performance of the control system,
+decrease product performance and damage to the system or personnel. To avoid these
+undesirable consequences, fault detection should be realized as soon as possible by
+identifying the initial impact related to the fault.
+After the fault is isolated, the
+control system must be reconfigured, and it is best to make minimal changes to the
+system structure to reduce performance degradation.
+1.1.3
+Fault-Tolerant Control (FTC)
+The fault-tolerant control (FTC) system has the functions to maintain the stability
+and performance of the system acceptably under a series of failure conditions. Gen-
+erally, FTC systems combine fault detection and identification (FDI) with controller
+reconfiguration (CR) in an overall control system to to maintain closed-loop stability
+and good performance levels under a set of predefined faults.
+1.2
+Literature review
+All the literature and the materials are divided into three categories. They are the
+application of the magnetic levitation, the way of the fault detection and isolation
+and the fault-tolerant control.
+For the application, the book [LLL15] introduces the conception and application of
+==PAGE:17==
+1.2 Literature review
+3
+Maglev technology in detail, especially in Maglev trains which are able to run more
+smoothly and quiet compared with wheeled mass transit systems. This technique
+has been developed by many countries for recent years. In Japan, superconducting
+magnetic leviation (maglev) trains were researched and tested. As an advanced train
+by means of a linear synchronous motor (LSM), a superconducting magnet and an
+armature coil was proposed [OKO02]. The magnetic bearing has a vital role to play in
+the stable and dependable movement of Maglev trains. The book [CJM04] illustrates
+the basic knowledge and promising application of modern magnetic bearing technol-
+ogy, decreasing the complexity of the magnetic systems so that more cost-eﬀicient
+and reliable magnetic bearing components can be gained.
+For FDI, there are currently two mainstream methods to achieve FDI. One is based on
+parameter estimation and the other is based on state estimation. In the paper[Zha18],
+the actuator fault is modelled as a parameter changes and the fault diagnosis is per-
+formed through joint state-parameter estimation in the stochastic framework.
+In
+the paper[Ich+09], a new method to design an observer for the state estimation is
+applied for the sensor fault diagnosis. In recent years, with the popularity of deep
+learning, fault detection methods based on deep learning have also been widely used
+[Lv+16][Jia+18][HH17]. These papers incorporate methods such as classification and
+prediction in deep learning into traditional FDI methods to improve the accuracy
+of detection. For this thesis, after analyzing the actual situation of ECP M730, the
+method of state estimation is applied.
+For FTC, there are many FTC methods, such as the fault accommodation[JSC06]
+and the fault reconfiguration[EK16]. A new fault estimation module, based on an
+adaptive estimator, is first proposed in the paper [JSC06]. There are also deep learn-
+ing applications in FTC[Zha+19]. In this thesis, the fault accommodation and the
+fault reconfiguration are both applied in the SISO system and MISO system respec-
+tively.
+Through the reading of the above three aspects of the literature, the methods of
+this thesis which are mentioned in the summary are determined.
+==PAGE:18==
+4
+1 Thesis Introduction
+1.3
+The EPC M730
+Figure 1.3: EPC M730.
+The EPC M730 experimental system is comprised of the three subsystems shown in
+the Figure 1.4. The first of these is the electromechanical plant, which consists of
+the MagLev apparatus including its actuators and sensors in Figure 1.5. The de-
+sign features two high field density rare earth magnets and high flux drive coils to
+provide more than 4 cm of controlled levitation range. Laser sensors provide non-
+contacting position feedback and incorporate proprietary conditioning electronics for
+signal noise reduction and ambient light rejection. The magnet discs can slide along
+a plastic vertical rod with reduced friction.
+An optional turntable incorporates a
+high-speed conductive spin platter that interacts with the permanent in such a way
+as to induce a traveling current and cause the magnet to levitate.
+The second subsystem is the real-time controller unit which contains the Digital Signal
+Processor (DSP) based real-time controller, servo/actuator interfaces and servo am-
+plifiers, and auxiliary power supplies. Four 16 bit analog-to-digital converters (ADC)
+are used to digitize the laser sensor signal. Two optional auxiliary digital-to-analog
+converters (DAC) provide for real-time analog signal measurement.
+The third subsystem is the system interface which runs on the simulink under the
+Matlab. The interface provides a friendly and powerful experimental environment.
+==PAGE:19==
+1.3 The EPC M730
+5
+Figure 1.4: The ECP M730 experimental control system.
+Figure 1.5: MagLev apparatus.
+==PAGE:20==
+6
+1 Thesis Introduction
+1.4
+Problem statement
+The aim of the project is to develop and compare different strategies for achieving
+fault-tolerance for the ECP M730 MagLev System. It can be resolved through several
+project objectives:
+• Develop/improve the first-principle mathematical model of M730 MagLev sys-
+tem.
+• Develop/improve the first-principle mathematical model of M730 MagLev sys-
+tem.
+• Investigate fault cases and their effects on the performance of the system.
+• Develop solutions for fault diagnosis and fault compensation/system reconfigu-
+ration.
+• Define operation scenarios on which the controllers will be tested.
+• Perform simulations of the different operation scenarios.
+• Implement the designed schemes on the ECP M730 test setup.
+• Define and conduct experiments for the evaluation of the solutions.
+• Evaluate the performance of the reconfigured closed-loop system.
+1.5
+Thesis Outline
+1 Introduction
+It introduces the background behind the project and specify the problem needed
+to be solved.
+2 Dynamic Model of the System
+It performs mathematical modeling of dynamic systems, completes linearization
+and designs the controller.
+3 Fault Detection and Isolation(FDI)
+It obtains the residual through the observer-based method, and perform GLR
+test on the residual for fault diagnosis and isolation.
+4 Fault Tolerance Control(FTC)
+It uses two method: Fault accommodation and Fault reconfiguration to recover
+the system from faults.
+5 Result Analysis
+It analyzes simulation results and actual results, and gives an evaluation.
+==PAGE:21==
+1.5 Thesis Outline
+7
+6 Conclusion
+It gives summaries on the whole project.
+7 Future Work
+It discusses the shortcomings of this thesis and the areas that can be improved
+in the future.
+==PAGE:22==
+8
+==PAGE:23==
+CHAPTER 2
+Dynamic Model Of
+the System
+In this chapter, the mathematical model of both SISO and MIMO of the EPC M730
+systems are built and analysed. The simulink models of them are constructed to
+realize the simulation of the systems. System identification is utilized to confirm the
+magnetic force parameters. After obtaining the necessary parameters, the nonlinear
+and linear model of the systems can be gained. Besides, this chapter is also concerned
+with the design of full state feedback controller with the observer.
+2.1
+The Mathematical Model of the System
+2.1.1
+The SISO system
+The SISO system of ECP M730 is shown in Figure 2.1. The magnet is acted on by
+forces from lower drive coil, gravity and friction (modeled as viscous).
+Figure 2.1: The SISO system (m: The mass of the magnet. g: The gravity. Fu:
+The magnetic force. x: The height of magnet. ˙x: The velocity of the
+magnet. c: The coeﬀicient of viscous friction. u: The input voltage.).
+==PAGE:24==
+10
+2 Dynamic Model Of the System
+From Figure 2.1, the force balance equation of magnet is expressed as
+m¨x(t) + c ˙x(t) = Fu(t) −mg
+(2.1)
+The magnetic force term is modeled as the following form (see ECP M730 Manual
+[RPa99] for details)
+Fu(t) =
+u(t)
+a(b + x(t))N
+(2.2)
+where u(t) is the voltage of the drive coil. The DAC’s analog output is in the range
+of +/- 10 volts corresponding to +32767 to -32768 counts. Because the input unit of
+the experimental environment is count, the unit of u(t) is replaced by count. a, b, N
+are constants which are determined by the system identification in Section 2.2.
+The simulink model of SISO nonlinear system is shown as Figure 2.2.
+Figure 2.2: The Simulink Model of SISO nonlinear system (The top part is for the
+situation where lower coil is the drive coil and the bottom part is for
+the situation where upper coil is the drive coil ).
+2.1.2
+The MISO system
+Similarly, the MISO system of ECP M730 is shown in Figure 2.3.
+==PAGE:25==
+2.1 The Mathematical Model of the System
+11
+Figure 2.3: The MISO system (m: The mass of the magnet. g: The gravity. Fu:
+The magnetic force. x: The height of magnet. ˙x: The velocity of the
+magnet. c: The coeﬀicient of viscous friction. u: The input voltage.).
+Similar to the SISO system, the force balance equation of magnet is expressed as
+m¨x(t) + c ˙x(t) = Fu1(t) −Fu2(t) −mg
+(2.3)
+The magnetic force term is modeled as the following form (see ECP M730 Manual
+[RPa99] for details)
+Fu1(t) =
+u1(t)
+a(b + x(t))N
+(2.4)
+Fu2(t) =
+u2(t)
+a(b + yc −x(t))N
+(2.5)
+where yc is the max displacement of magnet on the rod and the unit of u1(t), u2(t)
+are count. a, b, N are constants obtained by the system identification, which is same
+as the SISO system.
+The simulink model of MISO nonlinear system is displayed as Figure 2.4.
+==PAGE:26==
+12
+2 Dynamic Model Of the System
+Figure 2.4: The Simulink Model of MISO nonlinear system(u1 is the input of lower
+coil, u2 is the input of the upper coil and the unit of u1 and u2 is
+counts).
+2.2
+System Identification
+This section describes the procedure of identifying plant parameters, nonlinear rela-
+tionships between actuator effort and magnet position, as well as the calibration in
+the sensor feedback. The data utilized in this part is from Sigurd Engvik Rasch who
+did a special course on the ECP M730 before.
+2.2.1
+Sensor Calibration
+The laser ranging sensor consists of two parts, one is a laser source, which is used to
+illuminate the magnet vertically, and the other part is a laser receiver, which is used
+to receive the reflected laser beam. The range is reported to be 5 cm. The relation-
+ship between the laser sensor output and the magnet height is nonlinear described in
+[RPa99] section 4.5. The controller subsystem has a noise rejection circuitry which
+means the laser receiver provides a low noise voltage signal to the 16 bit ADC con-
+verter. As the laser receiver only provides positive voltage, the output range of ADC
+is 0 −32768 counts.
+According to the function in [RPa99] (page 73), the relationship between magnet
+position and the ADC output y1raw is shown in the Equation 2.6. ycal is the magnet
+position with the unit cm and e, f, g, h are coeﬀicients needed to be identified.
+ycal =
+e
+yraw
++
+f
+√yraw
++ g + hyraw
+(2.6)
+==PAGE:27==
+2.2 System Identification
+13
+The data about magnet position and y1raw can be acquired from two sources. One
+is from the ECP software and the other is from the Simulink Extension. In Sigurd’s
+report, it is illustrated that the data from the Simulink Extension can reflect the
+relationship between magnet position and y1raw better with comparison of those two
+methods. Therefore in this section, the curving fitting is used to deal with data from
+the Simulink Extension in Table 2.1 to confirm coeﬀicients e, f, g, h. The data in the
+table is collected by holding the magnet for 5 seconds at each desired position. The
+mean of ADC output value for each desired position is calculated by recording values
+of y1raw for 5 seconds.
+Magnet Position
+Sensor #1 [cm]
+y1raw
+Magnet Position
+Sensor #2 [cm]
+y2raw
+0.0
+29940
+0.0
+32440
+0.5
+23790
+-0.5
+27900
+1.0
+19490
+-1.0
+22950
+2.0
+13460
+-2.0
+15790
+3.0
+9730
+-3.0
+10985
+4.0
+7070
+-4.0
+7810
+5.0
+5105
+-5.0
+5651
+Table 2.1: Sensor Calibration Data using Simulink Extension.
+Figure 2.5: Experimental digital count values obtained through ECP Software ver-
+sus magnet height (data) and calibration functions fitted to empirical
+data (ycal).
+In Table 3.2, coeﬀicients for sensor calibration gained by Simulink Extension are
+==PAGE:28==
+14
+2 Dynamic Model Of the System
+displayed. y1cal corresponds to the lower laser sensor and y2cal corresponds to the
+upper laser sensor.
+e
+f
+g
+h
+y1cal
+-28155
+1222.0
+-6.683
+0.00001876
+y2cal
+1950.0
+-505.45
+1.0890
+0.00005038
+Table 2.2: Coeﬀicients for sensor calibration obtained by Simulink Extension.
+2.2.2
+Actuator Dynamics
+The magnetic force is modeled as the Equation 2.4. In order to determine the constant
+a, b, N, the curving fitting is utilized in this section. When the magnet reaches the
+balance position, the force equation of the magnet can be written as
+Fu = mg
+(2.7)
+The Equation 2.8 is able to be derived from Equation 2.7 by transforming.
+u = mga (b + x(t))N
+(2.8)
+In Equation 2.8, the mass of magnet m and the gravity g are known. The value of N
+is recommended by the manual [RPa99] which equals to 4. The unit of input u is the
+counts and the unit of the magnet height is meters. Thus, when the data of input
+u versus the magnet height x(t) is obtained, the constant a, b can be determined via
+curving fitting. According to the data and the result of the actuator modeling by
+Sigurd, the actuator constants are
+N = 4
+a1 = 83820765.49
+b1 = 0.0647
+a2 = 110544599.2
+b2 = −0.0564
+a1 and b1 are for the lower coil and the a2 and b2 are for the upper actuator.
+2.3
+Linearization
+2.3.1
+The SISO system
+The mathematical model of the SISO system is built in the Equation 2.9. x1 is the
+position of the magnet disc and x2 is the velocity of the magnet disc.
+Fu is the
+==PAGE:29==
+2.3 Linearization
+15
+magnetic force, Fv is the viscous friction, m is the mass of the magnet and g is the
+gravity.
+[ ˙x1
+˙x2
+]
+=
+[
+x2
+1
+m (Fu −mg −Fv)
+]
+(2.9)
+The linearized model at the operating point can be obtained by calculating the Jaco-
+bian matrix. The state-space model is formed in the Equation 2.10
+˙x(t) = Ax(t) + Bu(t)
+y(t) = Cx(t) + Du(t)
+(2.10)
+Where
+A =
+[
+0
+1
+−k′/m
+−Kv/m
+]
+, B =
+[
+0
+k′
+u/m
+]
+, C =
+[ 1
+0 ]
+, D = 0
+k′ :=
+Nu0
+a (b + y0)N+1
+k′
+u :=
+1
+a (b + y0)N
+Kv = 5.8
+When the lower coil is the drive coil and the operating point is chosen as y0 = 1 cm,
+the required input u0 is 3082 counts. Numerical state space matrices are then
+A =
+[
+0
+1
+−525.62
+−48.213
+]
+, B =
+[
+0
+0.0031849
+]
+, C =
+[ 1
+0 ]
+, D = 0
+(2.11)
+In order to verify the stability of the open loop system, the eigenvalues of the system
+need to be calculated. The eigenvalues for the lower coil as the actuator are [−16.65,
+−31.556] and they are located at the left half of the s-plane, which means the system
+is stable.
+When the upper coil is the drive coil and the operating point is chosen as y0 = −1
+cm, the required input u0 is 2538 counts. The numerical state space matrices are
+then
+A =
+[
+0
+1
+591.33
+−48.213
+]
+, B =
+[
+0
+0.0038683
+]
+, C =
+[ 1
+0 ]
+, D = 0
+(2.12)
+The eigenvalues for the upper coil as the actuator are [10.135, −58.347]. Since the
+second eigenvalue is located at the right half of the s-plane, the system is unstable.
+Therefore, for the SISO system, taking the stability of the open-loop system into
+consideration, the lower coil is chosen as the actuator.
+==PAGE:30==
+16
+2 Dynamic Model Of the System
+Figure 2.6: The Simulink Model of SISO linear system (The operating point is 1
+cm. The top part demonstrates the situation where lower coil is the
+drive coil. The bottom part illustrates the situation where upper coil is
+the drive coil).
+2.3.2
+The MISO system
+The mathematical model of the MISO system is built in the Equation 2.13. Fu1 and
+Fu2 are the magnetic force from the lower and upper coil respectively. Other symbols
+have the same meaning in the SISO system.
+[ ˙x1
+˙x2
+]
+=
+[
+x2
+1
+m (Fu1 −Fu2 −mg −Fv)
+]
+(2.13)
+Similarly, after the Jacobian matrix is calculated at the operating point, the state
+space model of the MISO system is obtained as Equation 2.14.
+˙x(t) = Ax(t) + Bu(t)
+y(t) = Cx(t) + Du(t)
+(2.14)
+where
+A =
+[
+0
+1
+−k′/m
+−Kv/m
+]
+, B =
+[
+0
+0
+k′
+u1/m
+k′
+u2/m
+]
+, C =
+[ 1
+0 ]
+, D = 0
+k′ :=
+Nu10
+a1 (b1 + y0)N+1 −
+Nu20
+a2 (b2 + yc −y0)N+1
+k′
+u1 :=
+1
+a1 (b1 + y0)N
+k′
+u2 := −
+1
+a2 (b2 + yc −y0)N
+In the same way, the stability of open loop system needs to be verified. The eigenval-
+ues for the MISO system are [-15.441, −32.771]. Both of the eigenvalues are negative,
+so the open loop of the MISO system is stable.
+==PAGE:31==
+2.4 Full state feedback controller with the observer
+17
+Figure 2.7: The Simulink Model of MISO linear system(u1 is the input of lower coil,
+u2 is the input of the upper coil and the unit of u1 and u2 is counts).
+2.4
+Full state feedback controller with the observer
+The full state feedback controller with an observer is designed in this section. After
+getting the linear model, the model is discretized. Pole placement is chosen to design
+the controller after verifying that the system is controllable and observable. The de-
+sired closed loop eigenvalues are obtained by selecting the suitable natural frequency
+and damping ratio. In this controller, the natural frequency wn is 9π rads/s and the
+damping ratio ζ is 0.95. The eigenvalues of the observer are selected 20 times faster
+than the system eigenvalue. Matlab command place is utilized to calculate the gain
+of controller and observer.
+A full-state feedback controller with an integrator is not taken into account in this
+section. This is because, in normal case an abrupt fault occurs on the actuator of the
+system, resulting in steady-state error of system output and the fault can be detected
+by this error. However, if the controller with an integrator is used, the abrupt fault
+introduced to the actuator will recover ”automatically” since the integrator eliminates
+the steady-state error in an actual experiment, bringing out fault missing.
+The results of SISO and MISO system with full state feedback controller are shown
+in Figure 2.8 and 2.9. By using the controller, the magnet in both SISO and MISO
+system is able to arrive at operation point successfully.
+==PAGE:32==
+18
+2 Dynamic Model Of the System
+Figure 2.8: The SISO system output from the test rig by the full state feedback
+controller (Reference position is 1 cm).
+Figure 2.9: The MISO system output from the test rig by the full state feedback
+controller (Reference position is 1 cm).
+==PAGE:33==
+CHAPTER 3
+Fault Detection and
+Isolation (FDI)
+In this chapter, different kinds of faults are introduced and their influences on system
+performance are described. Then the method of designing residual is clarified. After
+getting the residual,the GLR test is used to complete the fault detection.
+3.1
+Fault cases and their effects on the performance
+of the system
+Faults can be divided into different types in terms of the characteristics of faults
+in the system. According to the location of the fault, faults can be sorted as the
+actuator fault, the sensor fault and the plant fault. They can also be distinguished
+into the abrupt fault, the incipient fault and the intermittent fault with consideration
+of various time characteristics.
+Figure 3.1: Different fault types with regard to time characteristics.
+In this section, the fault mainly discussed is the abrupt fault of actuator shown in
+Figure 3.2. The impact of fault on system output is shown in Figure 3.3. The abrupt
+fault takes place at 5 seconds, leading to a deviation on output.
+==PAGE:34==
+20
+3 Fault Detection and Isolation (FDI)
+Figure 3.2: The abrupt fault of actuator.
+Figure 3.3: The effect on the performance of the system when a fault happens(faulty
+case).
+Two main fault cases researched in this thesis are the abrupt actuator fault in the
+lower coil in the SISO system and the abrupt actuator fault in the upper coil in the
+MISO system.
+==PAGE:35==
+3.2 The residual generator based observer
+21
+3.2
+The residual generator based observer
+Residual plays an important role in fault diagnosis. There are two main properties
+needed for r(t):
+r(t) ̸= 0 ⇒∃fi ̸= 0
+(3.1)
+fi ̸= 0 ⇒∃rj(t) ̸= 0
+(3.2)
+For the Equation 3.1, if no fault happens, the value of the residual should be zero.
+For the Equation 3.2, if faults happen, the residual should be sensitive to fault.
+There are many ways to obtain the residual. The common one is to acquire the ana-
+lytical form of the residual through Analytical Redundancy Relations (AAR) analysis
+and then design the residual generator. In this section, AAR analysis has also been
+applied to the SISO system and the MISO system. Through the Matlab SATool tool-
+box, the following results are obtained.
+r(t) = −
+g · m + c · ∂
+∂tx(t) −
+u(t)
+a·(b+y(t))N
+m
+−∂2
+∂t2 y(t)
+(3.3)
+r(t) = −
+g · m + c · ∂
+∂tx(t) +
+u2(t)
+a2·(b2+yc−y(t))N −
+u1(t)
+a1·(b1+y(t))N
+m
+−∂2
+∂t2 y(t)
+(3.4)
+The equation 3.3 and the equation 3.4 are residuals from the SISO system and the
+MISO system respectively.
+Because the form of the obtained residual is complicated, it is not suitable for pro-
+cessing in the frequency domain after the Laplace transform. Thus, observer-based
+fault diagnosis method is utilized to simplify the process.
+3.2.1
+The design of the residual
+The residuals can be designed using observer-based methods
+r(t) = y(t) −ˆy(t)
+(3.5)
+Where y(t) is the output of the system and
+ˆ
+y(t) is the estimated output of the observer.
+There are two reasons for choosing this form of residual. First, this method of ob-
+taining residuals is relatively simple. Besides, residual performance meets the require-
+ments of the fault detection in this thesis which is discussed in the section 3.2.3.
+3.2.2
+The design of Kalman filter
+In order to avoid the influence of noise on fault diagnosis, Kalman filter is used instead
+of the common Luenberger observer that cannot eliminate the effect of noise. Kalman
+==PAGE:36==
+22
+3 Fault Detection and Isolation (FDI)
+filter, an algorithm, uses linear system state equations to optimally estimate system
+state through system input and output observation data. Since the observation data
+includes the influence of noise and interference in the system, the optimal estimation
+can also be regarded as a filtering process. The linear system with noise is shown as
+3.6.
+˙x(t) = Ax(t) + Bu(t) + w(t)
+y(t) = Cx(t) + v(t)
+(3.6)
+Where σw is process noise, σv is measurement noise.
+In the design of Kalman filter, the variances of measurement noise (σv) and pro-
+cess noise (σw) are essential. In this thesis, the variance of measurement noise is got
+by calculating the variance of the output when the system is in equilibrium. The
+variance of process noise is based on experience. The result is following.
+σv = 0.0029, σw = 0.5
+After obtaining the variance of measurement noise and process noise, the covariance
+matrix Q and R are determined.
+Q = σw
+(3.7)
+R = σv
+(3.8)
+The implement of the Kalman filter includes two processes: prediction and update.
+In the process of prediction,
+ˆx−
+k = Aˆxk−1 + Buk−1
+(3.9)
+ˆP−k = A ˆPk−1AT + Q
+(3.10)
+In the process of update,
+ˆxk = ˆxk + Kk
+(
+zk −Hˆx−
+k
+)
+(3.11)
+Kk = ˆP¯kHT × (H ˆP¯kHT + R)−1
+(3.12)
+ˆPk = (I −KkH) ˆP¯k
+(3.13)
+ˆx−
+k is the estimated value of the prior state at time k.
+ˆxk and ˆxk−1 respectively
+represent the posterior state estimates at time k and k −1. A and B are from the
+state-space model. uk−1 is input value at time k −1 and is generally set to 0.
+ˆP¯k
+is the priori estimate covariance at time k.
+ˆPk and ˆPk−1 respectively represent the
+posterior estimated covariance at time k and k −1. zk is the measurement value. H
+is the measurement matrix. Kk is the gain of the Kalman filter.
+In this section, the Kalman filter is designed for discrete systems.
+Thus the sys-
+tem is discretized first. In order to obtain the gain of the Kalman filter of the discrete
+==PAGE:37==
+3.2 The residual generator based observer
+23
+system, the matlab command dlqe is applied. The simulink model of Kalman filter is
+shown as Figure 3.4.
+Figure 3.4: The Simulink Model of Kalman filter(Residual generator).
+3.2.3
+The performance of the residual
+Figure 3.5: No fault case.
+The Figure 3.5 shows the no fault case. At the beginning of the residual r(t), there is
+a small fluctuation. The reason is that at the beginning, the estimated result of the
+==PAGE:38==
+24
+3 Fault Detection and Isolation (FDI)
+Kalman filter was very different from the actual situation, but as time passed, the
+estimated result of the Kalman filter became more and more accurate.
+Figure 3.6: The fault case in SISO system.
+In Figure 3.6, the abrupt actuator fault occurs in the lower coil in the SISO system.
+After the fault happens, the value of residual r(t) is changed from zero to a non-zero
+value. It means the residual r(t) is sensitive to the fault and can detect the fault in
+time.
+Figure 3.7: The fault case in MISO system.
+In Figure 3.7, the abrupt actuator fault occurs in the upper coil in the SISO system.
+After the fault happens, the value of residual r(t) is also changed from zero to a non-
+==PAGE:39==
+3.3 GLR test
+25
+zero value. It means the residual r(t) is sensitive to the fault in the MISO system
+and can detect the fault in time.
+3.3
+GLR test
+3.3.1
+The principle of GLR test
+GLRT is a method to detect the unknown magnitude of change. For GLR test,
+Hypothesis:
+H0 : θ = θ0 for k −M + 1 ≤i ≤k.
+H1 : θ = θ1 for k −M + 1 ≤i ≤k
+H0 corresponds to the hypothesis without the fault and H1 corresponds to the hy-
+pothesis with the fault.
+The decision function becomes
+gM(k) = max
+θ1 Sk
+k−M+1 (θ1)
+(3.14)
+For the change of mean in Gaussian sequence, gM(k) takes the following form in the
+Equation 3.15.
+gM(k) =
+1
+2σ2M
+[
+k
+∑
+i=k−M+1
+(z(i) −µ0)
+]2
+(3.15)
+The distribution of gM(k):
+gM(k) :
+{
+p (g | Ho) =
+χ2
+1
+p (g | H1) =
+χ2
+1
+(
+M
+( µ1−µ0
+σ
+)2
+(3.16)
+When H0 is accepted, gM(k) obeys the central chi-square distribution; When H1 is
+accepted, gM(k) obeys the non-central chi-square distribution.
+For Gaussian signal,
+Sk (µ1) =
+k
+∑
+i=k−M+1
+ln pθ1(z(i))
+pθ0(z(i)) = µ1 −µ0
+σ2
+k
+∑
+i=k−M+1
+(
+z(i) −µ1 + µ0
+2
+)
+(3.17)
+ˆµ1 = 1
+M
+k
+∑
+i=k−M+1
+z(i)
+(3.18)
+where M is the window size of the GLRT, σ2 is the variance of the residual and µ0 is
+the mean value of the residual. When there is no fault in the system, it is set to be
+==PAGE:40==
+26
+3 Fault Detection and Isolation (FDI)
+zero in general situation. The ˆµ1 is the estimation of the magnitude of the change.
+According the decision function 3.15, if g(k) ≤h, H0 is accepted and if g(k) > h,
+H1 is accepted. h is the threshold decided by the designer.
+3.3.2
+The design of GLR test
+In the GLR test design, two parameters need to be determined. One is the window
+size M and the other is the threshold h. False alarms occur when g(k) > h but the
+hypothesis of H0 is accepted. For a given probability of false alarm PF A, we have
+PF A =
+∫∞
+2h
+pχ2(X; 1)dX
+(3.19)
+In terms of the Equation 3.19, the threshold h is only determined by the false alarm
+probability PF A.
+Detection happens when g(k) > h and the hypothesis of H1 is
+accepted. For a given probability of detection PD, we have
+PD =
+∫∞
+2h
+pχ2(X; 1, M (µ1 −µ0)2
+σ2
+)dX
+(3.20)
+According to the Equation 3.20, the window size M and the threshold h jointly de-
+termine the probability of detection PD.
+In this section, the probability of false alarm PAF is defined as 0.01, and the proba-
+bility of detection PD is as close as possible to 1. According to actual experiments,
+for the SISO system, when the absolute value of the fault is larger than 500counts,
+it has a more significant impact on the system output. For the MISO system, the
+operating point is far from the upper coil. So when the absolute value of the upper
+coil’s fault is larger than 2000counts, it has a more obvious effect on the output of
+the system. So in the design of the GLR test, the fault value 500 counts and 2000
+counts are used as the standard to determine the threshold h and the window size M.
+This part takes SISO system as an example to introduce how to design GLR test.
+==PAGE:41==
+3.3 GLR test
+27
+Figure 3.8: The fault case in SISO system.
+Before the fault happens, the mean value µ0 of r(t) is zero. When a fault happens
+at 5 sec, the mean value µ1 of r(t) after 5 sec can be calculated from the top part of
+Figure 3.8.
+µ1 = −0.016, µ0 = 0
+The false alarm probability PF A is 0.01. According to the Equation 3.19, the threshold
+h can be solved.
+h = 3.3174
+In order to make the detection probability PD close to 1, the window size M is set to
+be 80.
+==PAGE:42==
+28
+3 Fault Detection and Isolation (FDI)
+Figure 3.9: The CDF under H0 and H1 for the GLR test, window size M = 80.
+3.3.3
+The result of GLR test
+For the SISO system,
+Figure 3.10: g(k) and the threshold h in the GLR test.
+==PAGE:43==
+3.3 GLR test
+29
+Figure 3.11: The alarm of GLR test.
+When the g(k) is larger than the threshold h, the alarm signal changes from zero to 1.
+For the MISO system,
+Figure 3.12: g(k) and the threshold h in the GLR test.
+==PAGE:44==
+30
+3 Fault Detection and Isolation (FDI)
+Figure 3.13: The alarm of GLR test.
+Like the SISO system, in the MISO system, when a fault takes place in the upper
+coil, GLR test can accurately detect the occurrence of the fault and give an alarm.
+==PAGE:45==
+CHAPTER 4
+Fault Tolerance
+Control (FTC)
+In this chapter, two common FTC methods, the fault accommodation and the fault
+reconfiguration, are introduced and applied in the SISO and MISO system respec-
+tively.
+4.1
+Fault accommodation
+The fault accommodation is a method for FTC. It is suitable for fault-tolerant control
+with only one actuator. Figure 4.1 is a schematic diagram of fault accommodation.
+When a fault occurs on the plant, the fault is diagnosed first, and then according to
+the fault information, the relevant parameters of the controller are adjusted through
+fault accommodation to restore the original system to normal.
+Figure 4.1: Fault accommodation.
+Due to the only one actuator(the low coil) in the SISO system, a method based the
+==PAGE:46==
+32
+4 Fault Tolerance Control (FTC)
+fault observer is applied for the fault accommodation in the SISO system.
+4.1.1
+The design of the fault observer
+Since there is only one actuator in the SISO system, when a fault occurs, it cannot
+restore the faulty system by switching other actuators. Therefore, a fault observer is
+designed to introduce the fault into the states in the state-space model and realize
+the estimation of the fault by selecting the appropriate observer gain.
+After discretizing the linear SISO system, a discrete state-space model in the Equation
+4.1 is obtained.
+x(k + 1) = Ax(k) + Bu(k) + Ff(k)
+y(t) = Cx(t)
+(4.1)
+f(k) is the abrupt actuator fault and F is the fault matrix. Since the consideration
+is the fault of the actuator, the input matrix is equal to the fault matrix, B = F.
+Taking the fault f(k1) at k1 as the additional state, the following augmented state
+vector can be obtained
+¯x(k) =
+[
+x(k)
+f(k −1)
+]
+(4.2)
+A new descriptor discrete state-space model is constructed as the Equation 4.3.
+¯E¯x(k + 1) = ¯A¯x(k) + ¯Bu(k)
+y(k) = ¯C¯x(k)
+(4.3)
+where
+¯E =
+[ In
+−F
+0
+0
+]
+, ¯A =
+[ A
+0
+0
+0
+]
+, ¯B =
+[ B
+0
+]
+, ¯C =
+[ C
+0 ]
+(4.4)
+The augmented descriptor system (4.3) is completely equivalent to the original system
+(4.1). In order to design an observer that can estimate the fault in the augmented
+descriptor system, a method proposed in the paper [Wan+12] is used for the observer
+in the descriptor system. In this paper, it proposes an observer of the following form
+displayed in Equation 4.5.
+{
+ζ(k + 1) = T ¯Aˆ¯x(k) + T ¯Bu(k) + L(y(k) −¯Cˆ¯x(k))
+ˆ¯x(k) = ζ(k) + Ny(k)
+(4.5)
+Where ζ(k) is an intermediate variable, ˆ¯x(k) is the estimated vector of augmented
+state, T, N and L are the parameter matrix to be designed. Methods and conclusions
+to calculate the parameters of the fault observer are directly utilized. With regard
+to the calculation method of T, N and L, there is a detailed description in the thesis
+[Wan+12].
+==PAGE:47==
+4.2 Fault reconfiguration
+33
+The simulink model of the fault observer is shown as Figure 4.2.
+Figure 4.2: The Siumlink Model of the fault observer.
+4.2
+Fault reconfiguration
+The fault reconfiguration is also a method for FTC. It is fit for fault-tolerant con-
+trol with more than one actuators and the actuators can complement each other. A
+schematic diagram about fault reconfiguration is shown in Figure4.3. When a fault oc-
+curs, the fault is diagnosed first, and then according to the fault information, the fault
+reconfiguration part discards the nominal controller and switches to a new controller
+to recover the faulty system.
+==PAGE:48==
+34
+4 Fault Tolerance Control (FTC)
+Figure 4.3: Fault reconfiguration.
+4.2.1
+Virtual actuator
+4.2.1.1
+Knowledge of Virtual actuator
+The virtual actuator shown in Figure 4.4 is a method of the fault reconfiguration.
+The virtual actuator complements the nominal input with additional control signal
+and hides fault from the controller by correcting the faulty measurement.
+Figure 4.4: Virtual actuator.
+==PAGE:49==
+4.2 Fault reconfiguration
+35
+The continuous time nominal system is shown in the Equation 4.6
+˙x = Ax + Buc
+yc = Cx
+uc = −Kyc = −KCx
+(4.6)
+Where uc and yc are the input and output of the continuous time nominal system
+respectively. K is the feedback controller gain.
+When a fault occurs, the faulty system is shown in the Equation 4.7
+˙xf = Axf + Bfuc
+yf = Cxf
+uc = −Kyf = −KCxf
+(4.7)
+Where ˙xf and yf represent states and output in the faulty system respectively, Bf is
+the input matrix of faulty system and K is the feedback controller gain.
+In this system, uc is not suitable any more because of actuator fault and yc be-
+comes yf due to inappropriate control input.
+If the faulty system is controllable,
+the reconfigured control input accesses the entire state vector which means the full
+dynamics can be shaped.
+In order to restore the system, the virtual actuator shown in the Equation 4.8 is
+introduced
+˙x∆= A∆x∆+ B∆uc
+uf = Mx∆+ Nuc
+yc = C∆x∆+ yf
+(4.8)
+where
+A∆= A −BfM
+B∆= B −BfN
+C∆= C
+N = B+
+f B
+(4.9)
+In the faulty system shown as equation 4.10, uc is replaced by uf
+˙xf = Axf + Bfuf
+yf = Cxf
+(4.10)
+Where uf is the new input to recover faulty system.
+A reconstructed system is defined in the Equation 4.11 and 4.12.
+ˆx = x∆+ xf
+(4.11)
+==PAGE:50==
+36
+4 Fault Tolerance Control (FTC)
+˙ˆx = ˙x∆+ ˙xf
+(4.12)
+After introducing the virtual actuator into the faulty system, the result is
+˙ˆx = A∆x∆+ B∆uc + Axf + Bfuf
+= A∆(ˆx −xf) + B∆uc + Axf + Bf (Mx∆+ Nuc)
+= A∆(ˆx −xf) + B∆uc + Axf + Bf (M ˆx −Mxf + Nuc)
+= (A∆+ BfM) ˆx + (A −BfM −A∆) xf + (B∆+ BfN) uc
+(4.13)
+If the new reconstructed system could be represent of the nominal system, there are
+two conditions from the Equation 4.13.
+A −BfM −A∆= 0
+(4.14)
+B∆+ BfN = B
+(4.15)
+Thus
+A∆= A −BfM
+(4.16)
+B∆= B −BfN
+(4.17)
+In the design of virtual actuator, M is chosen to make A −BfM is Hurwitz.
+The discrete form of systems is shown in the Equation 4.18
+˙x(k + 1) = Fx(k) + Guc(k)
+yc(k) = Cx(k)
+(4.18)
+The virtual actuator has the following discrete form in the Equation 4.19 and 4.20.
+˙x∆= F∆x∆+ G∆uc
+uf = Mdx∆+ Nduc
+yc = C∆x∆+ yf
+(4.19)
+where
+F∆= F −GfM
+G∆= G −GfN
+C∆= C
+N = G+
+f G
+(4.20)
+4.2.1.2
+The design of virtual actuator in the MISO system
+The virtual actuator is applied for the upper actuator fault case in the MISO system.
+The reason for the fault of the upper actuator is that if the lower actuator fails, the
+lower actuator is discarded and the upper actuator controls the system. But accord-
+ing to the description in Chapter 2.3.1, the system is unstable under this situation.
+==PAGE:51==
+4.2 Fault reconfiguration
+37
+In the MISO system, the fault happens in the upper actuator. By calculating the
+controllability matrix of the faulty system, the lower coil could control the system
+itself. So after the fault happens, the virtual actuator discards the upper actuator and
+the lower actuator is used to recover the system. M in the virtual actuator chooses
+the same eigenvalues in the nominal system. Figure ?? shows the simulink model of
+the virtual actuator.
+Figure 4.5: The Simulink Model of the Virtual actuator.
+==PAGE:52==
+38
+==PAGE:53==
+CHAPTER 5
+Result analysis
+5.1
+The simulation result
+In this section, some simulation results are shown and discussed.
+5.1.1
+SISO system
+When there is no fault in the system, the magnet reaches the operating point 1cm
+from 0cm in the Figure 5.1. In the Figure 5.2, at the beginning, because the magnet
+is far from the operating point, the error of the fault observer is relatively large. Thus,
+this part of the error can be ignored. After ignoring this part, the output of fault
+observer is zero in no fault case.
+Figure 5.1: The output of the simulation in no fault case.
+==PAGE:54==
+40
+5 Result analysis
+Figure 5.2: The estimated fault of the simulation in no fault case.
+The Figure 5.2 shows the output of the the simulation when a fault happens at 5sec.
+And the Figure 5.3 shows the estimated fault. The blue line represents the estimated
+fault and the red line is for the real fault which the step value is 1000counts.
+Figure 5.3: The output of the simulation in the faulty case(1000counts ).
+==PAGE:55==
+5.1 The simulation result
+41
+Figure 5.4: The estimated fault of the simulation in faulty case (1000counts ).
+Because the fault observer is designed based on a linearized model, when a fault
+with a particularly large value occurs, the system deviates from the operating point,
+resulting in a large error in the estimated fault value. We take an abrupt fault with
+a value of 8000counts as an example. In the Figure 5.5, when a fault happens, the
+output is changed from 1cm to around 3.5cm which is far from the operating point.
+In the Figure 5.6, because it is too far from the operating point, there is a large error
+in the estimation of the fault. Therefore, the fault observer designed based on this
+method cannot make a correct estimate for the larger fault value. However, for the
+fault value within a certain range, the correct error estimate can be obtained.
+Figure 5.5: The output of the simulation in the faulty case(8000counts ).
+==PAGE:56==
+42
+5 Result analysis
+Figure 5.6: The estimated fault of the simulation in faulty case (8000counts).
+Using the faulty case with the step value 1000counts as an example, in the Figure
+5.7, it shows the result of the simulation to recover from the faulty case.
+Figure 5.7: The
+result
+of
+the
+simulation
+to
+recover
+from
+the
+faulty
+case
+(1000counts).
+The Table 5.1 shows the error of the position after recovering in different fault cases
+==PAGE:57==
+5.1 The simulation result
+43
+in simulation.
+The fault/counts
+The error of the position after recovering/cm
+800
+-0.019
+900
+-0.022
+1000
+-0.022
+1100
+-0.026
+1200
+-0.026
+Table 5.1: The error of the position after recovering in different fault cases in the
+simulation.
+5.1.2
+MISO system
+The Figure 5.8 shows the result of the simulation to recover from the faulty case in
+the upper actuator.
+Figure 5.8: The result of the simulation to recover from the faulty case in the upper
+actuator.
+In the Figure 5.9, at the beginning, the value of the lower actuator is large. It is
+because the magnet is far away from the operating point at the start and the lower
+actuator needs a large value to sent the magnet to the operating point. After the
+fault happens at 5sec, the virtual actuator works. In the Figure 5.10, it shows the
+upper coil is discarded after the fault happens and in the Figure 5.9, it shows the
+value of lower actuator increases to hold the magnet back to the operating point.
+==PAGE:58==
+44
+5 Result analysis
+Figure 5.9: The value of the lower actuator in the simulation.
+Figure 5.10: The value of the upper actuator in the simulation.
+==PAGE:59==
+5.2 The experiment result
+45
+5.2
+The experiment result
+In this section, some experiment results are shown and discussed.
+5.2.1
+SISO system
+The Figure 5.2 shows the output of the the test rig when a fault happens at 5sec.
+Figure 5.11: The output of the test rig in the faulty case(1000counts ).
+The Figure 5.12 shows the estimated fault in the test rig.
+The result has a big
+error with the real step fault. In order to clarify the cause of this large error, many
+experiments have been tried here. Through experiments (The results are shown in
+Appendix A), it is found that this error is close to a constant ∆f = 500counts within
+a certain fault range.
+Therefore, through experimental data, this thesis uses this
+constant as compensation and adds back to the estimated fault. In the Figure 5.13, it
+shows the result of the estimated fault with compensation. The author speculates that
+the reason is that only viscous friction is considered during the modeling process.The
+coulomb friction and the gap between the magnet and the glass rod are not considered,
+so that the step in the output caused by the step fault is partially offset, thus making
+the estimation of the fault is smaller than the actual fault. Besides, when the fault
+is smaller than 500counts, the system is not affected by the fault.
+==PAGE:60==
+46
+5 Result analysis
+Figure 5.12: The estimated fault of the simulation in faulty case (1000counts) with-
+out compensation.
+Figure 5.13: The estimated fault of the test rig in faulty case (1000counts) wit
+compensation.
+Due to the influence of coulomb friction and the gap between the magnet and the
+glass rod, compensation is also required in the process of restoring the system. When
+==PAGE:61==
+5.2 The experiment result
+47
+the original system is compensated after the proper estimation of the fault is obtained,
+the same constant value ∆f = 500counts needs to be added to offset the influence
+of Coulomb friction. In the Figure 5.14, it shows the result of the test rig to recover
+from the faulty case.
+Figure 5.14: The result of the test rig to recover from the faulty case(1000counts).
+There is a video for the result of the test rig to recover from the faulty case(1000counts).
+Click here for the video
+The Table 5.2 shows the error of the position after recovering in different fault cases
+in the experiment.
+The fault/counts
+The error of the position after recovering/cm
+800
+0.041
+900
+0.032
+1000
+0.023
+1100
+0.087
+1200
+0.183
+Table 5.2: The error of the position after recovering in different fault cases in the
+experiment.
+==PAGE:62==
+48
+5 Result analysis
+5.2.2
+MISO system
+The Figure 5.15 shows the result of the test rig to recover from the faulty case in the
+upper actuator. When the fault happens at the upper actuator, the change of the
+output is not obvious as the situation that the fault occurs at the lower actuator. The
+reason is that the upper coil is far away from the magnet, and due to safety reasons,
+the output value of the upper coil cannot be particularly large. Otherwise, the coil
+will be burned. So the upper coil has little effect on the magnet.
+Figure 5.15: The result of the test rig to recover from the faulty case(−2000counts).
+When a fault happens at upper actuator at 5sec, the upper actuator is discarded and
+the lower actuator increases its value to hold the magnet to the previous position
+which are shown in the Figure 5.16 and 5.17. In the process of restoring the faulty
+system, the constant value ∆f = 500counts is also added to the value of lower
+actuator to offset the influence of Coulomb friction.
+==PAGE:63==
+5.2 The experiment result
+49
+Figure 5.16: The value of the lower actuator in the test rig.
+Figure 5.17: The value of the upper actuator in the test rig.
+==PAGE:64==
+50
+==PAGE:65==
+CHAPTER 6
+Conclusion
+The Dynamic Model Of the System
+This thesis establishes the dynamic model of the SISO system and the MISO system,
+and determines the important parameters in the dynamic system through system
+identification. In addition, the operating point is also selected, and the linearization
+of the system is completed at the operating point.
+Fault Detection and Isolation
+A method based the kalman filter is designed to get the residual.
+The residuals
+got from the kalman filter are met the two main properties. One is that if no fault
+happens, the value of the residual should be zero and the other is that if faults happen,
+the residual should be sensitive to fault. After the GLR test for the residuals, the
+fault can be detected in time.
+Fault Tolerance Control
+For the SISO system, in order to compensate the faulty system, a linear fault ob-
+server is designed. In the simulation, because it is linear, it can accurately estimate
+the size of the fault when the generated fault value is not large. When the fault value
+is very large, there is a big error between the real fault and the estimated fault. In
+the experiment, since Coulomb friction and other factors are not considered in the
+modeling. There is a constant error between the real fault and the estimated fault.
+This constant is obtained based a lot of experiments. In this thesis, a relatively accu-
+rate estimate is obtained through compensation. In the compensation of the faulty
+system, this constant error is also taken into account. The author thinks that this
+part is worth discussing in future work.
+For the MISO system, a virtual actuator is designed to implement the fault recon-
+figuration. It restores the faulty system by discarding the failed upper actuator and
+using lower actuator to hold the magnet to the previous position. In the experiment,
+in the process of restoring the faulty system, the constant value ∆f = 500 counts is
+==PAGE:66==
+52
+6 Conclusion
+also added to the value of lower actuator to offset the influence of Coulomb friction
+and other factors.
+==PAGE:67==
+CHAPTER 7
+Future Work
+More accurate model construction
+When the model is constructed, viscous is the only friction taken into consideration in
+order to simplify the complicated model. The effect of Coulomb friction and the gap
+between magnet and glass rod are not considered. Besides, the influence on magnet
+force from coil temperature is also ignored in model construction. In future work,
+these factors can be taken into account to increase the accuracy of the system model.
+More accurate fault observer
+The observer designed in this thesis is based on the linear model at operating point.
+If the there is a larger fault occurring on actuator, the system output value is far
+away from that obtained at operation point, having an negative effect on observer
+accuracy. In future work, a more accurate nonlinear observer can be designed to
+realize estimation of fault.
+More kinds of faults
+In this thesis, the main researched fault is the abrupt fault on actuator. In the future
+work, the model can be designed to complete fault diagnosis on different type of places
+via taking more kinds of faults into consideration, such as sensor fault, plant fault,
+incipient fault and intermittent fault.
+More kinds of systems models
+In this thesis, FDI and FTC are realized on two cases that are SISO and MISO
+systems. In future, a further discussion and research about FDI and FTC can be
+done on SIMO and MIMO systems.
+==PAGE:68==
+54
+==PAGE:69==
+APPENDIX A
+An Appendix
+The real step fault/counts
+The estimation of the fault/counts
+The error/counts
+600
+129
+471
+600
+110
+490
+600
+105
+495
+700
+220
+480
+700
+210
+490
+700
+201
+499
+800
+298
+502
+800
+305
+495
+800
+311
+489
+900
+385
+515
+900
+393
+507
+900
+403
+497
+1000
+470
+530
+1000
+478
+522
+1000
+489
+511
+1100
+584
+516
+1100
+589
+511
+1100
+602
+498
+1200
+684
+516
+1200
+693
+507
+1200
+712
+488
+Table A.1: The experimental data to determine the constant ∆f.
+==PAGE:70==
+56
+==PAGE:71==
+APPENDIX B
+An Appendix
+The MATLAB files for this thesis can be found in a zip file called ”ECP.zip”.
+==PAGE:72==
+58
+==PAGE:73==
+Bibliography
+[CDC96]
+Ali Charara, Jerome De Miras, and Bernard Caron. “Nonlinear control of
+a magnetic levitation system without premagnetization.” In: IEEE Trans-
+actions on Control Systems Technology 4.5 (1996), pages 513–523.
+[CJM04]
+Daniel J Clark, Mark J Jansen, and Gerald T Montague. “An overview
+of magnetic bearing technology for gas turbine engines.” In: (2004).
+[EK16]
+NR Esfahani and Khashayar Khorasani. “A distributed model predictive
+control (MPC) fault reconfiguration strategy for formation flying satel-
+lites.” In: International Journal of control 89.5 (2016), pages 960–983.
+[Fra87]
+Paul M Frank. “Fault diagnosis in dynamic systems via state estimation-
+a survey.” In: System fault diagnostics, reliability and related knowledge-
+based approaches. Springer, 1987, pages 35–98.
+[HH17]
+Miao He and David He. “Deep learning based approach for bearing fault
+diagnosis.” In: IEEE Transactions on Industry Applications 53.3 (2017),
+pages 3057–3065.
+[Ich+09]
+Dalil Ichalal et al. “An approach for the state estimation of Takagi-Sugeno
+models and application to sensor fault diagnosis.” In: Proceedings of the
+48h IEEE Conference on Decision and Control (CDC) held jointly with
+2009 28th Chinese Control Conference. IEEE. 2009, pages 7789–7794.
+[Ise93]
+Rolf Isermann. “Fault diagnosis of machines via parameter estimation
+and knowledge processing—tutorial paper.” In: Automatica 29.4 (1993),
+pages 815–835.
+[Jia+18]
+Feng Jia et al. “A neural network constructed by deep learning technique
+and its application to intelligent fault diagnosis of machines.” In: Neuro-
+computing 272 (2018), pages 619–628.
+[JSC06]
+Bin Jiang, Marcel Staroswiecki, and Vincent Cocquempot. “Fault accom-
+modation for nonlinear dynamic systems.” In: IEEE Transactions on au-
+tomatic Control 51.9 (2006), pages 1578–1583.
+[LLL15]
+Zhigang Liu, Zhiqiang Long, and Xiaolong Li. “Maglev train overview.”
+In: Maglev Trains. Springer, 2015, pages 1–28.
+[Lv+16]
+Feiya Lv et al. “Fault diagnosis based on deep learning.” In: 2016 Amer-
+ican control conference (ACC). IEEE. 2016, pages 6851–6856.
+==PAGE:74==
+60
+Bibliography
+[OKO02]
+Motoharu Ono, Shunsaku Koga, and Hisao Ohtsuki. “Japan’s supercon-
+ducting maglev train.” In: IEEE Instrumentation & Measurement Maga-
+zine 5.1 (2002), pages 9–15.
+[PNV15]
+Mukesh D Patil, PSV Nataraj, and Vishwesh A Vyawahare. “Real time
+implementation of robust QFT controller and prefilter for magnetic lev-
+itation system.” In: 2015 International Conference on Industrial Instru-
+mentation and Control (ICIC). IEEE. 2015, pages 703–708.
+[RK20]
+Rupak Rokade and Deepti Khimani. “Super-twisting Control of Mag-
+netic Levitation System.” In: ITM Web of Conferences. Volume 32. EDP
+Sciences. 2020, page 01004.
+[RPa99]
+Thomas R.Parks. Educational Control Products. Manual for model 730
+magnetic levitation system. 1999.
+[Wan+12]
+Zhenhua Wang et al. “Observer design for discrete-time descriptor sys-
+tems: An LMI approach.” In: Systems & Control Letters 61.6 (2012),
+pages 683–687.
+[Wan+20]
+Si-yu Wang et al. “Analysis of Suspension Characteristics of a New High-
+Temperature Superconducting Magnetic Levitation Bearing Based on
+Frozen-Image Model.” In: Recent Featured Applications of Artificial In-
+telligence Methods. LSMS 2020 and ICSEE 2020 Workshops. Springer.
+2020, pages 225–235.
+[Wei+12]
+Guoping Wei et al. “Experimental studies on H∞control for magnetic
+levitation system with friction compensation.” In: 2012 Proceedings of
+International Conference on Modelling, Identification and Control. IEEE.
+2012, pages 596–601.
+[Zha+19]
+Ying Zhang et al. “A redundant fault-tolerant aviation control system
+based on deep neural network.” In: 2019 IEEE 1st International Confer-
+ence on Civil Aviation Safety and Information Technology (ICCASIT).
+IEEE. 2019, pages 475–480.
+[Zha18]
+Qinghua Zhang. “Adaptive Kalman filter for actuator fault diagnosis.” In:
+Automatica 93 (2018), pages 333–342.
+[ZLL19]
+Mingda Zhai, Zhiqiang Long, and Xiaolong Li. “Fault-tolerant control of
+magnetic levitation system based on state observer in high speed maglev
+train.” In: IEEE Access 7 (2019), pages 31624–31633.

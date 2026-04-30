@@ -1,0 +1,2086 @@
+==PAGE:1==
+Energy implications for reducing COVID-19
+risk in schools by means of different airing
+solutions
+Master Thesis
+DTU Civil Engineering
+Department of Civil Engineering
+==PAGE:2==
+==PAGE:3==
+Energy implications for reducing COVID-19 risk in schools by means of different
+airing solutions
+Master Thesis
+June, 2021
+By
+Anna Theou-Tsafara
+Supervisor
+Pawel Wargocki
+Copyright:
+Reproduction of this publication in whole or in part must include the cus-
+tomary bibliographic citation, including author attribution, report title, etc.
+Cover photo:
+Taylor Wilcox, 2020
+Published by:
+DTU, Department of Civil Engineering, Brovej, Building 118, 2800 Kgs.
+Lyngby Denmark
+www.byg.dtu.dk
+ISSN:
+[0000-0000] (electronic version)
+ISBN:
+[000-00-0000-000-0] (electronic version)
+ISSN:
+[0000-0000] (printed version)
+ISBN:
+[000-00-0000-000-0] (printed version)
+==PAGE:4==
+Approval
+This thesis has been prepared over five months at the Section for Indoor Climate, Depart-
+ment of Civil Engineering, at the Technical University of Denmark, DTU, in partial fulfilment
+for the degree Master of Science in Engineering, MSc Eng. Sustainable Energy (Energy
+Savings line).
+Anna Theou-Tsafara - s192504
+Signature
+Date
+ii
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:5==
+Abstract
+The currently ongoing COVID-19 pandemic has raised the matter of the airborne transmis-
+sion of a disease and the means by which it may be prevented or minimized. It has been
+well documented that ventilation with outdoor air and air cleaning are effective means
+of reducing the risk of transmission, although such measures may negatively impact the
+energy demand of the current building stock. The purpose of this study is to examine
+the energy efficiency of different airing solutions applied to keep the risk of infection be-
+low a certain threshold. An elementary school building north of Copenhagen, Denmark,
+was chosen as the case study. This analysis was performed by using the Wells-Riley
+model of infection to find the required air supply rates to meet the infection risk target
+and subsequently simulating the energy performance of the building with IDA ICE. The
+airing solutions tested ranked in the following order in terms of energy efficiency: nat-
+ural ventilation with portable air cleaners, exhaust ventilation with portable air cleaners,
+mechanical ventilation, mechanical ventilation with filtration and, lastly, exhaust ventila-
+tion. Other factors such as noise, ease and cost of installation and thermal comfort must
+also be considered when choosing one such solution for a building. This study provides
+a framework by which similar investigations can be carried out across various types of
+buildings and climates, as well as for different pathogens.
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+iii
+==PAGE:6==
+Acknowledgements
+Anna Theou-Tsafara, MSc Sustainable Energy (Energy Savings Line), DTU
+Creator of this thesis.
+Pawel Wargocki, Associate Professor, Department of Civil Engineering, DTU
+Thesis Supervisor.
+Jakub Kolarik, Associate Professor, Department of Civil Engineering, DTU
+Co-Supervisor.
+iv
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:7==
+Contents
+Preface . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ii
+Abstract . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+iii
+Acknowledgements
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+iv
+1
+Introduction
+1
+1.1
+Background . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.2
+Objective and scope of work
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+2
+Methodology
+9
+2.1
+Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+2.2
+IDA ICE model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+2.3
+COVID-19 risk modeling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+2.4
+Scenarios . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+2.5
+Sensitivity analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+3
+Results
+21
+3.1
+Infection model outputs
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+3.2
+Ventilation rate and risk
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+3.3
+Primary energy consumption and thermal comfort
+. . . . . . . . . . . . . . 24
+3.4
+Energy cost of risk reduction
+. . . . . . . . . . . . . . . . . . . . . . . . . . 28
+4
+Discussion
+31
+4.1
+Evaluation of airing solutions
+. . . . . . . . . . . . . . . . . . . . . . . . . . 31
+4.2
+Risk assessment . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+4.3
+Model extensions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+4.4
+Limitations
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+5
+Conclusions
+35
+Bibliography
+37
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+v
+==PAGE:8==
+vi
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:9==
+List of Figures
+1.1
+Relative risk of COVID-19 infection in a California classroom compared to
+a reference case (3a). [26]
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+2.1
+Diagram of methodology. Model and simulation results are marked in red. .
+9
+2.2
+Plan of the south wing [32]. Classrooms are marked S1 through S8. . . . . 10
+2.3
+Relationship between quanta inhaled and probability of infection (P) during
+a single school day.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+2.4
+Relationship between quanta inhaled during a single school day and classroom
+reproduction number (Rc). . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+2.5
+Ventilation and airing scenarios.
+. . . . . . . . . . . . . . . . . . . . . . . . 17
+2.6
+Diagram of sensitivity analysis methodology.
+. . . . . . . . . . . . . . . . . 19
+3.1
+Infection probability as a function of the ventilation rate for a single day
+under different quanta emission rates. The target probability of infection is
+marked by the dashed line. . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+3.2
+Classroom reproduction number as a function of the air supply rate for a
+school week under different quanta emission rates. The target reproduction
+number is marked by the dashed line. . . . . . . . . . . . . . . . . . . . . . 24
+3.3
+Primary energy consumption for an air supply rate (λv) of 3.15 ACH, cor-
+responding to a net quanta emission rate (Q) of 6.19 quanta/h. . . . . . . . 24
+3.4
+Primary energy consumption for an air supply rate (λv) of 9.11 ACH, cor-
+responding to a net quanta emission rate (Q) of 14 quanta/h. . . . . . . . . 25
+3.5
+Primary energy consumption for an air supply rate (λv) of 15 ACH, corres-
+ponding to a net quanta emission rate (Q) of 21.64 quanta/h. . . . . . . . . 25
+3.6
+Primary energy consumption (kWh/m2 for the heating season) correspond-
+ing to heating consumption for all scenarios and air supply rates. The con-
+sumption for the reference case is marked by the dashed line.
+. . . . . . . 26
+3.7
+Primary energy consumption (kWh/m2 for the heating season) correspond-
+ing to equipment loads for all scenarios and air supply rates. The consump-
+tion for the reference case is marked by the dashed line. . . . . . . . . . . . 27
+3.8
+Primary energy consumption (kWh/m2 for the heating season) correspond-
+ing to HVAC auxiliary energy for all scenarios and air supply rates. The
+consumption for the reference case is marked by the dashed line.
+. . . . . 27
+3.9
+Cumulative energy cost (in kWh/m2 for the heating season) to reduce the
+probability of infection (P) and classroom reproduction number (Rc), the
+latter in parentheses. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+3.10 Classroom reproduction number (Rc) as a function of the probability of in-
+fection (P).
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+vii
+==PAGE:10==
+viii
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:11==
+List of Tables
+1.1
+Known outbreaks with suspected evidence of airborne transmission of COVID-
+19 [13]–[19].
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.2
+Quanta emission rates, as estimated by different studies [13], [20], [23]–
+[25]. It should be noted that the values presented by Bazant and Bush
+(2021) have been converted from q/m3 to q/h, using the breathing rates
+suggested by the same authors, for ease of comparison. . . . . . . . . . . .
+4
+2.1
+Course and break schedule. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+2.2
+Breathing rates of occupants
+. . . . . . . . . . . . . . . . . . . . . . . . . . 13
+2.3
+Quanta concentrations per expiratory activity [25].
+. . . . . . . . . . . . . . 13
+2.4
+Inputs for COVID-19 risk estimation. . . . . . . . . . . . . . . . . . . . . . . 15
+2.5
+Summary of scenario systems. . . . . . . . . . . . . . . . . . . . . . . . . . 18
+2.6
+Quanta emission rates per expiratory activity [20].
+. . . . . . . . . . . . . . 19
+3.1
+Infection modeling outputs.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+3.2
+Increase in primary energy consumption relative to reference scenario 1a.
+Relative values (%) are given in parentheses. . . . . . . . . . . . . . . . . . 26
+3.3
+Thermal comfort across all scenarios and levels of air supply rate. Thermal
+comfort assessed according to EN 15251:2007 [49]. . . . . . . . . . . . . . 27
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+ix
+==PAGE:12==
+x
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:13==
+1
+Introduction
+SARS-CoV-2 emerged during the later months of 2019, with the first case being reported in
+the Hubei province of China, on the 17th of November [1]. The virus spread rapidly across
+the world, leading to the World Health Organization declaring COVID-19 as a pandemic
+on the 11th of March, 2020 [2].
+As of the 30th of May 2021, there have been 169,597,415 cases of COVID-19 worldwide,
+resulting in 3,530,582 deaths [3].
+Respiratory viruses such as SARS-CoV-2 exhibit three primary routes of transmission:
+(a) Contact transmission,
+(b) Droplet transmission,
+(c) Airborne transmission [4].
+Airborne transmission refers to an infection caused by exposure to small, virus-containing,
+airborne respiratory droplets, which can remain suspended in the air over long distances
+and periods. Traditionally, according to the WHO, the cut-off of to distinguish airborne
+from droplet transmission is set to 5 μm, with airborne transmission referring to droplets
+smaller than 5 μm [5]. However, this definition has been argued in connection with the
+current pandemic, with researchers pointing out that it is perhaps more accurate to say
+that the term ”droplet” should refer to particles that fall to the ground and the term ”aerosol”
+should refer to particles that remain suspended in the air. This distinction means that the
+cut-off point between the two would be 100 μm, with droplets being larger than 100 μm
+and aerosols being smaller than 100 μm [6]. This also refocuses the conversation around
+short-range (<1m) and long-range (>2m) transmission [7].
+Regardless, airborne transmission is of particular concern with regard to closed indoor
+spaces, such as office buildings and schools, where people assemble over a long period
+of time[4], [8].
+When referring to spaces such as the ones mentioned above, ventilation with outdoor
+air is thought to be an effective measure to reduce airborne transmission of diseases,
+with experts highlighting its importance in combating the COVID-19 pandemic [8], [9]. In
+addition to supplying outdoor air to a space in order to dilute (reduce) the concentration of
+aerosols laden with the virus, it is also possible to to filter these aerosols and effectively
+remove the virus, for example by using a portable air cleaner, or by providing recirculation
+and filtration of the indoor air through a mechanical ventilation system. As previously
+imposed ”lockdowns”, intended to reduce the spread of COVID-19 worldwide, begin to
+be lifted, it becomes clear that the application of mitigative strategies such as these can
+make the gradual reopening of society easier and safer.
+Schools, especially elementary schools which are the focus of this study, and kinder-
+gartens, are some of the first institutions to return to operation worldwide. Among the
+reasons cited for this are the lower prevalence of symptomatic COVID-19 among children
+[10] and the negative impact of school closure on the mental health and development of
+children [11].
+Increased or otherwise modified ventilation (e.g. filtering), along with other measures that
+can be taken to curtail the risk of COVID-19 infection in a school setting, may result in a
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+1
+==PAGE:14==
+higher energy consumption than would be observed under other circumstances.
+As of 2018, the energy consumption of buildings amounts to 36% of the worldwide final en-
+ergy use [12]. The application of increased outdoor ventilation rates to curb the pandemic
+to a large part of the existing building stock could both exacerbate the current energy crisis
+and may lead to unfavorable indoor environment conditions, which are not acceptable ac-
+cording to building codes worldwide. Other methods of providing air cleaning may also
+have considerable energy or indoor environment implications. Thus, the investigation of
+various types of measures to combat the COVID-19 pandemic is important to document
+their impact on the energy use of buildings.
+1.1
+Background
+1.1.1
+Evidence for airborne transmission
+Several outbreaks around the world have been studied and are considered to suggest
+possible aerosol transmission of COVID-19. Table 1.1 presents a non-exhaustive list of
+outbreaks that are considered to display significant evidence of airborne transmission.
+Table 1.1: Known outbreaks with suspected evidence of airborne transmission of COVID-
+19 [13]–[19].
+Outbreak
+Date
+Location
+Cases
+Notes
+Skagit Valley Chorale [13]
+10/3/2020
+Skagit Valley, WA, USA
+33
+Superspreader
+ACH = 0.5 h−1
+Guangzhou restaurant [14], [20]
+24/1/2020
+Guangzhou, China
+10
+Poor ventilation
+0.9 L/s per person
+Bus in China [16]
+19/1/2020
+Ningbo, China
+24
+-
+S. Korea appartment [17]
+16-25/8/2020
+Seoul, South Korea
+10
+Apartments connected
+through bathroom air duct
+Diamond Princess cruise [18], [19]
+Feb. 2020
+Yokohama, Japan
+454
+Airborne transmission
+>50% of transmission
+Nursing home [21]
+June-July 2020
+The Netherlands
+34
+Viral RNA detected
+in HVAC system
+While research suggests that airborne transmission had a large impact in the above out-
+breaks, their exact circumstances, as well as those of other studied outbreaks are not
+always known. Specifically, parameters such as temperature, relative humidity and air
+exchange rates in the location of an outbreak can be hard to determine. This presents
+some problems, as will be explained in subsection 1.1.2.
+1.1.2
+Wells-Riley model of infection
+The risk of COVID-19 infection through aerosol transmission can be calculated using a
+version of the Wells-Riley model of infection, which correlates the probability of infection
+(P) with the total quantity of virus inhalded, expressed as quanta (ntot) [13]:
+P = 1−e−ntot .
+(1.1)
+Wells originally developed the model while studying tuberculosis, using a Poisson distri-
+bution to define the notion of a quantum. Each quantum represents a number of infective
+particles inhaled that result in a 63.2% chance of infection [22]. The typical formation of
+the equation relies upon the assumption of a steady-state of quanta concentration in the
+space and does not take into account virus removal mechanisms other than ventilation
+with outdoor air, but this will be further elaborated in section 2.3.
+2
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:15==
+Quanta emission rates
+The estimation of quanta emission rates for SARS-CoV-2 is a subject which many re-
+searchers have looked into, with varying results. This parameter presents a challenge,
+as it can only be back-calculated in light of previous known outbreaks. However, as men-
+tioned, not all environment parameters and virus removal mechanisms are known in every
+case that is studied, nor is it always possible to account for other transmission routes such
+as droplet or contact transmission.
+In an oft-cited study, Miller et al. (2021) [13] investigated a superspreading event taking
+place in Skagit Valley, Washington, USA, with 33 confirmed and 20 possible secondary
+infections arising from a single infected person that had attended a choir meeting. By use
+of the Wells-Riley model and a Monte Carlo simulation, the mean quanta emission rate
+for this event was calculated at 970 quanta/hour, a high value consistent with this being
+a superspreading event.
+Conversely, Buonanno et al. reported much lower values in two studies [15], [20]. The
+first study presented quanta emission rates as a function of the viral load in sputum, con-
+cluding that relatively high (>100 quanta/h) rates could be found in subjects performing
+light exercise and speaking, whereas lower emission rates (1 quantum/h) were likely to be
+observed in subjects at rest. The second study presented more estimates, with median
+values ranging from 0.37 quanta/h for a person breathing, at rest, to 32 quanta/h for a
+person speaking loudly while performing a light activity.
+Miksewski (2021) [23], presented a range of predicted quanta emission rates, following a
+longnormal distribution with median values from 0.21 quanta/h, to 17 quanta/h, depend-
+ing on the respiratory activity. The values inferred from 14 known outbreaks were then
+examined, to determine at which percentile of the lognormal distribution of the predicted
+quanta emission rates they correspond. These quanta emission rates were also com-
+pared to the corresponding rates for other diseases, with the study finding that the median
+quanta emission rate of SARS-CoV-2 is lower than those of untreated tuberculosis, aden-
+ovirus and measles, but higher than SARS-CoV-1, MERS, treated tuberculosis, influenza,
+coxsackievirus and rhinovirus.
+Dai and Zhao (2020), on the other hand, estimate values in the rage of 14-48 quanta/h
+for a person in a sedentary state [24], higher than those reported by other studies for a
+similar activity.
+In a study examining the robustness of the six-foot social distancing rule, imposed by
+the CDC, against airborne transmission, Bazant and Bush (2021) [25], provided a range
+of estimates, according to activity, for the quanta concentrations found in a subject’s ex-
+haled breath, deduced from drop-size distributions reported in other studies. These val-
+ues range from 1.1 quanta/m3, for nose breathing to 142 quanta/m3 for loud speech, while
+the study also makes reference to the Skagit valley choir super-spreading event, with a
+quanta concentration of 970 quanta/m3. These findings are not immediately comparable
+to the others referenced in this section, as they refer to quanta concentrations in exhaled
+breath and not emission rates and the subjects’ breathing rate needs to be taken into
+account. Using the breathing rates suggested by the authors, this range corresponds to
+0.55 quanta/h for nose breathing to 106.5 quanta/h for loud speech, which is consistent
+with the findings of Buonnano et al. [15].
+Overall, there is significant variation in the values presented by the studies above and
+Miller et al. (2020) [13], as well as Miksewsky et al. (2021) [23] suggest the possibility
+of emission rates at very high percentiles during known outbreaks. Table 1.2 presents a
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+3
+==PAGE:16==
+summary of the values listed above.
+Table 1.2: Quanta emission rates, as estimated by different studies [13], [20], [23]–[25]. It
+should be noted that the values presented by Bazant and Bush (2021) have been conver-
+ted from q/m3 to q/h, using the breathing rates suggested by the same authors, for ease
+of comparison.
+Study
+Respiratory activity
+QER (q/h)
+Miller et al. (2021)
+Singing
+970
+Buonanno et al. (2020)
+Resting, oral breathing
+0.37
+Heavy activity, oral breathing
+2.5
+Light activity, speaking
+5
+Light activity, singing or speaking loudly
+32
+Miksewski et al. (2021)
+Resting, oral breathing
+0.52
+Standing, speaking
+2.6
+Light activity, speaking loudly
+44
+Dai and Zhao (2020)
+Sedentary state
+14-48
+Bazant and Bush (2021)
+Nose breathing
+0.55
+Nose-nose breathing
+4.4
+Deep-fast breathing
+2.1
+Fast-deep breathing
+4.25
+Nose-mouth breathing
+16.5
+Quiet speech
+21.75
+Whispered counting
+27.75
+Intermediate speech
+54
+Voiced counting
+54
+Loud speech
+106.5
+Whispered ”aah”
+77.25
+Voiced ”aah”
+970
+1.1.3
+Risk assessment and ventilation
+The estimation of the emission rate of quanta for SARS-CoV-2 serves the purpose of
+assessing the risk of infection associated with various activities. While assessing risk
+on a population level involves factors such as the probability of an infected person being
+present in a space and the overall susceptibility of a population, several researchers have
+attempted to quantify the risk of infection on a smaller scale, for a variety of scenarios.
+A recommendation established by Federspiel (2020) [9] aims to establish a criterion by
+which the number of secondary infections from a single infected person is below 1, for
+the entirety of the infected person’s infectious period and all of their activities. This cri-
+terion takes takes into account removal mechanisms and activities generating the risk and
+utilizes the Wells-Riley model of infection and the SIR model of epidemic dynamics.
+In the same study as cited earlier, Bazant and Bush (2021) quantified the role of mask
+wearing and increased ventilation rates to curtail transmission in two scenarios: a typical
+American classroom and a nursing home. With all other parameters kept the same, in-
+creasing the ventilation rate from 0.34 air changes per hour (natural ventilation) to 8 air
+changes per hour (mechanical ventilation) increased the duration of time that one can
+4
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:17==
+safely spend in a classroom from 1.2 hours to 7.2 hours [25]. In combination with masks,
+the authors suggest that this would render transmissions within the school rare.
+Dai and Zhao (2020) also calculated the ventilation rates required to keep the risk of
+infection in a space below 1%, for a given duration of time, with quanta emission rates in
+the range of 14 to 48 quanta/h. For a single infectious person an exposure time of 0.25h,
+the required ventilation rate was found to be 100-350 m3/h, while for an exposure time
+of 3h, the required ventilation rate was 1200-4000 m3/h [24]. In almost all scenarios, it
+was shown that it is possible to achieve a 1% infection probability over the space’s typical
+occupancy time via ventilation.
+In a project conducted by the California Department of Public Health in 2020 [26], different
+ventilation scenarios were considered with reference to a hypothetical classroom. These
+scenarios included a range of ventilation rates from 2.8 l/s-person to 10.5 l/s-person,
+MERV 8 or MERV 13 filters and portable air cleaners and mask wearing. An additional
+”no ventilation” (0.2 air changes per hour / ACH) scenario for classrooms that do not have
+a mechanical ventilation system installed was considered. Due to the uncertainty associ-
+ated with quanta emission rates, the study focused on relative risk. The results, presented
+in Figure 1.1, strongly highlight the importance of ventilation, but also, more importantly
+that of filtration and mask usage in lowering the risk of transmission.
+(a) Relative risk of scenarios without ventilation (b) Relative risk of scenarios with ”no ventilation”
+Figure 1.1: Relative risk of COVID-19 infection in a California classroom compared to a
+reference case (3a). [26]
+In a similar line of investigation, Miksewski et al. (2021) [23] calculated the reproduction
+number pertaining to two different scenarios, one in a classroom and one in an army
+barracks, under different ventilation rates. This analysis showed that increased ventila-
+tion rates are capable of drastically reducing the number of secondary infections in both
+scenarios, although in both cases ventilation alone was insufficient to bring the reproduc-
+tion number below 1 if the infected person was assumed to be standing and speaking as
+opposed to breathing at rest.
+While the studies above have attempted to approach the matter of infection risk over
+a given duration of time in occupying a space, they do not account for changes in oc-
+cupancy within that duration. Melikov et al. (2020) [27] broached this topic, suggesting
+that increased class duration in a classroom is detrimental to risk management, while in-
+creased break duration is beneficial. The study also concurs that higher ventilation rates,
+as well as lowered occupancy, are associated with a lower risk of infection.
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+5
+==PAGE:18==
+1.1.4
+Energy consumption and indoor environment quality
+Changes in the operation of a building, such as the ones described above, can affect
+the energy consumption of the building, particularly since risk management may require
+unusually high ventilation rates.
+Balocco and Leoncini (2020) [28] studied a historic, naturally ventilated school building
+in Italy, proposing different control strategies for a mechanical ventilation system, includ-
+ing different temperature setpoints and setbacks and modulation of the air change rate
+between 2 and 4 ACH. The results show that, while a system with a continuous air tem-
+perature and ventilation control mode could lead to an increase of 57 kWh/m2 during the
+heating season, the optimal combination of intermittent air temperature control and atten-
+uated ventilation only led to an increase of 5 kWh/m2. These results are significant, as
+they underscore the need for conscious decision-making when retrofitting a building to
+respond to a situation such as the current COVID-19 pandemic.
+A study by Mokhtari and Jahangir (2021) [29] analyzed different building occupancy sched-
+ules and air exchange rates provided by the HVAC system in conjunction with the infection
+risk in a university building. A uniform occupancy distribution pattern was shown to reduce
+the number of infected people by up to 56% and the energy consumption by up to 32%.
+With regard to the air change rate specifically, an air change rate of 10 h−1 was simulated
+to result in an added HVAC energy consumption of approximately 6.1 kWh/m2 within 5
+days compared to no ventilation, with a decrease of approximately 400 infected people.
+Aviv et al. (2021) [30] suggest a shift in the ventilation paradigm from centralized mech-
+anical ventilation systems to natural ventilation assisted by radiant cooling, as a response
+to the COVID-19 pandemic. With a focus on hot and humid climates, the study highlights
+the high cooling energy costs of increasing the outdoor air supply in conventional HVAC
+systems. On the other hand, the natural ventilation and radiant cooling systems sugges-
+ted by the authors, when applied to 60 major cities worldwide, were projected to lead in a
+decrease in energy costs by 10–45% compared to a mechanical, central AC system.
+The subject of indoor environment quality goes hand-in-hand with that of energy con-
+sumption. Alonso et al. (2021) [11] used two classrooms in Spain to perform a case study
+of air quality and thermal comfort during, comparing these conditions before the pandemic
+and during it. The necessary addition of natural ventilation to adhere to the recommen-
+ded CO2 values during the pandemic led to a significant increase in the hours below
+the thermal comfort limit, particularly when the HVAC system was turned off. No energy
+simulations were performed in this case.
+Also tackling the subject of ventilation and indoor environment quality in classrooms, Gao
+et al. [31] studied four different methods of supplying ventilation (manually operable win-
+dows, mechanical ventilation, automatically operable windows and automatically operable
+windows with an exhaust fan), in order to determine which results in the best perception
+of the indoor environment by the students in a Danish climate. The system that performed
+the best was found to be the automatically operable windows with an exhaust fan.
+In a similar vein, ASHRAE Research Project 1624-RP (2017) [32] was an intervention
+study performed in a school complex in Denmark, involving the retrofit of classrooms with
+different ventilation solutions (mechanical ventilation, automatic window opening, auto-
+matic window opening assisted by an exhaust fan, automatic window opening with heat
+recovery units). The benefits and drawbacks of each system with regard to energy use,
+indoor environment quality and the perceptions, symptoms and performance of the pu-
+pils were assessed. According to these criteria, the decentralized mechanical ventilation
+6
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:19==
+system performed the best under the study’s conditions.
+The existing literature illustrates the importance of ventilation systems, control schemes
+and air change rates for achieving a more favorable indoor air quality, as well as their
+impact on the energy consumption of a building. While studies that focus on actionable
+results for decision-makers seeking energy efficient methods of pandemic risk manage-
+ment when assessing HVAC systems for existing buildings can be found, there is no real
+uniform methodology of assessment of their energy efficiency.
+1.2
+Objective and scope of work
+The primary objective of this study was to evaluate the energy cost of different methods
+of providing clean air to an elementary school classroom with the purpose of reducing
+COVID-19 risk. A classroom was chosen as the case study here, specifically due to the
+tendency and need for schools to remain open, even under pandemic conditions.
+In order to make comparisons between different airing solutions possible, it was deemed
+suitable to set a target to be achieved through each solution. A disease’s basic reproduc-
+tion number, R0, refers to the number of secondary infections arising in a population from
+a single infected person, with no population immunity or interventions [26]. In general
+terms, if this number is above 1, then the total number of infections in a population will
+rise, while if it is below 1, the total number of infections will fall.
+For the purposes of this study, the goal for each airing solution was set as such: For any
+one infected student entering a classroom over the course of their infectious period, the
+number of secondary infections arising should be equal to or lower than 0.9, assuming
+some risk of infection would occur outside of the classroom. This reproduction number
+will henceforth be referred to as the community risk, or classroom reproduction number,
+Rc.
+Only airborne transmission was taken into account in this case. While the present case
+used COVID-19 as the model disease upon which assumptions were based, the same
+framework can be applied to other infectious, airborne diseases. This will be discussed
+further in latter sections.
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+7
+==PAGE:20==
+8
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:21==
+2
+Methodology
+The methodology used to approach this study is presented in Figure 2.1 in the form of a
+diagram. Subsequent sections will serve to elaborate further. The process followed is split
+into two parts: one referring to the reference case of the operation of the selected building
+and one referring to the ventilation scenarios proposed to lower the risk of infection.
+Figure 2.1: Diagram of methodology. Model and simulation results are marked in red.
+2.1
+Setting
+The investigated school building was the south wing of the Ravnsholt department of Krat-
+bjergskolen, located in Allerød, north of Copenhagen. The Ravnsholt school was built
+from 1979 to 1986 and has approximately 540 students in grades 0 to 9 [33]. The south
+wing houses a total of eight classrooms, for children in grades 4 to 5 [32].
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+9
+==PAGE:22==
+Figure 2.2: Plan of the south wing [32]. Classrooms are marked S1 through S8.
+The school was the subject of a ASHRAE Research Project 1624-RP carried out by Jørn
+Toftum and Pawel Wargocki in 2017, evaluating different ventilation solutions for the retro-
+fit of a portion of these classrooms, which had no previously installed ventilation systems
+and relied on the manual opening of windows [32]. This school was chosen as an example
+for this study, due to the readily available plans and models acquired from said Research
+Project, but the same methodology can be applied to any school building.
+This study assumes that no ventilation system is installed in these classrooms as a starting
+point.
+2.1.1
+Schedule
+The school’s courses follow a schedule which is not consistent throughout the days and
+throughout the different classrooms. For the purposes of evaluating the risk of COVID-19
+infection, the class schedule which involves the highest amount of hours spent by students
+in the room was selected, to reflect the worst case scenario.
+Table 2.1 outlines the class and break schedule used for risk infection modeling.
+10
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:23==
+Table 2.1: Course and break schedule.
+Activity
+Duration (minutes)
+Class
+90
+Break
+20
+Class
+90
+Break
+40
+Class
+45
+Break
+5
+Class
+45
+With regard to evaluating the energy use of each scenario, the schedule of each classroom
+for each day of the week was applied in the simulation model. The schedule applied in
+energy simulations also takes into account all school holidays, for the school year of 2020-
+2021, as provided by the Aalborg Kommune [34], which is also applicable in the location
+of the school.
+2.1.2
+Occupancy
+In order to provide a sufficient distance between student to prevent transmission via
+droplets, the occupancy of each classroom was assumed to be reduced by one third
+compared to its usual operation, achieving an approximate density of 3 m2/person. This
+resulted in an occupancy of 18 people, including the teacher, per classroom.
+For the purposes of this study, it was also considered that the same children and teacher
+attend classes together for the duration of the week and that measures are taken to pre-
+vent intermixing between children from different classes during the breaks, especially in
+indoor, non-ventilated spaces.
+2.1.3
+Window opening behavior
+Due to the risk of infection present in schools, the assumption was made that certain
+measures would be taken to curtail it. Namely, the classrooms’ windows are set to be
+partially open during all of the breaks, to ensure some ventilation in the classroom, while
+avoiding potentially low temperatures during class.
+2.2
+IDA ICE model
+The program used to simulate the school building’s energy behavior was IDA ICE, an
+energy and indoor environment simulation program developed by EQUA Simulation AB
+[35].
+With the information described above, as well as weather data for the city of Copenha-
+gen, provided within IDA ICE, a model of the school was constructed. The simulations
+referred to in this section, as well as the entirety of this study, were run for the whole of
+the south wing, for a period corresponding to the heating season in Copenhagen, i.e. from
+the 1st of October to the 30th of April. This choice of time period was made because of
+Denmark’s cold climate, which leads to windows being opened less often [31], as well as
+higher energy costs to provide acceptable indoor environment conditions during the heat-
+ing season. The majority of a school’s operation also occurs during the heating season.
+The model of the school was adapted from a previous model, made during the course of
+ASHRAE Research Project 1624-RP [32].
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+11
+==PAGE:24==
+2.2.1
+Reference case ventilation rates
+In order to determine the risk of infection for the school’s standard operation, a simula-
+tion was run over the course of the heating season. Within the model, the classrooms’
+windows were set to open to 10% of their maximum opening during the breaks, as it was
+discovered through preliminary modeling that larger openings resulted in unpleasantly low
+temperatures in the room.
+From the simulation results, it was then possible to extract the average natural ventilation
+rates during class and during the breaks.
+2.3
+COVID-19 risk modeling
+This study uses the Wells-Riley model of infection, explained in subsection 1.1.2, in order
+to estimate the risk of COVID-19 infection in the chosen setting.
+In the original model [36], in a steady-state, well mixed environment, the total number of
+quanta inhaled is expressed as a function of the number of infectors (Ninf), the pulmonary
+ventilation rate of a person (p), the quanta generation rate (Q), the exposure time interval
+(t), the volume of the room (V) and the room ventilation rate with clean air (λvo) as follows:
+P = 1−e−
+Ninf Qpt
+λvoV
+.
+(2.1)
+In addition to the basic model, since the effects of filtration (λvf), as well as particle depos-
+ition on surfaces (λdep) and virus deactivation (k) also contribute to risk reduction, these
+can also be taken into consideration in this model [26]. Specifically:
+λv = λvo + λvf ,
+(2.2)
+P = 1−e
+−
+Ninf Qpt
+(λv+λdep+k)V .
+(2.3)
+It is further possible to simplify Equation 2.3, by aggregating the aforementioned effects
+into one parameter, named the first order loss rate (λ) [13]:
+λ = λv + λdep + k .
+(2.4)
+Then, Equation 2.3 becomes:
+P = 1−e−
+Ninf Qpt
+λV
+.
+(2.5)
+This study uses this definition of the first order loss rate, with all terms being expressed
+in air changes per hour (ACH/h−1).
+However, since the intermittent use schedule of
+classrooms does not provide a steady state of quanta concentration in each room, the
+total number of quanta inhaled was calculated following the method described below.
+2.3.1
+Breathing rates
+The breathing rates for the occupants are based on the US Environmental Protection
+Agency’s Exposure Factors Handbook (2011). [37]. The values used are the following.
+12
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:25==
+Table 2.2: Breathing rates of occupants
+Activity
+Age range
+Breathing rate
+Sedentary/Passive
+6 to <11
+4.8×10−3
+Light Activity
+21 to <41
+1.2×10−2
+The effective breathing rate (B) used for the purposes of calculating COVID-19 risk in
+this case was assumed as an average of the breathing rates of all occupants, being 17
+students (children) and 1 teacher (adult).
+2.3.2
+Quanta emission rate
+The quanta emission rates used are based on Bazant and Bush (2021) [25]. The values
+relevant in this case are the presented below.
+Table 2.3: Quanta concentrations per expiratory activity [25].
+Expiratory activity
+Cq (Infection quanta / m3 exhaled air)
+Nose-nose breathing
+8.8
+Intermediate speech
+72
+Loud speech
+142
+For the teacher, it was assumed that their mix of activities would be 60% intermediate
+speaking and 40% loud speaking. For the students, it was assumed that their mix of
+activities would be 90% nose-nose breathing and 10% intermediate speaking. The latter
+assumption is based on the mix of activities suggested in Federspiel (2020) [9].
+In order to find the emission rates per hour (q), the above quanta concentrations were
+multiplied by the breathing rate (B) of the classroom occupants.
+In section 2.5, this parameter will be examined in a sensitivity analysis.
+No mask usage was assumed in this study, as the students are relatively young children
+and social distancing is assumed to be enforced to limit droplet transmission. However, it
+is relatively easy to factor mask usage into the amount of quanta exhaled, if the exhalation
+efficiency of the mask (Eexh) and the fraction of occupants wearing masks (Fm) are known.
+The net quanta emission rate (Q) is then found based on the number of infective occupants
+(Ninf):
+Q = (1 −EexhFm) Ninfq .
+(2.6)
+Since no mask usage is assumed, Fm is 0 and the above equation becomes:
+Q = Ninfq .
+(2.7)
+2.3.3
+Aerosol build-up and decay
+The quanta concentration in a room can be found by solving the mass balance equation
+[38], for a an initial concentration C0 and a given time period (t) and room air volume (V):
+Ct = C0e−λt + Q
+λV
+(
+1−e−λt)
+.
+(2.8)
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+13
+==PAGE:26==
+During build-up (Ct,b) and decay (Ct,d), this gives, respectively:
+Ct,b = Q
+λV
+(
+1−e−λt)
+,
+(2.9)
+Ct,d = C0e−λt .
+(2.10)
+The decay rate of the virus (k) was estimated based on the half-life of the virus, provided
+as 1.1 h (or 0.63 h−1) by van Doremalen et al. (2020) [39]. In addition, the effect of
+deposition onto surfaces (λdep) was defined based on values found by Chatoutsidou and
+Lazaridis (2019) [40], as interpreted by Buonanno et al. (2020) [15] and is given as 0.24
+h−1.
+2.3.4
+Average quanta concentration
+From the aforementioned net quanta emission rate, as well as equations 2.9 and 2.10, it
+is possible to calculate the average quanta concentration (Cavg) for each teaching period,
+starting at t = Tb and ending at t = Te within a day.
+Cavg =
+1
+Te −Tb
+∫Te
+Tb
+[
+C0e−λt + Q
+λV
+(
+1−e−λt)]
+dt
+=
+C0
+λ(Te −Tb)
+(
+e−λTb −e−λTe)
++ Q
+λV
+(
+1 −e−λTb −e−λTe
+λ(Te −Tb)
+)
+(2.11)
+2.3.5
+Quanta inhaled
+Taking into potential account mask usage (Fm, the fraction of the occupants wearing
+masks) and the inhalation effectiveness of the masks used (Einh), the number of quanta
+inhaled for each session is:
+n = (1 −EinhFm) CavgBt .
+(2.12)
+Since no mask usage is assumed, Fm is 0 and the above equation becomes:
+n = CavgBt .
+(2.13)
+2.3.6
+Infectious period
+The effective mean infectious period was chosen as 5.4 days as per Bazant and Bush
+(2021) and Federspiel (2020) [9], [25]. However, several measures imposed around the
+world could affect this parameter. For example, in Denmark, the current guidelines impose
+the obligation to have a 72 hour (3 days) old negative test in order to enter some public
+buildings [41], though the bulk of this study was conducted before this measure was put
+in place.
+14
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:27==
+2.3.7
+Adaptation of existing model
+The basis for the above methodology is found in the COVID-19 Airborne Transmission
+Tool released by the University of Colorado-Boulder developed by Professor Jose L. Ji-
+menez [42].
+This model was modified to allow for the calculation of the average quanta concentration
+across multiple lesson sessions, using Equation 2.9, Equation 2.10 and Equation 2.11.
+The number of quanta inhaled per person for each lesson session is found by using Equa-
+tion 2.13 and then summed up to find the total number of quanta inhaled (ntot) during a
+school day.
+The inputs for each parameter are summarized below.
+Table 2.4: Inputs for COVID-19 risk estimation.
+Parameter
+Value
+Unit
+Volume (V)
+166.83
+m3
+Breathing rate (B)
+0.31
+m3/h
+Decay rate (k)
+0.63
+h−1
+Deposition to surfaces (λdep)
+0.24
+h−1
+No. of occupants (Nocc)
+18
+people
+No. of infected people (Ninf)
+1
+person
+Net quanta emission rate (Q)
+6.19
+quanta/h
+Fraction of people with masks (Fm)
+0
+%
+The individual risk of infection (P) over a single day is calculated according to Equation 1.1.
+Figure 2.3 shows the relationship between this probability and the amount of quanta in-
+haled during a single day. It should be noted that this probability becomes 100% for 10
+quanta inhaled during a day.
+Figure 2.3: Relationship between quanta inhaled and probability of infection (P) during a
+single school day.
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+15
+==PAGE:28==
+The individual risk of infection over the course of a school week (5 days) (Pweek) is calcu-
+lated as follows:
+Pweek = 1 −(1 −P)5 .
+(2.14)
+The classroom reproduction number (Rc) is then found by multiplying the individual risk
+of infection by the number of susceptible occupants, in this case 17 occupants in each
+classroom:
+Rc = (Nocc −Ninf) Pweek .
+(2.15)
+Figure 2.4:
+Relationship between quanta inhaled during a single school day and
+classroom reproduction number (Rc).
+Figure 2.4 shows the classroom reproduction number as a function of the amount of
+quanta inhaled during each day of the school week. All 17 susceptible occupants are
+expected to become infected by the end of the week if 2 quanta are inhaled each day. In
+order to keep the classroom reproduction number below 0.9, no more than 0.011 quanta
+each day.
+The required ventilation and filtration rates (λv) for the subsequently described airing solu-
+tions are then derived according to the defined goal of Rc ≤0.9.
+2.4
+Scenarios
+Six different ventilation and airing scenarios were considered in this study, presented in
+Figure 2.5. Scenario 1a is a reference case, described in subsection 2.1.2 and subsec-
+tion 2.1.3.
+16
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:29==
+Figure 2.5: Ventilation and airing scenarios.
+The energy consumption for each scenario is simulated by the use of IDA ICE, by adjusting
+the model described in section 2.2. Scenarios 2a through 3b do not involve any natural
+ventilation through window opening.
+2.4.1
+Air supply rate limitations
+The air supply rate is given in ACH, or air changes per hour. The level of air supply (λv)
+is set in order to achieve the objective outlined in section 1.2. For scenario 1, since the
+natural ventilation rate achieved via window opening cannot be directly controlled, it is
+instead found through simulation.
+An additional constraint is that, according to the Danish Building Regulation of 2018
+(BR18), the outdoor air flow (λvo) must be equal to or higher than 5.0 l/s per person plus
+0.35 l/s per m2 of the space. In this case, this requirement means that the minimum
+outdoor air ventilation rate for each classroom is equivalent to 2.37 ACH or 1.97 l/s/m2.
+This requirement is calculated using the lowered occupancy status of the school, con-
+sidering that the building does not have an existing ventilation system installed and the
+purpose of its installation is only to prevent the rapid spread of infection during a pan-
+demic. It should be noted that this building, being an older building, currently does not
+meet the code requirements. Therefore, the above requirement does not need to be met
+in the case of natural ventilation (scenario 1), but must be met for the cases of exhaust
+and mechanical ventilation (scenarios 2 and 3).
+As an upper bound to the air supply rate, it was assumed that it is unrealistic to provide
+more than 15 ACH, considering that higher air flows might cause heavy draughts and
+temperature and noise issues.
+2.4.2
+Description and modeling of scenarios
+Scenario 1a
+Case 1a, being the base reference case referred to in subsection 2.1.3, does not meet
+the requirements for risk infection posited in section 1.2. Rather, it represents the current
+state of operation of the school, albeit at a lowered occupancy and with a specific window
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+17
+==PAGE:30==
+opening pattern enforced. It will be used as a reference point for the energy consumption
+of the school building.
+Scenario 1b
+Scenario 1b was built according to the same natural air supply rates found for scenario
+1a, with the addition of an adequate number of portable air cleaners in each classroom.
+These were inserted into the model as equipment loads, with a schedule set according to
+that of each classroom and a corresponding power consumption.
+The power consumption was based on an existing air cleaner, representative of a model
+which can supply the required amount of air cleaning. In this case, the air cleaner used
+was the Whirlpool® WPT80 Whispure™Large Tower Air Purifier [43], which uses a HEPA
+filter, has a rated power of 43W and clean air delivery rate (CADR) of 241.26 m3/h (142
+cfm). Two of these air cleaners were sufficient in this case.
+Scenario 2a
+An extract fan system was modeled, using a pressure difference at the fan of 350 Pa. The
+fan is represented by the axial fan component available in IDA ICE and is based on the
+characteristics of the ebm-pabst K3G500-AP25-68 fan [44].
+Scenario 2b
+Scenario 2b is modeled in an identical way as scenario 2a with the exception that the
+fan’s outdoor air flow is lowered to the code minimum and the rest of the air cleaning is
+supplied by a single air cleaner of the same model as in Scenario 1b.
+Scenario 3a
+This solution was modeled as a central ventilation system, using the same fan and pres-
+sure characteristics as in scenario 2a. A heat recovery system with an efficiency of 90%
+is used. The temperature setpoint for the supplied air is 18°C.
+Scenario 3b
+In this scenario, the outdoor air flow is again lowered to the code minimum, modulated
+by a mixing box. The filter used in this scenario is the Durafil ES2 M14, which has a
+MERV rating of 14. The pressure difference characteristics of the filter [45] were taken
+into account when determining the pressure difference on the axial fan in IDA ICE.
+Since dust loading conditions for this specific use case in Copenhagen were not available,
+data was taken from ASHRAE 1360-RP, which included in-situ measurements in various
+cities in the United States of America [46].
+2.4.3
+Summary of scenarios
+The above information is summarized in Table 2.5, for ease of comparison.
+Table 2.5: Summary of scenario systems.
+Sc.
+Type
+Description
+Portable air cleaner
+Extract fan
+Mech. ventilation
+1a
+Base reference case, representing the current state of operation of the school
+Does not meet risk of infection requirements
+No
+No
+No
+1b
+NV
+Same natural ventilation rates as scenario 1a
++ adequate number of portable air cleaners
+Yes
+2 units/classroom
+43W each
+No
+No
+2a
+Use of extract fan system
+No
+Yes
+No
+2b
+EV
+= scenario 2a, but with the outdoor air flow lowered to the code minimum
++ the rest of the air cleaning supplied by a single air cleaner
+Yes
+1 unit/classroom
+43W each
+Yes
+No
+3a
+Central ventilation system
++ Heat recovery system with 90% efficiency
+No
+No
+Yes
+3b
+MV
+= scenario 3a, but with the outdoor air flow lowered to the code minimum
++ use of filter and recirculation supplying the rest of the air
+No
+No
+Yes + filter
+(MERV 14)
+18
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:31==
+2.5
+Sensitivity analysis
+As mentioned previously, the most uncertain parameter of this study is the quanta emis-
+sion rates. This parameter also has a significant impact on the results, since it will heavily
+affect the required air supply rates. The goal of the subsequent sensitivity analysis is to
+determine the impact of different quanta emission rates on the performance of all simu-
+lated scenarios. Figure 2.6 gives an outline of the process of this analysis.
+Figure 2.6: Diagram of sensitivity analysis methodology.
+For the first stage of the sensitivity analysis, additional set quanta values was selected
+from Buonanno et al. (2020) [20], at the 90th percentile of presented values. These are
+the following:
+Table 2.6: Quanta emission rates per expiratory activity [20].
+Expiratory activity
+ERq (quanta/h)
+Resting, oral breathing
+3.1
+Light activity, speaking
+42
+Light activity, singing (or speaking loudly)
+270
+Assuming the same mix of activities mentioned in subsection 2.3.2, this results in a net
+quanta emission rate (Q) of 14 quanta per hour compared with 6.19 quanta per hour used
+in the base analysis. The corresponding air supply rates are found via the implementation
+of the infection model.
+Subsequently, for the second stage of this analysis, since quanta emission rates are ef-
+fectively very difficult to predict, additional simulations were made using the highest air
+exchange rate that was deemed possible to achieve in a classroom, being 15 ACH. Back
+calculation results in an upper limit to the net quanta emission rate that this building can
+safely function for, barring other preventative measures such as mask wearing, UV disin-
+fection, a change in the schedule or occupancy etc..
+2.5.1
+Modeling of scenarios
+The models used to simulate the energy performance of the building in these two cases
+were generally the same as the ones used in the base analysis, with adjustments made
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+19
+==PAGE:32==
+to the air supply rates. The only other change made was in the scenarios requiring air
+cleaners, where the Medify MA-112 V2.0 Air Purifier [47], with a rated power of 95W and
+a CADR of 1614.06 m3/h (950 cfm), was used instead of the previously mentioned model
+of air cleaner, due to its larger CADR. The previously used model proved insufficient to
+provide the required levels of air cleaning.
+20
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:33==
+3
+Results
+3.1
+Infection model outputs
+The first stage of findings of this study, for scenarios 1b-3b, pertains to the air supply rates
+rates (λv) required to achieve the objective set forth in section 1.2, namely a classroom
+reproduction number of 0.9. As previously explained, of these air supply rates, depending
+on the scenario, some part is covered by ventilation with outdoor air (λvo) and some part
+may be covered by filtration (λvf).
+The associated probabilities of infection (P) are presented, in addition to the classroom
+reproduction number (Rc).
+3.1.1
+Ventilation rate
+Scenario 1a, being the reference case, retains the natural ventilation rates found through
+simulation in IDA ICE, as mentioned in subsection 2.2.1.
+The required air supply rate, for scenarios 1b-3b, to achieve the desired Rc was found
+to be 3.15 ACH. This is above the minimum requirements set in BR18, which, with the
+assumed occupancy were 2.37 ACH.
+For a net quanta emission rate (Q) of 6.19 quanta/h, the air supply rates for each scenario
+were calculated as follows:
+• Scenario 1a: Natural ventilation rates (λvo) equal to 1.7 ACH during class and 2.94
+ACH during the breaks.
+• Scenario 1b: Natural ventilation rates (λvo) as in scenario 1a, filtration provided by
+an air cleaner (λvf) equivalent to 1.4 ACH.
+• Scenario 2a: Ventilation with outside air (λvo) equal to 3.15 ACH, provided by an
+exhaust fan.
+• Scenario 2b: Ventilation with outside air (λvo) equal to 2.37 ACH, provided by an
+exhaust fan, filtration provided by an air cleaner (λvf) equivalent to 0.78 ACH.
+• Scenario 3a: Ventilation with outside air (λvo) equal to 3.15 ACH, provided by mech-
+anical ventilation.
+• Scenario 3b: Ventilation with outside air (λvo) equal to 2.37 ACH, provided by mech-
+anical ventilation, filtration provided by recirculation and a filter (λvf) equivalent to
+0.78 ACH.
+3.1.2
+Risk of infection
+Calculating the community risk, or classroom reproduction number (Rc), is only relevant
+for the base reference case (1a). For all other cases this number is 0.9, as per the target
+set. In scenario 1a, for a net quanta emission rate (Q) of 6.19 quanta/h, Rc was found to
+be 1.26.
+In the case of scenarios 1b-3b, where Rc = 0.9, the daily individual risk of infection in a
+classroom (P), is equal to 1.08%. In scenario 1a, P = 1.53%.
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+21
+==PAGE:34==
+3.1.3
+Sensitivity analysis
+In a similar manner as described in subsection 3.1.1, for the case where the net quanta
+emission rate (Q) is equal to 14 quanta per hour, the required air supply rate (λv) was
+found to be equal to 9.11 ACH. For scenario 1a, which retains the same ventilation rates
+as in the base analysis, the probability of infection (P) was 3.44% and the classroom
+reproduction number was 2.73.
+Therefore, for a net quanta emission rate (Q) of 14 quanta/h, the air supply rates for each
+scenario were set as follows:
+• Scenario 1a: Natural ventilation rates (λvo) equal to 1.7 ACH during class and 2.94
+ACH during the breaks.
+• Scenario 1b: Natural ventilation rates (λvo) as in scenario 1a, filtration provided by
+an air cleaner (λvf) equivalent to 7.4 ACH.
+• Scenario 2a: Ventilation with outside air (λvo) equal to 9.11 ACH, provided by an
+exhaust fan.
+• Scenario 2b: Ventilation with outside air (λvo) equal to 2.37 ACH, provided by an
+exhaust fan, filtration provided by an air cleaner (λvf) equivalent to 6.74 ACH.
+• Scenario 3a: Ventilation with outside air (λvo) equal to 9.11 ACH, provided by mech-
+anical ventilation.
+• Scenario 3b: Ventilation with outside air (λvo) equal to 2.37 ACH, provided by mech-
+anical ventilation, filtration provided by recirculation and a filter (λvf) equivalent to
+6.74 ACH.
+For an air supply rate of 15 ACH, the net quanta emission rate (Q) that results in RC =
+0.9 was back-calculated through the infection risk model and found to be equal to 21.64
+quanta per hour. For scenario 1a, the probability of infection (P) was 5.26% and the
+classroom reproduction number was 4.03.
+In this case, for a net quanta emission rate (Q) of 21.64 quanta/h, the air supply rates for
+each scenario were set as follows:
+• Scenario 1a: Natural ventilation rates (λvo) equal to 1.7 ACH during class and 2.94
+ACH during the breaks.
+• Scenario 1b: Natural ventilation rates (λvo) as in scenario 1a, filtration provided by
+an air cleaner (λvf) equivalent to 14.29 ACH.
+• Scenario 2a: Ventilation with outside air (λvo) equal to 15 ACH, provided by an
+exhaust fan.
+• Scenario 2b: Ventilation with outside air (λvo) equal to 2.37 ACH, provided by an
+exhaust fan, filtration provided by an air cleaner (λvf) equivalent to 13.06 ACH.
+• Scenario 3a: Ventilation with outside air (λvo) equal to 15 ACH, provided by mech-
+anical ventilation.
+• Scenario 3b: Ventilation with outside air (λvo) equal to 2.37 ACH, provided by mech-
+anical ventilation, filtration provided by recirculation and a filter (λvf) equivalent to
+13.06 ACH.
+22
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:35==
+3.1.4
+Summary of outputs
+For the base analysis, as well as both levels of the sensitivity analysis, all outputs de-
+scribed above can be found in table Table 3.1.
+Table 3.1: Infection modeling outputs.
+Q (q/h)
+Scenario
+λv (h−1)
+λvo - class (h−1)
+λvo - breaks (h−1)
+λvf (h−1)
+P
+Rc
+6.19
+1a
+1.80
+1.70
+2.94
+0
+1.53%
+1.26
+1b
+3.15
+1.70
+2.94
+1.40
+1.08%
+0.90
+2a
+3.15
+3.15
+3.15
+0
+1.08%
+0.90
+2b
+3.15
+2.37
+2.37
+0.78
+1.08%
+0.90
+3a
+3.15
+3.15
+3.15
+0
+1.08%
+0.90
+3b
+3.15
+2.37
+2.37
+0.78
+1.08%
+0.90
+14.00
+1a
+1.80
+1.70
+2.94
+0
+3.44%
+2.73
+1b
+9.11
+1.70
+2.94
+7.4
+1.08%
+0.90
+2a
+9.11
+9.11
+9.11
+0
+1.08%
+0.90
+2b
+9.11
+2.37
+2.37
+6.74
+1.08%
+0.90
+3a
+9.11
+9.11
+9.11
+0
+1.08%
+0.90
+3b
+9.11
+2.37
+2.37
+6.74
+1.08%
+0.90
+21.64
+1a
+1.80
+1.70
+2.94
+0
+5.26%
+4.03
+1b
+15.00
+1.70
+2.94
+14.29
+1.08%
+0.90
+2a
+15.00
+15.00
+15.00
+0
+1.08%
+0.90
+2b
+15.00
+2.37
+2.37
+13.06
+1.08%
+0.90
+3a
+15.00
+15.00
+15.00
+0
+1.08%
+0.90
+3b
+15.00
+2.37
+2.37
+13.06
+1.08%
+0.90
+3.2
+Ventilation rate and risk
+For a given quanta generation rate, it is possible to determine the decrease in risk asso-
+ciated with an increase in total air supply rate (λv). This is presented below, in Figure 3.1
+and Figure 3.2, for the three levels of quanta emission rates simulated in this study, for
+both the individual probability of infection in a single day and the classroom reproduction
+number over the course of a week.
+Figure 3.1: Infection probability as a function of the ventilation rate for a single day under
+different quanta emission rates. The target probability of infection is marked by the dashed
+line.
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+23
+==PAGE:36==
+Figure 3.2: Classroom reproduction number as a function of the air supply rate for a school
+week under different quanta emission rates. The target reproduction number is marked
+by the dashed line.
+The intersection points of the dashed line, representing the target infection probability and
+reproduction number, and the curves representing each assumed net quanta emission
+rate correspond to the air supply rates chosen for each level of analysis in this study.
+3.3
+Primary energy consumption and thermal comfort
+The primary energy consumption of the school building during the heating season was
+found as a result of the energy simulations carried out in IDA ICE. The primary energy
+factors used are based on BR18 [48] and were as follows: 1.0 for district heating and
+other heating sources and 2.5 for electricity. In all energy investigations presented sub-
+sequently, the energy consumption of scenario 1a (or base reference case) is presented
+for the sake of comparison, as the target risk is not met.
+Figure 3.3: Primary energy consumption for an air supply rate (λv) of 3.15 ACH, corres-
+ponding to a net quanta emission rate (Q) of 6.19 quanta/h.
+Figure 3.3 shows the primary energy consumption in kWh/m2 for the whole of the heating
+season, under the base net quanta emission rate assumptions (Q=6.19 quanta/hour).
+The difference in primary energy consumption is very small, with the lowest consumption
+being 79.3 kWh/m2 for scenario 1b (natural ventilation and air cleaner) and the highest
+consumption being 84.6 kWh/m2 for scenario 2a (exhaust ventilation). In the reference
+case, 1a, the primary energy consumption amounts to 78.5 kWh/m2. The energy class
+24
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:37==
+of this building cannot be assessed here as the simulated energy use only refers to the
+heating season.
+It can also be observed that, in the case of scenarios 2a and 2b (exhaust ventilation
+without and with air cleaner respectively), the largest contribution to this increased energy
+consumption is due to an increased energy required for heating. On the other hand, in the
+case of scenarios 3a and 3b (mechanical ventilation without and with recirculation/filtering
+respectively), the largest energy increase corresponds to that used for the HVAC system.
+Figure 3.4 and Figure 3.5 present the primary energy consumption for both levels of air
+supply (λv) investigated in the sensitivity analysis. Here, the differences in energy con-
+sumption between different scenarios generally follow the same trend, although they are
+more pronounced.
+Figure 3.4: Primary energy consumption for an air supply rate (λv) of 9.11 ACH, corres-
+ponding to a net quanta emission rate (Q) of 14 quanta/h.
+Figure 3.5: Primary energy consumption for an air supply rate (λv) of 15 ACH, corres-
+ponding to a net quanta emission rate (Q) of 21.64 quanta/h.
+Across all air supply (λv) / net quanta emission rate (Q) levels scenario 1b exhibited the
+lowest primary energy consumption, while scenario 2a exhibited the highest primary en-
+ergy consumption. However, while scenarios 3a and 3b have a lower primary energy
+consumption than scenario 2b in the base air supply level analysis, the reverse is true
+for the higher air supply levels (λv) required in both sensitivity analyses. The primary en-
+ergy consumption in scenarios 1b and 2b does not rise significantly as the air supply rate
+increases, with the only increase being observed in equipment energy.
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+25
+==PAGE:38==
+The increase in primary energy found for each scenario is presented in Table 3.2, in both
+absolute and relative values. Note that all values presented refer to an increase from the
+primary energy consumption of scenario 1a. As can be observed, several airing solutions
+can lead to a very significant increase in primary energy consumption, especially at higher
+air supply rates.
+Table 3.2: Increase in primary energy consumption relative to reference scenario 1a.
+Relative values (%) are given in parentheses.
+Scenario
+1a
+1b
+2a
+2b
+3a
+3b
+Energy Consumption
+Reference (kWh/m2)
+78.5
+P. energy consumption increase
+3.15 ACH (kWh/m2 (%))
+0.8
+(1.0%)
+6.1
+(7.8%)
+3.9
+(5.0%)
+2.9
+(3.7%)
+3.4
+(4.3%)
+P. energy consumption increase
+9.11 ACH (kWh/m2 (%))
+1.6
+(2.0%)
+27.4
+(34.9%)
+5.1
+(6.5%)
+18.7
+(23.8%)
+18.2
+(23.2%)
+P. energy consumption increase
+15 ACH (kWh/m2 (%))
+2.4
+(3.0%)
+42
+(53.5%)
+5.9
+(7.5%)
+29.3
+(37.3%)
+29.3
+(37.3%)
+Figure 3.6, Figure 3.7 and Figure 3.8 illustrate the primary energy consumption for heating,
+equipment loads and HVAC auxiliary energy, for each scenario and all air supply rates.
+Scenario 2a consistently displays a higher heating energy consumption. Both scenario 3a
+and 3b exhibit the highest consumption in HVAC auxiliary energy, with scenario 3b having
+a marginally higher consumption than 3a, owing to the presence of a filter. On the other
+hand, scenario 3b has a lower heating energy consumption than scenario 3a. Regarding
+equipment loads, the only differences observed are in scenarios 1b and 2b, due to the
+use of air cleaners.
+Figure 3.6: Primary energy consumption (kWh/m2 for the heating season) corresponding
+to heating consumption for all scenarios and air supply rates. The consumption for the
+reference case is marked by the dashed line.
+26
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:39==
+Figure 3.7: Primary energy consumption (kWh/m2 for the heating season) correspond-
+ing to equipment loads for all scenarios and air supply rates. The consumption for the
+reference case is marked by the dashed line.
+Figure 3.8: Primary energy consumption (kWh/m2 for the heating season) corresponding
+to HVAC auxiliary energy for all scenarios and air supply rates. The consumption for the
+reference case is marked by the dashed line.
+Table 3.3 presents the thermal comfort of the occupants, according to EN 15251:2007
+[49], used by IDA ICE.
+Table 3.3: Thermal comfort across all scenarios and levels of air supply rate. Thermal
+comfort assessed according to EN 15251:2007 [49].
+Scenario
+1a
+1b
+2a
+2b
+3a
+3b
+Percentage of total occupant hours
+with thermal dissatisfaction - Reference
+8
+Percentage of total occupant hours
+with thermal dissatisfaction - 3.15 ACH
+8
+8
+8
+7
+7
+Percentage of total occupant hours
+with thermal dissatisfaction - 9.11 ACH
+8
+15
+8
+7
+7
+Percentage of total occupant hours
+with thermal dissatisfaction - 15 ACH
+8
+25
+8
+7
+7
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+27
+==PAGE:40==
+While most scenarios have minimal influence on the thermal comfort levels, scenario 2a
+(exhaust ventilation) exhibits much higher percentages of hours with thermal dissatisfac-
+tion at higher air supply rates. The air supplied to the classrooms in this case is not heated,
+so these results were anticipated. Both mechanical ventilation scenarios achieve slightly
+better thermal comfort conditions than the reference scenario. While an in-depth assess-
+ment of thermal comfort is not the primary objective of this study, these results can serve
+as an indicator to inform the conclusions drawn.
+3.4
+Energy cost of risk reduction
+As the investigation so far only presents insights regarding a small range of quanta emis-
+sion rates and associated infection risks, another metric by which the energy efficiency
+of each proposed ventilation scenario may be assessed is the cumulative cost in primary
+energy required to reduce the risk of infection and reproduction number.
+Keeping constant the air supply rates implemented in IDA ICE and their corresponding
+energy consumption, a different approach was implemented by varying the quanta emis-
+sion rates. The associated risks were found, as well as the energy increase associated
+with reducing the risk from a certain threshold, down to the set target.
+For a reduction of the probability of infection (P) to 1.1%, or a reduction of the classroom
+reproduction number (Rc) to 0.9, starting from three different thresholds, the cumulative
+primary energy cost is presented in Figure 3.9.
+Figure 3.9: Cumulative energy cost (in kWh/m2 for the heating season) to reduce the
+probability of infection (P) and classroom reproduction number (Rc), the latter in paren-
+theses.
+As illustrated, the energy cost to bring the probability of infection down to 1.1% (or the
+classroom reproduction number down to 0.9) is lowest for scenario 1b (natural ventilation
+and air cleaners) and highest for scenario 2a (exhaust ventilation), which is consistent
+with the results found in section 2.2. Both scenarios relying on the use of air cleaners
+(1b and 2b) are significantly less costly than the others, while both mechanical ventilation
+28
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:41==
+scenarios (3a and 3b) only exhibit a difference of 0.5 kWh/m2, with 3a being marginally
+less costly.
+It should be noted here that large decreases in the probability of infection (P) correspond
+to smaller decreases in the classroom reproduction number (Rc) at the higher end of the
+range and vice versa. Taking an example from the results found, in scenario 2a it ”costs”
+42 kWh/m2 to reduce Rc from 17.0 to 14.9 (a difference of 2.1 units) and an additional 42
+kWh/m2 to reduce it from 14.9 to 5.6 (a difference of 9.3 units). Conversely, the respect-
+ive decreases in P are 53.4% and 25.2%. This information can be taken into account
+when planning for the retrofitting or changes in operation of a building under pandemic
+conditions.
+This is in line with expectations, considering the relationship between P and Rc which
+stems from Equation 1.1 and Equation 2.15, illustrated in Figure 3.10. As can be ob-
+served, at the lower end of the value range, small increases in P lead to large increases
+in Rc. The reverse is true for the higher end of the value range.
+Figure 3.10: Classroom reproduction number (Rc) as a function of the probability of infec-
+tion (P).
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+29
+==PAGE:42==
+30
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:43==
+4
+Discussion
+Several airing (ventilation, air cleaning and filtration) solutions were investigated with re-
+gard to their energy performance under the conditions of the COVID-19 pandemic, with
+the objective of securing a low risk of infection as set forth in section 1.2.
+4.1
+Evaluation of airing solutions
+In terms of energy performance, examining the results presented in section 3.3, under the
+assumptions of this study, points to a relatively clear image regarding the ranking of each
+scenario:
+1. Scenario 1b (Natural ventilation with air cleaners), which performs the best across
+all air supply rates.
+2. Scenario 2b (Exhaust ventilation with air cleaners), which is 2nd best for 2 out of 3
+air supply rates.
+3. Scenarios 3a (Mechanical ventilation) and 3b (Mechanical ventilation with recircula-
+tion and filtering), which only show minor differences in performance between them.
+4. Scenario 2a (Exhaust ventilation, which performs the worst across all air supply
+rates.
+The results of further analysis, assessing the cumulative energy cost of reducing the risk
+of infection to a certain threshold, in section 3.4 point to the same ranking, but place
+scenario 3a marginally ahead of scenario 3b.
+As regards the individual performance of each scenario, in more detail:
+• Scenario 1b represents the most minimal change that can be made to a building that
+relies on natural ventilation. The only increases in energy consumption correspond
+to equipment loads, which are minor. There are some, also minor, decreases in
+heating energy consumption, presumably due to the heat generated by the portable
+air cleaner units’ operation.
+• Scenario 2a performs poorly, particularly with regard to heating energy. The air en-
+tering the classrooms due to the pressure difference created by the exhaust vent-
+ilation is untreated and, given Copenhagen’s climate, quite cold. As such, heating
+energy demand rises significantly.
+• Scenario 2b, being in essence a combination of 1b and 2a, only exhibits a small
+increase in heating, equipment and HVAC auxiliary energy. At higher air supply
+rates, this scenario outperforms both mechanical ventilation scenarios, due to the
+high demand in HVAC auxiliary energy required for mechanical ventilation.
+• Scenario 3a exhibits a small increase in heating energy compared to the reference
+scenario, but its HVAC auxiliary demand represents the highest contribution in its
+overall energy consumption.
+• Scenario 3b performs very similarly to scenario 3a, with two minor differences. The
+heating energy for 3b is slightly lower than that for 3a, owing presumably to the
+smaller energy demand to heat the air supplied to the classrooms, as a large part
+of it is recirculated and therefore already treated. Still, this difference is small, as
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+31
+==PAGE:44==
+scenario 3a already has a high efficiency heat recovery system (90%). On the other
+hand, the HVAC auxiliary energy here is slightly higher than in scenario 3a, due to
+the increased pressure difference caused by the presence of the filter.
+In addition to the above, several other matters should be taken into consideration when
+assessing different airing solutions to be applied. When referring to a classroom, as in
+this study, noise levels are an important parameter to be taken into account. As such,
+portable air cleaners can be disruptive to the operation of the class. For example, the
+Medify MA-112 Air Purifier, used in both levels of the sensitivity study due to its high
+Clean Air Delivery Rate, has a maximum noise level of 70 dB [47]. This is a significant
+drawback of scenarios 1b and 2b, which renders them far less suitable for a classroom
+environment. On the other hand Toftum and Wargocki (2017) [32], examining the same
+classrooms, did not find that the noise levels differed greatly in the classrooms when the
+mechanical ventilation and exhaust ventilation were activated, compared to when they
+were idled. These findings suggest that scenarios 2a, 3a and 3b would likely not exhibit
+issues related to noise.
+The thermal comfort of the occupants is also a significant factor influencing the choice
+of ventilation method. This is especially pertinent in the case of scenario 2a, which in-
+volves high supply rates of untreated air. In addition to increasing the energy consump-
+tion required for heating, this causes thermal discomfort, as seen in section 3.3, and likely
+draught issues, especially at higher air supply rates. These issues are less likely to occur
+when using a mechanical ventilation system, where the setpoint for supplied air can be
+defined. Indeed, the results show a small improvement of thermal comfort with the use of
+mechanical ventilation systems.
+While it is beyond the scope of this study to assess the financial cost and benefits of
+each ventilation system, it should be kept in mind that an increase in the building’s energy
+demand will result in an increased cost. At the same time, however, the negative effects of
+low ventilation rates, which are usually observed in a building relying on natural ventilation
+such as this, on the learning performance of students and overall health and productivity
+of building occupants have been well documented [50]–[52].
+In a study pertaining to office buildings in the USA, McArthur (2020) [53] found an eco-
+nomic net benefit related to productivity increase brought on by an increase in ventilation
+rates across a wide range of climates, although the economic benefit of an increase in
+the learning performance of elementary school students is harder to quantify than in the
+case of a working adult. A higher risk of infection will result in higher rates of absenteeism
+in the school. At the same time, airing solutions with provide higher outdoor air supply
+rates (such as 2a and 3a) will have increased benefits to the learning performance of the
+pupils.
+Regarding the ease of implementation of each solution, scenario 1b is most likely the
+simplest to implement and possibly the cheapest. The scenarios involving an extract
+fan (2a and 2b) are also relatively simple to implement, while the scenarios relying on
+a mechanical ventilation system require the most extensive work. Installation costs are
+likely to follow the same pattern, though this is not investigated here.
+4.1.1
+Summary of evaluation
+All scenarios assessed have a higher primary energy consumption than the reference
+scenario (1a). This is in line with expectations, as increasing the air supply rate should
+lead to an increase in energy consumption. In the case of the school building studied
+here, under the specific conditions, the systems examined have clear advantages and
+32
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:45==
+drawbacks. The most energy efficient scenario simulated is the simple addition of portable
+air cleaner units to each classroom. However, its implementation in a school building may
+prove problematic, if it is not otherwise possible to reduce the noise levels produced by
+these units, or find a model which produces lower noise levels. The next-best systems,
+being those involving mechanical ventilation, are more difficult to implement in an existing
+building and lead to a larger increase in energy consumption. Nevertheless, if the goal is
+to provide a long-term ventilation system, these should also be considered. The scenario
+relying on the use of an exhaust fan presents too high of an energy consumption and too
+many issues regarding draughts and low temperatures to be viable without some other
+supporting system such as e.g. heat recovery units (not implemented in this study). Lastly,
+the use of an extract fan in combination with an air cleaner fails to provide any significant
+benefit over the use of an air cleaner alone.
+Since this study is meant to serve as a blueprint by which other, similar, investigations
+may be carried out in other climates, occupation conditions, building types, etc., it should
+be noted that the observations made above are not universal. For example, the noise
+levels associated with the use of an air cleaner may not be problematic when referring
+to other building types, such as a sports center or a gym. Similarly, in a warmer climate,
+the implementation of a system involving an extract fan may be far less detrimental than
+in the case of Copenhagen. On the other hand, if the building being examined already
+has a ventilation system installed, then the question becomes how best to upgrade said
+system (e.g. is it more efficient to upgrade the outdoor air delivery rate of a mechanical
+ventilation system, or to install a filter and provide recirculated air?).
+4.2
+Risk assessment
+The risk calculations presented so far only pertain to the risk of infection associated with
+the case where an infected person is present in the classroom over the course of a week.
+In order to assess the risk of infection at the level of the population, one must refer to the
+number of active cases in a country and the fraction of the population that is susceptible
+to infection. In the case of Denmark, Federspiel’s Healthy Buildings Guideline Calculator
+(2020) [54], gives this number as 9832 as of the 5th of May 2021 and the percentage of
+the population that is susceptible as 84%. The population of Denmark as of Q3 2020 is
+5,825,337 [55], which means the percentage of the population currently infected is 0.17%.
+By the application of Equation 1.1, with the same quanta emission rates and correspond-
+ing air supply rates calculated earlier and the assumption that 84% of the occupants are
+susceptible and 0.17% are infective, the absolute individual probability of infection for a
+single day is 0.03%. Over the course of a week, the absolute probability of infection is
+0.13%, corresponding to 0.02 COVID-19 cases arising. Over the course of all 200 school
+days, it is 5.12%, corresponding to 0.73 COVID-19 cases arising.
+In the case of Denmark, then, these values are currently very low. That said, there are
+many countries in which the current pandemic situation is still dire and that this model can
+serve as a tool for pathogens other than SARS-CoV-2.
+4.3
+Model extensions
+The methodology of this study can be applied to any building across the world, regardless
+of building type or occupancy schedule. A program such as IDA ICE can simulate different
+climate conditions for cities worldwide. Provisions would need to be made to ensure
+that the air supply rates and ventilation with outdoor air rates conform to the particular
+regulations of the country at hand.
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+33
+==PAGE:46==
+Similarly, this model is applicable not only for COVID-19, but for other airborne diseases.
+The changes that would need to be made would pertain to the quanta emission rates
+corresponding to each pathogen, as well as its decay rate (k). The effect of deposition
+to surfaces (λdep) would remain the same, provided the studied particle size range is the
+same as in Chatoutsidou and Lazaridis (2019) [40]. Other strains of SARS-CoV-2 with
+potentially different quanta emission rates can also be examined in the same manner.
+Further investigations can be made in the form of sensitivity analyses regarding paramet-
+ers not investigated in the sensitivity analysis performed here. For example, it is possible
+to modify the ratio of clean air provided when examining solutions involving filtering. In
+addition, factors such as mixing of children between classrooms, increased occupancy or
+a different class schedule can be incorporated in future studies.
+Alternative solutions to reduce infection risk which were not included in this study, such
+as ultraviolet germicidal irradiation (UVGI), can be easily implemented in the first order
+loss rate used to calculate the risk of infection.
+4.4
+Limitations
+This project presents certain limitations that must be noted:
+• IDA ICE, the program used to simulate the energy performance of the building, is not
+able to simulate airflow patterns within each zone/room. This means that the above
+analysis is carried out with the assumption of well mixed air in each classroom.
+• This study pertains to a single climate zone.
+• The models/types of air cleaners, fans and filters used in this study are only repres-
+entative. Other models or types may give different results.
+• The only route of transmission taken into account is airborne transmission and not
+droplet or contact transmission. The behavior of the buildings’ occupants is a para-
+meter which may heavily influence the results, especially considering the age of the
+students and that they may be less reliable in following guidelines than adults.
+• The length of the active infectious period for each person may vary, depending on the
+severity of their symptoms, how early they quarantine, whether or not widespread
+testing and contact tracing is deployed in the subject country, etc..
+• Technical issues which may lead to improper functioning of the mechanical ventila-
+tion system, e.g. imperfect fitting of the filter, incorrect operation or lack of mainten-
+ance, were not taken into account.
+• Information about the infectivity (quanta emission rates) of all strains of SARS-CoV-
+2 is still incomplete and subject to correction by newer studies. The effectiveness
+of vaccinations and their impact on this field of study is not assessed here.
+• Quanta emission rates throughout the day were considered constant.
+• The amount of quanta exhaled per unit of time or per volume of exhaled air is the
+most uncertain parameter of this study, due to the limited time during which this
+pathogen has been researched. Several papers have suggested different levels of
+quanta exhaled according to the activity being performed, as detailed in subsec-
+tion 1.1.2. Even by conducting a sensitivity analysis, considering realistic air supply
+rates, it was only possible to investigate a small range of quanta emission rates in
+this study, due to the restrictions placed on air supply rates.
+34
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:47==
+5
+Conclusions
+Providing adequate ventilation and air cleaning to a building with no ventilation system
+installed in order to prevent major disease outbreaks during a pandemic is a challenge,
+especially regarding buildings that remain operational and house a large number of oc-
+cupants. If the existing building stock is to be prepared to cope with the requirements of
+safe operation in such times, an investigation into the most efficient ventilation methods
+by which to meet said requirements is vital.
+The aim of this research was to assess an array of ventilation systems (with outdoor air,
+with or without filtering) as to their energy efficiency in achieving a number of secondary
+infections arising equal to or lower than 0.9 from one infected student entering a classroom
+over the course of a week.
+The best system in terms of energy performance for this case study was found to be the
+addition of air cleaners to classrooms ventilated via window opening. The worst system
+in terms of energy performance was found to be the use of extract ventilation via an ex-
+haust fan. In terms of energy cost compared to the reference case, lowering the risk of
+infection to the target resulted in an increase of 1.0% to 7.8% at the lowest quanta emis-
+sion rate assumption and 3.0% to 53.5% at the highest quanta emission rate assumption,
+depending on the solution chosen. These findings show that a wide range of outcomes
+is possible regarding the increase in energy consumption, depending on the ventilation
+system applied. Still, the least costly in terms of energy scenarios did not present a large
+increase in energy consumption.
+Further investigation into this topic can include the modification of the operation schedule
+of the building, in order to optimize occupancy with regard to infection risk. In addition, the
+technical and financial issues arising from the implementation of an air treatment solution
+will need to be addressed before any decisions are made for any individual building. One
+thing that is clear, however, is that, through a thorough examination of infection risk and
+energy cost, it is possible to avoid airing solutions that would be largely problematic and
+costly in energy in the studied case, and instead opt for ones that are more efficient.
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+35
+==PAGE:48==
+36
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:49==
+Bibliography
+[1]
+Congressional Research Service, ‘COVID-19 and China: A Chronology of Events
+(December 2019-January 2020)’, Tech. Rep., 2020. [Online]. Available: https://
+news.usni.org/2020/05/13/covid-19-and-china-a-chronology-of-events (visited on
+19/05/2021).
+[2]
+World Health Organization, WHO Director-General’s opening remarks at the media
+briefing on COVID-19 - 11 March 2020, 2020. [Online]. Available: https://www.who.
+int/director-general/speeches/detail/who-director-general-s-opening-remarks-at-the-
+media-briefing-on-covid-19---11-march-2020 (visited on 19/05/2021).
+[3]
+——, WHO Coronavirus (COVID-19) Dashboard, 2021. [Online]. Available: https:
+//covid19.who.int/ (visited on 30/05/2021).
+[4]
+Centers for Disease Control and Prevention, Scientific Brief : SARS-CoV-2 Trans-
+mission, 2020. [Online]. Available: https://www.cdc.gov/coronavirus/2019-ncov/
+more/scientific-brief-sars-cov-2.html (visited on 19/05/2021).
+[5]
+World Health Organization, Modes of transmission of virus causing COVID-19: im-
+plications for infection prevention and control precaution recommendations, 2020.
+[Online]. Available: https://www.who.int/news- room/commentaries/detail/trans
+mission-of-sars-cov-2-implications-for-infection-prevention-precautions (visited on
+19/05/2021).
+[6]
+J. W. Tang, W. P. Bahnfleth, P. M. Bluyssen, G. Buonanno, J. L. Jimenez, J. Kurnit-
+ski, Y. Li, S. Miller, C. Sekhar, L. Morawska, L. C. Marr, A. K. Melikov, W. W. Naz-
+aroff, P. V. Nielsen, R. Tellier, P. Wargocki and S. J. Dancer, ‘Dismantling myths
+on the airborne transmission of severe acute respiratory syndrome coronavirus-
+2 (SARS-CoV-2)’, Journal of Hospital Infection, vol. 110, pp. 89–96, 2021, ISSN:
+15322939. DOI: 10.1016/j.jhin.2020.12.022.
+[7]
+J. W. Tang, L. C. Marr, Y. Li and S. J. Dancer, ‘Covid-19 has redefined airborne
+transmission’, The BMJ, vol. 373, no. April, pp. 1–2, 2021, ISSN: 17561833. DOI:
+10.1136/bmj.n913.
+[8]
+L. Morawska and D. K. Milton, ‘It Is Time to Address Airborne Transmission of
+Coronavirus Disease 2019 (COVID-19)’, Clinical Infectious Diseases, vol. 71, no. 9,
+pp. 2311–2313, 2020, ISSN: 15376591. DOI: 10.1093/cid/ciaa939.
+[9]
+C. Federspiel, ‘A Healthy Buildings Guideline for the COVID-19 Pandemic and Bey-
+ond’, medRxiv, p. 2020.11.30.20241406, 2020.
+[10]
+Centers for Disease Control and Prevention, COVID-19 in Children and Teens,
+2021. [Online]. Available: https://www.cdc.gov/coronavirus/2019-ncov/daily-life-
+coping/children/symptoms.html (visited on 19/05/2021).
+[11]
+A. Alonso, J. Llanos, R. Escandón and J. J. Sendra, ‘Effects of the COVID-19 Pan-
+demic on Indoor Air Quality and Thermal Comfort of Primary Schools in Winter in a
+Mediterranean Climate’, Sustainability, vol. 13, no. 5, p. 2699, 2021. DOI: 10.3390/
+su13052699.
+[12]
+GlobalABC/IEA/UNEP, ‘GlobalABC Roadmap for Buildings and Construction: To-
+wards a zero-emission, efficient and resilient buildings and construction sector’, IEA,
+Paris, Tech. Rep., 2020.
+[13]
+S. L. Miller, W. W. Nazaroff, J. L. Jimenez, A. Boerstra, G. Buonanno, S. J. Dancer,
+J. Kurnitski, L. C. Marr, L. Morawska and C. Noakes, ‘Transmission of SARS-CoV-
+2 by inhalation of respiratory aerosol in the Skagit Valley Chorale superspreading
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+37
+==PAGE:50==
+event’, Indoor Air, vol. 31, no. 2, pp. 314–323, 2021, ISSN: 16000668. DOI: 10.
+1111/ina.12751.
+[14]
+Y. Li, H. Qian, J. Hang, X. Chen, P. Cheng, H. Ling, S. Wang, P. Liang, J. Li, S.
+Xiao, J. Wei, L. Liu, B. J. Cowling and M. Kang, ‘Probable airborne transmission of
+SARS-CoV-2 in a poorly ventilated restaurant’, Building and Environment, vol. 196,
+no. February, p. 107 788, 2021, ISSN: 03601323. DOI: 10.1016/j.buildenv.2021.
+107788. [Online]. Available: https://doi.org/10.1016/j.buildenv.2021.107788.
+[15]
+G. Buonanno, L. Stabile and L. Morawska, ‘Estimation of airborne viral emission:
+Quanta emission rate of SARS-CoV-2 for infection risk assessment’, Environment
+International, vol. 141, 2020, ISSN: 18736750. DOI: 10.1016/j.envint.2020.105794.
+[16]
+Y. Shen, C. Li, H. Dong, Z. Wang, L. Martinez, Z. Sun, A. Handel, Z. Chen, E.
+Chen, M. H. Ebell, F. Wang, B. Yi, H. Wang, X. Wang, A. Wang, B. Chen, Y. Qi,
+L. Liang, Y. Li, F. Ling, J. Chen and G. Xu, ‘Community Outbreak Investigation of
+SARS-CoV-2 Transmission among Bus Riders in Eastern China’, JAMA Internal
+Medicine, vol. 180, no. 12, pp. 1665–1671, 2020, ISSN: 21686114. DOI: 10.1001/
+jamainternmed.2020.5225.
+[17]
+S. E. Hwang, J. H. Chang, B. Oh and J. Heo, ‘Possible aerosol transmission of
+COVID-19 associated with an outbreak in an apartment in Seoul, South Korea,
+2020’, International Journal of Infectious Diseases, vol. 104, pp. 73–76, 2021, ISSN:
+18783511. DOI: 10.1016/j.ijid.2020.12.035. [Online]. Available: https://doi.org/10.
+1016/j.ijid.2020.12.035.
+[18]
+K. Mizumoto and G. Chowell, ‘Transmission potential of the novel coronavirus (COVID-
+19) onboard the diamond Princess Cruises Ship, 2020’, Infectious Disease Model-
+ling, vol. 5, pp. 264–270, 2020, ISSN: 24680427. DOI: 10.1016/j.idm.2020.02.003.
+[Online]. Available: https://doi.org/10.1016/j.idm.2020.02.003.
+[19]
+P. Azimi, Z. Keshavarz, J. G. Cedeno Laurent, B. Stephens and J. G. Allen, ‘Mech-
+anistic transmission modeling of COVID-19 on the Diamond Princess cruise ship
+demonstrates the importance of aerosol transmission’, Proceedings of the National
+Academy of Sciences of the United States of America, vol. 118, no. 8, 2021, ISSN:
+10916490. DOI: 10.1073/pnas.2015482118.
+[20]
+G. Buonanno, L. Morawska and L. Stabile, ‘Quantitative assessment of the risk
+of airborne transmission of SARS-CoV-2 infection: Prospective and retrospective
+applications’, Environment International, vol. 145, 2020, ISSN: 18736750. DOI: 10.
+1016/j.envint.2020.106112.
+[21]
+P. de Man, S. Paltansing, D. S. Y. Ong, N. Vaessen, G. van Nielen and J. G. M.
+Koeleman, ‘Outbreak of Coronavirus Disease 2019 (COVID-19) in a Nursing Home
+Associated With Aerosol Transmission as a Result of Inadequate Ventilation’, Clin-
+ical Infectious Diseases, 2020, ISSN: 01966553. DOI: 10.1093/cid/ciaa1270.
+[22]
+D. Rothamer, S. Sanders, D. Reindl and T. Bertram, ‘Minimizing Transmission In
+High Occupant Density Settings , Part 1’, ASHRAE Journal, 2021.
+[23]
+A. Mikszewski, L. Stabile, G. Buonanno and L. Morawska, ‘The Airborne Conta-
+giousness of Respiratory Viruses: A Comparative Analysis and Implications for Mit-
+igation’, medRxiv, 2021. DOI: 10.1101/2021.03.11.21253395.
+[24]
+H. Dai and B. Zhao, ‘Association of infected probability of COVID-19 with ventila-
+tion rates in confined spaces: A Wells-Riley equation based investigation’, Building
+Simulation, vol. 13, pp. 1321–1327, 2020. DOI: 10.1101/2020.04.21.20072397.
+[25]
+M. Z. Bazant and J. W. Bush, ‘A guideline to limit indoor airborne transmission of’,
+PNAS, vol. 118, no. 17, 2021. DOI: 10.1073/pnas.2018995118/-/DCSupplemental.y.
+38
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:51==
+[26]
+California Department of Public Health, ‘The role of building ventilation and filtration
+in reducing risk of airborne viral transmission in schools , illustrated with SARS-
+CoV-2’, Tech. Rep., 2020.
+[27]
+A. K. Melikov, Z. T. Ai and D. G. Markov, ‘Intermittent occupancy combined with
+ventilation: An efficient strategy for the reduction of airborne transmission indoors’,
+Science of the Total Environment, vol. 744, 2020, ISSN: 18791026. DOI: 10.1016/
+j.scitotenv.2020.140908.
+[28]
+C. Balocco and L. Leoncini, ‘Energy cost for effective ventilation and air quality for
+healthy buildings: Plant proposals for a historic building school reopening in the
+covid-19 era’, Sustainability, vol. 12, no. 20, p. 8737, 2020, ISSN: 20711050. DOI:
+10.3390/su12208737.
+[29]
+R. Mokhtari and M. H. Jahangir, ‘The effect of occupant distribution on energy con-
+sumption and COVID-19 infection in buildings: A case study of university building’,
+Building and Environment, vol. 190, 2021, ISSN: 03601323. DOI: 10.1016/j.buildenv.
+2020.107561.
+[30]
+D. Aviv, K. W. Chen, E. Teitelbaum, D. Sheppard, J. Pantelic, A. Rysanek and
+F. Meggers, ‘A fresh (air) look at ventilation for COVID-19: Estimating the global
+energy savings potential of coupling natural ventilation with novel radiant cooling
+strategies’, Applied Energy, vol. 292, 2021, ISSN: 03062619. DOI: 10 . 1016 / j .
+apenergy.2021.116848.
+[31]
+J. Gao, P. Wargocki and Y. Wang, ‘Ventilation system type , classroom environ-
+mental quality and pupils ’ perceptions and symptoms’, Building and Environment,
+vol. 75, pp. 46–57, 2014, ISSN: 0360-1323. DOI: 10.1016/j.buildenv.2014.01.015.
+[32]
+J. Toftum and P. Wargocki, ‘ASHRAE Research Project 1624-RP: Effective Energy-
+efficient Classroom Ventilation for Temperate Zones’, Tech. Rep., 2017.
+[33]
+Allerød Kommune, Afdeling Ravnsholt, 2021. [Online]. Available: https://kratbjergs
+kolen.aula.dk/kratbjergskolen/afdeling-ravnsholt (visited on 19/05/2021).
+[34]
+Aalborg Kommune, Skoleferie, 2021. [Online]. Available: https://www.aalborg.dk/
+skole-og-uddannelse/skole/skoleferie (visited on 19/05/2021).
+[35]
+EQUA Simulation Technology Group, IDA Indoor Climate and Energy. [Online].
+Available: http://www.equa-solutions.co.uk/de/software/idaice (visited on 25/05/2021).
+[36]
+E. C. Riley, G. Murphy and R. L. Riley, ‘Airborne spread of measles in a suburban
+elementary school’, American Journal of Epidemiology, vol. 10, no. 5, pp. 421–432,
+1978. DOI: 10.1093/oxfordjournals.aje.a112560.
+[37]
+US Environmental Protection Agency, Exposure Factors Handbook, 2011. DOI: 10.
+1016/b978-0-12-803125-4.00012-2.
+[38]
+A. Mikszewski, G. Buonanno, L. Stabile, A. Pacitto and L. Morawska, Airborne In-
+fection Risk Calculator User’s Manual Version 1.0, 2020.
+[39]
+N. van Doremalen, D. H. Morris, M. G. Holbrook, A. Gamble, B. N. Williamson,
+A. Tamin, J. L. Harcourt, N. J. Thorburg, S. I. Gerber, J. O. Lloyd-Smith, E. de Wit
+and V. J. Munster, ‘Aerosol and Surface Stability of SARS-CoV-2 as Compared with
+SARS-CoV-1’, New England Journal of Medicine, vol. 382, no. 16, pp. 1564–1567,
+2020. DOI: 10.1056/NEJMc2004973.
+[40]
+S. E. Chatoutsidou and M. Lazaridis, ‘Assessment of the impact of particulate dry
+deposition on soiling of indoor cultural heritage objects found in churches and mu-
+seums/libraries’, Journal of Cultural Heritage, vol. 39, pp. 221–228, 2019, ISSN:
+12962074. DOI: 10.1016/j.culher.2019.02.017.
+[41]
+Nationalt Kommunikations Partnerskab COVID-19, COVID-19 measures and re-
+strictions, 2021. [Online]. Available: https://en.coronasmitte.dk/latest-updates (vis-
+ited on 30/05/2021).
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+39
+==PAGE:52==
+[42]
+J. L. Jimenez, COVID-19 Aerosol Transmission Estimator, 2020. [Online]. Available:
+https://tinyurl.com/covid-estimator (visited on 20/05/2021).
+[43]
+Whirlpool, Whirlpool ® WPT80 Whispure ™Large Tower Air Purifier. [Online]. Avail-
+able: https://www.whirlpoolairpurifiers.com/product/whirlpool- wpt80- whispure-
+medium-tower-air-purifier-slate-black-wpt80/ (visited on 25/05/2021).
+[44]
+Ebm-pabst, K3G500-AP25-68. [Online]. Available: https://www.ebmpapst.com/de/
+en/products/centrifugal-fans/p/K3G500AP2568.html (visited on 25/05/2021).
+[45]
+Camfil USA, ‘ASHRAE® 52.2-2012 Test Results w/ Appendix J Results’, Tech. Rep.,
+2015.
+[46]
+K. Owen, R. Pope and J. Hanley, ‘RP-1360 – How do pressure drop, efficiency,
+weight gain, and loaded dust composition change throughout filter lifetime’, Tech.
+Rep., 2014.
+[47]
+Medify Air, MA-112 Air Purifier. [Online]. Available: https://medifyair.com/products/
+ma-112 (visited on 25/05/2021).
+[48]
+Ministry of Transport Building and Housing, BR18 Executive order on building reg-
+ulations, 2018.
+[49]
+European Committee for Standardization, BS EN 15251:2007 Indoor environmental
+input parameters for design and assessment of energy performance of buildings
+addressing indoor air quality, thermal environment, lighting and acoustics, 2007.
+[50]
+P. V. Dorizas, M. N. Assimakopoulos and M. Santamouris, ‘A holistic approach for
+the assessment of the indoor environmental quality, student productivity, and en-
+ergy consumption in primary schools’, Environmental Monitoring and Assessment,
+vol. 187, no. 259, 2015, ISSN: 15732959. DOI: 10.1007/s10661-015-4503-9.
+[51]
+D. A. Coley, R. Greeves and B. K. Saxby, ‘The effect of low ventilation rates on
+the cognitive function of a primary school class’, International Journal of Ventilation,
+vol. 6, no. 2, pp. 107–112, 2007, ISSN: 14733315. DOI: 10.1080/14733315.2007.
+11683770.
+[52]
+P. Wargocki, D. P. Wyon, J. Sundell, G. Clausen and P. O. Fanger, ‘The Effects
+of Outdoor Air Supply Rate in an Office on Perceived Air Quality , Sick Building
+Syndrome ( SBS )’, Indoor Air, vol. 10, pp. 222–236, 2000.
+[53]
+J. J. McArthur, ‘Rethinking ventilation: A benefit-cost analysis of carbon-offset in-
+creased outdoor air provision’, Building and Environment, vol. 169, 2020, ISSN:
+03601323. DOI: 10.1016/j.buildenv.2019.106551.
+[54]
+C. Federspiel, Healthy Buildings Guideline Calculator, 2020. [Online]. Available: h
+ttps://docs.google.com/spreadsheets/d/1bnONMyhQpSdtIW7TAU4y08k- kuIzNx
+zq40t8W%7B%5C_%7D0Ca3s/edit%7B%5C#%7Dgid=1387695036 (visited on
+30/05/2021).
+[55]
+Statistics Denmark, Population in Denmark, 2020. [Online]. Available: https://www.
+dst.dk/en/Statistik/emner/befolkning-og-valg/befolkning-og-befolkningsfremskrivning
+/folketal (visited on 30/05/2021).
+40
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+==PAGE:53==
+Energy implications for reducing COVID-19 risk in schools by means of different airing solutions
+41
+==PAGE:54==
+Technical
+University of
+Denmark
+Brovej, Building 118
+2800 Kgs. Lyngby
+Tlf. 4525 1700
+www.byg.dtu.dk

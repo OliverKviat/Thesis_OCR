@@ -3,8 +3,10 @@ import os
 import pymupdf
 
 ### PATHS ###
-pdf_path = "Data/RAW_test"
-txt_path = "Data/TXT_test"
+#pdf_path = "Data/RAW_test"
+#txt_path = "Data/TXT_test"
+pdf_path = "Data/handin_test"
+txt_path = "Data/TXT_handin_test"
 
 ### CHOOSE PDF FILES TO CONVERT ###
 list_pdf_files = [f for f in os.listdir(pdf_path) if f.endswith('.pdf')]

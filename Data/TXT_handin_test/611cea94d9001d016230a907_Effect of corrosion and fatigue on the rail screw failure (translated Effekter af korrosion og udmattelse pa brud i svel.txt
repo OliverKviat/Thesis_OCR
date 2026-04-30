@@ -1,0 +1,1617 @@
+==PAGE:1==
+Eﬀect of corrosion and fatigue on the sleeper screw failure
+Master Thesis
+Department of Materials and Manufacturing Engineering
+Written by
+Wenkang Wang- s192196
+Technical University of Denmark
+Kgs. Lyngby
+==PAGE:2==
+Abstract
+Sleeper screws are used to fasten the rails to the sleepers in the railway. Both high fatigue
+strength and good corrosion properties are required. It is found that the screws lifetime often
+is much shorter than expected in particular near switches and crossings, in curves and heavily
+where traﬃc is heavy . In this thesis, a novel microstructural method has been established to
+estimate the local stress for the corrosion fatigue crack initiation and propagation; an unique
+corrosion fatigue chamber has been designed and fabricated not only for the present tension
+corrosion fatigue but also for future compression and bending corrosion fatigue; and an accel-
+erated corrosion fatigue has been tested to simulate the failure observed in a ﬁeld sleeper screw
+and determine critical parameters.
+A number of ﬂat and round dog-bone specimens were used in the tensile and fatigue tests.
+The microstructure was characterized by Energy-Dispersive X-ray Spectroscopy, Scanning Elec-
+tron Microscopy, Electron Backscatter Diﬀraction and Transmission Electron Microscopy.
+Then unused sleeper screws were received from Banedanmark, but no information was
+given about their steel type. Therefore tensile tests were used to distinguish it among four
+normal industrially available steels for sleeper screws. It was classiﬁed as type 35. . Low-
+cycle fatigue tests have shown a similar dislocation cell microstructure and a similar cell size as
+those at the failed surface of the broken ﬁeld sleeper screw after 69,721 cycles under 500 MPa,
+whereas samples after 200,000 cycles, at 391MPa and 8,927 cycles, at 600 MPa did not develop
+this microstructure. With the information and data from the low-cycle fatigue experiments, the
+round dog-bone specimens were used for accelerated corrosion fatigue experiments to simulate
+the real working environments of a sleeper screw. It is found that both the corrosion solution
+and micro-current aﬀect the accelerated fatigue behavior.Compared with the 121,554 life cycles
+for the normal corrosion fatigue at 500 MPa and 2 Hz, the accelerated corrosion fatigue leads
+to failure at only 33, 960 cycles. The fracture topography of the latter sample shows similar
+characteristics to those of the broken ﬁeld sleeper screw from Banedanmark.
+It has been
+demonstrated that the complex working conditions including the cyclic load, the stress level
+and the corrosive environment contribute the ﬁnal failure of the screws.
+I
+==PAGE:3==
+Preface
+This master thesis has been made in the period February 24th 2021 to July 18th 2021
+and submitted to the Department of Mechanical Engineering at the Technical University of
+Denmark and concludes the work to obtain a MSc. Eng. degree in Materials and Manufac-
+turing Engineering. The work period was extended by 5 weeks due to a corona sick leave. The
+experimental work was carried out at the Section of Materials and manufacturing Engineering
+under supervision by Senior Researcher Xiaodan Zhang and Professor Dorte Juul Jensen. The
+Thesis is rated as 30 ECTS.
+Wenkang Wang
+DTU, Kgs. Lyngby
+18 July, 2021
+II
+==PAGE:4==
+Acknowledgements
+First and foremost, I would like to thank my supervisors Senior Researcher Xiaodan Zhang
+and Professor Dorte Juul Jensen for providing both support and inspiration throughout the
+making of this thesis.
+My sincere thanks to Dr. Lichu Zhou, Dr. Asger Gade Andersen and Dr. Hongjiang Pan
+who have helped me on my experimental work, data analysis and provided scientiﬁc suggestions
+on my thesis.
+Lastly I would like to thank Troels V. Kristensen, Christian Peter Rasmussen for instruct-
+ing me on how to operate the testing machine and for providing continuous feedback on my
+experimental plan.
+III
+==PAGE:5==
+CONTENTS
+Contents
+Abstract
+I
+Preface
+II
+Acknowledgements
+III
+1
+Introduction
+1
+2
+Literature review
+5
+2.1
+Low cycle fatigue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+2.2
+Corrosion fatigue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+2.3
+The sleeper screw stress
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+2.4
+Stress corrosion crack
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+3
+Experimental
+9
+3.1
+Screws used in this project . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+3.2
+Dimension of ﬂat specimens for the tensile tests and normal tension fatigue
+experiments . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+3.3
+Dimension of round specimens for accelerated corrosion fatigue experiments . . .
+11
+3.4
+Tensile testing using ﬂat dog bone specimens . . . . . . . . . . . . . . . . . . . .
+12
+3.5
+Low cycle fatigue tests . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+13
+3.6
+Low-cycle accelerated corrosion fatigue tests . . . . . . . . . . . . . . . . . . . .
+13
+3.7
+Scanning electron microscopy
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+3.8
+Electron backscatter diﬀraction
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+3.9
+Transmission electron microscopy . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+3.10 Energy Dispersive X-ray analysis of the failed fral screw . . . . . . . . . . . . . .
+17
+4
+Tensile and tension fatigue behavior
+18
+4.1
+Tensile stress - strain curves . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+18
+4.2
+Result of the fatigue test . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+19
+4.3
+Fracture topography analysis of the specimens which failed during the tension
+fatigue tests . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+23
+4.4
+Summary
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+24
+IV
+==PAGE:6==
+CONTENTS
+5
+Dislocation cells in ﬂat dog-bone tension-fatigued specimens
+25
+5.1
+EBSD characterization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+25
+5.2
+Transmission electron microscopy . . . . . . . . . . . . . . . . . . . . . . . . . .
+32
+5.3
+Summary
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+33
+6
+Normal and accelerated corrosion fatigue behavior
+34
+6.1
+EDX analysis of corrosion products . . . . . . . . . . . . . . . . . . . . . . . . .
+34
+6.2
+Design of the corrosion fatigue chamber
+. . . . . . . . . . . . . . . . . . . . . .
+35
+6.2.1
+The original model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+36
+6.2.2
+The ﬁnal chamber model . . . . . . . . . . . . . . . . . . . . . . . . . . .
+38
+6.2.3
+Further improvement . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+41
+6.3
+Strain – curves from corrosion fatigue test
+. . . . . . . . . . . . . . . . . . . . .
+45
+6.4
+Fracture surface analysis of the broken specimens
+. . . . . . . . . . . . . . . . .
+46
+6.5
+Summary
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+48
+7
+Conclusions
+49
+8
+Outlook
+50
+9
+Appendix
+56
+9.1
+Reports from EDX . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+56
+9.2
+Drawings . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+60
+V
+==PAGE:7==
+List of Figures
+1.1
+Technical details of the sleeper screw and the dowel to show how the screw is
+mounted . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1
+1.2
+3D shape of the screws characterized by X-ray tomography. (a)-(d) are for screw
+No. 1-4, respectively. Numbers are used to mark diﬀerent thread, while red
+arrows mark the corroded parts and cracks. Thread No. 1 is the one closest to
+the head of the screw[2]
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.3
+Optical micrographs showing the fracture surface of a broken screw viewed from
+three directions: top view (a) and two side views ((b) and (c)).[2]
+. . . . . . . .
+2
+1.4
+EM (left) and EBSD (right) micrographs showing the same sub-surface area in
+the cross section.[2] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+1.5
+SEM and EBSD micrographs of the screw showing the same sub-surface area in
+the cross section. The blue arrow points to the corrosion following the lamellar
+direction of a pearlite colony. The orange arrow points to the cracks along a shear
+band in one pearlite colony. The EBSD micrograph is shown with band slope
+coloring. The dark-grey area in the EBSD micrograph represents the unindexed
+zone due to the oxidation and cracks. The cementite lamellae in the non-cracked
+metalare also shown in dark grey, while the ferrite lamellae are in light grey.[2] .
+3
+2.1
+Basic Nomenclature of Railway Sleeper[23] . . . . . . . . . . . . . . . . . . . . .
+7
+2.2
+The deﬂection of a rail string in the adjacent area of the wheel load [23] . . . . .
+7
+2.3
+Dependency of moment on input force from the tie plate.[24] . . . . . . . . . . .
+8
+3.1
+The ferrite + pearlite dual-phase microstructure in the matrix of screws. The
+arrows represent these two phases
+. . . . . . . . . . . . . . . . . . . . . . . . .
+9
+3.2
+The drawing of the 100 mm ﬂat dog-bone specimen with a thickness of 2 mm
+.
+11
+3.3
+The photo of a tested ﬂat dog-bone specimen
+. . . . . . . . . . . . . . . . . . .
+11
+3.4
+The drawing of the 100 mm round dog-bone specimen
+. . . . . . . . . . . . . .
+12
+3.5
+Photo of the round dog-bone, which was machined by lath and electrochemical
+polishing
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+12
+3.6
+Photo of SHY-006, the testing machine from MTS
+. . . . . . . . . . . . . . . .
+13
+3.7
+Schematic diagram showing the experimental set-up for EBSD observations. [31]
+16
+3.8
+How an atom emits characteristic X-rays when an ionized atom returns to its
+ground state [40]
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+17
+==PAGE:8==
+LIST OF FIGURES
+4.1
+Tensile normal stress-strain curves at room temperatures using the tool velocity
+of 0.1 mm/s . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+19
+4.2
+The cyclic strain curves at a load of 391 MPa through 500 cycles (a), 5,000
+cycles(b), 200,000(c) cycles. The miniﬁgure shows the variation after speciﬁc
+cycles. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+20
+4.3
+The cyclic strain curves at a load of 500 MPa through 500 cycles (a), 5,000
+cycles(b), 69,721(c) cycles. The miniﬁgure shows the variation after speciﬁc cycles. 21
+4.4
+The cyclic strain curves at a load of 600 MPa through 500 cycles (a), 5,000
+cycles(b), 8,927(c) cycles. The miniﬁgure shows the variation after speciﬁc cycles. 22
+4.5
+Cross-section fracture topography of the ﬂat specimen fatigued at a load of
+500MPa for 69,721 cycles, The fat white arrow shows the surface and the dashed
+black lines represent the boundaries. Sub ﬁgure (b), (c) show the crack marked
+by red.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+23
+4.6
+Cross-section fracture topography of the ﬂat specimen fatigued at 600MPa for
+8,927 cycles, The arrow shows the surface and the dashed black lines represent
+the boundaries.Figure
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+24
+5.1
+The X,Y,Z directions of the specimen, deﬁned to distinguish the 3 samples cut
+from each specimen.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+25
+5.2
+ECC image (left) and EBSD maps with BS (top right) and IPF (down right)
+coloring of the ﬂat specimen under 391 MPa after 200,000 cycles in X direction.
+The thick dark lines in the BS and IPF maps represent high angle grain bound-
+aries (θ15°), and the thin black (BS map) or white (IPF map) lines represent
+the low angle boundary (1°θ0).
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+26
+5.3
+The EBSD of the ﬂat specimen under 600 MPa, after 8,900 cycles in X direction.
+The thicker lines in the band slope map represent the large-angle grain boundary
+(θ15°), and the ﬁner represent the small-angle grain boundary (θ1°). . . . . . . .
+27
+5.4
+The EBSD of the ﬂat specimen under 600 MPa, after 8,900 cycles in Y direction.
+The thicker lines in the band slope map represent the large-angle grain boundary
+(θ15°), and the ﬁner represent the small-angle grain boundary (θ2°) . . . . . . .
+28
+5.5
+The EBSD of the ﬂat specimen under 500MPa, after 69,000 cycles in X direction.
+The thicker lines in the band slope map represent the large-angle grain boundary
+(θ15°), and the ﬁner represent the small-angle grain boundary (θ2°). . . . . . . .
+30
+VII
+==PAGE:9==
+LIST OF FIGURES
+5.6
+Another EBSD of the ﬂat specimen under 500MPa, after 69,000 cycles in X
+direction.
+The thicker lines in the band slope map represent the large-angle
+grain boundary (θ15°), and the ﬁner represent the small-angle grain boundary
+(2°θ). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+31
+5.7
+Figure 7.5 The EBSD of the ﬂat specimen under 500MPa, after 5,000 cycles in
+X direction. The thicker lines in the band slope map represent the large-angle
+grain boundary (θ15°), and the ﬁner represent the small-angle grain boundary
+(2°θ). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+32
+5.8
+TEM micrographs showing dislocation cells with a size around 1 µm.
+. . . . . .
+33
+6.1
+The distribution of selected elements in cross-section area 1 of the failed sleeper
+screw.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+34
+6.2
+The distribution of selected elements in cross-section area 2 of the failed sleeper
+screw.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+34
+6.3
+Original design of the chamber with couplings and sealing rings. . . . . . . . . .
+37
+6.4
+The original design with the specimen mounted. The screw joint is circled
+. . .
+38
+6.5
+The 3D view of the chamber with lid and specimen mounted
+. . . . . . . . . .
+40
+6.6
+The section view of the assembled chamber device
+. . . . . . . . . . . . . . . .
+40
+6.7
+The photo of the chamber with specimen mounted. (a) Photo from top view
+with lid on, (b)photo from top view with amounted specimen, without lid, (c)
+the specimen is screwed on by the thread . . . . . . . . . . . . . . . . . . . . . .
+41
+6.8
+The chamber with mounted specimen and corrosion solution. The inner was
+coated by epoxy resin.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+42
+6.9
+The chamber with lid on, was mounted to the test machine, MTS SHY- 027
+. .
+43
+6.10 The amperemeter and power supply used in this experiment.
+. . . . . . . . . .
+43
+6.11 The drawing to show the material being removed
+. . . . . . . . . . . . . . . . .
+44
+6.12 Strain-cycle curve of the specimen under 500 MPa, 4 mA, 2 Hz, broken after
+33960 cycles.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+45
+6.13 The Strain-cycle curve of the specimen under 500 MPa, 2 Hz, without current,
+broken after 12,1554 cycles.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+46
+6.14 The fracture surfaces of the specimen with current(a), and without current (b)
+47
+6.15 Cross-section fracture topography of round specimen at 500 MPa 33,960 cycles
+, with current. (b) and (c) show the micro-cracks marked by red. . . . . . . . . .
+47
+VIII
+==PAGE:10==
+LIST OF TABLES
+List of Tables
+3.1
+Experimental plan for low-cycle fatigue test to get the load and number of cycles
+for simulation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+3.2
+Experimental plan for normal accelerated corrosion fatigue test
+. . . . . . . . .
+14
+6.1
+Speciﬁc requirements to manufacture a feasible chamber
+. . . . . . . . . . . . .
+36
+IX
+==PAGE:11==
+1
+INTRODUCTION
+1
+Introduction
+Railway is of signiﬁcant interest to reduce the burden of automobile and air travel in
+congested corridors, and to reduce energy consumption and green house gas emission[1]. The
+latest white paper on transport from the European Union suggests that railways are the key to
+obtain a sustainable multi-modal inter-operable transport network[1]. Therefore it is important
+to maintain the reliability, eﬃciency, and safety of railway systems and a lot of research has
+been undertaken worldwide to improve the environment, safety and economic aspects of the
+railway system.
+Rails are fastened to the sleepers with railway screws, which are critical parts to ensure
+the safety. In general, railways can serve for decades when properly maintained. However, the
+screws often break after a few years. Especially in complex stress environments with eﬀects of
+corrosion, the life of screws are often much shorter than the designed lifetime. This can cause
+risks. In this project, a novel experimental method has been established to simulate the sleeper
+screws condition and determine critical parameters.
+Figure 1.1: Technical details of the sleeper screw and the dowel to show how the screw is mounted
+Fig.1.2 shows a necking behavior between the second and third thread, which indicates
+the tension component is critical to the failure of screws. It is evident that the screws are
+signiﬁcantly corroded at two opposite sides, as marked by the red arrows. Cracks are also
+1
+==PAGE:12==
+1
+INTRODUCTION
+developed from these positions.
+Figure 1.2: 3D shape of the screws characterized by X-ray tomography. (a)-(d) are for screw No. 1-4,
+respectively. Numbers are used to mark diﬀerent thread, while red arrows mark the corroded parts and cracks.
+Thread No. 1 is the one closest to the head of the screw[2]
+Fig. 2.3 shows the fracture surface of a broken screw viewed from three directions.[2] Three
+classical stages of fracture surface can be found: crack initiation area, crack propagation area.
+This screw is in the present work used as a reference to evaluate the specimens deformed in the
+laboratory.
+Figure 1.3: Optical micrographs showing the fracture surface of a broken screw viewed from three directions:
+top view (a) and two side views ((b) and (c)).[2]
+Fig.1.4 shows the deformation introduced dislocation boundaries in both the ferrite grains
+and pearlite colonies close to the failed surface of the broken ﬁeld sleeper screw.[2] Dislocation
+2
+==PAGE:13==
+1
+INTRODUCTION
+cells in the ferrite grains with a cell size around 1 µm are also observed. This size is thus the
+standard used to estimate and optimize the parameter for low-cycle fatigue experiments.
+Figure 1.4: EM (left) and EBSD (right) micrographs showing the same sub-surface area in the cross
+section.[2]
+Fig.2.3 shows cracks along local shear bands in the pearlite colony and along the lamellar
+direction in the neighboring pearlite colony. [2] Diﬀerent sizes of dislocation cells are observed.
+The cells pointed to by the white arrow are around 0.8 µm, while the cells pointed to by the
+black arrow are around 1.6 µm, at a position of 30 µm into the matrix.
+Figure 1.5: SEM and EBSD micrographs of the screw showing the same sub-surface area in the cross
+section. The blue arrow points to the corrosion following the lamellar direction of a pearlite colony. The
+orange arrow points to the cracks along a shear band in one pearlite colony. The EBSD micrograph is shown
+with band slope coloring. The dark-grey area in the EBSD micrograph represents the unindexed zone due to
+the oxidation and cracks. The cementite lamellae in the non-cracked metalare also shown in dark grey, while
+the ferrite lamellae are in light grey.[2]
+3
+==PAGE:14==
+1
+INTRODUCTION
+According to the project description, the project focuses on three parts: Part I - Design
+tension fatigue tests to simulate the dislocation cell microstructure similar to the failed surface
+in the broken ﬁeld sleeper screws. Part II - Design a unique corrosion fatigue chamber for the
+lab tests. Part III - Find a method to simulate and accelerate corrosion fatigue with electricity
+and corrosion solution.
+4
+==PAGE:15==
+2
+LITERATURE REVIEW
+2
+Literature review
+2.1
+Low cycle fatigue
+Research on fatigue has been discussed for more than hundred years because of its practi-
+cal importance. When it come to rail screw partfatigue failure of axles had become a common
+problem in the 18th century. During the past decades, there were many aircraft accidents, due
+to fatigue problems. These accidents made the fatigue damage of metallic materials under cyclic
+stress a lot of topics. Then more and more researches and theories of fatigue cumulative damage
+were developed[3]. For a conventional fatigue strength design, it is assumed that the material is
+homogeneous and defect-free. The fatigue process is divided into three stages: crack formation,
+crack propagation and ﬁnal fracture. In the 1960s, there were two important milestones. First
+one is the Paris’ law, which suggests a crack growth equation that gives the rate of growth of
+a fatigue crack as well as the stress intensity factor.[4] The second one is the Coﬃn-Manson
+expression relating cycles to failure to plastic strain amplitude.[5]
+Research on fatigue prob-
+lems can often be divided into the following categories according to the number of cycles of
+fatigue load action: super high cycle fatigue(more than 107), high cycle fatigue(105 - 107) and
+low cycle fatigue(103 - 105).In this project, we focus on the low cycle fatigue characteristics of
+the sleeper screws (500 - 200,000).
+Ye D. et.al studyed the relation between the size of the dislocation cells and fatigue process.[6]
+The dislocation structure inﬂuence the performance of the the metal products, and could be
+ﬁner by plastic deformation to improve the performance.[7] R. Alain et.al studyed the the tem-
+perature on the deformation mechanisms, the dislocation structures, the mechanical behavior
+and damages processes, leading to important diﬀerences in fatigue lives. [8] The
+2.2
+Corrosion fatigue
+During the life of a railway screw, it is suﬀering from diﬀerent forms of damage due to the in-
+ﬂuence of the environment, including corrosion fatigue. The chemical degradation of materials,
+corrosion, destroys the materials by chemical reactions with aggressive environments. [9] When
+designing equipment or components, usually not only the mechanical properties, processing
+performance and costs of the material should be considered, but also the requirements for the
+corrosion mechanical stability. The corrosion mechanical stability is one of the most important
+parameters that determine the life of the railway screws. [10]
+5
+==PAGE:16==
+2
+LITERATURE REVIEW
+Even though, it has been demonstrated that the amount of environmental enhancement of
+crack growth rates in true corrosion fatigue cannot be accurately predicted from quantitative
+models. [11] Ya.B.Unigovski found a reduction in the cyclic longevity as a result of the action
+of corrosive environment[12]. The interactions among wear and corrosion could signiﬁcantly
+increase total weight losses and reduction of either wear or corrosion could considerably decrease
+the total weight loss[13].
+The fracture characteristics of metal materials in corrosive environment are very diﬀerent
+from those in general air environments, since metal materials are very sensitive to the corrosion
+eﬀect and the strength reduces greatly.
+The features of corrosion damage to steel products depend on many factors such as the
+composition, the structure, the environment and local stress. [14, 16] Y.Shariﬁreviewed the
+main aspects that are associated with stress concentration created by corrosion and developed a
+function which could represent fatigue notch factor in terms of average corrosion penetration[17].
+For most engineering structures and components operating under dynamic or alternating
+loading conditions, a common notable character is that their service properties, especially
+mechanical properties such as strength, stiﬀness, ductility, etc., deteriorates progressively with
+increasing length of service[18]
+There is a certain relationship between the forms of corrosion damage. For example,
+inter-granular corrosion is developed by pit corrosion. [19] Various types of corrosion formed
+by pits, holes, and other defects often lead to corrosion fatigue.
+To sum up the impact on one speciﬁc material, the corrosive environment usually has the
+following eﬀects on the mechanical properties:
+• Corrosion causes continuous degradation of fatigue quality and shortens the life span;
+• Combined eﬀects of service environment and residual tensile stress can cause corrosion
+damage;
+There are a lot of research concentrates on the alloy composition, crystal structure, heat
+treatment or environmental eﬀects.[20, 21]
+2.3
+The sleeper screw stress
+The sleeper screw is the critical part of fastening teh railway to the sleeper as shown in
+Fig.2.1.[22] As mentioned above, obvious necking can be found, indicating the railway screws
+is under tensile stress when break.
+6
+==PAGE:17==
+2
+LITERATURE REVIEW
+Figure 2.1: Basic Nomenclature of Railway Sleeper[23]
+The screws are strained by a vertical force by the passing trains. The vertical force can be
+generated from following reasons: The weight of a train causes the rail to lift at a distance from
+the third to sixth sleeper from the wheel,as shown in Fig.2.2. The screws there are exposed to
+tensile stress.[23]
+Figure 2.2: The deﬂection of a rail string in the adjacent area of the wheel load [23]
+Insuﬃcient screw pullout strength or failure of fastening could lead to safety hazard which
+is the reason to many railway accidents in the past.[22] Marcus S. Dersch built an analytical
+model to study the eﬀects of timber modulus, the area of spike cross-section area and the load
+magnitude. They found that the critical position is always 1.0 - 1.5 inch deep, as shown in Fig.
+2.3.
+7
+==PAGE:18==
+2
+LITERATURE REVIEW
+Figure 2.3: Dependency of moment on input force from the tie plate.[24]
+In a previous project with Banedanmark – leading to the present project, it is observed
+that large cracks develop always at the second and third thread, and the crack at one side is
+larger than the other side, which could be caused by a similar local stress, which can be seen
+in Fig.1.2. [2]
+2.4
+Stress corrosion crack
+Stress corrosion is a form of damage that occurs in metallic materials under the combined
+action of corrosive media and tensile or compressive stress. The accumulation of deformation
+continues until the material’s ductility limit is exceeded. When the deformation exceeds the
+fracture strain of the material, cracks appear. [25] When the stress corrosion of metals occurs,
+the two factors of corrosion and stress promote each other. On the other hand, corrosion reduces
+the eﬀective cross-sectional area of the metal and forms gaps on the surface, resulting in stress
+concentration.
+8
+==PAGE:19==
+3
+EXPERIMENTAL
+3
+Experimental
+In this section, a detailed description of the experimental techniques and procedures used for
+the characterization and mechanical testing of the sleeper screw specimens is given.
+3.1
+Screws used in this project
+The screws have a two-phase microstructure consisting of ferrite and pearlite, as shown in
+Fig.3.1. This is typical for medium-carbon steels and is a common choice for sleeper screws.
+During the cooling process in the production of screws, proeutectoid ferrite grains precipitate
+and grow from the austenite grain boundaries at ﬁrst, and then the lamellar pearlite with
+alternating layered ferrite and cementite is formed by the decomposition of the remaining
+eutectoid austenite.[26] The ferrite phase is soft and ductile, while the pearlite is hard and
+reasonably ductile. As the carbon content increases, the volume fraction of pearlite increases
+while that of ferrite decreases.
+Figure 3.1: The ferrite + pearlite dual-phase microstructure in the matrix of screws. The arrows represent
+these two phases
+The detailed information about the speciﬁc grade of the steel is not provided by Banedan-
+9
+==PAGE:20==
+3
+EXPERIMENTAL
+mark. However, the determination of the steel type can be done, by either a tensile testing to
+determine the yield strength (YS) and ultimate tensile strength (UTS) or a chemical compo-
+sition analysis, as it is well known that there are typically four types of sleeper screw steels :
+1) Q235 steel, YS 240 MPa, UTS 400 MPa; 2) 35 steel, YS 300 MPa, UTS 500 MPa; 3) 45
+steel, YS 640 MPa, UTS 800 MPa; 4) 40Cr steel, YS 900 MPa, UTS 1000 MPa. [27, 29]
+The YS and UTS from a simple tensile test, are determined to be 391 MPa to 680 MPa , which
+indicates the steel grade is 35.
+3.2
+Dimension of ﬂat specimens for the tensile tests and normal
+tension fatigue experiments
+The tensile test is to determine YS and UTS of the screw material (as discussed above) while
+the tension fatigue is carried out to determine the local stress matching the corrosion fatigue of
+the failed sleeper screws. This matching is based on similarity of the microstructures, namely
+the dislocation cell size.
+The material is provided by Banedanmark as screws and these screws were cut into ﬂat
+specimens for the mechanical testing. Since only 10 screws were provided, and both the tensile,
+normal tension fatigue and accelerated corrosion fatigue tests have to be carried out in the
+present study, it was decided to use the the small-size ﬂat dog-bone specimen geometry accord-
+ing to ASTM D638. The screws were therefore cut into 14 ﬂat dog-bone specimens and 7 round
+dog-bone specimens (see next section), where the ﬂat dog-bone specimens were used for tensile
+and normal tension fatigue experiments and the round dog-bone specimens (the dimension is
+shown in the next section) are for the tensile and (accelerated) corrosion fatigue experiments.
+The axis of loading is chosen to be parallel to the axis of the screw. The geometry and ﬁnal
+dimension are shown in Fig.3.2. The ﬂat specimen was cut with a wire-electrode cutting ma-
+chine, without polish, grinding or further processes. The ﬁnal shape of the machined specimen
+can be found in Fig.3.3
+10
+==PAGE:21==
+3
+EXPERIMENTAL
+Figure 3.2: The drawing of the 100 mm ﬂat dog-bone specimen with a thickness of 2 mm
+Figure 3.3: The photo of a tested ﬂat dog-bone specimen
+3.3
+Dimension of round specimens for accelerated corrosion fatigue
+experiments
+The round dog-bone specimens is made according to ASTME 8-E8M. [37] and shown in
+Fig.3.3. The round specimen is chosen to remove the stress concentration at the square corners,
+which exists in the ﬂat dog-bone specimens and causes the crack initiation at the corner, which
+are shown in Fig.4.5 and Fig.4.6 in Chapter 4. For round specimens, the total length is the same
+as that of ﬂat specimens.[38] But the surface quality is better than that of the ﬂat specimens
+due to machining and electrochemical polishing, as shown in Fig.3.5.
+11
+==PAGE:22==
+3
+EXPERIMENTAL
+Figure 3.4: The drawing of the 100 mm round dog-bone specimen
+Figure 3.5: Photo of the round dog-bone, which was machined by lath and electrochemical polishing
+3.4
+Tensile testing using ﬂat dog bone specimens
+The tensile testing was carried on the machine of SHY-006-MTS-358.05 which is a +/-10kN
+test machine, driven by a hydraulic system. See Fig.3.6 The extensometer used is from Instron,
+with a range of +/- 20%. The force was ‘zeroed’ before mounting the specimen while the
+extensometer was installed and ‘zeroed’ after clamping. The tests were carried out under the
+constant strain control, at a constant strain rate of ep = 5.88 × 10−2s−1 at room temperature.
+12
+==PAGE:23==
+3
+EXPERIMENTAL
+Figure 3.6: Photo of SHY-006, the testing machine from MTS
+3.5
+Low cycle fatigue tests
+The fatigue testing was also performed on the machine of SHY-006-MTS-358.05. Table 3.1
+shows the experimental plan.
+The test at 391 MPa was carried out ﬁrst, but at this load
+the samples did not break after 200,000 cycles. To simulate earlier failure, the stress level
+was increased to 500 MPa and 600 MPa in the subsequent experiments.
+The purpose of
+these experiments is to ﬁgure out the eﬀects of the number of cycles on the microstructure
+and to compare with that observed in failed rail sleeper screws. The latter is necessary, as
+Banedanmark could not give information about loads and number of train passages leading to
+broken sleeper screws.
+3.6
+Low-cycle accelerated corrosion fatigue tests
+The low-cycle normal and accelerated corrosion fatigue tests using the round dog-bone spec-
+imens are shown in the following Table 3.2, as group 1 and 2 with and without an electrical
+current.
+Based on the results of the fatigue test, the plan of the corrosion accelerated fatigue test
+was proposed. The parameters of maximum stress, minimum stress and loading waveform were
+13
+==PAGE:24==
+3
+EXPERIMENTAL
+Group No.
+1
+2
+3
+σ max
+391MPa
+500MPa
+600MPa
+σ min
+0
+0
+0
+Stress ratio R
+0
+0
+0
+Number of
+cycles
+500, 5000,
+200 000 not failed
+500, 5000,
+69721
+500, 5000,
+8927
+Loading waveform
+Sine wave load
+Sine wave load
+Sine wave load
+Frequency
+10 Hz
+10 Hz
+10 Hz
+Table 3.1: Experimental plan for low-cycle fatigue test to get the load and number of cycles for simulation
+under control as the previous experiment. Besides, the frequency was set 2 Hz, considering the
+corrosion process is inﬂuenced by time. Current was introduced to the device for electrochemical
+corrosion behavior, and in order to simulated the corrosion process, considering the area of the
+specimen and the power supply used, an ampere meter was used to make sure the current is
+around 4 mA [29].The exectrodes were mounted to the specimen with a distance of 10 mm.
+For the corrosion solution part, a 5.0 wt.% NaCl solution was prepared [30], and the surface of
+the specimen above the liquid was coated by nail polish so that it would not be aﬀected by the
+corrosion solution.
+Group No.
+1
+2
+σ max
+500MPa
+500MPa
+σ min
+0
+0
+Stress ratio R
+0
+0
+Number of
+cycles
+121,554
+33,960
+Loading waveform
+Sine wave load
+Sine wave load
+Frequency
+2 Hz
+2 Hz
+Current
+0
+4.12 - 4.35 mA
+Solution
+5.0 wt% NaCl
+5.0 wt% NaCl
+Table 3.2: Experimental plan for normal accelerated corrosion fatigue test
+14
+==PAGE:25==
+3
+EXPERIMENTAL
+3.7
+Scanning electron microscopy
+In order to analyze and fracture topography and to determine the fracture mode of this steel
+under low-cycle fatigue loading conditions, a Zeiss scanning electron microscope (SEM) was
+used.The investigation includes the analysis of the morphology of the crack initiation and crack
+propagation area, which actually develops during the major life of a screw.
+3.8
+Electron backscatter diﬀraction
+By electron backscatter diﬀraction (EBSD) crystallographic information from local areas of
+the microstructure can be determined in a scanning electron microscope, including orientation
+mapping and crystal type determination . This feature it a brilliant microstructural character-
+ization tool . EBSD maps are formed by moving a focused probe of electrons point by point
+across a grid of positions on the surface of a bulk sample in a SEM. At each point, some of
+the electrons backscattered from the sample are collected by a detector to form an electron
+backscatter diﬀraction pattern. [31] In the present study, EBSD is used to detect the dislo-
+cation cell structure formation and to determine the dislocation cell size.
+As mentioned in
+the last sections, the focus of matrix microstructural characterization is on the dislocation cell
+formation behavior and its size in the ferrite grains, with the aim to ﬁnd the appropriate stress
+level and cycles to form a dislocation cell size, comparable to that (around 1 µm) at the failed
+surface of the broken ﬁeld screw. So, the EBSD characterization of the 9 specimens (391 MPa
+500 cycles, 5000 cycles and 200,000 cycles; 500 MPa 500 cycles, 5000 cycles and 69721 cycles;
+600 MPa 500 cycles, 5000 cycles and 8,927 cycles) is selective and takes the following steps:
+• EBSD characterization of the specimen at 391 MPa 200,000 cycles from three directions (X
+represents the tension direction, Y represents the ﬂat/width plane normal and Z represents
+the X×Y direction) to check if there is any diﬀerence. If the dislocation cell structure is
+not clearly formed and its size is large than 1 m, the characterization of specimens at 391
+MPa 500 and 5000 cycles will be dismissed; otherwise continue characterization;
+• EBSD characterization of the specimen at 600 MPa 8,927 cycles. If the dislocation cell
+structure is not clearly formed and its size is large than 1 µm, the characterization of
+specimens at 600 MPa 500 and 5000 cycles will be dismissed; otherwise continue charac-
+terization;
+15
+==PAGE:26==
+3
+EXPERIMENTAL
+• EBSD characterization of the specimen at 500 MPa 69,721 cycles. If the dislocation cell
+structure is not clearly formed and its size is large than 1 m, the characterization of
+specimens at 500 MPa 500 and 5000 cycles will be dismissed; otherwise continue charac-
+terization.
+Finally, the dislocation structure will be conﬁrmed by the TEM characterization for the
+specimen with the appropriate stress and cycles to form the dislocation cell size comparable to
+that in the failed ﬁeld sleeper screw.
+Figure 3.7: Schematic diagram showing the experimental set-up for EBSD observations. [31]
+3.9
+Transmission electron microscopy
+A transmission electron microscope (TEM) uses a high energy beam of electrons to pass
+through a very thin sample. Then the interactions between the electrons and the atoms would
+be recorded to detect the features such as the crystal structure like dislocations and grain
+boundaries. In this project, in order to determine the detailed structures of dislocation cells
+in the failed tension-fatigued ﬂat dog-bone specimen, TEM analysis was used. TEM sample
+preparation is complicated and tricky. In order to get good samples, the procedures are as
+following[32]:
+• Cut a sample to a 0.5 – 1.0 mm thick piece using a wire cutting machine.
+• Glue the sample onto a grid.
+• Mechanically thin the sample using silicon carbide paper to 0.1 mm.
+16
+==PAGE:27==
+3
+EXPERIMENTAL
+• Perform ﬁnal thinning by the twin jet electrochemical polishing.
+3.10
+Energy Dispersive X-ray analysis of the failed fral screw
+Energy Dispersive X-ray (EDX) microanalysis is introduced to detect the chemical compo-
+sition of the corrosion products on the fracture surface and in the cracks of the failed sleeper
+screws. This is to be able to select a proper solution for the present corrosion fatigue experi-
+ments
+EDX microanalysis is a technique of elemental analysis in a scanning electron microscope
+based on the generation of characteristic X-rays that reveals the presence of elements present
+in the specimens.[33]. When the ionized atoms return to their ground state, they will emit
+characteristic X-rays and the energy is the potential energy resulting from the diﬀerence between
+the two orbitals involved in the transition, which is thus characteristic of the element.[34]
+According to theory, there are some limits related to EDX. Firstly, it does not separate ionic
+and non-ionic species. Second, vacuum environment is required since the electron and X-rays
+are strongly aﬀected by air molecules. Moreover, whereas X-ray detection is not aﬀected by
+the chemical state of the elements, it is aﬀected by inter-elements interference, known as peak
+overlap.
+Figure 3.8: How an atom emits characteristic X-rays when an ionized atom returns to its ground state [40]
+17
+==PAGE:28==
+4
+TENSILE AND TENSION FATIGUE BEHAVIOR
+4
+Tensile and tension fatigue behavior
+4.1
+Tensile stress - strain curves
+Two tensile tests were performed to determine the YS and UTS of the present steel, and
+therefore be able to estimate which grade it is. The strain extensometer maximum range is
+20%, so the curve shows the maximum strain around 20%. The results of the two tests are
+shown in Fig.4.1. Similar results are found in the two test and on average the YS=391 +/-
+5 MPa and the UTS= 680 +/- 5 MPa. These values suggests that the present steel grade is
+equivalent to #35.
+Fig.4.2 shows the strain - cycle curves at a load of 391MPa at room temperature. The
+cyclic strain amplitude of the specimen increases and reach a steady-state plateau up to 1000
+cycles. Then after around 10,000 cycles, the amplitude decreases a little, because of material
+hardening. The softening increases with the increase of cycles from 10,000 to 50,000 cycles.
+After that, the strain level continues to grow and ﬁnally reach another steady-state again,
+around 0.48%, and the constant amplitude straining reﬂects the stabilised inter dislocation
+structure of the material cycled on each strain amplitude level. [35]
+18
+==PAGE:29==
+4
+TENSILE AND TENSION FATIGUE BEHAVIOR
+Figure 4.1: Tensile normal stress-strain curves at room temperatures using the tool velocity of 0.1 mm/s
+4.2
+Result of the fatigue test
+Fig.4.2 shows the strain - cycle curves at a load of 391MPa at room temperature. The cyclic
+strain amplitude of the specimen increases and reach a steady-state plateau up to 1000 cycles.
+Then after around 10,000 cycles, the amplitude decreases a little, because of material harden-
+ing.The softening increases with the increase of cycles from 10,000 to 50,000 cycles. After that,
+the strain level continues to grow and ﬁnally reach another steady-state again, around 0.48
+19
+==PAGE:30==
+4
+TENSILE AND TENSION FATIGUE BEHAVIOR
+Figure 4.2: The cyclic strain curves at a load of 391 MPa through 500 cycles (a), 5,000 cycles(b), 200,000(c)
+cycles. The miniﬁgure shows the variation after speciﬁc cycles.
+This Fig.4.3 shows the cyclic stress response curves under 500 MPa at room temperature.
+The strain – cycle curves show a steady increase during the ﬁrst 5,000 cycles, indicating the
+hardening process is much shorter than the previous test at the lower load while no material
+softening behavior is observed at 500 MPa. The strain level reached steady- state, around 1.9%,
+and ﬁnally, it broke after 69,721 cycles
+20
+==PAGE:31==
+4
+TENSILE AND TENSION FATIGUE BEHAVIOR
+Figure 4.3: The cyclic strain curves at a load of 500 MPa through 500 cycles (a), 5,000 cycles(b), 69,721(c)
+cycles. The miniﬁgure shows the variation after speciﬁc cycles.
+Fig.4.4 shows the cyclic stress response curves at 600 MPa at room temperature. At this
+load the increase of strain level is more signiﬁcant and no steady-state appears before the sample
+broken, at 8,927 cycles.
+21
+==PAGE:32==
+4
+TENSILE AND TENSION FATIGUE BEHAVIOR
+Figure 4.4: The cyclic strain curves at a load of 600 MPa through 500 cycles (a), 5,000 cycles(b), 8,927(c)
+cycles. The miniﬁgure shows the variation after speciﬁc cycles.
+22
+==PAGE:33==
+4
+TENSILE AND TENSION FATIGUE BEHAVIOR
+4.3
+Fracture topography analysis of the specimens which failed dur-
+ing the tension fatigue tests
+There are two specimens which failed during the tension fatigue tests: 500 MPa 69,721 cycles
+and 600 MPa 8,927 cycles. The fracture topography of these are shown in Fig.4.5 and Fig.4.6,
+separately. In the ﬁgures, it can be seen that the fatigue cracks initiate from the cross-section
+corners of the ﬂat dog-bone specimens, propagate and cause ﬁnal shear fracture. However,
+the crack initiation and propagation area is relatively ﬂat and smooth for the 500 MPa failed
+specimen, compared with the 600 MPa failed specimen.
+Figure 4.5: Cross-section fracture topography of the ﬂat specimen fatigued at a load of 500MPa for 69,721
+cycles, The fat white arrow shows the surface and the dashed black lines represent the boundaries. Sub ﬁgure
+(b), (c) show the crack marked by red.
+Figure 6.3 shows the ﬂat surface cracks close to the fracture surface of the low-cycle fatigue
+failed with a stress of 600MPa and 8,927 cycles. It can be found that there are more micro-
+cracks, which could both pass through and bypass massive pearlite. Similar phenomena have
+been observed by Guan and Yu[36].
+23
+==PAGE:34==
+4
+TENSILE AND TENSION FATIGUE BEHAVIOR
+Figure 4.6: Cross-section fracture topography of the ﬂat specimen fatigued at 600MPa for 8,927 cycles, The
+arrow shows the surface and the dashed black lines represent the boundaries.Figure
+4.4
+Summary
+Tensile and low-cycle fatigue tests were performed using ﬂat dog-bone specimens with a
+square cross section. The fracture topography was observed via a SEM. The following conclu-
+sions can be drawn.
+• The YS and UTS are determined to be 391 and 680 MPa,respectively based on which the
+steel type was found to be 35.
+• Low-cycle fatigue tests were carried out at loads of 391 MPa, 500 MPa and 600 MPa,
+with 500, 5000 and more cycles up to 200,000 or failure. From the strain – cycle fatigue
+curves, both hardening, softening and steady-state regions are observed.
+• The fracture topography shows that the fatigue cracks initiate from the cross-section
+corners of the ﬂat dog-bone specimens, propagate and cause ﬁnal shear fracture.
+24
+==PAGE:35==
+5
+DISLOCATION CELLS IN FLAT DOG-BONE TENSION-FATIGUED SPECIMENS
+5
+Dislocation cells in ﬂat dog-bone tension-fatigued spec-
+imens
+5.1
+EBSD characterization
+The EBSD characterization can show the dislocation cell structures clearly with the right
+coloring, such as band slope coloring.[2] Together with electron channeling contrast (ECC)
+imaging, the band slope (BS) coloring and inverse pole ﬁgure (IPF) coloring are combined to
+show the correspondence between the microstructure and EBSD mapping.
+Fig, 5.2 shows the ECC and EBSD maps of the ﬂat specimen at 391 MPa 200,000 cycles,
+where the clear dislocation cells in ferrite grains are not clearly observed in the BS map. So,
+391 MPa and 200,000 cycles are not enough to form a dislocation cell structure comparable to
+those in the failed ﬁeld sleeper screws. And the characterization of 391 MPa 500 and 5000 cycle
+specimens is dismissed. It is also observed that the ECC and EBSD characterization in X, Y
+and Z directions gives the similar results, which indicates that the characterization in each of
+these directions are almost identical. So, the characterization afterwards mainly chooses the X
+direction, which is also parallel to the fatigue axis and the sleeper screw axis.
+Figure 5.1: The X,Y,Z directions of the specimen, deﬁned to distinguish the 3 samples cut from each
+specimen.
+25
+==PAGE:36==
+5
+DISLOCATION CELLS IN FLAT DOG-BONE TENSION-FATIGUED SPECIMENS
+Figure 5.2: ECC image (left) and EBSD maps with BS (top right) and IPF (down right) coloring of the ﬂat
+specimen under 391 MPa after 200,000 cycles in X direction. The thick dark lines in the BS and IPF maps
+represent high angle grain boundaries (θ15°), and the thin black (BS map) or white (IPF map) lines represent
+the low angle boundary (1°θ0).
+Fig5.3 shows the ECC and EBSD maps of the ﬂat specimen at 600 MPa 8,927 cycles, where
+the clear dislocation cells in ferrite grains are not clearly observed in the BS map. So, 600 MPa
+26
+==PAGE:37==
+5
+DISLOCATION CELLS IN FLAT DOG-BONE TENSION-FATIGUED SPECIMENS
+and 8,927 cycles are not enough to form a dislocation cell structure comparable to those in the
+failed ﬁeld sleeper screws. And the characterization of 600 MPa 500 and 5000 cycle specimens
+is dismissed.
+Figure 5.3: The EBSD of the ﬂat specimen under 600 MPa, after 8,900 cycles in X direction. The thicker
+lines in the band slope map represent the large-angle grain boundary (θ15°), and the ﬁner represent the
+small-angle grain boundary (θ1°).
+27
+==PAGE:38==
+5
+DISLOCATION CELLS IN FLAT DOG-BONE TENSION-FATIGUED SPECIMENS
+Figure 5.4: The EBSD of the ﬂat specimen under 600 MPa, after 8,900 cycles in Y direction. The thicker
+lines in the band slope map represent the large-angle grain boundary (θ15°), and the ﬁner represent the
+small-angle grain boundary (θ2°)
+Fig.5.5 and Fig.5.6 show the ECC and EBSD maps of the ﬂat specimen at 500 MPa 69,721
+cycles, where the clear dislocation cells in ferrite grains are clearly observed in the BS map
+and their size is around 1 µm which is comparable to those in the failed ﬁeld sleeper screw.
+Accordingly, the further characterization is carried out for the ﬂat dog-bone specimen at 500
+28
+==PAGE:39==
+5
+DISLOCATION CELLS IN FLAT DOG-BONE TENSION-FATIGUED SPECIMENS
+MPa 5000 cycles. However, no clear dislocation cell structures in ferrite grains are observed in
+the BS map, as shown in Fig.5.7. So, the characterization of 600 MPa 500 cycle specimen is
+dismissed.
+29
+==PAGE:40==
+5
+DISLOCATION CELLS IN FLAT DOG-BONE TENSION-FATIGUED SPECIMENS
+Figure 5.5: The EBSD of the ﬂat specimen under 500MPa, after 69,000 cycles in X direction. The thicker
+lines in the band slope map represent the large-angle grain boundary (θ15°), and the ﬁner represent the
+small-angle grain boundary (θ2°).
+30
+==PAGE:41==
+5
+DISLOCATION CELLS IN FLAT DOG-BONE TENSION-FATIGUED SPECIMENS
+Figure 5.6: Another EBSD of the ﬂat specimen under 500MPa, after 69,000 cycles in X direction. The
+thicker lines in the band slope map represent the large-angle grain boundary (θ15°), and the ﬁner represent
+the small-angle grain boundary (2°θ).
+31
+==PAGE:42==
+5
+DISLOCATION CELLS IN FLAT DOG-BONE TENSION-FATIGUED SPECIMENS
+Figure 5.7: Figure 7.5 The EBSD of the ﬂat specimen under 500MPa, after 5,000 cycles in X direction. The
+thicker lines in the band slope map represent the large-angle grain boundary (θ15°), and the ﬁner represent
+the small-angle grain boundary (2°θ).
+5.2
+Transmission electron microscopy
+In order to investigate in detail how the dislocation cell structure looks like in the ﬂat speci-
+men under 500 MPa after 69,000 fatigue cycles, TEM characterization is applied and the results
+are shown in Fig.5.8 where around 1 µm dislocation cells with dislocation lines inside are formed
+in the ferrite grains.
+32
+==PAGE:43==
+5
+DISLOCATION CELLS IN FLAT DOG-BONE TENSION-FATIGUED SPECIMENS
+Figure 5.8: TEM micrographs showing dislocation cells with a size around 1 µm.
+5.3
+Summary
+By analyzing and comparing the EBSD and TEM ﬁgures, the following conclusions can be
+drawn:
+• The formation of the target size of dislocation cells needs a proper stress level as well as
+the fatigue cycles.
+• The specimen under 500 MPa, after 69,721 cycles, shows a similar dislocation cell to the
+ﬁeld broken screws. This stress level was selected for the accelerated corrosion fatigue
+experiments afterwards.
+33
+==PAGE:44==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+6
+Normal and accelerated corrosion fatigue behavior
+6.1
+EDX analysis of corrosion products
+Figure 6.1and 6.2 show SEM micrographs of two areas alone the longitudinal section of the
+failed screw. The detected elements are reported in Fig.6.1 and Fig.6.2 and further details can
+be found in the appendix I.
+Figure 6.1: The distribution of selected elements in cross-section area 1 of the failed sleeper screw.
+Figure 6.2: The distribution of selected elements in cross-section area 2 of the failed sleeper screw.
+According to the EDX results, it can be summarized that the fracture surface of the failed
+screw is coated by oxide, which could be α-FeOOH and γ-FeOOH. Basically, the corrosion
+34
+==PAGE:45==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+products consist of Fe and O (1:2). There are few Cl atoms and S atoms detected, which
+indicates the corrosion solution does not need these two elements. But taken into account
+the conductivity, ions of certain concentrations, are required, for example a typical artiﬁcial
+seawater (5.0% NaCl solution by weight).
+6.2
+Design of the corrosion fatigue chamber
+A
+ll requirements from the present corrosion fatigue experiment is described in the following
+Table 6.1
+35
+==PAGE:46==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+Requirements
+Objective
+No leaking from the chamber
+Since the chamber vibrates during the experiment, a method
+should be proposed to prevent the corrosive solution from
+leaking and splash.
+Connection between the chamber
+and the specimen
+According to the design of the specimen and experiment,
+the connection between the chamber and specimen should be
+stable to withstand a force up to 20kN.
+Insulation problem
+Current will be introduced to the device to accelerate
+the corrosion process. The current could aﬀect the control
+system of the testing machine, which must be avoided.
+Corrosion of the chamber
+The chamber, made of steel, could also be aﬀected
+by the current and corrosion solution, which should be
+minimized.
+Installation to the testing machine
+There should be a feasible sequence
+to mount the device.
+Cylindricity, perpendicularity,
+and concentricity errors
+These geometric characteristics inﬂuence the results of
+the experiment since a shear stress could be introduced,
+which should be avoided/minimized.
+Electrode arrangement
+Enough space for the electrodes and the cables.
+Connection between the lid
+and the chamber
+Since the chamber vibrates during the fatigue test,
+the lid should be solidly ﬁxed.
+Chamber assembly
+The assembly process should be carefully considered,
+and tolerances deﬁned accordingly.
+Power supply
+Diﬀerent types of power supply, with diﬀerent electrodes,
+need diﬀerent space to enable easy mounting.
+Table 6.1: Speciﬁc requirements to manufacture a feasible chamber
+6.2.1
+The original model
+As Fig6.3shows, the sealing ring, which is mounted at the bottom of the chamber prevent
+leaking and the round specimen was installed and ﬁxed by two screws to the couplings. The
+thickness of the coupling is 25mm to withstand the force from the clamps. The specimen is
+mounted to the bottom chamber by the thread and coated with the nail polish to prevent the
+36
+==PAGE:47==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+corrosion solution to ﬂow in. There are two holes on the cover which allow the electrodes to
+pass and connect to the specimen. However, considering the assembly of the whole set-up,
+there are six parts, including the specimen, which could lead to issues concerning concentricity
+and thus introduction of shear strains. In order to solve these problems, this original model of
+the chamber was redesigned.
+Figure 6.3: Original design of the chamber with couplings and sealing rings.
+37
+==PAGE:48==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+Figure 6.4: The original design with the specimen mounted. The screw joint is circled
+6.2.2
+The ﬁnal chamber model
+The following changes were applied to simplify the original design (see Fig.6.5 and Fig.6.6
+and the drawings in Appendix.
+• The couplings were removed and replaced by wedges which are appropriate for the round
+specimen geometry.
+• The bottom of the chamber was closed so that the sealing ring is not required any more.
+• After closing the lid, the corrosion solution can barely get out from the chamber and
+due to the raised face ﬂange structure , it cannot move or vibrate during the fatigue
+experiment.
+• The inner diameter of the chamber was increased to 180 mm which means the size of
+electrodes could be as large as 50 mm.
+• The thread part to connect the chamber and specimen is kept since it can hold the round
+specimen and be mounted to the testing machine. Besides, the thread should be as precise
+as possible to avoid collision with the specimen.
+38
+==PAGE:49==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+• A hole is located on the lid, which is a bit larger than the specimen, so that the specimen
+can go through and be clamped.
+• The inner cavity of the chamber is coated by the epoxy (Epodex-pro system), with a
+thickness which can reach 2-4 mm.
+The inside of the lid and the two holes for the
+electrodes need to be coated as well. It takes 2 days to harden and dry. The epoxy
+coating can not only prevent the current going through to the testing machine, but also
+protect the chamber from corrosion due to the solution.
+• The upper part of the specimen is covered by a heat shrink tube to keep insulation.
+However, it is very hard to insulate the chamber at the threaded place since the specimen
+can’t be screwed on if it is coated by epoxy or nail polish. As this introduces some lack of
+precision. In future experiments, ﬂat surfaces would be preferable and the coating could
+be by a hot-melt adhesive, which will ensure good insulation.
+• The sequence to mount the device is: install the chamber to the MTS machine →screw
+the specimen on →seal the joint with nail polish →mount the electrodes →pour the
+corrosion solution into the chamber →install the lid →clamped by the upper wedges →
+start the power supply and the fatigue program.
+• Necessary chamfers are designed so that the lid and the specimen can be installed easily.
+39
+==PAGE:50==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+Figure 6.5: The 3D view of the chamber with lid and specimen mounted
+Figure 6.6: The section view of the assembled chamber device
+40
+==PAGE:51==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+Figure 6.7: The photo of the chamber with specimen mounted. (a) Photo from top view with lid on,
+(b)photo from top view with amounted specimen, without lid, (c) the specimen is screwed on by the thread
+6.2.3
+Further improvement
+When the device was to be mounted to the testing machine SHY-028, it was found that
+the bottom is too thick. In order to solve this problem, some material has been removed as
+the drawing in ﬁgure 6.11 shows. The introduced ﬂat surface make it easier to insulate at the
+bottom with hot-melt adhesive.
+But this improvement also brought some new problems related to concentricity. The device
+41
+==PAGE:52==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+can automatic center itself if the surface is cylindrical, while the current ﬂat surface cannot easily
+be centered. Therefore, some of the specimens broke prematurely due to shear stress, generated
+by the unsatisfactory alignment. The deformation, invisible to the human eye, resulted in failure
+close to the clamp.
+Figure 6.8: The chamber with mounted specimen and corrosion solution. The inner was coated by epoxy
+resin.
+42
+==PAGE:53==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+Figure 6.9: The chamber with lid on, was mounted to the test machine, MTS SHY- 027
+Figure 6.10: The amperemeter and power supply used in this experiment.
+43
+==PAGE:54==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+Figure 6.11: The drawing to show the material being removed
+44
+==PAGE:55==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+6.3
+Strain – curves from corrosion fatigue test
+Fig.6.13 and Fig.6.14 are the strain – cycle curves recorded for accelerated and normal cor-
+rosion fatigue tests. The ﬁrst feature to notice, is that the specimen with current broke after
+33,960 cycles while this number for the normal one without current is 121,554. Considering the
+specimen in this experiment is a round one, no sharp corner could cause stress concentration,
+and the life cycle number is higher than the previous 69,721 for the ﬂat dog-bone samples,
+Figure 6.12: Strain-cycle curve of the specimen under 500 MPa, 4 mA, 2 Hz, broken after 33960 cycles.
+The strain – cycle curves show a steady increase during the ﬁrst 500 cycles, and continue
+to grow to 1.75% until the break. A similar trend can be found in ﬁgure 6.14, where the round
+specimen broke after around 120000 cycles. It is interesting that the strain level increase is
+similar in these two specimens but the life cycle numbers are quite diﬀerent. This could indicate
+that crack initiation and propagation was faster due to the electrochemical reaction.
+45
+==PAGE:56==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+Figure 6.13: The Strain-cycle curve of the specimen under 500 MPa, 2 Hz, without current, broken after
+12,1554 cycles.
+6.4
+Fracture surface analysis of the broken specimens
+Fig.6.14 shows the fracture surfaces and it can be seen that the surface of the sample tested
+with the current is very similar to the fracture surface of ﬁeld screw, where 3 signiﬁcant crack
+areas generated. However, the crack surface of the specimen tested without current is ﬂatter
+indicating the one with current is similar to the real ﬁeld screws. And the current also plays a
+critical role in this process. From Fig.6.15, it can be found that there are a lot of micro-crack.
+A similar phenomena was also found in the experiment of T.Anita.[15]
+46
+==PAGE:57==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+Figure 6.14: The fracture surfaces of the specimen with current(a), and without current (b)
+Figure 6.15: Cross-section fracture topography of round specimen at 500 MPa 33,960 cycles , with current.
+(b) and (c) show the micro-cracks marked by red.
+47
+==PAGE:58==
+6
+NORMAL AND ACCELERATED CORROSION FATIGUE BEHAVIOR
+6.5
+Summary
+Normal and accelerated corrosion fatigue tests were carried out using round dog-bone speci-
+mens, with a well-designed chamber. The fracture topography was observed by a SEM and the
+conclusions are as follows.
+• Cl and S elements were not detected by EDX and a 5 wt% NaCl was selected for the
+present tests as conductivity is needed.
+• A chamber to contain the corrosion solution and to mount the specimen was designed
+and worked properly during the experiments.
+• The fracture topography of the accelerated corrosion fatigue specimen is similar to the
+ﬁeld screws, and many micro-cracks were observed.
+• It is interesting that the macro strain level increase is similar in these two specimens
+but the life cycle numbers are quite diﬀerent. This suggests that crack initiation and
+propagation were faster due to the electrochemical reaction in the accelerated corrosion
+fatigue specimen.
+48
+==PAGE:59==
+7
+CONCLUSIONS
+7
+Conclusions
+The type of the steel was distinguished by a simple tensile test to be of the 35 type. Flat
+specimens were prepared from virgin screws and used in the subsequent low-cycle fatigue test.
+It has been demonstrated that the state of the failed sleeper screw can be simulated by certain
+stress level and cycles. The cycles vs strain curve show that with increasing number of cycles,
+hardening and softening behavior occurs until the ﬁnal break.
+By fracture topography analysis, three signiﬁcant crack areas were detected. Most of the
+cracks originated at the sharp corners and more than one main crack initiation area exist.
+The EBSD results of ﬂat dog-bone tests indicate the formation of dislocation cells and
+their size are inﬂuenced by the stress level and number of cycles. It turned out to be possible to
+reach the aim namely to ﬁnd the appropriate stress level and cycles, to form a similar dislocation
+cell (around 1 µm) as in the failed ﬁeld sleeper screw. The best match was 500 MPa and 69,000
+cycles.
+The TEM images veriﬁed the results of EBSD showing clearly the dislocation cell structure
+with cells of around 1 µm.
+Based on these data and information, the further experiment – accelerated corrosion
+fatigue experiment was optimized. One of the most critical parts of this project was to man-
+ufacture a usable device for these experiments. The results was simple but practical chamber
+design. Two samples were tested by normal and accelerated corrosion fatigue. They revealed
+totally diﬀerent surface characteristics and diﬀerent number of cycles to break. Many inner
+micro-cracks were detected on the fracture surface of the specimen tested with current, which
+is similar to what is observed in the failed ﬁeld screw. It is interesting that the increase in
+macro strain level is similar in these two specimens but the life time ( 121,554 and 33,560
+cycles for the normal and accelerated corrosion fatigue tests, respectively) are quite diﬀerent.
+This suggests that local crack initiation and propagation are faster due to the electrochemical
+reaction in the accelerated corrosion fatigue specimen.
+49
+==PAGE:60==
+8
+OUTLOOK
+8
+Outlook
+The present project successfully realized the initial aims of the projects. However, there are
+still many topics for the further research:
+• The chamber could still be improved especially the concentricity error, if the specimen
+could be machined smaller and the bottom cylinder part could be saved.
+• The S-N (stress - life cycles) curves for normal and accelerated tension corrosion fatigue
+tests, should be compared with the dry tension fatigue test.
+• The relation between the surface intrusion/extrusion, surface roughness, crack initiation
+and propagation, fatigue stresses and the life cycles of the screw material could be inves-
+tigated.
+• A comparative study of the failed mechanisms of the above three types of fatigue tests.
+• Use the knowledge from more lab experiments to prolong the life of ﬁeld screws.
+50
+==PAGE:61==
+REFERENCES
+References
+[1] Chester, M. and Horvath, A., 2010. Life-cycle assessment of high-speed rail: the case of
+California. Environmental Research Letters, 5(1), p.014003.
+[2] Zhang X., Zhang Y., Rasmussen C.J., Lange M.T., Juul Jensen D. Analysis of Sleeper Screw
+Failures. In: Galeazzi R., Kjartansson Danielsen H., Kjær Ersbøll B., Juul Jensen D., Santos
+I. (eds) Intelligent Quality Assessment of Railway Switches and Crossings. Springer Series
+in Reliability Engineering. 2021, Springer, Cham.
+[3] Miner M A. Cumulative damage in fatigue [J]. J Appl Mech, 1945, 12(3): A159-164
+[4] Paris, P. and Erdogan, F., 1963. A Critical Analysis of Crack Propagation Laws. Journal
+of Basic Engineering, 85(4), pp.528-533.
+[5] Manson, S., 1965. Fatigue: A complex subject—Some simple approximations. Experimental
+Mechanics, 5(4), pp.193-226.
+[6] Duyi, Y. and Zhenlin, W., 2001. Change characteristics of static mechanical property pa-
+rameters and dislocation structures of 45 medium carbon structural steel during fatigue
+failure process. Materials Science and Engineering: A, 297(1-2), pp.54-61
+[7] Zhang, X., Hansen, N., Gao, Y. and Huang, X., 2012. Hall–Petch and dislocation strength-
+ening in graded nanostructured steel. Acta Materialia, 60(16), pp.5933-5943.
+[8] Alain, R., Violan, P. and Mendez, J., 1997. Low cycle fatigue behavior in vacuum of a 316L
+type austenitic stainless steel between 20 and 600°C Part I: Fatigue resistance and cyclic
+behavior. Materials Science and Engineering: A, 229(1-2), pp.87-94.
+[9] Bateni, M., Szpunar, J., Wang, X. and Li, D., 2006. Wear and corrosion wear of medium
+carbon steel and 304 stainless steel. Wear, 260(1-2), pp.116-122.
+[10] Braun R., “Slow strain rate testing of aluminum alloy 7050 in diﬀerent tempers using
+various synthetic environments”, Corrosion, 1997, 53(06).
+[11] I. M. AUSTEN and E. F. WALKER: ’Mechanisms of environment sensitive cracking of
+materials’,1978, p. 334.
+51
+==PAGE:62==
+REFERENCES
+[12] Unigovski, Y., Lothongkum, G., Gutman, E., Alush, D. and Cohen, R., 2009. Low-cycle
+fatigue behavior of 316L-type stainless steel in chloride solutions. Corrosion Science, 51(12),
+pp.3014-3020.
+[13] Chester, M. and Horvath, A., 2010. Life-cycle assessment of high-speed rail: the case of
+California. Environmental Research Letters, 5(1), p.014003.
+[14] K. H. Lo, P. Mummery and D. J. Buttle, Characterisation of residual principal stresses
+and their implications on failure of railway rails, Engineering Failure Analysis 17 (2010)
+1273-1284
+[15] Anita, T., Pujar, M., Shaikh, H., Dayal, R. and Khatak, H., 2006. Assessment of stress
+corrosion crack initiation and propagation in AISI type 316 stainless steel by electrochemical
+noise technique. Corrosion Science, 48(9), pp.2689-2710.
+[16] J. Kelleher, M. B. Prime, D. Buttle, P. M. Mummery, P. J. Webster, J. Shackleton and
+P. J. Withers, The measurement of residual stress in railway rails by diﬀraction and other
+methods, Journal of Neutron Research 11(4) 2003 187-193.
+[17] Shariﬁ, Y. and Rahgozar, R., 2009. Fatigue Notch Factor in Steel Bridges Due to Corrosion.
+Archives of Civil and Mechanical Engineering, 9(4), pp.75-83.
+[18] H. Zhou, Metal Material Strength, 1st edn, Chinese Science Press, Beijing, 1989, pp.
+105–162.
+[19] C. Chen, B. Lv, F. Wang and F. Zhang, Low-cycle fatigue behaviors of pre-hardening
+Hadﬁeld steel, Materials Science Engineering A 695 2017 144-153.
+[20] Contreras, A., Hern´andez, S., Orozco-Cruz, R. and Galvan-Mart´ınez, R., 2012. Mechanical
+and environmental eﬀects on stress corrosion cracking of low carbon pipeline steel in a soil
+solution. Materials Design, 35, pp.281-289.
+[21] Al-Maraﬁe, A., Malik, H., Abdo, M. and Awwal, M., 1986. Corrosion fatigue of some
+carbon steels in main aqueous environments in Kuwait. Steel Research, 57(10), pp.535-538.
+[22] SV. Lojda. crew spike pullout test of recycled plastic. International Journal of Advance
+Research in Science and Engineering Vol. No.4, September 2015
+[23] SˇZDC, Pˇredpis S4 ˇZelezniˇcn´ı svrˇsek, SˇZDC, OTH, Prague, 2008
+52
+==PAGE:63==
+REFERENCES
+[24] Dersch, M., Silva, M., Edwards, J., Lima, A. and Roadcap, T., 2020. Analytical Method
+to Estimate Railroad Spike Fastener Stress. Transportation Research Record: Journal of
+the Transportation Research Board, 2674(11), pp.379-389.
+[25] J. W. Ringsberg, Life prediction of rolling contact fatigue crack initiation, International
+Journal of Fatigue 23(7) (2001) 575-586.
+[26] Zhang X, Hansen N, Godfrey A et. al (2018) Structure and strength of sub-100 nm lamellar
+structures in cold-drawn pearlitic steel wire Mater Sci Technol 34: 794–808.
+[27] Screws, R., 2021. 5.6 Grade 35 Railway Sleeper Screws Spikes Carbon Steel Coach Screws.
+[online] Railwayfastenings.com. Available at:
+¡http://www.railwayfastenings.com/sale-
+10109287-5-6-grade-35-railway-sleeper-screws-spikes-carbon-steel-coach-screws.html¿
+[Ac-
+cessed 17 July 2021].
+[28] Railway-fastener.com. 2021. General Speciﬁcations of rail fastening, rail spike,rail bolt,etc,
+Product. [online] Available at:
+¡http://www.railway-fastener.com/rexinwen/news˙show-
+112.html¿ [Accessed 17 July 2021].
+[29] L.F. Xiao, J.X. Peng, J.R. Zhang, C.S. Cai Mechanical properties of corroded high perfor-
+mance steel specimens based on 3D scanning Adv. Steel Constr., 15 (2) (2019)
+[30] L. Xiao, J. Peng, J. Zhang, Y. Ma, C.S. Cai, Comparative assessment of mechanical
+properties of HPS between electrochemical corrosion and spray corrosion, Construction and
+Building Materials, Volume 237, 2020
+[31] A. J. Wilkinson, T. Ben. Britton, Strains, planes, and EBSD in materials science, Materials
+Today, Volume 15, Issue 9, 2012, Pages 366-376,ISSN 1369-7021
+[32] Christiansen, G., Bowen, J. and Lindbo, J., . Electrolytic preparation of metallic thin foils
+with large electron-transparent regions. Materials Characterization, 2002 49(4), pp.331-335.
+[33] Samuelson DA. Energy dispersive Xray microanalysis. Methods Mol Biol 1998;108:413-24.
+[34] Fernandez-Segura E, Warley A. Electron probe X-ray microanalysis for the study of cell
+physiology. Methods Cell Biol 2008;88:19-43
+[35] Pol´ak, J., Klesnil, M. and Luk´aˇs, P., 1977. On the cyclic stress-strain curve evaluation in
+low cycle fatigue. Materials Science and Engineering, 28(1), pp.109-117.
+53
+==PAGE:64==
+REFERENCES
+[36] Mingfei Guan, Hao Yu, Fatigue crack growth behaviors in hot-rolled low carbon steels: A
+comparison between ferrite–pearlite and ferrite–bainite microstructures,Materials Science
+and Engineering: A, Volume 559, 2013, Pages 875-881,
+[37] ASTME8-E8M-13a, Standard Test Methods for Tension Testing of Metallic Materials
+[38] P. Zheng, Ran Chen et,al, On the standards and practices for miniaturized tensile test –
+A review, Fusion Engineering and Design, Volume 161, 2020
+[39] V. Igwemezie, Philip Dirisu, Ali Mehmanparast, Critical assessment of the fatigue crack
+growth rate sensitivity to material microstructure in ferrite-pearlite steels in air and marine
+environment, Materials Science and Engineering: A, Volume 754, 2019, Pages 750-765,
+[40] Shimadzu.ch. 2021. EDX-7000/8000/8100 — SHIMADZU EUROPA. [online] Available at:
+¡https://www.shimadzu.ch/edx-70008000¿ [Accessed 17 July 2021].
+54
+==PAGE:65==
+REFERENCES
+55
+==PAGE:66==
+9
+APPENDIX
+9
+Appendix
+9.1
+Reports from EDX
+56
+==PAGE:67==
+9
+APPENDIX
+57
+==PAGE:68==
+9
+APPENDIX
+58
+==PAGE:69==
+9
+APPENDIX
+59
+==PAGE:70==
+9
+APPENDIX
+9.2
+Drawings
+60
+==PAGE:71==
+FIRST ANGLE PROJECTION
+ 
+190,00 
+ 
+230,00 
+ 5,00 
+ 60,00 
+ 110,00 
+ 
+50,00 
+A
+A
+ 
+180,00 
+ 52,00 
+B
+ Delecirkel: R106,00 
+ 
+8,00   4 stk. 
+ 
+18 
++
+-
+0,03
+0,01 
+ 
+16,05 
+ M16 x 2 
+ 3,00 
+ 8,50 
+ 33,00 
+DETAIL B
+SCALE 1 : 1
+MATERIAL:
+REVISION
+DESCRIPTION:
+TITLE:
+SCALE: 1:2
+SHEET 1 OF 1
+A3
+WEIGHT:  G
+1
+SHEET SIZE:
+A
+A
+B
+B
+C
+C
+D
+D
+E
+E
+F
+F
+8
+8
+7
+7
+6
+6
+5
+5
+4
+4
+3
+3
+2
+2
+1
+1
+FILE NAME:
+Container.sldprt
+GENERAL TOLERANCES:
+ISO 2768-1m
+==PAGE:72==
+FIRST ANGLE PROJECTION
+ 
+20,00  2 stk. 
+ 
+18,00 
+ 
+8,00  4 stk. 
+ 
+120,00 
+ 
+212,00 
+A
+A
+ 5,00 
+ 10,00 
+ 
+180,00 
+ 
+230,00 
+MATERIAL:
+REVISION
+DESCRIPTION:
+TITLE:
+SCALE: 1:2
+SHEET 1 OF 1
+A3
+WEIGHT:  G
+1
+SHEET SIZE:
+A
+A
+B
+B
+C
+C
+D
+D
+E
+E
+F
+F
+8
+8
+7
+7
+6
+6
+5
+5
+4
+4
+3
+3
+2
+2
+1
+1
+FILE NAME:
+Lid.sldprt
+GENERAL TOLERANCES:
+ISO 2768-1m
+AUTHOR:

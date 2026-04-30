@@ -1,0 +1,2448 @@
+==PAGE:1==
+Udvikling af webplatform til bygningspas
+Kandidatspeciale
+Frederik Goth
+DTU Civil Engineering
+Department of Civil Engineering
+==PAGE:2==
+Titel:
+Udvikling af webplatform til bygningspas
+Forfatter:
+Frederik Goth (s163823)
+Projekttype:
+Kandidatspeciale Juni, 2021
+Studieretning:
+Bygningsdesign
+ECTS:
+30
+Vejleder:
+Kristoffer Negendahl
+Adjunkt, DTU BYG ­ Institut for Byggeri og Anlæg
+Danmarks Tekniske Universitet
+==PAGE:3==
+Abstract
+The danish building industry is responsible for a large amount of the waste produced in
+Denmark. If such waste could be reused instead of recycled, for example via downcycling,
+a large amount of climate pollution could be avoided. Material­ and building passports
+are a way of potentially enabling further reuseability of building materials by documenting
+exactly which materials are contained in a building and the properties of these. This would
+allow more thorough deconstruction of buildings and would help maintain the condition of
+the building materials.
+The purpose of this project was to attempt an implementation of a tool that enabled the
+use of material­ and building passports on an easily accessible platform. Certain criteria
+were defined in order to act as guidelines for the development of the tool and to act as
+achievable goals. The functionality of the resulting tool is described and the thoughts and
+considerations behind these are documented as well. Two cases are shown, whereby the
+different methods of the tool are displayed. It is discussed whether the previously defined
+criteria of the tool are respected and it is determined that these are satisfied.
+In conclusion, the development has resulted in a functioning tool that allows the user to
+determine material amounts of a building as well as produce a building passport with
+corresponding material passports.
+Udvikling af webplatform til bygningspas
+ii
+==PAGE:4==
+Indhold
+Abstract . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ii
+1
+Introduktion
+1
+1.1
+Formål . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+2
+Baggrund
+3
+2.1
+Materiale­ & bygningspas . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+2.2
+Materialegenbrug . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+3
+Metode
+11
+3.1
+Kriterier . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+4
+Resultater & Analyse
+14
+4.1
+Værktøjet . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+4.2
+Analytisk gennemgang . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+5
+Cases
+36
+5.1
+Case 1 (Chr Winthers Vej 20B, 2800)
+. . . . . . . . . . . . . . . . . . . . . 36
+5.2
+Case 2 (Klintevej 18, 4000) . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+6
+Diskussion
+42
+6.1
+Kriterier . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+6.2
+Mangler . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+6.3
+Nye funktioner
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+6.4
+Motivation og forretning . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+6.5
+Metode
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+7
+Konklusion
+47
+8
+Bilag
+48
+8.1
+Materialepas
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+Bibliography
+53
+Udvikling af webplatform til bygningspas
+iii
+==PAGE:5==
+1
+Introduktion
+Den danske byggebranche er blevet en storforbruger af ressourcer. 30 procent af det af­
+fald der produceres i Danmark stammer fra byggesektoren. Ud af disse 30 procent bliver
+84 procent genanvendt. Dette betyder, at den danske byggesektor står for en meget stor
+andel af de samlede danske klimaudledninger. Genanvendelse på de 84 procent består
+dog hovedsageligt af en downcycling af byggematerialerne, hvilket er problematisk, da
+dette ikke er en effektiv måde at genanvende materialer. Et eksempel på downcycling
+kunne være knusning af beton. Den indlejrede værdi i materialer kan ved downcycling
+gå tabt, og der vil stadig være et meget stort forbrug af virgine materialer til at producere
+nye byggematerialer. Hvis det blev mere udbredt at rykke affaldshåndtering af bygge­
+materialer op i affaldshierarkiet, og derved blive i stand til at genbruge byggeaffaldet eller
+genbruge det til produktion af nye materialer, ville der kunne opnås langt større samfunds­
+og miljømæssige gevinster. Hvis et materiale kan genbruges i stedet for at et nyt produ­
+ceres, vil den potentielle klimaudledning samt råstofforbrug af det nye materiale spares.
+Ideelt set bør der i stedet for 84 procent materialenyttiggørelse af byggematerialer være
+84 procent genbrug af disse [1].
+Denne omstilling sker ikke af sig selv og vil kræve ændringer i byggebranchen. En måde
+hvorpå det muliggøres at forøge mængden af genbrug af byggematerialer er ved imple­
+mentering af materiale­ og bygningspas. Bygningspasset vil vise præcis hvilke materialer
+bygningen indeholder, og således give et indblik i hvordan en bygning kunne deles op i
+forskellige byggematerialer til genbrug. Bygningspasset skal referere til materialepas, der
+vil informere om deltaljerne omkring hvert specifikke materiale der indgår i bygningen.
+Disse detaljer inkluderer muligheder for genanvendelse og indhold af miljøskadelige stof­
+fer. Kort sagt er materialepas en holder af information omkring et enkelt materiale, hvor
+alle byggematerialer ideelt set skulle have deres eget materialepas, mens et bygningspas
+er holder af materialepas. Materiale­ og bygningspas er altså et sammenhængende sy­
+stem, der ville kunne revolutionere datamængden omkring bygningers materialeindhold
+både mængdemæssigt, men også detaljemæssigt.
+For at gøre bygningspasset udbredt, skal det være let tilgængeligt. Der vil derfor i dette
+projekt være fokus på implementering af en metode til fremstilling af bygningspas, der er
+nem at anvende samt problemfri at tilgå. Formålet er altså at skabe et nemt tilgængeligt
+værktøj til klassificering af bygningers materialeindhold, hvilket vil kunne gavne den dan­
+ske byggeindustri ved at muliggøre en større genbrugsprocent af byggeaffaldet. Denne
+klassificering er dog problematisk, fordi mængden af data omkring bygningers geometri
+samt materialeindhold på nuværende tidspunkt er meget begrænset. Det skal altså mu­
+liggøres at lave en estimering af opbygningen af eksisterende bygninger på baggrund af
+vag data. Dette betyder at selve implementeringen af bygningspasset på en tilgængelig
+platform er vigtigere end præcisionen af resultaterne deraf. Projektets formål er således
+mere at skabe en fortolkning og implementering af hvordan et værktøj til udarbejdning af
+bygningspas kunne se ud, end at skabe et værktøj med enorm præcision og lav usikker­
+hed.
+For at gøre værktøjet let tilgængeligt, skal det implementeres på en udbredt platform. In­
+ternettet er i dag ekstremt alment og størstedelen af Danmarks befolkning har adgang til
+dette. Det vil derfor være ideelt at skabe en webplatform for værktøjet, således tilgænge­
+ligheden maksimeres.
+Udvikling af webplatform til bygningspas
+1
+==PAGE:6==
+1.1
+Formål
+Projektets formål er en udvikling af web­værktøj til registrering og datahåndtering af materiale­
+og bygningspas, med målet at skabe en lettilgængelig platform for at registrere mængder
+og typer af materialer i danske byggerier. Det resulterende værktøj fokuserer på koncep­
+tuel tilfredsstillelse frem for eksakte materialemængder. Projektet tager udgangspunkt i
+pasmodeller udviklet på DTU.
+Udvikling af webplatform til bygningspas
+2
+==PAGE:7==
+2
+Baggrund
+2.1
+Materiale- & bygningspas
+Et bygningspas er en registrering og samling af hvilke materialer en bygning er opbyg­
+get af. Dette kan både inkludere nybyggeri såvel som renoveringer af ældre bygninger
+uden et etableret bygningspas. En renovering vil medføre muligheden for at implemente­
+re bygningspasset for de bygningsdele renoveringen omfatter. Selve registreringsdelen
+af bygningspasset indeholder informationer om hvilke materialer de forskellige dele af
+bygningen er bygget af, en identifikation af disse materialer, samt deres placering i byg­
+ningen. Formålet med bygningspasset er udelukkende denne identifikation af produkter
+og materialer, da det alene ikke indeholder produktoplysninger. Bygningspasset skal linke
+til materialepas, der vil være informationsholdere. Det vil sige, at bygningspasset er en
+form for opsummering uden specifikke detaljer, og vil optimalt set indeholde oplysninger
+om udskiftning og vedligehold af byggematerialerne i bygningen gennem dens levetid [2].
+Et materialepas skal indeholde oplysninger og detaljer om ét enkelt byggemateriale/pro­
+dukt. Disse oplysninger kan inkludere identifikation, massefylde, klimapåvirkning, proble­
+matiske stoffer og genbrug. Et materialepas skal kunne stå alene, som et pas med pro­
+duktoplysninger, og vil kunne indgå i flere forskellige bygningspas. Materialepasset in­
+deholder en delmængde af alle de eksisterende oplysninger der findes om et specifikt
+byggemateriale/produkt, herunder indhold af genanvendte materialer [2].
+Figur 2.1: Forholdet mellem materiale­ og bygningspas
+Figur 2.1 viser sammenhængen mellem materialepasset og bygningspasset. Materiale­
+passene indeholder informationer omkring specifikke byggematerialer, mens bygnings­
+passet indeholder referencer til disse materialepas. Hvis en bruger kigger på bygnings­
+Udvikling af webplatform til bygningspas
+3
+==PAGE:8==
+passet vil personen kunne læse sig til præcis de byggematerialer der er brugt, og slå disse
+op i deres individuelle materialepas.
+Formålet med disse materiale­ og bygningspas er at give bedre mulighed for genanven­
+delse/genbrug af byggematerialer, forebygge byggeaffald ved vedligehold og renovering,
+reducere udgifter til vedligehold og renovering samt at give bedre mulighed for håndtering
+og fjernelse af materialer med problematiske stoffer [2]. Dette er repræsenteret på figur
+2.2.
+Figur 2.2: Den cirkulære værdikæde. Kilde: Teknologisk institut
+1. Materialepas
+• Indbygning af informationer om nye byggematerialer. Inkl. genbrugte og gen­
+anvendte materialer.
+2. Bygningspas
+• Indbygning af information om anvendte byggematerialer. Dette gælder nybyg­
+geri og renovering samt drift og vedligehold
+3. Miljø og ressourcekortlægning
+Udvikling af webplatform til bygningspas
+4
+==PAGE:9==
+• Kortlægning af information til brug for markedsplatforme ­/ nedrivning
+4. Markedsplatforme
+• Køb og salg af byggematerialer til genbrug og genanveldelse. Opbevaring af
+materialer samt salg af materialer.
+5. Affaldsbehandling
+• Bearbarbejdning af affald til genbrug eller genanvendelse
+Bygnings­ og materialepas vil være deklarationer. Det vil sige, at de indeholder data, og
+giver informationer om bygninger samt materialer. Passene er ikke i sig selv en vurdering
+af bygningens kvalitet ­ om den er god eller dårlig. De har dog mulighed for at indgå i
+eksempelvis bæredygtighedsordninger for byggeri, hvor bygninger ville kunne blive be­
+dømt på baggrund af, om der er etableret et bygningspas for den specifikke bygning eller
+materialerne der indgår i bygningen kan blive bedømt på baggrund af oplysningerne i ma­
+terialepassene. Disse pas kan altså bruges til analyser, men er ikke et kvalitetsstempel i
+sig selv.
+Følgende overvejelser anbefales at blive medtaget i materiale­ og bygningspas generelt
+[3]:
+1. Der etableres et nationalt bygnings­ og materialepas, som har umiddelbar værdi
+bredt i byggebranchen, og som leder mod et mere cirkulært byggeri på længere
+sigt.
+2. Der skelnes mellem bygningspas og materialepas.
+3. Et materialepas defineres som en deklaration og ’holder af data om materialet’.
+4. Et bygningspas defineres som en deklaration og ’holder af materialepas’ for bygge­
+varer
+5. Materialepas baseres på én af de deklarerende materialepasmodeller: det svenske
+eBVD (Byggvarudeklaration, 2021) eller danske SUSb (Sustainable Build, 2021).
+6. Bygningspas opbygges fra grunden.
+7. Bygnings­ og materialepas følger bygningen henholdsvis byggevaren gennem hele
+dennes levetid.
+2.1.1
+Materialepas
+Som førnævnt er materialepas en deklaration, som indeholder detaljer om ét enkelt byg­
+gemateriale. En række anbefalinger er blevet opstillet for materialepasset, hvilket har til
+formål at gøre et potentielt materialepas robust. Det anbefales, at materialepas for nye
+byggevarer [3]:
+• Baseres på en fast og ufravigelig datamodel, som rummer mulighed for obligatorisk
+indhold og frivilligt indhold.
+• Indeholder alle informationer om materialets indhold og egenskaber; herunder:
+– Miljø­ og klimapåvirkning
+– Kemi og sundhed
+– Cirkularitet
+– Tekniske egenskaber
+Udvikling af webplatform til bygningspas
+5
+==PAGE:10==
+• Deklareres af materialeproducenten, fx via en applikation/indberetningssoftware.
+• Skal kunne verificeres af en tredjepart (ej obligatorisk), og information herom skal
+fremgå af materialepasset
+• Rummer mulighed for link til eksisterende deklarationer og lovpligtige optegnelser, fx
+REACH eller CE­mærkninger, så materialepasset er en ’one­point­of­entry’ til disse.
+• Kan understøttes af fysiske mærker, som følger den pågældende byggevare, fx
+QRkoder, fysiske sporstoffer, stregkoder, RFID­tags eller fysisk dokumentation.
+• Er statisk og ikke ændres under byggevarens levetid, men ved fx vedligehold sup­
+pleres bygningspasset med ekstra materialepas for de nye byggevarer, fx overfla­
+debehandling
+Det anbefales, at materialepas for nye byggevarer:
+• Svarer til materialepas for nye byggevarer, idet:
+– Mængden af obligatoriske informationer reduceres.
+– Der skal fremgå information om materialepassets oprindelse samt kvaliteten
+og oprindelse af de indgående informationer
+• Deklareres af bygningsejeren ved renovering og nedrivning eller frivilligt under byg­
+ningens brug.
+Et forslag til et materialepas er udviklet af Lotte Bjerregaard Jensen, Kristoffer Negendahl
+og Jan Karlshøj [3]. Da der i dette projekt (altså Udvikling af webplatform til bygnings­
+pas) er fokus på implementering af materiale­ og bygningspas, og ikke på udviklingen af
+indholdet i disse, vil der tages udgangspunkt i dette forslag. Materialepasset indeholder
+følgende oplysninger inddelt i afsnit:
+• Grunddata, der beskriver basal data om materialet såsom produktnavnet, identifi­
+kationsnumre, varebeskrivelse, vægt, størrelse, etc.
+• Leverandøroplysninger, herunder producent, adresse, kontaktoplysninger og cer­
+tificeringer.
+• Produktindhold, herunder sikkerhedsblade, uafhængige certificeringer, miljøvare­
+deklarationer, EPD data samt genanvendelsesgrad.
+• Indhold, der beskriver bygningsmaterialets opbygning af råmaterialer, indholdsstof­
+fer, SCIP­id, og status på REACH­liste.
+• Genbrugsvarer, der beskriver hvor stor en andel af produktet der har været gen­
+brugt.
+• Kemisk behandling, der beskriver om komponenter der indgår i byggevaren har
+været/er kemisk behandlet og klassificering af disse.
+• Kemisk ændring, der beskriver om byggevaren ændrer kemisk sammensætning
+efter byggeprocessen.
+• Elektronik, der beskriver om byggevaren indeholder elektriske komponenter.
+• Produktionsfase, der beskriver råvarer og kemiske stoffer anvendt i produktions­
+fasen.
+• Distribution, der beskriver emballagen.
+Udvikling af webplatform til bygningspas
+6
+==PAGE:11==
+• Byggefase, der beskriver særlige krav ved eksempelvis opbevaring eller brug og
+vedligehold.
+• Brugsfase, der beskriver levetiden af byggevaren.
+• Emissioner, der beskriver byggevarens klimapåvirkning og andre emissioner, her­
+under certificeringer, energimærkning, brandklasse, røgklasse, etc.
+• Ressourcepotentiale, der beskriver mulighed for nedrivning/demontering.
+• Genvinding og bortskaffelse, der beskriver muligheden for genbrug af byggeva­
+ren.
+• Tekniske egenskaber, der beskriver tekniske detaljer ved byggevaren, herunder
+lydtekniske egenskaber, R­værdi, g­værdi, termiske egenskaber, absorption etc.
+Et eksempel på et materialepas der anvendes i værktøjet kan ses i Bilag 1. Dette ma­
+terialepas indeholder 4 datapunkter ud af ca. 220. Disse er udvalgt for at kunne vise
+samarbejdet mellem materiale­ og bygningspas.
+2.1.2
+Bygningspas
+Ligesom ved materialepasset, er der for bygningspasset også udarbejdet en række an­
+befalinger. Det anbefales, at bygningspas for en ny bygning [3]:
+• Baseres på en fast og ufravigelig datamodel, som rummer mulighed for obligatorisk
+indhold og frivilligt indhold
+• Indeholder informationer om:
+– Bygningen selv; herunder:
+* Bygningens byggevarer med referencer til materialepas.
+* Ændringer på bygningen; herunder udgående materialer og indgående
+materialer, fx nye vinduer eller tag.
+• Deklareres af NN.
+• Rummer reference til BBR.
+• Baseres på:
+– Pragmatiske krav om obligatorisk opdatering ved bygningsændringer set i for­
+hold til de indgående byggevarers og bygningens levetid.
+– Bygningsejernes gevinster ved et vedligeholdt og opdateret bygningspas set i
+forhold til egen drift og vedligehold samt ejendomsmarkedets efterspørgsel på
+information.
+– Obligatoriske krav om fjernelse af materialepas fra bygningspas ved renovering
+eller nedrivning; herunder flytning af materialepas til eventuel ny bygning ved
+genbrug.
+Det anbefales, at bygningspas for eksisterende bygninger:
+• Svarer til bygningspas for nye bygninger, idet:
+– Mængden af obligatoriske informationer reduceres.
+– Der skal fremgå information om bygningspassets oprindelse samt kvaliteten
+og oprindelse af de indgående informationer
+Udvikling af webplatform til bygningspas
+7
+==PAGE:12==
+• Genereres ved renovering, ejendomshandel eller nedbygning på basis af:
+– Eksisterende informationer i BBR, SAVE, Energimærkningsordning, bæredyg­
+tighedsordninger, tilstandsrapporter m.m., og at muligheder for maskinaflæs­
+ninger og samkøringer af disse kilder videreudvikles.
+– Obligatoriske informationer deklareret af bygningsejeren eller dennes rådgive­
+re og leverandører.
+Baseret på disse anbefalinger, men begrænset af implementering, er der udviklet et for­
+slag til en prototype af bygningspas, der kan anvendes i værktøjet. Dette bygningspas vil
+indeholde informationer om hvilken bygning der er tale om og hvilke materialer bygnin­
+gen indeholder. Som forlængelse af materialer vil der desuden forekomme en reference
+til det specifikke materialepas for hvert materiale der indgår i bygningen, samt mængden
+af denne. Et eksempel på dette bygningspas, som er taget direkte fra værktøjets output,
+ses herunder:
+1
+[
+2
+[
+3
+"Chr Winthers Vej 20B, 2800"
+<--- Bygningens adresse
+4
+],
+5
+[
+6
+[
+7
+[
+8
+"Beton",
+<--- Materiale der indgår i bygningen
+9
+"DK.00.00.00.01",
+<--- Reference til materialepassets ID
+10
+[
+11
+"Mængde:",
+12
+"8.20"
+<--- Mængden der indgår i bygningen
+13
+]
+14
+],
+15
+[
+16
+"Træ",
+17
+"DK.00.00.00.10",
+18
+[
+19
+"Mængde:",
+20
+"44.25"
+21
+]
+22
+],
+23
+[
+24
+"Isolering",
+25
+"DK.00.00.00.03",
+26
+[
+27
+"Mængde:",
+28
+"119.25"
+29
+]
+30
+],
+31
+]
+32
+]
+33
+]
+Udvikling af webplatform til bygningspas
+8
+==PAGE:13==
+2.2
+Materialegenbrug
+Byggeindustrien er blevet en storforbruger af ressourcer, hvilket har medført et enormt for­
+brug af finansielle midler samt udledning af klimapåvirkende stoffer. En måde at reducere
+forbruget og udledningen af disse er gennem genbrug af materialer. Hvis en bygning rives
+ned efter 40 år, selvom materialerne i princippet har en længere levetid på eksempelvis
+100 år, vil der skulle anvendes penge samt klimaudledning til at producere nye materialer,
+selvom de gamle kunne have været anvendt i stedet. Således forekommer der et spild af
+ressourcer, der kunne have været undgået [4].
+I Danmark, såvel som i andre lande, står byggesektoren for en meget stor del af det sam­
+lede materiale­ og energiforbrug. Derudover producerer byggesektoren en enorm del af
+det samlede affald i Danmark [4]. Størstedelen af dette forekommer ved nedrivning og en
+mindre del ved konstruktion af nyt byggeri. Heldigvis er der i Danmark stort fokus på gen­
+brug af byggeaffald, hvilket betyder at store dele af byggeaffaldet genanvendes af kom­
+mercielle aktører. Dette sker eksempelvis ved downcycling, hvor brugte materialer såsom
+beton knuses eller træ bliver lavet til spånplader. Generelt fører downcycling til en reduk­
+tion af selve værdien af materialerne. Hvis dette skal undgås, vil alternativet være direkte
+genbrug, hvor flere materialer genanvendes uden at blive beskadiget eller nedgraderet.
+For at muliggøre direkte genbrug, er det nødvendigt at foretage en selektiv nedrivning af
+bygninger i stedet for den mere konventionelle metode. En selektiv nedrivning har fokus
+på at gennemføre nedrivningsprocessen på en sådan måde, at det fører til en optimering
+af materialernes genbrugsværdi, hvilket opnås gennem en systematisk dekonstruktion.
+Dette gør det muligt at foretage en sortering, samt ender ud i mindre beskadigede materi­
+aler. De miljømæssige gevinster fra en selektiv nedrivning kan være store, men dets øko­
+nomiske rentabilitet kan variere afhængigt af faktorer såsom arbejdskraftomkostninger,
+markedspriser og gebyrer. Grundet potentielle økonomiske udfordringer varierer graden
+af selektive nedrivninger ofte. Den variation kan gå fra konventionel til fuld komponent­til­
+komponent nedrivning. Typisk indebærer en selektiv nedrivning følgende processer [5]:
+1. Miljøscreening som sikrer, at farlige materialer håndteres
+2. Demontering af direkte genanvendelige materialer såsom glas, sanitet og radiatorer
+3. Fjernelse og demontering af elementer såsom gulv og lofter
+4. Knusning af beton til genanvendelse, træbjælker og lignende nedtages med henblik
+på genbrug, genanvendelse eller forbrænding
+Hvis det vælges at foretage en selektiv nedrivning, er det vigtigt at udføre en kvalitetskon­
+trol. Denne kontrol medfører en stringent kontrolprocedure, således den samlede kvalitet
+af materialerne fastholdes eller forbedres og at dette kan kommunikeres til de potentielle
+brugere [6].
+Elementer og materialer i byggeri kan variere i hvor komplicerede de er at nedrive og
+genanvende. En måde hvorpå dette gøres mindre komplekst er ”design for disassembly”
+hvorved materialer udvikles således de vil være nemmere at fjerne. De konventionelle
+metoder og teknikker til eksempelvis betonbyggeri gør det meget vanskeligt at adskille
+betonelementer. Her ville design for disassembly kunne hjælpe, idet det ville øge mulig­
+heden for genbrug via en forbedring af bygge­ og nedrivningsprocessen. Denne form for
+materiale­ og elementdesign forsøger både at opdele bygninger i hele elementer til mon­
+tering, men derudover også at opdele en bygning i lag, således at elementer der varierer
+i levetid kan erstattes uden at forårsage skade på andre elementer [7]. Problemet for de­
+sign for disassembly ligger i usikkerheden om kvaliteten af elementer til genanvendelse
+Udvikling af webplatform til bygningspas
+9
+==PAGE:14==
+efter nedrivning. Altså en usikkerhed om materialerne mister værdi. Dette medfører lav
+efterspørgsel efter sådanne materialer, hvilket også forårsages af manglede overvejel­
+ser om nedrivning og potentielt genbrug i design­ og planlægningsfasen [8]. Hvis design
+for disassembly blev mere udbredt, ville det være en gevinst for nedrivningsprocesser,
+heriblandt den selektive nedrivning, hvilket potentielt kunne have en positiv indflydelse på
+materialegenbrug. Dette lader dog til at være urealistisk, da der er finansielle ulemper ved
+den ekstra indsats begge metoder kræver i henholdsvis design­ og nedrivningsfasen.
+Det er altså muligt at genanvende byggeaffald på flere forskellige måder, hvilket afhæn­
+ger af hvordan selve bygningen og materialer behandles under nedrivningen. Som tidli­
+gere nævnt, er det hovedsageligt kommercielle aktører der har med disse beslutninger
+og problemer at gøre. Den almene husejer har ikke forstand på eller kendskab til hvilke
+konsekvenser det kan have at tilføje eller fjerne dele af sit hus, rive ned og bygge nyt eller
+renovere. Offentlig oplysning omkring byggeaffald er ikke på samme måde i fokus som
+eksempelvis madaffald og for slet ikke at nævne madproduktion, selvom det har enorm
+klimapåvirkning. Udover det klimamæssige, kan det også have mulighed for at gavne den
+individuelle boligejer finansielt. Hvis det udbredes at skabe et marked for køb og salg af
+brugte byggematerialer såsom mursten, fliser, træ, etc. ville folk der bygger nyt kunne
+spare penge, og folk der sælger kunne tjene en smule samtidig med at de begge spa­
+rer udledningen af produktionen af nye materialer. For at et sådant system kan fungere
+kræver det, at boligejerne faktisk har indsigt i hvilke materialer deres bygninger består
+af. Der er i øjeblikket intet offentligt tilgængeligt system eller værktøj til at fremvise hvad
+bygninger i Danmark faktisk består af, hvilket betyder at scenariet omkring privat salg af
+brugte byggematerialer er mindre realistisk. Hvis en person har planlagt at rive sit hus
+ned, men ikke ved hvilke materialer der endes ud med, er det sværere at planlægge en
+selektiv nedrivning og at aftale et salg af materialer på forhånd. Dette er problemet som
+et potentielt værktøj med bygningspas ville kunne hjælpe med.
+Udvikling af webplatform til bygningspas
+10
+==PAGE:15==
+3
+Metode
+Det tidligere beskrevne formål med projektet var, at opbygge et forslag til hvordan et
+potentielt værktøj til materiale­ og bygningspas kunne implementeres. Processen til ud­
+viklingen af dette værktøj kan ses på figur 3.1. Første del af processen gik ud på at opnå
+viden omkring konceptet materiale­ og bygningspas. Hvordan dette kan opbygges, hvad
+det skal indeholde og hvad det ville kræve at kunne implementere. Det nævnes tidlige­
+re, at materiale­ og bygningspas ses som en digital løsning, og derfor blev der set på,
+hvordan en implementering kunne løses digitalt.
+En mulighed for digital implementering var at skabe et webværktøj, hvorved det ville væ­
+re nemt at tilgå og forhåbentlig at anvende. Der blev herefter researchet webudvikling,
+hvorefter en beslutning blev taget om at implementere værktøjet ved at anvende React,
+som er et open­source front­end JavaScript bibliotek som er velegnet til user­interfaces.
+Webværktøjet er altså implementeret gennem brug af React, HTML, JavaScript og CSS,
+der alle er værktøjer til webudvikling. For at give potentielle testere mulighed for at anven­
+de webværktøjet, blev det besluttet, at denne ville blive hostet på nettet gennem GitHub,
+således den altid ville være tilgængelig. Webværktøjet er således tilgængeligt gennem:
+https://frederikgoth.github.io/bygningspas/
+Figur 3.1: Processen til udvikling af værktøj
+Udvikling af webplatform til bygningspas
+11
+==PAGE:16==
+Efter første del, som var vidensdannelse samt research og valg af udviklingsplatform,
+fulgte en basal implementering af konceptet. Denne inkluderede størstedelen af funktio­
+naliteten, men i mindre poleret grad. Det vil sige, at mange dele af webværktøjet blev
+implementeret, men var upolerede og havde enten simplificerede værdier og metoder
+eller havde et tidligt design.
+Efter den basale implementering ses det på figur 3.1 at der forekommer en iterativ proces.
+I denne proces indgår der implementering, afprøvning & feedback og research. Disse
+tre trin går her hånd i hånd. Implementering af nye metoder og raffinering af designet
+fører til afprøvning og feedback. Denne feedback kan føre til research og herefter ny
+implementering af foreslåede ændringer og forbedringer.
+Afprøvningen og feedbacken er udarbejdet sammen med to forskellige målgrupper. Den
+første målgruppe er eksperten, der har forstand på problematikken, formålet og baggrun­
+den for projektet. Den anden målgruppe er den menige, som modsat eksperten er mere
+eller mindre uvidende omkring projektets detaljer.
+Figur 3.2: Resulterende implementering baseret på feedback fra de to målgrupper
+På figur 3.2 ses en illustration af hvordan feedbacken fra de to målgrupper er blevet brugt.
+Eksperten tager flere ideer og koncepter og præcisere dem til noget mere konkret og må­
+lrettet, hvorimod de menige kigger på et element og forøger forståelsen og tilgængelighe­
+den. Feedbacken er foregået verbalt og med begrænset deltagelse, for en mere kvalitativ
+tilgang.
+Disse tre dele har ført til det endelige værktøj, som er en digital implementering af byg­
+ningspasset, hvilket ses som del fire på figur 3.1.
+3.1
+Kriterier
+I forbindelse med implementering er der blevet opstillet kriterier for succes ved værk­
+tøjet. Disse har ændret sig undervejs, da der gennem projektet er tilegnet mere viden
+både inden for teoriområdet, men også implementeringsmetoder i forhold til webudvik­
+ling. Kriterierne har derfor været en iterativ proces ligesom ved selve implementeringen
+af værktøjet og dets funktioner. De første kriterier ses på figur 3.3. Disse blev udarbejdet
+før selve implementeringen begyndte. På denne ses det, at en succes generelt ville være
+en implementering der gør det muligt at vælge en bygning og herefter bestemme hvilke
+materialer der indgår, hvorefter materialemængderne fremvises. Desuden skulle det være
+muligt at gemme sine resultater efterfølgende. Disse kriterier indeholdt kun overvejelser i
+Udvikling af webplatform til bygningspas
+12
+==PAGE:17==
+forbindelse med implementeringen, og var derfor ikke baserede på brugerfeedback eller
+konceptuel tilfredsstillelse.
+Figur 3.3: De først opstillede kriterier til værktøjet
+Ud fra figur 3.3 har vi altså følgende kriterier:
+• Værktøjet skal vise information omkring den valgte bygning.
+• Værktøjet skal give en visualisering af den valgte bygning.
+• Værktøjet skal give mulighed for at ændre informationer og detaljer ved den valgte
+bygning.
+• Værktøjet skal indeholde en simpel og en avanceret metode til materialevalg i byg­
+ningen.
+• Værktøjet skal vise information omkring bygningens materialemængder.
+• Det skal være muligt at gemme ændringer foretaget i værktøjet.
+Da materiale­ og bygningspas er en vigtig del af baggrunden og er selve grundlaget for
+projektet, skulle disse selvfølgelig indarbejdes, da de ikke var en del af de første overvej­
+elser vist i figur 3.3. Desuden var brugerfeedback fra de to målgrupper meget relevant til
+at gøre værktøjet nemmere at anvende og lettere tilgængeligt, samt mere præcist. Ud fra
+disse to overvejelser kan der tilføjes to yderligere kriterier:
+• Værktøjet skal give mulighed for at hente et bygningspas og materialepas for alle
+materialer der indgår i bygningen.
+• Værktøjet skal kunne anvendes og forstås af de to målgrupper.
+I forhold til bygnings­ og materialepas er det smarte, at de kan fungere indbyrdes og har
+en sammenhæng. For at kunne gøre projektet til en succes var det væsentligt at vise
+sammenhængen mellem materiale­ og bygningspas. Ud fra dette blev endnu et kriterie
+opstillet:
+• Værktøjet skal kunne vise en sammenhæng mellem materiale­ og bygningspas.
+Der er altså i alt udarbejdet 9 kriterier, der fungerer som retningslinjer for udviklingen,
+og som sammen er en forudsætning for, at værktøjet er en succes samt fungerer efter
+hensigten.
+Udvikling af webplatform til bygningspas
+13
+==PAGE:18==
+4
+Resultater & Analyse
+Kapitlet Resultater & Analyse omhandler det endelige produkt, som i dette tilfælde er et
+værktøj, og en analytisk gennemgang af denne. Først gennemgås selve værktøjet, hvor­
+dan dette anvendes og hvilke muligheder brugeren har ­ altså en beskrivelse af funktio­
+naliteten. Efter denne beskrivelse følger et afsnit med en mere analytisk vinkel hvori de
+enkelte dele af værktøjet bliver inspiceret. Dette afsnit viser beslutninger, metoder og kil­
+der bag udviklingen og de valg der er foretaget. Det skal siges, at formålet med værktøjet
+som sagt er et forsøg på implementering af en webplatform for bygnings­ og materiale­
+pas. Dette har betydet, at ved selve implementering har formålet været første prioritet, og
+at fuldstændig præcision af resultaterne har været sekundært. Af denne grund er mange
+af metoderne anvendt ved implementeringerne baseret på estimater og/eller antagelser.
+4.1
+Værktøjet
+Det endelige produkt er et værktøj, der muliggør at se og redigere materialer samt ma­
+terialemængder i en bygning, og ud fra disse danne et bygningspas. Værktøjet består
+essentielt af to sider. Første side er søgesiden, hvor brugeren søger på den pågældende
+bygning de ønsker at se eller redigere. Værktøjet har i øjeblikket en begrænset databa­
+se på fem adresser. Når der vælges en adresse vil brugeren blive ført videre til side to,
+der viser informationer omkring bygningen og giver mulighed for at redigere specifikke
+detaljer.
+Figur 4.1: Beskrivelse af søgesiden (første side) og hvordan denne fungerer
+På figur 4.1 vises en beskrivelse af søgesiden. Punkt et er informationslogoet, der viser de
+tilgængelige adresser når musen føres henover. Da databasen er begrænset, er det vigtigt
+at brugeren har kendskab til hvilke adresser det er muligt at søge på. Punkt to viser en
+søgning, der foretages ved at indtaste en adresse i søgefeltet og derefter trykke ”Søg”.
+Når dette udføres vil adressen blive slået op i en lokal .js database, der udelukkende
+består af en liste med navnene på de tilgængelige adresser, hvilket er trin tre. Herfra vil
+dette navn fra .js databasen pege på den udvalgte adresse og sende videre til den online
+realtime database, der indeholder al den relevante information omkring bygningen. Til
+sidst sendes brugeren til næste side (informationssiden) i trin 5.
+Informationssiden er langt størstedelen af værktøjet og består af fem afsnit. Afsnittene har
+hvert sit formål og er enten med til at informere brugeren eller modtage brugerens input.
+De fem afsnit er:
+1 Bygningsinformation
+Udvikling af webplatform til bygningspas
+14
+==PAGE:19==
+2 Energi
+3 Materialer
+4 Materialemængder
+5 Klimapåvirkning
+4.1.1
+Bygningsinformation
+Det første afsnit omhandler bygningsinformation og beskriver detaljer omkring bygningen
+såsom etageareal, samlet areal, antal etager og opførselsår. Brugeren har her mulighed
+for at redigere visse detaljer ved bygningen, eksempelvis tag­ og fundamenttypen.
+Figur 4.2: Første del af informationssiden: bygningsinformation
+Figur 4.2 viser opbygningen af bygningsinformationsafsnittet af værktøjet. Første punkt
+er en fremvisning af bygningen. Denne fremviser kommer fra Google Street View, hvilket
+giver brugeren mulighed for at inspicere bygningen som den ser ud i den virkelige verden.
+Brugeren har mulighed for at skifte perspektiv, vinkel samt at zoome ud og ind. Punkt to er
+selve bygningsinformationerne. Nogle af disse vil være mørkeblå, hvilket betyder at det er
+muligt at redigere værdien, eksempelvis etagehøjden. De nedenstående lister viser hvilke
+informationer der indgår. Kategorier der er markeret med fed er redigerbare.
+• Etageareal
+• Etagehøjde
+• Etager
+• Samlet areal
+• Omkreds
+• Vægareal
+• Tagareal
+• Vinduesareal
+• Opført
+• Alder
+Punkt tre er tag­ og fundamenttype. Ud fra disse er det muligt at vælge hvilken type tag
+og fundament bygningen har. Her hjælper bygningsfremvisningen, da brugeren kan se
+tagtypen og derfra vælge den tilsvarende i værktøjet. Når brugeren er tilfreds med infor­
+mationen, kan personen scrolle nedad til næste afsnit.
+4.1.2
+Energi
+Andet afsnit omhandler energi og fremviser kun information, det vil sige at der ikke er
+behov for brugerinput. Informationen er inddelt i to rækker, en med en vurdering af det
+aktuelle energisystem i bygningen og en med potentielle forbedringer.
+Udvikling af webplatform til bygningspas
+15
+==PAGE:20==
+Figur 4.3: Anden del af informationssiden: energi
+På figur 4.3 kan de to rækker ses. Første række beskriver som sagt det aktuelle energisy­
+stem, herunder bygningens energiklasse, bygningens beregnede forbrug og bygningens
+varmeforsyning. Energiklassen varierer fra A til G, hvor A er bygninger med lavest energi­
+forbrug og G er højest. Ældre ikke­renoverede bygninger vil ofte have højt energiforbrug
+og derfor en dårlig energiklasse, hvorimed det omvendte gælder for nyere byggeri. Det
+beregnede forbrug er som beskrevet en beregning og reflekterer ikke nødvendigvis vir­
+keligheden. Efter energiafsnittet er blevet inspiceret af brugeren gås der videre til næste
+afsnit.
+4.1.3
+Materialer
+I afsnittet om materialer skal brugeren vælge hvilke materialer der indgår i bygningen. Det­
+te kan gøres på to måder, afhængig af brugerens erfaring eller ønskede detaljeniveau.
+Den første måde er en simpel metode, hvor brugeren vælger en prædefineret opbygning
+for hvert bygningsdel der indgår i bygningen. Bygningsdelene er ydervægge, indervægge,
+tag, gulv, fundament og vinduer. Hvis dette er for simpelt kan brugeren vælge at anven­
+de en avanceret metode. Hvis denne metode vælges skal brugeren selv vælge hvilke
+materialer og disse materialers tykkelse, som indgår i alle bygningsdelene.
+Figur 4.4: Tredje del af informationssiden: materialer (simpel)
+Den simple metode vises på figur 4.4. Det første punkt på figuren viser bygningsdelen
+’Ydervægge’, hvilket betyder at ændringer der foretages her ændrer på hvilke materia­
+ler der indgår i ydervæggene. Punkt to viser den nuværende opbygning af væggen, dette
+kunne eksempelvis være træ eller beton. Punkt tre er en dropdown­menu, hvor det er mu­
+ligt at ændre den nuværende opbygning. Når der vælges en opbygning vil materialerne i
+punkt fire ændres, dette kan både være materialesammensætning og tykkelse af materi­
+aler. Dette er illustreret på figur 4.5. En ydervæg med opbygningen Materiale1 indeholder
+tre forskellige materialer, hvorimod opbygningen med Materiale2 indeholder fire. Disse
+materialer har desuden forskellige tykkelser.
+Punkt fem på figur 4.4 er en ’toggle’ knap. Når denne er aktiv vil den avancerede metode
+blive vist, hvorimod hvis den er inaktiv som ses på figuren vil den simple metode vises.
+Den hvide boks ved punkt seks skal illustrere at bygningsdelen Tag, samt de resterende
+bygningsdele fungerer på samme måde som ved Ydervægge.
+Udvikling af webplatform til bygningspas
+16
+==PAGE:21==
+Figur 4.5: Opbygning af ydervæggen ændres fra Materiale1 til Materiale2
+Den avancerede metode kan ses på figur 4.6. Første punkt her viser det samme som i
+figur 4.4. Punkt to er igen en dropdown­menu, men her er der tale om enkelte materialer,
+hvorimod det før var en opbygning baseret på et specifikt materiale. Ud fra dropdown­
+menuen vælges der et materiale som ønskes tilføjet til bygningsdelen. Materialet kræver
+desuden en tykkelse. Tykkelsen kan vælges ved slideren under dropdown­menuen og
+den går fra 0.01m til 1m. Efter et materiale og en tykkelse er valgt kan der gås videre til
+punkt fire, hvor det er muligt at trykke ’Tilføj’. Dette tilføjer materialet til bygningsdelen. Hvis
+det ønskes at fjerne et materiale trykkes ’Fjern’. Denne knap fjerner det senest tilføjede
+materiale. Det vil sige, at hvis man eksempelvis har tilføjet tre materialer, men opdager
+en fejl ved det først­tilføjede, er man nødt til at fjerne alle tre og tilføje dem igen. Punkt tre
+viser hvilke materialer der er tilføjet til bygningsdelen.
+Figur 4.6: Tredje del af informationssiden: materialer (avanceret)
+Denne avancerede metode giver større kontrol over hvilke materialer der indgår i de for­
+skellige bygningsdele, men kræver en del større viden omkring bygningen end den simple
+metode. Det er derfor op til brugeren at bestemme hvilken metode, personen føler vil give
+de mest korrekte resultater.
+Figur 4.7: Den simple metode til materialevalg og den avancerede
+Figur 4.7 viser den simple metode sat op ved siden af den avancerede. Det kan ses, at
+i den simple er det muligt for brugeren at ændre ét input, hvorimod den avancerede har
+fire inputs der fungerer indbyrdes.
+Udvikling af webplatform til bygningspas
+17
+==PAGE:22==
+4.1.4
+Materialemængder
+Efter brugerne har valgt hvilke materialer der indgår i alle bygningsdelene, enten ved den
+simple eller den avancerede metode, bliver materialemængderne beregnet. Disse bereg­
+ninger er baseret på materialerne samt informationerne fra første afsnit. På figur 4.8 ses
+inddelingen af materialemængder for hver bygningsdel. Punkt et beskriver bygningsdelen,
+og punkt to beskriver hvilke materiale denne indeholder samt mængderne i kubikmeter.
+Figur 4.8: Materialemængder for alle bygningsdelene i værktøjet
+For at gøre mængderne mere overskuelige bliver de summeret, det vil sige hvis samme
+materiale indgår i flere forskellige bygningsdele vil mængderne fra disse blive samlet.
+Dette vises i figur 4.9. Punkt et viser summerne af de fem materialer som ses på figur
+4.8. Materiale1 indgår i både ydervægge og tag med henholdsvist 20 og 10 kubikmeter,
+hvilket ender i en sum på 30. En visualisering i form af et søjlediagram fremgår ved punkt
+to.
+Figur 4.9: Materialemængder for alle bygningsdelene i værktøjet summeret
+Da bygningsmaterialerne kendes, kan disse nu blive opdelt i råmaterialer. Materialepas­
+sene indholder informationer om hvert materiale, og hvilke råmaterialer disse består af.
+Inddeling af råmaterialer kan ses på figur 4.10. En forskellighed fra materialemængder­
+ne i forhold til råmaterialemængderne er, at disse bliver vist i procent. Desuden kan det
+ses på figuren, at råmaterialerne sorteres fra største mængde til laveste mængde, både
+ved punkt et og punkt to, hvor punkt et viser mængderne i procent og punkt to viser et
+søjlediagram.
+Udvikling af webplatform til bygningspas
+18
+==PAGE:23==
+Figur 4.10: Råmaterialemængder for alle bygningsmaterialer i værktøjet
+4.1.5
+Klimapåvirkning
+Afsnittet klimapåvirkning viser udledning af bygningsmaterialerne afhængig af materiale­
+mængderne. På figur 4.11 ses afsnittet. I modsætning til andre afsnit opdateres klimapå­
+virkning ikke automatisk, hvilket betyder at beregningen af disse skal igangsættes. Dette
+gøres ved at trykke knappen Beregn/opdater, som kan ses ved punkt et.
+Figur 4.11: Klimapåvirkningsafsnittet i værktøjet
+Punkt to viser de forskellige kategorier af klimapåvirkning som er følgende:
+• GWP (Global Warming Potential) [CO2 −eq]
+• ODP (Ozone Depleting Potential) [CFC11 −eq]
+• POCP (Photochemical Ozone Creation Potentials) [ethene −eq]
+• AP (Acid Potential) [SO4 −eq]
+• EP (Eutrophication Potential) [PO3
+4 −eq]
+• ADPE (Abiotic Depletion Potential, Elements) [Sb −eq]
+• ADPF (Abiotic Depletion Potential, Fossil Fuels) [MJ]
+• PERT (Primary Energy, Renewable) [MJ]
+• PENRT (Primary Energy, Non­renewable) [MJ]
+• RSF (Sekundære brændsler, vedvarende) [MJ]
+Udvikling af webplatform til bygningspas
+19
+==PAGE:24==
+• NRSF (Sekundære brændsler, fossil) [MJ]
+Efter de forskellige værdier for udledninger er blevet vist, vises en sammenligning af GWP
+produceret af bygningsmaterialerne mod den gennemsnitlige årlige udledning af en dan­
+sker, samt kilometer kørt i en moderne passagerbil. Dette er punkt tre.
+4.1.6
+Tilbage/Gem/Download
+I sidste del af værktøjet findes tre knapper. Disse er henholdsvist Tilbage, Gem og Down­
+load. Disse kan ses på figur 4.12. Første punkt er gem­knappen. Denne knap gemmer de
+ændringer der er foretaget ved bygningen ­ dette inkluderer bygningsinformationer og ma­
+terialer. Tilbage­knappen ved punkt to fører brugeren tilbage til søgesiden, som tidligere
+beskrevet er første side i værktøjet.
+Figur 4.12: Sidste del af værktøjet
+Punkt tre er Download. Denne knap downloader en .zip­fil, der indeholder materialepas
+for alle materialer der indgår i bygningen samt det endelige bygningspas med materiale­
+mængder.
+4.2
+Analytisk gennemgang
+Dette afsnit beskriver hvordan de forskellige elementer på hjemmesiden er implementeret.
+I forrige afsnit blev der beskrevet, hvordan værktøjet anvendes, hvorimod der i dette afsnit
+forklares hvordan værktøjet fungerer. Dette opnås gennem simple forklaringer, analyser,
+sammenligninger og vurderinger.
+4.2.1
+Data
+I forbindelse med implementering, har der været behov for meget data, heriblandt data
+der beskriver arealer af overflader i bygningen. Bygnings­ og boligregistret (BBR)[9] er en
+database for boligdata i Danmark og burde derfor kunne give nogle af de nødvendige vær­
+dier. Endnu en database er EMOData [10] som kommer fra Energistyrelsen og indeholder
+oplysninger om blandt andet bygningers energisystemer. Disse er de to største offentligt
+tilgængelige databaser for bygningsdata i Danmark, som frit kan tilgås på internettet. Af
+denne grund benyttes disse to til at skaffe data til værktøjet.
+For at kunne skabe en ordentlig bygningsmodel, skal der ideelt set kendes en masse
+arealer og størrelser, eksempelvis etageareal, areal af ydervægge og areal af tag. På
+tabel 4.1 ses mange forskellige dataområder i venstre kolonne. I kolonnen i midten og
+til højre vises det om BBR og EMOData oplyser disse data, hvilket betegnes ved et X.
+Det ses, at mange af de ønskede værdier ikke eksisterer i databasen, og det er derfor
+nødvendigt at finde en måde hvorpå disse kan blive genereret. Desuden er kun meget
+lidt data omkring materialerne tilgængelige.
+Udvikling af webplatform til bygningspas
+20
+==PAGE:25==
+Data
+BBR
+EMOData
+Arealer
+—
+—
+Samlet areal
+X
+X
+Kælderareal
+X
+X
+Tagetageareal
+X
+X
+Bebygget areal
+X
+Omkreds
+Ydervægsareal
+Indervægsareal
+Tagareal
+Vinduesareal
+Tagtype
+Fundamenttype
+Antal etager
+X
+Energi
+—
+—
+Varmeforsyning
+X
+X
+Energiklasse
+X
+Energiforbedring
+X
+Materialer
+—
+—
+Ydervægsmateriale
+X
+Tagdækningsmateriale
+X
+Fundamentmateriale
+Gulvmateriale
+Indervægsmateriale
+Vinduestype
+Tabel 4.1: Tilgængelig data i store online databaser
+I princippet er de eneste arealer der kendes etageareal og samlet boligareal. Det vil altså
+være nødvendigt at kunne opbygge en tilnærmelse af en specifik bygning udelukkende
+baseret på et areal. En visualisering af dette vises på figur 4.13, hvor de manglende data
+er visualiseret i rød og de tilgængelige er vist som blå.
+Figur 4.13: Datamangler af de forskellige bygningsdele
+Udvikling af webplatform til bygningspas
+21
+==PAGE:26==
+Grunden til at bygningens data gerne skulle kunne genereres automatisk, er for at mind­
+ske mængden af information som det er nødvendigt for brugeren at vide. Jo mindre in­
+formation det kræver for brugeren desto nemmere vil værktøjet være at anvende. Da
+værktøjet er tiltænkt to målgrupper, hvoraf den ene ikke nødvendigvis har stor erfaring
+med bygninger, ville det begrænse den potentielle mængde af brugere, hvis alle arealer
+skulle indtastes manuelt.
+4.2.2
+Arealer generelt
+Arealerne er en meget vigtig del af værktøjet, fordi de skaber rammen for mængdedan­
+nelse. Ved at kende et overfladeareal kan en volumen bestemmes ved at multiplicere en
+tykkelse på. Dette er blandt andet metoden der anvendes til at bestemme materialemæng­
+derne. Jo tættere arealerne er på at reflektere virkeligheden, jo mere vil de resulterende
+materialemængder gøre ligeså.
+4.2.3
+Etageareal
+Etagearealet er baseret på værdier fra BBR og er angivet i kvadratmeter. I BRR er dette
+oplyst som bebygget areal. Denne værdi er som tidligere beskrevet justerbar i værktøjet.
+4.2.4
+Etagehøjde
+Etagehøjden har en en standardværdi på 2,5m. Denne er baseret på BR15 [11], hvori det
+nævnes at et fritliggende eller sammenbygget enfamiliehus skal overfolde en fri lofthøjde
+på minimum 2,3m. Brugeren har selv mulighed for at ændre etagehøjden, hvis denne
+kendes.
+4.2.5
+Etager
+Antallet af etager er baseret på BBR. Etager er opdelt i ’bygningens etager’, ’kælderetager’
+og ’tagetager’. Bygningens etager beskriver de etager der hverken er kælder eller tag.
+Det vil sige at et hus, der reelt har to etager ­ stue og 1. sal, vil har én tagetage og én
+bygningsetage. I værktøjet medtages tagetagen, men kælderetagen undlades.
+4.2.6
+Samlet areal
+Det samlede areal udregnes fra arealet af bygningsetagerne og tagetagen.
+4.2.7
+Omkreds
+Omkreds en er vigtig del af arealdannelsen, da den har indflydelse på mange af de andre
+arealer og derved materialemængderne i sidste ende. Omkredsen bliver udelukkende
+regnet ud fra etagearealet, da længder ikke er en tilgængelig information i den tilegnede
+data. På figur 4.14 ses fem forskellige etagearealer og former. Disse har desuden længder
+opgivet, for at kunne validere omkredsen.
+De fem figurer har følgende arealer og omkredse:
+1. Areal: 9, Omkreds: 12
+2. Areal: 15, Omkreds: 16
+3. Areal: 17, Omkreds: 18
+4. Areal: 12, Omkreds: 16
+5. Areal: 24, Omkreds 20
+For at finde den bedst mulige metode til at bestemme omkredsen testes tre forskellige
+forslag. Det bedste forslag vil være det, hvor der sammenlagt er lavest afvigelse fra den
+egentlige omkreds.
+Udvikling af webplatform til bygningspas
+22
+==PAGE:27==
+Figur 4.14: Længder og arealer af forskellige figurer
+Metode 1
+Da der intet kendes til bygningsformen af bygningerne i værktøjet, er det pro­
+blematisk at beregne en omkreds. Den eneste tilgængelige information er
+som tidligere nævnt etagearealet. En metode til at beregne omkredsen af en kvadret er
+ved at tage kvadratroden af arealet og gange med fire. Bygningernes areal er dog sjæl­
+dent kvadratisk, og det afprøves derfor hvorvidt denne metode ville kunne fungere for
+andre former.
+O =
+√
+A · 4
+(4.1)
+Dette vil give os den resulterende omkreds for hvert af de tre eksempler, hvor den egent­
+lige omkreds vises i paranteres:
+1. (12) 12
+2. (16) 15.5
+3. (18) 16.5
+4. (16) 13.9
+5. (20) 19.6
+For et estimere hvor præcis denne metode er, bliver summen af afvigelsen summeret,
+hvilket giver: (12 −12) + (16 −15.5) + (18 −16.5) + (16 −13.9) + (20 −19.6) = 4.5
+Udvikling af webplatform til bygningspas
+23
+==PAGE:28==
+Metode 2
+En anden mulighed vil være at kigge på eksemplerne for sig selv, i stedet for
+teoretisk. Eksempel nummer to og tre har begge en omkreds der er én højere
+end deres areal. En simpel metode til at tilnærme sig omkredsen vil altså være:
+O = A + 1
+(4.2)
+Ud fra dette bliver omkredsene nu:
+1. (12) 10
+2. (16) 16
+3. (18) 18
+4. (16) 13
+5. (20) 25
+Den summerede afvigelse vil i denne metode blive: (12 −10) + (16 −16) + (18 −18) +
+(16 −13) + (25 −20) = 10
+Metode 3
+Hvert eksempel vil have en værdi som arealet kan ganges med for at opnå
+samme værdi som omkredsen. Ud fra disse værdier kan en gennemsnitsvær­
+di beregnes, der muligvis kan anvendes for alle eksemplerne til at estimere omkredsen
+generelt.
+O = A · x
+(4.3)
+Denne formel benyttes for hvert eksempel og gennemsnitværdien for alle de fundne x­
+værdi udregnes:
+O = A · 2869
+2550
+Omkredsene beregnes nu til:
+1. (12) 10.1
+2. (16) 16.9
+3. (18) 19.1
+4. (16) 13.5
+5. (20) 22.5
+Den summerede afvigelse vil i denne metode blive: (12 −10.1) + (16.9 −16) + (19.1 −
+18) + (16 −13.5) + (22.5 −20) = 8.9
+Konklusion
+Metode 1 har altså den laveste afvigelse med 4.5, efterfulgt af metode 3 med
+8.9 og til sidst metode 2 med 10. Det kan derfor konkluderes, at metode 1
+vil være den mest præcise at anvende til værktøjet.
+Udvikling af webplatform til bygningspas
+24
+==PAGE:29==
+4.2.8
+Vægareal & vinduesareal
+Vægareal og vinduesareal hænger sammen, da vinduesarealet er baseret på vægarealet.
+Vægarealet bestemmes ud fra den estimerede omkreds, etagehøjden, antallet af etager
+og vinduesprocenten.
+Avg = (O · H · ne) −Avind
+(4.4)
+Hvor:
+Avg
+= Vægarealet
+O
+= Den estimerede omkreds
+H
+= Etagehøjden
+ne
+= Antallet af etager
+Avind = Vinduesarealet
+Bygningsreglementet angiver en metode til at bestemme minimum glasareal i en bygning.
+Metoden er tilegnet enkelte rum, men her formodes det, at den kan benyttes for hele
+bygningen. Desuden angiver metoden glasarealet, og ikke vinduesarealet. Det vil sige at
+ramme og karm ikke normalt medtages. Da metoden her anvendes på bygningen som
+helhed i stedet for individuelle rum, vil glasarealet sandsynligvis være større end hvis det
+blev anvendt på individuel basis. Derfor antages det, at rammer og karm her medtages,
+hvilket betyder at der er tale om det reelle vinduesareal og ikke blot glasarealet.
+Avind,min = 0, 1 · Agulv
+(4.5)
+Hvor:
+Avind,min = Det minimum påkrævede vinduesareal for bygningen
+Agulv
+= Det samlede gulvareal
+Hvis det antages, at vi har en bygning med et samlet areal på 200 kvadratmeter med
+2 etager og en etagehøjde på 2.7 meter bestemmes væg­ og vinduesarealerne altså
+således:
+O =
+√
+100 · 4 = 40
+Avind,min = 0, 1 · 200 = 20
+Avg = (40 · 2.7 · 2) −20 = 196
+4.2.9
+Tagareal & tagtype
+Da bygninger har forskellige tagtyper, er det vigtigt at kunne indstille denne så den tilnær­
+melsesvist reflekterer virkeligheden. Tagtypen bestemmer tagarealet, da de forskellige
+tagtyper medfører forskellige opbygninger og udformninger og derved arealer. Hvis en
+forkert tagtype vælges, kan det medføre forkerte materialemængder i taget. Brugeren
+skal kunne vælge en type uden at have forstand på typerne, men skal kunne vælge base­
+ret på visualiseringen af bygningen. Da højder og vinkler af tagene ikke kendes, er disse
+nødt til at antages i de følgende estimeringer.
+Udvikling af webplatform til bygningspas
+25
+==PAGE:30==
+Figur 4.15: De forskellige tagtyper tilgængelige i værktøjet
+Værktøjet indeholder fire forskellige tagtyper, som brugeren har mulighed for at vælge,
+disse illustreres på figur 4.15 og er:
+1. Fladt
+2. Skråt
+3. Saddel
+4. Valm
+Typerne har forskellige højder, vinkler og dækningsgrad. Eksempelvis dækker saddelta­
+get to sider af huset, hvorimod valmtaget dækker alle fire. Dette kan både have indflydelse
+på vægarealet og selve tagarealet.
+Fladt
+Arealet af det flade tag er en simpel beregning, da denne er lig etagearealet. Taget
+lægges oven på øverste etage og dækker ingen af siderne.
+Atag,fladt = Aetage
+(4.6)
+Hvor:
+Atag,fladt = Tagarealet af det flade tag
+Aetage
+= Etagearealet
+Skråt
+I modsætning til det flade tag, er det skrå tag løftet i den ene side, og har derved
+en hældning. Hældning medfører en forøgelse af tagarealet og antages at have
+en vinkel på 20 grader. For at bestemme arealet af det skrå tag, skal længden kendes.
+Figur 4.16: Et skråt tag på et hus med længden 10m
+Hvis huset har en længde på 10 meter, som ses på figur 4.16 kan længden af taget be­
+stemmes til 10.64 ved benyttelse af trigonometri. Hvis det antages at bygningen har et
+areal på 10 gange 10 meter, vil etagearealet være 100 kvadratmeter. Længden af taget
+Udvikling af webplatform til bygningspas
+26
+==PAGE:31==
+kendes og det vides at bredden af bygningen er 10 meter, tagarealet vil således være
+106.4 kvadratmeter. Baseret på dette kan arealet af skrå tag findes ved:
+Atag,skrt = Aetage · xskrt
+(4.7)
+Hvor:
+Atag,skrt = Tagarealet af det skrå tag
+Aetage
+= Etagearealet
+xskrt
+= Den faktor som etagearealet multipliceres med for at finde det skrå tagareal
+Hvis det vælges at bygningen har skråt tag, vil vinklen altid sættes som standard til 20
+grader og således vil forholdet være det samme for alle bygninger. Derved kan den skrå
+faktor sættes til:
+xskrt = 1.064
+(4.8)
+Saddel
+Saddeltaget kan essentielt ses som to sammensatte skrå tag. En illustration af
+dette kan ses på figur 4.17, hvor bygningen har længden 10 meter og de opdelte
+tage har længden 5 meter. Vinklen er her sat til 30 grader.
+Figur 4.17: Et saddeltag på et hus med længden 10m
+Samme metode med trigonometri kan her anvendes til at bestemme tagets længde. I
+dette tilfælde vil længden blive 5.77 meter. Det antages igen at bygningen har en længde
+og bredde på 10 gange 10 meter og derved etagearealet 100 kvadratmeter. Herfra kan
+arealet af taget beregnes: 2 · 5.77 · 10 = 115.4
+Atag,saddel = Aetage · xsaddel
+(4.9)
+Hvor:
+Atag,saddel = Tagarealet af saddeltaget
+Aetage
+= Etagearealet
+xsaddel
+= Den faktor som etagearealet multipliceres med for at finde saddeltagarealet
+Saddeltaget vil altså have følgende faktor til beregning af tagarealet:
+xsaddel = 1.154
+(4.10)
+Udvikling af webplatform til bygningspas
+27
+==PAGE:32==
+Valm
+Valmtaget er mere kompliceret end de tidligere typer, da det har fald til alle fire
+sider. På figur 4.18 ses det hvordan valmtaget egentlig er et saddeltag med yder­
+ligere fald i de to sider, der tidligere intet havde. Punkt et viser dette i perspektiv, mens
+punkt to viser det fra siden.
+Figur 4.18: En illustration af valmtaget og dets opbygningen
+Det antages at samme metode som ved saddeltaget kan anvendes til størstedelen af
+tagarealet. Hvis der ses på figur 4.19 ligner saddel­ og valmtaget tilnærmelsesvist hin­
+anden. De to fald i højre og venstre side af valmtaget, har ikke et signifikant areal, men
+tilføjer dog ekstra i forhold til saddeltaget. Baseret på dette vil der laves en antagelse om,
+at arealet af valmtaget er 10% større end saddeltaget.
+Figur 4.19: Saddeltag og valmtag side om side
+Ud fra antagelserne har vi:
+Atag,valm = Aetage · xvalm
+(4.11)
+Hvor:
+Atag,valm = Tagarealet af saddeltaget
+Aetage
+= Etagearealet
+xvalm
+= Den faktor som etagearealet multipliceres med for at finde valmtagarealet
+Og:
+xvalm = xsaddel · 1.1 = 1.154 · 1.1 = 1.27
+Konklusion
+Faktorerne kendes nu for alle tage og det er således muligt at estimere
+tagarealer i værktøjet. Faktorerne er:
+• Fladt tag: 1
+Udvikling af webplatform til bygningspas
+28
+==PAGE:33==
+• Skråt tag: 1.064
+• Saddeltag: 1.154
+• Valmtag: 1.270
+4.2.10
+Fundamenttype
+Fundamenttypen bestemmer arealet af bygningens fundament baseret på etagearealet
+eller omkredsen. Som ved tagtyperne er næsten alle informationer omkring fundamentet
+uvisse. Fundamentet kan være svært at se på visualiseringen, og brugeren kan derfor
+blive nødt til at vælge ud fra erfaring og forventninger. Det antages for alle fundamen­
+ter, at de vil være 100cm dybe, altså 1 meter, da dette er en værdi der ligger inden for
+standarden. Figur 4.20 viser de tre fundamenttyper, der indgår i værktøjet.
+Figur 4.20: De forskellige fundamenttyper tilgængelige i værktøjet
+De tre typer er henholdsvist:
+1. Linje
+2. Stribe
+3. Punkt
+Disse er de tre mest almindelige fundamenttyper for fritliggende huse [12]. Grundet den
+manglende data omkring bygningers fundamenter vil disse give tilstrækkelig dækning.
+Linje
+Linjefundamentet er meget simpelt, da det udelukkende følger omkredsen af byg­
+ningen. Da vi kender dybden gennem vores antagelser kan vi altså bestemme det
+totale overfladeareal af fundamentet ved:
+Afund,linje = O · dfund
+(4.12)
+Hvor:
+Afund,linje = Overfladeareal af linjefundamentet
+O
+= Omkredsen af bygningen
+dfund
+= Dybden af fundamentet, antaget som 1 meter
+Stribe
+Det er svært at sige noget om overfladearealet af stribefundamentet, udover det
+garanteret er større end linjefundamentet. Som det kan ses på figur 4.20, har
+stribefundamentet, udover samme omkreds som linjefundamentet, yderligere linjer der
+forøger arealet. For at kunne beregne et areal af denne type fundament, er det nødven­
+digt at lave en antagelse om dets størrelse. Et forholdsvist sikkert estimat vil være, at
+fundamentet dækker 10% af etagearealet. Dette giver os:
+Vfund,stribe = ((Aetage · 0.1) + O) · dfund
+(4.13)
+Udvikling af webplatform til bygningspas
+29
+==PAGE:34==
+Hvor:
+Vfund,stribe = Overfladearealet af stribefundamentet
+Aetage
+= Etagearealet af bygningen
+O
+= Omkredsen af bygningen
+dfund
+= Dybden af fundamentet, antaget som 1 meter
+Punkt
+I modsætning til de to tidligere fundamenttyper følger punktfundamentet ikke om­
+kredsen af bygningen som én lang linje, men er i stedet punkter. Eksemplet på
+figur 4.20 viser dette. Jo større en bygninger er, jo flere eller jo større punkter vil være på­
+krævet, men det er igen nødvendigt at basere arealet af disse på en antagelse. Det regnes
+her med, at punktfundament vil have et areal på 10% af etagearealet. Altså samme areal
+som stribefundamentet, hvor omkredsen ikke tælles med.
+Afund,punkt = (Aetage · 0.1) · dfund
+(4.14)
+Hvor:
+Afund,punkt = Overfladeareal af punktfundamentet
+Aetage
+= Etagearealet af bygningen
+dfund
+= Dybden af fundamentet, antaget som 1 meter
+4.2.11
+Alder & Opførselsår
+Bygningens opførselsår er taget fra BBR. For at bestemme bygnings alder benyttes føl­
+gende metode:
+Alder = 2021 −Opførselsår
+(4.15)
+Eksempelvis vil en bygning opført i 1953 have alderen 2021 −1953 = 68 år
+Alder og opførselsesår er medtaget for at kunne give en mulig vurdering af hvilke materi­
+aler der indgår i bygningen. Eksempelvis hvis der er tale om en gammel bygning, vil det
+være sandsynligt at den ikke indeholder en stor mængde isolering, hvori det modsatte vil­
+le gælde for en ny. Ydermere har forskellige byggematerialer været populære i forskellige
+tidsperioder, hvilket kan give mulighed for at lave mere præcise antagelser.
+4.2.12
+Energi
+Energiafsnittet har ikke nogen direkte indflydelse på materialer eller materialemængder
+i bygningerne. Det er medtaget for at give et indblik i bygningens energiforbrug og po­
+tentielle forbedringer. Samtidig giver energiforbruget mulighed for fortolkning, hvilket er
+en vigtig del af værktøjet. Siden der ikke kendes mange informationer om bygningerne,
+kan energiklassen være med til at give et estimat om hvor godt disse er isolerede, lige­
+som ved bygningens alder. Ud fra dette, er det muligt at give et mere kvalificeret gæt af
+isoleringstykkelsen i de forskellige bygningsdele.
+Energidataet er hentet fra Energistyrelsens EMOData­service, som blev forklaret i Data­
+afsnittet.
+4.2.13
+Materialer
+Det er som tidligere beskrevet muligt at vælge materialer for bygningsdelene på to forskel­
+lige måder ­ en simpel og en avanceret. Dette er gjort for at give forskellige målgrupper
+bedre mulighed for at anvende værktøjet. Den simple metode er tiltænkt folk med mindre
+Udvikling af webplatform til bygningspas
+30
+==PAGE:35==
+erfaring om bygninger og bygningsmaterialer, hvorimod den avancerede henvender sig
+til folk med forstand på disse områder.
+Bygningdelene er opdelt i seks dele: ydervægge, tage, gulve, fundamenter, indervægge
+og vinduer. Denne opdeling er foretaget, for at valget af bygningsmaterialerne bliver mere
+overskuelige. Hvis der eksempelvis skulle vælges materialer for hver enkelt væg, ville
+det kræve en enorm mængde input fra brugeren. Desuden ville implementering være
+problematisk, da individuelle vægge ikke kendes og disse således skulle generes på en
+eller anden måde. Metoden til bestemmelse af bygningsdelenes størrelser og arealer er
+allerede forholdsvist komplicerede antagelser og endnu en præcisering af dette ville ikke
+nødvendigvis gøre værktøjet bedre.
+Simpel
+Den simple metode er baseret på prædefinerede opbygninger, som bliver valgt ud fra
+ét materiale. Det er tiltænkt, at brugeren inspicerer bygningsvisualisering og herfra væl­
+ger de mest åbenlyse materialer. Eksempelvis burde det være muligt at identificere, om
+bygningens ydervægge består af mursten eller beton, eller om taget er tegl eller tagpap.
+Når et materiale vælges for en bygningsdel køres dette materiale gennem en funktion, der
+matcher det valgte materiale med de prædefinerede materialer i dets opbygning. Opbyg­
+ningen og materialerne der indgår i de prædefinerede materialer er baseret på Rockwools
+vejledninger [13], men tykkelserne af disse er kvalificerede bud. Dette illustreres på figur
+4.21. Rockwools vejledninger giver bud på hvordan ydervægge, tage, indervægge og
+gulve kan opbygges, og giver derfor realistiske rammer at gå ud fra.
+Figur 4.21: Funktionen til at bestemme materialer og materialetykkelser ud fra de simple
+materiale
+Figuren viser at brugeren har valgt Materiale2 som det prædefinerende materiale i en
+bygningsdel. Herefter matches det valgte materiale i en funktion, som hiver den relevan­
+te data ud fra en database samt materialets materialepas. Dette resulterer i en liste af
+materialer, som bygningsdelen vil bestå af.
+Avanceret
+Den avancerede metode fungerer således, at brugeren vælger individuelle materialer
+samt disse materialers tykkelse og tilføjer dem enkeltvis til bygningsdelene. Metoden er
+gennemgået to iterationer. I første iteration valgte brugeren materiale og procentdelen
+som dette materiale fyldte af bygningsdelen.
+Første iteration ses til venstre på figur 4.22. Problemet ved denne metode til materialevalg,
+Udvikling af webplatform til bygningspas
+31
+==PAGE:36==
+Figur 4.22: 1. og 2. iteration af materialevalg for bygningsdele
+var at det var mere kompliceret at kigge på materialer i procent. Jo flere materialer en byg­
+ningsdel bestod af desto mere indviklet blev procenterne. Udover dette var tykkelserne af
+alle bygningsdelene prædefinerede, hvilket gjorde resultaterne mindre præcise. Desuden
+var det nødvendigt at implementere en måde hvorpå brugeren ramte 100% dækning af
+bygningsdelen. Dette problem ses nederst på 1. iteration, hvor værktøjet meddeler hvor
+mange procent der manglede. Hvis brugeren overskred 100% blev meddelelsen ændret
+til ”OVER 100%, FJERN MATERIALER”. Det blev besluttet at denne metode ikke var ide­
+el, grundet komplikationerne, og således blev anden 2. iteration af materialevalg udviklet.
+Denne ses til højre på 4.22.
+Denne metode havde flere fordele i forhold til 1. iteration. Det er nemmere at vælge tyk­
+kelser end procenter, da tykkelser er mere håndgribelige. Desuden blev tykkelsen af byg­
+ningsdelene brugerdefinerede i stedet for at være prædefinerede. Det vil sige, at brugeren
+som beskrevet valgte tykkelser for de enkelte materialer. Disse tykkelser bliver summeret
+op, hvilket giver tykkelsen for hele bygningsdelen. Dette forøgede præcisionen af værk­
+tøjet.
+Materievalg
+Brugeren har mulighed for at tilføje ni forskellige bygningsmaterialer til bygningsdelene.
+Disse er mere overordnede kategorier end meget specifikke byggematerialer, og er valgt
+fordi de indgår i næsten alle byggerier. En kategori som isolering kunne have været delt
+op i flere typer såsom eksempelvis mineraluld og papiruld, men overordnede kategorier
+blev valgt først og fremmest fordi det var lettere at implementere, men også for ikke at
+forvirre brugeren med alt for mange materialevalg. De udvalgte materialer er:
+• Beton
+— anvendes i ydervægge, indervægge, gulve & fundamenter
+• Gips
+— anvendes i ydervægge, indervægge & tage
+• Isolering
+— anvendes i ydervægge, indervægge, gulve, tage & fundamenter
+• Metal
+— anvendes i ydervægge, indervægge, gulve, tage & fundamenter
+• Mursten
+— anvendes i ydervægge & indervægge
+• Tagpap
+— anvendes i tage
+• Skifer
+— anvendes i tage
+• Træ
+— anvendes i ydervægge, indervægge, gulve, tage & fundamenter
+• Tegl
+— anvendes i tage
+Udvikling af webplatform til bygningspas
+32
+==PAGE:37==
+4.2.14
+Materialemængder
+Materialemængderne er som tidligere beskrevet mængderne for de valgte materialer be­
+regnet ud fra arealer, volumener og omkredse. Disse mængder er opgivet i kubikmeter
+og de findes ved at multiplicere tykkelserne af materialerne med et areal. Dette kunne ek­
+sempelvis være en væg på 50 kvadratmeter, hvori der er 20 centimeter isolering, hvilket
+vil give en isoleringsmængde i væggen på: 50m2 · 0.2m = 10m3
+Mængderne opgives for hver bygningsdel, og efterfølgende som en summering af alle ma­
+terialerne der indgår i disse. Summeringen forekommer for hvert materiale der optræder
+i bygningen.
+Figur 4.23: 1. til 2. iteration af materialemængderne
+På figur 4.23 ses udvikling af designet for materialemængderne fra første til anden ite­
+ration. Denne iterative proces gjorde afsnittet mere overskueligt og desuden en bedre
+tilpasning i forhold til værktøjets design.
+Råmaterialemængder
+Råmaterialerne er en implementering der viser sammenhængen mellem bygningspasset
+og materialepasset. I materialepassene er der for hvert materiale opgivet hvilke råmateri­
+aler disse består af. I værktøjet refereres der til materialepassene ud fra hvilke materialer
+og mængder der er tilføjet til bygningspasset.
+Materialernes råmaterialer er en personlig vurdering og er blot et bud på hvordan sam­
+mensætning kunne se ud i virkeligheden. Materialernes opbygninger ser ud således:
+Beton
+• Sand 70%
+• Kalk 10%
+• Ler 5%
+• Vand 15%
+Gips
+• Gips 80%
+• Papir 20%
+Isolering
+• Sten
+100%
+Metal
+• Jern 50%
+• Stål 50%
+Mursten
+• Ler 86%
+• Kalk 9%
+• Grus 5%
+Udvikling af webplatform til bygningspas
+33
+==PAGE:38==
+Tagpap
+• Polyester 50%
+• Bitumen 10%
+• Ler 15%
+• Gummi 15%
+Skifer
+• Skifer 100%
+Tegl
+• Ler 95%
+• Kalk 5%
+Træ
+• Træ 100%
+Eksempelvis består beton af 70% sand, 10% kalk, 5% ler og 10% procent vand, mens
+isolering udelukkende består af 100% sten.
+Figur 4.24: Processen som foregår ved implementering af råmaterialer
+På figur 4.24 vises hvordan råmaterialerne er implementeret i værktøjet. Punkt et er værk­
+tøjet i sig selv, hvor brugeren har valgt at Materiale1 indgår i en af bygningsdelene, ved
+punkt to. Herefter bliver dette materiale slået op i punkt tre, som er materialepasset for
+det pågældende materiale. Materialepasset viser hvilke råmaterialer dette består af, og
+disse bliver sendt tilbage til værktøjet, hvilket illustreres i punkt fire.
+Som det vises i gennemgangen af værktøjet i det tidligere afsnit opgives råmaterialerne i
+procent. Dette gøres ved at beregne mængden af hvert råmateriale og herefter summe­
+re dem alle, for at finde den samlede matieralemængde i bygningen. Med den samlede
+mængde kan procentdelen for hvert materiale beregnes individuelt.
+4.2.15
+Klimapåvirkning
+Værktøjet beregner klimapåvirkningen af bygningen ud fra materialemængderne. Klima­
+data stammer fra LCAbyg [14]. De processer der er medtaget er A1­A3, hvilket er råma­
+terialer, transport og fremstilling. Det vil sige at selve byggeprocesserne såsom transport
+til byggeplads eller opførelse ikke er medtaget. Desuden kigges der ikke på endt levetid
+af materialerne.
+Data omkring udledninger fra de fleste materialer er baseret på en værdi pr. kubikmeter,
+men for nogle var dette ikke en mulighed. I stedet blev disse beregnet pr. kvadratmeter og
+herefter ganget op til pr. kubikmeter. Et eksempel på dette var tegl, som programmet antog
+havde en tykkelse på 38mm­73mm, og en klimaudledning med en enhed pr. kvadratmeter.
+For at enheden kom til at passe blev tykkelsen ganget op, og således blev der fundet en
+udledning i kubikmeter, der kunne sammenlignes med de andre materialer.
+Udvikling af webplatform til bygningspas
+34
+==PAGE:39==
+4.2.16
+Feedback
+En af de mest problematiske processer i projektet har været at kunne skaffe ordentligt fe­
+edback. Der er ikke mange eksempler på feedback i dette afsnit (Analytisk gennemgang),
+hvilket skyldes at det har været svært at få den ønskede kvalitative tilbagemelding, eller
+at denne ikke er endt ud i noget der kunne implementeres. Feedback er kommet fra huse­
+jere med meget lav vidensniveau omkring byggematerialer og ingen viden om materiale­
+og bygningspas. Konceptet med disse pas er vanskeligt at forstå for menige, især når
+disse er blevet implementeret som .json filer. Feedbacken har derfor hovedsageligt været
+baseret på det visuelle, det vil sige værktøjets UI (User Interface), som er den ydre repræ­
+sentation ­ selve websiden. Dette kan selvfølgelig være brugbart, for eksempelvis at gøre
+værktøjet nemmere at forstå, men det vil ikke have nogen indvirkning på metoder eller
+koncepter. Som det kan ses tidligere, er noget af denne visuelle feedback blevet imple­
+menteret. Et eksempel der ikke tidligere er nævnt, var at indsætte enheder for værdierne
+i bygningsinformationsafnittet.
+Webværktøjet er essentielt en grafisk repræsentation af bagvedliggende funktioner, be­
+regninger og analyser, hvor brugeren kun ser en meget lille del, af hvad det egentligt
+består af. Dette er også med til af gøre indsamlingen af feedback vanskelig. Det er svært
+for en forsøgsperson at sætte sig ind i beregningsmetoderne, siden de ikke er synlige, og
+selv hvis de var synlige ville eventuel tilbagemelding være svær at implementere. Værktø­
+jet er gennem implementering sat sammen som flere samarbejdene systemer, hvor hvis
+noget skulle forbedres eller ændres, ville det potentielt kræve opdatering i flere forskellige
+systemer, og ikke bare det system hvor ændringen blev foreslået. Dette betyder, at feed­
+back skulle så vidt muligt have været indsamlet tidligt i processen og have været baseret
+på ideer og ønsker, eller ændringer til det konceptuelle. Hvis dette havde været tilfældet
+ville det have været muligt at basere værktøjets systemer på de ønskede eller foreslåede
+metoder, før disse blev fastlagt. Det kunne altså have været mere optimalt, hvis der ses
+på figur 3.1, at inkludere en form for tilbagemelding i først skridt af udviklingsprocessen.
+Som det ser ud nu, har feedbacken fra boligejerne været med til at gøre værktøjet mere
+visuelt tiltalende og sandsynligvis en tand mere forståeligt, men ikke så meget mere end
+det.
+Udvikling af webplatform til bygningspas
+35
+==PAGE:40==
+5
+Cases
+I dette afsnit vil to af bygningerne i værktøjets database blive gennemgået og deres ma­
+terialemængder beregnet. I den ene vil der laves antagelser ud fra visualiseringen og
+materialer vil vælges ud fra den simple metode. I den anden case vil der ageres som eks­
+pert med kendskab til bygningen og hvilke materialer der indgår, hvilket betyder at den
+avancerede metode for materialevalg tages i brug.
+5.1
+Case 1 (Chr Winthers Vej 20B, 2800)
+Figur 5.1: Visualisering af Chr Winthers Vej
+20B, 2800
+Chr Winthers Vej 20B, 2800 er en moder­
+ne bygning opført i 2012, hvilket vil sige
+en alder på 9 år. En visualisering af byg­
+ningen kan ses på figur 5.1. Ud fra denne
+visualisering kan det identificeres at byg­
+ningen har fladt tag, men det er svært at
+sige noget om fundamenttypen. Uden in­
+formationer omkring fundamentet vælges
+typen til at være stribefundament, da det­
+te er meget udbredt i fritliggende boliger.
+Disse valg kan ses på figur 5.2. Etageare­
+alet vises til 108 kvadratmeter. Da denne
+er svær at argumentere for eller imod be­
+holdes værdien. Etagehøjden er sat til 2.5
+meter som standardværdi, hvilket virker re­
+alistisk i forhold til visualiseringen. Som tid­
+ligere nævnt er bygningen opført i 2012,
+hvilket gør det til en forholdsvis ny bygning.
+Ud fra dette kan det forventes at bygnin­
+gen har lavt energiforbrug og indeholder
+en stor mængde isolering i klimaskærmen.
+Dette kan noteres til materialeafsnittet. Der skal ikke foretages flere valg i afsnittet omkring
+bygningsinformation, og det er nu muligt at gå videre til næste afsnit.
+Figur 5.2: Bygningsinformationen omkring Chr Winthers Vej 20B, 2800
+Udvikling af webplatform til bygningspas
+36
+==PAGE:41==
+Brugeren har ingen indflydelse på energiafsnittet, og derfor vil der ikke foretages noget
+her, udover at notere energiklassen som er ”B”. Antagelsen om at det nye byggeri vil have
+lavt energiforbrug var altså korrekt. Det kan derfor også antages at bygningen vil inde­
+holde forholdsvist meget isolering i flere af bygningsdelene. Alle informationer omkring
+bygningens energi vises på figur 5.3
+Figur 5.3: Energiafsnittet for Chr Winthers Vej 20B, 2800
+I forhold til materialer kan det ses på visualiseringen, at bygningens ydervægge er baseret
+på en opbygning af pudsede mursten. Taget vil sandsynligvis være en form for tagpap, da
+dette er normalt for skrå eller flade tage. Fundamenter består oftest af beton i fritliggende
+boliger, især hvis bygningen ikke er konstrueret i træ. Det er svært at antage noget om
+gulve, men i Danmark er trægulve meget populære og derfor vælges disse. Da ydervæg­
+gene indeholder mursten, er det også muligt at indervæggene gør. Den simple metode
+vælges her til at bestemme materialerne.
+Figur 5.4: Materialevalg for Chr Winthers Vej 20B, 2800
+På figur 5.4 ses det at ydervæggene er valgt til mursten, taget er tagpap, gulvet er træ,
+fundamentet er beton og indervæggene er mursten. Da materialerne nu er valgt, gås der
+videre til afsnittet om materialemængder som vises på figur 5.5.
+Figur 5.5: Materialemængder for Chr Winthers Vej 20B, 2800
+Det ses at størstedelen af materialerne i ydervægge, tag og gulv er isolering. Fundamentet
+består af ca. otte kubikmeter beton og indervæggene består udelukkende af mursten. På
+figur 5.6 er materialemængderne blevet summeret, hvilket igen viser at langt størstedelen
+Udvikling af webplatform til bygningspas
+37
+==PAGE:42==
+af materialeindholdet er isolering, efterfulgt af træ og så mursten. Bygningen indeholder
+ca. 120 kubikmeter isolering.
+Figur 5.6: Samlede materialemængder for Chr Winthers Vej 20B, 2800
+Efter den summerede inddeling ses den procentvise opdeling af råmaterialer. Siden det
+mest prominente bygningsmateriale var isolering giver det mening, at den største pro­
+centdel af råmaterialerne er sten. Det ses på figur 5.7 at ca. 58% af råmaterialerne der
+indgår i bygningen er sten, efterfulgt af træ på 21% og ler på 12%.
+Figur 5.7: Opdeling af råmaterialemængder for Chr Winthers Vej 20B, 2800
+Til slut kigges der på klimapåvirkningen af bygningen, som er beregnet ud fra de valg­
+te materialer. Denne ses på figur 5.8. Det væsentligste ved dette afsnit er teksten, der
+sammenligner drivhuspotentiel og gør påvirkningen mere håndgribelig. Her ses, at driv­
+huspotentialet har en værdi på 22937 kgCO2 −eq, hvilket svarer til den gennemsnitlige
+årlige udledning af 3.8 danskere eller 191143 kilometer kørt i en moderne passagerbil.
+Figur 5.8: Klimapåvirkning for Chr Winthers Vej 20B, 2800
+Udvikling af webplatform til bygningspas
+38
+==PAGE:43==
+5.2
+Case 2 (Klintevej 18, 4000)
+Figur 5.9: Visualisering af Klintevej 18, 4000
+I modsætning til tidligere case, antages det
+her, at der vides mange detaljer om denne
+specifikke bygning, for at illustrere hvordan
+en sådan situation i værktøjet kunne udfol­
+des. Klintevej 18, 4000 er en bygning op­
+ført i 1935, hvilket vil sige den har en al­
+der på 86 år. Bygningen er siden opførs­
+len undergået en renovering. Visualiserin­
+gen viser en bygning i god stand. Bygnin­
+gen har saddeltag, og det er muligt at se
+dele af fundamentet. Det vides at funda­
+mentet er et linjefundament. Visualisering
+ses på figur 5.9. Udover kendskab til tag­
+og fundamenttypen vides det også, at eta­
+gehøjden ikke er den samme som stan­
+dardværdien på 2.5 meter, men er derimod
+her 2.3 meter. Selve etagearealet stemmer
+overens med den værdi som kendes, hvil­
+ket er 79 kvadratmeter. Disse informatio­
+ner vises på 5.10. De resterende arealer
+samt omkredsen ser ud til at stemme overens med virkeligheden. Da der ikke kræves
+yderligere input her, kan der gås videre til næste afsnit.
+Figur 5.10: Bygningsinformation for Klintevej 18, 4000
+Med en alder på 86 år burde bygningen have meget højt energiforbrug, men det vides
+som tidligere nævnt at bygningen har været renoveret. På figur 5.11 er informationerne
+omkring bygningens energi vist. Der ses her, at bygningen har energiklasse D, hvilket
+er forventeligt af en gammel bygning, der har gennemgået en renovering. Energiklassen
+ville kunne forbedres til C ved implementering af nye solceller, hvilket ville reducere det
+årlige forbrug med 3400 kr.
+Udvikling af webplatform til bygningspas
+39
+==PAGE:44==
+Figur 5.11: Energi for Klintevej 18, 4000
+I forhold til materialevalg, kendes materialerne og tykkelser nogenlunde. Ydervæggene
+består af mursten, isolering, træ og er beklædt indvendigt med gips. Taget er bygget op
+af tegl, træ og isolering. Gulvene er træ og isolering. Fundamentet består udelukkende af
+beton og til sidst er indervægge opbygget af træ og gips. Tykkelser af de valgte materialer
+kan ses på figur 5.12
+Figur 5.12: Materialevalg for Klintevej 18, 4000
+Nu hvor materialerne er valgt, kan der gås videre til materialemængder. Ud fra tykkelserne
+vil det være forventeligt, at isolering er det mest anvendte materiale, hvilket det også er.
+Dette kan ses på figur 5.13. I ydervæggen er mursten og isolering de materialer med
+største mængde, hvor det i taget og gulvene suverænt er isolering. Der er intet andet der
+stikker ud som bemærkelsesværdigt, og der fortsættes til næste afsnit, hvor de samlede
+materialemængder vises.
+Figur 5.13: Materialemængder for Klintevej 18, 4000
+På figur 5.14 illustreres fordelingen af de samlede materialer. Isolering er det mest an­
+vendte med en over dobbelt så stor mængde som næststørste, hvilket er træ. Herefter
+følger mursten, beton, gips og til sidst tegl.
+Udvikling af webplatform til bygningspas
+40
+==PAGE:45==
+Figur 5.14: Samlede materialemængder for Klintevej 18, 4000
+Ud fra materialerne og materialepassene er de samlede råmaterialemængder blevet be­
+regnet og opdelt i procent. Disse vises på figur 5.15. Som i den tidligere case står sten for
+den største procentdel af de samlede råmaterialer, specifikt er det her 49 %. Efter sten
+følger træ og ler, som også ansvarlige for store procentdele af den samlede mængde.
+Bygningen består af i alt otte råmaterialer, herunder: sten, træ, ler, sand, gips, kalk, vand
+og papir.
+Figur 5.15: Samlede råterialemængder for Klintevej 18, 4000
+Når der kigges på klimapåvirkningen ses det, at materialer forårsager et drivhuspotentiale
+på 17591 kqCO2 −eq. Dette kan ses på figur 5.16. Drivhuspotentialet svarer til den gen­
+nemsnitlitle årlige udledning af 2.9 danskere eller at køre 146588 kilometer i en moderne
+passagerbil.
+Figur 5.16: Klimapåvirkning for Klintevej 18, 4000
+Udvikling af webplatform til bygningspas
+41
+==PAGE:46==
+6
+Diskussion
+6.1
+Kriterier
+Der var i alt udarbejdet 9 kriterier for projektet. Disse var:
+1. Værktøjet skal vise information omkring den valgte bygning.
+2. Værktøjet skal give en visualisering af den valgte bygning.
+3. Værktøjet skal give mulighed for at ændre informationer og detaljer ved den valgte
+bygning.
+4. Værktøjet skal indeholde en simpel og en avanceret metode til materialevalg i byg­
+ningen.
+5. Værktøjet skal vise information omkring bygningens materialemængder.
+6. Det skal være muligt at gemme ændringer foretaget i værktøjet.
+7. Værktøjet skal kunne anvendes og forstås af de to målgrupper.
+8. Værktøjet skal give mulighed for at hente et bygningspas og materialepas for alle
+materialer der indgår i bygningen.
+9. Værktøjet skal kunne vise en sammenhæng mellem materiale­ og bygningspas.
+For at bestemme om kriterierne er overholdt, diskuteres disse nu individuelt. Første kri­
+terie siger, at værktøjet skal vise information om den valgte bygning. Dette kriterie er
+overholdt idet, at bygningsinformation samt energiinformation vises. Bygningsinformation
+er relevant for at give et indblik i bygningens arealer og typer af bygningsdele. Der er
+dog et spørgsmål om hvorvidt den viste information er tilstrækkelig, eller om noget er
+overflødigt. Da værktøjets primære formål er at bestemme materialemængden via mate­
+rialevalg og danne et bygningspas, er det måske ikke nødvendigt at vise de forskellige
+arealer, da deres egentlige formål er at blive benyttet til beregninger under overfladen. Det
+kan dog argumenteres at disse arealer også viser bygningens relative størrelse, hvilket
+kan gøre de endelige materialemængder mere relaterbare. Desuden er det nemmere at
+sammenligne størrelsen på to forskellige bygninger, da deres arealer kan sættes op mod
+hinanden.
+Andet kriterie er at værktøjet skal give en visualisering af den valgte bygning. Dette er
+opnået gennem Google Street View, der viser et interaktivt billede af bygningen, hvor det
+er muligt at zoome og ændre perspektiv. Dette anses som en god implementering og
+kriteriet er derfor overholdt. Hvis brugeren blot havde haft et billede af bygningen, hvor
+de yderligere funktioner såsom zoom ikke var tilgængelige, ville det sandsynligvis være
+sværere at vurdere bygningen ud fra visualiseringen.
+I tredje kriterie skal værktøjet give mulighed for at ændre informationer og detaljer ved den
+valgte bygning. Dette er opnået ved at give brugeren adgang til at ændre etagearealet,
+etagehøjden, tagtypen og fundamenttypen. Disse er fire ting, som brugeren burde have
+nogenlunde styr på. Tagtypen kan vurderes ud fra visualiseringen, hvilket fundamenttypen
+i nogle tilfælde også kan. Etagearealet er baseret på BBR, og burde derfor være korrekt
+uden ændringer. Et problem ved dette kriterie er, at jo flere informationer det bliver muligt
+Udvikling af webplatform til bygningspas
+42
+==PAGE:47==
+at ændre, desto større bliver vidensbyrden for brugeren. Ideelt set burde alle informationer
+i bygningsinformationsafsnittet kunne ændres, men for at holde det simpelt er det valgt at
+kun de fire førnævnte kategorier er justerbare. Desuden er det usandsynligt at der kendes
+til eksempelvis væg­ eller tagareal. Dette kriterie kan derfor anses som i hvert fald delvist
+succesfuldt.
+Fjerde kriterie siger, at værktøjet skal indeholde en simpel og en avanceret metode til
+materialevalg i bygningen. Dette er implementeret ved en slider, hvor brugeren selv har
+mulighed for at bestemme om de vil vælge materialer på den simple eller avancerede me­
+tode. Denne implementering kan siges at være en succes, da det er lykkedes et udvikle
+to forskellige metoder. Der findes dog et problem heri. Den simple metode giver mindre
+præcise resultater, da materialerne er baserede på præ­definerede bygningsdele. Set fra
+den modsatte side, giver det dog sandsynligvis mere præcise resultater end hvis brugeren
+anvender den avancerede metode uden at kende til bygningens materialesammensæt­
+ning eller har viden om opbygningen af bygningsdele. Desuden er der ikke stor fokus på
+præcision i værktøjet, hvilket betyder at estimaterne ved den simple metode ikke trækker
+meget ned.
+Værktøjet skal vise information omkring bygningens materialemængder er femte kriterie.
+Disse vises både individuelt for hver bygningsdel og samlet som en summering. Mæng­
+derne er baseret på materialevalg og tidligere valg såsom typer og arealer. Mængderne
+vises i kubikmeter, hvilket er valgt grundet dimensionerne og størrelserne af bygninger.
+Volumen er mere relaterbart end vægt, og kubikmeter er mere passende end eksempelvis
+liter. Værktøjet overholder derfor dette kriterie.
+Kriterie seks siger, at det skal være muligt at gemme ændringer foretaget i værktøjet.
+Dette er lykkedes ved at skabe en realtime­database, hvor alle ændringer der er foretaget
+i værktøjer, herunder materialevalg, bygningsinformation og typer, kan gemmes. Kriteriet
+er altså opfyldt, og det er svært at finde på en bedre eller anderledes implementering.
+I syvende kriterie nævnes det at værktøjet skal kunne anvendes og forstås af de to må­
+lgrupper. Der er altså tale om to målgrupper ­ én der ikke har stor erfaring med byggeri
+eller konceptet materiale­/bygningspas, og én der har viden og kendskab til disse om­
+råder. Dette kriterie hænger egentlig sammen med kriterie fire, hvor der er mulighed for
+at vælge en simpel og avanceret metode. Den simple er tiltænkt den første målgruppe,
+som ikke ville vide hvordan en materialeopbygning ser ud, hvorimod den avancerede er
+tiltænkt den erfarne målgruppe. Desuden kan værktøjet anvendes til flere formål. Først og
+fremmest at registrere materialemængder i en bolig. Dette kunne foretages af en bolige­
+jer. Herefter kunne den indtastede information bruges af en erfaren bruger til at ekstrahere
+bygningspasset til et eller andet formål. Den uvidende målgruppe vil sandsynligvis ikke få
+mening ud fra de downloadede materiale­ og bygningspas, men kan i det mindste ana­
+lysere materialemængderne, hvorimod disse pas egentlig er det vigtigste for den erfarne
+målgruppe. Det vurderes derfor, at implementeringen ved dette kriterie er tilfredsstillende.
+Kriterie otte er selve materiale­ og bygningspassene og muligheden for at hente disse
+ned. Passene er implementeret som individuelle .json filer, og downloades sammen i en
+.zip fil. Alle materialer der indgår i værktøjet, har et individuelt materialepas, der bliver
+downloadet hvis det givne materiale er til stede i bygningen. Bygningspasset er derimod
+en deklaration af hvilke materialer der indgår i bygningen med en reference til materiale­
+pas samt mængde. Det er altså lykkedes at implementere kriteriet på en acceptabel og
+funktionel facon.
+Værktøjet skal kunne vise en sammenhæng mellem materiale­ og bygningspas er det
+Udvikling af webplatform til bygningspas
+43
+==PAGE:48==
+niende og sidste kriterie. Dette er opnået gennem råmaterialemængderne som er ba­
+seret på materialevalget og materialepassene. Når der vælges et materiale i værktøjet
+bliver der samtidig hentet informationer om pågældende materiale fra dets unikke mate­
+rialepas, herunder hvilke råmaterialer det består af. Endnu en sammenhæng vises i det
+downloadede bygningspas, hvor der refereres til materialepassene. Yderligere sammen­
+hænge kunne være blevet implementeret, såsom den tidligere nævnte identifikation af
+miljøskadelige stoffer, men dette valgte at blive undladt grundet de allerede eksisterende
+funktioner, der allerede opfylder kriteriet.
+Overordnet set er kriterierne for værktøjet overholdt, og det kan siges at implementeringen
+i hvert fald er nogenlunde succesfuld.
+6.2
+Mangler
+Nogle mangler ved værktøjet findes ved vinduerne samt tag­ og vægarealet. Vinduerne
+er implementeret i værktøjet således der kan vælges et materiale, ligesom det er muligt
+at vælge materialer for alle de andre bygningsdele. Valget for vinduer har dog ikke no­
+gen reel konsekvens, da disse ikke er koblet til nogle af de bagvedliggende funktioner. I
+forhold til tag­ og vægarealet burde de forskellige tagtyper, udover at have indflydelse på
+tagarealet, også ændre på vægarealet, da flere af disse typer kan dække over ydervæg­
+gene. Valmtaget har eksempelvis hældning i alle bygningens sider, hvilket gør vægarealet
+mindre samtidig med at tagarealet forøges. I modsætning til tagarealet vil vinduesarea­
+let, selvom materievalget for dette ikke er tilkoblet, stadig reducere vægarealet. Disse to
+mangler ville kunne øge sikkerheden og præcisionen af de endelige mængder i det, at
+materialemængderne i de forskellige bygningsdele ville være bedre fordelt.
+Endnu et område, der kunne være blevet sat mere i fokus er feedback. I stedet for ho­
+vedsageligt at få tilbagemelding fra menige boligejere, kunne det have været interessant
+at høre mere fra fagfolk. Eksempelvis materialeproducenter, bygherrer og andre ingeni­
+ører. Disse kunne have en mere teknisk indgangsvinkel og komme med mere konkrete
+forslag på hvad, de specifik kunne tænkte sig at få ud fra værktøjet. Producenter kun­
+ne eksempelvis uddybe materialepas, og hvad de synes disse burde indeholde, mens
+ingeniører kunne gøre det samme for selve bygningspasset. Projektet er i nuværende
+tilstand hovedsageligt baseret på egne fortolkninger, selvfølgelig foretaget i dialog med
+vejleder, hvilket betyder at det endelige værktøj kan have været begrænset af et snævert
+perspektiv. Hvis perspektivet blev gjort bredere, ville det kunne føre til et mere afrundet
+og veltilpasset værktøj.
+6.3
+Nye funktioner
+En ny funktion der kunne implementeres i værktøjet, kunne være at give besked om byg­
+ningen indeholder miljøskadelige stoffer. Som der er nævnt i baggrundsafsnittet, ville dis­
+se stoffer ideelt blive deklareret i alle materialepas. Ud fra dette kunne værktøjet gennem­
+gå alle materialepas for de materialer der indgår i bygningen og herefter se om nogle af
+disse indeholdt miljøskadelige stoffer. Det ville medvirke til at gøre en vurdering af bygnin­
+gens affaldbehandling nemmere efter potentiel nedrivning, eller give nye købere mulighed
+for bedre at evaluere bygningen.
+For at et webværktøj til bygningspas ville kunne fungere i realiteten, skulle man ideelt
+set have mulighed for at importere bygningspas samt nye materialepas ind i værktøjets
+database. I øjeblikket indeholder værktøjet fem adresser, det vil sige bygningspas for fem
+bygninger, samt ni materialepas. Et system der gjorde det muligt at tilføje nye bygninger og
+Udvikling af webplatform til bygningspas
+44
+==PAGE:49==
+materialer ville øge værktøjets status fra blot et proof of concept til noget der reelt kunne
+have værdi, da det ville medføre muligheden for faktisk at oprette en bred database. En
+importering af materialepas ville gøre det muligt at forøge muligheden af materialevalg,
+mens et import af bygningspas kunne udvide kataloget af tilgængelige adresser. Grunden
+til denne funktion ikke er implementeret i værktøjet allerede, er fordi, det er en forholdsvist
+kompliceret proces, der ville kræve meget tid at undersøge og derefter udvikle.
+6.4
+Motivation og forretning
+For at potentielle brugere ville have lyst til at benytte et værktøj, kræver det en form for
+motivation. Motivationen for fagfolk er klar ­ bygningsdata. Dette er dog ikke attraktivt for
+den almene boligejer. For at få mest mulig data indsamlet ville det være ideelt at kunne
+lokke de enkelte borgere til at registrere materialerne i deres egen bygning. En motivation
+der er implementeret er klimaudledningnen, som viser den eventuelle klimabesparelse
+der kunne forekomme, hvis bygningens materialer blev genbrugt til nye byggerier frem
+for, at der blev produceret nye materialer. Dette er sandsynligvis ikke en stor motivation
+for så mange. Den mest åbenlyse metode hvorpå mennesker kan få incitament til at udføre
+en opgave er gennem finansielle gevinster. Hvis værktøjet viste værdien af bygningens
+materialer eksplicit i kroner, kunne det give flere mennesker et formål med at anvende
+værktøjet.
+Hvis bygningspas skal slå igennem, er der behov sammenhængen med materialepas, og
+materialepas kræver i sig selv enormt meget information. Mængden af information i pas­
+set kræver, at det er personer med relevante erfaringer samt mulighed for at tilgå data,
+der skal oprette disse. Der vil altså sandsynligvis opstå en ny stilling eller nye arbejds­
+opgaver inden for byggerisektoren. Vedligehold og oprettelse af materialepas vil være
+en omkostning, og der skal således også forekomme en indtjening der kan opveje dette.
+Som beskrevet før, vil en person der modtager et bygningspas for en bygning have bed­
+re mulighed for genanvendelse af materialer og således potentielt kunne opnå finansiel
+gevinst. Det kan derfor spekuleres om bygnings­ og materaielpas kunne blive udført som
+betalte servicer.
+6.5
+Metode
+Det kan overvejes om projektet burde have været udført på en alternativ metode. Det
+nævnes i afsnittet omkring feedback i Analytisk gennemgang, at tilbagemeldingen kun­
+ne have foregået som en del af første proces i metoden. Det betyder altså, at feedback
+ville indgå som en del af research­ og vidensdannelsesstadiet og således før implemen­
+teringen af webværktøjet starter. Dette ville medføre, at projektet ville blive baseret på
+ønsker og forslag fra både relevante fagfolk og almene boligejere, i modsætning til nuvæ­
+rende metode hvor projektet hovedsageligt er baseret på egne og vejleders vision, med
+en smule feedback fra de almene. Gevinsten ved denne tilgang er selvfølgelig en bedre
+tilfredsstillelse af værktøjets målgrupper. Det ville muliggøres at lave dybdegående funk­
+tioner og indrette indholdet til hvad brugeren synes er interessant at se. Problematikken
+ved denne metode ligger i den tid, som det ville tage få skaffet denne tilbagemelding. Hvis
+der skulle bruges meget mere tid på feedback i den nuværende metode, ville det være
+tvivlsomt om værktøjet ville være velfungerede, og det ville med sikkerhed mangle nogle
+funktioner. Hvis metoden med feedback før implementering skulle foretages, er det ikke
+sikkert at det overhovedet ville være muligt at stable et værktøj på benene, og projektet
+ville således ende ud i et studie fremfor et produkt. Det kan ikke undervurderes hvor lang
+tid en udvikling af et webværktøj tager.
+Udvikling af webplatform til bygningspas
+45
+==PAGE:50==
+Ud fra disse overvejelser kan det argumenteres hvilken metode, der er mere passende til
+et projekt som dette. Metoden bestemmes selvfølgelig ud fra hvad formålet med projektet
+er, og hvad der ønskes at få ud af dette. Hvis der som i dette projekt fokuseres på at oprette
+et værktøj, der kan vise en implementering af bygningspas, vil den anvendte metode
+være mere passende, da den giver mere tid til selve udviklingen. I en anden situation
+hvor det teoretiske indhold har større fokus end selve implementeringen, ville metoden
+med feedback i første proces være ideel. Det kan overvejes om en kombination af de
+to metoder, kunne føre til et godt resultat. Det vil sige, hvor en form for tilbagemelding
+modtages før starten på implementering, men også undervejs. Dette kunne være en god
+mellemvej mellem de to forskellige tilgange, og kunne give bedre mulighed for at målrette
+værktøjet samtidig med, at det vil give tid til den faktiske udvikling.
+Udvikling af webplatform til bygningspas
+46
+==PAGE:51==
+7
+Konklusion
+Formålet med projektet var, at udvikle et webværktøj til registrering samt datahåndtering af
+materiale­ og bygningspas. Dette skulle være med til at skabe en lettilgængelig platform
+for at registrere mængder og typer af materialer i danske byggerier. Motivationen bag
+projektet var, at skabe en oversigt og gøre data omkring bygninger nemmere tilgængeligt,
+hvilket eksempelvis kunne gøre byggematerialer nemmere at genbruge.
+I forbindelse med implementering, har det været nødvendigt at anskaffe data om bygnin­
+gers geometri, arealer samt materialeindhold. Det viste sig, at mange af disse funktioner
+ikke er tilgængelige, hvilket har betydet, at det har været nødvendigt at generere disse au­
+tomatisk eller gennem brugerinput. De endelige materialemængder er altså blandt andet
+baseret på estimater og antagelser. Således vil der i værktøjet ikke for fokus på ekstrem
+præcision, men derimod en platform der er lettilgængelig og velfungerende.
+Den anvendte metode til udviklingen af værktøjet, har resulteret i, at feedback har været
+svær at tilegne samt at implementere. Dette har betydet at projektet hovedsageligt har
+været baseret på egne fortolkninger. En anden metode blev overvejet, hvorved tilbage­
+melding ville tage en meget større rolle i startet af projektet, men dette ville sandsynligvis
+ende ud i, at implementeringsdelen ville blive nedprioriteret. En blanding af disse metoder
+havde i bakspejlet været mere passende, for at få et bedre produkt.
+Igennem processen blev der oprettet ni kriterier for værktøjet, som dette ideelt set skulle
+overholde. Disse var med til at målrette implementeringen samt værktøjets funktioner.
+I sidste ende lykkedes det at udvikle et værktøj, hvor alle disse kriterier blev overholdt,
+heriblandt at dette kan anvendes af to målgrupper, samt at det viser sammenhæng mellem
+materiale­ og bygningspas.
+Det kan altså konkluderes, at det er lykkedes at opnå formålet, som var udviklingen af et
+webværktøj. Der er oplevet udfordringer undervejs, hvoraf nogle kunne løses eller mind­
+skes med den viden der nu er tilegnet. Overordnet set fungerer værktøjet efter hensigten,
+og det er muligt at registrere materialemængder, samt at oprette bygningspas og se de
+tilhørende materialepas.
+Udvikling af webplatform til bygningspas
+47
+==PAGE:52==
+8
+Bilag
+8.1
+Materialepas
+1
+{
+2
+"Grunddata":
+3
+{
+4
+"Produktnavn":"Beton",
+5
+"CCS/CoClass/CCI klassifikation": null,
+6
+"GTIN/EAN nummer": null,
+7
+"BASTA-nummer": null,
+8
+"Andre identifikationsnumre": null,
+9
+"Varebeskrivelse": null,
+10
+"Vægt": null,
+11
+"Størrelse": null,
+12
+"Massefylde": null,
+13
+"Produktionssted": null,
+14
+"Nyt materialepas/ revideret pas": null,
+15
+"Ydeevnedeklaration (DoP)": null,
+16
+"Ydeevnedeklarationsnummer": null,
+17
+"Revisionsnummer": "DK.00.00.00.01",
+18
+"Oprettet/ændret": null,
+19
+"3. parts verificeret/1": null,
+20
+"3. parts verificeret/2": null,
+21
+"3. parts verificeret/3": null,
+22
+"3. parts verificeret/4": null,
+23
+"Andel af vare deklareret": null,
+24
+"Øvrige oplysninger": null
+25
+},
+26
+27
+"Leveranddøroplysninger":
+28
+{
+29
+"Producent": null,
+30
+"Adresse": null,
+31
+"CVR": null,
+32
+"Kontaktperson": null,
+33
+"Telefon": null,
+34
+"E-mail": null,
+35
+"Hjemmeside": null,
+36
+"Miljøledelssystem": null,
+37
+"Certificeringer (ISO 9001, ISO 14001, CSR, andre)": null,
+38
+"Virksomhedsretningslinjer": null,
+39
+"Socialt ansvar": null
+40
+},
+41
+42
+"Produktindhold":
+43
+{
+44
+"Sikkerhedsdatablad/1": null,
+45
+"Sikkerhedsdatablad/2": null,
+46
+"Uafhængige certificeringer/1": null,
+47
+"Uafhængige certificeringer/2": null,
+48
+"Miljøvaredeklaration/1": null,
+49
+"Miljøvaredeklaration/2": null,
+50
+"EPD, Funktionel enhed": null,
+51
+"EPD, Potential environmental impact matrix": null,
+52
+"EPD, Resource deletion matrix": null,
+53
+"EPD, Waste and output flows matrix": null,
+54
+"EPD, level": null,
+Udvikling af webplatform til bygningspas
+48
+==PAGE:53==
+55
+"EPD, GWP": null,
+56
+"EPD, ODP": null,
+57
+"EDP, AP": null,
+58
+"EPD, POCP": null,
+59
+"EPD, EP": null,
+60
+"EPD, Fornybar energi": null,
+61
+"EPD, ikke fornybar energi": null,
+62
+"Green guide mærkning": null,
+63
+"Genanvendelsesgrad": null,
+64
+"Andel som ikke deklareres pga. genanvendelsesgrad": null,
+65
+"Nanomateriale": null,
+66
+"Træbaserede byggevarer": null,
+67
+"Træbaserede byggevarer , EUTR-godkendt": null,
+68
+"Træbaserede byggevarer , CITES-beskyttet": null,
+69
+"Træbaserede byggevarer , certificeret": null,
+70
+"Træbaserede byggevarer , certificeringsandel": null,
+71
+"Træbaserede byggevarer , træsort": null,
+72
+"Træbaserede byggevarer , oprindelsesland": null
+73
+},
+74
+75
+"Indhold":
+76
+{
+77
+"Komponent/materiale": "Beton",
+78
+"Komponent består af": [["Sand", 0.70],["Kalk", 0.10],["Ler", 0.05],["
+Vand", 0.15]],
+79
+"Indgående indholdsstoffer": null,
+80
+"Vægt%": null,
+81
+"Oplyst % af komponent": null,
+82
+"SCIP-id": null,
+83
+"Indholdsstoffers EF-nr/CAS-nr": null,
+84
+"Indholdsstoffers klassificering": null,
+85
+"Undersøgt om værende på REACH-liste": null,
+86
+"Oprindelsesland": null,
+87
+"Kommentar": null,
+88
+"Samlet vægt": null,
+89
+"Samlet andel deklareret": null,
+90
+"Samlet VOC": null
+91
+},
+92
+93
+"Genbrugsvarer":
+94
+{
+95
+"Komponent/materiale/type": null,
+96
+"Vægt%": null,
+97
+"Andel af materiale som indgår medtager korte cykliske byggevarer ,
+mindre end 10 år": null,
+98
+"Andel af materiale som indgår medtager lange cykliske byggevarer ,
+mere end 10 år": null,
+99
+"% pre-forbruger": null,
+100
+"% post-forbruger": null,
+101
+"3.parts certificeret": null,
+102
+"Oprindelsesland": null,
+103
+"Kommentar": null
+104
+},
+105
+106
+"Kemisk behandling":
+107
+{
+108
+"Byggevarer/komponenter kemisk behandlet ved deklaration": null,
+109
+"Komponent/materiale": null,
+110
+"Komponent består af": null,
+111
+"Indholdsstoffers EF-nr/CAS-nr": null,
+112
+"SCIP-id": null,
+113
+"Indholdsstoffers klassificering": null,
+Udvikling af webplatform til bygningspas
+49
+==PAGE:54==
+114
+"Sikkerhedsdatablad er vedlagt": null,
+115
+"Behandlingsårsag": null,
+116
+"Kommentar": null,
+117
+"Er varen modstandsdygtig overfor svamp/skimmel ved anvendelse i
+vådrum": null
+118
+},
+119
+120
+"Kemisk ændring":
+121
+{
+122
+"Ændrer varen kemisk sammensætning efter byggeprocessen": null,
+123
+"Komponent/materiale": null,
+124
+"Komponent består af": null,
+125
+"Vægt%": null,
+126
+"SCIP-id": null,
+127
+"Indholdsstoffers EF-nr/CAS-nr": null,
+128
+"Indholdsstoffers klassificering": null,
+129
+"Kommentar": null
+130
+},
+131
+132
+"Elektronik":
+133
+{
+134
+"Indhold af elektroniske komponenter": null,
+135
+"I overensstemmelse med RoHS-direktivet": null,
+136
+"Hvis N, beskrives hvorfor": null
+137
+},
+138
+139
+"Produktionsfase":
+140
+{
+141
+"Oplyses råvarer og kemiske stoffer avendt til produktion af
+byggevaren": null,
+142
+"Komponent / materiale": null,
+143
+"Komponent bestpr af": null,
+144
+"Indgående indholdsstoffer": null,
+145
+"Vægt%": null,
+146
+"Oplyst % af komponent": null,
+147
+"Indholdsstoffers E-nr/CAS-nr": null,
+148
+"Indholdsstoffers klassificering": null,
+149
+"SCIP-id": null,
+150
+"Undersøgt om værende på REACH-liste": null,
+151
+"Oprindelsesland": null,
+152
+"Kommentar": null
+153
+},
+154
+155
+"Distribution":
+156
+{
+157
+"Returnerbar emballage": null,
+158
+"Flergangsemballage": null,
+159
+"Returemballage": null,
+160
+"Øvrige oplysninger om distribution": null
+161
+},
+162
+163
+"Byggefase":
+164
+{
+165
+"Særlige krav til opbevaring": null,
+166
+"Særlige krav til brug og vedligehold": null,
+167
+"Særlige krav til energitilførsel ved brug": null,
+168
+"Særlige krav til byggevarer som sammenbygges med produktet": null
+169
+},
+170
+171
+"Brugsfase":
+172
+{
+173
+"Referencelevetid": null,
+Udvikling af webplatform til bygningspas
+50
+==PAGE:55==
+174
+"Referencelevetid , dokumentation": null,
+175
+"Referencelevetid , kommentar": null
+176
+},
+177
+178
+"Emmisioner":
+179
+{
+180
+"Er varens emmisioner målt": null,
+181
+"Indgående indholdsstoffer": null,
+182
+"3 dage": null,
+183
+"4 dage": null,
+184
+"26 dage": null,
+185
+"Målemetode": null,
+186
+"Kommentar": null,
+187
+"Certificeringer v. test udført": null,
+188
+"EC1+, EC, M1, M2, agBB, E1, GUT, DIM, andre": null,
+189
+"Energimærkning": null,
+190
+"Akustiske forhold relevant": null,
+191
+"Lydabsorptionsklasse": null,
+192
+"Brandklasse": null,
+193
+"Røgklasse": null,
+194
+"Udledning af farlige stoffer ved brand": null,
+195
+"Har varen en kritisk fugtighedstilstand": null,
+196
+"Danner varen et elektrik felt under brug": null,
+197
+"Danner varen et magnetisk felt under brugt": null,
+198
+"Giver varen anledning til støj under brug": null,
+199
+"Øvrige oplysninger": null
+200
+},
+201
+202
+"Ressourcepotentiale":
+203
+{
+204
+"Er varen forberedt til nedrivning/demontering": null,
+205
+"Særlige tiltag til beskyttelse af helbred og miljø ved nedrivning/
+demontering": null,
+206
+"Fjernelse , der kun foretages destruktivt": null,
+207
+"Adskillelse , kan ikke uidføres på byggepladsen": null,
+208
+"Svær fjernesle af fastsiddende rester": null,
+209
+"Maskinel indsats for demontering": null,
+210
+"Kan fjernes med håndkraft eller med enkle redskaber": null,
+211
+"Sværhedsgrad for demontering fra bygning for dekleret brug": null,
+212
+"Kan varen skilles ad i dele": null,
+213
+"Kemisk/cementforbindelse , ikkeopløselig": null,
+214
+"Selvklæbende eller vandopløselige byggevarer anvendt": null,
+215
+"Støbes på plads": null,
+216
+"Svejset på plads": null,
+217
+"Nittet på plads": null,
+218
+"Sømmet på plads": null,
+219
+"Skruet på plads": null,
+220
+"Boltet på plads": null,
+221
+"Friktionssamling": null,
+222
+"Kliksamling el. lignende": null
+223
+},
+224
+225
+"Genvinding og bortskaffelse":
+226
+{
+227
+"Materialegenvinding mulig for hele eller dele af varen": null,
+228
+"Energigenvinding mulig for hele eller dele af varen": null,
+229
+"Andel farligt/giftigt/radioaktivt affald": null,
+230
+"Andel til deponering": null,
+231
+"Andel til energiudnyttelse": null,
+232
+"Andel til funktionel fyldning": null,
+233
+"Andel til genanvendelse ind i ny bygning , rå materiale": null,
+Udvikling af webplatform til bygningspas
+51
+==PAGE:56==
+234
+"Andel til genanvendelse ind i ny bygning , nedbrudte materialer": null
+,
+235
+"Andel til bionedbrydning": null,
+236
+"Andel til genbrug , ved proceshåndtering af materiale": null,
+237
+"Andel til genbrug , ved omfattende rengøring af materiale": null,
+238
+"Andel til genbrug , ved simpel rengøring af materiale": null,
+239
+"Restriktioner og anbefalinger for materiale - eller energigenvinding
+eller deponering": null,
+240
+"Take-back aftale mulig på tidspunkt af købet": null,
+241
+"Mulighed for en leasing atale i løbet af brugsfasen": null,
+242
+"Affaldskode": null,
+243
+"Klassificeret som farligt affald": null
+244
+},
+245
+246
+"Tekniske egenskaber":
+247
+{
+248
+"Tekniske egenskaber med relevans for produktets funktion": null,
+249
+"Lydtekniske egenskaber": null,
+250
+"Lydabsorptionsklasse": null,
+251
+"R'w-værdi": null,
+252
+"Brandtekniske egenskaber": null,
+253
+"Europæisk brandklassifikation": null,
+254
+"Klasse for røgintensitet": null,
+255
+"Klasse for brændende dråber": null,
+256
+"Termiske egenskaber": null,
+257
+"Varmekapacitet": null,
+258
+"Varmeledningsevne": null,
+259
+"Smelte- og fordampningsvarme": null,
+260
+"Optiske egenskaber": null,
+261
+"Transmittans": null,
+262
+"R-værdi": null,
+263
+"g-værdi": null,
+264
+"SHGC-koefficient": null,
+265
+"Refleksion": null,
+266
+"Absorption": null,
+267
+"Fugttekniske egeskaber": null,
+268
+"Permabilitet": null,
+269
+"Kapillarradius": null,
+270
+"Stighøjde": null,
+271
+"Stighastighed": null,
+272
+"Gennemtrængning af vanddamp": null,
+273
+"Vandabsorbering ved diffusion": null,
+274
+"Fryse -/optøningsmodstand": null,
+275
+"Skimmelbestandighed": null
+276
+}
+277
+}
+Udvikling af webplatform til bygningspas
+52
+==PAGE:57==
+Bibliography
+[1]
+Anke Oberender. Byggeaffaldet er en guldgrube – men vi udnytter den ikke. 2016.
+URL: https://www.renoveringpaadagsordenen.dk/kompetencer/byggeaffaldet-er-en-
+guldgrube-men-vi-udnytter-den-ikke/.
+[2]
+Katrine Hauge Smith, Sarah Cecilie Andersen og Thilde Fruergaard Astrup. Analyse
+af Bygnings­ og Materialepas. Tekn. rap. 2019. URL: https://www.teknologisk.dk/
+ydelser/bygge-og-anlaegsaffald/bygnings-og-materialepas/34248,6.
+[3]
+Lotte Bjerregaard Jensen, Kristoffer Negendahl og Jan Karlshøj. Analyse af en fri­
+villig ordning for bygnings­ og materialepas. 2021.
+[4]
+Thomas Budde Christensen og Martin Visby Buchard. BYG BRYGT – Studie af
+ordninger for genbrug og genanvendelse af byggematerialer. 2019. URL: http://
+docplayer.dk/175334050-Byg-brugt-studie-af-ordninger-for-genbrug-og-genanvendelse-
+af-byggematerialer.html.
+[5]
+José­Luis Gálvez­Martos m.fl. Construction and demolition waste best manage­
+ment practice in Europe. 2018. URL: https://www.sciencedirect.com/science/article/
+pii/S0921344918301538.
+[6]
+R.V. Silva, J. de Brito og R.K. Dhir. Availability and processing of recycled aggre­
+gates within the construction and demolition supply chain: A review. 2017. URL:
+https://www.sciencedirect.com/science/article/pii/S0959652616321357.
+[7]
+Wasim Salama. Design of concrete buildings for disassembly: An explorative re­
+view. 2017. URL: https://www.sciencedirect.com/science/article/pii/S2212609016301741.
+[8]
+Fernanda Cruz Rios, Wai K. Chong og David Grau. Design for Disassembly and
+Deconstruction ­ Challenges and Opportunities. 2015. URL: https://www.sciencedirect.
+com/science/article/pii/S1877705815021402.
+[9]
+BBR. Bygnings­ og boligregistret. 2021. URL: https://bbr.dk/forside.
+[10]
+Energistyrelsen. EMOData. 2021. URL: https://emoweb.dk/emodata/test/.
+[11]
+Bolig­ og planstyrelsen. BR15. 2015. URL: https://historisk.bygningsreglementet.dk/
+br10_04_id56/0/42.
+[12]
+Susie Frederiksen. Bolius ­ Fundamenter. 2018. URL: https : / / www . bolius . dk /
+fundamenter-18662.
+[13]
+Rockwool. Produkter og Konstruktioner. 2021. URL: https://www.rockwool.com/
+dk/produkter-og-konstruktioner/.
+[14]
+Statens Byggeforskningsinstitut. LCAbyg. 2021. URL: https://www.lcabyg.dk/.
+Udvikling af webplatform til bygningspas
+53
+==PAGE:58==
+Technical
+University of
+Denmark
+Brovej, Building 118
+2800 Kgs. Lyngby
+Tlf. 4525 1700
+www.byg.dtu.dk
