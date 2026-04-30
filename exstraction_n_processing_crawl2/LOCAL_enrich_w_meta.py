@@ -22,8 +22,10 @@ ROOT = find_project_root()
 
 
 JSON_PATH = ROOT / "Data" / "gcp_order" / "helper_files" / "department_classification.json"
+
 META_PATH = ROOT / "Data" / "gcp_order" / "dtu_findit" / "master_thesis_meta" / "thesis_meta_combined.parquet"
 METRICS_PATH = ROOT / "Data" / "extracted_metrics_unified_test2.csv"
+
 EXPORT_PATH = ROOT / "Data" 
 EXPORT_FILENAME = "master_thesis_metrics_analysis.csv"
 
