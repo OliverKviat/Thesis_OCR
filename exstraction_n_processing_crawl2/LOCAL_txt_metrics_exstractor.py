@@ -35,7 +35,6 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import csv
 import logging
 import re
 import sys
@@ -45,6 +44,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+import pandas as pd
 from typing import Dict, Iterable, List, Optional, Tuple
 
 import dateparser
@@ -71,8 +71,8 @@ MAX_TEXT_CHARS: int = 200_000
 CID_DENSITY_THRESHOLD: float = 0.05
 
 _REPO_ROOT: Path = Path(__file__).resolve().parents[1]
-DEFAULT_INPUT_DIR: Path = _REPO_ROOT / "Data" / "TXT_test"
-DEFAULT_OUTPUT_CSV: Path = _REPO_ROOT / "Data" / "extracted_metrics_unified.csv"
+DEFAULT_INPUT_DIR: Path = _REPO_ROOT / "Data" / "TXT_handin_test"
+DEFAULT_OUTPUT_PARQUET: Path = _REPO_ROOT / "Data" / "crawl2_files" / "extracted_metrics_unified.parquet"
 
 # --- Seasonality Constants ---
 MONTH_TRANSLATIONS: dict[str, str] = {
@@ -449,7 +449,7 @@ class UnifiedExtractor:
 def main():
     parser = argparse.ArgumentParser(description="Consolidated Local TXT Metrics Extractor")
     parser.add_argument("--input-dir", default=DEFAULT_INPUT_DIR, type=Path, help="Directory containing TXT files.")
-    parser.add_argument("--output-csv", default=DEFAULT_OUTPUT_CSV, type=Path, help="Output CSV path.")
+    parser.add_argument("--output-parquet", default=DEFAULT_OUTPUT_PARQUET, type=Path, help="Output Parquet path.")
     parser.add_argument("--workers", type=int, default=DEFAULT_WORKERS, help="Concurrent workers.")
     parser.add_argument("--limit", type=int, help="Limit number of files to process.")
     args = parser.parse_args()
@@ -468,23 +468,12 @@ def main():
             results.append(future.result())
             logger.info(f"[{i}/{len(files)}] Processed: {futures[future].name}")
 
-    # Write CSV
-    args.output_csv.parent.mkdir(parents=True, exist_ok=True)
-    with args.output_csv.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow([
-            "filename", "num_tot_pages", "num_cont_pages", "match_trigger", "num_words_full", "num_words_cont",
-            "num_figures", "num_tables", "num_references", "total_sentences", "total_words", "unique_words",
-            "avg_sentence_length", "avg_word_length", "lexical_diversity", "flesch_kincaid_grade", "handin_month", "corrupt_cid", "linguistics_backend"
-        ])
-        for r in results:
-            writer.writerow([
-                r.filename, r.num_tot_pages, r.num_cont_pages, r.match_trigger, r.num_words_full, r.num_words_cont,
-                r.num_figures, r.num_tables, r.num_references, r.total_sentences, r.total_words, r.unique_words,
-                r.avg_sentence_length, r.avg_word_length, r.lexical_diversity, r.flesch_kincaid_grade, r.handin_month, r.corrupt_cid, r.linguistics_backend
-            ])
-
-    logger.info(f"Done in {time.perf_counter() - start_time:.2f}s. Saved to {args.output_csv}")
+    # Write Parquet
+    args.output_parquet.parent.mkdir(parents=True, exist_ok=True)
+    df = pd.DataFrame([r.__dict__ for r in results])
+    df.to_parquet(args.output_parquet, index=False)
+    
+    logger.info(f"Done in {time.perf_counter() - start_time:.2f}s. Saved to {args.output_parquet}")
 
 if __name__ == "__main__":
     main()

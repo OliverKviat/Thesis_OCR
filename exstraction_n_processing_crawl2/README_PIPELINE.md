@@ -5,7 +5,7 @@ Pipeline run order for extracting and enriching metrics
 
 2) Extract metrics from TXT files
 - Run: `exstraction_n_processing_crawl2/LOCAL_txt_metrics_extractor.py`
-- Output: `Data/extracted_metrics_unified.csv`
+- Output: `Data/extracted_metrics_unified.parquet`
 ***OBS: ***
 * change the input directory to the desired location with the `--input-dir` CLI command.
 ````
@@ -15,6 +15,7 @@ uv run exstraction_n_processing_crawl2/LOCAL_txt_metrics_exstractor.py --input-d
 3) Enrich metrics with metadata and department classification
 - Run: `exstraction_n_processing_crawl2/LOCAL_enrich_w_meta.py`
 - This step merges metadata, assigns `Department_new` using TF-IDF + cosine similarity and joins it together with the metrics.
+- Output: `thesis_meta_all_metrics_except_grade.parquet`
 ***OBS: ***
 * Change the `METRICS_PATH`, `EXPORT_PATH` and `EXPORT_FILENAME` to the desired.
 

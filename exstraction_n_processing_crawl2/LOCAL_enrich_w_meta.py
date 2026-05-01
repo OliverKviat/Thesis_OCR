@@ -24,10 +24,10 @@ ROOT = find_project_root()
 JSON_PATH = ROOT / "Data" / "gcp_order" / "helper_files" / "department_classification.json"
 
 META_PATH = ROOT / "Data" / "gcp_order" / "dtu_findit" / "master_thesis_meta" / "thesis_meta_combined.parquet"
-METRICS_PATH = ROOT / "Data" / "extracted_metrics_unified_test2.csv"
+METRICS_PATH = ROOT / "Data" / "crawl2_files" / "extracted_metrics_unified.parquet"
 
-EXPORT_PATH = ROOT / "Data" 
-EXPORT_FILENAME = "master_thesis_metrics_analysis.csv"
+EXPORT_PATH = ROOT / "Data" / "crawl2_files"
+EXPORT_FILENAME = "thesis_meta_all_metrics_except_grade.parquet"
 
 THRESHOLD = 0.35
 EXPORT = True
@@ -38,9 +38,6 @@ STOP_PHRASES = [
     "technical university",
     "dtu",
 ]
-
-
-
 
 def norm_text(value) -> str:
     if pd.isna(value):
@@ -190,12 +187,12 @@ print(result[result['department_match_score'] < THRESHOLD * 2].head(10))
 
 # author count column
 # each auther is separated by a ";", counting the ";" in the string, if there is 0, the author count is 1, if there is 1, the author count is 2, and so on
-df_meta["author_count"] = df_meta["Author"].apply(lambda x: str(x).count(";") + 1 if pd.notna(x) else 0)
+df_meta["num_authors"] = df_meta["Author"].apply(lambda x: str(x).count(";") + 1 if pd.notna(x) else 0)
 
 
 ### ============= xx ============= ###
-# load metrics df from csv in location: Data/extracted_metrics_unified_test2.csv
-df_metrics = pd.read_csv(METRICS_PATH)
+# load metrics df from parquet
+df_metrics = pd.read_parquet(METRICS_PATH)
 
 # add new column called ID_metric with values from filename until "_"
 df_metrics["ID_metric"] = df_metrics["filename"].str.split("_").str[0]
@@ -210,7 +207,7 @@ drop_col = ["match_trigger", "corrupt_cid", "linguistics_backend"]
 df_metrics = df_metrics.drop(columns=drop_col, errors="ignore")
 
 ### ============= Join and Export ============= ###
-relevant_meta_columns = ["abstract_ts", "Author", "author_count", "Publication Year", "primary_member_id_s", "Title", "Department_new"]
+relevant_meta_columns = ["abstract_ts", "Author", "num_authors", "Publication Year", "primary_member_id_s", "Title", "Department_new"]
 
 # merging the rinsed metadata and metrics dataframes on member_id_ss (df_meta_rinsed) and 'member_id_ss_metrics' (master_thesis_metrics_analysis) for collumns in relevant_meta_columns in df_meta_rinsed
 master_thesis_metrics_analysis = pd.merge(
@@ -223,8 +220,8 @@ master_thesis_metrics_analysis = pd.merge(
 
 master_thesis_metrics_analysis = master_thesis_metrics_analysis.drop(columns=["ID_metric"], errors="ignore")
 
-#export to csv in location: Data/master_thesis_metrics_analysis.csv
+#export to parquet in location: Data/master_thesis_metrics_analysis.parquet
 if EXPORT:
     export_path = EXPORT_PATH / EXPORT_FILENAME 
-    master_thesis_metrics_analysis.to_csv(export_path, index=False)
+    master_thesis_metrics_analysis.to_parquet(export_path, index=False)
     print(f"Exported enriched dataset to: {export_path}")
