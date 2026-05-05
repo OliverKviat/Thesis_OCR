@@ -10,6 +10,14 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+# ==== MERGE SETTING ==== 
+MERGE_HOW = 1 # 1: inner, 2: left
+
+if MERGE_HOW == 1:
+    MERGE_HOW_STR = ["inner", "INNER"]
+elif MERGE_HOW == 2:
+    MERGE_HOW_STR = ["left", "LEFT"]
+
 ### ============= SETTINGS ============= ###
 def find_project_root(start: Path | None = None) -> Path:
     current = (start or Path.cwd()).resolve()
@@ -27,7 +35,7 @@ META_PATH = ROOT / "Data" / "gcp_order" / "dtu_findit" / "master_thesis_meta" / 
 METRICS_PATH = ROOT / "Data" / "crawl2_files" / "extracted_metrics_unified.parquet"
 
 EXPORT_PATH = ROOT / "Data" / "crawl2_files"
-EXPORT_FILENAME = "thesis_meta_all_metrics_except_grade.parquet"
+EXPORT_FILENAME = f"thesis_meta_all_metrics_except_grade_and_supervisor_{MERGE_HOW_STR[0]}.parquet"
 
 THRESHOLD = 0.35
 EXPORT = True
@@ -222,7 +230,7 @@ master_thesis_metrics_analysis = pd.merge(
     df_meta[relevant_meta_columns],
     left_on="ID_metric",
     right_on="ID",
-    how="inner",
+    how=MERGE_HOW_STR[0],
 )
 
 master_thesis_metrics_analysis = master_thesis_metrics_analysis.drop(columns=["ID_metric"], errors="ignore")
