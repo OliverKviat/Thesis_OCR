@@ -7,7 +7,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 IMPORT_PATH_INTERNAL = REPO_ROOT / "Data" / "crawl2_files"
 IMPORT_SUPERVISOR_PATH = Path("/Users/oliver/Desktop/MSc_Speciale/ThesisDataRepo/maks/")
 EXPORT = True
-EXPORT_PATH = IMPORT_PATH_INTERNAL
+EXPORT_PATH = "/Users/oliver/Desktop/MSc_Speciale/ThesisDataRepo/data/"
 FILE_EXPORT_NAME = "crawl2_thesis_meta_all_metrics_except_grade.parquet"
 
 # ==== FILES ====
@@ -115,7 +115,7 @@ df_merged = df_merged.drop(columns=["record_id"], errors="ignore")
 
 # ==== EXPORT UNIFIED DATAFRAME ====
 if EXPORT:
-    export_path = EXPORT_PATH / FILE_EXPORT_NAME
+    export_path = EXPORT_PATH + FILE_EXPORT_NAME
     try:
         df_merged.to_parquet(export_path, index=False)
         print(f"Successfully exported unified DataFrame to {export_path}")
