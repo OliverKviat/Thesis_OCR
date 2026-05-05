@@ -19,9 +19,9 @@ uv run exstraction_n_processing_crawl2/LOCAL_txt_metrics_exstractor.py --input-d
 ***OBS: ***
 * Change the `METRICS_PATH`, `EXPORT_PATH` and `EXPORT_FILENAME` to the desired.
 
-
 Notes:
 - Adjust `--threshold` if you want different matching sensitivity (default 0.35).
 
-### NOTE: 
-Ensure that the collumns and collumn names match form the above exstractions to the final data cleaning and preppring for plotting etc in the other rep.
+4) Append Supervisors and match endpoint (columns and column names for seamles integration into analysis scripts)
+- Run: `exstraction_n_processing_crawl2/LOCAL_endpoint_match_n_export.py`
+- Output: `crawl2_thesis_meta_all_metrics_except_grade.parquet`

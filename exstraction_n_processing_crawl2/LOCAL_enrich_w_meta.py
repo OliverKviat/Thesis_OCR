@@ -194,8 +194,8 @@ df_meta["num_authors"] = df_meta["Author"].apply(lambda x: str(x).count(";") + 1
 # load metrics df from parquet
 df_metrics = pd.read_parquet(METRICS_PATH)
 
-# add new column called ID_metric with values from filename until "_"
-df_metrics["ID_metric"] = df_metrics["filename"].str.split("_").str[0]
+# add new column called ID_metric with values from filename wihout the file exstention (.txt).
+df_metrics["ID_metric"] = df_metrics["filename"].str.split(".txt").str[0]
 
 # moving the column "ID_metric" to the front
 cols = df_metrics.columns.tolist()
@@ -206,15 +206,22 @@ df_metrics = df_metrics[cols]
 drop_col = ["match_trigger", "corrupt_cid", "linguistics_backend"]
 df_metrics = df_metrics.drop(columns=drop_col, errors="ignore")
 
+# drop overlapping metadata columns from metrics so the merge keeps the df_meta version only
+overlap_cols = ["Author", "abstract_ts", "num_authors", "Publication Year", "primary_member_id_s", "Title", "Department_new"]
+df_metrics = df_metrics.drop(columns=overlap_cols, errors="ignore")
+
 ### ============= Join and Export ============= ###
-relevant_meta_columns = ["abstract_ts", "Author", "num_authors", "Publication Year", "primary_member_id_s", "Title", "Department_new"]
+relevant_meta_columns = ["abstract_ts", "Author", "num_authors", "Publication Year", "primary_member_id_s", "Title", "Department_new", "ID"]
+
+# Ensure matching data types for merge keys
+df_meta["ID"] = df_meta["ID"].astype(str)
 
 # merging the rinsed metadata and metrics dataframes on member_id_ss (df_meta_rinsed) and 'member_id_ss_metrics' (master_thesis_metrics_analysis) for collumns in relevant_meta_columns in df_meta_rinsed
 master_thesis_metrics_analysis = pd.merge(
     df_metrics,
     df_meta[relevant_meta_columns],
     left_on="ID_metric",
-    right_on="primary_member_id_s",
+    right_on="ID",
     how="inner",
 )
 
