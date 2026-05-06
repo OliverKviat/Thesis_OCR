@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 
 # ==== MERGE SETTING ==== 
-MERGE_HOW = 1 # 1: inner, 2: left
+MERGE_HOW = 2 # 1: inner, 2: left
 
 if MERGE_HOW == 1:
     MERGE_HOW_STR = ["inner", "INNER"]
@@ -15,7 +15,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 IMPORT_PATH_INTERNAL = REPO_ROOT / "Data" / "crawl2_files"
 IMPORT_SUPERVISOR_PATH = Path("/Users/oliver/Desktop/MSc_Speciale/ThesisDataRepo/maks/")
 EXPORT = True
-EXPORT_PATH = "/Users/oliver/Desktop/MSc_Speciale/ThesisDataRepo/data/"
+EXPORT_PATH = "/Users/oliver/Desktop/MSc_Speciale/ThesisDataRepo/data/crawl2/"
 FILE_EXPORT_NAME = f"crawl2_thesis_meta_all_metrics_except_grade_and_supervisor_{MERGE_HOW_STR[1]}.parquet"
 
 # ==== FILES ====

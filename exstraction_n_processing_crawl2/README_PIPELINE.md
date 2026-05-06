@@ -15,7 +15,7 @@ uv run exstraction_n_processing_crawl2/LOCAL_txt_metrics_exstractor.py --input-d
 3) Enrich metrics with metadata and department classification
 - Run: `exstraction_n_processing_crawl2/LOCAL_enrich_w_meta.py`
 - This step merges metadata, assigns `Department_new` using TF-IDF + cosine similarity and joins it together with the metrics.
-- Output: `thesis_meta_all_metrics_except_grade.parquet`
+- Output: `thesis_meta_all_metrics_except_grade_and_supervisor_INNER.parquet` OR `thesis_meta_all_metrics_except_grade_and_supervisor_LEFT.parquet`
 ***OBS:***
 * Change the `METRICS_PATH`, `EXPORT_PATH` and `EXPORT_FILENAME` to the desired.
 * Set `MERGE_HOW = 1` *# 1: inner, 2: left* to set what merge method is to be used.
@@ -24,6 +24,6 @@ uv run exstraction_n_processing_crawl2/LOCAL_txt_metrics_exstractor.py --input-d
 
 4) Append Supervisors and match endpoint (columns and column names for seamles integration into analysis scripts)
 - Run: `exstraction_n_processing_crawl2/LOCAL_endpoint_match_n_export.py`
-- Output: `crawl2_thesis_meta_all_metrics_except_grade.parquet`
+- Output: `thesis_meta_all_metrics_except_grade_INNER.parquet` OR `thesis_meta_all_metrics_except_grade_LEFT.parquet`
 ***OBS:***
 * Set `MERGE_HOW = 1` *# 1: inner, 2: left* to set what merge method is to be used.

@@ -11,7 +11,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 # ==== MERGE SETTING ==== 
-MERGE_HOW = 1 # 1: inner, 2: left
+MERGE_HOW = 2 # 1: inner, 2: left
 
 if MERGE_HOW == 1:
     MERGE_HOW_STR = ["inner", "INNER"]
@@ -31,7 +31,7 @@ ROOT = find_project_root()
 
 JSON_PATH = ROOT / "Data" / "gcp_order" / "helper_files" / "department_classification.json"
 
-META_PATH = ROOT / "Data" / "gcp_order" / "dtu_findit" / "master_thesis_meta" / "thesis_meta_combined.parquet"
+META_PATH = ROOT / "Data" / "crawl2_files" / "meta_findit" / "meta_findit_all_merged.csv"
 METRICS_PATH = ROOT / "Data" / "crawl2_files" / "extracted_metrics_unified.parquet"
 
 EXPORT_PATH = ROOT / "Data" / "crawl2_files"
@@ -116,7 +116,10 @@ def load_departments(json_path: Path) -> pd.DataFrame:
     return df.reset_index(drop=True)
 
 alias_df = load_departments(JSON_PATH)
-df_meta = pd.read_parquet(META_PATH)
+df_meta = pd.read_csv(META_PATH, sep=";", encoding="utf-8", low_memory=False)
+
+# drop duplicates in df_meta based on ID, keeping the first occurrence
+df_meta = df_meta.drop_duplicates(subset=["ID"], keep="first").reset_index(drop=True).copy()
 
 # Build TF-IDF vectorizer on normalized aliases
 vectorizer = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5))
@@ -198,7 +201,7 @@ print(result[result['department_match_score'] < THRESHOLD * 2].head(10))
 df_meta["num_authors"] = df_meta["Author"].apply(lambda x: str(x).count(";") + 1 if pd.notna(x) else 0)
 
 
-### ============= xx ============= ###
+### ============= SOMETHING ============= ###
 # load metrics df from parquet
 df_metrics = pd.read_parquet(METRICS_PATH)
 
@@ -224,13 +227,16 @@ relevant_meta_columns = ["abstract_ts", "Author", "num_authors", "Publication Ye
 # Ensure matching data types for merge keys
 df_meta["ID"] = df_meta["ID"].astype(str)
 
+# Remove exact duplicate metadata rows so the left join does not expand the metrics table.
+df_meta = df_meta.drop_duplicates(subset=["ID"], keep="first").copy()
+
 # merging the rinsed metadata and metrics dataframes on member_id_ss (df_meta_rinsed) and 'member_id_ss_metrics' (master_thesis_metrics_analysis) for collumns in relevant_meta_columns in df_meta_rinsed
 master_thesis_metrics_analysis = pd.merge(
-    df_metrics,
     df_meta[relevant_meta_columns],
-    left_on="ID_metric",
-    right_on="ID",
-    how=MERGE_HOW_STR[0],
+    df_metrics,
+    left_on="ID",
+    right_on="ID_metric",
+    how=MERGE_HOW_STR[0]
 )
 
 master_thesis_metrics_analysis = master_thesis_metrics_analysis.drop(columns=["ID_metric"], errors="ignore")
