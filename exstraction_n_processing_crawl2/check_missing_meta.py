@@ -7,6 +7,12 @@ meta_path = Path("Data/crawl2_files/meta_findit/meta_findit_all_merged_v2.csv")
 df_metrics = pd.read_parquet(metrics_path)
 df_meta = pd.read_csv(meta_path, sep=";", dtype=str)
 
+df_metrics2 = df_metrics.drop_duplicates(subset=["filename"], keep="first").copy()
+
+print(f"Rows in metrics DataFrame: {len(df_metrics)}")
+print(f"Rows in metrics DataFrame after dropping duplicates: {len(df_metrics2)}")
+#print(f"Rows in meta DataFrame: {len(df_meta)}")
+
 #df_metrics.info()
 #df_meta.info()
 

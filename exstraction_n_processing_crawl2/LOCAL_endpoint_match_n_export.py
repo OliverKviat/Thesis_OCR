@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import numpy as np
 import pandas as pd
 
 # ==== MERGE SETTING ==== 
@@ -13,15 +13,14 @@ elif MERGE_HOW == 2:
 # ==== SETTINGS ====
 REPO_ROOT = Path(__file__).resolve().parents[1]
 IMPORT_PATH_INTERNAL = REPO_ROOT / "Data" / "crawl2_files"
-IMPORT_SUPERVISOR_PATH = Path("/Users/oliver/Desktop/MSc_Speciale/ThesisDataRepo/maks/")
-EXPORT = True
+EXPORT = False
 EXPORT_PATH = "/Users/oliver/Desktop/MSc_Speciale/ThesisDataRepo/data/crawl2/"
-FILE_EXPORT_NAME = f"crawl2_thesis_meta_all_metrics_except_grade_and_supervisor_{MERGE_HOW_STR[1]}.parquet"
+FILE_EXPORT_NAME = f"BASE_DATA_BIG.parquet"
 
 # ==== FILES ====
 FILE_INTERNAL = f"thesis_meta_all_metrics_except_grade_and_supervisor_{MERGE_HOW_STR[1]}.parquet"
 FILE_INTERNAL_UNI = "extracted_metrics_unified.parquet"
-SUPERVISOR_CSV_PATH = "Supervisor_information.csv"
+SUPERVISOR_PARQUET_PATH = "unique_supervisors_fixed_again.parquet"
 
 
 def load_csv_to_df(csv_path, sep=";", verbose=True):
@@ -102,30 +101,41 @@ print(f"Number of columns: {len(df_crawl2.columns)}")
 print(df_crawl2.columns)
 
 # ==== LOAD SUPERVISOR DATAFRAME ====
-df_supervisors = load_csv_to_df(IMPORT_SUPERVISOR_PATH / SUPERVISOR_CSV_PATH, sep=",", verbose=False)
+#df_supervisors = pd.read_csv((IMPORT_PATH_INTERNAL / SUPERVISOR_CSV_PATH), sep=",", dtype={"ID": "str"}) #load_csv_to_df(IMPORT_PATH_INTERNAL / SUPERVISOR_CSV_PATH, sep=",", verbose=False)
+df_supervisors = load_parquet_to_df(IMPORT_PATH_INTERNAL / SUPERVISOR_PARQUET_PATH, verbose=False)
 if df_supervisors is None:
-    raise FileNotFoundError(f"Could not load supervisor CSV from {IMPORT_SUPERVISOR_PATH / SUPERVISOR_CSV_PATH}")
+    raise FileNotFoundError(f"Could not load supervisor Parquet from {IMPORT_PATH_INTERNAL / SUPERVISOR_PARQUET_PATH}")
 
 # Drop the following columns from df_supervisors
-drop_supervisor_columns = ["YEAR", "TYPES", "PUBLISHER"]
+drop_supervisor_columns = ["YEAR", "TYPES", "PUBLISHER", "Publication Year"]
 df_supervisors = df_supervisors.drop(columns=drop_supervisor_columns, errors="ignore")
 
-# Match on df_supervisors["record_id"] and df_crawl2["primary_member_id_s"]
+#print(f"df_crawl2['ID'] dtype: {df_crawl2['ID'].dtypes}")
+#print(f"df_supervisors['ID'] dtype: {df_supervisors['ID'].dtypes}")
+
+# Match on df_crawl2["ID"] and df_supervisors["ID"]
 df_merged = pd.merge(
     df_crawl2,
     df_supervisors,
-    left_on="primary_member_id_s",
-    right_on="record_id",
+    left_on="ID",
+    right_on="ID",
     how=MERGE_HOW_STR[0],
 )
 
 df_merged = df_merged.drop(columns=["record_id"], errors="ignore")
 
+# ==== DORP INSA METRICS COLUMNS ====
+# dropping all columns of df_merged that are 100% empty (all values are NaN)
+df_notna = df_merged.dropna(axis=1, how="all")
+print(f"\nColumns dropped from merged DataFrame due to being 100% empty: {set(df_merged.columns) - set(df_notna.columns)}")
+print(f"Number of columns after dropping empty columns: {len(df_notna.columns)}")
+print(f"Number of rows in merged DataFrame: {len(df_notna)}")
+
 # ==== EXPORT UNIFIED DATAFRAME ====
 if EXPORT:
     export_path = EXPORT_PATH + FILE_EXPORT_NAME
     try:
-        df_merged.to_parquet(export_path, index=False)
+        df_notna.to_parquet(export_path, index=False)
         print(f"Successfully exported unified DataFrame to {export_path}")
     except Exception as e:
         print(f"Error exporting unified DataFrame to {export_path}: {e}")
