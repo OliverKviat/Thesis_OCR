@@ -232,10 +232,10 @@ df_meta = df_meta.drop_duplicates(subset=["ID"], keep="first").copy()
 
 # merging the rinsed metadata and metrics dataframes on member_id_ss (df_meta_rinsed) and 'member_id_ss_metrics' (master_thesis_metrics_analysis) for collumns in relevant_meta_columns in df_meta_rinsed
 master_thesis_metrics_analysis = pd.merge(
-    df_meta[relevant_meta_columns],
     df_metrics,
-    left_on="ID",
-    right_on="ID_metric",
+    df_meta[relevant_meta_columns],
+    left_on="ID_metric",
+    right_on="ID",
     how=MERGE_HOW_STR[0]
 )
 
