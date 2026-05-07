@@ -31,7 +31,7 @@ ROOT = find_project_root()
 
 JSON_PATH = ROOT / "Data" / "gcp_order" / "helper_files" / "department_classification.json"
 
-META_PATH = ROOT / "Data" / "crawl2_files" / "meta_findit" / "meta_findit_all_merged.csv"
+META_PATH = ROOT / "Data" / "crawl2_files" / "meta_findit" / "meta_findit_all_merged_FINAL.csv"
 METRICS_PATH = ROOT / "Data" / "crawl2_files" / "extracted_metrics_unified.parquet"
 
 EXPORT_PATH = ROOT / "Data" / "crawl2_files"
