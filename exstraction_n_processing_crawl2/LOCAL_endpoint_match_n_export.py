@@ -13,7 +13,7 @@ elif MERGE_HOW == 2:
 # ==== SETTINGS ====
 REPO_ROOT = Path(__file__).resolve().parents[1]
 IMPORT_PATH_INTERNAL = REPO_ROOT / "Data" / "crawl2_files"
-EXPORT = False
+EXPORT = True
 EXPORT_PATH = "/Users/oliver/Desktop/MSc_Speciale/ThesisDataRepo/data/crawl2/"
 FILE_EXPORT_NAME = f"BASE_DATA_BIG.parquet"
 
