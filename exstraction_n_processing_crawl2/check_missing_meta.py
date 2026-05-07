@@ -1,6 +1,22 @@
 import pandas as pd
 from pathlib import Path
 
+step_1_path = Path("Data/crawl2_files/extracted_metrics_unified.parquet")
+step_2_path = Path("Data/crawl2_files/thesis_meta_all_metrics_except_grade_and_supervisor_LEFT.parquet")
+step_3_path = Path("/Users/oliver/Desktop/MSc_Speciale/ThesisDataRepo/data/crawl2/BASE_DATA_BIG.parquet")
+
+step_1 = pd.read_parquet(step_1_path)
+print(f"Rows in step_1 DataFrame: {len(step_1)}")
+print(f"Unique filenames in step_1 DataFrame: {step_1['filename'].nunique()}")
+step_2 = pd.read_parquet(step_2_path)
+print(f"Rows in step_2 DataFrame: {len(step_2)}")
+print(f"Unique filenames in step_2 DataFrame: {step_2['filename'].nunique()}")
+step_3 = pd.read_parquet(step_3_path)
+print(f"Rows in step_3 DataFrame: {len(step_3)}")
+print(f"Unique filenames in step_3 DataFrame: {step_3['filename'].nunique()}")
+
+print("\n========== BREAK ==========\n")
+
 metrics_path = Path("Data/crawl2_files/extracted_metrics_unified.parquet")
 meta_path = Path("Data/crawl2_files/meta_findit/meta_findit_all_merged_v2.csv")
 
