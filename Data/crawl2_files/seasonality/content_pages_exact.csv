@@ -1,0 +1,11 @@
+filename,num_tot_pages,num_cont_pages,match_trigger
+2292738452.txt,441,441,
+2594525123.txt,280,280,
+2596404358.txt,524,485,"prefix-match ('appendix c', prefix='appendix')"
+2693468616.txt,352,352,
+2723582275.txt,436,436,
+2733712315.txt,400,400,
+2733712497.txt,531,427,"prefix-match ('appendix c. nature load', prefix='appendix')"
+2734545003.txt,378,378,
+2737744422.txt,782,349,exact ('bibliography')
+2874581365.txt,305,305,
