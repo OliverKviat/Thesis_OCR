@@ -21,6 +21,8 @@ FILE_EXPORT_NAME = f"BASE_DATA_BIG.parquet"
 FILE_INTERNAL = f"thesis_meta_all_metrics_except_grade_and_supervisor_{MERGE_HOW_STR[1]}.parquet"
 FILE_INTERNAL_UNI = "extracted_metrics_unified.parquet"
 SUPERVISOR_PARQUET_PATH = "unique_supervisors_fixed_again.parquet"
+NEW_HANDIN_MONTH = "seasonality/handin_month_summary.csv"
+NEW_CONTENT_PAGES = "seasonality/content_pages_exact.csv"
 
 
 def load_csv_to_df(csv_path, sep=";", verbose=True):
@@ -123,11 +125,44 @@ df_merged = pd.merge(
 )
 
 df_merged = df_merged.drop(columns=["record_id"], errors="ignore")
+print(f"number of na in df_merged['handin_month']: {df_merged['handin_month'].isna().sum()}")
 
-# ==== DORP INSA METRICS COLUMNS ====
+# overwriteing df_merged["handin_month"] with new handin month data from seasonality extractor 
+# Method is joining on "ID" column, dropping old column and renaming new column to "handin_month"
+new_handin_month_df = load_csv_to_df(IMPORT_PATH_INTERNAL / NEW_HANDIN_MONTH, sep=",", verbose=False)
+new_handin_month_df["ID"] = new_handin_month_df["ID"].astype(str)  # Ensure ID is string for merging
+df_merged_handin = pd.merge(
+    df_merged,
+    new_handin_month_df[["ID", "handin_month"]],
+    left_on="ID",
+    right_on="ID",
+    how="left",
+)
+df_merged_handin = df_merged_handin.drop(columns=["handin_month_x"], errors="ignore")
+df_merged_handin = df_merged_handin.rename(columns={"handin_month_y": "handin_month"})
+
+# overwriteing df_merged["num_cont_pages"] with new content pages  data from content boundary extractor
+new_content_pages_df = load_csv_to_df(IMPORT_PATH_INTERNAL / NEW_CONTENT_PAGES, sep=",", verbose=False)
+new_content_pages_df["ID"] = new_content_pages_df["filename"].str.removesuffix(".txt")
+new_content_pages_df["ID"] = new_content_pages_df["ID"].astype(str)  # Ensure ID is string for merging
+
+df_merged_content = pd.merge(
+    df_merged_handin,
+    new_content_pages_df[["ID", "num_cont_pages"]],
+    left_on="ID",
+    right_on="ID",
+    how="left",
+)
+df_merged_content = df_merged_content.drop(columns=["num_cont_pages_x"], errors="ignore")
+df_merged_content = df_merged_content.rename(columns={"num_cont_pages_y": "num_cont_pages"})
+
+print(f"number of na in df_merged_content['handin_month']: {df_merged_content['handin_month'].isna().sum()}")
+print(f"number of na in df_merged_content['num_cont_pages']: {df_merged_content['num_cont_pages'].isna().sum()}")
+
+# ==== DROP INSA METRICS COLUMNS ====
 # dropping all columns of df_merged that are 100% empty (all values are NaN)
-df_notna = df_merged.dropna(axis=1, how="all")
-print(f"\nColumns dropped from merged DataFrame due to being 100% empty: {set(df_merged.columns) - set(df_notna.columns)}")
+df_notna = df_merged_content.dropna(axis=1, how="all")
+print(f"\nColumns dropped from merged DataFrame due to being 100% empty: {set(df_merged_content.columns) - set(df_notna.columns)}")
 print(f"Number of columns after dropping empty columns: {len(df_notna.columns)}")
 print(f"Number of rows in merged DataFrame: {len(df_notna)}")
 
