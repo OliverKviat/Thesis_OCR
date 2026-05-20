@@ -162,6 +162,55 @@ def is_toc_context(lines: List[str], heading_line_num: int) -> bool:
     return False
 
 
+def is_likely_toc_span(pages: List[str], page_number: int, lookback: int = 2, lookahead: int = 0) -> bool:
+    """Return True if the page at `page_number` appears to be part of a
+    multi-page table-of-contents block when considered with adjacent pages.
+
+    Heuristic: accumulate TOC-like signals (dot-leaders, trailing page numbers,
+    numeric-only lines) across a small window of pages and return True if the
+    totals exceed conservative thresholds. Also return True if any previous
+    page in the lookback window is already classified as TOC by
+    `is_toc_context()`.
+    """
+    num_pages = len(pages)
+    start = max(1, page_number - lookback)
+    end = min(num_pages, page_number + lookahead)
+
+    dot_leader_re = re.compile(r"(?:\.\s*){4,}\d{1,3}\s*$")
+    trailing_num = re.compile(r"\b\d{1,3}\s*$")
+    numeric_only = re.compile(r"^\d{1,3}$")
+
+    dot_sum = 0
+    trailing_sum = 0
+    numeric_only_sum = 0
+
+    for pg in range(start, end + 1):
+        lines = [ln.strip() for ln in pages[pg - 1].splitlines() if ln.strip()]
+
+        # Quick positive: previous page(s) look like TOC according to existing
+        # single-page heuristic.
+        if pg < page_number and is_toc_context([l.lower() for l in lines], len(lines)):
+            return True
+
+        for ln in lines:
+            if dot_leader_re.search(ln):
+                dot_sum += 1
+            if trailing_num.search(ln) and re.search(r"[A-Za-zÆØÅæøå]", ln):
+                trailing_sum += 1
+            if numeric_only.match(ln):
+                numeric_only_sum += 1
+
+    # Thresholds tuned to avoid false positives while catching multi-page TOCs.
+    if dot_sum >= 4:
+        return True
+    if trailing_sum >= 6:
+        return True
+    if numeric_only_sum >= 6:
+        return True
+
+    return False
+
+
 def _label_only(core_line: str) -> str:
     """
     Strip the descriptive portion of a heading, keeping only the keyword + code.
@@ -256,9 +305,10 @@ def find_main_content_end_page(pages: List[str]) -> Tuple[int, Optional[str]]:
         "references", "bibliography", "works cited", "list of references",
         "reference list", "appendix", "appendices", "referencer", "bibliografi",
         "litteratur", "litteraturliste", "litteraturfortegnelse", "kildeliste",
-        "bilag", "appendiks", "list of figures", "list of tables",
-        "attachment",
+        "bilag", "appendiks", "attachment", "referencer.",
     }
+
+    # and do not add "literature" to end_boundary_prefix
     end_boundary_prefix: tuple = (
         "references", "bibliography", "works cited", "appendix", "appendices",
         "referencer", "bibliografi", "litteratur", "kildeliste", "bilag",
@@ -317,6 +367,9 @@ def find_main_content_end_page(pages: List[str]) -> Tuple[int, Optional[str]]:
                 continue
 
             if page_number > min_end_page:
+                # If the page is likely part of a multi-page TOC, skip it.
+                if is_likely_toc_span(pages, page_number):
+                    continue
                 return page_number, local_trigger
             break   # before min_end_page: skip remaining lines, try next page
 
