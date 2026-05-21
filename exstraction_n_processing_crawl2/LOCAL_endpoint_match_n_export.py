@@ -15,7 +15,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 IMPORT_PATH_INTERNAL = REPO_ROOT / "Data" / "crawl2_files"
 EXPORT = True
 EXPORT_PATH = "/Users/oliver/Desktop/MSc_Speciale/ThesisDataRepo/data/crawl2/"
-FILE_EXPORT_NAME = f"BASE_DATA_BIG.parquet"
+FILE_EXPORT_NAME = f"BASE_DATA_RAW_no_grades.parquet"
 
 # ==== FILES ====
 FILE_INTERNAL = f"thesis_meta_all_metrics_except_grade_and_supervisor_{MERGE_HOW_STR[1]}.parquet"

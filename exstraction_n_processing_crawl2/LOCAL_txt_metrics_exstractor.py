@@ -149,74 +149,254 @@ def parse_txt_to_pages(raw_text: str) -> List[str]:
     if chunks and chunks[0] == "":
         chunks = chunks[1:]
     return chunks
-
 def is_toc_context(lines: List[str], heading_line_num: int) -> bool:
-    """Detect if heading appears in TOC-like context rather than body section."""
-    pre_lines = [ln.strip() for ln in lines[:heading_line_num] if ln.strip()]
-    context = " ".join(pre_lines).lower()
+    """Return True only if the heading clearly sits inside a TOC or front-matter block."""
 
-    toc_markers = ("contents", "table of contents", "indholdsfortegnelse", "preface", "acknowledgements")
-    if any(marker in context for marker in toc_markers):
+    window_start = max(0, heading_line_num - 10)
+    pre_lines    = [ln for ln in lines[window_start:heading_line_num] if ln.strip()]
+    context      = " ".join(pre_lines)
+
+    if any(m in context for m in ("table of contents", "indholdsfortegnelse")):
         return True
 
-    dot_leader_pattern = re.compile(r"(?:\.\s*){4,}\d{1,3}\s*$")
-    trailing_page_no_pattern = re.compile(r"\b\d{1,3}\s*$")
-    numeric_only_pattern = re.compile(r"^\d{1,3}$")
-    toc_tail_markers = ("figurer", "figures", "tabeller", "tables", "bilag", "appendix")
+    dot_leader   = re.compile(r"(?:\.\s*){4,}\d{1,3}\s*$")
+    trailing_num = re.compile(r"\b\d{1,3}\s*$")
 
-    toc_like_lines = sum(1 for ln in pre_lines if dot_leader_pattern.search(ln) or (trailing_page_no_pattern.search(ln) and re.search(r"[A-Za-zÆØÅæøå]", ln)))
-    
-    post_lines = [ln.strip() for ln in lines[heading_line_num + 1 : heading_line_num + 12] if ln.strip()]
-    toc_like_post = sum(1 for ln in post_lines if dot_leader_pattern.search(ln) or (trailing_page_no_pattern.search(ln) and re.search(r"[A-Za-zÆØÅæøå]", ln)))
-    post_numeric_only = sum(1 for ln in post_lines if numeric_only_pattern.match(ln))
-    post_toc_marker_hits = sum(1 for ln in post_lines if any(marker in ln.lower() for marker in toc_tail_markers))
+    def is_toc_line(ln: str) -> bool:
+        if dot_leader.search(ln):
+            return True
+        # Require >= 2 words AND >= 10 chars: section codes like "A.1" are NOT TOC entries
+        return (trailing_num.search(ln)
+                and re.search(r"[A-Za-zÆØÅæøå]", ln)
+                and len(ln.split()) >= 2
+                and len(ln) >= 10)
 
-    if toc_like_post >= 3: return True
-    if post_numeric_only >= 3 and post_toc_marker_hits >= 2: return True
-    return toc_like_lines >= 6
+    if sum(1 for ln in pre_lines if is_toc_line(ln)) >= 5:
+        return True
+
+    post_lines = [ln for ln in lines[heading_line_num + 1 : heading_line_num + 12] if ln.strip()]
+    if sum(1 for ln in post_lines if is_toc_line(ln)) >= 3:
+        return True
+
+    num_only  = re.compile(r"^\d{1,3}$")
+    toc_words = ("figurer", "figures", "tabeller", "tables", "bilag", "appendix")
+    if (sum(1 for ln in post_lines if num_only.match(ln)) >= 3
+            and sum(1 for ln in post_lines if any(w in ln for w in toc_words)) >= 2):
+        return True
+
+    return False
+
+
+def is_likely_toc_span(pages: List[str], page_number: int, lookback: int = 2, lookahead: int = 0) -> bool:
+    """Return True if the page at `page_number` appears to be part of a
+    multi-page table-of-contents block when considered with adjacent pages.
+
+    Heuristic: accumulate TOC-like signals (dot-leaders, trailing page numbers,
+    numeric-only lines) across a small window of pages and return True if the
+    totals exceed conservative thresholds. Also return True if any previous
+    page in the lookback window is already classified as TOC by
+    `is_toc_context()`.
+    """
+    num_pages = len(pages)
+    start = max(1, page_number - lookback)
+    end = min(num_pages, page_number + lookahead)
+
+    dot_leader_re = re.compile(r"(?:\.\s*){4,}\d{1,3}\s*$")
+    trailing_num = re.compile(r"\b\d{1,3}\s*$")
+    numeric_only = re.compile(r"^\d{1,3}$")
+
+    dot_sum = 0
+    trailing_sum = 0
+    numeric_only_sum = 0
+
+    for pg in range(start, end + 1):
+        lines = [ln.strip() for ln in pages[pg - 1].splitlines() if ln.strip()]
+
+        # Quick positive: previous page(s) look like TOC according to existing
+        # single-page heuristic.
+        if pg < page_number and is_toc_context([l.lower() for l in lines], len(lines)):
+            return True
+
+        for ln in lines:
+            if dot_leader_re.search(ln):
+                dot_sum += 1
+            if trailing_num.search(ln) and re.search(r"[A-Za-zÆØÅæøå]", ln):
+                trailing_sum += 1
+            if numeric_only.match(ln):
+                numeric_only_sum += 1
+
+    # Thresholds tuned to avoid false positives while catching multi-page TOCs.
+    if dot_sum >= 4:
+        return True
+    if trailing_sum >= 6:
+        return True
+    if numeric_only_sum >= 6:
+        return True
+
+    return False
+
+
+def _label_only(core_line: str) -> str:
+    """
+    Strip the descriptive portion of a heading, keeping only the keyword + code.
+
+    Examples
+    --------
+    "appendix 2: weekly missing value estimation"  ->  "appendix 2"
+    "appendix c. nature load"                      ->  "appendix c"
+    "appendix 1 - soil bearing capacities"         ->  "appendix 1"
+    "references"                                   ->  "references"   (unchanged)
+    """
+    # "keyword code: description"
+    m = re.match(r'^([a-zæøå]+(?:\s+[\da-z](?:\.\d+)*\.?)?)\s*:\s+\S', core_line)
+    if m and len(m.group(1).split()) <= 3:
+        return m.group(1)
+
+    # "keyword A. description"  (period + space after letter/digit code)
+    m = re.match(r'^([a-zæøå]+\s+[a-z\d](?:\.\d+)?)\.\s+[a-z]', core_line)
+    if m:
+        return m.group(1)
+
+    # "keyword code - description"
+    m = re.match(r'^([a-zæøå]+(?:\s+[\da-z](?:\.\d+)?)?)\s+-\s+\S', core_line)
+    if m and len(m.group(1).split()) <= 3:
+        return m.group(1)
+
+    return core_line
+
+
+_SEC_PREFIX_RE   = re.compile(r'^(\d+(?:\.\d+)*\.?|[A-Za-z]\.)$')
+_CHAPTER_HEAD_RE = re.compile(r'^(?:chapter|kapitel|del|part)\s+\d+', re.IGNORECASE)
+
+
+def _strip_section_prefix(line: str) -> Tuple[Optional[str], str]:
+    """Strip a leading numeric/letter section code; return (code_or_None, remainder)."""
+    toks = line.split()
+    if not toks:
+        return None, line
+    raw0 = toks[0].rstrip(").:-")
+    if (raw0.isdigit()
+            or (len(raw0) == 1 and raw0.isalpha())
+            or _SEC_PREFIX_RE.match(raw0)):
+        return raw0, " ".join(toks[1:]).strip()
+    if _CHAPTER_HEAD_RE.match(line):
+        rem = _CHAPTER_HEAD_RE.sub("", line).strip().lstrip(":- ").strip()
+        if rem:
+            return "chapter-N", rem
+    return None, line
+
+
+def find_conclusion_page(pages: List[str]) -> Optional[int]:
+    """
+    Return the page number (1-based) of the LAST Conclusion section heading
+    found past the first 5 % of the document (to skip TOC entries).
+
+    Returns None if no conclusion heading is found.
+    """
+    conclusion_kws = (
+        "conclusion", "conclusions",
+        "konklusion", "konklusioner",
+        "afslutning", "sammenfatning", "opsummering",
+    )
+    num_pages = len(pages)
+    min_pg    = max(1, int(num_pages * 0.05))
+    last_hit: Optional[int] = None
+
+    for pg_num, pg_text in enumerate(pages, start=1):
+        if pg_num <= min_pg:
+            continue
+        for line in pg_text.splitlines():
+            l = line.strip().lower()
+            if not l or len(l) > 70:
+                continue
+            _, core       = _strip_section_prefix(l)
+            core_stripped = core.rstrip(". ")       # tolerate trailing period
+            if (any(core_stripped == kw or core_stripped.startswith(kw + " ")
+                    for kw in conclusion_kws)
+                    and len(l.split()) <= 8):
+                last_hit = pg_num
+                break
+
+    return last_hit
+
 
 def find_main_content_end_page(pages: List[str]) -> Tuple[int, Optional[str]]:
-    """Determine the page number where main content ends (Bibliography, Appendix, etc)."""
-    end_boundary_exact = {"references", "bibliography", "works cited", "list of references", "reference list", "appendix", "appendices", "referencer", "bibliografi", "litteratur", "litteraturliste", "litteraturfortegnelse", "kildeliste", "bilag", "appendiks", "list of figures", "list of tables"}
-    end_boundary_prefix = ("references", "bibliography", "works cited", "appendix", "appendices", "referencer", "bibliografi", "litteratur", "kildeliste", "bilag", "appendiks")
+    """
+    Return ``(end_page_number, trigger_description)`` where *end_page_number*
+    is the 1-based page index of the first back-matter heading found after the
+    conclusion.  Returns ``(total_pages, None)`` if no boundary is detected.
+    """
+    end_boundary_exact: set = {
+        "references", "bibliography", "works cited", "list of references",
+        "reference list", "appendix", "appendices", "referencer", "bibliografi",
+        "litteratur", "litteraturliste", "litteraturfortegnelse", "kildeliste",
+        "bilag", "appendiks", "attachment", "referencer.",
+    }
+
+    # and do not add "literature" to end_boundary_prefix
+    end_boundary_prefix: tuple = (
+        "references", "bibliography", "works cited", "appendix", "appendices",
+        "referencer", "bibliografi", "litteratur", "kildeliste", "bilag",
+        "appendiks", "attachment",
+    )
 
     num_tot_pages = len(pages)
-    min_end_page = max(1, int(num_tot_pages * 0.30))
-    
+
+    # Use conclusion page as an adaptive lower bound; fall back to 15 %
+    conclusion_pg = find_conclusion_page(pages)
+    min_end_page  = conclusion_pg if conclusion_pg else max(1, int(num_tot_pages * 0.15))
+
     for page_number, page_text in enumerate(pages, start=1):
-        lines = [line.strip().lower() for line in page_text.splitlines() if line.strip()]
-        for line_idx, line in enumerate(lines):
-            tokens = line.split()
-            prefix_token, core_line, local_trigger = None, line, None
+        lines       = [l.strip() for l in page_text.splitlines() if l.strip()]
+        lines_lower = [l.lower() for l in lines]
 
-            if tokens:
-                first_token = tokens[0].rstrip(").:-")
-                if first_token.isdigit() or (len(first_token) == 1 and first_token.isalpha()):
-                    prefix_token = first_token
-                    core_line = " ".join(tokens[1:]).strip()
+        # Fast-path: near-blank divider page (<=4 lines) — skip TOC check
+        if 1 <= len(lines_lower) <= 4 and page_number > min_end_page:
+            for ln in lines_lower:
+                _, cand = _strip_section_prefix(ln)
+                if cand and cand.split()[0] in end_boundary_exact:
+                    return page_number, f"title-page ('{cand}')"
 
-            if core_line and core_line in end_boundary_exact:
-                local_trigger = f"numeric-prefix exact ('{prefix_token} {core_line}')" if prefix_token and prefix_token.isdigit() else f"letter-prefix exact ('{prefix_token} {core_line}')" if prefix_token else f"exact ('{core_line}')"
-            elif core_line and any(core_line.startswith(p) for p in end_boundary_prefix):
-                matched_prefix = next(p for p in end_boundary_prefix if core_line.startswith(p))
-                local_trigger = f"numeric-prefix prefix-match ('{prefix_token} {core_line}', prefix='{matched_prefix}')" if prefix_token and prefix_token.isdigit() else f"letter-prefix prefix-match ('{prefix_token} {core_line}', prefix='{matched_prefix}')" if prefix_token else f"prefix-match ('{core_line}', prefix='{matched_prefix}')"
+        for line_idx, line in enumerate(lines_lower):
+            if not line:
+                continue
 
-            if local_trigger is None: continue
+            prefix_token, core_line = _strip_section_prefix(line)
+            if not core_line:
+                continue
+
+            first_cw      = core_line.split()[0]
+            local_trigger = None
+            if core_line in end_boundary_exact:
+                local_trigger = f"exact ('{core_line}')"
+            elif (first_cw in end_boundary_exact
+                  or any(core_line.startswith(p) for p in end_boundary_prefix)):
+                local_trigger = f"prefix-match ('{core_line[:50]}')"
+
+            if local_trigger is None:
+                continue
 
             words = line.split()
-            core_words = core_line.split()
-            first_core_token = core_words[0] if core_words else ""
-            trailing_words = core_words[1:] if first_core_token in end_boundary_exact else core_words
-            lowercase_trailing_count = sum(1 for w in trailing_words if w.isalpha() and w.islower())
+            if not (len(line) <= 65 and len(words) <= 9):
+                continue
+            if line.endswith((',', ';', ':', '.', ')')):
+                continue
 
-            if not (len(line) <= 60 and len(words) <= 8): continue
-            if line.endswith((",", ";", ":", ".", ")")): continue
-            if lowercase_trailing_count >= 4: continue
-            if is_toc_context(lines, line_idx): continue
+            label    = _label_only(core_line)
+            lw       = label.split()
+            trailing = lw[1:] if (lw and lw[0] in end_boundary_exact) else lw
+            if sum(1 for w in trailing if w.isalpha() and w.islower()) >= 4:
+                continue
+
+            if is_toc_context(lines_lower, line_idx):
+                continue
 
             if page_number > min_end_page:
+                # If the page is likely part of a multi-page TOC, skip it.
+                if is_likely_toc_span(pages, page_number):
+                    continue
                 return page_number, local_trigger
-            break
+            break   # before min_end_page: skip remaining lines, try next page
 
     return num_tot_pages, None
 
